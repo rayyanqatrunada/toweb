@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\Partnerships\Schemas;
 
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -13,29 +15,42 @@ class PartnershipForm
     {
         return $schema
             ->components([
-                TextInput::make('industry_partner_id')
+                Select::make('industry_partner_id')
+                    ->relationship('industryPartner', 'name')
                     ->required()
-                    ->numeric(),
+                    ->searchable()
+                    ->preload(),
                 Select::make('type')
                     ->options([
                         'mou' => 'MoU',
                         'internship' => 'Internship',
                         'recruitment' => 'Recruitment',
                     ])
-                    ->default('mou')
-                    ->required(),
+                    ->required()
+                    ->default('mou'),
+                TextInput::make('title')
+                    ->maxLength(255)
+                    ->label('Partnership Title/Name'),
                 DatePicker::make('start_date')
                     ->required(),
-                DatePicker::make('end_date'),
-                TextInput::make('document_file'),
+                DatePicker::make('end_date')
+                    ->afterOrEqual('start_date'),
+                Textarea::make('description')
+                    ->columnSpanFull(),
+                FileUpload::make('document_file')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->maxSize(5120)
+                    ->disk('public')
+                    ->directory('partnership_documents')
+                    ->columnSpanFull(),
                 Select::make('status')
                     ->options([
                         'active' => 'Active',
                         'expired' => 'Expired',
                         'terminated' => 'Terminated',
                     ])
-                    ->default('active')
-                    ->required(),
+                    ->required()
+                    ->default('active'),
             ]);
     }
 }

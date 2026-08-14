@@ -33,7 +33,7 @@ class IndustryPartnerResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\PartnershipsRelationManager::class,
         ];
     }
 

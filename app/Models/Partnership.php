@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Partnership extends Model
 {
-    protected $fillable = ['industry_partner_id', 'type', 'start_date', 'end_date', 'document_file', 'status'];
+    use HasFactory;
+
+    protected $fillable = [
+        'industry_partner_id', 'type', 'title', 'start_date', 
+        'end_date', 'description', 'document_file', 'status'
+    ];
 
     protected function casts(): array
     {
