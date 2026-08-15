@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
-Route::get('/search', [FrontendController::class, 'search'])->name('search');
+Route::get('/search', [FrontendController::class, 'search'])->middleware('throttle:60,1')->name('search');
 Route::get('/tentang', [FrontendController::class, 'about'])->name('about');
 
 Route::get('/berita', [FrontendController::class, 'news'])->name('news.index');

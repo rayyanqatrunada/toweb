@@ -16,9 +16,27 @@ class FrontendController extends Controller
 {
     public function index()
     {
+        // Stats
+        $alumniCount = \App\Models\Alumni::public()->count();
+        $partnerCount = IndustryPartner::published()->count();
+        $achievementCount = Achievement::published()->count();
+        $facilityCount = Facility::count();
+
+        // Data for sections
+        $programs = \App\Models\Program::with('competencies')->get();
+        $facilities = Facility::latest()->take(3)->get();
+        $partners = IndustryPartner::published()->latest()->take(8)->get();
+        $jobVacancies = JobVacancy::with('industryPartner')->published()->latest()->take(3)->get();
+        $alumnis = \App\Models\Alumni::public()->latest()->take(6)->get();
         $latestNews = Post::with('category')->published()->latest()->take(3)->get();
-        $partners = IndustryPartner::published()->latest()->take(6)->get();
-        return view('frontend.home', compact('latestNews', 'partners'));
+        $agendas = \App\Models\Announcement::active()->latest()->take(3)->get();
+        $galleries = GalleryAlbum::with('items')->published()->latest()->take(4)->get();
+
+        return view('frontend.home', compact(
+            'alumniCount', 'partnerCount', 'achievementCount', 'facilityCount',
+            'programs', 'facilities', 'partners', 'jobVacancies',
+            'alumnis', 'latestNews', 'agendas', 'galleries'
+        ));
     }
 
     public function about()

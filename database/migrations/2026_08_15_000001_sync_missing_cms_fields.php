@@ -12,8 +12,8 @@ return new class extends Migration
         Schema::table('alumni', function (Blueprint $table) {
             if (!Schema::hasColumn('alumni', 'slug')) {
                 $table->string('slug')->nullable()->after('name')->unique();
-                $table->string('status')->default('draft')->after('is_public');
                 $table->boolean('is_public')->default(false)->after('photo');
+                $table->string('status')->default('draft')->after('is_public');
                 $table->timestamp('published_at')->nullable()->after('status');
                 
                 $table->string('city')->nullable();
