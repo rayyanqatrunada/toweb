@@ -21,7 +21,7 @@
                           <a href="{{ route('news.index') }}" class="hover:text-blue-400 transition-colors">Berita & Informasi</a>
                       </li>
                       <li>
-                          <a href="{{ route('gallery') }}" class="hover:text-blue-400 transition-colors">Galeri Kegiatan</a>
+                          <a href="{{ route('gallery.index') }}" class="hover:text-blue-400 transition-colors">Galeri Kegiatan</a>
                       </li>
                   </ul>
               </div>
@@ -29,10 +29,10 @@
                   <h2 class="mb-6 text-sm font-semibold text-white uppercase tracking-wider">Layanan</h2>
                   <ul class="text-slate-400 font-medium space-y-3 text-sm">
                       <li>
-                          <a href="{{ route('partnership') }}" class="hover:text-blue-400 transition-colors">Lowongan Kerja (BKK)</a>
+                          <a href="{{ route('partnership.index') }}" class="hover:text-blue-400 transition-colors">Lowongan Kerja (BKK)</a>
                       </li>
                       <li>
-                          <a href="{{ route('download') }}" class="hover:text-blue-400 transition-colors">Unduh Dokumen</a>
+                          <a href="{{ route('download.index') }}" class="hover:text-blue-400 transition-colors">Unduh Dokumen</a>
                       </li>
                       <li>
                           <a href="/admin" class="hover:text-blue-400 transition-colors">Portal Login</a>

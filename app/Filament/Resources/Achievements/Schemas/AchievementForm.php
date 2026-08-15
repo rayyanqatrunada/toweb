@@ -53,7 +53,7 @@ class AchievementForm
 
                 Section::make('Media')
                     ->schema([
-                        FileUpload::make('photo')
+                        FileUpload::make('photo')->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
                             ->image()
                             ->maxSize(2048)
                             ->disk('public')

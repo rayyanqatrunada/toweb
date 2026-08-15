@@ -22,7 +22,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                     </svg>
                 </a>
-                <a href="{{ route('partnership') }}" class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-lg border border-slate-600 hover:bg-slate-800 focus:ring-4 focus:ring-slate-900 backdrop-blur-sm transition-all">
+                <a href="{{ route('partnership.index') }}" class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-lg border border-slate-600 hover:bg-slate-800 focus:ring-4 focus:ring-slate-900 backdrop-blur-sm transition-all">
                     Lihat Mitra Industri
                 </a>
             </div>
@@ -114,7 +114,7 @@
             @endif
             
             <div class="mt-12">
-                <a href="{{ route('partnership') }}" class="inline-flex justify-center items-center font-medium text-slate-500 hover:text-blue-600">
+                <a href="{{ route('partnership.index') }}" class="inline-flex justify-center items-center font-medium text-slate-500 hover:text-blue-600">
                     Lihat program kemitraan dan lowongan kerja (BKK)
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>

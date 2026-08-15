@@ -33,7 +33,7 @@ class GalleryAlbumResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            \App\Filament\Resources\GalleryAlbums\RelationManagers\GalleryItemsRelationManager::class,
         ];
     }
 

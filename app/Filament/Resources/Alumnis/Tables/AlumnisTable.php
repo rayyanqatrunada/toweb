@@ -5,7 +5,11 @@ namespace App\Filament\Resources\Alumnis\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
 class AlumnisTable
@@ -14,35 +18,56 @@ class AlumnisTable
     {
         return $table
             ->columns([
-                TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
+                ImageColumn::make('photo')
+                    ->circular(),
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('student_id')
-                    ->searchable(),
-                TextColumn::make('graduation_year')
-                    ->numeric()
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('current_status')
-                    ->badge(),
-                TextColumn::make('company_name')
-                    ->searchable(),
-                TextColumn::make('university_name')
-                    ->searchable(),
-                TextColumn::make('photo')
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
+                TextColumn::make('graduation_year')
+                    ->sortable(),
+                TextColumn::make('current_occupation')
+                    ->searchable()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(),
+                TextColumn::make('current_company')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+                IconColumn::make('is_public')
+                    ->boolean()
+                    ->label('Public')
+                    ->sortable(),
+                TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'draft' => 'gray',
+                        'published' => 'success',
+                        'archived' => 'warning',
+                        default => 'secondary',
+                    })
+                    ->sortable(),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('graduation_year', 'desc')
             ->filters([
-                //
+                SelectFilter::make('graduation_year')
+                    ->options(function () {
+                        $years = \App\Models\Alumni::select('graduation_year')->distinct()->pluck('graduation_year')->toArray();
+                        rsort($years);
+                        return array_combine($years, $years);
+                    })
+                    ->searchable(),
+                SelectFilter::make('status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'published' => 'Published',
+                        'archived' => 'Archived',
+                    ]),
+                TernaryFilter::make('is_public')
+                    ->label('Public Visibility'),
             ])
             ->recordActions([
                 EditAction::make(),

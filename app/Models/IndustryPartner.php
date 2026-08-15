@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class IndustryPartner extends Model
 {
+    use LogsActivity;
+
     use HasFactory;
 
     protected $fillable = [
@@ -35,5 +40,19 @@ class IndustryPartner extends Model
     public function jobVacancies()
     {
         return $this->hasMany(JobVacancy::class);
+    }
+
+    public function scopePublished(\Illuminate\Database\Eloquent\Builder $query): void
+    {
+        $query->where('status', 'published')
+              ->where(function ($query) {
+                  $query->whereNull('published_at')
+                        ->orWhere('published_at', '<=', now());
+              });
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
     }
 }

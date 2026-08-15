@@ -40,8 +40,8 @@ class PartnershipsRelationManager extends RelationManager
                 Textarea::make('description')
                     ->columnSpanFull(),
                 FileUpload::make('document_file')
-                    ->acceptedFileTypes(['application/pdf'])
-                    ->maxSize(5120)
+                    ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                    ->maxSize(10240)
                     ->disk('public')
                     ->directory('partnership_documents')
                     ->columnSpanFull(),

@@ -26,13 +26,13 @@
                     <a href="{{ route('news.index') }}" class="block py-2 px-3 text-slate-900 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 transition-colors {{ request()->routeIs('news.*') ? 'text-blue-600 font-semibold' : '' }}">Berita</a>
                 </li>
                 <li>
-                    <a href="{{ route('gallery') }}" class="block py-2 px-3 text-slate-900 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 transition-colors {{ request()->routeIs('gallery') ? 'text-blue-600 font-semibold' : '' }}">Galeri & Prestasi</a>
+                    <a href="{{ route('gallery.index') }}" class="block py-2 px-3 text-slate-900 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 transition-colors {{ request()->routeIs('gallery.*') ? 'text-blue-600 font-semibold' : '' }}">Galeri & Prestasi</a>
                 </li>
                 <li>
-                    <a href="{{ route('partnership') }}" class="block py-2 px-3 text-slate-900 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 transition-colors {{ request()->routeIs('partnership') ? 'text-blue-600 font-semibold' : '' }}">Kemitraan & BKK</a>
+                    <a href="{{ route('partnership.index') }}" class="block py-2 px-3 text-slate-900 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 transition-colors {{ request()->routeIs('partnership.*') ? 'text-blue-600 font-semibold' : '' }}">Kemitraan & BKK</a>
                 </li>
                 <li>
-                    <a href="{{ route('download') }}" class="block py-2 px-3 text-slate-900 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 transition-colors {{ request()->routeIs('download') ? 'text-blue-600 font-semibold' : '' }}">Unduhan</a>
+                    <a href="{{ route('download.index') }}" class="block py-2 px-3 text-slate-900 rounded hover:bg-slate-100 md:hover:bg-transparent md:hover:text-blue-600 md:p-0 transition-colors {{ request()->routeIs('download.*') ? 'text-blue-600 font-semibold' : '' }}">Unduhan</a>
                 </li>
             </ul>
         </div>

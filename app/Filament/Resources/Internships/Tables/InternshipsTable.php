@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class InternshipsTable
@@ -14,34 +15,50 @@ class InternshipsTable
     {
         return $table
             ->columns([
-                TextColumn::make('industry_partner_id')
-                    ->numeric()
+                TextColumn::make('title')
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('student_name')
-                    ->searchable(),
-                TextColumn::make('student_id')
-                    ->searchable(),
+                TextColumn::make('industryPartner.name')
+                    ->label('Industry Partner')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('start_date')
                     ->date()
                     ->sortable(),
                 TextColumn::make('end_date')
                     ->date()
                     ->sortable(),
-                TextColumn::make('position')
-                    ->searchable(),
+                TextColumn::make('participants_count')
+                    ->counts('participants')
+                    ->label('Participants')
+                    ->sortable(),
                 TextColumn::make('status')
-                    ->badge(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'planned' => 'gray',
+                        'ongoing' => 'primary',
+                        'completed' => 'success',
+                        'cancelled' => 'danger',
+                        default => 'secondary',
+                    })
+                    ->sortable(),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('industry_partner_id')
+                    ->relationship('industryPartner', 'name')
+                    ->label('Industry Partner')
+                    ->searchable(),
+                SelectFilter::make('status')
+                    ->options([
+                        'planned' => 'Planned',
+                        'ongoing' => 'Ongoing',
+                        'completed' => 'Completed',
+                        'cancelled' => 'Cancelled',
+                    ]),
             ])
             ->recordActions([
                 EditAction::make(),

@@ -41,7 +41,7 @@ class FrontendRouteTest extends TestCase
 
     public function test_partnership_page_returns_a_successful_response(): void
     {
-        $response = $this->get('/kemitraan');
+        $response = $this->get('/mitra-industri');
         $response->assertStatus(200);
     }
 

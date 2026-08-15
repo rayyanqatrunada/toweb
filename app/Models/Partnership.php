@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Partnership extends Model
 {
+    use LogsActivity;
+
     use HasFactory;
 
     protected $fillable = [
@@ -25,5 +30,10 @@ class Partnership extends Model
     public function industryPartner()
     {
         return $this->belongsTo(IndustryPartner::class);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
     }
 }
