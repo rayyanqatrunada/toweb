@@ -1,8 +1,8 @@
 <x-layouts.app title="Unduhan">
-    <div class="bg-blue-600 py-16 lg:py-24">
+    <div class="bg-slate-900 py-16 lg:py-24">
         <div class="max-w-screen-xl mx-auto px-4 text-center">
             <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Pusat Unduhan</h1>
-            <p class="text-blue-100 text-lg max-w-2xl mx-auto">Dokumen akademik, modul materi, dan formulir pendaftaran yang dapat diunduh publik.</p>
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto">Dokumen akademik, modul materi, dan formulir pendaftaran yang dapat diunduh publik.</p>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
                                         {{ $doc->created_at->format('d M Y') }}
                                     </td>
                                     <td class="px-6 py-4 text-right">
-                                        <a href="{{ Storage::url($doc->file_path) }}" target="_blank" class="inline-flex items-center justify-center font-medium text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition-colors">
+                                        <a href="{{ Storage::url($doc->file_path) }}" target="_blank" class="inline-flex items-center justify-center font-medium text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors">
                                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                             Unduh
                                         </a>

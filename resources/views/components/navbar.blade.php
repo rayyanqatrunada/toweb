@@ -22,8 +22,8 @@
                     <div x-show="open" x-transition class="absolute z-50 left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" style="display: none;">
                         <div class="py-1">
                             <a href="{{ route('about') ?? '/profil' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Tentang Jurusan</a>
-                            <a href="{{ route('teachers.index') ?? '/guru' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Guru & Staf</a>
-                            <a href="{{ route('facilities.index') ?? '/fasilitas' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Fasilitas</a>
+                            <a href="{{ route('academic.teachers') ?? '/guru' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Guru & Staf</a>
+                            <a href="{{ route('academic.facilities') ?? '/fasilitas' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Fasilitas</a>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                     <div x-show="open" x-transition class="absolute z-50 left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5" style="display: none;">
                         <div class="py-1">
                             <a href="{{ route('academic.programs') ?? '/akademik/program' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Program & Kompetensi</a>
-                            <a href="{{ route('academic.curriculum') ?? '/akademik/kurikulum' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Kurikulum</a>
+                            <a href="{{ url('/akademik/kurikulum') }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Kurikulum</a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                     </button>
                     <div x-show="open" x-transition class="absolute z-50 left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5" style="display: none;">
                         <div class="py-1">
-                            <a href="{{ route('internship.index') ?? '/pkl' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Praktik Kerja Lapangan</a>
+                            <a href="{{ route('internships.index') ?? '/pkl' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Praktik Kerja Lapangan</a>
                             <a href="{{ route('partnership.index') ?? '/kemitraan' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Mitra Industri</a>
                             <a href="{{ route('jobs.index') ?? '/bursa-kerja' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Lowongan Kerja</a>
                             <a href="{{ route('alumni.index') ?? '/alumni' }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-red-600">Alumni</a>
@@ -97,8 +97,8 @@
                 </button>
                 <div x-show="expanded" class="pl-6 pr-3 py-2 space-y-2 bg-slate-50/50 rounded-md">
                     <a href="{{ route('about') ?? '/profil' }}" class="block text-sm text-slate-600 hover:text-red-600 py-2">Tentang Kami</a>
-                    <a href="{{ route('teachers.index') ?? '/guru' }}" class="block text-sm text-slate-600 hover:text-red-600 py-2">Guru & Staf</a>
-                    <a href="{{ route('facilities.index') ?? '/fasilitas' }}" class="block text-sm text-slate-600 hover:text-red-600 py-2">Fasilitas</a>
+                    <a href="{{ route('academic.teachers') ?? '/guru' }}" class="block text-sm text-slate-600 hover:text-red-600 py-2">Guru & Staf</a>
+                    <a href="{{ route('academic.facilities') ?? '/fasilitas' }}" class="block text-sm text-slate-600 hover:text-red-600 py-2">Fasilitas</a>
                 </div>
             </div>
             

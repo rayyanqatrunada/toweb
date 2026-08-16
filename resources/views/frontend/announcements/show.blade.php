@@ -10,14 +10,14 @@
             
             @if($announcement->file_attachment)
                 <div class="mt-8 pt-4 border-t">
-                    <a href="{{ Storage::url($announcement->file_attachment) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" target="_blank">
+                    <a href="{{ Storage::url($announcement->file_attachment) }}" class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700" target="_blank">
                         Download Lampiran
                     </a>
                 </div>
             @endif
             
             <div class="mt-8">
-                <a href="{{ route('announcements.index') }}" class="text-blue-600 hover:underline">&larr; Kembali ke Pengumuman</a>
+                <a href="{{ route('announcements.index') }}" class="text-red-600 hover:underline">&larr; Kembali ke Pengumuman</a>
             </div>
         </div>
     </div>

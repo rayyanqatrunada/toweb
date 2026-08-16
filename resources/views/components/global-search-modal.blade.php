@@ -20,7 +20,7 @@
         <div class="mx-auto max-w-3xl transform divide-y divide-slate-100 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 transition-all" @click.outside="isSearchOpen = false">
             
             <!-- Area Input Form -->
-            <form action="{{ route('search.index') ?? '/search' }}" method="GET" class="relative">
+            <form action="{{ route('search') ?? '/search' }}" method="GET" class="relative">
                 <svg class="pointer-events-none absolute left-4 top-4 h-6 w-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>

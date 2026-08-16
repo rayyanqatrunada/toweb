@@ -37,7 +37,7 @@
             </div>
             
             <div class="mt-8 pt-6 border-t text-center">
-                <a href="{{ route('gallery.index') }}" class="text-blue-600 hover:underline font-medium">&larr; Kembali ke Galeri</a>
+                <a href="{{ route('gallery.index') }}" class="text-red-600 hover:underline font-medium">&larr; Kembali ke Galeri</a>
             </div>
         </div>
     </div>

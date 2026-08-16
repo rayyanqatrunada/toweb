@@ -14,14 +14,14 @@
                                 <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                             </div>
                         @endif
-                        <div class="absolute bottom-0 right-0 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-tl">
+                        <div class="absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-tl">
                             Angkatan {{ $alumni->graduation_year }}
                         </div>
                     </div>
                     
                     <div class="p-5">
                         <h2 class="text-lg font-bold mb-1 truncate">
-                            <a href="{{ route('alumni.show', $alumni->slug) }}" class="hover:text-blue-600">{{ $alumni->name }}</a>
+                            <a href="{{ route('alumni.show', $alumni->slug) }}" class="hover:text-red-600">{{ $alumni->name }}</a>
                         </h2>
                         
                         @if($alumni->occupation)
@@ -34,8 +34,8 @@
                     </div>
                 </div>
             @empty
-                <div class="col-span-full text-center text-gray-500 py-10 bg-white rounded-lg">Belum ada profil alumni yang dipublikasikan.</div>
-            @endforelse
+                    <x-empty-state title="Belum Ada Data Alumni" message="Data alumni belum tersedia saat ini." icon="users" />
+                @endforelse
         </div>
         
         <div class="mt-10">

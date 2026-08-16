@@ -1,7 +1,7 @@
 <x-layouts.app>
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow max-w-4xl mx-auto overflow-hidden">
-            <div class="bg-blue-50 p-8 border-b">
+            <div class="bg-red-50 p-8 border-b">
                 <div class="flex flex-col md:flex-row gap-6 items-start">
                     @if($job->industryPartner && $job->industryPartner->logo)
                         <img src="{{ Storage::url($job->industryPartner->logo) }}" alt="{{ $job->industryPartner->name }}" class="w-32 h-32 object-contain rounded bg-white p-2 shadow-sm">
@@ -47,10 +47,10 @@
                 <div class="bg-gray-50 p-6 rounded-lg border mt-8">
                     <h3 class="text-lg font-bold mb-4">Cara Melamar</h3>
                     @if($job->application_url)
-                        <a href="{{ $job->application_url }}" target="_blank" class="inline-block bg-blue-600 text-white font-bold py-2 px-6 rounded hover:bg-blue-700 mr-4">Lamar Sekarang (Web)</a>
+                        <a href="{{ $job->application_url }}" target="_blank" class="inline-block bg-red-600 text-white font-bold py-2 px-6 rounded hover:bg-red-700 mr-4">Lamar Sekarang (Web)</a>
                     @endif
                     @if($job->application_email)
-                        <a href="mailto:{{ $job->application_email }}" class="inline-block bg-white text-blue-600 border border-blue-600 font-bold py-2 px-6 rounded hover:bg-blue-50">Kirim via Email</a>
+                        <a href="mailto:{{ $job->application_email }}" class="inline-block bg-white text-red-600 border border-blue-600 font-bold py-2 px-6 rounded hover:bg-red-50">Kirim via Email</a>
                     @endif
                     @if(!$job->application_url && !$job->application_email)
                         <p class="text-gray-600">Hubungi Bursa Kerja Khusus (BKK) sekolah untuk informasi pendaftaran lebih lanjut.</p>
@@ -58,7 +58,7 @@
                 </div>
                 
                 <div class="mt-8 pt-4">
-                    <a href="{{ route('jobs.index') }}" class="text-blue-600 hover:underline">&larr; Kembali ke Lowongan Kerja</a>
+                    <a href="{{ route('jobs.index') }}" class="text-red-600 hover:underline">&larr; Kembali ke Lowongan Kerja</a>
                 </div>
             </div>
         </div>

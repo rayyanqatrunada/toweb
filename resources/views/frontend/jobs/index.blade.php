@@ -4,7 +4,7 @@
         
         <div class="space-y-6 max-w-5xl mx-auto">
             @forelse($jobs as $job)
-                <div class="bg-white rounded-lg shadow p-6 flex flex-col md:flex-row gap-6 border-l-4 border-blue-500">
+                <div class="bg-white rounded-lg shadow p-6 flex flex-col md:flex-row gap-6 border-l-4 border-red-500">
                     @if($job->industryPartner && $job->industryPartner->logo)
                         <div class="flex-shrink-0">
                             <img src="{{ Storage::url($job->industryPartner->logo) }}" alt="{{ $job->industryPartner->name }}" class="w-24 h-24 object-contain rounded bg-white p-1 border">
@@ -15,7 +15,7 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <h2 class="text-2xl font-bold mb-1">
-                                    <a href="{{ route('jobs.show', $job->slug) }}" class="hover:text-blue-600">{{ $job->title }}</a>
+                                    <a href="{{ route('jobs.show', $job->slug) }}" class="hover:text-red-600">{{ $job->title }}</a>
                                 </h2>
                                 <p class="text-lg text-gray-700 font-semibold mb-2">
                                     {{ $job->industryPartner->name ?? 'Perusahaan Rahasia' }}
@@ -37,7 +37,7 @@
                                 </span>
                             @endif
                             @if($job->employment_type)
-                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">{{ $job->employment_type }}</span>
+                                <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded">{{ $job->employment_type }}</span>
                             @endif
                         </div>
                         
@@ -45,8 +45,8 @@
                     </div>
                 </div>
             @empty
-                <div class="text-center text-gray-500 py-8 bg-white rounded-lg shadow">Belum ada lowongan kerja yang tersedia saat ini.</div>
-            @endforelse
+                    <x-empty-state title="Belum Ada Lowongan" message="Lowongan pekerjaan belum tersedia saat ini." icon="document" />
+                @endforelse
         </div>
         
         <div class="mt-8 max-w-5xl mx-auto">

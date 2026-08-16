@@ -2,9 +2,28 @@
     <article class="bg-white py-16 lg:py-24">
         <div class="max-w-3xl mx-auto px-4">
             
+            <nav class="mb-8 flex justify-center" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3 text-sm text-slate-500 font-medium">
+                        <li class="inline-flex items-center">
+                            <a href="{{ route('home') }}" class="hover:text-red-600 transition-colors">Beranda</a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mx-1 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                <a href="{{ route('news.index') }}" class="ml-1 md:ml-2 hover:text-red-600 transition-colors">Berita</a>
+                            </div>
+                        </li>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mx-1 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                                <span class="ml-1 md:ml-2 text-slate-400 max-w-[150px] md:max-w-xs truncate">{{ $post->title }}</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
             <header class="mb-10 text-center">
                 @if($post->category)
-                    <span class="inline-block py-1 px-3 bg-blue-50 text-blue-600 rounded-full text-sm font-semibold tracking-wide mb-6">
+                    <span class="inline-block py-1 px-3 bg-red-50 text-red-600 rounded-full text-sm font-semibold tracking-wide mb-6">
                         {{ $post->category->name }}
                     </span>
                 @endif
@@ -27,7 +46,7 @@
                 </div>
             @endif
 
-            <div class="prose prose-lg prose-slate max-w-none prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-xl">
+            <div class="prose prose-lg prose-slate max-w-none prose-a:text-red-600 hover:prose-a:text-red-600 prose-img:rounded-xl">
                 {!! $post->content !!}
             </div>
 
@@ -50,3 +69,4 @@
         </div>
     </article>
 </x-layouts.app>
+

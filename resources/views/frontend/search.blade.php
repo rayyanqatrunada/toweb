@@ -1,8 +1,8 @@
 <x-layouts.app title="Pencarian Global">
-    <div class="bg-blue-600 py-16 lg:py-24">
+    <div class="bg-slate-900 py-16 lg:py-24">
         <div class="max-w-screen-xl mx-auto px-4 text-center">
             <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Pencarian</h1>
-            <p class="text-blue-100 text-lg max-w-2xl mx-auto">Temukan informasi seputar jurusan Teknik Otomotif.</p>
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto">Temukan informasi seputar jurusan Teknik Otomotif.</p>
             <form action="{{ route('search') }}" method="GET" class="mt-8 max-w-xl mx-auto relative">
                 <input type="text" name="q" value="{{ $q }}" placeholder="Ketik kata kunci pencarian..." class="w-full px-6 py-4 rounded-full text-slate-800 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-lg text-lg">
                 <button type="submit" class="absolute right-2 top-2 bottom-2 bg-blue-700 text-white px-6 rounded-full font-semibold hover:bg-blue-800 transition">Cari</button>
@@ -33,13 +33,13 @@
                         @if(count($items) > 0)
                             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
                                 <div class="bg-slate-50 px-6 py-4 border-b border-slate-100">
-                                    <h3 class="font-bold text-slate-800">{{ $groupName }} <span class="ml-2 bg-blue-100 text-blue-700 text-xs py-1 px-2 rounded-full">{{ count($items) }}</span></h3>
+                                    <h3 class="font-bold text-slate-800">{{ $groupName }} <span class="ml-2 bg-red-100 text-blue-700 text-xs py-1 px-2 rounded-full">{{ count($items) }}</span></h3>
                                 </div>
                                 <div class="divide-y divide-slate-100">
                                     @foreach($items as $item)
                                         <a href="{{ $item->url }}" class="block p-6 hover:bg-slate-50 transition-colors group">
                                             <div class="flex justify-between items-start mb-2">
-                                                <h4 class="text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">{{ $item->title }}</h4>
+                                                <h4 class="text-lg font-semibold text-slate-900 group-hover:text-red-600 transition-colors">{{ $item->title }}</h4>
                                                 @if($item->date)
                                                     <span class="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded">{{ $item->date }}</span>
                                                 @endif

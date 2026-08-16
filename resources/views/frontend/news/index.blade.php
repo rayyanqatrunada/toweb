@@ -1,8 +1,8 @@
 <x-layouts.app title="Indeks Berita">
-    <div class="bg-blue-600 py-16 lg:py-24">
+    <div class="bg-slate-900 py-16 lg:py-24">
         <div class="max-w-screen-xl mx-auto px-4 text-center">
             <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Berita & Informasi</h1>
-            <p class="text-blue-100 text-lg max-w-2xl mx-auto">Pembaruan terkini dari berbagai kegiatan, informasi akademik, dan artikel otomotif.</p>
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto">Pembaruan terkini dari berbagai kegiatan, informasi akademik, dan artikel otomotif.</p>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
                                 </div>
                             @endif
                             @if($post->category)
-                                <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">{{ $post->category->name }}</span>
+                                <span class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">{{ $post->category->name }}</span>
                             @endif
                         </a>
                         <div class="p-6 flex flex-col flex-grow">
@@ -30,12 +30,12 @@
                                     {{ $post->published_at ? $post->published_at->format('d M Y') : $post->created_at->format('d M Y') }}
                                 </span>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight group-hover:text-blue-600 transition-colors">
+                            <h3 class="text-xl font-bold text-slate-900 mb-2 leading-tight group-hover:text-red-600 transition-colors">
                                 <a href="{{ route('news.show', $post->slug) }}">{{ $post->title }}</a>
                             </h3>
                             <p class="text-slate-600 mb-4 line-clamp-3">{{ $post->excerpt ?? Str::limit(strip_tags($post->content), 120) }}</p>
                             <div class="mt-auto pt-4 border-t border-slate-100">
-                                <a href="{{ route('news.show', $post->slug) }}" class="inline-flex items-center font-medium text-blue-600 hover:text-blue-800">
+                                <a href="{{ route('news.show', $post->slug) }}" class="inline-flex items-center font-medium text-red-600 hover:text-red-700">
                                     Baca selengkapnya
                                     <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                 </a>
@@ -43,10 +43,7 @@
                         </div>
                     </article>
                 @empty
-                    <div class="col-span-full text-center py-20">
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Belum Ada Berita</h3>
-                        <p class="text-slate-500">Konten berita atau pengumuman belum tersedia.</p>
-                    </div>
+                    <x-empty-state title="Belum Ada Berita" message="Konten berita atau pengumuman belum tersedia." icon="document" />
                 @endforelse
             </div>
 

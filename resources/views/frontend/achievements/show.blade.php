@@ -7,7 +7,7 @@
             
             <div class="p-8">
                 <div class="mb-4">
-                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $achievement->level }}</span>
+                    <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded">{{ $achievement->level }}</span>
                     <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded ml-2">Peringkat {{ $achievement->rank }}</span>
                 </div>
                 
@@ -34,7 +34,7 @@
                 @endif
                 
                 <div class="mt-8 pt-4 border-t">
-                    <a href="{{ route('achievements.index') }}" class="text-blue-600 hover:underline">&larr; Kembali ke Prestasi</a>
+                    <a href="{{ route('achievements.index') }}" class="text-red-600 hover:underline">&larr; Kembali ke Prestasi</a>
                 </div>
             </div>
         </div>

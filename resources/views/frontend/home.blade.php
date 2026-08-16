@@ -138,7 +138,7 @@
                     <span class="text-sm font-extrabold tracking-widest text-red-600 uppercase mb-3 flex items-center">
                         <span class="w-8 h-0.5 bg-red-600 mr-3"></span> Siapa Kami
                     </span>
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 reveal-on-scroll reveal-up tracking-tight leading-[1.1]">
                         Mencetak Teknisi Andal <br> berkarakter Industri.
                     </h2>
                     
@@ -247,7 +247,7 @@
                     <h2 class="mt-2 text-3xl md:text-4xl font-extrabold text-white tracking-tight">Fasilitas Standar Industri</h2>
                 </div>
                 <div class="mt-4 md:mt-0">
-                    <a href="{{ route('facilities.index') ?? '/fasilitas' }}" class="text-sm font-bold text-slate-300 hover:text-white flex items-center transition-colors">
+                    <a href="{{ route('academic.facilities') }}" class="text-sm font-bold text-slate-300 hover:text-white flex items-center transition-colors">
                         Lihat Seluruh Fasilitas
                         <svg class="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
@@ -260,7 +260,7 @@
                 @php $featuredFacility = $facilities->first(); @endphp
                 <!-- Featured (Kiri: 8 Kolom) -->
                 <div class="lg:col-span-8">
-                    <a href="{{ route('facilities.index') ?? '/fasilitas' }}" class="group relative block w-full h-[400px] md:h-[500px] lg:h-full rounded-2xl overflow-hidden focus:outline-none focus:ring-4 focus:ring-red-500">
+                    <a href="{{ route('academic.facilities') }}" class="group relative block w-full h-[400px] md:h-[500px] lg:h-full rounded-2xl overflow-hidden focus:outline-none focus:ring-4 focus:ring-red-500">
                         <img src="{{ $featuredFacility->photo ? Storage::url($featuredFacility->photo) : 'https://images.unsplash.com/photo-1632823465306-cdbb32ab7586?q=80&w=1200&auto=format&fit=crop' }}" alt="{{ $featuredFacility->name }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
                         <div class="absolute inset-0 p-6 md:p-10 flex flex-col justify-end">
@@ -278,7 +278,7 @@
                 <!-- Others (Kanan: 4 Kolom, Vertical Stack) -->
                 <div class="lg:col-span-4 flex flex-col gap-6">
                     @foreach($facilities->skip(1) as $facility)
-                    <a href="{{ route('facilities.index') ?? '/fasilitas' }}" class="group flex flex-col sm:flex-row lg:flex-col gap-4 bg-slate-800/80 hover:bg-slate-800 rounded-2xl p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 h-full border border-slate-700">
+                    <a href="{{ route('academic.facilities') }}" class="group flex flex-col sm:flex-row lg:flex-col gap-4 bg-slate-800/80 hover:bg-slate-800 rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-red-500 h-full border border-slate-700">
                         <div class="relative w-full sm:w-1/3 lg:w-full aspect-video rounded-xl overflow-hidden flex-shrink-0">
                             <img src="{{ $facility->photo ? Storage::url($facility->photo) : 'https://images.unsplash.com/photo-1579730537446-5ec5e1b7b7dd?q=80&w=600&auto=format&fit=crop' }}" alt="{{ $facility->name }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
                         </div>
@@ -298,7 +298,7 @@
             </div>
             
             <div class="mt-8 md:hidden">
-                <a href="{{ route('facilities.index') ?? '/fasilitas' }}" class="flex justify-center px-4 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg text-white font-bold transition-colors">
+                <a href="{{ route('academic.facilities') }}" class="flex justify-center px-4 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg text-white font-bold transition-colors">
                     Lihat Seluruh Fasilitas
                 </a>
             </div>
@@ -388,7 +388,7 @@
                         
                         <div class="space-y-4 relative z-10">
                             @forelse($jobVacancies as $job)
-                            <a href="{{ route('jobs.show', $job->slug) ?? '#' }}" class="block bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-red-300 hover:shadow-md transition-all group focus-visible:ring-4 focus-visible:ring-red-500 focus:outline-none">
+                            <a href="{{ route('jobs.show', $job->slug) ?? '#' }}" class="block bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-red-300 hover:shadow-md transition-all duration-300 hover:-translate-y-1 group reveal-on-scroll reveal-up focus-visible:ring-4 focus-visible:ring-red-500 focus:outline-none">
                                 <div class="flex justify-between items-start">
                                     <div>
                                         <h4 class="font-bold text-slate-900 group-hover:text-red-600 transition-colors">{{ $job->title }}</h4>
@@ -510,7 +510,7 @@
                             <a href="{{ route('news.show', $news->slug) ?? '#' }}" class="block relative aspect-video overflow-hidden bg-slate-100 focus-visible:ring-4 focus-visible:ring-red-500 focus:outline-none">
                                 <img src="{{ $news->thumbnail ? Storage::url($news->thumbnail) : 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=600&auto=format&fit=crop' }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{{ $news->title }}" loading="lazy">
                                 @if($news->category)
-                                <span class="absolute top-3 left-3 px-2.5 py-1 bg-blue-600 text-white text-xs font-bold rounded shadow-sm">{{ $news->category->name }}</span>
+                                <span class="absolute top-3 left-3 px-2.5 py-1 bg-red-600 text-white text-xs font-bold rounded shadow-sm">{{ $news->category->name }}</span>
                                 @endif
                             </a>
                             <div class="p-5 flex-1 flex flex-col">
@@ -695,7 +695,7 @@
                 <svg class="absolute -right-10 -top-10 w-48 h-48 text-slate-50 opacity-50 transform -rotate-12 pointer-events-none" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                 
                 <div class="flex items-center w-full md:w-auto relative z-10">
-                    <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mr-5">
+                    <div class="w-14 h-14 bg-red-50 text-red-600 rounded-full flex items-center justify-center flex-shrink-0 mr-5">
                         <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" /></svg>
                     </div>
                     <div>
@@ -705,9 +705,9 @@
                 </div>
                 
                 <div class="w-full md:w-auto flex-shrink-0 relative z-10">
-                    <a href="{{ route('download.index') ?? '/download' }}" class="inline-flex justify-center items-center px-6 py-3 bg-white border border-slate-300 text-sm font-bold text-slate-700 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors w-full shadow-sm">
+                    <a href="{{ route('download.index') ?? '/download' }}" class="inline-flex justify-center items-center px-6 py-3 bg-white border border-slate-300 text-sm font-bold text-slate-700 rounded-lg hover:bg-slate-50 hover:text-red-600 transition-colors w-full shadow-sm">
                         Menuju Download Center
-                        <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                     </a>
                 </div>
             </div>

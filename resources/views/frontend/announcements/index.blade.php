@@ -6,7 +6,7 @@
             @forelse($announcements as $announcement)
                 <div class="bg-white p-6 rounded-lg shadow">
                     <h2 class="text-xl font-semibold mb-2">
-                        <a href="{{ route('announcements.show', $announcement->slug) }}" class="text-blue-600 hover:underline">
+                        <a href="{{ route('announcements.show', $announcement->slug) }}" class="text-red-600 hover:underline">
                             {{ $announcement->title }}
                         </a>
                     </h2>
@@ -14,8 +14,8 @@
                     <p class="text-gray-700">{{ Str::limit(strip_tags($announcement->content), 150) }}</p>
                 </div>
             @empty
-                <p class="text-gray-500">Belum ada pengumuman.</p>
-            @endforelse
+                    <x-empty-state title="Belum Ada Pengumuman" message="Pengumuman belum tersedia saat ini." icon="calendar" />
+                @endforelse
         </div>
         
         <div class="mt-8">

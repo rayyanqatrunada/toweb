@@ -11,7 +11,7 @@
                         <div class="w-32 h-32 rounded-full bg-gray-200 mx-auto mb-4 flex items-center justify-center text-gray-500">No Photo</div>
                     @endif
                     <h2 class="text-xl font-semibold mb-1">{{ $teacher->name }}</h2>
-                    <p class="text-blue-600">{{ $teacher->position ?? 'Guru' }}</p>
+                    <p class="text-red-600">{{ $teacher->position ?? 'Guru' }}</p>
                     <!-- Internal data like NIP is hidden for public privacy -->
                 </div>
             @empty

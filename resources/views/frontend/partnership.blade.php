@@ -1,8 +1,8 @@
 <x-layouts.app title="Kemitraan & BKK">
-    <div class="bg-blue-600 py-16 lg:py-24">
+    <div class="bg-slate-900 py-16 lg:py-24">
         <div class="max-w-screen-xl mx-auto px-4 text-center">
             <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Kemitraan Industri & BKK</h1>
-            <p class="text-blue-100 text-lg max-w-2xl mx-auto">Informasi perusahaan mitra, program magang, dan lowongan kerja dari Bursa Kerja Khusus (BKK).</p>
+            <p class="text-slate-300 text-lg max-w-2xl mx-auto">Informasi perusahaan mitra, program magang, dan lowongan kerja dari Bursa Kerja Khusus (BKK).</p>
         </div>
     </div>
 
@@ -17,13 +17,13 @@
                             @if($partner->logo)
                                 <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="h-16 w-auto object-contain mb-3 group-hover:scale-105 transition-transform">
                             @else
-                                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3">
+                                <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-3">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                                 </div>
                             @endif
                             <h3 class="font-bold text-slate-900 text-sm">{{ $partner->name }}</h3>
                             @if($partner->website)
-                                <a href="{{ $partner->website }}" target="_blank" class="text-xs text-blue-600 hover:underline mt-1">Kunjungi Web</a>
+                                <a href="{{ $partner->website }}" target="_blank" class="text-xs text-red-600 hover:underline mt-1">Kunjungi Web</a>
                             @endif
                         </div>
                     @empty
@@ -72,7 +72,7 @@
                                     @endif
                                 </div>
                                 <div class="md:text-right mt-4 md:mt-0 flex-shrink-0">
-                                    <a href="mailto:{{ $partner->email ?? 'info@sekolah.sch.id' }}" class="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 w-full md:w-auto">
+                                    <a href="mailto:{{ $partner->email ?? 'info@sekolah.sch.id' }}" class="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-blue-300 w-full md:w-auto">
                                         Lamar Sekarang
                                     </a>
                                 </div>

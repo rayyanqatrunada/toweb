@@ -6,7 +6,7 @@
             @forelse($internships as $internship)
                 <div class="bg-white rounded-lg shadow p-6">
                     <h2 class="text-xl font-bold mb-2">
-                        <a href="{{ route('internships.show', $internship->id) }}" class="hover:text-blue-600">{{ $internship->title }}</a>
+                        <a href="{{ route('internships.show', $internship->id) }}" class="hover:text-red-600">{{ $internship->title }}</a>
                     </h2>
                     
                     <div class="text-sm text-gray-500 mb-4 flex items-center">
@@ -26,8 +26,8 @@
                     <p class="text-gray-700">{{ Str::limit(strip_tags($internship->description), 150) }}</p>
                 </div>
             @empty
-                <div class="col-span-full text-center text-gray-500">Belum ada program PKL yang dipublikasikan.</div>
-            @endforelse
+                    <x-empty-state title="Belum Ada Informasi PKL" message="Data informasi PKL belum tersedia saat ini." icon="document" />
+                @endforelse
         </div>
         
         <div class="mt-8">

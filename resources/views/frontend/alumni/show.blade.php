@@ -12,7 +12,7 @@
                     @endif
                     
                     <h1 class="text-2xl font-bold text-center mb-1">{{ $alumni->name }}</h1>
-                    <p class="text-blue-600 font-semibold mb-4 text-center">Lulusan Tahun {{ $alumni->graduation_year }}</p>
+                    <p class="text-red-600 font-semibold mb-4 text-center">Lulusan Tahun {{ $alumni->graduation_year }}</p>
                     
                     <div class="w-full mt-4 space-y-3">
                         @if($alumni->city)
@@ -42,8 +42,8 @@
                 
                 <div class="md:w-2/3 p-8">
                     @if($alumni->occupation || $alumni->company)
-                    <div class="bg-blue-50 rounded-lg p-5 mb-8 border border-blue-100">
-                        <h3 class="text-xs uppercase font-bold text-blue-800 tracking-wider mb-2">Pekerjaan Saat Ini</h3>
+                    <div class="bg-red-50 rounded-lg p-5 mb-8 border border-blue-100">
+                        <h3 class="text-xs uppercase font-bold text-red-800 tracking-wider mb-2">Pekerjaan Saat Ini</h3>
                         <p class="text-lg">
                             <span class="font-semibold text-gray-900">{{ $alumni->occupation ?? 'Bekerja' }}</span>
                             @if($alumni->company)
@@ -82,7 +82,7 @@
                     @endif
                     
                     <div class="mt-8 pt-4">
-                        <a href="{{ route('alumni.index') }}" class="text-blue-600 hover:underline">&larr; Kembali ke Jejaring Alumni</a>
+                        <a href="{{ route('alumni.index') }}" class="text-red-600 hover:underline">&larr; Kembali ke Jejaring Alumni</a>
                     </div>
                 </div>
             </div>

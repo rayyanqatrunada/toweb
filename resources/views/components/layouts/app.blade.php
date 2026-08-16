@@ -22,6 +22,37 @@
 
     <!-- Vite Styles & Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Motion System -->
+    <style>
+        @media (prefers-reduced-motion: no-preference) {
+            .reveal-on-scroll {
+                opacity: 0;
+                transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .reveal-up {
+                transform: translateY(30px);
+            }
+            .reveal-fade {
+                transform: none;
+            }
+            .is-revealed {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .delay-100 { transition-delay: 100ms; }
+            .delay-200 { transition-delay: 200ms; }
+            .delay-300 { transition-delay: 300ms; }
+            .delay-400 { transition-delay: 400ms; }
+            .delay-500 { transition-delay: 500ms; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-on-scroll, .reveal-up, .reveal-fade, .is-revealed {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
 </head>
 <body class="font-sans antialiased text-slate-800 bg-slate-50 flex flex-col min-h-screen overflow-x-hidden w-full">
 
@@ -42,5 +73,27 @@
         <x-footer />
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) return;
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
+
