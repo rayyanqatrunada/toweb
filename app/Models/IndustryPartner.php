@@ -51,6 +51,20 @@ class IndustryPartner extends Model
               });
     }
 
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:stats:partner');
+            \Illuminate\Support\Facades\Cache::forget('homepage:partners');
+            \Illuminate\Support\Facades\Cache::forget('homepage:jobs');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:stats:partner');
+            \Illuminate\Support\Facades\Cache::forget('homepage:partners');
+            \Illuminate\Support\Facades\Cache::forget('homepage:jobs');
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

@@ -40,12 +40,14 @@ class GalleryItem extends Model
                     ->where('id', '!=', $item->id)
                     ->update(['is_featured' => false]);
             }
+            \Illuminate\Support\Facades\Cache::forget('homepage:galleries');
         });
 
         static::deleted(function ($item) {
             if ($item->file_path && Storage::disk('public')->exists($item->file_path)) {
                 Storage::disk('public')->delete($item->file_path);
             }
+            \Illuminate\Support\Facades\Cache::forget('homepage:galleries');
         });
     }
 

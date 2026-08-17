@@ -45,6 +45,16 @@ class Achievement extends Model
               });
     }
 
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:stats:achievement');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:stats:achievement');
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

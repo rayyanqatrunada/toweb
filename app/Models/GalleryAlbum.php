@@ -48,6 +48,16 @@ class GalleryAlbum extends Model
               });
     }
 
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:galleries');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:galleries');
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

@@ -3,49 +3,13 @@
     <!-- ============================================== -->
     <!-- 02. HERO SECTION -->
     <!-- ============================================== -->
-    <section class="relative bg-slate-900 overflow-hidden min-h-[90vh] flex items-center justify-center pt-16">
-        <!-- Background Image with Gradient Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-40 mix-blend-overlay" alt="Siswa praktik otomotif">
-            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-        </div>
-        
-        <!-- Content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-20 lg:py-0">
-            <div class="lg:w-2/3" x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)">
-                
-                <!-- Eyebrow -->
-                <div x-show="show" x-transition:enter="transition ease-out duration-700" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" style="display: none;">
-                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/20 text-red-400 border border-red-500/30 text-xs sm:text-sm font-bold tracking-widest uppercase backdrop-blur-sm shadow-sm">
-                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                        PUSAT KEUNGGULAN (COE)
-                    </span>
-                </div>
-                
-                <!-- Headline -->
-                <h1 x-show="show" x-transition:enter="transition ease-out duration-700 delay-100" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" style="display: none;" class="mt-6 text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
-                    Menyiapkan Generasi Profesional di <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400">Dunia Otomotif</span>
-                </h1>
-                
-                <!-- Supporting Paragraph -->
-                <p x-show="show" x-transition:enter="transition ease-out duration-700 delay-200" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" style="display: none;" class="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed">
-                    Kami mendidik siswa menjadi mekanik, teknisi, dan wirausahawan andal dengan fasilitas standar industri dan penyaluran kerja yang terjamin.
-                </p>
-                
-                <!-- CTA -->
-                <div x-show="show" x-transition:enter="transition ease-out duration-700 delay-300" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" style="display: none;" class="mt-10 flex flex-col sm:flex-row gap-4">
-                    <a href="#profil" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-base sm:text-lg font-bold rounded-lg text-white bg-red-600 hover:bg-red-700 hover:-translate-y-1 transition-all shadow-lg shadow-red-600/30 w-full sm:w-auto">
-                        Jelajahi Jurusan
-                    </a>
-                    <a href="{{ route('partnership.index') ?? '/kemitraan' }}" class="inline-flex justify-center items-center px-8 py-4 border-2 border-slate-400 text-base sm:text-lg font-bold rounded-lg text-white hover:border-white hover:bg-white/10 transition-all backdrop-blur-sm w-full sm:w-auto">
-                        Lihat Program Kemitraan
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </section>
+    <x-frontend.hero 
+        variant="full"
+        headline="Menyiapkan Generasi Profesional di Dunia Otomotif"
+        description="Kami mendidik siswa menjadi mekanik, teknisi, dan wirausahawan andal dengan fasilitas standar industri dan penyaluran kerja yang terjamin."
+        image-url="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2000&auto=format&fit=crop"
+        eyebrow-text="PUSAT KEUNGGULAN (COE)"
+    />
 
     <!-- ============================================== -->
     <!-- 03. QUICK STATS RIBBON -->

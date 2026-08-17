@@ -27,6 +27,16 @@ class Announcement extends Model
         $query->where('is_active', true);
     }
 
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:agendas');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:agendas');
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

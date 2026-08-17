@@ -47,6 +47,16 @@ class Post extends Model
               });
     }
 
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:news');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:news');
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

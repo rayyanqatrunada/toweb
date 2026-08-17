@@ -52,6 +52,18 @@ class Alumni extends Model
         $query->published()->where('is_public', true);
     }
 
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:stats:alumni');
+            \Illuminate\Support\Facades\Cache::forget('homepage:alumnis');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('homepage:stats:alumni');
+            \Illuminate\Support\Facades\Cache::forget('homepage:alumnis');
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

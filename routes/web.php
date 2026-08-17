@@ -1,39 +1,49 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\NewsController;
+use App\Http\Controllers\Frontend\AcademicController;
+use App\Http\Controllers\Frontend\AchievementController;
+use App\Http\Controllers\Frontend\GalleryController;
+use App\Http\Controllers\Frontend\PartnershipController;
+use App\Http\Controllers\Frontend\InternshipController;
+use App\Http\Controllers\Frontend\JobController;
+use App\Http\Controllers\Frontend\AlumniController;
+use App\Http\Controllers\Frontend\DownloadController;
+use App\Http\Controllers\Frontend\SearchController;
 
-Route::get('/', [FrontendController::class, 'index'])->name('home');
-Route::get('/search', [FrontendController::class, 'search'])->middleware('throttle:60,1')->name('search');
-Route::get('/tentang', [FrontendController::class, 'about'])->name('about');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/search', [SearchController::class, 'index'])->middleware('throttle:60,1')->name('search');
+Route::get('/tentang', [HomeController::class, 'about'])->name('about');
 
-Route::get('/berita', [FrontendController::class, 'news'])->name('news.index');
-Route::get('/berita/{slug}', [FrontendController::class, 'newsShow'])->name('news.show');
+Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
+Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 
-Route::get('/pengumuman', [FrontendController::class, 'announcements'])->name('announcements.index');
-Route::get('/pengumuman/{slug}', [FrontendController::class, 'announcementShow'])->name('announcements.show');
+Route::get('/pengumuman', [NewsController::class, 'announcements'])->name('announcements.index');
+Route::get('/pengumuman/{slug}', [NewsController::class, 'announcementShow'])->name('announcements.show');
 
-Route::get('/akademik/program', [FrontendController::class, 'programs'])->name('academic.programs');
-Route::get('/akademik/guru', [FrontendController::class, 'teachers'])->name('academic.teachers');
-Route::get('/akademik/fasilitas', [FrontendController::class, 'facilities'])->name('academic.facilities');
+Route::get('/akademik/program', [AcademicController::class, 'programs'])->name('academic.programs');
+Route::get('/akademik/guru', [AcademicController::class, 'teachers'])->name('academic.teachers');
+Route::get('/akademik/fasilitas', [AcademicController::class, 'facilities'])->name('academic.facilities');
 
-Route::get('/prestasi', [FrontendController::class, 'achievements'])->name('achievements.index');
-Route::get('/prestasi/{slug}', [FrontendController::class, 'achievementShow'])->name('achievements.show');
+Route::get('/prestasi', [AchievementController::class, 'index'])->name('achievements.index');
+Route::get('/prestasi/{slug}', [AchievementController::class, 'show'])->name('achievements.show');
 
-Route::get('/galeri', [FrontendController::class, 'gallery'])->name('gallery.index');
-Route::get('/galeri/{slug}', [FrontendController::class, 'galleryShow'])->name('gallery.show');
+Route::get('/galeri', [GalleryController::class, 'index'])->name('gallery.index');
+Route::get('/galeri/{slug}', [GalleryController::class, 'show'])->name('gallery.show');
 
-Route::get('/mitra-industri', [FrontendController::class, 'partnership'])->name('partnership.index');
-Route::get('/mitra-industri/{slug}', [FrontendController::class, 'partnershipShow'])->name('partnership.show');
+Route::get('/mitra-industri', [PartnershipController::class, 'index'])->name('partnership.index');
+Route::get('/mitra-industri/{slug}', [PartnershipController::class, 'show'])->name('partnership.show');
 
-Route::get('/pkl', [FrontendController::class, 'internships'])->name('internships.index');
-Route::get('/pkl/{slug}', [FrontendController::class, 'internshipShow'])->name('internships.show');
+Route::get('/pkl', [InternshipController::class, 'index'])->name('internships.index');
+Route::get('/pkl/{slug}', [InternshipController::class, 'show'])->name('internships.show');
 
-Route::get('/lowongan', [FrontendController::class, 'jobVacancies'])->name('jobs.index');
-Route::get('/lowongan/{slug}', [FrontendController::class, 'jobVacancyShow'])->name('jobs.show');
+Route::get('/lowongan', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/lowongan/{slug}', [JobController::class, 'show'])->name('jobs.show');
 
-Route::get('/alumni', [FrontendController::class, 'alumni'])->name('alumni.index');
-Route::get('/alumni/{slug}', [FrontendController::class, 'alumniShow'])->name('alumni.show');
+Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni.index');
+Route::get('/alumni/{slug}', [AlumniController::class, 'show'])->name('alumni.show');
 
-Route::get('/unduhan', [FrontendController::class, 'download'])->name('download.index');
-Route::get('/download/{slug}/file', [FrontendController::class, 'downloadFile'])->name('download.file');
+Route::get('/unduhan', [DownloadController::class, 'index'])->name('download.index');
+Route::get('/download/{slug}/file', [DownloadController::class, 'download'])->name('download.file');
