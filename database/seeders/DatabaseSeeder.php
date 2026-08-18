@@ -17,7 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleAndUserSeeder::class,
-            AutomotiveDataSeeder::class,
         ]);
+
+        if (app()->environment('local')) {
+            $this->call([
+                AutomotiveDataSeeder::class,
+            ]);
+        }
     }
 }

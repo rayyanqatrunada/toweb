@@ -36,7 +36,7 @@ class HomeController extends Controller
         $agendas = Cache::remember('homepage:agendas', now()->addMinutes(15), fn() => Announcement::active()->latest()->take(3)->get());
         $galleries = Cache::remember('homepage:galleries', now()->addMinutes(15), fn() => GalleryAlbum::with('items')->published()->latest()->take(4)->get());
         
-        $headOfDepartment = Cache::remember('homepage:head_teacher', now()->addMinutes(60), fn() => Teacher::where('is_head_of_department', true)->first());
+        $headOfDepartment = Cache::remember('homepage:head_teacher', now()->addMinutes(60), fn() => Teacher::where('is_head_of_department', true)->where('is_active', true)->first());
 
         return view('frontend.home', compact(
             'alumniCount', 'partnerCount', 'achievementCount', 'facilityCount',
@@ -47,8 +47,6 @@ class HomeController extends Controller
 
     public function about()
     {
-        $facilities = Facility::all();
-        $teachers = Teacher::with('user')->get();
-        return view('frontend.about', compact('facilities', 'teachers'));
+        return view('frontend.about');
     }
 }

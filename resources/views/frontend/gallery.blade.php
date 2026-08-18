@@ -23,7 +23,7 @@
                             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 @foreach($album->items as $item)
                                     <div class="group relative rounded-xl overflow-hidden aspect-square bg-slate-100 cursor-pointer">
-                                        <img src="{{ Storage::url($item->file_path) }}" alt="{{ $item->caption ?? $album->title }}" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500">
+                                        <img src="{{ Storage::url($item->file_path) }}" alt="{{ $item->caption ?? $album->title }}" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" loading="lazy">
                                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                                             @if($item->caption)
                                                 <p class="text-white text-sm font-medium">{{ $item->caption }}</p>

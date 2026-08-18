@@ -18,7 +18,7 @@ class AcademicController extends Controller
 
     public function teachers()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::where('is_active', true)->get();
         return view('frontend.academic.teachers', compact('teachers'));
     }
 

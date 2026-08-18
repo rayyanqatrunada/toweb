@@ -23,6 +23,9 @@ class TeachersTable
                     ->searchable(),
                 TextColumn::make('position')
                     ->searchable(),
+                \Filament\Tables\Columns\IconColumn::make('is_active')
+                    ->label('Aktif')
+                    ->boolean(),
                 \Filament\Tables\Columns\IconColumn::make('is_head_of_department')
                     ->label('Kepala')
                     ->boolean(),

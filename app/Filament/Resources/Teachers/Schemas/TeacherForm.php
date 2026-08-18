@@ -22,6 +22,9 @@ class TeacherForm
                 \Filament\Forms\Components\FileUpload::make('photo')
                     ->image()
                     ->directory('teachers'),
+                \Filament\Forms\Components\Toggle::make('is_active')
+                    ->label('Aktif / Tampilkan di Publik')
+                    ->default(true),
                 \Filament\Forms\Components\Toggle::make('is_head_of_department')
                     ->label('Jadikan Kepala Jurusan')
                     ->helperText('Jika diaktifkan, otomatis akan menggantikan kepala jurusan yang aktif saat ini.'),

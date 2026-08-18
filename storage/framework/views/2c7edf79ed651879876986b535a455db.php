@@ -17,6 +17,30 @@
         </div>
     </div>
 
+    <!-- Breadcrumbs -->
+    <?php if (isset($component)) { $__componentOriginal98ae32034a5e9865062f4201185788de = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal98ae32034a5e9865062f4201185788de = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.breadcrumbs','data' => ['items' => ['Unduhan' => route('download.index')]]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.breadcrumbs'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['Unduhan' => route('download.index')])]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal98ae32034a5e9865062f4201185788de)): ?>
+<?php $attributes = $__attributesOriginal98ae32034a5e9865062f4201185788de; ?>
+<?php unset($__attributesOriginal98ae32034a5e9865062f4201185788de); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal98ae32034a5e9865062f4201185788de)): ?>
+<?php $component = $__componentOriginal98ae32034a5e9865062f4201185788de; ?>
+<?php unset($__componentOriginal98ae32034a5e9865062f4201185788de); ?>
+<?php endif; ?>
+
     <section class="py-16 bg-slate-50 min-h-[50vh]">
         <div class="max-w-screen-xl mx-auto px-4">
             
@@ -86,4 +110,5 @@
 <?php $component = $__componentOriginal5863877a5171c196453bfa0bd807e410; ?>
 <?php unset($__componentOriginal5863877a5171c196453bfa0bd807e410); ?>
 <?php endif; ?>
+
 <?php /**PATH D:\Project\test\Web Jurusan\TOWEB\resources\views/frontend/download.blade.php ENDPATH**/ ?>

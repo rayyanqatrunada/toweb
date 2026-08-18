@@ -6,6 +6,9 @@
         </div>
     </div>
 
+    <!-- Breadcrumbs -->
+    <x-frontend.breadcrumbs :items="['Unduhan' => route('download.index')]" />
+
     <section class="py-16 bg-slate-50 min-h-[50vh]">
         <div class="max-w-screen-xl mx-auto px-4">
             
@@ -64,3 +67,4 @@
         </div>
     </section>
 </x-layouts.app>
+

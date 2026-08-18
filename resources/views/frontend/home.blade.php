@@ -189,11 +189,12 @@
     <!-- ============================================== -->
     <section id="program-keahlian" class="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-sm font-bold tracking-wider text-red-600 uppercase">Program Keahlian</span>
-                <h2 class="mt-2 text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">Belajar tidak hanya teori.</h2>
-                <p class="mt-4 text-lg text-slate-600">Kurikulum berbasis industri dengan porsi praktik 70% di fasilitas berstandar nasional.</p>
-            </div>
+            <x-frontend.section-header 
+                eyebrow="Program Keahlian"
+                title="Belajar tidak hanya teori."
+                description="Kurikulum berbasis industri dengan porsi praktik 70% di fasilitas berstandar nasional."
+                alignment="center"
+            />
 
             <!-- Horizontal Scroll on Mobile, Grid on Desktop -->
             <div class="flex overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-6" style="scrollbar-width: none;">
@@ -302,11 +303,12 @@
     <!-- ============================================== -->
     <section class="py-16 md:py-24 bg-white overflow-hidden border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-sm font-bold tracking-wider text-red-600 uppercase">Koneksi Industri</span>
-                <h2 class="mt-2 text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Belajar dari Sekolah, Berkembang Bersama Industri.</h2>
-                <p class="mt-4 text-lg text-slate-600">Perjalanan siswa kami didesain tidak hanya untuk lulus, tetapi untuk langsung bekerja di perusahaan terkemuka.</p>
-            </div>
+            <x-frontend.section-header 
+                eyebrow="Koneksi Industri"
+                title="Belajar dari Sekolah, Berkembang Bersama Industri."
+                description="Perjalanan siswa kami didesain tidak hanya untuk lulus, tetapi untuk langsung bekerja di perusahaan terkemuka."
+                alignment="center"
+            />
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
                 

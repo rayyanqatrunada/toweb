@@ -215,11 +215,28 @@
     <!-- ============================================== -->
     <section id="program-keahlian" class="py-16 md:py-24 bg-slate-50 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-sm font-bold tracking-wider text-red-600 uppercase">Program Keahlian</span>
-                <h2 class="mt-2 text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">Belajar tidak hanya teori.</h2>
-                <p class="mt-4 text-lg text-slate-600">Kurikulum berbasis industri dengan porsi praktik 70% di fasilitas berstandar nasional.</p>
-            </div>
+            <?php if (isset($component)) { $__componentOriginalabcd9dd0a6aa4045cd37a5df8301c15a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalabcd9dd0a6aa4045cd37a5df8301c15a = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.section-header','data' => ['eyebrow' => 'Program Keahlian','title' => 'Belajar tidak hanya teori.','description' => 'Kurikulum berbasis industri dengan porsi praktik 70% di fasilitas berstandar nasional.','alignment' => 'center']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.section-header'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['eyebrow' => 'Program Keahlian','title' => 'Belajar tidak hanya teori.','description' => 'Kurikulum berbasis industri dengan porsi praktik 70% di fasilitas berstandar nasional.','alignment' => 'center']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalabcd9dd0a6aa4045cd37a5df8301c15a)): ?>
+<?php $attributes = $__attributesOriginalabcd9dd0a6aa4045cd37a5df8301c15a; ?>
+<?php unset($__attributesOriginalabcd9dd0a6aa4045cd37a5df8301c15a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalabcd9dd0a6aa4045cd37a5df8301c15a)): ?>
+<?php $component = $__componentOriginalabcd9dd0a6aa4045cd37a5df8301c15a; ?>
+<?php unset($__componentOriginalabcd9dd0a6aa4045cd37a5df8301c15a); ?>
+<?php endif; ?>
 
             <!-- Horizontal Scroll on Mobile, Grid on Desktop -->
             <div class="flex overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-3 gap-6" style="scrollbar-width: none;">
@@ -371,11 +388,28 @@
     <!-- ============================================== -->
     <section class="py-16 md:py-24 bg-white overflow-hidden border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-sm font-bold tracking-wider text-red-600 uppercase">Koneksi Industri</span>
-                <h2 class="mt-2 text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Belajar dari Sekolah, Berkembang Bersama Industri.</h2>
-                <p class="mt-4 text-lg text-slate-600">Perjalanan siswa kami didesain tidak hanya untuk lulus, tetapi untuk langsung bekerja di perusahaan terkemuka.</p>
-            </div>
+            <?php if (isset($component)) { $__componentOriginalabcd9dd0a6aa4045cd37a5df8301c15a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalabcd9dd0a6aa4045cd37a5df8301c15a = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.section-header','data' => ['eyebrow' => 'Koneksi Industri','title' => 'Belajar dari Sekolah, Berkembang Bersama Industri.','description' => 'Perjalanan siswa kami didesain tidak hanya untuk lulus, tetapi untuk langsung bekerja di perusahaan terkemuka.','alignment' => 'center']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.section-header'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['eyebrow' => 'Koneksi Industri','title' => 'Belajar dari Sekolah, Berkembang Bersama Industri.','description' => 'Perjalanan siswa kami didesain tidak hanya untuk lulus, tetapi untuk langsung bekerja di perusahaan terkemuka.','alignment' => 'center']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalabcd9dd0a6aa4045cd37a5df8301c15a)): ?>
+<?php $attributes = $__attributesOriginalabcd9dd0a6aa4045cd37a5df8301c15a; ?>
+<?php unset($__attributesOriginalabcd9dd0a6aa4045cd37a5df8301c15a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalabcd9dd0a6aa4045cd37a5df8301c15a)): ?>
+<?php $component = $__componentOriginalabcd9dd0a6aa4045cd37a5df8301c15a; ?>
+<?php unset($__componentOriginalabcd9dd0a6aa4045cd37a5df8301c15a); ?>
+<?php endif; ?>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
                 

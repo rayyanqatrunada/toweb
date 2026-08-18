@@ -98,4 +98,5 @@
 <?php $component = $__componentOriginal5863877a5171c196453bfa0bd807e410; ?>
 <?php unset($__componentOriginal5863877a5171c196453bfa0bd807e410); ?>
 <?php endif; ?>
+
 <?php /**PATH D:\Project\test\Web Jurusan\TOWEB\resources\views/frontend/news/index.blade.php ENDPATH**/ ?>
