@@ -51,7 +51,7 @@
             <!-- Image Content -->
             <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center reveal-on-scroll reveal-fade delay-200">
                 <div class="relative mx-auto w-full rounded-xl shadow-2xl lg:max-w-md overflow-hidden bg-slate-200 aspect-[4/3] sm:aspect-square lg:aspect-[3/4]">
-                    <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="{{ $imageUrl }}" alt="Siswa praktik di workshop otomotif">
+                    <img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="{{ $imageUrl }}" alt="Siswa praktik di workshop otomotif" fetchpriority="high" decoding="async">
                     <!-- Subtle overlay to make it look industrial -->
                     <div class="absolute inset-0 bg-slate-900/10 mix-blend-multiply"></div>
                 </div>

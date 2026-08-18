@@ -12,7 +12,13 @@ use App\Http\Controllers\Frontend\JobController;
 use App\Http\Controllers\Frontend\AlumniController;
 use App\Http\Controllers\Frontend\DownloadController;
 use App\Http\Controllers\Frontend\SearchController;
+use App\Http\Controllers\Frontend\SitemapController;
 
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', function () {
+    return response("User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /search\n\nSitemap: " . url('/sitemap.xml'), 200)
+        ->header('Content-Type', 'text/plain');
+});
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/search', [SearchController::class, 'index'])->middleware('throttle:60,1')->name('search');
 Route::get('/tentang', [HomeController::class, 'about'])->name('about');

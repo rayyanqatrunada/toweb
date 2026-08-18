@@ -31,11 +31,6 @@ class Achievement extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function participants()
-    {
-        return $this->hasMany(AchievementParticipant::class);
-    }
-
     public function scopePublished(\Illuminate\Database\Eloquent\Builder $query): void
     {
         $query->where('status', 'published')

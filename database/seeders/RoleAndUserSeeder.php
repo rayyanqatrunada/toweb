@@ -19,10 +19,7 @@ class RoleAndUserSeeder extends Seeder
 
         // Create roles
         $roles = [
-            'Super Admin',
-            'Admin Jurusan',
-            'Editor',
-            'Guru'
+            'admin'
         ];
 
         foreach ($roles as $role) {
@@ -33,11 +30,11 @@ class RoleAndUserSeeder extends Seeder
         $superAdmin = User::firstOrCreate([
             'email' => 'admin@toweb.test'
         ], [
-            'name' => 'Super Administrator',
+            'name' => 'Administrator',
             'password' => Hash::make('password'),
             'email_verified_at' => now(),
         ]);
 
-        $superAdmin->assignRole('Super Admin');
+        $superAdmin->assignRole('admin');
     }
 }

@@ -14,14 +14,22 @@ class AnnouncementForm
         return $schema
             ->components([
                 TextInput::make('title')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                Textarea::make('content')
                     ->required()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
+                TextInput::make('slug')
+                    ->required()
+                    ->unique(ignoreRecord: true),
+                \Filament\Forms\Components\RichEditor::make('content')
+                    ->required()
+                    ->fileAttachmentsDirectory('announcements/attachments')
                     ->columnSpanFull(),
-                TextInput::make('file_attachment'),
+                \Filament\Forms\Components\FileUpload::make('file_attachment')
+                    ->directory('announcements')
+                    ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])
+                    ->maxSize(10240),
                 Toggle::make('is_active')
+                    ->default(true)
                     ->required(),
             ]);
     }

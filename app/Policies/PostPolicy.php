@@ -12,39 +12,41 @@ class PostPolicy
 
     public function viewAny(User $user): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function view(User $user, Post $record): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function create(User $user): bool
     {
-        if ('Post' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('Post' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function update(User $user, Post $record): bool
     {
-        if ('Post' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('Post' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function delete(User $user, Post $record): bool
     {
-        if ('Post' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan']);
+        if ('Post' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function restore(User $user, Post $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 
     public function forceDelete(User $user, Post $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 }
+
+

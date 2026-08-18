@@ -15,29 +15,40 @@ class PostForm
         return $schema
             ->components([
                 TextInput::make('title')
-                    ->required(),
+                    ->required()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
                 TextInput::make('slug')
-                    ->required(),
+                    ->required()
+                    ->unique(ignoreRecord: true),
+                \Filament\Forms\Components\FileUpload::make('thumbnail')
+                    ->image()
+                    ->directory('posts')
+                    ->columnSpanFull(),
                 Textarea::make('excerpt')
                     ->columnSpanFull(),
-                Textarea::make('content')
+                \Filament\Forms\Components\RichEditor::make('content')
                     ->required()
+                    ->fileAttachmentsDirectory('posts/attachments')
                     ->columnSpanFull(),
-                TextInput::make('thumbnail'),
+                Select::make('category_id')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload(),
+                Select::make('tags')
+                    ->relationship('tags', 'name')
+                    ->multiple()
+                    ->preload(),
                 Select::make('status')
                     ->options([
                         'draft' => 'Draft',
-                        'review' => 'In Review',
                         'published' => 'Published',
                     ])
                     ->default('draft')
                     ->required(),
                 DateTimePicker::make('published_at'),
-                TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('category_id')
-                    ->numeric(),
+                \Filament\Forms\Components\Hidden::make('user_id')
+                    ->default(fn () => auth()->id()),
             ]);
     }
 }

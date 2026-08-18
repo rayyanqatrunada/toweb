@@ -19,6 +19,7 @@ class AlumniResource extends Resource
     protected static ?string $model = Alumni::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | \UnitEnum | null $navigationGroup = 'KARIER & INDUSTRI';
 
     public static function form(Schema $schema): Schema
     {
@@ -46,3 +47,5 @@ class AlumniResource extends Resource
         ];
     }
 }
+
+

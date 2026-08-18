@@ -19,6 +19,7 @@ class PartnershipResource extends Resource
     protected static ?string $model = Partnership::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | \UnitEnum | null $navigationGroup = 'KARIER & INDUSTRI';
 
     public static function form(Schema $schema): Schema
     {
@@ -46,3 +47,5 @@ class PartnershipResource extends Resource
         ];
     }
 }
+
+

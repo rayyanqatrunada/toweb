@@ -12,39 +12,41 @@ class JobVacancyPolicy
 
     public function viewAny(User $user): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function view(User $user, JobVacancy $record): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function create(User $user): bool
     {
-        if ('JobVacancy' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('JobVacancy' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function update(User $user, JobVacancy $record): bool
     {
-        if ('JobVacancy' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('JobVacancy' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function delete(User $user, JobVacancy $record): bool
     {
-        if ('JobVacancy' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan']);
+        if ('JobVacancy' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function restore(User $user, JobVacancy $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 
     public function forceDelete(User $user, JobVacancy $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 }
+
+

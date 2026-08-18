@@ -12,39 +12,41 @@ class InternshipPolicy
 
     public function viewAny(User $user): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function view(User $user, Internship $record): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function create(User $user): bool
     {
-        if ('Internship' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('Internship' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function update(User $user, Internship $record): bool
     {
-        if ('Internship' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('Internship' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function delete(User $user, Internship $record): bool
     {
-        if ('Internship' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan']);
+        if ('Internship' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function restore(User $user, Internship $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 
     public function forceDelete(User $user, Internship $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 }
+
+

@@ -1,10 +1,10 @@
-<nav x-data="{ mobileMenuOpen: false }" class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+<nav x-data="{ mobileMenuOpen: false }" x-effect="document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''" class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16 md:h-18">
             <!-- Logo Section -->
             <a href="{{ route('home') ?? '/' }}" class="flex-shrink-0 flex items-center gap-3">
                 <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-extrabold text-lg shadow-inner shadow-white/20">TO</div>
-                <span class="font-bold text-xl text-slate-900 tracking-tight hidden sm:block">Teknik Otomotif</span>
+                <span class="font-bold text-xl text-slate-900 tracking-tight hidden sm:block">{{ $settings->get('site_name', 'Teknik Otomotif') }}</span>
             </a>
 
             <!-- Desktop Menu -->
@@ -72,7 +72,7 @@
                 
                 <!-- Mobile Menu Button -->
                 <div class="flex items-center lg:hidden">
-                    <button type="button" @click="mobileMenuOpen = !mobileMenuOpen" class="inline-flex items-center justify-center p-2 min-w-[44px] min-h-[44px] rounded-md text-slate-500 hover:text-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors" aria-expanded="false">
+                    <button type="button" aria-controls="mobile-menu" :aria-expanded="mobileMenuOpen.toString()" @click="mobileMenuOpen = !mobileMenuOpen" class="inline-flex items-center justify-center p-2 min-w-[44px] min-h-[44px] rounded-md text-slate-500 hover:text-red-600 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors">
                         <span class="sr-only">Open main menu</span>
                         <!-- Hamburger -->
                         <svg x-show="!mobileMenuOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -85,7 +85,7 @@
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-slate-100 shadow-xl" style="display: none;">
+    <div id="mobile-menu" x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-slate-100 shadow-xl" style="display: none;">
         <div class="px-4 pt-2 pb-6 space-y-1 overflow-y-auto max-h-[calc(100vh-64px)]">
             <a href="{{ route('home') ?? '/' }}" class="block px-3 py-3 rounded-md text-base font-semibold text-red-600 bg-red-50">Beranda</a>
             

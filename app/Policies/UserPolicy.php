@@ -11,39 +11,41 @@ class UserPolicy
 
     public function viewAny(User $user): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function view(User $user, User $record): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function create(User $user): bool
     {
-        if ('User' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('User' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function update(User $user, User $record): bool
     {
-        if ('User' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('User' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function delete(User $user, User $record): bool
     {
-        if ('User' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan']);
+        if ('User' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function restore(User $user, User $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 
     public function forceDelete(User $user, User $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 }
+
+

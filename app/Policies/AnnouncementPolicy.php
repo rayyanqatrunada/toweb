@@ -12,39 +12,41 @@ class AnnouncementPolicy
 
     public function viewAny(User $user): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function view(User $user, Announcement $record): bool
     {
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor', 'Guru']);
+        return $user->hasRole('admin');
     }
 
     public function create(User $user): bool
     {
-        if ('Announcement' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('Announcement' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function update(User $user, Announcement $record): bool
     {
-        if ('Announcement' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan', 'Editor']);
+        if ('Announcement' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function delete(User $user, Announcement $record): bool
     {
-        if ('Announcement' === 'User') return $user->hasRole('Super Admin');
-        return $user->hasAnyRole(['Super Admin', 'Admin Jurusan']);
+        if ('Announcement' === 'User') return $user->hasRole('admin');
+        return $user->hasRole('admin');
     }
 
     public function restore(User $user, Announcement $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 
     public function forceDelete(User $user, Announcement $record): bool
     {
-        return $user->hasRole('Super Admin');
+        return $user->hasRole('admin');
     }
 }
+
+

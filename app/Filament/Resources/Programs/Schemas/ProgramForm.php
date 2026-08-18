@@ -13,12 +13,18 @@ class ProgramForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
                 TextInput::make('slug')
-                    ->required(),
-                Textarea::make('description')
+                    ->required()
+                    ->unique(ignoreRecord: true),
+                \Filament\Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
-                TextInput::make('thumbnail'),
+                \Filament\Forms\Components\FileUpload::make('thumbnail')
+                    ->image()
+                    ->directory('programs')
+                    ->columnSpanFull(),
             ]);
     }
 }

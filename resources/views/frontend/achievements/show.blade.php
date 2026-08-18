@@ -1,4 +1,24 @@
-<x-layouts.app>
+<x-layouts.app 
+    :title="$achievement->title"
+    :description="Str::limit(strip_tags($achievement->description), 150)"
+    :canonical="route('achievements.show', $achievement->slug)"
+    :ogImage="$achievement->photo ? Storage::url($achievement->photo) : null"
+    ogType="article"
+>
+    @push('json-ld')
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "Article",
+      "headline": "{{ $achievement->title }}",
+      "image": [
+        "{{ $achievement->photo ? Storage::url($achievement->photo) : url('/default-image.jpg') }}"
+       ],
+      "datePublished": "{{ $achievement->date ? $achievement->date->toIso8601String() : $achievement->created_at->toIso8601String() }}",
+      "dateModified": "{{ $achievement->updated_at->toIso8601String() }}"
+    }
+    </script>
+    @endpush
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow max-w-4xl mx-auto overflow-hidden">
             @if($achievement->photo)

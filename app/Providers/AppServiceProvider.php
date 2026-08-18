@@ -20,5 +20,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         \Illuminate\Database\Eloquent\Model::preventLazyLoading(!app()->isProduction());
+        
+        \App\Models\Setting::observe(\App\Observers\SettingObserver::class);
+
+        \Illuminate\Support\Facades\View::composer('*', function ($view) {
+            $view->with('settings', app(\App\Services\SettingsService::class));
+        });
     }
 }

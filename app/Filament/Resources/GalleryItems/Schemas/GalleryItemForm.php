@@ -13,17 +13,25 @@ class GalleryItemForm
     {
         return $schema
             ->components([
-                TextInput::make('gallery_album_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('file_path')
+                \Filament\Forms\Components\Select::make('gallery_album_id')
+                    ->relationship('album', 'title')
                     ->required(),
+                \Filament\Forms\Components\FileUpload::make('file_path')
+                    ->required()
+                    ->directory('gallery-items')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'video/mp4', 'video/webm'])
+                    ->maxSize(10240),
                 Select::make('type')
                     ->options(['image' => 'Image', 'video' => 'Video'])
                     ->default('image')
                     ->required(),
-                Textarea::make('description')
+                \Filament\Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
+                \Filament\Forms\Components\Toggle::make('is_featured')
+                    ->default(false),
+                \Filament\Forms\Components\TextInput::make('sort_order')
+                    ->numeric()
+                    ->default(0),
             ]);
     }
 }

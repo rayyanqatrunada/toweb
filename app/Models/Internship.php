@@ -37,11 +37,6 @@ class Internship extends Model
         return $this->belongsTo(Partnership::class);
     }
 
-    public function participants()
-    {
-        return $this->hasMany(InternshipParticipant::class);
-    }
-
     public function scopePublished(\Illuminate\Database\Eloquent\Builder $query): void
     {
         $query->where('status', 'published');

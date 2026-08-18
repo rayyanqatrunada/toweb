@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\IndustryPartner;
 use App\Models\Internship;
-use App\Models\InternshipParticipant;
+// Removed InternshipParticipant import
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -40,22 +40,4 @@ class InternshipCmsTest extends TestCase
         $this->assertEquals('planned', $internship->status);
     }
 
-    public function test_participant_can_be_added_to_internship()
-    {
-        $internship = Internship::factory()->create();
-        
-        $participant = $internship->participants()->create([
-            'student_name' => 'Budi Santoso',
-            'student_id' => '12345678',
-            'role' => 'Mekanik Junior',
-            'status' => 'active',
-        ]);
-
-        $this->assertDatabaseHas('internship_participants', [
-            'student_name' => 'Budi Santoso',
-            'internship_id' => $internship->id,
-        ]);
-        
-        $this->assertCount(1, $internship->participants);
-    }
 }

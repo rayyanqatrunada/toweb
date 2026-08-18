@@ -14,11 +14,9 @@ use App\Models\Competency;
 use App\Models\Teacher;
 use App\Models\Facility;
 use App\Models\Achievement;
-use App\Models\AchievementParticipant;
 use App\Models\IndustryPartner;
 use App\Models\Partnership;
 use App\Models\Internship;
-use App\Models\InternshipParticipant;
 use App\Models\JobVacancy;
 use App\Models\Alumni;
 use App\Models\GalleryAlbum;
@@ -30,14 +28,15 @@ class AutomotiveDataSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Dapatkan Super Admin User
+        // 1. Dapatkan Admin User
         $admin = User::first();
         if (!$admin) {
             $admin = User::create([
-                'name' => 'Super Admin',
+                'name' => 'admin',
                 'email' => 'admin@smk.id',
                 'password' => bcrypt('password'),
             ]);
+            $admin->assignRole('admin');
         }
 
         // 2. Kategori Berita & Tags
@@ -143,11 +142,7 @@ class AutomotiveDataSeeder extends Seeder
             'status' => 'published',
             'published_at' => now()->subMonths(2),
         ]);
-        AchievementParticipant::create([
-            'achievement_id' => $ach->id,
-            'student_name' => 'Rizky Pratama',
-            'student_id' => '1001',
-        ]);
+        // Achievement participant is removed
 
         // 9. Mitra Industri
         $partner1 = IndustryPartner::create([
@@ -180,12 +175,7 @@ class AutomotiveDataSeeder extends Seeder
             'status' => 'completed',
         ]);
 
-        \App\Models\InternshipParticipant::create([
-            'internship_id' => $intern->id,
-            'student_name' => 'Ahmad Riyan',
-            'student_id' => '1001',
-            'status' => 'completed'
-        ]);
+        // Internship participant is removed
 
         $partner2 = IndustryPartner::create([
             'name' => 'Auto2000',
@@ -220,8 +210,7 @@ class AutomotiveDataSeeder extends Seeder
             'end_date' => now()->addMonths(2),
             'status' => 'ongoing',
         ]);
-        InternshipParticipant::create(['internship_id' => $pkl->id, 'student_name' => 'Dimas Anggara', 'student_id' => '1002', 'status' => 'active']);
-        InternshipParticipant::create(['internship_id' => $pkl->id, 'student_name' => 'Reza Fahlevi', 'student_id' => '1003', 'status' => 'active']);
+        // PKL Participants removed
 
         // 11. Lowongan Kerja
         JobVacancy::create([

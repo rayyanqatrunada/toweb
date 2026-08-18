@@ -12,14 +12,17 @@ class CompetencyForm
     {
         return $schema
             ->components([
-                TextInput::make('program_id')
-                    ->required()
-                    ->numeric(),
+                \Filament\Forms\Components\Select::make('program_id')
+                    ->relationship('program', 'name')
+                    ->required(),
                 TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
                 TextInput::make('slug')
-                    ->required(),
-                Textarea::make('description')
+                    ->required()
+                    ->unique(ignoreRecord: true),
+                \Filament\Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
             ]);
     }

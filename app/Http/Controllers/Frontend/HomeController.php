@@ -35,11 +35,13 @@ class HomeController extends Controller
         $latestNews = Cache::remember('homepage:news', now()->addMinutes(15), fn() => Post::with('category')->published()->latest()->take(3)->get());
         $agendas = Cache::remember('homepage:agendas', now()->addMinutes(15), fn() => Announcement::active()->latest()->take(3)->get());
         $galleries = Cache::remember('homepage:galleries', now()->addMinutes(15), fn() => GalleryAlbum::with('items')->published()->latest()->take(4)->get());
+        
+        $headOfDepartment = Cache::remember('homepage:head_teacher', now()->addMinutes(60), fn() => Teacher::where('is_head_of_department', true)->first());
 
         return view('frontend.home', compact(
             'alumniCount', 'partnerCount', 'achievementCount', 'facilityCount',
             'programs', 'facilities', 'partners', 'jobVacancies',
-            'alumnis', 'latestNews', 'agendas', 'galleries'
+            'alumnis', 'latestNews', 'agendas', 'galleries', 'headOfDepartment'
         ));
     }
 

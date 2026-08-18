@@ -1,12 +1,35 @@
 <x-layouts.app title="Beranda">
-    
+    @push('json-ld')
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "EducationalOrganization",
+      "name": "Teknik Otomotif SMK Negeri 1",
+      "url": "{{ url('/') }}",
+      "logo": "{{ url('/logo.png') }}"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "WebSite",
+      "url": "{{ url('/') }}",
+      "potentialAction": {
+        "@@type": "SearchAction",
+        "target": "{{ url('/search') }}?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    @endpush
+
     <!-- ============================================== -->
     <!-- 02. HERO SECTION -->
     <!-- ============================================== -->
     <x-frontend.hero 
         variant="full"
-        headline="Menyiapkan Generasi Profesional di Dunia Otomotif"
-        description="Kami mendidik siswa menjadi mekanik, teknisi, dan wirausahawan andal dengan fasilitas standar industri dan penyaluran kerja yang terjamin."
+        headline="{!! $settings->get('hero_title', 'Menyiapkan Generasi Profesional di Dunia Otomotif') !!}"
+        description="{!! $settings->get('hero_subtitle', 'Kami mendidik siswa menjadi mekanik, teknisi, dan wirausahawan andal dengan fasilitas standar industri dan penyaluran kerja yang terjamin.') !!}"
         image-url="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2000&auto=format&fit=crop"
         eyebrow-text="PUSAT KEUNGGULAN (COE)"
     />
@@ -16,19 +39,26 @@
     <!-- ============================================== -->
     <section class="relative bg-slate-900 pb-16 border-b border-slate-800" x-data="{
         startAnimation(target, prop) {
-            let start = 0;
-            let duration = 2000;
-            let stepTime = Math.abs(Math.floor(duration / target));
-            if(stepTime < 5) stepTime = 5;
-            let timer = setInterval(() => {
-                start += Math.ceil(target / (duration / stepTime));
-                if (start >= target) {
-                    this[prop] = target;
-                    clearInterval(timer);
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) {
+                this[prop] = target;
+                return;
+            }
+            let startTimestamp = null;
+            const duration = 2000;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // easeOutQuart
+                const easeOut = 1 - Math.pow(1 - progress, 4);
+                this[prop] = Math.floor(easeOut * target);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
                 } else {
-                    this[prop] = start;
+                    this[prop] = target;
                 }
-            }, stepTime);
+            };
+            window.requestAnimationFrame(step);
         },
         c1: 0, c2: 0, c3: 0, c4: 0
     }">
@@ -82,8 +112,8 @@
                 
                 <!-- Kiri: Foto & Quote -->
                 <div class="lg:col-span-5 relative mb-16 lg:mb-0">
-                    <!-- Placeholder Foto -->
-                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop" class="rounded-2xl shadow-2xl w-full max-w-sm mx-auto aspect-[3/4] object-cover border-4 border-white" alt="Kepala Jurusan Otomotif">
+                    <!-- Foto -->
+                    <img src="{{ isset($headOfDepartment) && $headOfDepartment->photo ? \Illuminate\Support\Facades\Storage::url($headOfDepartment->photo) : 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop' }}" class="rounded-2xl shadow-2xl w-full max-w-sm mx-auto aspect-[3/4] object-cover border-4 border-white" alt="Kepala Jurusan Otomotif">
                     
                     <!-- Quote Box (Absolute overlap) -->
                     <div class="absolute -bottom-8 -right-4 sm:-right-8 md:bottom-8 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 max-w-[280px] z-10 hidden sm:block">
@@ -91,9 +121,9 @@
                             <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                         </svg>
                         <p class="text-slate-900 font-bold italic text-sm leading-relaxed">
-                            "Menyiapkan lulusan yang bukan hanya paham mesin, tapi memiliki karakter profesional industri."
+                            "{!! $settings->get('head_quote', 'Menyiapkan lulusan yang bukan hanya paham mesin, tapi memiliki karakter profesional industri.') !!}"
                         </p>
-                        <p class="mt-3 text-xs font-extrabold text-slate-500 uppercase tracking-widest">- Kepala Jurusan</p>
+                        <p class="mt-3 text-xs font-extrabold text-slate-500 uppercase tracking-widest">- {{ isset($headOfDepartment) ? $headOfDepartment->name : 'Kepala Jurusan' }}</p>
                     </div>
                 </div>
 
@@ -192,8 +222,8 @@
                     </div>
                 </a>
                 @empty
-                <div class="col-span-full py-12 text-center bg-white rounded-2xl border border-slate-200 border-dashed">
-                    <p class="text-slate-500 font-medium">Data program keahlian belum tersedia.</p>
+                <div class="col-span-full">
+                    <x-empty-state title="Belum Ada Program" message="Data program keahlian belum tersedia saat ini." icon="document" />
                 </div>
                 @endforelse
             </div>
@@ -255,8 +285,8 @@
                     @endforeach
                 </div>
                 @else
-                <div class="col-span-full py-12 text-center bg-slate-800 rounded-2xl border border-slate-700 border-dashed">
-                    <p class="text-slate-400 font-medium">Data fasilitas belum tersedia.</p>
+                <div class="col-span-full">
+                    <x-empty-state title="Belum Ada Fasilitas" message="Data fasilitas belum tersedia saat ini." icon="document" />
                 </div>
                 @endif
             </div>
@@ -298,8 +328,8 @@
                                 @endif
                             </a>
                             @empty
-                            <div class="col-span-full py-4 text-center">
-                                <span class="text-sm text-slate-500">Belum ada partner industri.</span>
+                            <div class="col-span-full">
+                                <p class="text-sm text-slate-500 text-center py-4">Belum ada partner industri.</p>
                             </div>
                             @endforelse
                             <a href="{{ route('partnership.index') ?? '/kemitraan' }}" class="flex items-center justify-center p-4 bg-slate-50 rounded-xl hover:bg-red-50 text-red-600 transition-all border border-slate-100 hover:border-red-200 cursor-pointer h-full min-h-[80px]">
@@ -366,9 +396,7 @@
                                 </div>
                             </a>
                             @empty
-                            <div class="py-6 text-center border border-slate-200 border-dashed rounded-xl bg-white">
-                                <span class="text-sm text-slate-500">Belum ada lowongan baru.</span>
-                            </div>
+                            <x-empty-state title="Tidak Ada Lowongan" message="Belum ada lowongan baru saat ini." icon="document" />
                             @endforelse
                         </div>
                         
@@ -485,8 +513,8 @@
                         </article>
                         @endforeach
                         @else
-                        <div class="md:col-span-2 py-12 text-center border border-slate-200 border-dashed rounded-2xl bg-slate-50">
-                            <p class="text-slate-500 font-medium">Belum ada berita terbaru.</p>
+                        <div class="md:col-span-2">
+                            <x-empty-state title="Belum Ada Berita" message="Belum ada berita terbaru yang diterbitkan." icon="document" />
                         </div>
                         @endif
                     </div>
@@ -520,9 +548,7 @@
                                 </div>
                             </a>
                             @empty
-                            <div class="py-8 text-center bg-white rounded-xl border border-slate-200 border-dashed">
-                                <p class="text-slate-500 text-sm">Belum ada agenda atau pengumuman.</p>
-                            </div>
+                            <x-empty-state title="Belum Ada Agenda" message="Belum ada agenda atau pengumuman." icon="calendar" />
                             @endforelse
                         </div>
                         
@@ -558,10 +584,10 @@
                     </div>
                     
                     <!-- YouTube Lazy Facade (Alpine.js) -->
-                    <div x-data="{ loaded: false, videoId: 'dQw4w9WgXcQ' }" class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-slate-800 border-4 border-slate-800 group h-full max-h-[350px]">
+                    <div x-data="{ loaded: false, videoId: '{{ $settings->get('youtube_video_id', 'dQw4w9WgXcQ') }}' }" class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-slate-800 border-4 border-slate-800 group h-full max-h-[350px]">
                         <!-- Thumbnail Overlay -->
                         <div x-show="!loaded" class="absolute inset-0 cursor-pointer" @click="loaded = true">
-                            <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" loading="lazy">
+                            <img :src="'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg'" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" loading="lazy">
                             <div class="absolute inset-0 bg-slate-900/30 group-hover:bg-transparent transition-colors"></div>
                             <!-- Play Button -->
                             <div class="absolute inset-0 flex items-center justify-center">
@@ -584,7 +610,7 @@
                     
                     <div class="mt-4 flex items-center justify-between">
                         <p class="text-slate-400 text-sm">Lihat aktivitas kami dalam bentuk video pendek.</p>
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-red-500 hover:text-white transition-colors flex items-center">
+                        <a href="{{ $settings->get('social_youtube', 'https://youtube.com') }}" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-red-500 hover:text-white transition-colors flex items-center">
                             Subscribe
                             <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                         </a>

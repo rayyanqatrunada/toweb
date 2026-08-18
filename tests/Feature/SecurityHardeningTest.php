@@ -18,20 +18,19 @@ class SecurityHardeningTest extends TestCase
         $this->artisan('db:seed', ['--class' => 'RoleAndUserSeeder']);
     }
 
-    public function test_editor_cannot_delete_users()
+    public function test_non_admin_cannot_delete_users()
     {
-        $editor = User::factory()->create();
-        $editor->assignRole('Editor');
+        $nonAdmin = User::factory()->create();
 
         $userToDelete = User::factory()->create();
 
-        $this->actingAs($editor);
+        $this->actingAs($nonAdmin);
 
-        // Editor shouldn't be able to view user list or delete user
+        // Non-admin shouldn't be able to view user list or delete user
         // We can test Policy directly
         $policy = new \App\Policies\UserPolicy();
         
-        $this->assertFalse($policy->delete($editor, $userToDelete));
+        $this->assertFalse($policy->delete($nonAdmin, $userToDelete));
     }
 
     public function test_super_admin_can_delete_users()

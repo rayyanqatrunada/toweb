@@ -17,7 +17,7 @@ class AdminPanelAccessTest extends TestCase
         // Clear cached permissions before each test to ensure fresh state
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         
-        Role::firstOrCreate(['name' => 'Super Admin']);
+        Role::firstOrCreate(['name' => 'admin']);
         Role::firstOrCreate(['name' => 'Guru']);
     }
 
@@ -42,7 +42,7 @@ class AdminPanelAccessTest extends TestCase
     public function test_super_admin_can_access_admin_panel()
     {
         $user = User::factory()->create();
-        $user->assignRole('Super Admin');
+        $user->assignRole('admin');
         
         $response = $this->actingAs($user)->get('/admin');
         
@@ -50,3 +50,4 @@ class AdminPanelAccessTest extends TestCase
         $response->assertSuccessful();
     }
 }
+

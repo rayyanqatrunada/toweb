@@ -19,6 +19,7 @@ class FacilityResource extends Resource
     protected static ?string $model = Facility::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | \UnitEnum | null $navigationGroup = 'AKADEMIK';
 
     public static function form(Schema $schema): Schema
     {
@@ -46,3 +47,5 @@ class FacilityResource extends Resource
         ];
     }
 }
+
+

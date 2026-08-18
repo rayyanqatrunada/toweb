@@ -19,6 +19,7 @@ class TagResource extends Resource
     protected static ?string $model = Tag::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | \UnitEnum | null $navigationGroup = 'KONTEN';
 
     public static function form(Schema $schema): Schema
     {
@@ -46,3 +47,5 @@ class TagResource extends Resource
         ];
     }
 }
+
+

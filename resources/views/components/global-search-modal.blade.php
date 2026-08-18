@@ -15,6 +15,7 @@
         x-transition:leave-end="opacity-0 scale-95"
         class="fixed inset-0 z-[100] overflow-y-auto bg-slate-900/90 backdrop-blur-sm p-4 sm:p-6 md:p-20"
         style="display: none;"
+        role="dialog" aria-modal="true" aria-labelledby="modal-headline"
     >
         <!-- Modal Box -->
         <div class="mx-auto max-w-3xl transform divide-y divide-slate-100 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 transition-all" @click.outside="isSearchOpen = false">
@@ -25,8 +26,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 
+                <label for="global-search-input" class="sr-only" id="modal-headline">Pencarian Sistem</label>
                 <input 
                     type="search" 
+                    id="global-search-input"
                     name="q"
                     x-model="searchQuery"
                     x-ref="searchInput"

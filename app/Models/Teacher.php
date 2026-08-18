@@ -11,11 +11,25 @@ class Teacher extends Model
 {
     use LogsActivity;
 
-    protected $fillable = ['user_id', 'name', 'nip', 'position', 'phone', 'photo'];
+    protected $fillable = ['user_id', 'name', 'nip', 'position', 'phone', 'photo', 'is_head_of_department'];
+
+    protected $casts = [
+        'is_head_of_department' => 'boolean',
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    protected static function booted()
+    {
+        static::saving(function ($teacher) {
+            if ($teacher->is_head_of_department) {
+                // Set all other teachers to false
+                static::where('id', '!=', $teacher->id)->update(['is_head_of_department' => false]);
+            }
+        });
     }
 
     public function getActivitylogOptions(): LogOptions

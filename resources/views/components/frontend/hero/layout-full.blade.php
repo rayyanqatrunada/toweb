@@ -9,7 +9,7 @@
 <section class="relative bg-slate-900 min-h-[80vh] flex items-center overflow-hidden">
     <!-- Immersive Background Image -->
     <div class="absolute inset-0 z-0">
-        <img src="{{ $imageUrl }}" alt="Background Teknik Otomotif" class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay">
+        <img src="{{ $imageUrl }}" alt="Background Teknik Otomotif" class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay" fetchpriority="high" decoding="async">
         <!-- Gradient Overlay for Contrast -->
         <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent"></div>
     </div>

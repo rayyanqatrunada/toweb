@@ -46,20 +46,4 @@ class AchievementCmsTest extends TestCase
         $this->assertEquals('draft', $achievement->status);
     }
 
-    public function test_achievement_participants_relationship()
-    {
-        $achievement = Achievement::factory()->create();
-        
-        $achievement->participants()->create([
-            'student_name' => 'Budi Santoso',
-            'student_id' => '12345678',
-        ]);
-
-        $this->assertDatabaseHas('achievement_participants', [
-            'student_name' => 'Budi Santoso',
-            'achievement_id' => $achievement->id,
-        ]);
-        
-        $this->assertCount(1, $achievement->participants);
-    }
 }
