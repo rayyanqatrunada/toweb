@@ -61,7 +61,7 @@
                                     </div>
                                     
                                     <div class="prose prose-sm prose-slate max-w-none mb-4">
-                                        {!! $vacancy->description !!}
+                                        {!! \App\Support\HtmlSanitizer::clean($vacancy->description) !!}
                                     </div>
 
                                     @if($vacancy->requirements)

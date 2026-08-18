@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Alumni extends Model
 {
+    use \App\Traits\CleansUpFiles;
     use LogsActivity;
 
     use HasFactory;
@@ -67,5 +68,10 @@ class Alumni extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
+    }
+
+    public function getFileFields(): array
+    {
+        return ['photo'];
     }
 }

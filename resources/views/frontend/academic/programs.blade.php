@@ -39,7 +39,7 @@
                             <h2 class="text-3xl font-bold text-slate-900 mb-4 hidden lg:block group-hover:text-red-600 transition-colors">{{ $program->name }}</h2>
                             
                             <div class="prose prose-slate prose-lg max-w-none mb-8 text-slate-600">
-                                {!! $program->description !!}
+                                {!! \App\Support\HtmlSanitizer::clean($program->description) !!}
                             </div>
                             
                             @if($program->competencies->count() > 0)

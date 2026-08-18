@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
 {
+    use \App\Traits\CleansUpFiles;
     use LogsActivity;
 
     protected $fillable = ['name', 'slug', 'description', 'thumbnail'];
@@ -31,5 +32,10 @@ class Program extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
+    }
+
+    public function getFileFields(): array
+    {
+        return ['thumbnail'];
     }
 }

@@ -112,7 +112,7 @@
                                 Biografi Singkat
                             </h3>
                             <div class="prose prose-slate max-w-none prose-a:text-red-600">
-                                {!! $alumni->bio !!}
+                                {!! \App\Support\HtmlSanitizer::clean($alumni->bio) !!}
                             </div>
                         </div>
                     @endif
@@ -124,7 +124,7 @@
                                 Pencapaian & Penghargaan
                             </h3>
                             <div class="prose prose-slate max-w-none prose-a:text-red-600">
-                                {!! $alumni->achievements !!}
+                                {!! \App\Support\HtmlSanitizer::clean($alumni->achievements) !!}
                             </div>
                         </div>
                     @endif

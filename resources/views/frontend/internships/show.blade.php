@@ -70,7 +70,7 @@
                 Deskripsi Program
             </h2>
             <div class="prose prose-lg prose-slate max-w-none prose-a:text-red-600 hover:prose-a:text-red-700">
-                {!! $internship->description !!}
+                {!! \App\Support\HtmlSanitizer::clean($internship->description) !!}
             </div>
             
             <div class="mt-16 text-center border-t border-slate-100 pt-12">

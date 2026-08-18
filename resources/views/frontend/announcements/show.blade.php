@@ -39,7 +39,7 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="prose prose-lg prose-slate max-w-none prose-a:text-red-600 hover:prose-a:text-red-700 prose-img:rounded-xl">
-                {!! $announcement->content !!}
+                {!! \App\Support\HtmlSanitizer::clean($announcement->content) !!}
             </div>
 
             @if($announcement->file_attachment)

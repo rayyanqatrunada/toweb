@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Announcement extends Model
 {
+    use \App\Traits\CleansUpFiles;
     use LogsActivity;
 
     protected $fillable = [
@@ -40,5 +41,10 @@ class Announcement extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
+    }
+
+    public function getFileFields(): array
+    {
+        return ['file_attachment'];
     }
 }

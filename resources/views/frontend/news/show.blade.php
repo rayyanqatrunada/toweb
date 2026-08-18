@@ -64,7 +64,7 @@
             @endif
 
             <div class="prose prose-lg prose-slate max-w-none prose-a:text-red-600 hover:prose-a:text-red-700 prose-img:rounded-xl">
-                {!! $post->content !!}
+                {!! \App\Support\HtmlSanitizer::clean($post->content) !!}
             </div>
 
             @if($post->tags && $post->tags->count() > 0)

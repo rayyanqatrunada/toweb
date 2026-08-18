@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Download extends Model
 {
+    use \App\Traits\CleansUpFiles;
     use LogsActivity;
 
     use HasFactory;
@@ -51,15 +52,16 @@ class Download extends Model
 
     protected static function booted()
     {
-        static::deleted(function ($download) {
-            if ($download->file_path && Storage::disk('public')->exists($download->file_path)) {
-                Storage::disk('public')->delete($download->file_path);
-            }
-        });
+        // Removed old deleted hook
     }
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
+    }
+
+    public function getFileFields(): array
+    {
+        return ['file_path'];
     }
 }

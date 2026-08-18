@@ -67,7 +67,7 @@
             @endif
 
             <div class="prose prose-lg prose-slate max-w-none prose-a:text-red-600 hover:prose-a:text-red-700 prose-img:rounded-xl">
-                {!! $achievement->description !!}
+                {!! \App\Support\HtmlSanitizer::clean($achievement->description) !!}
             </div>
 
             <div class="mt-16 text-center border-t border-slate-100 pt-12">

@@ -33,7 +33,7 @@
             <div class="mb-8">
                 <h3 class="text-xl font-bold mb-4">Profil Perusahaan</h3>
                 <div class="prose max-w-none text-gray-700">
-                    {!! $partner->description !!}
+                    {!! \App\Support\HtmlSanitizer::clean($partner->description) !!}
                 </div>
             </div>
             @endif

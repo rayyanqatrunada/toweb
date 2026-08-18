@@ -28,8 +28,8 @@
     <!-- ============================================== -->
     <x-frontend.hero 
         variant="full"
-        headline="{!! $settings->get('hero_title', 'Menyiapkan Generasi Profesional di Dunia Otomotif') !!}"
-        description="{!! $settings->get('hero_subtitle', 'Kami mendidik siswa menjadi mekanik, teknisi, dan wirausahawan andal dengan fasilitas standar industri dan penyaluran kerja yang terjamin.') !!}"
+        headline="{!! \App\Support\HtmlSanitizer::clean($settings->get('hero_title', 'Menyiapkan Generasi Profesional di Dunia Otomotif')) !!}"
+        description="{!! \App\Support\HtmlSanitizer::clean($settings->get('hero_subtitle', 'Kami mendidik siswa menjadi mekanik, teknisi, dan wirausahawan andal dengan fasilitas standar industri dan penyaluran kerja yang terjamin.')) !!}"
         image-url="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2000&auto=format&fit=crop"
         eyebrow-text="PUSAT KEUNGGULAN (COE)"
     />
@@ -121,7 +121,7 @@
                             <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                         </svg>
                         <p class="text-slate-900 font-bold italic text-sm leading-relaxed">
-                            "{!! $settings->get('head_quote', 'Menyiapkan lulusan yang bukan hanya paham mesin, tapi memiliki karakter profesional industri.') !!}"
+                            "{!! \App\Support\HtmlSanitizer::clean($settings->get('head_quote', 'Menyiapkan lulusan yang bukan hanya paham mesin, tapi memiliki karakter profesional industri.')) !!}"
                         </p>
                         <p class="mt-3 text-xs font-extrabold text-slate-500 uppercase tracking-widest">- {{ isset($headOfDepartment) ? $headOfDepartment->name : 'Kepala Jurusan' }}</p>
                     </div>

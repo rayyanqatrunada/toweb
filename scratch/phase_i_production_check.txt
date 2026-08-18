@@ -1,0 +1,167 @@
+>>> Executing: php artisan test
+{"tool":"phpunit","result":"passed","tests":64,"passed":64,"assertions":150,"duration_ms":100480}
+
+
+>>> Executing: php artisan optimize:clear
+
+ INFO Clearing cached bootstrap files. 
+
+ config .. 6.82ms DONE
+ cache .. 53.80ms DONE
+ compiled .. 4.23ms DONE
+ events .. 3.05ms DONE
+ routes .. 1.47ms DONE
+ views .. 85.87ms DONE
+ blade-icons .. 0.65ms DONE
+ filament .. 4.41ms DONE
+
+
+
+>>> Executing: php artisan config:cache
+
+ INFO Configuration cached successfully. 
+
+
+
+>>> Executing: php artisan route:cache
+
+ INFO Routes cached successfully. 
+
+
+
+>>> Executing: php artisan event:cache
+
+ INFO Events cached successfully. 
+
+
+
+>>> Executing: npm run build
+
+> build
+> vite build
+
+[36mvite v8.2.1 [32mbuilding client environment for production...[36m[39m
+[33m[plugin laravel:fonts] Optimized font fallbacks require the optional "fontaine" package. Install it, or set "optimizedFallbacks: false" on your fonts to disable the feature.[39m
+[2Ktransforming...
+pattern.svg referenced in pattern.svg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+✓ 3 modules transformed.
+rendering chunks...
+computing gzip size...
+public/build/manifest.json                            1.87 kB │ gzip:  0.39 kB
+public/build/fonts-manifest.json                      8.71 kB │ gzip:  0.80 kB
+public/build/assets/inter-400-normal-C38fXH4l.woff2  23.66 kB
+public/build/assets/inter-500-normal-Cerq10X2.woff2  24.27 kB
+public/build/assets/inter-700-normal-Yt3aPRUw.woff2  24.35 kB
+public/build/assets/inter-800-normal-BYj_oED-.woff2  24.40 kB
+public/build/assets/inter-600-normal-LgqL8muc.woff2  24.45 kB
+public/build/assets/inter-400-normal-CyCys3Eg.woff   30.69 kB
+public/build/assets/inter-600-normal-CiBQ2DWP.woff   31.26 kB
+public/build/assets/inter-500-normal-BL9OpVg8.woff   31.28 kB
+public/build/assets/inter-800-normal-D1mf63XC.woff   31.29 kB
+public/build/assets/inter-700-normal-BLAVimhd.woff   31.32 kB
+public/build/assets/fonts-Ca1stQp5.css                3.59 kB │ gzip:  0.43 kB
+public/build/assets/app-C88KxBlf.css                 85.76 kB │ gzip: 14.06 kB
+public/build/assets/app-BvRk9kiK.js                   0.00 kB │ gzip:  0.02 kB
+
+[32m✓ built in 7.11s[39m
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent 94% of 6.9s inside plugin hooks (6.5s).
+Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
+  - @tailwindcss/vite:generate:build transform (86%, 6.0s, 1 call)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+[39m
+
+
+>>> Executing: php artisan migrate:status
+
+ Migration name .. Batch / Status 
+ 0001_01_01_000000_create_users_table .. [1] Ran 
+ 0001_01_01_000001_create_cache_table .. [1] Ran 
+ 0001_01_01_000002_create_jobs_table .. [1] Ran 
+ 2026_08_14_142504_create_permission_tables .. [1] Ran 
+ 2026_08_14_143820_create_activity_log_table .. [1] Ran 
+ 2026_08_14_143821_add_event_column_to_activity_log_table .. [1] Ran 
+ 2026_08_14_143822_add_batch_uuid_column_to_activity_log_table .. [1] Ran 
+ 2026_08_14_143823_create_settings_table .. [1] Ran 
+ 2026_08_14_152828_create_categories_table .. [1] Ran 
+ 2026_08_14_152830_create_tags_table .. [1] Ran 
+ 2026_08_14_152832_create_posts_table .. [1] Ran 
+ 2026_08_14_152834_create_pages_table .. [1] Ran 
+ 2026_08_14_152836_create_events_table .. [1] Ran 
+ 2026_08_14_152838_create_announcements_table .. [1] Ran 
+ 2026_08_14_152904_create_post_tag_table .. [1] Ran 
+ 2026_08_14_153305_create_gallery_albums_table .. [1] Ran 
+ 2026_08_14_153307_create_gallery_items_table .. [1] Ran 
+ 2026_08_14_153309_create_download_categories_table .. [1] Ran 
+ 2026_08_14_153310_create_downloads_table .. [1] Ran 
+ 2026_08_14_154047_create_programs_table .. [1] Ran 
+ 2026_08_14_154049_create_competencies_table .. [1] Ran 
+ 2026_08_14_154052_create_teachers_table .. [1] Ran 
+ 2026_08_14_154053_create_facilities_table .. [1] Ran 
+ 2026_08_14_154055_create_achievements_table .. [1] Ran 
+ 2026_08_14_154057_create_achievement_participants_table .. [1] Ran 
+ 2026_08_14_163902_create_industry_partners_table .. [1] Ran 
+ 2026_08_14_163905_create_partnerships_table .. [1] Ran 
+ 2026_08_14_163906_create_internships_table .. [1] Ran 
+ 2026_08_14_163908_create_job_vacancies_table .. [1] Ran 
+ 2026_08_14_163910_create_alumnis_table .. [1] Ran 
+ 2026_08_14_181026_add_missing_fields_to_achievements_table .. [1] Ran 
+ 2026_08_14_183325_add_cms_fields_to_industry_partners_table .. [1] Ran 
+ 2026_08_14_183338_add_cms_fields_to_partnerships_table .. [1] Ran 
+ 2026_08_15_000001_sync_missing_cms_fields .. [1] Ran 
+ 2026_08_15_000002_create_internship_participants_table .. [1] Ran 
+ 2026_08_17_101908_add_missing_columns_to_downloads_table .. [2] Ran 
+ 2026_08_17_155035_simplify_roles_to_admin .. [2] Ran 
+ 2026_08_17_160337_add_is_head_of_department_to_teachers_table .. [2] Ran 
+ 2026_08_17_162734_cleanup_obsolete_entities_for_phase_d .. [2] Ran 
+ 2026_08_18_035126_add_is_active_to_teachers_table .. [3] Ran 
+
+
+
+>>> Executing: php artisan about
+
+ Environment .. 
+ Application Name .. Laravel 
+ Laravel Version .. 13.25.0 
+ PHP Version .. 8.3.30 
+ Composer Version .. 2.8.11 
+ Environment .. local 
+ Debug Mode .. ENABLED 
+ URL .. localhost:8000 
+ Maintenance Mode .. OFF 
+ Timezone .. UTC 
+ Locale .. en 
+
+ Cache .. 
+ Config .. CACHED 
+ Events .. CACHED 
+ Routes .. CACHED 
+ Views .. NOT CACHED 
+
+ Drivers .. 
+ Broadcasting .. log 
+ Cache .. database 
+ Database .. mysql 
+ Logs .. stack / single 
+ Mail .. log 
+ Queue .. database 
+ Session .. database 
+
+ Storage .. 
+ D:\Project\test\Web Jurusan\TOWEB\public\storage .. LINKED 
+
+ Filament .. 
+ Blade Icons .. NOT CACHED 
+ Packages .. filament, forms, notifications, support, tables, actions, infolists, schemas, widgets 
+ Panel Components .. NOT CACHED 
+ Version .. v5.7.6 
+ Views .. NOT PUBLISHED 
+
+ Livewire .. 
+ Livewire .. v4.4.0 
+
+ Spatie Permissions .. 
+ Features Enabled .. Default 
+ Version .. 8.3.0 
+
+
+

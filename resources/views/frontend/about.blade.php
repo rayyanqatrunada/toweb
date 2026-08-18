@@ -26,7 +26,7 @@
             />
             
             <div class="prose prose-slate prose-lg max-w-none prose-a:text-red-600 hover:prose-a:text-red-500">
-                {!! $settings->get('profile_history', '<p>Sejarah singkat jurusan Teknik Otomotif bermula dari dedikasi kami untuk mencetak tenaga kerja profesional...</p>') !!}
+                {!! \App\Support\HtmlSanitizer::clean($settings->get('profile_history', '<p>Sejarah singkat jurusan Teknik Otomotif bermula dari dedikasi kami untuk mencetak tenaga kerja profesional...</p>')) !!}
             </div>
         </div>
     </section>
@@ -62,7 +62,7 @@
                         </div>
                         <h2 class="text-2xl font-bold text-slate-900 mb-4">Misi Kami</h2>
                         <div class="prose prose-slate prose-li:marker:text-red-600">
-                            {!! $settings->get('profile_mission', '<ul><li>Menyelenggarakan pendidikan berkualitas...</li></ul>') !!}
+                            {!! \App\Support\HtmlSanitizer::clean($settings->get('profile_mission', '<ul><li>Menyelenggarakan pendidikan berkualitas...</li></ul>')) !!}
                         </div>
                     </div>
                 </div>
