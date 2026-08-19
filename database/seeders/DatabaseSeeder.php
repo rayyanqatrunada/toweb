@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,12 +16,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleAndUserSeeder::class,
+            SettingSeeder::class,
+            AcademicDataSeeder::class,
+            IndustryDataSeeder::class,
+            ContentDataSeeder::class,
+            MediaDataSeeder::class,
+            AlumniDataSeeder::class,
+            DownloadDataSeeder::class,
         ]);
-
-        if (app()->environment('local')) {
-            $this->call([
-                AutomotiveDataSeeder::class,
-            ]);
-        }
     }
 }

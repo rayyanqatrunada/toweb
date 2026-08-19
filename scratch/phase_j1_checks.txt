@@ -1,0 +1,404 @@
+>>> Executing: php artisan migrate:status
+
+ Migration name .. Batch / Status 
+ 0001_01_01_000000_create_users_table .. [1] Ran 
+ 0001_01_01_000001_create_cache_table .. [1] Ran 
+ 0001_01_01_000002_create_jobs_table .. [1] Ran 
+ 2026_08_14_142504_create_permission_tables .. [1] Ran 
+ 2026_08_14_143820_create_activity_log_table .. [1] Ran 
+ 2026_08_14_143821_add_event_column_to_activity_log_table .. [1] Ran 
+ 2026_08_14_143822_add_batch_uuid_column_to_activity_log_table .. [1] Ran 
+ 2026_08_14_143823_create_settings_table .. [1] Ran 
+ 2026_08_14_152828_create_categories_table .. [1] Ran 
+ 2026_08_14_152830_create_tags_table .. [1] Ran 
+ 2026_08_14_152832_create_posts_table .. [1] Ran 
+ 2026_08_14_152834_create_pages_table .. [1] Ran 
+ 2026_08_14_152836_create_events_table .. [1] Ran 
+ 2026_08_14_152838_create_announcements_table .. [1] Ran 
+ 2026_08_14_152904_create_post_tag_table .. [1] Ran 
+ 2026_08_14_153305_create_gallery_albums_table .. [1] Ran 
+ 2026_08_14_153307_create_gallery_items_table .. [1] Ran 
+ 2026_08_14_153309_create_download_categories_table .. [1] Ran 
+ 2026_08_14_153310_create_downloads_table .. [1] Ran 
+ 2026_08_14_154047_create_programs_table .. [1] Ran 
+ 2026_08_14_154049_create_competencies_table .. [1] Ran 
+ 2026_08_14_154052_create_teachers_table .. [1] Ran 
+ 2026_08_14_154053_create_facilities_table .. [1] Ran 
+ 2026_08_14_154055_create_achievements_table .. [1] Ran 
+ 2026_08_14_154057_create_achievement_participants_table .. [1] Ran 
+ 2026_08_14_163902_create_industry_partners_table .. [1] Ran 
+ 2026_08_14_163905_create_partnerships_table .. [1] Ran 
+ 2026_08_14_163906_create_internships_table .. [1] Ran 
+ 2026_08_14_163908_create_job_vacancies_table .. [1] Ran 
+ 2026_08_14_163910_create_alumnis_table .. [1] Ran 
+ 2026_08_14_181026_add_missing_fields_to_achievements_table .. [1] Ran 
+ 2026_08_14_183325_add_cms_fields_to_industry_partners_table .. [1] Ran 
+ 2026_08_14_183338_add_cms_fields_to_partnerships_table .. [1] Ran 
+ 2026_08_15_000001_sync_missing_cms_fields .. [1] Ran 
+ 2026_08_15_000002_create_internship_participants_table .. [1] Ran 
+ 2026_08_17_101908_add_missing_columns_to_downloads_table .. [1] Ran 
+ 2026_08_17_155035_simplify_roles_to_admin .. [1] Ran 
+ 2026_08_17_160337_add_is_head_of_department_to_teachers_table .. [1] Ran 
+ 2026_08_17_162734_cleanup_obsolete_entities_for_phase_d .. [1] Ran 
+ 2026_08_18_035126_add_is_active_to_teachers_table .. [1] Ran 
+
+
+
+>>> Executing: php artisan db:seed --force
+
+ INFO Seeding database. 
+
+ Database\Seeders\RoleAndUserSeeder .. RUNNING 
+ Database\Seeders\RoleAndUserSeeder .. 2,476 ms DONE 
+
+ Database\Seeders\SettingSeeder .. RUNNING 
+ Database\Seeders\SettingSeeder .. 164 ms DONE 
+
+ Database\Seeders\AcademicDataSeeder .. RUNNING 
+ Database\Seeders\AcademicDataSeeder .. 2,035 ms DONE 
+
+ Database\Seeders\IndustryDataSeeder .. RUNNING 
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[01000]: Warning: 1265 Data truncated for column 'type' at row 1 (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: toweb_db, SQL: insert into `partnerships` (`industry_partner_id`, `type`, `title`, `start_date`, `end_date`, `description`, `status`, `updated_at`, `created_at`) values (11, Penyaluran Lulusan, Kerjasama Penyaluran Lulusan dengan PT Astra Honda Motor, 2026-02-19 03:08:46, 2028-08-19 03:08:46, Implementasi kerjasama Link & Match antara sekolah dan PT Astra Honda Motor, active, 2026-08-19 03:08:46, 2026-08-19 03:08:46))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:857
+    853▕             $exceptionType = ($isUniqueConstraintError = $this->isUniqueConstraintError($e))
+    854▕                 ? UniqueConstraintViolationException::class
+    855▕                 : QueryException::class;
+    856▕ 
+  ➜ 857▕             $exception = new $exceptionType(
+    858▕                 $this->getNameWithReadWriteType(),
+    859▕                 $query,
+    860▕                 $this->prepareBindings($bindings),
+    861▕                 $e,
+
+  1   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
+      PDOException::("SQLSTATE[01000]: Warning: 1265 Data truncated for column 'type' at row 1")
+
+  2   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
+      PDOStatement::execute()
+
+
+
+>>> Executing: php artisan db:seed --force
+
+ INFO Seeding database. 
+
+ Database\Seeders\RoleAndUserSeeder .. RUNNING 
+ Database\Seeders\RoleAndUserSeeder .. 732 ms DONE 
+
+ Database\Seeders\SettingSeeder .. RUNNING 
+ Database\Seeders\SettingSeeder .. 30 ms DONE 
+
+ Database\Seeders\AcademicDataSeeder .. RUNNING 
+ Database\Seeders\AcademicDataSeeder .. 250 ms DONE 
+
+ Database\Seeders\IndustryDataSeeder .. RUNNING 
+
+   Illuminate\Database\QueryException 
+
+  SQLSTATE[01000]: Warning: 1265 Data truncated for column 'type' at row 1 (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: toweb_db, SQL: insert into `partnerships` (`industry_partner_id`, `type`, `title`, `start_date`, `end_date`, `description`, `status`, `updated_at`, `created_at`) values (11, Penyaluran Lulusan, Kerjasama Penyaluran Lulusan dengan PT Astra Honda Motor, 2026-02-19 03:08:53, 2028-08-19 03:08:53, Implementasi kerjasama Link & Match antara sekolah dan PT Astra Honda Motor, active, 2026-08-19 03:08:53, 2026-08-19 03:08:53))
+
+  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:857
+    853▕             $exceptionType = ($isUniqueConstraintError = $this->isUniqueConstraintError($e))
+    854▕                 ? UniqueConstraintViolationException::class
+    855▕                 : QueryException::class;
+    856▕ 
+  ➜ 857▕             $exception = new $exceptionType(
+    858▕                 $this->getNameWithReadWriteType(),
+    859▕                 $query,
+    860▕                 $this->prepareBindings($bindings),
+    861▕                 $e,
+
+  1   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
+      PDOException::("SQLSTATE[01000]: Warning: 1265 Data truncated for column 'type' at row 1")
+
+  2   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
+      PDOStatement::execute()
+
+
+
+>>> Executing: php artisan test
+{"tool":"phpunit","result":"passed","tests":64,"passed":64,"assertions":150,"duration_ms":74986}
+
+
+>>> Executing: php artisan optimize:clear
+
+ INFO Clearing cached bootstrap files. 
+
+ config .. 43.02ms DONE
+ cache .. 32.49ms DONE
+ compiled .. 3.87ms DONE
+ events .. 1.40ms DONE
+ routes .. 2.47ms DONE
+ views .. 77.41ms DONE
+ blade-icons .. 0.52ms DONE
+ filament .. 3.90ms DONE
+
+
+
+>>> Executing: php artisan view:cache
+
+   InvalidArgumentException 
+
+  Unable to locate a class or view for component [filament-panels::form].
+
+  at vendor\laravel\framework\src\Illuminate\View\Compilers\ComponentTagCompiler.php:315
+    311▕         if (Str::startsWith($component, 'mail::')) {
+    312▕             return $component;
+    313▕         }
+    314▕ 
+  ➜ 315▕         throw new InvalidArgumentException(
+    316▕             "Unable to locate a class or view for component [{$component}]."
+    317▕         );
+    318▕     }
+    319▕
+
+  1   vendor\laravel\framework\src\Illuminate\View\Compilers\ComponentTagCompiler.php:235
+      Illuminate\View\Compilers\ComponentTagCompiler::componentClass("filament-panels::form")
+
+  2   vendor\laravel\framework\src\Illuminate\View\Compilers\ComponentTagCompiler.php:156
+      Illuminate\View\Compilers\ComponentTagCompiler::componentString("filament-panels::form", ["'save'"])
+
+
+
+>>> Executing: php artisan route:cache
+
+ INFO Routes cached successfully. 
+
+
+
+>>> Executing: php artisan about
+
+ Environment .. 
+ Application Name .. Laravel 
+ Laravel Version .. 13.25.0 
+ PHP Version .. 8.3.30 
+ Composer Version .. 2.8.11 
+ Environment .. local 
+ Debug Mode .. ENABLED 
+ URL .. localhost:8000 
+ Maintenance Mode .. OFF 
+ Timezone .. UTC 
+ Locale .. en 
+
+ Cache .. 
+ Config .. NOT CACHED 
+ Events .. NOT CACHED 
+ Routes .. CACHED 
+ Views .. CACHED 
+
+ Drivers .. 
+ Broadcasting .. log 
+ Cache .. database 
+ Database .. mysql 
+ Logs .. stack / single 
+ Mail .. log 
+ Queue .. database 
+ Session .. database 
+
+ Storage .. 
+ D:\Project\test\Web Jurusan\TOWEB\public\storage .. LINKED 
+
+ Filament .. 
+ Blade Icons .. NOT CACHED 
+ Packages .. filament, forms, notifications, support, tables, actions, infolists, schemas, widgets 
+ Panel Components .. NOT CACHED 
+ Version .. v5.7.6 
+ Views .. NOT PUBLISHED 
+
+ Livewire .. 
+ Livewire .. v4.4.0 
+
+ Spatie Permissions .. 
+ Features Enabled .. Default 
+ Version .. 8.3.0 
+
+
+
+>>> Executing: php artisan route:list
+
+ GET|HEAD / .. home › Frontend\HomeController@index
+ GET|HEAD admin .. filament.admin.pages.dashboard › Filament\Pages › Dashboard
+ GET|HEAD admin/achievements filament.admin.resources.achievements.index › App\Filament\Resources\Achievements\Page…
+ GET|HEAD admin/achievements/create filament.admin.resources.achievements.create › App\Filament\Resources\Achieveme…
+ GET|HEAD admin/achievements/{record}/edit filament.admin.resources.achievements.edit › App\Filament\Resources\Achi…
+ GET|HEAD admin/alumnis .. filament.admin.resources.alumnis.index › App\Filament\Resources\Alumnis\Pages\ListAlumnis
+ GET|HEAD admin/alumnis/create filament.admin.resources.alumnis.create › App\Filament\Resources\Alumnis\Pages\Creat…
+ GET|HEAD admin/alumnis/{record}/edit filament.admin.resources.alumnis.edit › App\Filament\Resources\Alumnis\Pages\…
+ GET|HEAD admin/announcements filament.admin.resources.announcements.index › App\Filament\Resources\Announcements\P…
+ GET|HEAD admin/announcements/create filament.admin.resources.announcements.create › App\Filament\Resources\Announc…
+ GET|HEAD admin/announcements/{record}/edit filament.admin.resources.announcements.edit › App\Filament\Resources\An…
+ GET|HEAD admin/categories filament.admin.resources.categories.index › App\Filament\Resources\Categories\Pages\List…
+ GET|HEAD admin/categories/create filament.admin.resources.categories.create › App\Filament\Resources\Categories\Pa…
+ GET|HEAD admin/categories/{record}/edit filament.admin.resources.categories.edit › App\Filament\Resources\Categori…
+ GET|HEAD admin/competencies filament.admin.resources.competencies.index › App\Filament\Resources\Competencies\Page…
+ GET|HEAD admin/competencies/create filament.admin.resources.competencies.create › App\Filament\Resources\Competenc…
+ GET|HEAD admin/competencies/{record}/edit filament.admin.resources.competencies.edit › App\Filament\Resources\Comp…
+ GET|HEAD admin/download-categories filament.admin.resources.download-categories.index › App\Filament\Resources\Dow…
+ GET|HEAD admin/download-categories/create filament.admin.resources.download-categories.create › App\Filament\Resou…
+ GET|HEAD admin/download-categories/{record}/edit filament.admin.resources.download-categories.edit › App\Filament\…
+ GET|HEAD admin/downloads filament.admin.resources.downloads.index › App\Filament\Resources\Downloads\Pages\ListDow…
+ GET|HEAD admin/downloads/create filament.admin.resources.downloads.create › App\Filament\Resources\Downloads\Pages…
+ GET|HEAD admin/downloads/{record}/edit filament.admin.resources.downloads.edit › App\Filament\Resources\Downloads\…
+ GET|HEAD admin/facilities filament.admin.resources.facilities.index › App\Filament\Resources\Facilities\Pages\List…
+ GET|HEAD admin/facilities/create filament.admin.resources.facilities.create › App\Filament\Resources\Facilities\Pa…
+ GET|HEAD admin/facilities/{record}/edit filament.admin.resources.facilities.edit › App\Filament\Resources\Faciliti…
+ GET|HEAD admin/gallery-albums filament.admin.resources.gallery-albums.index › App\Filament\Resources\GalleryAlbums…
+ GET|HEAD admin/gallery-albums/create filament.admin.resources.gallery-albums.create › App\Filament\Resources\Galle…
+ GET|HEAD admin/gallery-albums/{record}/edit filament.admin.resources.gallery-albums.edit › App\Filament\Resources\…
+ GET|HEAD admin/gallery-items filament.admin.resources.gallery-items.index › App\Filament\Resources\GalleryItems\Pa…
+ GET|HEAD admin/gallery-items/create filament.admin.resources.gallery-items.create › App\Filament\Resources\Gallery…
+ GET|HEAD admin/gallery-items/{record}/edit filament.admin.resources.gallery-items.edit › App\Filament\Resources\Ga…
+ GET|HEAD admin/industry-partners filament.admin.resources.industry-partners.index › App\Filament\Resources\Industr…
+ GET|HEAD admin/industry-partners/create filament.admin.resources.industry-partners.create › App\Filament\Resources…
+ GET|HEAD admin/industry-partners/{record}/edit filament.admin.resources.industry-partners.edit › App\Filament\Reso…
+ GET|HEAD admin/internships filament.admin.resources.internships.index › App\Filament\Resources\Internships\Pages\L…
+ GET|HEAD admin/internships/create filament.admin.resources.internships.create › App\Filament\Resources\Internships…
+ GET|HEAD admin/internships/{record}/edit filament.admin.resources.internships.edit › App\Filament\Resources\Intern…
+ GET|HEAD admin/job-vacancies filament.admin.resources.job-vacancies.index › App\Filament\Resources\JobVacancies\Pa…
+ GET|HEAD admin/job-vacancies/create filament.admin.resources.job-vacancies.create › App\Filament\Resources\JobVaca…
+ GET|HEAD admin/job-vacancies/{record}/edit filament.admin.resources.job-vacancies.edit › App\Filament\Resources\Jo…
+ GET|HEAD admin/login .. filament.admin.auth.login › Filament\Auth › Login
+ POST admin/logout .. filament.admin.auth.logout › Filament\Auth › LogoutController
+ GET|HEAD admin/manage-settings .. filament.admin.pages.manage-settings › App\Filament\Pages\ManageSettings
+ GET|HEAD admin/partnerships filament.admin.resources.partnerships.index › App\Filament\Resources\Partnerships\Page…
+ GET|HEAD admin/partnerships/create filament.admin.resources.partnerships.create › App\Filament\Resources\Partnersh…
+ GET|HEAD admin/partnerships/{record}/edit filament.admin.resources.partnerships.edit › App\Filament\Resources\Part…
+ GET|HEAD admin/posts .. filament.admin.resources.posts.index › App\Filament\Resources\Posts\Pages\ListPosts
+ GET|HEAD admin/posts/create . filament.admin.resources.posts.create › App\Filament\Resources\Posts\Pages\CreatePost
+ GET|HEAD admin/posts/{record}/edit filament.admin.resources.posts.edit › App\Filament\Resources\Posts\Pages\EditPo…
+ GET|HEAD admin/programs filament.admin.resources.programs.index › App\Filament\Resources\Programs\Pages\ListProgra…
+ GET|HEAD admin/programs/create filament.admin.resources.programs.create › App\Filament\Resources\Programs\Pages\Cr…
+ GET|HEAD admin/programs/{record}/edit filament.admin.resources.programs.edit › App\Filament\Resources\Programs\Pag…
+ GET|HEAD admin/tags .. filament.admin.resources.tags.index › App\Filament\Resources\Tags\Pages\ListTags
+ GET|HEAD admin/tags/create .. filament.admin.resources.tags.create › App\Filament\Resources\Tags\Pages\CreateTag
+ GET|HEAD admin/tags/{record}/edit .. filament.admin.resources.tags.edit › App\Filament\Resources\Tags\Pages\EditTag
+ GET|HEAD admin/teachers filament.admin.resources.teachers.index › App\Filament\Resources\Teachers\Pages\ListTeache…
+ GET|HEAD admin/teachers/create filament.admin.resources.teachers.create › App\Filament\Resources\Teachers\Pages\Cr…
+ GET|HEAD admin/teachers/{record}/edit filament.admin.resources.teachers.edit › App\Filament\Resources\Teachers\Pag…
+ GET|HEAD akademik/fasilitas .. academic.facilities › Frontend\AcademicController@facilities
+ GET|HEAD akademik/guru .. academic.teachers › Frontend\AcademicController@teachers
+ GET|HEAD akademik/program .. academic.programs › Frontend\AcademicController@programs
+ GET|HEAD alumni .. alumni.index › Frontend\AlumniController@index
+ GET|HEAD alumni/{slug} .. alumni.show › Frontend\AlumniController@show
+ GET|HEAD berita .. news.index › Frontend\NewsController@index
+ GET|HEAD berita/{slug} .. news.show › Frontend\NewsController@show
+ GET|HEAD download/{slug}/file .. download.file › Frontend\DownloadController@download
+ GET|HEAD filament/exports/{export}/download .. filament.exports.download › Filament\Actions › DownloadExport
+ GET|HEAD filament/imports/{import}/failed-rows/download filament.imports.failed-rows.download › Filament\Actions …
+ GET|HEAD galeri .. gallery.index › Frontend\GalleryController@index
+ GET|HEAD galeri/{slug} .. gallery.show › Frontend\GalleryController@show
+ GET|HEAD livewire-e2720f48/css/{component}.css .. generated::xhuf0DAS99nSIyCs
+ GET|HEAD livewire-e2720f48/css/{component}.global.css .. generated::wRZym1bXi8mzlxVd
+ GET|HEAD livewire-e2720f48/js/{component}.js .. generated::6nlOSfu4Ub1r1t7F
+ GET|HEAD livewire-e2720f48/livewire.csp.min.js.map generated::4d5Nghq9s3HKxCxJ › Livewire\Mechanisms › FrontendAss…
+ GET|HEAD livewire-e2720f48/livewire.js generated::o0a88LSj7x7aqSYv › Livewire\Mechanisms › FrontendAssets@returnJa…
+ GET|HEAD livewire-e2720f48/livewire.min.js.map generated::gKicghSEV26HgSS8 › Livewire\Mechanisms › FrontendAssets@…
+ GET|HEAD livewire-e2720f48/preview-file/{filename} livewire.preview-file › Livewire\Features › FilePreviewControll…
+ POST livewire-e2720f48/update .. default-livewire.update › Livewire\Mechanisms › HandleRequests@handleUpdate
+ POST livewire-e2720f48/upload-file .. livewire.upload-file › Livewire\Features › FileUploadController@handle
+ GET|HEAD lowongan .. jobs.index › Frontend\JobController@index
+ GET|HEAD lowongan/{slug} .. jobs.show › Frontend\JobController@show
+ GET|HEAD mitra-industri .. partnership.index › Frontend\PartnershipController@index
+ GET|HEAD mitra-industri/{slug} .. partnership.show › Frontend\PartnershipController@show
+ GET|HEAD pengumuman .. announcements.index › Frontend\NewsController@announcements
+ GET|HEAD pengumuman/{slug} .. announcements.show › Frontend\NewsController@announcementShow
+ GET|HEAD pkl .. internships.index › Frontend\InternshipController@index
+ GET|HEAD pkl/{slug} .. internships.show › Frontend\InternshipController@show
+ GET|HEAD prestasi .. achievements.index › Frontend\AchievementController@index
+ GET|HEAD prestasi/{slug} .. achievements.show › Frontend\AchievementController@show
+ GET|HEAD robots.txt .. generated::79gsFZ2V1vcU8cEq
+ GET|HEAD search .. search › Frontend\SearchController@index
+ GET|HEAD sitemap.xml .. sitemap › Frontend\SitemapController@index
+ GET|HEAD storage/{path} .. storage.local
+ PUT storage/{path} .. storage.local.upload
+ GET|HEAD tentang .. about › Frontend\HomeController@about
+ GET|HEAD unduhan .. download.index › Frontend\DownloadController@index
+ GET|HEAD up .. generated::jrGjFRM7v6xLdU2A
+
+ Showing [98] routes
+
+
+
+>>> Executing: npm run build
+
+> build
+> vite build
+
+[36mvite v8.2.1 [32mbuilding client environment for production...[36m[39m
+[33m[plugin laravel:fonts] Optimized font fallbacks require the optional "fontaine" package. Install it, or set "optimizedFallbacks: false" on your fonts to disable the feature.[39m
+[2Ktransforming...
+pattern.svg referenced in pattern.svg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+✓ 3 modules transformed.
+rendering chunks...
+computing gzip size...
+public/build/manifest.json                            1.87 kB │ gzip:  0.39 kB
+public/build/fonts-manifest.json                      8.71 kB │ gzip:  0.80 kB
+public/build/assets/inter-400-normal-C38fXH4l.woff2  23.66 kB
+public/build/assets/inter-500-normal-Cerq10X2.woff2  24.27 kB
+public/build/assets/inter-700-normal-Yt3aPRUw.woff2  24.35 kB
+public/build/assets/inter-800-normal-BYj_oED-.woff2  24.40 kB
+public/build/assets/inter-600-normal-LgqL8muc.woff2  24.45 kB
+public/build/assets/inter-400-normal-CyCys3Eg.woff   30.69 kB
+public/build/assets/inter-600-normal-CiBQ2DWP.woff   31.26 kB
+public/build/assets/inter-500-normal-BL9OpVg8.woff   31.28 kB
+public/build/assets/inter-800-normal-D1mf63XC.woff   31.29 kB
+public/build/assets/inter-700-normal-BLAVimhd.woff   31.32 kB
+public/build/assets/fonts-Ca1stQp5.css                3.59 kB │ gzip:  0.43 kB
+public/build/assets/app-C88KxBlf.css                 85.76 kB │ gzip: 14.06 kB
+public/build/assets/app-BvRk9kiK.js                   0.00 kB │ gzip:  0.02 kB
+
+[32m✓ built in 11.35s[39m
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent 98% of 11.3s inside plugin hooks (11.1s).
+Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
+  - @tailwindcss/vite:generate:build transform (68%, 7.7s, 1 call)
+  - vite:css-post renderChunk (15%, 1.6s, 2 calls)
+  - vite:css transform (13%, 1.5s, 1 call)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+[39m
+
+
+>>> Executing: php scratch/verify_seed_data.php
+MODEL                    COUNT
+-----------------------------------
+Setting                  14
+Program                  3
+Competency               12
+Teacher                  6
+Facility                 8
+IndustryPartner          5
+Partnership              0
+WARNING: Model Partnership has 0 records!
+Internship               0
+WARNING: Model Internship has 0 records!
+JobVacancy               0
+WARNING: Model JobVacancy has 0 records!
+Category                 0
+WARNING: Model Category has 0 records!
+Tag                      0
+WARNING: Model Tag has 0 records!
+Post                     0
+WARNING: Model Post has 0 records!
+Announcement             0
+WARNING: Model Announcement has 0 records!
+Achievement              0
+WARNING: Model Achievement has 0 records!
+GalleryAlbum             0
+WARNING: Model GalleryAlbum has 0 records!
+GalleryItem              0
+WARNING: Model GalleryItem has 0 records!
+Alumni                   0
+WARNING: Model Alumni has 0 records!
+DownloadCategory         0
+WARNING: Model DownloadCategory has 0 records!
+Download                 0
+WARNING: Model Download has 0 records!
+
+--- RELATIONSHIP VERIFICATIONS ---
+
+FINAL STATUS: FAIL
+
+
