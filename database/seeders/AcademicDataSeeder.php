@@ -18,19 +18,32 @@ class AcademicDataSeeder extends Seeder
         // 1. Programs & Competencies
         $programs = [
             [
-                'name' => 'Teknik Kendaraan Ringan',
-                'description' => 'Membekali peserta didik dengan keterampilan perawatan dan perbaikan kendaraan ringan (mobil).',
-                'competencies' => ['Perawatan Mesin', 'Sistem Kelistrikan', 'Sistem Pemindah Tenaga', 'Chassis dan Suspensi']
-            ],
-            [
-                'name' => 'Teknik Sepeda Motor',
-                'description' => 'Konsentrasi pada perawatan, perbaikan, dan modifikasi sepeda motor injeksi maupun karburator.',
-                'competencies' => ['Engine Management', 'Sistem Injeksi', 'Kelistrikan Sepeda Motor', 'Perawatan Berkala']
-            ],
-            [
-                'name' => 'Teknik Bodi Otomotif',
-                'description' => 'Berfokus pada perbaikan panel, pengecatan, dan restorasi bodi kendaraan otomotif.',
-                'competencies' => ['Perbaikan Panel', 'Pengecatan Kendaraan', 'Kelistrikan Bodi', 'Welding Otomotif']
+                'name' => 'Teknik dan Bisnis Sepeda Motor',
+                'description' => '<p>Konsentrasi keahlian Teknik dan Bisnis Sepeda Motor (TBSM) membekali peserta didik dengan keterampilan perawatan dan perbaikan sepeda motor secara profesional.</p>
+                <h4>Pilihan Karir:</h4>
+                <ul>
+                    <li>Menjadi Teknisi yang handal dalam servis sepeda motor.</li>
+                    <li>Bekerja di bidang perakitan sepeda motor atau produk sejenisnya.</li>
+                    <li>Menjadi Wirausaha bengkel perbaikan sepeda motor atau bidang sejenisnya.</li>
+                </ul>',
+                'competencies' => [
+                    [
+                        'name' => 'Mesin',
+                        'description' => 'Mendiagnosis gangguan atau kerusakan pada Engine Sepeda Motor meliputi Komponen Utama Engine, Sistem Pelumasan, Sistem Pendinginan, Sistem Bahan Bakar, dll.'
+                    ],
+                    [
+                        'name' => 'Sasis',
+                        'description' => 'Mendiagnosis gangguan atau kerusakan pada Sasis Sepeda Motor beserta komponen-komponennya diantaranya Sistem Rem, Sistem Kemudi, Suspensi, Rangka, Pelek, Ban, dll.'
+                    ],
+                    [
+                        'name' => 'Kelistrikan',
+                        'description' => 'Mendiagnosis gangguan atau kerusakan pada Sistem Kelistrikan Sepeda Motor diantaranya Sistem Pengapian, Sistem Pengisian, Motor Starter, Sistem Penerangan, Sistem Pengaman (Alarm), Sistem Instrumen dan Sinyal, dll.'
+                    ],
+                    [
+                        'name' => 'Pengelolaan Bengkel',
+                        'description' => 'Mampu menerapkan pengelolaan, pengembangan teknik dan manajemen perawatan Sepeda Motor.'
+                    ]
+                ]
             ]
         ];
 
@@ -45,15 +58,15 @@ class AcademicDataSeeder extends Seeder
                 ]
             );
 
-            foreach ($progData['competencies'] as $compName) {
+            foreach ($progData['competencies'] as $comp) {
                 Competency::updateOrCreate(
                     [
                         'program_id' => $program->id,
-                        'slug' => Str::slug($compName)
+                        'slug' => Str::slug($comp['name'])
                     ],
                     [
-                        'name' => $compName,
-                        'description' => 'Kompetensi keahlian ' . $compName . ' untuk program ' . $program->name . '.'
+                        'name' => $comp['name'],
+                        'description' => $comp['description']
                     ]
                 );
             }
@@ -61,12 +74,14 @@ class AcademicDataSeeder extends Seeder
 
         // 2. Teachers
         $teachers = [
-            ['name' => 'Budi Santoso, S.Pd., M.T.', 'nip' => '198001012005011001', 'position' => 'Kepala Jurusan', 'is_hod' => true],
-            ['name' => 'Ahmad Riyadi, S.T.', 'nip' => '198202022006021002', 'position' => 'Guru Produktif TKR', 'is_hod' => false],
-            ['name' => 'Siti Aminah, S.Pd.', 'nip' => '198503032008032003', 'position' => 'Guru Produktif TSM', 'is_hod' => false],
-            ['name' => 'Eko Prasetyo, S.T.', 'nip' => '199004042010041004', 'position' => 'Kepala Bengkel', 'is_hod' => false],
-            ['name' => 'Rina Wijayanti, S.Pd.', 'nip' => '199205052015052005', 'position' => 'Guru Normatif/Adaptif', 'is_hod' => false],
-            ['name' => 'Joko Susilo, A.Md.', 'nip' => '199506062020061006', 'position' => 'Toolman', 'is_hod' => false],
+            ['name' => 'Laily Rizqissalim, S.Pd.', 'nip' => '198001012005011001', 'position' => 'Ketua Kompetensi Keahlian', 'is_hod' => true],
+            ['name' => 'Akhmad Lutfianto, S.Pd.', 'nip' => '198202022006021002', 'position' => 'Bendahara', 'is_hod' => false],
+            ['name' => 'Ahmad Wildan, S.Pd.', 'nip' => '198503032008032003', 'position' => 'Sekretaris', 'is_hod' => false],
+            ['name' => 'Galih Zainawan, S.Pd.', 'nip' => '199004042010041004', 'position' => 'Kepala Laboratorium', 'is_hod' => false],
+            ['name' => 'Ahmad Arif Johan, S.Pd.', 'nip' => '199205052015052005', 'position' => 'Bidang Event dan Prestasi', 'is_hod' => false],
+            ['name' => 'Hisyam Kholil, S.Pd.', 'nip' => '199506062020061006', 'position' => 'Bidang IDUKA', 'is_hod' => false],
+            ['name' => 'Muslikan, S.Pd.', 'nip' => '199607072021071007', 'position' => 'Bidang PKL', 'is_hod' => false],
+            ['name' => 'Khasan Taufik', 'nip' => '199808082022081008', 'position' => 'Toolman', 'is_hod' => false],
         ];
 
         foreach ($teachers as $idx => $tData) {
@@ -87,9 +102,7 @@ class AcademicDataSeeder extends Seeder
 
         // 3. Facilities
         $facilities = [
-            'Bengkel Mesin TKR', 'Bengkel Kelistrikan', 'Bengkel Sepeda Motor',
-            'Laboratorium Komputer', 'Ruang Praktik Simulasi', 'Area Training Dasar',
-            'Tool Room Standard ISO', 'Spooring Balancing Area'
+            'Laboratorium Teknik Otomotif'
         ];
 
         foreach ($facilities as $idx => $facName) {
@@ -98,9 +111,9 @@ class AcademicDataSeeder extends Seeder
                 ['slug' => Str::slug($facName)],
                 [
                     'name' => $facName,
-                    'description' => 'Fasilitas unggulan ' . $facName . ' untuk menunjang praktik siswa secara profesional.',
+                    'description' => 'Fasilitas ' . $facName . ' merupakan sarana penunjang kegiatan praktikum peserta didik Teknik Otomotif.',
                     'photo' => $photo,
-                    'quantity' => rand(1, 5),
+                    'quantity' => 1,
                     'condition' => 'good'
                 ]
             );

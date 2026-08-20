@@ -10,31 +10,87 @@
 <?php $component->withAttributes(['title' => 'Jejaring Alumni']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
-    <!-- Header Page -->
-    <div class="bg-slate-900 py-16 lg:py-24 relative overflow-hidden">
+    <!-- Hero Header -->
+    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
         <!-- Abstract Pattern Background -->
-        <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <div class="max-w-screen-xl mx-auto px-4 text-center relative z-10">
-            <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Jejaring Alumni</h1>
-            <p class="text-slate-300 text-lg max-w-2xl mx-auto">Profil dan rekam jejak lulusan Program Keahlian Teknik Otomotif yang telah sukses berkarya di industri.</p>
-        </div>
+        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'relative z-10 text-center max-w-3xl mx-auto']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.layout.container'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'relative z-10 text-center max-w-3xl mx-auto']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+            <?php if (isset($component)) { $__componentOriginalac1079511a1017c8db3b04bb1937d3e9 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalac1079511a1017c8db3b04bb1937d3e9 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.ui.eyebrow','data' => ['class' => 'text-primary-400 mb-4 justify-center']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.ui.eyebrow'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'text-primary-400 mb-4 justify-center']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+Alumni Network <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalac1079511a1017c8db3b04bb1937d3e9)): ?>
+<?php $attributes = $__attributesOriginalac1079511a1017c8db3b04bb1937d3e9; ?>
+<?php unset($__attributesOriginalac1079511a1017c8db3b04bb1937d3e9); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalac1079511a1017c8db3b04bb1937d3e9)): ?>
+<?php $component = $__componentOriginalac1079511a1017c8db3b04bb1937d3e9; ?>
+<?php unset($__componentOriginalac1079511a1017c8db3b04bb1937d3e9); ?>
+<?php endif; ?>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">Jejaring Alumni</h1>
+            <p class="text-charcoal-300 text-lg lg:text-xl leading-relaxed">
+                Profil dan rekam jejak kelulusan Program Keahlian Teknik Otomotif yang telah sukses berkarya di industri.
+            </p>
+         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
     </div>
 
     <!-- Breadcrumbs -->
-    <?php if (isset($component)) { $__componentOriginal98ae32034a5e9865062f4201185788de = $component; } ?>
+    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.layout.container'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+            <?php if (isset($component)) { $__componentOriginal98ae32034a5e9865062f4201185788de = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal98ae32034a5e9865062f4201185788de = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.breadcrumbs','data' => ['items' => ['Jejaring Alumni' => route('alumni.index')]]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.breadcrumbs','data' => ['items' => ['Jejaring Alumni' => route('alumni.index')],'class' => 'py-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.breadcrumbs'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['Jejaring Alumni' => route('alumni.index')])]); ?>
+<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['Jejaring Alumni' => route('alumni.index')]),'class' => 'py-4']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 <?php echo $__env->renderComponent(); ?>
@@ -47,50 +103,104 @@
 <?php $component = $__componentOriginal98ae32034a5e9865062f4201185788de; ?>
 <?php unset($__componentOriginal98ae32034a5e9865062f4201185788de); ?>
 <?php endif; ?>
+         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
+    </div>
+    <div class="md:hidden">
+        <?php if (isset($component)) { $__componentOriginal98ae32034a5e9865062f4201185788de = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal98ae32034a5e9865062f4201185788de = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.breadcrumbs','data' => ['items' => ['Alumni' => route('alumni.index')]]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.breadcrumbs'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['Alumni' => route('alumni.index')])]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
-    <section class="py-16 bg-slate-50 min-h-[50vh]">
-        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal98ae32034a5e9865062f4201185788de)): ?>
+<?php $attributes = $__attributesOriginal98ae32034a5e9865062f4201185788de; ?>
+<?php unset($__attributesOriginal98ae32034a5e9865062f4201185788de); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal98ae32034a5e9865062f4201185788de)): ?>
+<?php $component = $__componentOriginal98ae32034a5e9865062f4201185788de; ?>
+<?php unset($__componentOriginal98ae32034a5e9865062f4201185788de); ?>
+<?php endif; ?>
+    </div>
+
+    <section class="py-16 lg:py-24 bg-white min-h-[50vh]">
+        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.layout.container'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $alumnis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $alumni): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-100 overflow-hidden group transition-all duration-300 hover:-translate-y-1 relative">
-                        <div class="aspect-square bg-slate-100 relative overflow-hidden">
+                    <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 border border-charcoal-100 hover:border-charcoal-200 overflow-hidden group transition-all duration-300 relative flex flex-col h-full">
+                        <div class="aspect-square bg-charcoal-100 relative overflow-hidden">
                             <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->photo): ?>
-                                <img src="<?php echo e(Storage::url($alumni->photo)); ?>" alt="<?php echo e($alumni->name); ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                                <img src="<?php echo e(Storage::url($alumni->photo)); ?>" alt="<?php echo e($alumni->name); ?>" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 filter group-hover:contrast-110" loading="lazy">
                             <?php else: ?>
-                                <div class="w-full h-full flex items-center justify-center text-slate-300 bg-slate-200">
+                                <div class="w-full h-full flex items-center justify-center text-charcoal-300 bg-charcoal-50">
                                     <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                 </div>
                             <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                            <div class="absolute bottom-3 right-3 bg-red-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                            <div class="absolute bottom-4 right-4 bg-primary-600/90 backdrop-blur text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg border border-primary-500/50">
                                 Angkatan <?php echo e($alumni->graduation_year); ?>
 
                             </div>
                         </div>
                         
-                        <div class="p-6">
-                            <h2 class="text-lg font-bold text-slate-900 mb-1 truncate group-hover:text-red-600 transition-colors">
-                                <a href="<?php echo e(route('alumni.show', $alumni->slug)); ?>" class="focus:outline-none focus:underline"><?php echo e($alumni->name); ?></a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h2 class="text-lg font-bold text-charcoal-900 mb-1 line-clamp-1 group-hover:text-primary-600 transition-colors">
+                                <a href="<?php echo e(route('alumni.show', $alumni->slug)); ?>" class="focus:outline-none before:absolute before:inset-0 z-10"><?php echo e($alumni->name); ?></a>
                             </h2>
                             
-                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->occupation): ?>
-                                <p class="text-sm font-bold text-slate-700 truncate mb-0.5"><?php echo e($alumni->occupation); ?></p>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->current_occupation): ?>
+                                <p class="text-sm font-bold text-charcoal-700 line-clamp-1 mb-1"><?php echo e($alumni->current_occupation); ?></p>
                             <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                             
-                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->company): ?>
-                                <p class="text-xs font-medium text-slate-500 truncate flex items-center">
-                                    <svg class="w-3.5 h-3.5 mr-1 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                                    <?php echo e($alumni->company); ?>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->current_company): ?>
+                                <p class="text-xs font-semibold text-charcoal-500 line-clamp-1 flex items-center">
+                                    <svg class="w-3.5 h-3.5 mr-1.5 text-charcoal-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                                    <?php echo e($alumni->current_company); ?>
 
                                 </p>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                            
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->city): ?>
+                                <div class="mt-4 pt-4 border-t border-charcoal-100 flex items-center text-xs text-charcoal-400 font-medium relative z-20">
+                                    <svg class="w-3.5 h-3.5 mr-1.5 text-primary-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    <?php echo e($alumni->city); ?>
+
+                                </div>
                             <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                         </div>
                     </div>
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
-                    <div class="col-span-full py-16">
-                        <?php if (isset($component)) { $__componentOriginal074a021b9d42f490272b5eefda63257c = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal074a021b9d42f490272b5eefda63257c = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.empty-state','data' => ['title' => 'Belum Ada Data Alumni','message' => 'Data jejaring alumni belum tersedia saat ini.','icon' => 'users']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('empty-state'); ?>
+                    <div class="col-span-full py-16 text-center">
+                        <?php if (isset($component)) { $__componentOriginalb1651f2374e13365b46984f667e2eec8 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalb1651f2374e13365b46984f667e2eec8 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.ui.empty-state','data' => ['title' => 'Belum Ada Data Alumni','message' => 'Data jejaring alumni belum tersedia saat ini.','icon' => 'users']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.ui.empty-state'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
@@ -101,25 +211,34 @@
 
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-<?php if (isset($__attributesOriginal074a021b9d42f490272b5eefda63257c)): ?>
-<?php $attributes = $__attributesOriginal074a021b9d42f490272b5eefda63257c; ?>
-<?php unset($__attributesOriginal074a021b9d42f490272b5eefda63257c); ?>
+<?php if (isset($__attributesOriginalb1651f2374e13365b46984f667e2eec8)): ?>
+<?php $attributes = $__attributesOriginalb1651f2374e13365b46984f667e2eec8; ?>
+<?php unset($__attributesOriginalb1651f2374e13365b46984f667e2eec8); ?>
 <?php endif; ?>
-<?php if (isset($__componentOriginal074a021b9d42f490272b5eefda63257c)): ?>
-<?php $component = $__componentOriginal074a021b9d42f490272b5eefda63257c; ?>
-<?php unset($__componentOriginal074a021b9d42f490272b5eefda63257c); ?>
+<?php if (isset($__componentOriginalb1651f2374e13365b46984f667e2eec8)): ?>
+<?php $component = $__componentOriginalb1651f2374e13365b46984f667e2eec8; ?>
+<?php unset($__componentOriginalb1651f2374e13365b46984f667e2eec8); ?>
 <?php endif; ?>
                     </div>
                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
             
             <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumnis->hasPages()): ?>
-                <div class="mt-12 flex justify-center">
+                <div class="mt-16 flex justify-center">
                     <?php echo e($alumnis->links()); ?>
 
                 </div>
             <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-        </div>
+         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
     </section>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -131,5 +250,4 @@
 <?php $component = $__componentOriginal5863877a5171c196453bfa0bd807e410; ?>
 <?php unset($__componentOriginal5863877a5171c196453bfa0bd807e410); ?>
 <?php endif; ?>
-
 <?php /**PATH D:\Project\test\Web Jurusan\TOWEB\resources\views/frontend/alumni/index.blade.php ENDPATH**/ ?>

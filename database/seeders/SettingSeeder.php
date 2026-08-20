@@ -13,20 +13,20 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            ['key' => 'site_name', 'value' => 'TOWEB — Teknik Otomotif'],
-            ['key' => 'site_description', 'value' => 'Website Resmi Jurusan Teknik Otomotif SMK Negeri 1 Bangsri. Kami mendidik siswa menjadi tenaga profesional di bidang otomotif.'],
-            ['key' => 'site_tagline', 'value' => 'Membangun Karakter & Kompetensi Industri'],
-            ['key' => 'contact_address', 'value' => 'Jl. KH. Wahid Hasyim, Bangsri, Jepara'],
-            ['key' => 'contact_phone', 'value' => '+62 812-3456-7890'],
-            ['key' => 'contact_email', 'value' => 'otomotif@smkn1bangsri.sch.id'],
+            ['key' => 'site_name', 'value' => 'Teknik Otomotif'],
+            ['key' => 'site_description', 'value' => 'Website Resmi Jurusan Teknik Otomotif (Konsentrasi Teknik dan Bisnis Sepeda Motor) SMK Negeri 1 Bangsri.'],
+            ['key' => 'site_tagline', 'value' => 'Terbentuknya SDM profesional dalam bidang Teknik Otomotif dan berkarakter positif'],
+            ['key' => 'contact_address', 'value' => 'JL. KH. Achmad Fauzan No. 17 Bangsri Jepara'],
+            ['key' => 'contact_phone', 'value' => '082323429052'],
+            ['key' => 'contact_email', 'value' => 'smkn1bangsri@yahoo.co.id'],
             ['key' => 'social_youtube', 'value' => 'https://youtube.com/'],
             ['key' => 'social_instagram', 'value' => 'https://instagram.com/'],
             ['key' => 'social_facebook', 'value' => 'https://facebook.com/'],
             ['key' => 'social_linkedin', 'value' => 'https://linkedin.com/'],
             ['key' => 'youtube_video_id', 'value' => 'dQw4w9WgXcQ'], // Dummy youtube ID
-            ['key' => 'profile_history', 'value' => '<p>Jurusan Teknik Otomotif SMK Negeri 1 Bangsri didirikan untuk menjawab kebutuhan industri akan tenaga terampil di bidang otomotif. Dengan fasilitas standar industri dan tenaga pendidik profesional, kami terus berkomitmen menghasilkan lulusan unggul.</p>'],
-            ['key' => 'profile_vision', 'value' => 'Menjadi pusat pendidikan vokasi bidang otomotif yang unggul, berkarakter, dan berdaya saing global.'],
-            ['key' => 'profile_mission', 'value' => '<ul><li>Menyelenggarakan pembelajaran berbasis industri.</li><li>Membentuk karakter disiplin dan profesional.</li><li>Mengembangkan kerjasama kemitraan dengan DUDI.</li></ul>'],
+            ['key' => 'profile_history', 'value' => '<p>Jurusan Teknik Otomotif SMK Negeri 1 Bangsri dengan konsentrasi Teknik dan Bisnis Sepeda Motor (TSM) berdiri sejak tahun 2011.</p>'],
+            ['key' => 'profile_vision', 'value' => 'Terbentuknya SDM profesional dalam bidang Teknik Otomotif dan berkarakter positif.'],
+            ['key' => 'profile_mission', 'value' => '<ol><li>Menyiapkan lulusan kreatif dan profesional dalam bidang Teknik Otomotif guna memasuki dunia kerja dan Era pasar bebas industrialisasi.</li><li>Mempersiapkan lulusan dalam mengembangkan potensi menjadi peluang bisnis.</li><li>Membentuk siswa berkarakter positif dan mampu berfikir kritis untuk siap bersaing di dunia kerja.</li></ol>'],
         ];
 
         foreach ($settings as $setting) {

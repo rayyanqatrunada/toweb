@@ -49,36 +49,28 @@
  INFO Seeding database. 
 
  Database\Seeders\RoleAndUserSeeder .. RUNNING 
- Database\Seeders\RoleAndUserSeeder .. 2,476 ms DONE 
+ Database\Seeders\RoleAndUserSeeder .. 681 ms DONE 
 
  Database\Seeders\SettingSeeder .. RUNNING 
- Database\Seeders\SettingSeeder .. 164 ms DONE 
+ Database\Seeders\SettingSeeder .. 32 ms DONE 
 
  Database\Seeders\AcademicDataSeeder .. RUNNING 
- Database\Seeders\AcademicDataSeeder .. 2,035 ms DONE 
+ Database\Seeders\AcademicDataSeeder .. 292 ms DONE 
 
  Database\Seeders\IndustryDataSeeder .. RUNNING 
+ Database\Seeders\IndustryDataSeeder .. 299 ms DONE 
 
-   Illuminate\Database\QueryException 
+ Database\Seeders\ContentDataSeeder .. RUNNING 
+ Database\Seeders\ContentDataSeeder .. 458 ms DONE 
 
-  SQLSTATE[01000]: Warning: 1265 Data truncated for column 'type' at row 1 (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: toweb_db, SQL: insert into `partnerships` (`industry_partner_id`, `type`, `title`, `start_date`, `end_date`, `description`, `status`, `updated_at`, `created_at`) values (11, Penyaluran Lulusan, Kerjasama Penyaluran Lulusan dengan PT Astra Honda Motor, 2026-02-19 03:08:46, 2028-08-19 03:08:46, Implementasi kerjasama Link & Match antara sekolah dan PT Astra Honda Motor, active, 2026-08-19 03:08:46, 2026-08-19 03:08:46))
+ Database\Seeders\MediaDataSeeder .. RUNNING 
+ Database\Seeders\MediaDataSeeder .. 226 ms DONE 
 
-  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:857
-    853▕             $exceptionType = ($isUniqueConstraintError = $this->isUniqueConstraintError($e))
-    854▕                 ? UniqueConstraintViolationException::class
-    855▕                 : QueryException::class;
-    856▕ 
-  ➜ 857▕             $exception = new $exceptionType(
-    858▕                 $this->getNameWithReadWriteType(),
-    859▕                 $query,
-    860▕                 $this->prepareBindings($bindings),
-    861▕                 $e,
+ Database\Seeders\AlumniDataSeeder .. RUNNING 
+ Database\Seeders\AlumniDataSeeder .. 181 ms DONE 
 
-  1   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
-      PDOException::("SQLSTATE[01000]: Warning: 1265 Data truncated for column 'type' at row 1")
-
-  2   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
-      PDOStatement::execute()
+ Database\Seeders\DownloadDataSeeder .. RUNNING 
+ Database\Seeders\DownloadDataSeeder .. 146 ms DONE 
 
 
 
@@ -87,55 +79,47 @@
  INFO Seeding database. 
 
  Database\Seeders\RoleAndUserSeeder .. RUNNING 
- Database\Seeders\RoleAndUserSeeder .. 732 ms DONE 
+ Database\Seeders\RoleAndUserSeeder .. 799 ms DONE 
 
  Database\Seeders\SettingSeeder .. RUNNING 
- Database\Seeders\SettingSeeder .. 30 ms DONE 
+ Database\Seeders\SettingSeeder .. 36 ms DONE 
 
  Database\Seeders\AcademicDataSeeder .. RUNNING 
- Database\Seeders\AcademicDataSeeder .. 250 ms DONE 
+ Database\Seeders\AcademicDataSeeder .. 266 ms DONE 
 
  Database\Seeders\IndustryDataSeeder .. RUNNING 
+ Database\Seeders\IndustryDataSeeder .. 299 ms DONE 
 
-   Illuminate\Database\QueryException 
+ Database\Seeders\ContentDataSeeder .. RUNNING 
+ Database\Seeders\ContentDataSeeder .. 604 ms DONE 
 
-  SQLSTATE[01000]: Warning: 1265 Data truncated for column 'type' at row 1 (Connection: mysql, Host: 127.0.0.1, Port: 3306, Database: toweb_db, SQL: insert into `partnerships` (`industry_partner_id`, `type`, `title`, `start_date`, `end_date`, `description`, `status`, `updated_at`, `created_at`) values (11, Penyaluran Lulusan, Kerjasama Penyaluran Lulusan dengan PT Astra Honda Motor, 2026-02-19 03:08:53, 2028-08-19 03:08:53, Implementasi kerjasama Link & Match antara sekolah dan PT Astra Honda Motor, active, 2026-08-19 03:08:53, 2026-08-19 03:08:53))
+ Database\Seeders\MediaDataSeeder .. RUNNING 
+ Database\Seeders\MediaDataSeeder .. 166 ms DONE 
 
-  at vendor\laravel\framework\src\Illuminate\Database\Connection.php:857
-    853▕             $exceptionType = ($isUniqueConstraintError = $this->isUniqueConstraintError($e))
-    854▕                 ? UniqueConstraintViolationException::class
-    855▕                 : QueryException::class;
-    856▕ 
-  ➜ 857▕             $exception = new $exceptionType(
-    858▕                 $this->getNameWithReadWriteType(),
-    859▕                 $query,
-    860▕                 $this->prepareBindings($bindings),
-    861▕                 $e,
+ Database\Seeders\AlumniDataSeeder .. RUNNING 
+ Database\Seeders\AlumniDataSeeder .. 149 ms DONE 
 
-  1   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
-      PDOException::("SQLSTATE[01000]: Warning: 1265 Data truncated for column 'type' at row 1")
-
-  2   vendor\laravel\framework\src\Illuminate\Database\MySqlConnection.php:53
-      PDOStatement::execute()
+ Database\Seeders\DownloadDataSeeder .. RUNNING 
+ Database\Seeders\DownloadDataSeeder .. 127 ms DONE 
 
 
 
 >>> Executing: php artisan test
-{"tool":"phpunit","result":"passed","tests":64,"passed":64,"assertions":150,"duration_ms":74986}
+{"tool":"phpunit","result":"passed","tests":64,"passed":64,"assertions":150,"duration_ms":74738}
 
 
 >>> Executing: php artisan optimize:clear
 
  INFO Clearing cached bootstrap files. 
 
- config .. 43.02ms DONE
- cache .. 32.49ms DONE
- compiled .. 3.87ms DONE
- events .. 1.40ms DONE
- routes .. 2.47ms DONE
- views .. 77.41ms DONE
- blade-icons .. 0.52ms DONE
- filament .. 3.90ms DONE
+ config .. 3.49ms DONE
+ cache .. 120.55ms DONE
+ compiled .. 6.46ms DONE
+ events .. 1.52ms DONE
+ routes .. 2.31ms DONE
+ views .. 165.84ms DONE
+ blade-icons .. 1.34ms DONE
+ filament .. 7.98ms DONE
 
 
 
@@ -291,12 +275,12 @@
  GET|HEAD filament/imports/{import}/failed-rows/download filament.imports.failed-rows.download › Filament\Actions …
  GET|HEAD galeri .. gallery.index › Frontend\GalleryController@index
  GET|HEAD galeri/{slug} .. gallery.show › Frontend\GalleryController@show
- GET|HEAD livewire-e2720f48/css/{component}.css .. generated::xhuf0DAS99nSIyCs
- GET|HEAD livewire-e2720f48/css/{component}.global.css .. generated::wRZym1bXi8mzlxVd
- GET|HEAD livewire-e2720f48/js/{component}.js .. generated::6nlOSfu4Ub1r1t7F
- GET|HEAD livewire-e2720f48/livewire.csp.min.js.map generated::4d5Nghq9s3HKxCxJ › Livewire\Mechanisms › FrontendAss…
- GET|HEAD livewire-e2720f48/livewire.js generated::o0a88LSj7x7aqSYv › Livewire\Mechanisms › FrontendAssets@returnJa…
- GET|HEAD livewire-e2720f48/livewire.min.js.map generated::gKicghSEV26HgSS8 › Livewire\Mechanisms › FrontendAssets@…
+ GET|HEAD livewire-e2720f48/css/{component}.css .. generated::0nxeD8hMj7Gl43Sd
+ GET|HEAD livewire-e2720f48/css/{component}.global.css .. generated::93xXIGjHNqf6th98
+ GET|HEAD livewire-e2720f48/js/{component}.js .. generated::q627N3N5FpCn8Iqg
+ GET|HEAD livewire-e2720f48/livewire.csp.min.js.map generated::9vDREZ0MCZwA24pA › Livewire\Mechanisms › FrontendAss…
+ GET|HEAD livewire-e2720f48/livewire.js generated::XnrSDOkP03YIVlhv › Livewire\Mechanisms › FrontendAssets@returnJa…
+ GET|HEAD livewire-e2720f48/livewire.min.js.map generated::hN1N6anoN7QYR9rR › Livewire\Mechanisms › FrontendAssets@…
  GET|HEAD livewire-e2720f48/preview-file/{filename} livewire.preview-file › Livewire\Features › FilePreviewControll…
  POST livewire-e2720f48/update .. default-livewire.update › Livewire\Mechanisms › HandleRequests@handleUpdate
  POST livewire-e2720f48/upload-file .. livewire.upload-file › Livewire\Features › FileUploadController@handle
@@ -310,14 +294,14 @@
  GET|HEAD pkl/{slug} .. internships.show › Frontend\InternshipController@show
  GET|HEAD prestasi .. achievements.index › Frontend\AchievementController@index
  GET|HEAD prestasi/{slug} .. achievements.show › Frontend\AchievementController@show
- GET|HEAD robots.txt .. generated::79gsFZ2V1vcU8cEq
+ GET|HEAD robots.txt .. generated::vA9NIU9dVOvvp5aB
  GET|HEAD search .. search › Frontend\SearchController@index
  GET|HEAD sitemap.xml .. sitemap › Frontend\SitemapController@index
  GET|HEAD storage/{path} .. storage.local
  PUT storage/{path} .. storage.local.upload
  GET|HEAD tentang .. about › Frontend\HomeController@about
  GET|HEAD unduhan .. download.index › Frontend\DownloadController@index
- GET|HEAD up .. generated::jrGjFRM7v6xLdU2A
+ GET|HEAD up .. generated::ri6yK7oafMBWEAoN
 
  Showing [98] routes
 
@@ -351,12 +335,10 @@ public/build/assets/fonts-Ca1stQp5.css                3.59 kB │ gzip:  0.43 kB
 public/build/assets/app-C88KxBlf.css                 85.76 kB │ gzip: 14.06 kB
 public/build/assets/app-BvRk9kiK.js                   0.00 kB │ gzip:  0.02 kB
 
-[32m✓ built in 11.35s[39m
-[33m[33m[PLUGIN_TIMINGS] [0mYour build spent 98% of 11.3s inside plugin hooks (11.1s).
+[32m✓ built in 5.92s[39m
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent 93% of 5.9s inside plugin hooks (5.5s).
 Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
-  - @tailwindcss/vite:generate:build transform (68%, 7.7s, 1 call)
-  - vite:css-post renderChunk (15%, 1.6s, 2 calls)
-  - vite:css transform (13%, 1.5s, 1 call)
+  - @tailwindcss/vite:generate:build transform (79%, 4.6s, 1 call)
 See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
 [39m
 
@@ -370,35 +352,22 @@ Competency               12
 Teacher                  6
 Facility                 8
 IndustryPartner          5
-Partnership              0
-WARNING: Model Partnership has 0 records!
-Internship               0
-WARNING: Model Internship has 0 records!
-JobVacancy               0
-WARNING: Model JobVacancy has 0 records!
-Category                 0
-WARNING: Model Category has 0 records!
-Tag                      0
-WARNING: Model Tag has 0 records!
-Post                     0
-WARNING: Model Post has 0 records!
-Announcement             0
-WARNING: Model Announcement has 0 records!
-Achievement              0
-WARNING: Model Achievement has 0 records!
-GalleryAlbum             0
-WARNING: Model GalleryAlbum has 0 records!
-GalleryItem              0
-WARNING: Model GalleryItem has 0 records!
-Alumni                   0
-WARNING: Model Alumni has 0 records!
-DownloadCategory         0
-WARNING: Model DownloadCategory has 0 records!
-Download                 0
-WARNING: Model Download has 0 records!
+Partnership              4
+Internship               5
+JobVacancy               5
+Category                 5
+Tag                      6
+Post                     8
+Announcement             5
+Achievement              6
+GalleryAlbum             5
+GalleryItem              30
+Alumni                   10
+DownloadCategory         4
+Download                 8
 
 --- RELATIONSHIP VERIFICATIONS ---
 
-FINAL STATUS: FAIL
+FINAL STATUS: PASS
 
 

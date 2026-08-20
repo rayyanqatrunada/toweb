@@ -136,7 +136,7 @@ unset($__defined_vars, $__key, $__value); ?>
 <?php endif; ?>
     </header>
 
-    <main id="main-content" class="flex-grow pt-16">
+    <main id="main-content" class="flex-grow pt-16 lg:pt-20">
         <?php echo e($slot); ?>
 
     </main>

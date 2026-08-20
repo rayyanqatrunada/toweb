@@ -47,6 +47,10 @@ class HomeController extends Controller
 
     public function about()
     {
-        return view('frontend.about');
+        $headOfDepartment = Cache::remember('about:head_teacher', now()->addMinutes(60), fn() => Teacher::where('is_head_of_department', true)->where('is_active', true)->first());
+        $programs = Cache::remember('about:programs', now()->addMinutes(60), fn() => Program::all());
+        $facilities = Cache::remember('about:facilities', now()->addMinutes(60), fn() => Facility::latest()->take(3)->get());
+
+        return view('frontend.about', compact('headOfDepartment', 'programs', 'facilities'));
     }
 }

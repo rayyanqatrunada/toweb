@@ -43,7 +43,7 @@ Route::get('/mitra-industri', [PartnershipController::class, 'index'])->name('pa
 Route::get('/mitra-industri/{slug}', [PartnershipController::class, 'show'])->name('partnership.show');
 
 Route::get('/pkl', [InternshipController::class, 'index'])->name('internships.index');
-Route::get('/pkl/{slug}', [InternshipController::class, 'show'])->name('internships.show');
+Route::get('/pkl/{id}', [InternshipController::class, 'show'])->name('internships.show');
 
 Route::get('/lowongan', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/lowongan/{slug}', [JobController::class, 'show'])->name('jobs.show');

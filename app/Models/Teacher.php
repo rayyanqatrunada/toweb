@@ -26,6 +26,14 @@ class Teacher extends Model
 
     protected static function booted()
     {
+        static::saved(function ($teacher) {
+            \Illuminate\Support\Facades\Cache::forget('academic:teachers');
+        });
+        
+        static::deleted(function ($teacher) {
+            \Illuminate\Support\Facades\Cache::forget('academic:teachers');
+        });
+
         static::saving(function ($teacher) {
             if ($teacher->is_head_of_department) {
                 // Set all other teachers to false

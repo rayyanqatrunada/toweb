@@ -10,7 +10,16 @@ class PartnershipController extends Controller
 {
     public function index()
     {
-        $partners = IndustryPartner::published()->get();
+        $partners = IndustryPartner::with('partnerships')
+            ->withCount(['jobVacancies' => function($q) {
+                $q->published()->where(function($query) {
+                    $query->whereNull('deadline')
+                          ->orWhere('deadline', '>=', now());
+                });
+            }])
+            ->published()
+            ->latest('published_at')
+            ->paginate(12);
         return view('frontend.partnership', compact('partners'));
     }
     

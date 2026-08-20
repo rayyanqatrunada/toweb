@@ -18,6 +18,16 @@ class Competency extends Model
         return $this->belongsTo(Program::class);
     }
 
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('academic:programs');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('academic:programs');
+        });
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

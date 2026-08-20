@@ -16,9 +16,7 @@ class AchievementController extends Controller
 
     public function show($slug)
     {
-        $achievement = Achievement::with(['category', 'participants' => function($q) {
-            $q->select('id', 'achievement_id', 'student_name'); // Hide student_id
-        }])->published()->where('slug', $slug)->firstOrFail();
+        $achievement = Achievement::with(['category'])->published()->where('slug', $slug)->firstOrFail();
         
         return view('frontend.achievements.show', compact('achievement'));
     }

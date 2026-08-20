@@ -80,7 +80,7 @@
         <x-navbar />
     </header>
 
-    <main id="main-content" class="flex-grow pt-16">
+    <main id="main-content" class="flex-grow pt-16 lg:pt-20">
         {{ $slot }}
     </main>
 

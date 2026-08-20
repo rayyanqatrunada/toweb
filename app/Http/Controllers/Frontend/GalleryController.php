@@ -10,7 +10,7 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $albums = GalleryAlbum::withCount('items')->published()->latest()->paginate(9);
+        $albums = GalleryAlbum::with(['featuredImage'])->withCount('items')->published()->latest()->paginate(9);
         return view('frontend.gallery', compact('albums'));
     }
 

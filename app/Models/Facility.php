@@ -18,10 +18,12 @@ class Facility extends Model
         static::saved(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:stats:facility');
             \Illuminate\Support\Facades\Cache::forget('homepage:facilities');
+            \Illuminate\Support\Facades\Cache::forget('academic:facilities');
         });
         static::deleted(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:stats:facility');
             \Illuminate\Support\Facades\Cache::forget('homepage:facilities');
+            \Illuminate\Support\Facades\Cache::forget('academic:facilities');
         });
     }
 

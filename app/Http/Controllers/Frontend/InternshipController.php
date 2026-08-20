@@ -14,11 +14,11 @@ class InternshipController extends Controller
         return view('frontend.internships.index', compact('internships'));
     }
 
-    public function show($slug)
+    public function show($id)
     {
         // Internship does not have a slug field based on migration, so we use ID or add slug logic. 
         // Let's use ID for internship since slug might not exist.
-        $internship = Internship::with('industryPartner')->published()->findOrFail($slug);
+        $internship = Internship::with('industryPartner')->published()->findOrFail($id);
         return view('frontend.internships.show', compact('internship'));
     }
 }

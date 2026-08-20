@@ -16,11 +16,7 @@ class IndustryDataSeeder extends Seeder
     {
         // 1. Industry Partners
         $partners = [
-            ['name' => 'PT Astra Honda Motor', 'type' => 'Industri Manufaktur', 'email' => 'contact@astra-honda.com'],
-            ['name' => 'Nasmoco Jepara', 'type' => 'Dealer Resmi', 'email' => 'info@nasmoco.co.id'],
-            ['name' => 'Yamaha Mataram Sakti', 'type' => 'Bengkel Resmi', 'email' => 'bengkel@yamaha-motor.co.id'],
-            ['name' => 'Bintang Auto Service', 'type' => 'Bengkel Umum', 'email' => 'admin@bintangauto.com'],
-            ['name' => 'Oto Mandiri Sejahtera', 'type' => 'Perusahaan Jasa Otomotif', 'email' => 'hr@otomandiri.com'],
+            ['name' => 'Astra Honda Motor', 'type' => 'Industri Manufaktur Otomotif', 'email' => 'contact@astra-honda.com'],
         ];
 
         $partnerModels = [];
@@ -31,11 +27,11 @@ class IndustryDataSeeder extends Seeder
                 [
                     'name' => $p['name'],
                     'industry_type' => $p['type'],
-                    'description' => 'Mitra industri ' . $p['name'] . ' yang bergerak di bidang otomotif.',
-                    'address' => 'Jl. Industri Otomotif No. ' . ($idx + 1) . ', Kawasan Industri',
-                    'phone' => '021-12345' . $idx,
+                    'description' => 'TO SMK Negeri 1 Bangsri Merupakan Binaan Langsung dari Astra Honda Motor Sejak 2016',
+                    'address' => 'Jakarta, Indonesia',
+                    'phone' => '021-000000',
                     'email' => $p['email'],
-                    'website' => 'https://www.' . Str::slug($p['name']) . '.com',
+                    'website' => 'https://www.astra-honda.com',
                     'logo' => $logo,
                     'status' => 'published',
                     'published_at' => now()
@@ -45,83 +41,62 @@ class IndustryDataSeeder extends Seeder
 
         // 2. Partnerships
         $partnerships = [
-            ['partner' => $partnerModels[0], 'type' => 'Penyaluran Lulusan', 'status' => 'active'],
-            ['partner' => $partnerModels[1], 'type' => 'Tempat PKL', 'status' => 'active'],
-            ['partner' => $partnerModels[2], 'type' => 'Guru Tamu', 'status' => 'completed'],
-            ['partner' => $partnerModels[3], 'type' => 'Tempat PKL', 'status' => 'active'],
+            ['partner' => $partnerModels[0], 'type' => 'internship', 'title' => 'Magang (PKL)', 'desc' => 'Praktik Kerja Industri di bengkel resmi honda (Ahass)'],
+            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Pelatihan & Sertifikasi Guru', 'desc' => 'Setiap tahun agenda Sertifikasi Guru bertahap yang di support langsung Astra Motor Training Center'],
+            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Lomba Honda', 'desc' => 'Lomba Guru dan Siswa tingkat SMK Binaan'],
+            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Safety Riding', 'desc' => 'Program meningkatkan kemampuan berkendara siswa'],
         ];
 
-        $partnershipModels = [];
         foreach ($partnerships as $pt) {
-            $partnershipModels[] = Partnership::updateOrCreate(
+            Partnership::updateOrCreate(
                 [
                     'industry_partner_id' => $pt['partner']->id,
-                    'type' => $pt['type']
+                    'title' => $pt['title']
                 ],
                 [
-                    'title' => 'Kerjasama ' . $pt['type'] . ' dengan ' . $pt['partner']->name,
-                    'start_date' => now()->subMonths(6),
-                    'end_date' => now()->addYears(2),
-                    'description' => 'Implementasi kerjasama Link & Match antara sekolah dan ' . $pt['partner']->name,
-                    'status' => $pt['status']
+                    'type' => $pt['type'],
+                    'start_date' => '2016-01-01',
+                    'end_date' => now()->addYears(5),
+                    'description' => $pt['desc'],
+                    'status' => 'active'
                 ]
             );
         }
 
         // 3. Internships
-        $internships = [
-            ['partner' => $partnerModels[1], 'title' => 'PKL Gelombang 1 Mekanik Nasmoco', 'status' => 'ongoing'],
-            ['partner' => $partnerModels[3], 'title' => 'PKL Bintang Auto Servis Batch 2', 'status' => 'planned'],
-            ['partner' => $partnerModels[0], 'title' => 'Prakerin AHM Periode Gasal', 'status' => 'completed'],
-            ['partner' => $partnerModels[2], 'title' => 'PKL Mekanik Motor Yamaha', 'status' => 'ongoing'],
-            ['partner' => $partnerModels[4], 'title' => 'Magang Teknisi Spooring', 'status' => 'planned'],
-        ];
+        Internship::updateOrCreate(
+            [
+                'industry_partner_id' => $partnerModels[0]->id,
+                'title' => 'Praktik Kerja Industri di bengkel resmi honda (Ahass)'
+            ],
+            [
+                'start_date' => now()->subDays(10),
+                'end_date' => now()->addMonths(6),
+                'status' => 'ongoing',
+                'description' => 'Program Magang / PKL'
+            ]
+        );
 
-        foreach ($internships as $intern) {
-            Internship::updateOrCreate(
-                [
-                    'industry_partner_id' => $intern['partner']->id,
-                    'title' => $intern['title']
-                ],
-                [
-                    'start_date' => now()->subDays(rand(1, 30)),
-                    'end_date' => now()->addMonths(3),
-                    'status' => $intern['status'],
-                    'description' => 'Program Praktik Kerja Lapangan di ' . $intern['partner']->name . ' untuk kompetensi perbengkelan.'
-                ]
-            );
-        }
-
-        // 4. Job Vacancies
-        $jobs = [
-            ['partner' => $partnerModels[0], 'title' => 'Operator Perakitan Mesin', 'status' => 'open'],
-            ['partner' => $partnerModels[1], 'title' => 'Service Advisor Trainee', 'status' => 'open'],
-            ['partner' => $partnerModels[2], 'title' => 'Mekanik Junior Sepeda Motor', 'status' => 'closed'],
-            ['partner' => $partnerModels[4], 'title' => 'Teknisi AC Mobil', 'status' => 'open'],
-            ['partner' => $partnerModels[3], 'title' => 'Asisten Mekanik Bengkel Umum', 'status' => 'open'],
-        ];
-
-        foreach ($jobs as $job) {
-            JobVacancy::updateOrCreate(
-                [
-                    'industry_partner_id' => $job['partner']->id,
-                    'slug' => Str::slug($job['title'])
-                ],
-                [
-                    'title' => $job['title'],
-                    'position' => 'Teknisi/Mekanik',
-                    'description' => 'Dibutuhkan segera ' . $job['title'] . ' di ' . $job['partner']->name,
-                    'requirements' => '<ul><li>Lulusan SMK Otomotif</li><li>Sehat jasmani dan rohani</li><li>Bersedia bekerja shift</li></ul>',
-                    'responsibilities' => 'Melakukan perawatan dan perbaikan kendaraan sesuai standar operasional perusahaan.',
-                    'location' => 'Kawasan Industri Setempat',
-                    'work_type' => 'Full-time',
-                    'employment_type' => 'Kontrak',
-                    'salary_text' => 'UMK Setempat + Lembur',
-                    'application_deadline' => $job['status'] === 'open' ? now()->addMonths(1) : now()->subDays(10),
-                    'status' => $job['status'],
-                    'published_at' => now()->subDays(rand(1, 10))
-                ]
-            );
-        }
+        // 4. Job Vacancies (Placeholder)
+        JobVacancy::updateOrCreate(
+            [
+                'industry_partner_id' => $partnerModels[0]->id,
+                'slug' => Str::slug('Mekanik AHASS (Placeholder)')
+            ],
+            [
+                'title' => 'Mekanik AHASS (Placeholder)',
+                'position' => 'Teknisi/Mekanik',
+                'description' => 'Dibutuhkan segera Teknisi (NOT VERIFIED FROM OFFICIAL PDF - Data Placeholder).',
+                'requirements' => '<ul><li>Lulusan SMK Otomotif</li></ul>',
+                'responsibilities' => 'Melakukan perawatan kendaraan.',
+                'location' => 'Jepara',
+                'work_type' => 'Full-time',
+                'employment_type' => 'Kontrak',
+                'salary_text' => 'UMK Setempat',
+                'application_deadline' => now()->addMonths(1),
+                'status' => 'published',
+                'published_at' => now()->subDays(2)
+            ]
+        );
     }
 }

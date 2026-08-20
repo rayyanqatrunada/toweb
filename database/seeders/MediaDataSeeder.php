@@ -28,8 +28,6 @@ class MediaDataSeeder extends Seeder
                     'title' => $albumTitle,
                     'description' => 'Dokumentasi foto dari kegiatan ' . $albumTitle . '.',
                     'thumbnail' => $thumbnail,
-                    'event_date' => now()->subDays(rand(1, 100)),
-                    'location' => 'Bangsri, Jepara',
                     'status' => 'published',
                     'published_at' => now()->subDays(rand(1, 20))
                 ]
@@ -41,13 +39,11 @@ class MediaDataSeeder extends Seeder
                 GalleryItem::updateOrCreate(
                     [
                         'gallery_album_id' => $album->id,
-                        'title' => $albumTitle . ' - Foto ' . $i
+                        'file_path' => $itemImage
                     ],
                     [
-                        'file_path' => $itemImage,
                         'type' => 'image',
                         'description' => 'Momen dokumentasi dari ' . $albumTitle . ' bagian ' . $i,
-                        'alt_text' => 'Foto ' . $i . ' ' . $albumTitle,
                         'is_featured' => ($i === 1)
                     ]
                 );

@@ -39,7 +39,7 @@ class Internship extends Model
 
     public function scopePublished(\Illuminate\Database\Eloquent\Builder $query): void
     {
-        $query->where('status', 'published');
+        $query->whereIn('status', ['ongoing', 'planned', 'completed']);
     }
 
     public function getActivitylogOptions(): LogOptions

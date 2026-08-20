@@ -1,22 +1,42 @@
-
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+@source '../../app/Filament/**/*.php';
+@source '../../resources/views/filament/**/*.blade.php';
 
 @theme {
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Fonts */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    
+    /* Automotive Red / Primary Colors */
+    --color-primary-50: #fef2f2;
+    --color-primary-100: #fee2e2;
+    --color-primary-200: #fecaca;
+    --color-primary-300: #fca5a5;
+    --color-primary-400: #f87171;
+    --color-primary-500: #ef4444;
+    --color-primary-600: #dc2626; /* Main Automotive Red */
+    --color-primary-700: #b91c1c; /* Deep Red Accent */
+    --color-primary-800: #991b1b;
+    --color-primary-900: #7f1d1d;
+    --color-primary-950: #450a0a;
 
-    --color-primary-50: var(--color-red-50);
-    --color-primary-100: var(--color-red-100);
-    --color-primary-200: var(--color-red-200);
-    --color-primary-300: var(--color-red-300);
-    --color-primary-400: var(--color-red-400);
-    --color-primary-500: var(--color-red-500);
-    --color-primary-600: var(--color-red-600);
-    --color-primary-700: var(--color-red-700);
-    --color-primary-800: var(--color-red-800);
-    --color-primary-900: var(--color-red-900);
-    --color-primary-950: var(--color-red-950);
+    /* Neutrals */
+    --color-charcoal-50: #f4f4f5; /* off-white */
+    --color-charcoal-100: #e4e4e7;
+    --color-charcoal-800: #27272a;
+    --color-charcoal-900: #18181b; /* near-black */
+    --color-charcoal-950: #09090b;
+
+    /* Container config if needed in utility */
+    --container-center: true;
+    --container-padding: 1rem;
+}
+
+@layer components {
+    /* Focus visible standard */
+    .focus-ring {
+        @apply outline-none ring-2 ring-primary-500/50 ring-offset-2 ring-offset-white transition-shadow;
+    }
 }

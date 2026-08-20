@@ -1,94 +1,118 @@
-<x-layouts.app title="Kemitraan & BKK">
-    <div class="bg-slate-900 py-16 lg:py-24">
-        <div class="max-w-screen-xl mx-auto px-4 text-center">
-            <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Kemitraan Industri & BKK</h1>
-            <p class="text-slate-300 text-lg max-w-2xl mx-auto">Informasi perusahaan mitra, program magang, dan lowongan kerja dari Bursa Kerja Khusus (BKK).</p>
+<x-layouts.app title="Mitra Industri">
+    <!-- Hero Section -->
+    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+        <!-- Abstract Pattern Background -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
+            </svg>
         </div>
+        <x-frontend.layout.container class="relative z-10 text-center max-w-3xl mx-auto">
+            <x-frontend.ui.eyebrow class="text-primary-400 mb-4 justify-center">Industry Partners</x-frontend.ui.eyebrow>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">Kemitraan Industri</h1>
+            <p class="text-charcoal-300 text-lg lg:text-xl leading-relaxed">
+                Jaringan kolaborasi strategis dengan dunia usaha dan dunia industri (DUDI) untuk menjamin kualitas lulusan.
+            </p>
+        </x-frontend.layout.container>
     </div>
 
-    <section class="py-16 bg-white min-h-[50vh]">
-        <div class="max-w-screen-xl mx-auto px-4">
-            
-            <div class="mb-16">
-                <h2 class="text-2xl font-bold text-slate-900 mb-8 border-b border-slate-200 pb-4">Mitra Industri Kami</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                    @forelse($partners as $partner)
-                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:shadow-md transition-shadow group">
+    <!-- Breadcrumbs -->
+    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+        <x-frontend.layout.container>
+            <x-frontend.breadcrumbs :items="['Kemitraan Industri' => route('partnership.index')]" class="py-4" />
+        </x-frontend.layout.container>
+    </div>
+    <div class="md:hidden">
+        <x-frontend.breadcrumbs :items="['Mitra Industri' => route('partnership.index')]" />
+    </div>
+
+    <section class="py-16 lg:py-24 bg-white min-h-[50vh]">
+        <x-frontend.layout.container>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @forelse($partners as $partner)
+                    <div class="bg-white border border-charcoal-200 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary-200 transition-all duration-300 overflow-hidden group flex flex-col h-full relative">
+                        
+                        @if($partner->job_vacancies_count > 0)
+                            <div class="absolute top-4 right-4 z-10">
+                                <span class="flex h-3 w-3 relative">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" title="{{ $partner->job_vacancies_count }} Lowongan Buka"></span>
+                                </span>
+                            </div>
+                        @endif
+
+                        <a href="{{ route('partnership.show', $partner->slug) }}" class="block p-8 bg-charcoal-50 flex items-center justify-center aspect-[4/3] group-hover:bg-primary-50/30 transition-colors relative z-0">
                             @if($partner->logo)
-                                <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="h-16 w-auto object-contain mb-3 group-hover:scale-105 transition-transform">
+                                <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="max-w-[70%] max-h-[70%] object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105" loading="lazy">
                             @else
-                                <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-3">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                <div class="w-16 h-16 bg-primary-100 text-primary-600 rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 shadow-sm border border-primary-200">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                                 </div>
                             @endif
-                            <h3 class="font-bold text-slate-900 text-sm">{{ $partner->name }}</h3>
-                            @if($partner->website)
-                                <a href="{{ $partner->website }}" target="_blank" class="text-xs text-red-600 hover:underline mt-1">Kunjungi Web</a>
+                        </a>
+                        
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h2 class="text-xl font-bold text-charcoal-900 group-hover:text-primary-600 transition-colors mb-2 line-clamp-2">
+                                <a href="{{ route('partnership.show', $partner->slug) }}" class="focus:outline-none before:absolute before:inset-0 before:z-10">
+                                    {{ $partner->name }}
+                                </a>
+                            </h2>
+                            
+                            @if($partner->industry_type)
+                                <p class="text-sm font-semibold text-primary-600 mb-3">{{ $partner->industry_type }}</p>
                             @endif
-                        </div>
-                    @empty
-                        <div class="col-span-full py-8 text-center text-slate-500">
-                            Data mitra industri belum tersedia.
-                        </div>
-                    @endforelse
-                </div>
-            </div>
-
-            <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-8 border-b border-slate-200 pb-4">Lowongan Kerja (Open)</h2>
-                <div class="space-y-6">
-                    @php $hasVacancies = false; @endphp
-                    @foreach($partners as $partner)
-                        @foreach($partner->jobVacancies as $vacancy)
-                            @php $hasVacancies = true; @endphp
-                            <div class="bg-white border border-slate-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-md transition-all flex flex-col md:flex-row md:items-start justify-between gap-4">
-                                <div class="flex-grow">
-                                    <div class="flex items-center space-x-3 mb-2">
-                                        <h3 class="text-xl font-bold text-slate-900">{{ $vacancy->title }}</h3>
-                                        <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">OPEN</span>
-                                    </div>
-                                    <div class="flex items-center text-slate-500 text-sm mb-4 space-x-4">
-                                        <span class="flex items-center font-medium text-slate-700">
-                                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                            {{ $partner->name }}
-                                        </span>
-                                        @if($vacancy->deadline)
-                                            <span class="flex items-center text-red-500">
-                                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                Tutup: {{ $vacancy->deadline->format('d M Y') }}
+                            
+                            @if($partner->description)
+                                <p class="text-sm text-charcoal-500 mb-4 line-clamp-3 leading-relaxed flex-grow">
+                                    {{ strip_tags($partner->description) }}
+                                </p>
+                            @endif
+                            
+                            <div class="mt-auto space-y-3 pt-4 border-t border-charcoal-100 relative z-20">
+                                @if($partner->partnerships->count() > 0)
+                                    <div class="flex flex-wrap gap-2 pointer-events-none">
+                                        @foreach($partner->partnerships->take(2) as $ps)
+                                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-charcoal-100 text-charcoal-700">
+                                                {{ $ps->type }}
+                                            </span>
+                                        @endforeach
+                                        @if($partner->partnerships->count() > 2)
+                                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-charcoal-50 text-charcoal-500">
+                                                +{{ $partner->partnerships->count() - 2 }}
                                             </span>
                                         @endif
                                     </div>
-                                    
-                                    <div class="prose prose-sm prose-slate max-w-none mb-4">
-                                        {!! \App\Support\HtmlSanitizer::clean($vacancy->description) !!}
+                                @endif
+                                
+                                @if($partner->job_vacancies_count > 0)
+                                    <div class="mt-4 flex items-center justify-between text-sm">
+                                        <a href="{{ route('jobs.index') }}?mitra={{ $partner->slug }}" class="font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 transition-colors flex items-center z-20 relative">
+                                            {{ $partner->job_vacancies_count }} Lowongan Aktif
+                                        </a>
+                                        <span class="text-primary-600 font-bold group-hover:translate-x-1 transition-transform flex items-center pointer-events-none">
+                                            Profil <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                        </span>
                                     </div>
-
-                                    @if($vacancy->requirements)
-                                        <div class="bg-slate-50 rounded-lg p-4 text-sm text-slate-700 border border-slate-100">
-                                            <strong class="block mb-2 text-slate-900">Persyaratan Khusus:</strong>
-                                            {!! nl2br(e($vacancy->requirements)) !!}
-                                        </div>
-                                    @endif
-                                </div>
-                                <div class="md:text-right mt-4 md:mt-0 flex-shrink-0">
-                                    <a href="mailto:{{ $partner->email ?? 'info@sekolah.sch.id' }}" class="inline-flex justify-center items-center py-2 px-4 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-blue-300 w-full md:w-auto">
-                                        Lamar Sekarang
-                                    </a>
-                                </div>
+                                @endif
                             </div>
-                        @endforeach
-                    @endforeach
-
-                    @if(!$hasVacancies)
-                        <div class="text-center py-12 bg-slate-50 rounded-xl border border-dashed border-slate-200">
-                            <svg class="w-12 h-12 text-slate-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <p class="text-slate-500 font-medium">Belum ada lowongan kerja yang dibuka saat ini.</p>
                         </div>
-                    @endif
-                </div>
+                    </div>
+                @empty
+                    <div class="col-span-full py-16 text-center">
+                        <x-frontend.ui.empty-state 
+                            title="Belum Ada Data Mitra Industri" 
+                            message="Daftar mitra industri DUDI belum tersedia saat ini." 
+                            icon="building" 
+                        />
+                    </div>
+                @endforelse
             </div>
-
-        </div>
+            
+            @if($partners->hasPages())
+                <div class="mt-16 flex justify-center">
+                    {{ $partners->links() }}
+                </div>
+            @endif
+        </x-frontend.layout.container>
     </section>
 </x-layouts.app>
