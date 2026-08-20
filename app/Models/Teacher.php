@@ -14,10 +14,13 @@ class Teacher extends Model
 
     protected $fillable = ['user_id', 'name', 'nip', 'position', 'phone', 'photo', 'is_head_of_department', 'is_active'];
 
-    protected $casts = [
-        'is_head_of_department' => 'boolean',
-        'is_active' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'is_head_of_department' => 'boolean',
+            'is_active' => 'boolean',
+        ];
+    }
 
     public function user()
     {

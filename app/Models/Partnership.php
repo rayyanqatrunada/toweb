@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Partnership extends Model
 {
+    use \App\Traits\CleansUpFiles;
     use LogsActivity;
 
     use HasFactory;
@@ -35,5 +36,10 @@ class Partnership extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
+    }
+
+    public function getFileFields(): array
+    {
+        return ['document_file'];
     }
 }

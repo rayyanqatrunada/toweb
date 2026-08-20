@@ -31,8 +31,10 @@ class ManageSettings extends Page implements HasForms
             'site_name' => $settings->get('site_name'),
             'site_tagline' => $settings->get('site_tagline'),
             'site_description' => $settings->get('site_description'),
+            'site_logo' => $settings->get('site_logo'),
             'hero_title' => $settings->get('hero_title'),
             'hero_subtitle' => $settings->get('hero_subtitle'),
+            'hero_image' => $settings->get('hero_image'),
             'head_quote' => $settings->get('head_quote'),
             'youtube_video_id' => $settings->get('youtube_video_id'),
             'social_youtube' => $settings->get('social_youtube'),
@@ -57,6 +59,7 @@ class ManageSettings extends Page implements HasForms
                         TextInput::make('site_name')->label('Nama Website')->required(),
                         TextInput::make('site_tagline')->label('Tagline Singkat')->required(),
                         Textarea::make('site_description')->label('Deskripsi Website (SEO & Footer)')->required()->rows(3),
+                        \Filament\Forms\Components\FileUpload::make('site_logo')->label('Logo Website')->image()->directory('settings')->maxSize(2048),
                     ]),
 
                 Section::make('Konten Beranda (Hero)')
@@ -64,6 +67,7 @@ class ManageSettings extends Page implements HasForms
                     ->schema([
                         TextInput::make('hero_title')->label('Judul Utama (Hero)')->required(),
                         Textarea::make('hero_subtitle')->label('Subjudul (Hero)')->required()->rows(2),
+                        \Filament\Forms\Components\FileUpload::make('hero_image')->label('Gambar Latar Hero')->image()->directory('settings')->maxSize(5120),
                         Textarea::make('head_quote')->label('Kutipan Kepala Jurusan')->required()->rows(2),
                     ]),
                 

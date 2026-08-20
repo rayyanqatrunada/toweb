@@ -27,7 +27,7 @@
         <x-frontend.breadcrumbs :items="['PKL' => route('internships.index')]" />
     </div>
 
-    <section class="py-16 lg:py-24 bg-white min-h-[50vh]">
+    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <x-frontend.layout.container class="max-w-6xl">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 @forelse($internships as $internship)
@@ -107,3 +107,6 @@
         </x-frontend.layout.container>
     </section>
 </x-layouts.app>
+
+
+

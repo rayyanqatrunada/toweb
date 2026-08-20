@@ -7,7 +7,6 @@ use Spatie\Activitylog\LogOptions;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class GalleryItem extends Model
 {
@@ -45,9 +44,6 @@ class GalleryItem extends Model
         });
 
         static::deleted(function ($item) {
-            if ($item->file_path && Storage::disk('public')->exists($item->file_path)) {
-                Storage::disk('public')->delete($item->file_path);
-            }
             \Illuminate\Support\Facades\Cache::forget('homepage:galleries');
         });
     }

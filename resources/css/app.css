@@ -22,11 +22,17 @@
     --color-primary-900: #7f1d1d;
     --color-primary-950: #450a0a;
 
-    /* Neutrals */
-    --color-charcoal-50: #f4f4f5; /* off-white */
-    --color-charcoal-100: #e4e4e7;
+    /* Neutrals (Zinc/Charcoal scale) */
+    --color-charcoal-50: #fafafa;
+    --color-charcoal-100: #f4f4f5;
+    --color-charcoal-200: #e4e4e7;
+    --color-charcoal-300: #d4d4d8;
+    --color-charcoal-400: #a1a1aa;
+    --color-charcoal-500: #71717a;
+    --color-charcoal-600: #52525b;
+    --color-charcoal-700: #3f3f46;
     --color-charcoal-800: #27272a;
-    --color-charcoal-900: #18181b; /* near-black */
+    --color-charcoal-900: #18181b;
     --color-charcoal-950: #09090b;
 
     /* Container config if needed in utility */
@@ -37,6 +43,6 @@
 @layer components {
     /* Focus visible standard */
     .focus-ring {
-        @apply outline-none ring-2 ring-primary-500/50 ring-offset-2 ring-offset-white transition-shadow;
+        @apply outline-none focus-visible:ring-2 focus-visible:ring-charcoal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white transition-shadow;
     }
 }

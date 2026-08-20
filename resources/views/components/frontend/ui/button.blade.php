@@ -12,7 +12,7 @@
     $variants = [
         'primary' => 'bg-primary-600 text-white hover:bg-primary-700 border border-transparent shadow-sm',
         'secondary' => 'bg-charcoal-900 text-white hover:bg-charcoal-800 border border-transparent shadow-sm',
-        'outline' => 'bg-white text-charcoal-800 border-2 border-charcoal-200 hover:border-primary-600 hover:text-primary-600',
+        'outline' => 'bg-white text-charcoal-800 border-2 border-charcoal-200 hover:border-charcoal-900 hover:text-charcoal-900',
         'ghost' => 'bg-transparent text-charcoal-700 hover:bg-charcoal-100 border border-transparent',
         'soft' => 'bg-primary-50 text-primary-700 hover:bg-primary-100 border border-transparent',
     ];

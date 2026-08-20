@@ -26,7 +26,7 @@
         <x-frontend.breadcrumbs :items="['Mitra Industri' => route('partnership.index')]" />
     </div>
 
-    <section class="py-16 lg:py-24 bg-white min-h-[50vh]">
+    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <x-frontend.layout.container>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @forelse($partners as $partner)
@@ -42,13 +42,7 @@
                         @endif
 
                         <a href="{{ route('partnership.show', $partner->slug) }}" class="block p-8 bg-charcoal-50 flex items-center justify-center aspect-[4/3] group-hover:bg-primary-50/30 transition-colors relative z-0">
-                            @if($partner->logo)
-                                <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="max-w-[70%] max-h-[70%] object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105" loading="lazy">
-                            @else
-                                <div class="w-16 h-16 bg-primary-100 text-primary-600 rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 shadow-sm border border-primary-200">
-                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                                </div>
-                            @endif
+                                <img src="{{ $partner->logo ? Storage::url($partner->logo) : 'https://ui-avatars.com/api/?name='.urlencode($partner->name).'&background=1e293b&color=fff&size=256&bold=true' }}" alt="{{ $partner->name }}" class="max-w-[70%] max-h-[70%] object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105" loading="lazy">                       
                         </a>
                         
                         <div class="p-6 flex flex-col flex-grow">
@@ -116,3 +110,6 @@
         </x-frontend.layout.container>
     </section>
 </x-layouts.app>
+
+
+

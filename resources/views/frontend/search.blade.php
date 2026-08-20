@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <section class="py-16 bg-slate-50 min-h-[50vh]">
+    <section class="bg-slate-50 min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <div class="max-w-screen-md mx-auto px-4">
             @if(empty($q))
                 <div class="text-center py-20">
@@ -58,3 +58,6 @@
         </div>
     </section>
 </x-layouts.app>
+
+
+

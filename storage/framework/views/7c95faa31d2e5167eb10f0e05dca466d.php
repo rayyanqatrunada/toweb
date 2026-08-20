@@ -25,7 +25,7 @@
     <?php $__env->stopPush(); ?>
 
     <!-- 01. PAGE HERO -->
-    <section class="relative bg-white pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden border-b border-charcoal-200">
+    <section class="relative bg-white overflow-hidden border-b border-charcoal-200 lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <!-- Technical Grid Background -->
         <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: linear-gradient(to right, #cbd5e1 1px, transparent 1px), linear-gradient(to bottom, #cbd5e1 1px, transparent 1px); background-size: 2rem 2rem;"></div>
         
@@ -761,4 +761,8 @@ PROGRAM KEAHLIAN <?php echo $__env->renderComponent(); ?>
 <?php $component = $__componentOriginal5863877a5171c196453bfa0bd807e410; ?>
 <?php unset($__componentOriginal5863877a5171c196453bfa0bd807e410); ?>
 <?php endif; ?>
+
+
+
+
 <?php /**PATH D:\Project\test\Web Jurusan\TOWEB\resources\views/frontend/about.blade.php ENDPATH**/ ?>

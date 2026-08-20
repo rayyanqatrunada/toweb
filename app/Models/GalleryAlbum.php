@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class GalleryAlbum extends Model
 {
+    use \App\Traits\CleansUpFiles;
     use LogsActivity;
 
     use HasFactory;
@@ -61,5 +62,10 @@ class GalleryAlbum extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
+    }
+
+    public function getFileFields(): array
+    {
+        return ['thumbnail'];
     }
 }

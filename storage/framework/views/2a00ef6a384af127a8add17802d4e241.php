@@ -11,7 +11,7 @@
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
     <!-- Hero Section -->
-    <section class="bg-charcoal-950 py-16 lg:py-24 border-b border-charcoal-800 relative overflow-hidden">
+    <section class="bg-charcoal-950 border-b border-charcoal-800 relative overflow-hidden lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -311,4 +311,7 @@ INSTITUTIONAL KNOWLEDGE <?php echo $__env->renderComponent(); ?>
 <?php $component = $__componentOriginal5863877a5171c196453bfa0bd807e410; ?>
 <?php unset($__componentOriginal5863877a5171c196453bfa0bd807e410); ?>
 <?php endif; ?>
+
+
+
 <?php /**PATH D:\Project\test\Web Jurusan\TOWEB\resources\views/frontend/news/index.blade.php ENDPATH**/ ?>

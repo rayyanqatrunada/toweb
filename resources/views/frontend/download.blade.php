@@ -27,7 +27,7 @@
         <x-frontend.breadcrumbs :items="['Unduhan' => route('download.index')]" />
     </div>
 
-    <section class="py-16 lg:py-24 bg-white min-h-[50vh]">
+    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <x-frontend.layout.container class="max-w-5xl">
             
             <div class="bg-white border border-charcoal-200 rounded-3xl shadow-xl shadow-charcoal-900/5 overflow-hidden">
@@ -97,3 +97,6 @@
         </x-frontend.layout.container>
     </section>
 </x-layouts.app>
+
+
+

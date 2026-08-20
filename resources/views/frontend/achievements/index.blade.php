@@ -1,6 +1,6 @@
 <x-layouts.app title="Prestasi & Penghargaan">
     <!-- Hero Section -->
-    <section class="bg-charcoal-950 py-16 lg:py-24 border-b border-charcoal-800 relative overflow-hidden">
+    <section class="bg-charcoal-950 border-b border-charcoal-800 relative overflow-hidden lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <!-- Trophy Pattern/Abstract Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -115,3 +115,6 @@
         </x-frontend.layout.container>
     </section>
 </x-layouts.app>
+
+
+

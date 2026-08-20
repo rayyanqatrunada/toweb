@@ -29,7 +29,7 @@
         <x-frontend.breadcrumbs :items="['Pengumuman' => route('announcements.index')]" />
     </div>
 
-    <section class="py-16 lg:py-24 bg-white min-h-[50vh]">
+    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <x-frontend.layout.container class="max-w-4xl">
             <div class="space-y-6">
                 @forelse($announcements as $announcement)
@@ -90,3 +90,6 @@
         </x-frontend.layout.container>
     </section>
 </x-layouts.app>
+
+
+

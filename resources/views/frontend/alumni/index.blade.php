@@ -26,7 +26,7 @@
         <x-frontend.breadcrumbs :items="['Alumni' => route('alumni.index')]" />
     </div>
 
-    <section class="py-16 lg:py-24 bg-white min-h-[50vh]">
+    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <x-frontend.layout.container>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @forelse($alumnis as $alumni)
@@ -87,3 +87,6 @@
         </x-frontend.layout.container>
     </section>
 </x-layouts.app>
+
+
+
