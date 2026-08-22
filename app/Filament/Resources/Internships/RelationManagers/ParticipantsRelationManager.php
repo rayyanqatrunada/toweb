@@ -30,10 +30,9 @@ class ParticipantsRelationManager extends RelationManager
                     ->label('Role / Position'),
                 Select::make('status')
                     ->options([
-                        'planned' => 'Planned',
                         'active' => 'Active',
                         'completed' => 'Completed',
-                        'cancelled' => 'Cancelled',
+                        'dropped' => 'Dropped',
                     ])
                     ->required()
                     ->default('active'),

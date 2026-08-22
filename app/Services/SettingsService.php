@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Cache;
 
 class SettingsService
 {
+    protected $settings = null;
+
     /**
      * Get a setting value by key.
      *
@@ -16,11 +18,13 @@ class SettingsService
      */
     public function get(string $key, $default = null)
     {
-        $settings = Cache::rememberForever('site_settings', function () {
-            return Setting::pluck('value', 'key')->toArray();
-        });
+        if ($this->settings === null) {
+            $this->settings = Cache::rememberForever('site_settings', function () {
+                return Setting::pluck('value', 'key')->toArray();
+            });
+        }
 
-        return $settings[$key] ?? $default;
+        return $this->settings[$key] ?? $default;
     }
 
     /**
@@ -38,5 +42,6 @@ class SettingsService
         );
 
         Cache::forget('site_settings');
+        $this->settings = null;
     }
 }

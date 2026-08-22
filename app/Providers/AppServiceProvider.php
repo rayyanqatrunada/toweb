@@ -11,7 +11,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(\App\Services\SettingsService::class, function ($app) {
+            return new \App\Services\SettingsService();
+        });
     }
 
     /**
@@ -23,8 +25,11 @@ class AppServiceProvider extends ServiceProvider
         
         \App\Models\Setting::observe(\App\Observers\SettingObserver::class);
 
-        \Illuminate\Support\Facades\View::composer('*', function ($view) {
-            $view->with('settings', app(\App\Services\SettingsService::class));
-        });
+        \Illuminate\Support\Facades\View::composer(
+            ['frontend.layouts.app', 'components.layouts.app', 'components.footer', 'frontend.home', 'frontend.about'], 
+            function ($view) {
+                $view->with('settings', app(\App\Services\SettingsService::class));
+            }
+        );
     }
 }

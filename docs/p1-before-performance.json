@@ -1,0 +1,80 @@
+[
+    {
+        "route": "\/",
+        "cold_ms": 11168.34,
+        "warm_ms": 1991.4,
+        "status": 200
+    },
+    {
+        "route": "\/tentang",
+        "cold_ms": 6235.95,
+        "warm_ms": 2208.1,
+        "status": 200
+    },
+    {
+        "route": "\/akademik\/program",
+        "cold_ms": 2522.26,
+        "warm_ms": 1549.78,
+        "status": 200
+    },
+    {
+        "route": "\/akademik\/guru",
+        "cold_ms": 1906.82,
+        "warm_ms": 987.02,
+        "status": 200
+    },
+    {
+        "route": "\/akademik\/fasilitas",
+        "cold_ms": 1695.33,
+        "warm_ms": 1806.9,
+        "status": 200
+    },
+    {
+        "route": "\/berita",
+        "cold_ms": 2954.05,
+        "warm_ms": 1004.96,
+        "status": 200
+    },
+    {
+        "route": "\/prestasi",
+        "cold_ms": 2493.45,
+        "warm_ms": 975.02,
+        "status": 200
+    },
+    {
+        "route": "\/mitra-industri",
+        "cold_ms": 3157.2,
+        "warm_ms": 1399.97,
+        "status": 200
+    },
+    {
+        "route": "\/alumni",
+        "cold_ms": 2250.26,
+        "warm_ms": 1010.63,
+        "status": 200
+    },
+    {
+        "route": "\/galeri",
+        "cold_ms": 2765.76,
+        "warm_ms": 1709.06,
+        "status": 200
+    },
+    {
+        "route": "\/pkl",
+        "cold_ms": 3104.71,
+        "warm_ms": 1121.63,
+        "status": 200
+    },
+    {
+        "route": "\/lowongan",
+        "cold_ms": 2223.55,
+        "warm_ms": 1395.29,
+        "status": 200
+    },
+    {
+        "route": "\/unduhan",
+        "cold_ms": 3257.32,
+        "warm_ms": 1697.18,
+        "status": 200
+    }
+]

@@ -10,7 +10,9 @@ class AchievementController extends Controller
 {
     public function index()
     {
-        $achievements = Achievement::with('category')->published()->latest()->paginate(12);
+        $achievements = Achievement::select('id', 'category_id', 'title', 'slug', 'level', 'rank', 'date', 'photo', 'created_at')
+                                   ->with('category:id,name,slug')
+                                   ->published()->latest()->paginate(12);
         return view('frontend.achievements.index', compact('achievements'));
     }
 

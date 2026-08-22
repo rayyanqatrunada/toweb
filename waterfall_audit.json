@@ -1,0 +1,26 @@
+[
+  {
+    "url": "http://127.0.0.1:8000/alumni",
+    "resourceType": "document",
+    "startTime": 1787334384412,
+    "endTime": 1787334388305,
+    "duration": 3893,
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:8000/build/assets/app-g3cvzrBS.css",
+    "resourceType": "stylesheet",
+    "startTime": 1787334388347,
+    "endTime": 1787334388560,
+    "duration": 213,
+    "status": 200
+  },
+  {
+    "url": "http://127.0.0.1:8000/build/assets/app-BvRk9kiK.js",
+    "resourceType": "script",
+    "startTime": 1787334388348,
+    "endTime": 1787334388561,
+    "duration": 213,
+    "status": 200
+  }
+]

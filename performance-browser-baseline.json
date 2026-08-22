@@ -1,0 +1,102 @@
+[
+  {
+    "route": "/",
+    "ttfb": 1064,
+    "fcp": 2276,
+    "lcp": 2276,
+    "domReady": 2094,
+    "load": 2098,
+    "requests": 11,
+    "transferKB": 302
+  },
+  {
+    "route": "/tentang",
+    "ttfb": 18855,
+    "fcp": 19592,
+    "lcp": 19592,
+    "domReady": 19589,
+    "load": 19603,
+    "requests": 4,
+    "transferKB": 226
+  },
+  {
+    "route": "/akademik/program",
+    "ttfb": 8014,
+    "fcp": 8612,
+    "lcp": 8612,
+    "domReady": 8609,
+    "load": 8615,
+    "requests": 3,
+    "transferKB": 150
+  },
+  {
+    "route": "/akademik/guru",
+    "ttfb": 5318,
+    "fcp": 5892,
+    "lcp": 5892,
+    "domReady": 5888,
+    "load": 6337,
+    "requests": 11,
+    "transferKB": 184
+  },
+  {
+    "route": "/akademik/fasilitas",
+    "ttfb": 25597,
+    "fcp": 29852,
+    "lcp": 29852,
+    "domReady": 29387,
+    "load": 29764,
+    "requests": 4,
+    "transferKB": 217
+  },
+  {
+    "route": "/berita",
+    "ttfb": 8004,
+    "fcp": 0,
+    "lcp": 0,
+    "domReady": 8391,
+    "load": 8424,
+    "requests": 4,
+    "transferKB": 158
+  },
+  {
+    "route": "/galeri",
+    "ttfb": 3217,
+    "fcp": 9112,
+    "lcp": 9112,
+    "domReady": 10766,
+    "load": 10780,
+    "requests": 3,
+    "transferKB": 246
+  },
+  {
+    "route": "/pkl",
+    "ttfb": 6839,
+    "fcp": 0,
+    "lcp": 0,
+    "domReady": 9088,
+    "load": 9100,
+    "requests": 2,
+    "transferKB": 38
+  },
+  {
+    "route": "/lowongan",
+    "ttfb": 9931,
+    "fcp": 52956,
+    "lcp": 52956,
+    "domReady": 53029,
+    "load": 53045,
+    "requests": 6,
+    "transferKB": 382
+  },
+  {
+    "route": "/unduhan",
+    "ttfb": 7529,
+    "fcp": 12648,
+    "lcp": 12648,
+    "domReady": 12872,
+    "load": 12875,
+    "requests": 5,
+    "transferKB": 402
+  }
+]

@@ -11,7 +11,9 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = Post::with('category')->published()->latest()->paginate(9);
+        $news = Post::select('id', 'category_id', 'title', 'slug', 'thumbnail', 'published_at', 'excerpt')
+                    ->with('category:id,name,slug')
+                    ->published()->latest()->paginate(9);
         return view('frontend.news.index', compact('news'));
     }
 
@@ -23,7 +25,8 @@ class NewsController extends Controller
 
     public function announcements()
     {
-        $announcements = Announcement::active()->latest()->paginate(10);
+        $announcements = Announcement::select('id', 'title', 'slug', 'created_at', 'is_active')
+                                     ->active()->latest()->paginate(10);
         return view('frontend.announcements.index', compact('announcements'));
     }
 
