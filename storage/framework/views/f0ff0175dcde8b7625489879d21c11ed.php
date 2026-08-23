@@ -11,7 +11,7 @@
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
     <!-- Hero Section -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -20,26 +20,26 @@
         </div>
         <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'relative z-10 text-center max-w-3xl mx-auto']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'relative z-10 text-center max-w-3xl mx-auto reveal-on-scroll reveal-up']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.layout.container'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['class' => 'relative z-10 text-center max-w-3xl mx-auto']); ?>
+<?php $component->withAttributes(['class' => 'relative z-10 text-center max-w-3xl mx-auto reveal-on-scroll reveal-up']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
             <?php if (isset($component)) { $__componentOriginalac1079511a1017c8db3b04bb1937d3e9 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalac1079511a1017c8db3b04bb1937d3e9 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.ui.eyebrow','data' => ['class' => 'text-primary-400 mb-4 justify-center']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.ui.eyebrow','data' => ['class' => 'text-primary-600 mb-4 justify-center']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.ui.eyebrow'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['class' => 'text-primary-400 mb-4 justify-center']); ?>
+<?php $component->withAttributes(['class' => 'text-primary-600 mb-4 justify-center']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 Documentations <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -51,8 +51,8 @@ Documentations <?php echo $__env->renderComponent(); ?>
 <?php $component = $__componentOriginalac1079511a1017c8db3b04bb1937d3e9; ?>
 <?php unset($__componentOriginalac1079511a1017c8db3b04bb1937d3e9); ?>
 <?php endif; ?>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">Galeri Kegiatan</h1>
-            <p class="text-charcoal-300 text-lg lg:text-xl leading-relaxed">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-tight tracking-tight">Galeri Kegiatan</h1>
+            <p class="text-charcoal-600 text-lg lg:text-xl leading-relaxed">
                 Rekam jejak visual, dokumentasi praktik, kegiatan belajar mengajar, event jurusan, hingga karya siswa.
             </p>
          <?php echo $__env->renderComponent(); ?>
@@ -68,7 +68,7 @@ Documentations <?php echo $__env->renderComponent(); ?>
     </div>
 
     <!-- Breadcrumbs -->
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -139,7 +139,7 @@ Documentations <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
     </div>
 
-    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
+    <section class="bg-white min-h-[50vh] pt-12 pb-20 lg:pt-16 lg:pb-24">
         <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -154,8 +154,8 @@ Documentations <?php echo $__env->renderComponent(); ?>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $albums; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $album): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-                    <a href="<?php echo e(route('gallery.show', $album->slug)); ?>" class="group block h-full">
-                        <div class="bg-white border border-charcoal-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-charcoal-200 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative">
+                    <a href="<?php echo e(route('gallery.show', $album->slug)); ?>" class="group block h-full reveal-on-scroll reveal-up delay-<?php echo e($loop->iteration * 100 % 300); ?>">
+                        <div class="bg-white border border-charcoal-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-charcoal-300 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative">
                             
                             <!-- Cover Image -->
                             <div class="aspect-[4/3] relative overflow-hidden bg-charcoal-100">

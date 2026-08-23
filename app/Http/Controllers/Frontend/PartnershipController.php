@@ -10,9 +10,15 @@ class PartnershipController extends Controller
 {
     public function index()
     {
-        $partners = IndustryPartner::with('partnerships')
-            ->withCount(['jobVacancies' => function($q) {
-                $q->published()->where(function($query) {
+        // Gunakan withCount alih-alih with('partnerships') untuk menghindari
+        // memuat semua baris partnership ke memori. select() hanya kolom yang
+        // diperlukan di tampilan list.
+        $partners = IndustryPartner::select(
+                'id', 'name', 'slug', 'industry_type', 'logo', 'address', 'website', 'published_at'
+            )
+            ->withCount('partnerships')
+            ->withCount(['jobVacancies' => function ($q) {
+                $q->published()->where(function ($query) {
                     $query->whereNull('deadline')
                           ->orWhere('deadline', '>=', now());
                 });

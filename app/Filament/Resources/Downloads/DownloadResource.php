@@ -18,7 +18,7 @@ class DownloadResource extends Resource
 {
     protected static ?string $model = Download::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowDownTray;
     protected static string | \UnitEnum | null $navigationGroup = 'MEDIA';
 
     public static function form(Schema $schema): Schema

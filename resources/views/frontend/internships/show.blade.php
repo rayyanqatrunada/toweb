@@ -3,43 +3,43 @@
     :description="Str::limit(strip_tags($internship->description), 150)"
 >
     <!-- Header Page -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto">
+        <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto reveal-on-scroll reveal-up">
             <div class="flex justify-center mb-6">
-                <span class="inline-flex items-center px-4 py-1.5 bg-primary-500/20 text-primary-300 rounded-full text-xs font-black tracking-widest uppercase border border-primary-500/30">
+                <span class="inline-flex items-center px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-xs font-black tracking-widest uppercase border border-primary-200 shadow-sm">
                     Program Praktik Kerja Lapangan
                 </span>
             </div>
             
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8 leading-[1.15] tracking-tight">{{ $internship->title }}</h1>
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-8 leading-[1.15] tracking-tight">{{ $internship->title }}</h1>
             
-            <div class="flex flex-wrap items-center justify-center text-charcoal-300 text-sm gap-4">
-                <span class="flex items-center font-bold text-white bg-charcoal-900/60 px-5 py-2.5 rounded-xl border border-charcoal-800">
-                    <svg class="w-5 h-5 mr-2.5 opacity-70 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+            <div class="flex flex-wrap items-center justify-center text-charcoal-600 text-sm gap-4 font-semibold">
+                <span class="flex items-center bg-white px-5 py-2.5 rounded-xl border border-charcoal-200 shadow-sm">
+                    <svg class="w-5 h-5 mr-2.5 opacity-70 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                     Mitra Industri: &nbsp;
                     @if($internship->industryPartner)
-                        <a href="{{ route('partnership.show', $internship->industryPartner->slug) }}" class="text-primary-300 hover:text-white transition-colors">{{ $internship->industryPartner->name }}</a>
+                        <a href="{{ route('partnership.show', $internship->industryPartner->slug) }}" class="text-primary-600 hover:text-primary-700 transition-colors">{{ $internship->industryPartner->name }}</a>
                     @else
                         -
                     @endif
                 </span>
                 
                 @if($internship->status === 'open')
-                    <span class="flex items-center font-bold text-emerald-300 bg-emerald-950/60 px-5 py-2.5 rounded-xl border border-emerald-800/50">
-                        <span class="w-2 h-2 bg-emerald-400 rounded-full mr-2.5 animate-pulse"></span> Pendaftaran Buka
+                    <span class="flex items-center text-emerald-700 bg-emerald-50 px-5 py-2.5 rounded-xl border border-emerald-200 shadow-sm">
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2.5 animate-pulse"></span> Pendaftaran Buka
                     </span>
                 @elseif($internship->status === 'ongoing')
-                    <span class="flex items-center font-bold text-blue-300 bg-blue-950/60 px-5 py-2.5 rounded-xl border border-blue-800/50">
+                    <span class="flex items-center text-blue-700 bg-blue-50 px-5 py-2.5 rounded-xl border border-blue-200 shadow-sm">
                         Sedang Berjalan
                     </span>
                 @else
-                    <span class="flex items-center font-bold text-charcoal-400 bg-charcoal-900/60 px-5 py-2.5 rounded-xl border border-charcoal-800">
+                    <span class="flex items-center text-charcoal-500 bg-white px-5 py-2.5 rounded-xl border border-charcoal-200 shadow-sm">
                         Selesai
                     </span>
                 @endif
@@ -48,7 +48,7 @@
     </div>
 
     <!-- Breadcrumbs -->
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <x-frontend.layout.container>
             <x-frontend.breadcrumbs :items="[
                 'Program PKL' => route('internships.index'),
@@ -64,7 +64,7 @@
         ]" />
     </div>
 
-    <article class="bg-white py-12 lg:py-20 min-h-[50vh]">
+    <article class="bg-white py-12 lg:py-20 min-h-[50vh] reveal-on-scroll reveal-up">
         <x-frontend.layout.container class="max-w-4xl">
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-12">
@@ -97,7 +97,7 @@
                     Informasi Program
                 </h2>
                 
-                <div class="prose prose-lg md:prose-xl prose-slate max-w-none prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-li:text-charcoal-700">
+                <div class="prose prose-lg md:prose-xl prose-charcoal max-w-none prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-li:text-charcoal-700">
                     {!! \App\Support\HtmlSanitizer::clean($internship->description) !!}
                 </div>
                 

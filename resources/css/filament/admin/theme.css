@@ -1,0 +1,281 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* =====================================================
+ * PORTAL ADMIN TO — Modern UI Dashboard Theme
+ * Inspired by User Design Request
+ * ===================================================== */
+
+/* ── CSS VARIABLES: COLOR SYSTEM ──────────────────── */
+:root {
+    /* Brand Electric Blue */
+    --brand-blue: #0A24DB; /* Deep vibrant blue from the mockup */
+    --brand-blue-hover: #071BAE;
+    
+    /* Sidebar */
+    --fi-sidebar-bg: #000000; /* Pure black sidebar */
+    --fi-sidebar-item-active: var(--brand-blue);
+    --fi-sidebar-item-hover: rgba(255, 255, 255, 0.08);
+    --fi-sidebar-text: #8A92A6;
+    --fi-sidebar-text-active: #ffffff;
+
+    /* Surface */
+    --fi-main-bg: #F4F7FE; /* Soft light grayish blue background */
+
+    /* Card */
+    --fi-card-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+    --fi-card-radius: 0.8rem;
+}
+
+/* ── GLOBAL FONT & SMOOTHING ────────────────────────── */
+html, body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--fi-main-bg) !important;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────── */
+.fi-sidebar {
+    background-color: var(--fi-sidebar-bg) !important;
+    border-right: none !important;
+}
+
+.fi-sidebar-header {
+    border-bottom: none !important;
+    padding: 2rem 1.5rem 1rem !important;
+}
+
+.fi-brand-name {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: 1.25rem !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase;
+}
+
+.fi-sidebar-group-label {
+    display: none !important; /* Hide group labels to match the clean mockup */
+}
+
+.fi-sidebar-item-button {
+    color: var(--fi-sidebar-text) !important;
+    font-weight: 500 !important;
+    border-radius: 9999px !important; /* Pill shape */
+    margin: 0.25rem 1rem !important;
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.85rem !important;
+    gap: 0.8rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.fi-sidebar-item-button:hover {
+    color: #ffffff !important;
+    background: var(--fi-sidebar-item-hover) !important;
+}
+
+.fi-sidebar-item-button[aria-current="page"],
+.fi-sidebar-item-button.fi-active {
+    background: var(--fi-sidebar-item-active) !important;
+    color: var(--fi-sidebar-text-active) !important;
+    box-shadow: 0 4px 12px rgba(10, 36, 219, 0.3) !important;
+}
+
+.fi-sidebar-item-icon {
+    width: 1.1rem !important;
+    height: 1.1rem !important;
+}
+
+/* ── TOPBAR ──────────────────────────────────────────── */
+.fi-topbar {
+    background-color: var(--brand-blue) !important;
+    border: none !important;
+    margin: 1rem 1.5rem 1rem 1rem !important;
+    border-radius: 1rem !important;
+    width: calc(100% - 2.5rem) !important;
+    box-shadow: 0 8px 16px rgba(10, 36, 219, 0.2) !important;
+}
+
+.fi-topbar .fi-icon-btn,
+.fi-topbar .fi-breadcrumbs-item-label,
+.fi-topbar button,
+.fi-topbar svg {
+    color: #ffffff !important;
+}
+
+.fi-topbar-global-search-input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    border-radius: 9999px !important; /* Pill search */
+}
+.fi-topbar-global-search-input::placeholder {
+    color: rgba(255,255,255,0.7) !important;
+}
+
+/* ── MAIN CONTENT ────────────────────────────────────── */
+.fi-main {
+    background: var(--fi-main-bg) !important;
+    padding-top: 1rem !important;
+}
+
+.fi-page-header-heading {
+    color: #111827 !important;
+    font-weight: 800 !important;
+    font-size: 1.4rem !important;
+}
+
+/* ── CARDS / SECTIONS ────────────────────────────────── */
+.fi-section,
+.fi-card {
+    background: #ffffff !important;
+    border: none !important;
+    border-radius: var(--fi-card-radius) !important;
+    box-shadow: var(--fi-card-shadow) !important;
+}
+
+.fi-section-header-heading {
+    color: #111827 !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+}
+
+/* ── STATS OVERVIEW WIDGET ───────────────────────────── */
+.fi-wi-stats-overview-card {
+    background: #ffffff !important;
+    border: 1px solid #E5E7EB !important; /* Very subtle border */
+    border-radius: 0.6rem !important;
+    box-shadow: none !important; /* Flatten out stat cards */
+    padding: 1.25rem !important;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make the active/first stat card blue like the mockup */
+.fi-wi-stats-overview-card:nth-child(3) {
+    background: var(--brand-blue) !important;
+    border: none !important;
+    box-shadow: 0 8px 20px rgba(10, 36, 219, 0.25) !important;
+}
+.fi-wi-stats-overview-card:nth-child(3) .fi-wi-stats-overview-card-value,
+.fi-wi-stats-overview-card:nth-child(3) .fi-wi-stats-overview-card-label,
+.fi-wi-stats-overview-card:nth-child(3) .fi-wi-stats-overview-card-description,
+.fi-wi-stats-overview-card:nth-child(3) svg {
+    color: #ffffff !important;
+}
+
+.fi-wi-stats-overview-card-value {
+    color: #111827 !important;
+    font-weight: 800 !important;
+    font-size: 1.5rem !important;
+}
+
+.fi-wi-stats-overview-card-label {
+    color: #6B7280 !important;
+    font-weight: 600 !important;
+    font-size: 0.7rem !important;
+    text-transform: capitalize !important;
+}
+
+/* ── TABLES ──────────────────────────────────────────── */
+.fi-ta-header-cell {
+    background: #ffffff !important;
+    color: #6B7280 !important;
+    font-weight: 600 !important;
+    font-size: 0.7rem !important;
+    text-transform: none !important;
+    border-bottom: 1px solid #F3F4F6 !important;
+    padding: 0.75rem 1rem !important;
+}
+
+.fi-ta-row {
+    background: #ffffff !important;
+}
+.fi-ta-row:hover .fi-ta-cell {
+    background: #F9FAFB !important;
+}
+
+.fi-ta-cell {
+    color: #374151 !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    border-bottom: 1px solid #F3F4F6 !important;
+    padding: 0.75rem 1rem !important;
+}
+
+/* ── BUTTONS ─────────────────────────────────────────── */
+.fi-btn {
+    border-radius: 9999px !important; /* Pill buttons */
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+    padding: 0.4rem 1rem !important;
+    box-shadow: none !important;
+}
+
+.fi-btn-color-primary {
+    background-color: var(--brand-blue) !important;
+}
+.fi-btn-color-primary:hover {
+    background-color: var(--brand-blue-hover) !important;
+}
+
+/* ── FORM FIELDS ─────────────────────────────────────── */
+.fi-fo-field-wrp-label {
+    color: #374151 !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+}
+
+.fi-input,
+.fi-fo-text-input-wrp input,
+.fi-fo-textarea-wrp textarea,
+.fi-fo-select-wrp select {
+    border-radius: 0.5rem !important;
+    border-color: #E5E7EB !important;
+    background: #F9FAFB !important;
+    font-size: 0.85rem !important;
+    box-shadow: none !important;
+}
+
+.fi-input:focus,
+.fi-fo-text-input-wrp input:focus,
+.fi-fo-textarea-wrp textarea:focus {
+    border-color: var(--brand-blue) !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 2px rgba(10, 36, 219, 0.1) !important;
+}
+
+/* ── BADGES ──────────────────────────────────────────── */
+.fi-badge {
+    border-radius: 9999px !important;
+    font-weight: 700 !important;
+    font-size: 0.65rem !important;
+    padding: 0.2rem 0.6rem !important;
+}
+
+/* ── PAGINATION ──────────────────────────────────────── */
+.fi-pagination-item a {
+    border-radius: 50% !important; /* Circular pagination */
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
+}
+
+/* Fix global search icon color */
+.fi-topbar-global-search-icon {
+    color: #ffffff !important;
+}

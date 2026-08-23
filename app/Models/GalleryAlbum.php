@@ -53,9 +53,11 @@ class GalleryAlbum extends Model
     {
         static::saved(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:galleries');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
         static::deleted(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:galleries');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
     }
 

@@ -1,6 +1,6 @@
 <x-layouts.app title="Berita & Informasi">
     <!-- Hero Section -->
-    <section class="bg-charcoal-950 border-b border-charcoal-800 relative overflow-hidden lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
+    <section class="bg-charcoal-50 border-b border-charcoal-200 relative overflow-hidden lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -8,14 +8,14 @@
             </svg>
         </div>
         
-        <x-frontend.layout.container class="relative z-10">
+        <x-frontend.layout.container class="relative z-10 reveal-on-scroll reveal-up">
             <x-frontend.breadcrumbs :items="['Berita & Informasi' => route('news.index')]" class="mb-8" />
             
-            <x-frontend.ui.eyebrow class="text-charcoal-400">INSTITUTIONAL KNOWLEDGE</x-frontend.ui.eyebrow>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] mt-4 mb-6">
+            <x-frontend.ui.eyebrow class="text-primary-600">INSTITUTIONAL KNOWLEDGE</x-frontend.ui.eyebrow>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal-900 tracking-tight leading-[1.1] mt-4 mb-6">
                 Berita &<br class="hidden sm:block"> Informasi Terkini
             </h1>
-            <p class="text-lg text-charcoal-300 font-medium leading-relaxed max-w-2xl border-l-2 border-primary-500 pl-4">
+            <p class="text-lg text-charcoal-600 font-medium leading-relaxed max-w-2xl border-l-2 border-primary-600 pl-4">
                 Pembaruan kurikulum, kegiatan akademik, prestasi jurusan, dan wawasan mendalam mengenai industri otomotif masa kini.
             </p>
         </x-frontend.layout.container>
@@ -85,7 +85,7 @@
                     <!-- Regular Articles -->
                     @foreach($news->skip(1) as $post)
                         <div class="lg:col-span-4 reveal-on-scroll reveal-up">
-                            <article class="flex flex-col h-full bg-white border border-charcoal-200 rounded-2xl overflow-hidden group hover:border-charcoal-300 transition-colors duration-500 shadow-sm hover:shadow-md">
+                            <article class="flex flex-col h-full bg-white border border-charcoal-200 rounded-3xl overflow-hidden group hover:border-charcoal-300 transition-colors duration-500 shadow-sm hover:shadow-md">
                                 <a href="{{ route('news.show', $post->slug) }}" class="relative aspect-[16/10] overflow-hidden block bg-charcoal-100 focus:outline-none">
                                     @if($post->thumbnail)
                                         <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}" class="object-cover w-full h-full grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" loading="lazy">

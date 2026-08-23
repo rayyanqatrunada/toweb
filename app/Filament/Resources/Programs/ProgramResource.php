@@ -18,7 +18,7 @@ class ProgramResource extends Resource
 {
     protected static ?string $model = Program::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBookOpen;
     protected static string | \UnitEnum | null $navigationGroup = 'AKADEMIK';
 
     public static function form(Schema $schema): Schema

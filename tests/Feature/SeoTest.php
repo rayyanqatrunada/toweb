@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Post;
 
 class SeoTest extends TestCase
@@ -40,11 +41,15 @@ class SeoTest extends TestCase
             'slug' => 'berita-publik',
             'content' => 'Test',
             'status' => 'published',
-            'published_at' => now(),
+            // Gunakan subSecond() agar post pasti lolos scopePublished (published_at <= now())
+            'published_at' => now()->subSecond(),
             'user_id' => $user->id,
             'category_id' => $category->id,
         ]);
         $post->save();
+
+        // Bust cache setelah save (booted() sudah bust, ini double-safety)
+        Cache::forget('sitemap:urls');
 
         $response = $this->get('/sitemap.xml');
 
@@ -58,6 +63,9 @@ class SeoTest extends TestCase
     {
         $user = \App\Models\User::factory()->create();
         $category = \App\Models\Category::create(['name' => 'Drafts', 'slug' => 'drafts']);
+
+        // Flush cache terlebih dahulu agar test tidak bergantung state test sebelumnya
+        Cache::forget('sitemap:urls');
 
         $post = new Post([
             'title' => 'Berita Rahasia',

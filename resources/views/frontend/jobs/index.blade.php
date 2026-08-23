@@ -1,17 +1,17 @@
 <x-layouts.app title="Bursa Kerja Khusus (BKK)">
     <!-- Hero Section -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <x-frontend.layout.container class="relative z-10">
+        <x-frontend.layout.container class="relative z-10 reveal-on-scroll reveal-up">
             <div class="max-w-3xl mx-auto text-center">
-                <x-frontend.ui.eyebrow class="text-amber-400 mb-4 justify-center">Bursa Kerja Khusus (BKK)</x-frontend.ui.eyebrow>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">Peluang Karir</h1>
-                <p class="text-charcoal-300 text-lg lg:text-xl leading-relaxed">
+                <x-frontend.ui.eyebrow class="text-amber-500 mb-4 justify-center">Bursa Kerja Khusus (BKK)</x-frontend.ui.eyebrow>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-tight tracking-tight">Peluang Karir</h1>
+                <p class="text-charcoal-600 text-lg lg:text-xl leading-relaxed">
                     Informasi lowongan pekerjaan terbaru dari mitra industri terpercaya untuk alumni dan siswa tingkat akhir.
                 </p>
             </div>
@@ -19,7 +19,7 @@
     </div>
 
     <!-- Breadcrumbs -->
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <x-frontend.layout.container>
             <x-frontend.breadcrumbs :items="['Bursa Kerja Khusus' => route('jobs.index')]" class="py-4" />
         </x-frontend.layout.container>
@@ -29,11 +29,11 @@
         <x-frontend.breadcrumbs :items="['BKK' => route('jobs.index')]" />
     </div>
 
-    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
+    <section class="bg-white min-h-[50vh] pt-12 pb-20 lg:pt-16 lg:pb-24">
         <x-frontend.layout.container class="max-w-5xl">
             <div class="space-y-6">
                 @forelse($jobs as $job)
-                    <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl hover:shadow-charcoal-900/5 border border-charcoal-100 p-6 md:p-8 flex flex-col md:flex-row gap-6 transition-all duration-300 relative group overflow-hidden focus-within:ring-4 focus-within:ring-primary-500 hover:-translate-y-1">
+                    <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl hover:border-charcoal-300 border border-charcoal-200 p-6 md:p-8 flex flex-col md:flex-row gap-6 transition-all duration-300 relative group overflow-hidden focus-within:ring-4 focus-within:ring-primary-500 hover:-translate-y-1 reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
                         <!-- Decorative Indicator Line -->
                         <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-amber-500 transition-all duration-300 group-hover:w-2 group-hover:bg-primary-500"></div>
                         

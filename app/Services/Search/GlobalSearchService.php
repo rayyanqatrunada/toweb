@@ -13,127 +13,133 @@ use App\Models\Alumni;
 use App\Models\GalleryAlbum;
 use App\Models\Download;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class GlobalSearchService
 {
     /**
      * Perform global search across all relevant models.
      *
+     * Hasil pencarian di-cache per keyword selama 5 menit untuk menghindari
+     * 10 query LIKE berulang pada keyword yang sama.
+     * Pencarian hanya dilakukan pada kolom pendek (title, excerpt, dll.)
+     * — bukan kolom TEXT besar (content, bio, description) untuk mencegah
+     * full table scan yang lambat dan tidak bisa menggunakan index.
+     *
      * @param string $query
      * @return array
      */
     public function search(string $query): array
     {
-        $results = [];
+        $query = trim($query);
 
-        if (empty($query)) {
-            return $results;
+        if (strlen($query) < 3) {
+            return [];
         }
 
-        // Berita
+        // Cache per keyword — bust otomatis setelah 5 menit
+        $cacheKey = 'search:' . md5(mb_strtolower($query));
+
+        return Cache::remember($cacheKey, 300, function () use ($query) {
+            return $this->executeSearch($query);
+        });
+    }
+
+    private function executeSearch(string $query): array
+    {
+        $results = [];
+
+        // Berita — cari di title & excerpt (bukan content TEXT besar)
         $posts = Post::published()
-            ->select(['id', 'title', 'slug', 'excerpt', 'content', 'published_at'])
-            ->where(function($q) use ($query) {
+            ->select(['id', 'title', 'slug', 'excerpt', 'published_at'])
+            ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('excerpt', 'like', "%{$query}%")
-                  ->orWhere('content', 'like', "%{$query}%");
+                  ->orWhere('excerpt', 'like', "%{$query}%");
             })
             ->latest('published_at')->take(10)->get()
             ->map(fn($item) => new SearchResult(
                 title: $item->title,
                 url: route('news.show', $item->slug),
-                excerpt: $item->excerpt ?? Str::limit(strip_tags($item->content), 100),
+                excerpt: $item->excerpt ?? '',
                 date: $item->published_at?->format('d M Y')
             ));
         if ($posts->isNotEmpty()) $results['Berita'] = $posts;
 
-        // Pengumuman
+        // Pengumuman — cari di title saja (content TEXT terlalu besar untuk LIKE)
         $announcements = Announcement::active()
-            ->select(['id', 'title', 'slug', 'content', 'created_at'])
-            ->where(function($q) use ($query) {
-                $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('content', 'like', "%{$query}%");
-            })
+            ->select(['id', 'title', 'slug', 'created_at'])
+            ->where('title', 'like', "%{$query}%")
             ->latest()->take(10)->get()
             ->map(fn($item) => new SearchResult(
                 title: $item->title,
                 url: route('announcements.show', $item->slug),
-                excerpt: Str::limit(strip_tags($item->content), 100),
+                excerpt: '',
                 date: $item->created_at->format('d M Y')
             ));
         if ($announcements->isNotEmpty()) $results['Pengumuman'] = $announcements;
 
-        // Program Keahlian
+        // Program Keahlian — tabel kecil, aman cari di name
         $programs = Program::query()
             ->select(['id', 'name', 'slug', 'description'])
-            ->where(function($q) use ($query) {
-                $q->where('name', 'like', "%{$query}%")
-                  ->orWhere('description', 'like', "%{$query}%");
-            })
+            ->where('name', 'like', "%{$query}%")
             ->latest()->take(10)->get()
             ->map(fn($item) => new SearchResult(
                 title: $item->name,
                 url: route('academic.programs'),
-                excerpt: Str::limit(strip_tags($item->description), 100)
+                excerpt: Str::limit(strip_tags($item->description ?? ''), 100)
             ));
         if ($programs->isNotEmpty()) $results['Program Keahlian'] = $programs;
 
-        // Prestasi
+        // Prestasi — cari di title & organizer (bukan description TEXT)
         $achievements = Achievement::published()
-            ->select(['id', 'title', 'slug', 'level', 'rank', 'organizer', 'description', 'published_at'])
-            ->where(function($q) use ($query) {
+            ->select(['id', 'title', 'slug', 'level', 'rank', 'organizer', 'published_at'])
+            ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('description', 'like', "%{$query}%")
                   ->orWhere('organizer', 'like', "%{$query}%");
             })
             ->latest('published_at')->take(10)->get()
             ->map(fn($item) => new SearchResult(
                 title: $item->title,
                 url: route('achievements.show', $item->slug),
-                excerpt: "Tingkat: " . ucfirst($item->level) . ($item->rank ? " - {$item->rank}" : ""),
+                excerpt: 'Tingkat: ' . ucfirst($item->level) . ($item->rank ? " - {$item->rank}" : ''),
                 date: $item->published_at?->format('d M Y')
             ));
         if ($achievements->isNotEmpty()) $results['Prestasi'] = $achievements;
 
-        // Mitra Industri
+        // Mitra Industri — cari di name, industry_type, address (pendek)
         $partners = IndustryPartner::published()
-            ->select(['id', 'name', 'slug', 'industry_type', 'address', 'description', 'published_at'])
-            ->where(function($q) use ($query) {
+            ->select(['id', 'name', 'slug', 'industry_type', 'address', 'published_at'])
+            ->where(function ($q) use ($query) {
                 $q->where('name', 'like', "%{$query}%")
-                  ->orWhere('description', 'like', "%{$query}%")
-                  ->orWhere('address', 'like', "%{$query}%")
-                  ->orWhere('industry_type', 'like', "%{$query}%");
+                  ->orWhere('industry_type', 'like', "%{$query}%")
+                  ->orWhere('address', 'like', "%{$query}%");
             })
             ->latest('published_at')->take(10)->get()
             ->map(fn($item) => new SearchResult(
                 title: $item->name,
                 url: route('partnership.show', $item->slug),
-                excerpt: $item->industry_type
+                excerpt: $item->industry_type ?? ''
             ));
         if ($partners->isNotEmpty()) $results['Mitra Industri'] = $partners;
 
-        // Info PKL
+        // Info PKL — cari di title saja (description TEXT besar)
         $internships = Internship::published()
-            ->select(['id', 'title', 'description'])
-            ->where(function($q) use ($query) {
-                $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('description', 'like', "%{$query}%");
-            })
+            ->select(['id', 'title'])
+            ->where('title', 'like', "%{$query}%")
             ->latest()->take(10)->get()
             ->map(fn($item) => new SearchResult(
                 title: $item->title,
                 url: route('internships.show', $item->id),
-                excerpt: Str::limit(strip_tags($item->description), 100)
+                excerpt: ''
             ));
         if ($internships->isNotEmpty()) $results['Info PKL'] = $internships;
 
-        // Lowongan Kerja
+        // Lowongan Kerja — cari di title, position, location (bukan description TEXT)
         $jobs = JobVacancy::published()
-            ->select(['id', 'title', 'slug', 'position', 'location', 'description', 'published_at'])
-            ->where(function($q) use ($query) {
+            ->select(['id', 'title', 'slug', 'position', 'location', 'published_at'])
+            ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
                   ->orWhere('position', 'like', "%{$query}%")
-                  ->orWhere('description', 'like', "%{$query}%")
                   ->orWhere('location', 'like', "%{$query}%");
             })
             ->latest('published_at')->take(10)->get()
@@ -145,52 +151,47 @@ class GlobalSearchService
             ));
         if ($jobs->isNotEmpty()) $results['Lowongan Kerja'] = $jobs;
 
-        // Alumni
+        // Alumni — cari di name, current_occupation, current_company (bukan bio TEXT)
         $alumnis = Alumni::public()
-            ->select(['id', 'name', 'slug', 'current_occupation', 'current_company', 'bio', 'published_at'])
-            ->where(function($q) use ($query) {
+            ->select(['id', 'name', 'slug', 'current_occupation', 'current_company', 'published_at'])
+            ->where(function ($q) use ($query) {
                 $q->where('name', 'like', "%{$query}%")
                   ->orWhere('current_occupation', 'like', "%{$query}%")
-                  ->orWhere('current_company', 'like', "%{$query}%")
-                  ->orWhere('bio', 'like', "%{$query}%");
+                  ->orWhere('current_company', 'like', "%{$query}%");
             })
             ->latest('published_at')->take(10)->get()
             ->map(fn($item) => new SearchResult(
                 title: $item->name,
                 url: route('alumni.show', $item->slug),
-                excerpt: $item->current_occupation . ($item->current_company ? " di {$item->current_company}" : "")
+                excerpt: $item->current_occupation . ($item->current_company ? " di {$item->current_company}" : '')
             ));
         if ($alumnis->isNotEmpty()) $results['Alumni'] = $alumnis;
 
-        // Galeri
+        // Galeri — cari di title & location (bukan description TEXT)
         $galleries = GalleryAlbum::published()
-            ->select(['id', 'title', 'slug', 'location', 'description', 'published_at'])
-            ->where(function($q) use ($query) {
+            ->select(['id', 'title', 'slug', 'location', 'published_at'])
+            ->where(function ($q) use ($query) {
                 $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('description', 'like', "%{$query}%")
                   ->orWhere('location', 'like', "%{$query}%");
             })
             ->latest('published_at')->take(10)->get()
             ->map(fn($item) => new SearchResult(
                 title: $item->title,
                 url: route('gallery.show', $item->slug),
-                excerpt: $item->location,
+                excerpt: $item->location ?? '',
                 date: $item->published_at?->format('d M Y')
             ));
         if ($galleries->isNotEmpty()) $results['Galeri'] = $galleries;
 
-        // Dokumen
+        // Dokumen — cari di title saja
         $downloads = Download::public()
-            ->select(['id', 'title', 'slug', 'description', 'published_at'])
-            ->where(function($q) use ($query) {
-                $q->where('title', 'like', "%{$query}%")
-                  ->orWhere('description', 'like', "%{$query}%");
-            })
+            ->select(['id', 'title', 'slug', 'published_at'])
+            ->where('title', 'like', "%{$query}%")
             ->latest('published_at')->take(10)->get()
             ->map(fn($item) => new SearchResult(
                 title: $item->title,
                 url: route('download.file', $item->slug),
-                excerpt: Str::limit(strip_tags($item->description), 100),
+                excerpt: '',
                 date: $item->published_at?->format('d M Y')
             ));
         if ($downloads->isNotEmpty()) $results['Dokumen'] = $downloads;

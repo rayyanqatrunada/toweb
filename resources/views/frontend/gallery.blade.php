@@ -1,23 +1,23 @@
 <x-layouts.app title="Galeri Dokumentasi">
     <!-- Hero Section -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <x-frontend.layout.container class="relative z-10 text-center max-w-3xl mx-auto">
-            <x-frontend.ui.eyebrow class="text-primary-400 mb-4 justify-center">Documentations</x-frontend.ui.eyebrow>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">Galeri Kegiatan</h1>
-            <p class="text-charcoal-300 text-lg lg:text-xl leading-relaxed">
+        <x-frontend.layout.container class="relative z-10 text-center max-w-3xl mx-auto reveal-on-scroll reveal-up">
+            <x-frontend.ui.eyebrow class="text-primary-600 mb-4 justify-center">Documentations</x-frontend.ui.eyebrow>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-tight tracking-tight">Galeri Kegiatan</h1>
+            <p class="text-charcoal-600 text-lg lg:text-xl leading-relaxed">
                 Rekam jejak visual, dokumentasi praktik, kegiatan belajar mengajar, event jurusan, hingga karya siswa.
             </p>
         </x-frontend.layout.container>
     </div>
 
     <!-- Breadcrumbs -->
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <x-frontend.layout.container>
             <x-frontend.breadcrumbs :items="['Galeri Kegiatan' => route('gallery.index')]" class="py-4" />
         </x-frontend.layout.container>
@@ -26,12 +26,12 @@
         <x-frontend.breadcrumbs :items="['Galeri' => route('gallery.index')]" />
     </div>
 
-    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
+    <section class="bg-white min-h-[50vh] pt-12 pb-20 lg:pt-16 lg:pb-24">
         <x-frontend.layout.container>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @forelse($albums as $album)
-                    <a href="{{ route('gallery.show', $album->slug) }}" class="group block h-full">
-                        <div class="bg-white border border-charcoal-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-charcoal-200 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative">
+                    <a href="{{ route('gallery.show', $album->slug) }}" class="group block h-full reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
+                        <div class="bg-white border border-charcoal-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-charcoal-300 hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative">
                             
                             <!-- Cover Image -->
                             <div class="aspect-[4/3] relative overflow-hidden bg-charcoal-100">

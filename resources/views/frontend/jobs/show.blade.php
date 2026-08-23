@@ -3,30 +3,30 @@
     :description="Str::limit(strip_tags($job->description), 150)"
 >
     <!-- Header Page -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto">
+        <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto reveal-on-scroll reveal-up">
             <div class="flex justify-center mb-6">
-                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase bg-amber-100 text-amber-700 border border-amber-200 shadow-sm">
                     Bursa Kerja Khusus
                 </span>
             </div>
             
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-[1.15] tracking-tight">{{ $job->title }}</h1>
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-[1.15] tracking-tight">{{ $job->title }}</h1>
             
-            <div class="flex flex-wrap items-center justify-center text-charcoal-300 text-sm gap-y-4 gap-x-6 mt-6">
-                <span class="flex items-center font-bold text-white bg-charcoal-900/60 px-4 py-2 rounded-xl border border-charcoal-800">
-                    <svg class="w-4 h-4 mr-2 opacity-70 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+            <div class="flex flex-wrap items-center justify-center text-charcoal-600 text-sm gap-y-4 gap-x-6 mt-6 font-semibold">
+                <span class="flex items-center bg-white px-4 py-2.5 rounded-xl border border-charcoal-200 shadow-sm">
+                    <svg class="w-5 h-5 mr-2.5 opacity-70 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                     {{ $job->industryPartner->name ?? 'Perusahaan Rahasia' }}
                 </span>
                 @if($job->location)
-                <span class="flex items-center font-medium bg-charcoal-900/60 px-4 py-2 rounded-xl border border-charcoal-800">
-                    <svg class="w-4 h-4 mr-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <span class="flex items-center bg-white px-4 py-2.5 rounded-xl border border-charcoal-200 shadow-sm">
+                    <svg class="w-5 h-5 mr-2.5 opacity-70 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     {{ $job->location }}
                 </span>
                 @endif
@@ -35,7 +35,7 @@
     </div>
 
     <!-- Breadcrumbs -->
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <x-frontend.layout.container>
             <x-frontend.breadcrumbs :items="[
                 'BKK' => route('jobs.index'),
@@ -51,10 +51,10 @@
         ]" />
     </div>
 
-    <article class="bg-white py-12 lg:py-20 min-h-[50vh]">
+    <article class="bg-white py-12 lg:py-20 min-h-[50vh] reveal-on-scroll reveal-up">
         <x-frontend.layout.container class="max-w-4xl">
             
-            <div class="bg-white rounded-2xl shadow-xl shadow-charcoal-900/5 border border-charcoal-100 overflow-hidden mb-12">
+            <div class="bg-white rounded-3xl shadow-xl shadow-charcoal-900/5 border border-charcoal-100 overflow-hidden mb-12">
                 <!-- Info Header -->
                 <div class="bg-charcoal-50 p-6 sm:p-8 lg:p-10 border-b border-charcoal-100 relative overflow-hidden">
                     <!-- Accent Line -->
@@ -106,7 +106,7 @@
                             </span>
                             Deskripsi Pekerjaan
                         </h2>
-                        <div class="prose prose-lg md:prose-xl prose-slate max-w-none prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-li:text-charcoal-700">{!! \App\Support\HtmlSanitizer::clean($job->description) !!}</div>
+                        <div class="prose prose-lg md:prose-xl prose-charcoal max-w-none prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-li:text-charcoal-700">{!! \App\Support\HtmlSanitizer::clean($job->description) !!}</div>
                     </div>
                     @endif
                     
@@ -118,7 +118,7 @@
                             </span>
                             Persyaratan
                         </h2>
-                        <div class="prose prose-lg md:prose-xl prose-slate max-w-none prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-li:text-charcoal-700">{!! \App\Support\HtmlSanitizer::clean($job->requirements) !!}</div>
+                        <div class="prose prose-lg md:prose-xl prose-charcoal max-w-none prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-li:text-charcoal-700">{!! \App\Support\HtmlSanitizer::clean($job->requirements) !!}</div>
                     </div>
                     @endif
                     
@@ -130,11 +130,11 @@
                             </span>
                             Tanggung Jawab
                         </h2>
-                        <div class="prose prose-lg md:prose-xl prose-slate max-w-none prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-li:text-charcoal-700">{!! \App\Support\HtmlSanitizer::clean($job->responsibilities) !!}</div>
+                        <div class="prose prose-lg md:prose-xl prose-charcoal max-w-none prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-li:text-charcoal-700">{!! \App\Support\HtmlSanitizer::clean($job->responsibilities) !!}</div>
                     </div>
                     @endif
                     
-                    <div class="bg-charcoal-950 border border-charcoal-800 p-8 lg:p-10 rounded-2xl text-center sm:text-left relative overflow-hidden mt-8">
+                    <div class="bg-charcoal-900 border border-charcoal-800 p-8 lg:p-10 rounded-3xl text-center sm:text-left relative overflow-hidden mt-8 shadow-xl shadow-charcoal-900/10">
                         <!-- BG Element -->
                         <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
                             <svg class="w-64 h-64 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>

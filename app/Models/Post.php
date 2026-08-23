@@ -52,9 +52,18 @@ class Post extends Model
     {
         static::saved(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:news');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
+            // Bust cache listing berita untuk halaman 1-5 yang paling sering diakses
+            for ($i = 1; $i <= 5; $i++) {
+                \Illuminate\Support\Facades\Cache::forget("news:index:page:{$i}");
+            }
         });
         static::deleted(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:news');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
+            for ($i = 1; $i <= 5; $i++) {
+                \Illuminate\Support\Facades\Cache::forget("news:index:page:{$i}");
+            }
         });
     }
 

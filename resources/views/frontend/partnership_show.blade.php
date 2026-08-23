@@ -1,14 +1,14 @@
 <x-layouts.app :title="$partner->name . ' - Mitra Industri'">
     <!-- Hero Header -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <x-frontend.layout.container class="relative z-10">
+        <x-frontend.layout.container class="relative z-10 reveal-on-scroll reveal-up">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <div class="w-48 h-48 md:w-56 md:h-56 shrink-0 bg-white rounded-3xl p-6 shadow-2xl flex items-center justify-center border-4 border-charcoal-800 transform rotate-1 hover:rotate-0 transition-transform">
+                <div class="w-48 h-48 md:w-56 md:h-56 shrink-0 bg-white rounded-3xl p-6 shadow-2xl flex items-center justify-center border-4 border-charcoal-200 transform rotate-1 hover:rotate-0 transition-transform">
                     @if($partner->logo)
                         <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="w-full h-full object-contain">
                     @else
@@ -20,7 +20,7 @@
                 
                 <div class="text-center md:text-left flex-grow">
                     <div class="inline-flex items-center space-x-2 mb-4">
-                        <span class="bg-primary-500/20 text-primary-300 border border-primary-500/30 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full">
+                        <span class="bg-primary-100 text-primary-700 border border-primary-200 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full shadow-sm">
                             {{ $partner->industry_type ?? 'Mitra DUDI' }}
                         </span>
                         @if($partner->status == 'published')
@@ -31,18 +31,18 @@
                         @endif
                     </div>
                     
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">{{ $partner->name }}</h1>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-charcoal-900 mb-6 leading-tight">{{ $partner->name }}</h1>
                     
-                    <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center md:justify-start gap-4 md:gap-8 text-charcoal-300 text-sm font-medium">
+                    <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center md:justify-start gap-4 md:gap-8 text-charcoal-600 text-sm font-semibold">
                         @if($partner->address)
                             <div class="flex items-center max-w-sm text-left">
-                                <svg class="w-5 h-5 mr-2 text-primary-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <svg class="w-5 h-5 mr-2 text-primary-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                 <span class="line-clamp-2">{{ $partner->address }}</span>
                             </div>
                         @endif
                         @if($partner->website)
-                            <a href="{{ Str::startsWith($partner->website, 'http') ? $partner->website : 'https://'.$partner->website }}" target="_blank" class="flex items-center hover:text-white transition-colors group">
-                                <svg class="w-5 h-5 mr-2 text-primary-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                            <a href="{{ Str::startsWith($partner->website, 'http') ? $partner->website : 'https://'.$partner->website }}" target="_blank" class="flex items-center hover:text-primary-700 transition-colors group">
+                                <svg class="w-5 h-5 mr-2 text-primary-600 group-hover:text-primary-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
                                 <span>Kunjungi Website</span>
                             </a>
                         @endif
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Breadcrumbs -->
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <x-frontend.layout.container>
             <x-frontend.breadcrumbs :items="[
                 'Kemitraan Industri' => route('partnership.index'),
@@ -65,10 +65,10 @@
         <x-frontend.breadcrumbs :items="['Kembali ke Mitra' => route('partnership.index')]" />
     </div>
 
-    <article class="py-16 lg:py-24 bg-white min-h-[50vh]">
+    <article class="py-12 lg:py-20 bg-white min-h-[50vh]">
         <x-frontend.layout.container class="max-w-4xl">
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 reveal-on-scroll reveal-up">
                 <!-- Main Content -->
                 <div class="lg:col-span-2 space-y-12">
                     @if($partner->description)
@@ -117,11 +117,11 @@
                 </div>
             </div>
             
-            <div class="mt-16 pt-8 border-t border-charcoal-100 text-center">
-                <a href="{{ route('partnership.index') }}" class="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-charcoal-700 bg-white border-2 border-charcoal-200 rounded-xl hover:bg-charcoal-50 hover:text-primary-600 hover:border-primary-200 transition-all focus:ring-4 focus:ring-charcoal-50 group">
+            <div class="mt-16 pt-12 border-t border-charcoal-100 text-center reveal-on-scroll reveal-up">
+                <x-frontend.ui.button href="{{ route('partnership.index') }}" variant="outline" class="group">
                     <svg class="w-5 h-5 mr-2 text-charcoal-400 group-hover:text-primary-500 transition-colors group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     Kembali ke Daftar Mitra
-                </a>
+                </x-frontend.ui.button>
             </div>
         </x-frontend.layout.container>
     </article>

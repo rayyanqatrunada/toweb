@@ -44,10 +44,13 @@ class Achievement extends Model
     protected static function booted()
     {
         static::saved(function ($model) {
-            \Illuminate\Support\Facades\Cache::forget('homepage:stats:achievement');
+            // Key harus plural — sesuai HomeController::index() 'homepage:stats:achievements'
+            \Illuminate\Support\Facades\Cache::forget('homepage:stats:achievements');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
         static::deleted(function ($model) {
-            \Illuminate\Support\Facades\Cache::forget('homepage:stats:achievement');
+            \Illuminate\Support\Facades\Cache::forget('homepage:stats:achievements');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
     }
 

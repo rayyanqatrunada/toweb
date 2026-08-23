@@ -1,17 +1,17 @@
 <x-layouts.app title="Pengumuman & Agenda">
     <!-- Hero Section -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <x-frontend.layout.container class="relative z-10">
+        <x-frontend.layout.container class="relative z-10 reveal-on-scroll reveal-up">
             <div class="max-w-3xl mx-auto text-center">
-                <x-frontend.ui.eyebrow class="text-primary-400 mb-4 justify-center">Informasi Resmi Institusi</x-frontend.ui.eyebrow>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">Pengumuman & Agenda</h1>
-                <p class="text-charcoal-300 text-lg lg:text-xl leading-relaxed">
+                <x-frontend.ui.eyebrow class="text-primary-600 mb-4 justify-center">Informasi Resmi Institusi</x-frontend.ui.eyebrow>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-tight tracking-tight">Pengumuman & Agenda</h1>
+                <p class="text-charcoal-600 text-lg lg:text-xl leading-relaxed">
                     Pusat informasi resmi, jadwal kegiatan akademik, dan agenda penting jurusan.
                 </p>
             </div>
@@ -19,7 +19,7 @@
     </div>
 
     <!-- Breadcrumbs -->
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <x-frontend.layout.container>
             <x-frontend.breadcrumbs :items="['Pengumuman & Agenda' => route('announcements.index')]" class="py-4" />
         </x-frontend.layout.container>
@@ -29,11 +29,11 @@
         <x-frontend.breadcrumbs :items="['Pengumuman' => route('announcements.index')]" />
     </div>
 
-    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
+    <section class="bg-white min-h-[50vh] pt-12 pb-20 lg:pt-16 lg:pb-24">
         <x-frontend.layout.container class="max-w-4xl">
             <div class="space-y-6">
                 @forelse($announcements as $announcement)
-                    <a href="{{ route('announcements.show', $announcement->slug) }}" class="flex flex-col sm:flex-row bg-white rounded-2xl border border-charcoal-100 shadow-sm hover:shadow-xl hover:shadow-primary-900/5 transition-all duration-300 overflow-hidden group focus-visible:ring-4 focus-visible:ring-primary-500 focus:outline-none hover:-translate-y-1">
+                    <a href="{{ route('announcements.show', $announcement->slug) }}" class="flex flex-col sm:flex-row bg-white rounded-3xl border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden group focus-visible:ring-4 focus-visible:ring-primary-500 focus:outline-none reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
                         <!-- Date Block -->
                         <div class="bg-charcoal-50 group-hover:bg-primary-50 px-6 py-6 flex flex-col items-center justify-center border-b sm:border-b-0 sm:border-r border-charcoal-100 min-w-[140px] transition-colors duration-300">
                             <span class="text-sm font-bold uppercase tracking-widest text-charcoal-500 group-hover:text-primary-600 transition-colors">{{ $announcement->created_at->translatedFormat('M') }}</span>

@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Setting::observe(\App\Observers\SettingObserver::class);
 
         \Illuminate\Support\Facades\View::composer(
-            ['frontend.layouts.app', 'components.layouts.app', 'components.footer', 'frontend.home', 'frontend.about'], 
+            ['frontend.*', 'components.*'], 
             function ($view) {
                 $view->with('settings', app(\App\Services\SettingsService::class));
             }

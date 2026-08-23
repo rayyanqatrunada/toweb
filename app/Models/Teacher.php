@@ -31,10 +31,12 @@ class Teacher extends Model
     {
         static::saved(function ($teacher) {
             \Illuminate\Support\Facades\Cache::forget('academic:teachers');
+            \Illuminate\Support\Facades\Cache::forget('homepage:head_of_department');
         });
         
         static::deleted(function ($teacher) {
             \Illuminate\Support\Facades\Cache::forget('academic:teachers');
+            \Illuminate\Support\Facades\Cache::forget('homepage:head_of_department');
         });
 
         static::saving(function ($teacher) {

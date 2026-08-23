@@ -3,34 +3,34 @@
     :description="$album->description ? Str::limit(strip_tags($album->description), 150) : 'Dokumentasi Galeri: ' . $album->title"
 >
     <!-- Header Page -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto">
-            <span class="inline-block py-1 px-4 bg-primary-500/20 text-primary-300 rounded-full text-xs font-bold tracking-widest uppercase mb-6 border border-primary-500/30 shadow-sm">
+        <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto reveal-on-scroll reveal-up">
+            <span class="inline-block py-1 px-4 bg-primary-100 text-primary-700 rounded-full text-xs font-bold tracking-widest uppercase mb-6 border border-primary-200 shadow-sm">
                 Album Dokumentasi
             </span>
-            <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">{{ $album->title }}</h1>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-charcoal-900 mb-6 leading-tight">{{ $album->title }}</h1>
             
-            <div class="flex flex-wrap items-center justify-center text-charcoal-300 text-sm gap-4 md:gap-6 mt-6 font-medium">
+            <div class="flex flex-wrap items-center justify-center text-charcoal-600 text-sm gap-4 md:gap-6 mt-6 font-semibold">
                 @if($album->event_date)
-                <span class="flex items-center px-3 py-1.5 bg-charcoal-800/50 rounded-lg border border-charcoal-700/50">
-                    <svg class="w-4 h-4 mr-2 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <span class="flex items-center px-4 py-2 bg-white rounded-xl border border-charcoal-200 shadow-sm">
+                    <svg class="w-4 h-4 mr-2 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     {{ $album->event_date->translatedFormat('d F Y') }}
                 </span>
                 @endif
                 @if($album->location)
-                <span class="flex items-center px-3 py-1.5 bg-charcoal-800/50 rounded-lg border border-charcoal-700/50">
-                    <svg class="w-4 h-4 mr-2 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <span class="flex items-center px-4 py-2 bg-white rounded-xl border border-charcoal-200 shadow-sm">
+                    <svg class="w-4 h-4 mr-2 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     {{ $album->location }}
                 </span>
                 @endif
-                <span class="flex items-center px-3 py-1.5 bg-charcoal-800/50 rounded-lg border border-charcoal-700/50">
-                    <svg class="w-4 h-4 mr-2 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <span class="flex items-center px-4 py-2 bg-white rounded-xl border border-charcoal-200 shadow-sm">
+                    <svg class="w-4 h-4 mr-2 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     {{ $album->items->count() }} Foto
                 </span>
             </div>
@@ -38,7 +38,7 @@
     </div>
 
     <!-- Breadcrumbs -->
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <x-frontend.layout.container>
             <x-frontend.breadcrumbs :items="[
                 'Galeri' => route('gallery.index'),
@@ -66,10 +66,9 @@
                 </div>
             @endif
             
-            @if($album->items->count() > 0)
                 <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
                     @foreach($album->items as $item)
-                        <div class="break-inside-avoid relative group rounded-2xl overflow-hidden shadow-sm border border-charcoal-100 bg-charcoal-50">
+                        <div class="break-inside-avoid relative group rounded-3xl overflow-hidden shadow-sm border border-charcoal-200 bg-charcoal-50 reveal-on-scroll reveal-up">
                             <a href="{{ Storage::url($item->file_path) }}" target="_blank" class="block">
                                 <img src="{{ Storage::url($item->file_path) }}" alt="{{ $item->alt_text ?? $item->title ?? $album->title }}" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                                 <div class="absolute inset-0 bg-charcoal-950/0 group-hover:bg-charcoal-950/30 transition-colors duration-300 flex items-center justify-center">
@@ -97,11 +96,11 @@
                 </div>
             @endif
             
-            <div class="mt-16 pt-8 border-t border-charcoal-100 text-center">
-                <a href="{{ route('gallery.index') }}" class="inline-flex items-center justify-center px-8 py-3.5 text-sm font-bold text-charcoal-700 bg-white border-2 border-charcoal-200 rounded-xl hover:bg-charcoal-50 hover:text-primary-600 hover:border-primary-200 transition-all focus:ring-4 focus:ring-charcoal-100 group">
+            <div class="mt-16 pt-12 border-t border-charcoal-100 text-center reveal-on-scroll reveal-up">
+                <x-frontend.ui.button href="{{ route('gallery.index') }}" variant="outline" class="group">
                     <svg class="w-5 h-5 mr-2 text-charcoal-400 group-hover:text-primary-500 transition-colors group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     Kembali ke Album Galeri
-                </a>
+                </x-frontend.ui.button>
             </div>
         </x-frontend.layout.container>
     </article>

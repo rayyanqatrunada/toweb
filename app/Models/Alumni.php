@@ -58,10 +58,12 @@ class Alumni extends Model
         static::saved(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:stats:alumni');
             \Illuminate\Support\Facades\Cache::forget('homepage:alumnis');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
         static::deleted(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:stats:alumni');
             \Illuminate\Support\Facades\Cache::forget('homepage:alumnis');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
     }
 

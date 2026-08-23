@@ -10,7 +10,11 @@ class InternshipController extends Controller
 {
     public function index()
     {
-        $internships = Internship::with('industryPartner')->published()->latest()->paginate(10);
+        // select() pada Internship + constrained eager load IndustryPartner
+        // hanya ambil kolom yang dibutuhkan di view (bukan semua kolom)
+        $internships = Internship::select('id', 'industry_partner_id', 'title', 'start_date', 'end_date', 'status')
+            ->with('industryPartner:id,name,logo,slug')
+            ->published()->latest()->paginate(10);
         return view('frontend.internships.index', compact('internships'));
     }
 

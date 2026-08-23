@@ -18,7 +18,7 @@ class DownloadCategoryResource extends Resource
 {
     protected static ?string $model = DownloadCategory::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedFolderOpen;
     protected static string | \UnitEnum | null $navigationGroup = 'MEDIA';
 
     public static function form(Schema $schema): Schema

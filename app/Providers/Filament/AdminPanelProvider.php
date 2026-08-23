@@ -11,13 +11,14 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\StatsOverview;
+use App\Filament\Widgets\LatestPostsWidget;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -27,14 +28,21 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->login(\App\Filament\Pages\Auth\Login::class)
             ->colors([
-                'primary' => Color::Red,
-                'gray' => Color::Zinc,
+                'primary' => '#0A24DB', // Custom electric blue from mockup
+                'gray'    => Color::Slate,
+                'danger'  => Color::Rose,
+                'success' => Color::Emerald,
+                'warning' => Color::Amber,
+                'info'    => Color::Blue,
             ])
+            ->maxContentWidth('full')
             ->font('Inter')
             ->brandName('Portal Admin TO')
             ->favicon(asset('logo.png'))
+            ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
@@ -42,8 +50,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
+                StatsOverview::class,
+                LatestPostsWidget::class,
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

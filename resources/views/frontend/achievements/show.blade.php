@@ -21,37 +21,37 @@
     @endpush
 
     <!-- Header Page -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <svg class="h-full w-full" fill="none" viewBox="0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto">
+        <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto reveal-on-scroll reveal-up">
             <div class="flex justify-center mb-6">
-                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase bg-amber-500/20 text-amber-400 border border-amber-500/30 shadow-sm shadow-amber-900/50">
+                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase bg-amber-100 text-amber-700 border border-amber-200 shadow-sm">
                     PRESTASI TINGKAT {{ strtoupper($achievement->level) }}
                 </span>
             </div>
             
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8 leading-[1.15] tracking-tight">{{ $achievement->title }}</h1>
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-8 leading-[1.15] tracking-tight">{{ $achievement->title }}</h1>
             
-            <div class="flex flex-wrap items-center justify-center text-charcoal-300 text-sm gap-y-4 gap-x-4 md:gap-x-6 mt-6">
+            <div class="flex flex-wrap items-center justify-center text-charcoal-600 text-sm gap-y-4 gap-x-4 md:gap-x-6 mt-6">
                 <!-- Rank -->
-                <div class="flex items-center font-bold text-amber-400 bg-amber-950/40 px-4 py-2.5 rounded-xl border border-amber-900/50 shadow-inner">
+                <div class="flex items-center font-bold text-amber-600 bg-amber-50 px-4 py-2.5 rounded-xl border border-amber-200 shadow-sm">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                     JUARA {{ strtoupper($achievement->rank) }}
                 </div>
                 
                 <!-- Organizer -->
-                <div class="flex items-center font-medium bg-charcoal-900/60 px-4 py-2.5 rounded-xl border border-charcoal-800">
+                <div class="flex items-center font-bold bg-white px-4 py-2.5 rounded-xl border border-charcoal-200 shadow-sm">
                     <svg class="w-5 h-5 mr-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     <span class="line-clamp-1 max-w-[200px] sm:max-w-xs" title="{{ $achievement->organizer }}">{{ $achievement->organizer }}</span>
                 </div>
                 
                 <!-- Date -->
-                <div class="flex items-center font-medium bg-charcoal-900/60 px-4 py-2.5 rounded-xl border border-charcoal-800">
+                <div class="flex items-center font-bold bg-white px-4 py-2.5 rounded-xl border border-charcoal-200 shadow-sm">
                     <svg class="w-5 h-5 mr-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     {{ $achievement->date ? $achievement->date->translatedFormat('d F Y') : '-' }}
                 </div>
@@ -65,7 +65,7 @@
             Str::limit($achievement->title, 30) => '#'
         ];
     @endphp
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <x-frontend.layout.container>
             <x-frontend.breadcrumbs :items="$breadcrumbs" class="py-4" />
         </x-frontend.layout.container>
@@ -75,7 +75,7 @@
         <x-frontend.breadcrumbs :items="$breadcrumbs" />
     </div>
 
-    <article class="bg-white py-12 lg:py-20 min-h-[50vh]">
+    <article class="bg-white py-12 lg:py-20 min-h-[50vh] reveal-on-scroll reveal-up">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             
             @if($achievement->photo)
@@ -89,7 +89,7 @@
                 </div>
             @endif
 
-            <div class="prose prose-lg md:prose-xl prose-slate max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-p:leading-relaxed prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-img:rounded-2xl prose-img:shadow-md">
+            <div class="prose prose-lg md:prose-xl prose-charcoal max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-p:leading-relaxed prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-img:rounded-3xl prose-img:shadow-md">
                 @if(!empty(trim(strip_tags($achievement->description))))
                     {!! \App\Support\HtmlSanitizer::clean($achievement->description) !!}
                 @else

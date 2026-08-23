@@ -1,23 +1,23 @@
 <x-layouts.app title="Mitra Industri">
     <!-- Hero Section -->
-    <div class="bg-charcoal-950 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-800">
+    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
                 <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
             </svg>
         </div>
-        <x-frontend.layout.container class="relative z-10 text-center max-w-3xl mx-auto">
-            <x-frontend.ui.eyebrow class="text-primary-400 mb-4 justify-center">Industry Partners</x-frontend.ui.eyebrow>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">Kemitraan Industri</h1>
-            <p class="text-charcoal-300 text-lg lg:text-xl leading-relaxed">
+        <x-frontend.layout.container class="relative z-10 text-center max-w-3xl mx-auto reveal-on-scroll reveal-up">
+            <x-frontend.ui.eyebrow class="text-primary-600 mb-4 justify-center">Industry Partners</x-frontend.ui.eyebrow>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-tight tracking-tight">Kemitraan Industri</h1>
+            <p class="text-charcoal-600 text-lg lg:text-xl leading-relaxed">
                 Jaringan kolaborasi strategis dengan dunia usaha dan dunia industri (DUDI) untuk menjamin kualitas lulusan.
             </p>
         </x-frontend.layout.container>
     </div>
 
     <!-- Breadcrumbs -->
-    <div class="bg-charcoal-50 border-b border-charcoal-100 hidden md:block">
+    <div class="bg-white border-b border-charcoal-100 hidden md:block">
         <x-frontend.layout.container>
             <x-frontend.breadcrumbs :items="['Kemitraan Industri' => route('partnership.index')]" class="py-4" />
         </x-frontend.layout.container>
@@ -26,11 +26,11 @@
         <x-frontend.breadcrumbs :items="['Mitra Industri' => route('partnership.index')]" />
     </div>
 
-    <section class="bg-white min-h-[50vh] lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
+    <section class="bg-white min-h-[50vh] pt-12 pb-20 lg:pt-16 lg:pb-24">
         <x-frontend.layout.container>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @forelse($partners as $partner)
-                    <div class="bg-white border border-charcoal-200 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary-200 transition-all duration-300 overflow-hidden group flex flex-col h-full relative">
+                    <div class="bg-white border border-charcoal-200 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary-300 transition-all duration-300 overflow-hidden group flex flex-col h-full relative reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
                         
                         @if($partner->job_vacancies_count > 0)
                             <div class="absolute top-4 right-4 z-10">

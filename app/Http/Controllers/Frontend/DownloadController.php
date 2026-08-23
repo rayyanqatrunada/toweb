@@ -13,7 +13,11 @@ class DownloadController extends Controller
 {
     public function index()
     {
-        $downloads = Download::with('category')->public()->latest('published_at')->get();
+        $downloads = Download::with('category:id,name,slug')
+            ->select('id', 'title', 'slug', 'description', 'file_type', 'file_size', 'download_category_id', 'published_at')
+            ->public()
+            ->latest('published_at')
+            ->paginate(20);
         return view('frontend.download', compact('downloads'));
     }
 

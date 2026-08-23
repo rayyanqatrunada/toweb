@@ -1,6 +1,6 @@
 <x-layouts.app title="Prestasi & Penghargaan">
     <!-- Hero Section -->
-    <section class="bg-charcoal-950 border-b border-charcoal-800 relative overflow-hidden lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
+    <section class="bg-charcoal-50 border-b border-charcoal-200 relative overflow-hidden lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
         <!-- Trophy Pattern/Abstract Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -8,14 +8,14 @@
             </svg>
         </div>
         
-        <x-frontend.layout.container class="relative z-10">
+        <x-frontend.layout.container class="relative z-10 reveal-on-scroll reveal-up">
             <x-frontend.breadcrumbs :items="['Prestasi & Penghargaan' => route('achievements.index')]" class="mb-8" />
             
-            <x-frontend.ui.eyebrow class="text-amber-400">PROOF OF COMPETENCE</x-frontend.ui.eyebrow>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] mt-4 mb-6">
+            <x-frontend.ui.eyebrow class="text-amber-500">PROOF OF COMPETENCE</x-frontend.ui.eyebrow>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal-900 tracking-tight leading-[1.1] mt-4 mb-6">
                 Prestasi &<br class="hidden sm:block"> Penghargaan
             </h1>
-            <p class="text-lg text-charcoal-300 font-medium leading-relaxed max-w-2xl border-l-2 border-amber-500 pl-4">
+            <p class="text-lg text-charcoal-600 font-medium leading-relaxed max-w-2xl border-l-2 border-amber-500 pl-4">
                 Merekam jejak keberhasilan siswa dan tenaga pendidik dalam menguasai teknologi otomotif di berbagai ajang kompetisi.
             </p>
         </x-frontend.layout.container>
@@ -33,7 +33,7 @@
                     
                     @foreach($achievements as $loopIndex => $achievement)
                         <div class="reveal-on-scroll reveal-up" style="transition-delay: {{ ($loopIndex % 3) * 50 }}ms;">
-                            <article class="relative flex flex-col h-full bg-white border-2 border-charcoal-100 rounded-2xl overflow-hidden group hover:border-amber-400 hover:shadow-xl hover:shadow-amber-900/5 transition-all duration-500 focus-within:ring-4 focus-within:ring-amber-500 focus-within:border-amber-500">
+                            <article class="relative flex flex-col h-full bg-white border border-charcoal-200 rounded-3xl overflow-hidden group hover:border-amber-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 focus-within:ring-4 focus-within:ring-amber-500 focus-within:border-amber-500">
                                 
                                 <!-- Trophy/Rank Ribbon -->
                                 <div class="absolute -right-12 top-6 rotate-45 bg-amber-500 text-amber-950 font-black text-[10px] tracking-widest uppercase py-1 px-14 shadow-md z-20 pointer-events-none group-hover:bg-amber-400 transition-colors text-center w-40">
