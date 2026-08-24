@@ -2,7 +2,7 @@
     @push('json-ld')
     <script type="application/ld+json">
     {
-      "@@context": "https://schema.org",
+      "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "{{ $settings->get('site_name', 'Teknik Otomotif') }}",
       "url": "{{ url('/') }}",
@@ -11,7 +11,7 @@
     </script>
     <script type="application/ld+json">
     {
-      "@@context": "https://schema.org",
+      "@context": "https://schema.org",
       "@type": "WebSite",
       "url": "{{ url('/') }}",
       "potentialAction": {

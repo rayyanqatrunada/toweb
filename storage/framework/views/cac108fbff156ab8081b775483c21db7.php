@@ -1,13 +1,13 @@
 <?php if (isset($component)) { $__componentOriginal5863877a5171c196453bfa0bd807e410 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5863877a5171c196453bfa0bd807e410 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Mitra Industri']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Program Praktik Kerja Lapangan (PKL)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('layouts.app'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['title' => 'Mitra Industri']); ?>
+<?php $component->withAttributes(['title' => 'Program Praktik Kerja Lapangan (PKL)']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
     <!-- Hero Section -->
@@ -41,7 +41,7 @@
 <?php endif; ?>
 <?php $component->withAttributes(['class' => 'text-primary-600 mb-4 justify-center']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
-Industry Partners <?php echo $__env->renderComponent(); ?>
+Program Kemitraan <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalac1079511a1017c8db3b04bb1937d3e9)): ?>
 <?php $attributes = $__attributesOriginalac1079511a1017c8db3b04bb1937d3e9; ?>
@@ -51,9 +51,9 @@ Industry Partners <?php echo $__env->renderComponent(); ?>
 <?php $component = $__componentOriginalac1079511a1017c8db3b04bb1937d3e9; ?>
 <?php unset($__componentOriginalac1079511a1017c8db3b04bb1937d3e9); ?>
 <?php endif; ?>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-tight tracking-tight">Kemitraan Industri</h1>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-tight tracking-tight">Praktik Kerja Lapangan</h1>
             <p class="text-charcoal-600 text-lg lg:text-xl leading-relaxed">
-                Jaringan kolaborasi strategis dengan dunia usaha dan dunia industri (DUDI) untuk menjamin kualitas lulusan.
+                Informasi dan peluang Praktik Kerja Lapangan (PKL) bersama mitra industri terkemuka.
             </p>
          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -83,14 +83,14 @@ Industry Partners <?php echo $__env->renderComponent(); ?>
 
             <?php if (isset($component)) { $__componentOriginal98ae32034a5e9865062f4201185788de = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal98ae32034a5e9865062f4201185788de = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.breadcrumbs','data' => ['items' => ['Kemitraan Industri' => route('partnership.index')],'class' => 'py-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.breadcrumbs','data' => ['items' => ['Program PKL' => route('internships.index')],'class' => 'py-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.breadcrumbs'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['Kemitraan Industri' => route('partnership.index')]),'class' => 'py-4']); ?>
+<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['Program PKL' => route('internships.index')]),'class' => 'py-4']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 <?php echo $__env->renderComponent(); ?>
@@ -114,17 +114,18 @@ Industry Partners <?php echo $__env->renderComponent(); ?>
 <?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
 <?php endif; ?>
     </div>
+    
     <div class="md:hidden">
         <?php if (isset($component)) { $__componentOriginal98ae32034a5e9865062f4201185788de = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal98ae32034a5e9865062f4201185788de = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.breadcrumbs','data' => ['items' => ['Mitra Industri' => route('partnership.index')]]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.breadcrumbs','data' => ['items' => ['PKL' => route('internships.index')]]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.breadcrumbs'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['Mitra Industri' => route('partnership.index')])]); ?>
+<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(['PKL' => route('internships.index')])]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 <?php echo $__env->renderComponent(); ?>
@@ -142,95 +143,88 @@ Industry Partners <?php echo $__env->renderComponent(); ?>
     <section class="bg-white min-h-[50vh] pt-12 pb-20 lg:pt-16 lg:pb-24">
         <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'max-w-6xl']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.layout.container'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes([]); ?>
+<?php $component->withAttributes(['class' => 'max-w-6xl']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $partners; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $partner): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-                    <div class="bg-white border border-charcoal-200 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary-300 transition-all duration-300 overflow-hidden group flex flex-col h-full relative reveal-on-scroll reveal-up delay-<?php echo e($loop->iteration * 100 % 300); ?>">
-                        
-                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->job_vacancies_count > 0): ?>
-                            <div class="absolute top-4 right-4 z-10">
-                                <span class="flex h-3 w-3 relative">
-                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500" title="<?php echo e($partner->job_vacancies_count); ?> Lowongan Buka"></span>
-                                </span>
-                            </div>
-                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $internships; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $internship): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                    <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-charcoal-300 border border-charcoal-200 flex flex-col group transition-all duration-300 relative overflow-hidden focus-within:ring-4 focus-within:ring-primary-500/30 reveal-on-scroll reveal-up delay-<?php echo e($loop->iteration * 100 % 300); ?>">
+                        <!-- Top Accent Line -->
+                        <div class="absolute top-0 left-0 right-0 h-1.5 bg-primary-500 transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
 
-                        <a href="<?php echo e(route('partnership.show', $partner->slug)); ?>" class="block p-8 bg-charcoal-50 flex items-center justify-center aspect-[4/3] group-hover:bg-primary-50/30 transition-colors relative z-0">
-                                <img src="<?php echo e($partner->logo ? Storage::url($partner->logo) : 'https://ui-avatars.com/api/?name='.urlencode($partner->name).'&background=1e293b&color=fff&size=256&bold=true'); ?>" alt="<?php echo e($partner->name); ?>" class="max-w-[70%] max-h-[70%] object-contain filter grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105" loading="lazy">                       
-                        </a>
-                        
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h2 class="text-xl font-bold text-charcoal-900 group-hover:text-primary-600 transition-colors mb-2 line-clamp-2">
-                                <a href="<?php echo e(route('partnership.show', $partner->slug)); ?>" class="focus:outline-none before:absolute before:inset-0 before:z-10">
-                                    <?php echo e($partner->name); ?>
+                        <!-- Status Badge -->
+                        <div class="absolute top-5 right-5 z-10">
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($internship->status === 'open'): ?>
+                                <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-full text-xs font-bold shadow-sm flex items-center">
+                                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span> Pendaftaran Buka
+                                </span>
+                            <?php elseif($internship->status === 'ongoing'): ?>
+                                <span class="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-full text-xs font-bold shadow-sm">Sedang Berjalan</span>
+                            <?php else: ?>
+                                <span class="bg-charcoal-50 text-charcoal-600 border border-charcoal-200 px-3 py-1 rounded-full text-xs font-bold shadow-sm">Selesai</span>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        </div>
+
+                        <div class="p-6 md:p-8 flex-grow flex flex-col pt-8">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="w-14 h-14 rounded-2xl bg-white border border-charcoal-100 shadow-sm flex items-center justify-center overflow-hidden flex-shrink-0 p-2">
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($internship->industryPartner && $internship->industryPartner->logo): ?>
+                                        <img src="<?php echo e(Storage::url($internship->industryPartner->logo)); ?>" alt="<?php echo e($internship->industryPartner->name); ?>" class="w-full h-full object-contain">
+                                    <?php else: ?>
+                                        <svg class="w-6 h-6 text-charcoal-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-black text-charcoal-900 leading-tight"><?php echo e($internship->industryPartner->name ?? 'Mitra Industri'); ?></h3>
+                                    <p class="text-xs font-medium text-charcoal-500"><?php echo e($internship->industryPartner->field ?? 'Otomotif'); ?></p>
+                                </div>
+                            </div>
+                            
+                            <h2 class="text-xl font-bold text-charcoal-900 mb-4 group-hover:text-primary-600 transition-colors leading-tight">
+                                <a href="<?php echo e(route('internships.show', $internship->slug ?? $internship->id)); ?>" class="focus:outline-none focus-visible:underline before:absolute before:inset-0">
+                                    <?php echo e($internship->title); ?>
 
                                 </a>
                             </h2>
                             
-                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->industry_type): ?>
-                                <p class="text-sm font-semibold text-primary-600 mb-3"><?php echo e($partner->industry_type); ?></p>
-                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                            <div class="mb-6 space-y-2.5 mt-auto bg-charcoal-50 p-4 rounded-xl border border-charcoal-100 relative z-10">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-charcoal-500 font-medium">Mulai:</span>
+                                    <span class="font-bold text-charcoal-900"><?php echo e($internship->start_date ? $internship->start_date->translatedFormat('d M Y') : '-'); ?></span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-charcoal-500 font-medium">Selesai:</span>
+                                    <span class="font-bold text-charcoal-900"><?php echo e($internship->end_date ? $internship->end_date->translatedFormat('d M Y') : '-'); ?></span>
+                                </div>
+                            </div>
                             
-                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->description): ?>
-                                <p class="text-sm text-charcoal-500 mb-4 line-clamp-3 leading-relaxed flex-grow">
-                                    <?php echo e(strip_tags($partner->description)); ?>
-
-                                </p>
-                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                            
-                            <div class="mt-auto space-y-3 pt-4 border-t border-charcoal-100 relative z-20">
-                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->partnerships->count() > 0): ?>
-                                    <div class="flex flex-wrap gap-2 pointer-events-none">
-                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $partner->partnerships->take(2); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ps): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-                                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-charcoal-100 text-charcoal-700">
-                                                <?php echo e($ps->type); ?>
-
-                                            </span>
-                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
-                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->partnerships->count() > 2): ?>
-                                            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-bold bg-charcoal-50 text-charcoal-500">
-                                                +<?php echo e($partner->partnerships->count() - 2); ?>
-
-                                            </span>
-                                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                                    </div>
-                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                                
-                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->job_vacancies_count > 0): ?>
-                                    <div class="mt-4 flex items-center justify-between text-sm">
-                                        <a href="<?php echo e(route('jobs.index')); ?>?mitra=<?php echo e($partner->slug); ?>" class="font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 transition-colors flex items-center z-20 relative">
-                                            <?php echo e($partner->job_vacancies_count); ?> Lowongan Aktif
-                                        </a>
-                                        <span class="text-primary-600 font-bold group-hover:translate-x-1 transition-transform flex items-center pointer-events-none">
-                                            Profil <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                        </span>
-                                    </div>
-                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-sm font-bold text-primary-600 group-hover:underline relative z-10">Lihat Detail</span>
+                                <div class="w-8 h-8 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                </div>
                             </div>
                         </div>
                     </div>
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
-                    <div class="col-span-full py-16 text-center">
+                    <div class="col-span-full py-16">
                         <?php if (isset($component)) { $__componentOriginalb1651f2374e13365b46984f667e2eec8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalb1651f2374e13365b46984f667e2eec8 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.ui.empty-state','data' => ['title' => 'Belum Ada Data Mitra Industri','message' => 'Daftar mitra industri DUDI belum tersedia saat ini.','icon' => 'building']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.ui.empty-state','data' => ['title' => 'Belum Ada Program PKL','message' => 'Data informasi Praktik Kerja Lapangan belum tersedia saat ini.','icon' => 'document']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.ui.empty-state'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['title' => 'Belum Ada Data Mitra Industri','message' => 'Daftar mitra industri DUDI belum tersedia saat ini.','icon' => 'building']); ?>
+<?php $component->withAttributes(['title' => 'Belum Ada Program PKL','message' => 'Data informasi Praktik Kerja Lapangan belum tersedia saat ini.','icon' => 'document']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 <?php echo $__env->renderComponent(); ?>
@@ -247,9 +241,9 @@ Industry Partners <?php echo $__env->renderComponent(); ?>
                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
             
-            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partners->hasPages()): ?>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($internships->hasPages()): ?>
                 <div class="mt-16 flex justify-center">
-                    <?php echo e($partners->links()); ?>
+                    <?php echo e($internships->links()); ?>
 
                 </div>
             <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
@@ -277,4 +271,4 @@ Industry Partners <?php echo $__env->renderComponent(); ?>
 
 
 
-<?php /**PATH D:\Project\test\Web Jurusan\TOWEB\resources\views\frontend\partnership.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\Project\test\Web Jurusan\TOWEB\resources\views\frontend\internships\index.blade.php ENDPATH**/ ?>

@@ -66,6 +66,7 @@
                 </div>
             @endif
             
+            @if($album->items->isNotEmpty())
                 <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
                     @foreach($album->items as $item)
                         <div class="break-inside-avoid relative group rounded-3xl overflow-hidden shadow-sm border border-charcoal-200 bg-charcoal-50 reveal-on-scroll reveal-up">
