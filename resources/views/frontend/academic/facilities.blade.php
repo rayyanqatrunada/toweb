@@ -53,7 +53,7 @@
                         
                         <div class="{{ $colSpan }} bg-charcoal-900 rounded-3xl relative overflow-hidden group shadow-sm flex flex-col justify-end reveal-on-scroll reveal-up delay-[{{ ($index % 3) * 100 }}ms]">
                             <!-- Image Background -->
-                            <img src="{{ $facility->image ? Storage::url($facility->image) : 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=800&auto=format&fit=crop' }}" alt="{{ $facility->name }}" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" loading="{{ $index < 3 ? 'eager' : 'lazy' }}">
+                            <img src="{{ $facility->photo ? Storage::url($facility->photo) : 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=800&auto=format&fit=crop' }}" alt="{{ $facility->name }}" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" loading="{{ $index < 3 ? 'eager' : 'lazy' }}">
                             
                             <!-- Gradient Overlay -->
                             <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/60 to-transparent"></div>

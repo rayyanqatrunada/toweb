@@ -14,9 +14,8 @@ class AcademicController extends Controller
     public function programs()
     {
         $programs = Cache::remember('academic:programs', 3600, fn() =>
-            Program::select('id', 'name', 'slug', 'description', 'logo', 'sort_order')
+            Program::select('id', 'name', 'slug', 'description', 'thumbnail')
                 ->with('competencies:id,program_id,name,description')
-                ->orderBy('sort_order')
                 ->get()
         );
         return view('frontend.academic.programs', compact('programs'));
@@ -25,7 +24,7 @@ class AcademicController extends Controller
     public function teachers()
     {
         $teachers = Cache::remember('academic:teachers', 1800, fn() =>
-            Teacher::select('id', 'name', 'nip', 'subject', 'photo', 'position', 'is_head_of_department', 'is_active')
+            Teacher::select('id', 'name', 'nip', 'position', 'photo', 'is_head_of_department', 'is_active')
                 ->where('is_active', true)
                 ->orderBy('is_head_of_department', 'desc')
                 ->orderBy('name')

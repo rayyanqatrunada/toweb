@@ -21,8 +21,7 @@ class SitemapController extends Controller
     {
         // Cache seluruh sitemap 1 jam — model observers bust key ini saat data berubah.
         // Di testing environment, langsung generate tanpa cache agar test dapat data terbaru.
-        $ttl = app()->environment('testing') ? 0 : 3600;
-        $urls = Cache::remember('sitemap:urls', $ttl, function () {
+        $generator = function () {
             $appUrl = config('app.url');
             $urls = [];
 
@@ -43,65 +42,103 @@ class SitemapController extends Controller
             $urls[] = ['loc' => $appUrl . '/unduhan', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
 
             // Dynamic routes — hanya ambil kolom yang diperlukan (slug + updated_at)
-            Post::published()->select(['slug', 'updated_at'])->latest()->get()
-                ->each(fn($post) => $urls[] = [
-                    'loc'     => route('news.show', $post->slug),
-                    'lastmod' => $post->updated_at->toAtomString(),
-                    'priority' => '0.6',
-                ]);
+            try {
+                Post::published()->select(['slug', 'updated_at'])->latest()->get()
+                    ->each(fn($post) => $urls[] = [
+                        'loc'     => route('news.show', $post->slug),
+                        'lastmod' => $post->updated_at->toAtomString(),
+                        'priority' => '0.6',
+                    ]);
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load posts', ['error' => $e->getMessage()]);
+            }
 
-            Achievement::published()->select(['slug', 'updated_at'])->latest()->get()
-                ->each(fn($item) => $urls[] = [
-                    'loc'     => route('achievements.show', $item->slug),
-                    'lastmod' => $item->updated_at->toAtomString(),
-                    'priority' => '0.6',
-                ]);
+            try {
+                Achievement::published()->select(['slug', 'updated_at'])->latest()->get()
+                    ->each(fn($item) => $urls[] = [
+                        'loc'     => route('achievements.show', $item->slug),
+                        'lastmod' => $item->updated_at->toAtomString(),
+                        'priority' => '0.6',
+                    ]);
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load achievements', ['error' => $e->getMessage()]);
+            }
 
-            GalleryAlbum::published()->select(['slug', 'updated_at'])->latest()->get()
-                ->each(fn($item) => $urls[] = [
-                    'loc'     => route('gallery.show', $item->slug),
-                    'lastmod' => $item->updated_at->toAtomString(),
-                    'priority' => '0.6',
-                ]);
+            try {
+                GalleryAlbum::published()->select(['slug', 'updated_at'])->latest()->get()
+                    ->each(fn($item) => $urls[] = [
+                        'loc'     => route('gallery.show', $item->slug),
+                        'lastmod' => $item->updated_at->toAtomString(),
+                        'priority' => '0.6',
+                    ]);
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load galleries', ['error' => $e->getMessage()]);
+            }
 
-            JobVacancy::published()->select(['slug', 'updated_at'])->latest()->get()
-                ->each(fn($item) => $urls[] = [
-                    'loc'     => route('jobs.show', $item->slug),
-                    'lastmod' => $item->updated_at->toAtomString(),
-                    'priority' => '0.6',
-                ]);
+            try {
+                JobVacancy::published()->select(['slug', 'updated_at'])->latest()->get()
+                    ->each(fn($item) => $urls[] = [
+                        'loc'     => route('jobs.show', $item->slug),
+                        'lastmod' => $item->updated_at->toAtomString(),
+                        'priority' => '0.6',
+                    ]);
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load jobs', ['error' => $e->getMessage()]);
+            }
 
-            Alumni::public()->select(['slug', 'updated_at'])->latest()->get()
-                ->each(fn($item) => $urls[] = [
-                    'loc'     => route('alumni.show', $item->slug),
-                    'lastmod' => $item->updated_at->toAtomString(),
-                    'priority' => '0.5',
-                ]);
+            try {
+                Alumni::public()->select(['slug', 'updated_at'])->latest()->get()
+                    ->each(fn($item) => $urls[] = [
+                        'loc'     => route('alumni.show', $item->slug),
+                        'lastmod' => $item->updated_at->toAtomString(),
+                        'priority' => '0.5',
+                    ]);
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load alumni', ['error' => $e->getMessage()]);
+            }
 
-            Announcement::active()->select(['slug', 'updated_at'])->latest()->get()
-                ->each(fn($item) => $urls[] = [
-                    'loc'     => route('announcements.show', $item->slug),
-                    'lastmod' => $item->updated_at->toAtomString(),
-                    'priority' => '0.6',
-                ]);
+            try {
+                Announcement::active()->select(['slug', 'updated_at'])->latest()->get()
+                    ->each(fn($item) => $urls[] = [
+                        'loc'     => route('announcements.show', $item->slug),
+                        'lastmod' => $item->updated_at->toAtomString(),
+                        'priority' => '0.6',
+                    ]);
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load announcements', ['error' => $e->getMessage()]);
+            }
 
-            IndustryPartner::published()->select(['slug', 'updated_at'])->latest()->get()
-                ->each(fn($item) => $urls[] = [
-                    'loc'     => route('partnership.show', $item->slug),
-                    'lastmod' => $item->updated_at->toAtomString(),
-                    'priority' => '0.6',
-                ]);
+            try {
+                IndustryPartner::published()->select(['slug', 'updated_at'])->latest()->get()
+                    ->each(fn($item) => $urls[] = [
+                        'loc'     => route('partnership.show', $item->slug),
+                        'lastmod' => $item->updated_at->toAtomString(),
+                        'priority' => '0.6',
+                    ]);
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load partners', ['error' => $e->getMessage()]);
+            }
 
-            // Internship tidak punya slug — route pakai ID
-            Internship::published()->select(['id', 'updated_at'])->latest()->get()
-                ->each(fn($item) => $urls[] = [
-                    'loc'     => route('internships.show', $item->id),
-                    'lastmod' => $item->updated_at->toAtomString(),
-                    'priority' => '0.6',
-                ]);
+            try {
+                // Internship tidak punya slug — route pakai ID
+                Internship::published()->select(['id', 'updated_at'])->latest()->get()
+                    ->each(fn($item) => $urls[] = [
+                        'loc'     => route('internships.show', $item->id),
+                        'lastmod' => $item->updated_at->toAtomString(),
+                        'priority' => '0.6',
+                    ]);
+            } catch (\Throwable $e) {
+                \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load internships', ['error' => $e->getMessage()]);
+            }
 
             return $urls;
-        });
+        };
+
+        // Bypass cache in testing so tests always get fresh dynamic data.
+        // Cache::remember with TTL=0 does NOT execute the closure — it returns null.
+        $urls = app()->environment('testing')
+            ? $generator()
+            : Cache::remember('sitemap:urls', 3600, $generator);
 
         return response()->view('frontend.sitemap', [
             'urls' => $urls,
