@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login(\App\Filament\Pages\Auth\Login::class)
             ->colors([
-                'primary' => '#0A24DB', // Custom electric blue from mockup
+                'primary' => '#DC2626', // Custom red from Figma
                 'gray'    => Color::Slate,
                 'danger'  => Color::Rose,
                 'success' => Color::Emerald,
@@ -39,8 +39,8 @@ class AdminPanelProvider extends PanelProvider
                 'info'    => Color::Blue,
             ])
             ->maxContentWidth('full')
-            ->font('Inter')
-            ->brandName('Portal Admin TO')
+            ->font('Hanken Grotesk')
+            ->brandName('Teknik Otomotif')
             ->favicon(asset('logo.png'))
             ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')

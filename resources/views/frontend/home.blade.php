@@ -9,510 +9,374 @@
       "logo": "{{ url('/logo.png') }}"
     }
     </script>
-    <script type="application/ld+json">
-    {
-      "@@context": "https://schema.org",
-      "@type": "WebSite",
-      "url": "{{ url('/') }}",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "{{ url('/search') }}?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
     @endpush
 
-    <!-- 01. HERO SECTION (Split Layout) -->
-    <section class="relative bg-charcoal-50 overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-charcoal-200">
-        <x-frontend.layout.container class="relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-                <!-- Left: Copy -->
-                <div class="reveal-on-scroll reveal-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-charcoal-200 shadow-sm text-xs font-bold text-primary-600 mb-6 uppercase tracking-widest">
-                        <span class="w-2 h-2 rounded-full bg-primary-600 animate-pulse"></span>
-                        Pusat Keunggulan Vokasi
-                    </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-charcoal-950 tracking-tight leading-[1.1] mb-6">
-                        Langkah Pasti Menuju Karier <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">Otomotif Profesional</span>
-                    </h1>
-                    <p class="text-lg text-charcoal-600 font-medium leading-relaxed mb-8 max-w-xl">
-                        {!! \App\Support\HtmlSanitizer::clean($settings->get('hero_subtitle', 'Kurikulum berbasis industri, fasilitas praktik berstandar bengkel resmi, dan jaminan penyaluran kerja ke puluhan perusahaan mitra strategis kami.')) !!}
-                    </p>
-                    <div class="flex flex-col sm:flex-row items-center gap-4 mb-10">
-                        <x-frontend.ui.button href="{{ route('academic.programs') }}" variant="primary" size="lg" class="w-full sm:w-auto shadow-xl shadow-primary-600/20">
-                            Lihat Program Studi
-                        </x-frontend.ui.button>
-                        <x-frontend.ui.button href="{{ route('jobs.index') }}" variant="outline" size="lg" class="w-full sm:w-auto bg-white hover:bg-charcoal-50 border-charcoal-200 text-charcoal-800">
-                            Bursa Kerja (BKK)
-                        </x-frontend.ui.button>
-                    </div>
-                    <!-- Microcopy Reviews / Trust -->
-                    @if($alumnis->isNotEmpty())
-                    <div class="flex items-center gap-4 text-sm font-medium text-charcoal-500">
-                        <div class="flex -space-x-2">
-                            @foreach($alumnis->take(4) as $alumni)
-                                <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="{{ $alumni->photo ? Storage::url($alumni->photo) : 'https://ui-avatars.com/api/?name='.urlencode($alumni->name).'&background=random' }}" alt="Alumni">
-                            @endforeach
-                        </div>
-                        <p>Bergabunglah dengan <span class="font-bold text-charcoal-900">{{ $alumniCount ?: 1200 }}+</span> alumni sukses kami.</p>
-                    </div>
-                    @endif
-                </div>
-                <!-- Right: Image/Video -->
-                <div class="relative reveal-on-scroll reveal-right delay-200">
-                    <div class="absolute -inset-4 bg-primary-100 rounded-[2.5rem] transform -rotate-3 z-0"></div>
-                    <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="{{ $settings->get('hero_image') ? Storage::url($settings->get('hero_image')) : 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1200&auto=format&fit=crop' }}" alt="Kegiatan Praktik Siswa" class="w-full h-auto object-cover aspect-[4/3] lg:aspect-[3/4]">
-                    </div>
-                    <!-- Floating Badge -->
-                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-charcoal-100 z-20 flex items-center gap-4 animate-bounce-slow">
-                        <div class="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center text-primary-600">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                        </div>
-                        <div>
-                            <p class="text-2xl font-black text-charcoal-950">{{ $facilityCount ?: 15 }}</p>
-                            <p class="text-xs font-bold text-charcoal-500 uppercase tracking-widest">Fasilitas Standar</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- 02. QUICK STATS SECTION -->
-    <section class="bg-primary-900 border-y border-primary-800 text-white py-12 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
-            </svg>
-        </div>
-        <x-frontend.layout.container class="relative z-10">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-primary-700 text-center reveal-on-scroll reveal-up">
-                <div class="pt-4 md:pt-0">
-                    <p class="text-4xl lg:text-5xl font-black text-white mb-2">{{ $alumniCount ?: 1200 }}<span class="text-primary-400">+</span></p>
-                    <p class="text-sm font-bold text-primary-200 uppercase tracking-widest">Lulusan Sukses</p>
-                </div>
-                <div class="pt-8 md:pt-0">
-                    <p class="text-4xl lg:text-5xl font-black text-white mb-2">{{ $partnerCount ?: 50 }}<span class="text-primary-400">+</span></p>
-                    <p class="text-sm font-bold text-primary-200 uppercase tracking-widest">Mitra Industri</p>
-                </div>
-                <div class="pt-8 md:pt-0">
-                    <p class="text-4xl lg:text-5xl font-black text-white mb-2">{{ $achievementCount ?: 100 }}<span class="text-primary-400">+</span></p>
-                    <p class="text-sm font-bold text-primary-200 uppercase tracking-widest">Prestasi Diraih</p>
-                </div>
-                <div class="pt-8 md:pt-0">
-                    <p class="text-4xl lg:text-5xl font-black text-white mb-2">{{ $facilityCount ?: 15 }}</p>
-                    <p class="text-sm font-bold text-primary-200 uppercase tracking-widest">Fasilitas Praktik</p>
-                </div>
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- 03. SAMBUTAN KAPROG -->
-    @if($headOfDepartment)
-    <section class="py-20 lg:py-28 bg-white overflow-hidden border-b border-charcoal-100">
-        <x-frontend.layout.container>
-            <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
-                <div class="md:w-5/12 reveal-on-scroll reveal-left">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-primary-100 rounded-[2.5rem] transform rotate-3 z-0"></div>
-                        <img src="{{ $headOfDepartment->photo ? Storage::url($headOfDepartment->photo) : 'https://ui-avatars.com/api/?name='.urlencode($headOfDepartment->name).'&background=random' }}" alt="{{ $headOfDepartment->name }}" class="relative z-10 w-full h-auto object-cover rounded-3xl shadow-xl aspect-square">
-                        <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-lg border border-white z-20 text-center">
-                            <p class="font-black text-charcoal-900">{{ $headOfDepartment->name }}</p>
-                            <p class="text-xs font-bold text-primary-600 uppercase tracking-wider">Kepala Program Keahlian</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-7/12 reveal-on-scroll reveal-right">
-                    <x-frontend.ui.eyebrow class="text-primary-600 mb-4">Sambutan</x-frontend.ui.eyebrow>
-                    <h2 class="text-3xl lg:text-4xl font-black text-charcoal-950 tracking-tight mb-6">Membentuk SDM Otomotif Berdaya Saing Global</h2>
-                    <blockquote class="text-lg lg:text-xl text-charcoal-600 font-medium leading-relaxed italic mb-8 border-l-4 border-primary-500 pl-6">
-                        "Berkomitmen penuh mengintegrasikan pendidikan vokasi dengan tuntutan dunia kerja riil. Kami membekali siswa tidak hanya dengan keterampilan teknis mutakhir, tetapi juga etos kerja dan karakter tangguh yang dibutuhkan industri otomotif masa kini."
-                    </blockquote>
-                    <x-frontend.ui.button href="{{ route('about') }}" variant="outline" class="border-charcoal-200">
-                        Kenali Kami Lebih Dekat
-                    </x-frontend.ui.button>
-                </div>
-            </div>
-        </x-frontend.layout.container>
-    </section>
-    @endif
-
-    <!-- 04. PROGRAM KEAHLIAN -->
-    @if($programs->isNotEmpty())
-    <section class="py-20 lg:py-28 bg-charcoal-50">
-        <x-frontend.layout.container>
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll reveal-up">
-                <x-frontend.ui.eyebrow class="text-primary-600 mb-4 justify-center">Program Kami</x-frontend.ui.eyebrow>
-                <h2 class="text-3xl lg:text-4xl font-black text-charcoal-950 tracking-tight mb-4">Pilihan Kompetensi Keahlian</h2>
-                <p class="text-lg text-charcoal-600 font-medium">Program keahlian spesifik yang dirancang selaras dengan kebutuhan kompetensi di berbagai sektor otomotif.</p>
-            </div>
+    <!-- Main Auto Layout Wrapper -->
+    <main class="flex flex-col items-center bg-figma-bg-light w-full overflow-hidden">
+        
+        <!-- 01. Hero Section -->
+        <section class="flex flex-col lg:flex-row justify-center items-center py-20 lg:py-32 px-6 lg:px-16 gap-6 w-full max-w-[1280px] min-h-[calc(100vh-80px)] mt-[80px]">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($programs as $program)
-                <div class="bg-white p-8 rounded-3xl border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
-                    <div class="w-16 h-16 bg-primary-50 text-primary-600 rounded-2xl flex items-center justify-center mb-6">
-                        @if(Str::contains(strtolower($program->name), 'kendaraan ringan'))
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                        @elseif(Str::contains(strtolower($program->name), 'sepeda motor'))
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                        @else
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        @endif
-                    </div>
-                    <h3 class="text-xl font-bold text-charcoal-900 mb-4">{{ $program->name }}</h3>
-                    @if($program->competencies->isNotEmpty())
-                        <ul class="space-y-3 mb-6">
-                            @foreach($program->competencies->take(3) as $comp)
-                            <li class="flex items-start text-charcoal-600 font-medium text-sm">
-                                <svg class="w-5 h-5 text-emerald-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                {{ $comp->name }}
-                            </li>
-                            @endforeach
-                            @if($program->competencies->count() > 3)
-                            <li class="flex items-start text-charcoal-500 font-medium text-sm italic">
-                                + {{ $program->competencies->count() - 3 }} kompetensi lainnya
-                            </li>
-                            @endif
-                        </ul>
-                    @endif
-                    <a href="{{ route('academic.programs') }}" class="text-primary-600 font-bold text-sm flex items-center hover:text-primary-700">Detail Program <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
-                </div>
-                @endforeach
-            </div>
-        </x-frontend.layout.container>
-    </section>
-    @endif
-
-    <!-- 05. FASILITAS UNGGULAN & KEUNGGULAN -->
-    <section class="py-20 lg:py-28 bg-white border-y border-charcoal-100">
-        <x-frontend.layout.container>
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll reveal-up">
-                <h2 class="text-3xl lg:text-4xl font-black text-charcoal-950 tracking-tight mb-4">Mengapa Memilih Teknik Otomotif Kami?</h2>
-                <p class="text-lg text-charcoal-600 font-medium">Kami memadukan teori terapan dan praktik intensif di fasilitas berstandar industri untuk memastikan lulusan siap kerja.</p>
-            </div>
-
-            @if($facilities->isNotEmpty())
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                @foreach($facilities as $facility)
-                <div class="bg-charcoal-50 rounded-3xl overflow-hidden shadow-sm border border-charcoal-100 group reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
-                    <div class="aspect-video relative overflow-hidden bg-charcoal-200">
-                        @if($facility->photo)
-                            <img src="{{ Storage::url($facility->photo) }}" alt="{{ $facility->name }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        @else
-                            <div class="w-full h-full flex items-center justify-center text-charcoal-400">
-                                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold text-charcoal-900 mb-2">{{ $facility->name }}</h3>
-                        <p class="text-sm text-charcoal-600 font-medium line-clamp-2">{{ strip_tags($facility->description) }}</p>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <div class="text-center mb-16">
-                <x-frontend.ui.button href="{{ route('academic.facilities') }}" variant="outline" class="border-charcoal-200">
-                    Lihat Semua Fasilitas
-                </x-frontend.ui.button>
-            </div>
-            @endif
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- 06. MITRA INDUSTRI (LOGOS) -->
-    <section class="py-12 bg-charcoal-50 overflow-hidden">
-        <x-frontend.layout.container>
-            <p class="text-center text-xs font-bold text-charcoal-400 uppercase tracking-widest mb-8">Telah dipercaya oleh {{ $partnerCount ?: 10 }}+ Mitra Industri Strategis</p>
-            @if($partners->isNotEmpty())
-            <div class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-60 grayscale reveal-on-scroll reveal-up">
-                @foreach($partners as $partner)
-                    <img src="{{ $partner->logo ? Storage::url($partner->logo) : 'https://ui-avatars.com/api/?name='.urlencode($partner->name).'&background=fff&color=000&size=128&bold=true' }}" alt="{{ $partner->name }}" class="h-8 md:h-12 object-contain hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                @endforeach
-            </div>
-            @endif
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- 07. LOWONGAN PEKERJAAN TERBARU (BKK) -->
-    @if($jobVacancies->isNotEmpty())
-    <section class="py-20 lg:py-28 bg-white border-y border-charcoal-100">
-        <x-frontend.layout.container>
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal-on-scroll reveal-up">
-                <div class="max-w-2xl mb-6 md:mb-0">
-                    <x-frontend.ui.eyebrow class="text-amber-500 mb-4">Bursa Kerja Khusus</x-frontend.ui.eyebrow>
-                    <h2 class="text-3xl lg:text-4xl font-black text-charcoal-950 tracking-tight mb-4">Peluang Karir Terbaru</h2>
-                    <p class="text-lg text-charcoal-600 font-medium">Temukan lowongan eksklusif langsung dari mitra industri terpercaya kami.</p>
-                </div>
-                <x-frontend.ui.button href="{{ route('jobs.index') }}" variant="outline" class="border-charcoal-200 hidden md:inline-flex">
-                    Lihat Semua Lowongan
-                </x-frontend.ui.button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($jobVacancies as $job)
-                <div class="bg-white p-6 rounded-3xl border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col group reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 rounded-xl border border-charcoal-100 bg-white shadow-sm flex items-center justify-center p-2 shrink-0">
-                            @if($job->industryPartner && $job->industryPartner->logo)
-                                <img src="{{ Storage::url($job->industryPartner->logo) }}" alt="Logo" class="w-full h-full object-contain">
-                            @else
-                                <svg class="w-8 h-8 text-charcoal-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.5L18.5 19H5.5L12 5.5z"/></svg>
-                            @endif
-                        </div>
-                        <div>
-                            <p class="text-xs font-bold text-charcoal-500 uppercase tracking-widest mb-1">{{ $job->industryPartner->name ?? 'Perusahaan' }}</p>
-                            <h3 class="font-bold text-charcoal-900 leading-tight group-hover:text-primary-600 transition-colors">
-                                <a href="{{ route('jobs.show', $job->slug) }}" class="focus:outline-none before:absolute before:inset-0">{{ $job->title }}</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="mt-auto space-y-3 relative z-10">
-                        <div class="flex flex-wrap gap-2">
-                            @if($job->location)
-                                <span class="px-3 py-1 bg-charcoal-50 text-charcoal-600 text-xs font-semibold rounded-full border border-charcoal-100">{{ $job->location }}</span>
-                            @endif
-                            @if($job->work_type)
-                                <span class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-full border border-amber-100">{{ $job->work_type }}</span>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <div class="text-center mt-10 md:hidden reveal-on-scroll reveal-up">
-                <x-frontend.ui.button href="{{ route('jobs.index') }}" variant="outline" class="border-charcoal-200 w-full">
-                    Lihat Semua Lowongan
-                </x-frontend.ui.button>
-            </div>
-        </x-frontend.layout.container>
-    </section>
-    @endif
-
-    <!-- 08. BERITA & PENGUMUMAN -->
-    <section class="py-20 lg:py-28 bg-charcoal-50">
-        <x-frontend.layout.container>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                <!-- Latest News -->
-                <div class="lg:col-span-8 reveal-on-scroll reveal-left">
-                    <div class="flex justify-between items-end mb-8">
-                        <div>
-                            <h2 class="text-3xl font-black text-charcoal-950 tracking-tight mb-2">Berita Terbaru</h2>
-                            <p class="text-charcoal-600 font-medium">Informasi dan liputan kegiatan seputar program keahlian.</p>
-                        </div>
-                        <a href="{{ route('news.index') }}" class="hidden sm:inline-flex text-primary-600 font-bold hover:text-primary-700 text-sm items-center">
-                            Lihat Semua <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                    <div class="space-y-6">
-                        @if($latestNews->isNotEmpty())
-                            @foreach($latestNews as $post)
-                            <div class="bg-white rounded-3xl p-4 border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col sm:flex-row gap-6 group">
-                                <div class="w-full sm:w-48 h-48 sm:h-auto rounded-2xl bg-charcoal-100 relative overflow-hidden shrink-0">
-                                    @if($post->thumbnail)
-                                        <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                    @else
-                                        <div class="w-full h-full flex items-center justify-center text-charcoal-300">
-                                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                        </div>
-                                    @endif
-                                    @if($post->category)
-                                        <span class="absolute top-3 left-3 bg-primary-600 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-lg">
-                                            {{ $post->category->name }}
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="py-2 pr-4 flex flex-col">
-                                    <span class="text-xs font-bold text-charcoal-400 mb-2">{{ $post->published_at ? $post->published_at->translatedFormat('d F Y') : $post->created_at->translatedFormat('d F Y') }}</span>
-                                    <h3 class="text-xl font-bold text-charcoal-900 leading-tight mb-3 group-hover:text-primary-600 transition-colors">
-                                        <a href="{{ route('news.show', $post->slug) }}" class="focus:outline-none before:absolute before:inset-0">{{ $post->title }}</a>
-                                    </h3>
-                                    <p class="text-charcoal-600 text-sm font-medium line-clamp-2 mt-auto">{{ $post->excerpt }}</p>
-                                </div>
-                            </div>
-                            @endforeach
-                        @else
-                            <p class="text-charcoal-500">Belum ada berita terbaru.</p>
-                        @endif
-                    </div>
-                </div>
-
-                <!-- Announcements -->
-                <div class="lg:col-span-4 reveal-on-scroll reveal-right delay-200">
-                    <div class="flex justify-between items-end mb-8">
-                        <div>
-                            <h2 class="text-3xl font-black text-charcoal-950 tracking-tight mb-2">Pengumuman</h2>
-                            <p class="text-charcoal-600 font-medium">Informasi penting.</p>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-3xl border border-charcoal-200 shadow-sm p-6">
-                        <div class="space-y-6">
-                            @if($agendas->isNotEmpty())
-                                @foreach($agendas as $agenda)
-                                <div class="group relative pb-6 border-b border-charcoal-100 last:border-0 last:pb-0">
-                                    <span class="text-xs font-bold text-primary-600 mb-1 block">{{ $agenda->created_at->translatedFormat('d M Y') }}</span>
-                                    <h3 class="font-bold text-charcoal-900 leading-snug group-hover:text-primary-600 transition-colors">
-                                        <a href="{{ route('announcements.show', $agenda->slug) }}" class="focus:outline-none before:absolute before:inset-0">{{ $agenda->title }}</a>
-                                    </h3>
-                                </div>
-                                @endforeach
-                            @else
-                                <p class="text-charcoal-500 text-sm">Belum ada pengumuman.</p>
-                            @endif
-                        </div>
-                        <div class="mt-6 pt-6 border-t border-charcoal-100 text-center">
-                            <a href="{{ route('announcements.index') }}" class="text-sm font-bold text-charcoal-600 hover:text-primary-600">Semua Pengumuman &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- 09. TESTIMONIALS -->
-    <section class="py-20 lg:py-28 bg-white border-y border-charcoal-100 overflow-hidden">
-        <x-frontend.layout.container>
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll reveal-up">
-                <h2 class="text-3xl lg:text-4xl font-black text-charcoal-950 tracking-tight mb-4">Apa Kata Alumni Kami?</h2>
-                <p class="text-lg text-charcoal-600 font-medium">Banyak lulusan kami yang telah menduduki posisi strategis di berbagai perusahaan otomotif.</p>
-            </div>
-
-            @if($alumnis->isNotEmpty())
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @foreach($alumnis->take(3) as $alumni)
-                <div class="bg-charcoal-50 p-8 rounded-3xl border border-charcoal-100 flex flex-col reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 }}">
-                    <div class="flex items-center gap-1 text-yellow-400 mb-4">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    </div>
-                    <blockquote class="flex-grow text-charcoal-700 font-medium italic mb-6">
-                        "Berkat ilmu teori dan praktik mendalam yang saya dapatkan selama sekolah, saya bisa langsung beradaptasi dengan ritme kerja industri tanpa hambatan."
-                    </blockquote>
-                    <div class="flex items-center gap-4">
-                        <img src="{{ $alumni->photo ? Storage::url($alumni->photo) : 'https://ui-avatars.com/api/?name='.urlencode($alumni->name).'&background=random' }}" alt="{{ $alumni->name }}" class="w-12 h-12 rounded-full object-cover border border-charcoal-200">
-                        <div>
-                            <p class="font-bold text-charcoal-900">{{ $alumni->name }}</p>
-                            <p class="text-xs text-charcoal-500 font-medium">{{ $alumni->current_occupation ?? 'Alumni' }} di {{ $alumni->current_company ?? 'Perusahaan' }}</p>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <div class="text-center mt-10 reveal-on-scroll reveal-up">
-                <a href="{{ route('alumni.index') }}" class="inline-flex items-center gap-2 text-charcoal-500 hover:text-primary-600 font-bold transition-colors">Lihat Semua Kisah Alumni <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
-            </div>
-            @endif
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- 10. GALERI (NEW SECTION) -->
-    @if($galleries->isNotEmpty())
-    <section class="py-20 bg-charcoal-50 border-t border-charcoal-100">
-        <x-frontend.layout.container>
-            <div class="flex justify-between items-end mb-12 reveal-on-scroll reveal-up">
-                <div>
-                    <h2 class="text-3xl font-black text-charcoal-950 tracking-tight mb-2">Galeri Kegiatan</h2>
-                    <p class="text-charcoal-600 font-medium">Dokumentasi aktivitas dan praktik.</p>
-                </div>
-                <a href="{{ route('gallery.index') }}" class="hidden sm:inline-flex text-primary-600 font-bold hover:text-primary-700 text-sm items-center">
-                    Semua Galeri <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                @foreach($galleries as $gallery)
-                <a href="{{ route('gallery.show', $gallery->slug) }}" class="block aspect-square rounded-3xl overflow-hidden relative group reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 400 }}">
-                    <img src="{{ $gallery->thumbnail ? Storage::url($gallery->thumbnail) : 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&q=80' }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Gallery">
-                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <p class="text-white font-bold text-sm line-clamp-2 leading-tight">{{ $gallery->title }}</p>
-                    </div>
-                </a>
-                @endforeach
-            </div>
-        </x-frontend.layout.container>
-    </section>
-    @endif
-
-    <!-- 11. FAQ SECTION -->
-    <section class="py-20 lg:py-28 bg-white border-y border-charcoal-100" x-data="{ activeAccordion: null }">
-        <x-frontend.layout.container>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div class="lg:col-span-5 reveal-on-scroll reveal-left">
-                    <h2 class="text-3xl lg:text-4xl font-black text-charcoal-950 tracking-tight mb-4">Pertanyaan yang Sering Diajukan</h2>
-                    <p class="text-lg text-charcoal-600 font-medium mb-8">Punya pertanyaan lain? Jangan ragu untuk menghubungi bagian tata usaha kami.</p>
-                    <x-frontend.ui.button href="{{ route('about') }}" variant="outline" class="border-charcoal-200">
-                        Hubungi Kami
-                    </x-frontend.ui.button>
+            <!-- Left: Text Content -->
+            <div class="flex flex-col items-start gap-4 lg:w-1/2 w-full z-10 reveal-on-scroll reveal-left">
+                <!-- Eyebrow -->
+                <div class="font-sans font-normal text-[16px] leading-[24px] tracking-[1.6px] text-figma-gray uppercase mb-2">
+                    TEKNIK OTOMOTIF {{ $settings->get('site_name', 'SMK NEGERI 1 BANGSRI') }}
                 </div>
                 
-                <div class="lg:col-span-7 space-y-4 reveal-on-scroll reveal-right">
-                    <!-- FAQ 1 -->
-                    <div class="bg-charcoal-50 border border-charcoal-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary-300 hover:shadow-sm">
-                        <button x-on:click="activeAccordion = activeAccordion === 1 ? null : 1" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
-                            <span class="font-bold text-charcoal-900">Apakah ada jaminan kerja setelah lulus?</span>
-                            <svg class="w-5 h-5 text-charcoal-400 transform transition-transform duration-300" :class="activeAccordion === 1 ? 'rotate-180 text-primary-500' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </button>
-                        <div x-show="activeAccordion === 1" x-collapse x-cloak>
-                            <div class="px-6 pb-5 text-charcoal-600 font-medium leading-relaxed">
-                                Kami memiliki unit Bursa Kerja Khusus (BKK) yang aktif menyalurkan lulusan. Meskipun bukan "jaminan mutlak", rekam jejak kami menunjukkan mayoritas lulusan langsung terserap di perusahaan mitra industri yang bekerjasama dengan kami.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FAQ 2 -->
-                    <div class="bg-charcoal-50 border border-charcoal-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary-300 hover:shadow-sm">
-                        <button x-on:click="activeAccordion = activeAccordion === 2 ? null : 2" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
-                            <span class="font-bold text-charcoal-900">Berapa lama kegiatan Praktik Kerja Lapangan (PKL) dilaksanakan?</span>
-                            <svg class="w-5 h-5 text-charcoal-400 transform transition-transform duration-300" :class="activeAccordion === 2 ? 'rotate-180 text-primary-500' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </button>
-                        <div x-show="activeAccordion === 2" x-collapse x-cloak>
-                            <div class="px-6 pb-5 text-charcoal-600 font-medium leading-relaxed">
-                                Sesuai kurikulum vokasi, PKL (Praktik Kerja Lapangan) wajib dilaksanakan selama 6 bulan (1 semester penuh) agar siswa benar-benar memahami budaya dan etos kerja industri.
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FAQ 3 -->
-                    <div class="bg-charcoal-50 border border-charcoal-200 rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary-300 hover:shadow-sm">
-                        <button x-on:click="activeAccordion = activeAccordion === 3 ? null : 3" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
-                            <span class="font-bold text-charcoal-900">Apakah pendaftaran siswa baru sudah dibuka?</span>
-                            <svg class="w-5 h-5 text-charcoal-400 transform transition-transform duration-300" :class="activeAccordion === 3 ? 'rotate-180 text-primary-500' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        </button>
-                        <div x-show="activeAccordion === 3" x-collapse x-cloak>
-                            <div class="px-6 pb-5 text-charcoal-600 font-medium leading-relaxed">
-                                Silakan pantau terus menu Pengumuman dan Berita di website kami. Jadwal Pendaftaran Peserta Didik Baru (PPDB) selalu diperbarui setiap tahun sesuai kalender pendidikan daerah.
-                            </div>
-                        </div>
-                    </div>
+                <!-- Heading 1 -->
+                <h1 class="font-heading font-extrabold text-[48px] lg:text-[64px] leading-[1.1] tracking-[-1.28px] text-figma-dark">
+                    Menyiapkan Generasi Profesional di Dunia Otomotif
+                </h1>
+                
+                <!-- Description -->
+                <p class="font-sans font-normal text-[18px] leading-[29px] text-figma-gray mt-2 mb-6 max-w-[512px]">
+                    {!! \App\Support\HtmlSanitizer::clean($settings->get('hero_subtitle', 'Program keahlian spesifik yang dirancang selaras dengan kebutuhan kompetensi di berbagai sektor otomotif. Bersama kami, melangkah pasti menuju masa depan gemilang.')) !!}
+                </p>
+                
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row items-start gap-4">
+                    <a href="{{ route('academic.programs') }}" class="flex flex-col justify-center items-center px-8 py-4 bg-figma-red rounded-[2px] w-full sm:w-auto h-[58px] hover:bg-figma-dark-red transition-colors focus-ring">
+                        <span class="font-sans font-normal text-[16px] leading-[24px] text-white text-center w-[120px]">Program Studi</span>
+                    </a>
+                    
+                    <a href="{{ route('about') }}" class="box-border flex flex-col justify-center items-center px-8 py-4 border border-[#E4E1E5] rounded-[2px] w-full sm:w-auto h-[58px] hover:bg-gray-100 transition-colors focus-ring">
+                        <span class="font-sans font-normal text-[16px] leading-[24px] text-figma-dark text-center w-[105px]">Tentang Kami</span>
+                    </a>
                 </div>
             </div>
-        </x-frontend.layout.container>
-    </section>
 
-    <!-- 12. FINAL CTA SECTION -->
-    <section class="py-20 lg:py-24 bg-primary-600 text-white relative overflow-hidden">
-        <!-- Abstract bg shapes -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-charcoal-900/10 rounded-full blur-3xl"></div>
-        
-        <x-frontend.layout.container class="relative z-10 text-center max-w-4xl">
-            <h2 class="text-3xl lg:text-5xl font-black tracking-tight mb-6 reveal-on-scroll reveal-up">Siap Memulai Perjalanan Karir Anda?</h2>
-            <p class="text-lg text-primary-100 font-medium mb-10 max-w-2xl mx-auto reveal-on-scroll reveal-up delay-100">
-                Jadilah bagian dari generasi teknisi otomotif unggul berikutnya. Temukan program studi, eksplorasi fasilitas, dan wujudkan mimpi Anda.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal-on-scroll reveal-up delay-200">
-                <x-frontend.ui.button href="{{ route('about') }}" variant="primary" size="lg" class="w-full sm:w-auto bg-white text-primary-600 hover:bg-charcoal-50 border-none shadow-xl">
-                    Jelajahi Profil Jurusan
-                </x-frontend.ui.button>
-                <x-frontend.ui.button href="{{ route('news.index') }}" variant="outline" size="lg" class="w-full sm:w-auto bg-transparent text-white border-white/30 hover:bg-white/10">
-                    Baca Berita Terbaru
-                </x-frontend.ui.button>
+            <!-- Right: Image Content -->
+            <div class="box-border flex flex-col justify-center items-start p-2 bg-white border border-[#E4E1E5] rounded-[4px] lg:w-[564px] h-[400px] lg:h-[600px] w-full reveal-on-scroll reveal-right delay-200 mt-10 lg:mt-0">
+                <img src="{{ $settings->get('hero_image') ? Storage::url($settings->get('hero_image')) : 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1200&auto=format&fit=crop' }}" 
+                     alt="Workshop" 
+                     class="w-full h-full object-cover rounded-[2px]">
             </div>
-        </x-frontend.layout.container>
-    </section>
+            
+        </section>
 
+        <!-- 02. Identity / Introduction Section -->
+        <section class="flex flex-col items-center bg-figma-bg-alt py-32 px-6 lg:px-16 w-full">
+            <div class="flex flex-col items-center gap-20 w-full max-w-[1280px]">
+                
+                <!-- Section Header -->
+                <div class="flex flex-col items-center gap-6 max-w-[768px] reveal-on-scroll reveal-up">
+                    <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-figma-dark text-center">
+                        Lebih dari Sekadar Belajar Otomotif
+                    </h2>
+                    <p class="font-sans font-normal text-[16px] lg:text-[18px] leading-[1.6] text-figma-gray text-center">
+                        Kami memiliki komitmen penuh untuk membangun ekosistem pendidikan vokasi otomotif yang tidak hanya unggul secara akademis, namun juga adaptif terhadap perkembangan teknologi industri.
+                    </p>
+                </div>
+
+                <!-- Cards Container -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full reveal-on-scroll reveal-up delay-200">
+                    
+                    <!-- Card 1 -->
+                    <div class="box-border flex flex-col items-start p-8 gap-4 bg-figma-bg-card border border-[#E4E1E5] rounded-[4px]">
+                        <div class="w-full h-[30px] bg-figma-dark-red flex items-center px-4 rounded-t-sm">
+                            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <h3 class="font-heading font-bold text-[24px] leading-[1.3] text-figma-dark mt-2">Kompetensi Teknis</h3>
+                        <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                            Penguasaan teknologi mesin, sasis, dan kelistrikan otomotif modern dengan standar operasional prosedur yang ketat.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="box-border flex flex-col items-start p-8 gap-4 bg-figma-bg-card border border-[#E4E1E5] rounded-[4px]">
+                        <div class="w-full h-[30px] bg-figma-dark-red flex items-center px-4 rounded-t-sm">
+                            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="font-heading font-bold text-[24px] leading-[1.3] text-figma-dark mt-2">Pengalaman Praktik</h3>
+                        <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                            Jam terbang praktik yang tinggi di fasilitas laboratorium yang dirancang menyerupai lingkungan kerja industri otomotif sesungguhnya.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="box-border flex flex-col items-start p-8 gap-4 bg-figma-bg-card border border-[#E4E1E5] rounded-[4px]">
+                        <div class="w-full h-[30px] bg-figma-dark-red flex items-center px-4 rounded-t-sm">
+                            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h3 class="font-heading font-bold text-[24px] leading-[1.3] text-figma-dark mt-2">Koneksi Industri</h3>
+                        <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                            Kemitraan strategis dengan perusahaan otomotif terkemuka untuk memastikan kurikulum relevan dengan kebutuhan pasar kerja.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Program & Competency Section -->
+        <section class="flex flex-col items-center bg-figma-bg-light py-20 px-6 lg:px-16 w-full">
+            <div class="flex flex-col lg:flex-row gap-16 w-full max-w-[1152px] relative reveal-on-scroll reveal-up">
+                
+                <!-- Left: Description -->
+                <div class="flex flex-col gap-6 lg:w-[466px]">
+                    <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-figma-dark">
+                        Teknik dan Bisnis Sepeda Motor (TBSM)
+                    </h2>
+                    <p class="font-sans font-normal text-[16px] lg:text-[18px] leading-[1.6] text-figma-gray">
+                        Program keahlian ini membekali siswa dengan keterampilan komprehensif dalam perawatan, perbaikan, dan manajemen bisnis sepeda motor.
+                    </p>
+                    <a href="{{ route('academic.programs') }}" class="flex items-center gap-2 mt-2">
+                        <div class="w-4 h-4 bg-figma-dark-red rounded-full"></div>
+                        <span class="font-sans font-normal text-[16px] leading-[1.5] text-figma-dark-red uppercase hover:underline">Lihat Semua Program</span>
+                    </a>
+                </div>
+
+                <!-- Right: Competency Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:flex-1 relative">
+                    <!-- Tech Mesin -->
+                    <div class="box-border flex flex-col p-6 gap-3 border border-[#E4E1E5] rounded-[4px] bg-white">
+                        <h4 class="font-heading font-bold text-[18px] leading-[1.56] text-figma-dark">Teknologi Mesin</h4>
+                        <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                            Diagnosa dan perbaikan komponen mesin, sistem bahan bakar injeksi, dan transmisi otomatis/manual.
+                        </p>
+                    </div>
+
+                    <!-- Sistem Sasis -->
+                    <div class="box-border flex flex-col p-6 gap-3 border border-[#E4E1E5] rounded-[4px] bg-white">
+                        <h4 class="font-heading font-bold text-[18px] leading-[1.56] text-figma-dark">Sistem Sasis</h4>
+                        <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                            Perawatan dan perbaikan sistem pengereman, suspensi, dan kemudi sepeda motor.
+                        </p>
+                    </div>
+
+                    <!-- Kelistrikan -->
+                    <div class="box-border flex flex-col p-6 gap-3 border border-[#E4E1E5] rounded-[4px] bg-white">
+                        <h4 class="font-heading font-bold text-[18px] leading-[1.56] text-figma-dark">Kelistrikan</h4>
+                        <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                            Pemahaman sirkuit kelistrikan, sistem pengapian, sistem pengisian, dan komponen elektronik modern.
+                        </p>
+                    </div>
+
+                    <!-- Pengelolaan Bengkel -->
+                    <div class="box-border flex flex-col p-6 gap-3 border border-[#E4E1E5] rounded-[4px] bg-white">
+                        <h4 class="font-heading font-bold text-[18px] leading-[1.56] text-figma-dark">Pengelolaan Bengkel</h4>
+                        <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                            Dasar-dasar manajemen layanan purna jual, administrasi bengkel, dan pelayanan pelanggan.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 04. Why Teknik Otomotif Section -->
+        <section class="flex flex-col items-center bg-figma-bg-section py-32 px-6 lg:px-16 w-full">
+            <div class="flex flex-col items-center gap-20 w-full max-w-[1280px]">
+                
+                <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-figma-dark text-center">
+                    Mengapa Memilih Teknik Otomotif?
+                </h2>
+
+                <div class="flex flex-col gap-24 lg:gap-32 w-full max-w-[1152px]">
+                    
+                    <!-- Point 1 -->
+                    <div class="flex flex-col-reverse lg:flex-row items-center gap-6 lg:gap-10 w-full reveal-on-scroll reveal-up">
+                        <div class="flex flex-col justify-center items-start lg:w-1/2 bg-[#E4E1E5] rounded-[4px] h-[317px] w-full overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1503375176161-0498a9d18721?q=80&w=800&auto=format&fit=crop" alt="Praktik Langsung" class="w-full h-full object-cover mix-blend-saturation grayscale">
+                        </div>
+                        <div class="flex flex-col items-start gap-4 lg:w-1/2 lg:pl-12 w-full">
+                            <h3 class="font-heading font-bold text-[24px] leading-[1.3] text-figma-dark">Praktik Langsung Lebih Banyak</h3>
+                            <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                                Porsi pembelajaran praktik mencapai 70%, memastikan setiap siswa memiliki kesempatan luas untuk membongkar, merakit, dan menganalisa kendaraan secara langsung.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-10 w-full reveal-on-scroll reveal-up">
+                        <div class="flex flex-col items-start gap-4 lg:w-1/2 lg:pr-12 w-full">
+                            <h3 class="font-heading font-bold text-[24px] leading-[1.3] text-figma-dark">Sertifikasi Kompetensi Industri</h3>
+                            <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                                Lulusan kami dibekali dengan sertifikat keahlian yang diakui oleh asosiasi industri otomotif, memberikan keunggulan kompetitif saat melamar pekerjaan.
+                            </p>
+                        </div>
+                        <div class="flex flex-col justify-center items-start lg:w-1/2 bg-[#E4E1E5] rounded-[4px] h-[317px] w-full overflow-hidden relative mt-6 lg:mt-0">
+                            <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=800&auto=format&fit=crop" alt="Sertifikasi" class="w-full h-full object-cover mix-blend-saturation grayscale">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. Facilities Section -->
+        <section class="flex flex-col items-center bg-figma-bg-light py-32 px-6 lg:px-16 w-full">
+            <div class="flex flex-col items-center gap-8 w-full max-w-[1280px]">
+                
+                <div class="flex flex-col items-center text-center gap-4 max-w-[672px] reveal-on-scroll reveal-up">
+                    <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-figma-dark">
+                        Ruang untuk Belajar dan Berlatih
+                    </h2>
+                    <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                        Fasilitas laboratorium dirancang sedemikian rupa untuk mensimulasikan kondisi bengkel sebenarnya agar siswa terbiasa dengan lingkungan kerja profesional.
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-4 w-full max-w-[1152px] reveal-on-scroll reveal-up delay-100">
+                    <!-- Main Facility -->
+                    <div class="relative box-border w-full h-[300px] sm:h-[400px] lg:h-[532px] border border-[#E4E1E5] rounded-[4px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1620025968593-be349b1a53ac?q=80&w=1200&auto=format&fit=crop" alt="Laboratorium Otomotif Terpadu" class="absolute inset-0 w-full h-full object-cover z-0">
+                        <div class="absolute bottom-0 inset-x-0 h-[112px] bg-gradient-to-t from-black/80 to-transparent p-6 sm:p-8 flex flex-col justify-end z-10">
+                            <h3 class="font-heading font-normal text-[16px] sm:text-[18px] text-white">Laboratorium Otomotif Terpadu</h3>
+                            <p class="font-sans font-normal text-[14px] sm:text-[16px] text-gray-300 truncate">Dilengkapi dengan alat uji emisi, dynotest, dan peralatan diagnostik standar dealer.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Sub Facilities Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full h-auto sm:h-[192px]">
+                        @if($facilities->isNotEmpty())
+                            @foreach($facilities->take(3) as $facility)
+                            <div class="box-border w-full h-[150px] sm:h-full border border-[#E4E1E5] rounded-[2px] overflow-hidden relative group">
+                                <img src="{{ $facility->photo ? Storage::url($facility->photo) : 'https://images.unsplash.com/photo-1635831968846-512ce24e930f?q=80&w=400&auto=format&fit=crop' }}" class="w-full h-full object-cover" alt="{{ $facility->name }}">
+                                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                                    <span class="text-white font-sans text-sm text-center">{{ $facility->name }}</span>
+                                </div>
+                            </div>
+                            @endforeach
+                            <!-- Fill empty slots if less than 3 -->
+                            @for ($i = $facilities->count(); $i < 3; $i++)
+                            <div class="box-border w-full h-[150px] sm:h-full border border-[#E4E1E5] rounded-[2px] overflow-hidden bg-gray-200"></div>
+                            @endfor
+                        @else
+                            <div class="box-border w-full h-[150px] sm:h-full border border-[#E4E1E5] rounded-[2px] bg-gray-200"></div>
+                            <div class="box-border w-full h-[150px] sm:h-full border border-[#E4E1E5] rounded-[2px] bg-gray-200"></div>
+                            <div class="box-border w-full h-[150px] sm:h-full border border-[#E4E1E5] rounded-[2px] bg-gray-200"></div>
+                        @endif
+
+                        <a href="{{ route('academic.facilities') }}" class="box-border flex justify-center items-center w-full h-[150px] sm:h-full bg-figma-bg-section border border-[#E4E1E5] rounded-[2px] hover:bg-gray-200 transition-colors">
+                            <span class="font-sans font-normal text-[16px] text-figma-gray">Lihat Semua Fasilitas</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 06. Industry Connection Section -->
+        <section class="flex flex-col items-center bg-figma-dark py-24 px-6 lg:px-16 w-full">
+            <div class="flex flex-col items-center gap-6 w-full max-w-[1280px]">
+                
+                <h2 class="font-heading font-bold text-[24px] lg:text-[32px] leading-[1.3] text-white text-center">
+                    Berkolaborasi dengan Industri Terbaik
+                </h2>
+                <p class="font-sans font-normal text-[16px] leading-[1.5] text-gray-400 text-center max-w-[672px]">
+                    Kemitraan strategis untuk memastikan sinkronisasi kurikulum, pelaksanaan magang, penyaluran tenaga kerja, serta kelas industri unggulan.
+                </p>
+
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 w-full max-w-[1152px] mt-10 opacity-70 reveal-on-scroll reveal-up">
+                    @if($partners->isNotEmpty())
+                        @foreach($partners as $partner)
+                            @if($partner->logo)
+                                <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="h-10 md:h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            @else
+                                <div class="w-32 h-12 bg-figma-gray-dark rounded-[2px] flex items-center justify-center text-white text-xs font-bold">{{ $partner->name }}</div>
+                            @endif
+                        @endforeach
+                    @else
+                        <!-- Placeholders -->
+                        <div class="w-32 h-12 bg-figma-gray-dark rounded-[2px]"></div>
+                        <div class="w-40 h-16 bg-figma-gray-dark rounded-[2px]"></div>
+                        <div class="w-32 h-12 bg-figma-gray-dark rounded-[2px]"></div>
+                        <div class="w-36 h-14 bg-figma-gray-dark rounded-[2px]"></div>
+                        <div class="w-28 h-12 bg-figma-gray-dark rounded-[2px]"></div>
+                    @endif
+                </div>
+            </div>
+        </section>
+
+        <!-- 07. Achievements Section -->
+        <section class="flex flex-col items-center bg-figma-bg-light py-32 px-6 lg:px-16 w-full">
+            <div class="flex flex-col gap-16 w-full max-w-[1280px]">
+                
+                <!-- Section Header -->
+                <div class="flex flex-col lg:flex-row justify-between lg:items-end items-start gap-4 w-full max-w-[1152px] mx-auto reveal-on-scroll reveal-up">
+                    <div class="flex flex-col gap-4 max-w-[562px]">
+                        <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-figma-dark">
+                            Prestasi yang Menjadi Bukti
+                        </h2>
+                        <p class="font-sans font-normal text-[16px] leading-[1.5] text-figma-gray">
+                            Dedikasi kami mencetak lulusan terbaik telah diakui dalam berbagai ajang kompetisi kompetensi siswa.
+                        </p>
+                    </div>
+                    <a href="{{ route('news.index', ['category' => 'prestasi']) }}" class="font-sans font-normal text-[16px] leading-[1.5] text-figma-dark-red hover:underline">
+                        Lihat Semua Prestasi
+                    </a>
+                </div>
+
+                <!-- Main Content -->
+                <div class="relative flex flex-col lg:flex-row gap-8 w-full max-w-[1152px] mx-auto min-h-[426px] reveal-on-scroll reveal-up delay-100">
+                    
+                    <!-- Left: Featured Image Box -->
+                    <div class="relative box-border flex flex-col justify-end p-8 bg-figma-red rounded-[4px] lg:w-[60%] w-full h-[426px] overflow-hidden isolate">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?q=80&w=1200&auto=format&fit=crop')] mix-blend-multiply opacity-20 bg-cover bg-center z-0"></div>
+                        
+                        <div class="relative flex flex-col z-10 w-full max-w-[696px]">
+                            <div class="mb-4">
+                                <span class="px-3 py-1 bg-white rounded-full font-sans font-bold text-[12px] leading-[1.3] text-figma-dark-red inline-block">Penghargaan Utama</span>
+                            </div>
+                            <h3 class="font-heading font-bold text-[24px] lg:text-[28px] leading-[1.3] text-white mb-2">
+                                Juara 1 Lomba Kompetensi Siswa Bidang Otomotif Tingkat Nasional
+                            </h3>
+                            <p class="font-sans font-normal text-[16px] leading-[1.5] text-white/80">
+                                Siswa kami berhasil membuktikan keahlian diagnostik dan perbaikan mesin yang melampaui peserta dari seluruh Indonesia.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Timeline Cards -->
+                    <div class="flex flex-col gap-6 lg:w-[40%] w-full z-10 h-full overflow-y-auto pr-2">
+                        
+                        <div class="box-border flex flex-col p-6 gap-2 bg-figma-bg-card border border-[#E4E1E5] rounded-[4px]">
+                            <span class="font-sans font-bold text-[12px] leading-[1.3] text-figma-gray uppercase">Tahun 2022</span>
+                            <h4 class="font-sans font-bold text-[16px] leading-[1.5] text-figma-dark">Juara Umum Festival Keterampilan SMK Tingkat Provinsi</h4>
+                        </div>
+                        
+                        <div class="box-border flex flex-col p-6 gap-2 bg-figma-bg-card border border-[#E4E1E5] rounded-[4px]">
+                            <span class="font-sans font-bold text-[12px] leading-[1.3] text-figma-gray uppercase">Tahun 2021</span>
+                            <h4 class="font-sans font-bold text-[16px] leading-[1.5] text-figma-dark">Penghargaan Bengkel Sekolah Standar Bintang 5 dari Mitra Industri</h4>
+                        </div>
+                        
+                        <div class="box-border flex flex-col p-6 gap-2 bg-figma-bg-card border border-[#E4E1E5] rounded-[4px]">
+                            <span class="font-sans font-bold text-[12px] leading-[1.3] text-figma-gray uppercase">Tahun 2020</span>
+                            <h4 class="font-sans font-bold text-[16px] leading-[1.5] text-figma-dark">Juara 2 Lomba Inovasi Teknologi Tepat Guna Bidang Otomotif</h4>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 08. Final CTA Section -->
+        <section class="flex flex-col items-center bg-figma-dark py-32 px-6 lg:px-16 w-full">
+            <div class="flex flex-col items-center gap-6 w-full max-w-[672px] reveal-on-scroll reveal-up">
+                
+                <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-white text-center">
+                    Siap Mengenal Lebih Dekat Teknik Otomotif?
+                </h2>
+                <p class="font-sans font-normal text-[16px] leading-[1.5] text-gray-400 text-center mb-4">
+                    Mari bergabung bersama kami dalam menciptakan mekanik handal masa depan. Hubungi kami untuk informasi lebih lanjut mengenai program pendidikan unggulan.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                    <a href="{{ route('about') }}#contact" class="flex flex-col justify-center items-center px-8 py-4 bg-figma-red rounded-[2px] w-full sm:w-auto h-[58px] hover:bg-figma-dark-red transition-colors focus-ring">
+                        <span class="font-sans font-normal text-[16px] leading-[24px] text-white text-center">Hubungi Kami</span>
+                    </a>
+                    
+                    <a href="{{ route('academic.programs') }}" class="box-border flex flex-col justify-center items-center px-8 py-4 border border-gray-600 rounded-[2px] w-full sm:w-auto h-[58px] hover:bg-gray-800 transition-colors focus-ring">
+                        <span class="font-sans font-normal text-[16px] leading-[24px] text-white text-center">Jelajahi Profil</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
 </x-layouts.app>
