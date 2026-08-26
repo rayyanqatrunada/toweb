@@ -85,7 +85,7 @@
         <x-navbar />
     </header>
 
-    <main id="main-content" class="flex-grow pt-16 lg:pt-20">
+    <main id="main-content" class="flex-grow pt-[64px]">
         {{ $slot }}
     </main>
 

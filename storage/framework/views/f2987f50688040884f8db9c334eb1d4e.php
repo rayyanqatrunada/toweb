@@ -70,6 +70,11 @@ unset($__defined_vars, $__key, $__value); ?>
     <!-- JSON-LD -->
     <?php echo $__env->yieldPushContent('json-ld'); ?>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <!-- Vite Styles & Scripts -->
     <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
     <!-- Motion System -->
@@ -104,7 +109,7 @@ unset($__defined_vars, $__key, $__value); ?>
         }
     </style>
 </head>
-<body class="font-sans antialiased text-slate-800 bg-slate-50 flex flex-col min-h-screen">
+<body class="font-sans antialiased text-figma-dark bg-[#FAFAFA] flex flex-col min-h-screen selection:bg-figma-red selection:text-white">
 
     <!-- Skip Navigation (A11y) -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-red-600 focus:text-white focus:font-bold focus:rounded-md focus:outline-none focus:ring-4 focus:ring-red-300">
@@ -136,7 +141,7 @@ unset($__defined_vars, $__key, $__value); ?>
 <?php endif; ?>
     </header>
 
-    <main id="main-content" class="flex-grow pt-16 lg:pt-20">
+    <main id="main-content" class="flex-grow pt-[64px]">
         <?php echo e($slot); ?>
 
     </main>

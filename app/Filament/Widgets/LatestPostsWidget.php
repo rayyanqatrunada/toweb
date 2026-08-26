@@ -58,7 +58,7 @@ class LatestPostsWidget extends BaseWidget
                     ->color('gray'),
             ])
             ->actions([
-                Tables\Actions\Action::make('edit')
+                \Filament\Actions\Action::make('edit')
                     ->url(fn (Post $record): string => route('filament.admin.resources.posts.edit', $record))
                     ->icon('heroicon-m-pencil-square')
                     ->label('Edit'),
