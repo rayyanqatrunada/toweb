@@ -15,14 +15,14 @@
     --brand-red-hover: #B91C1C;
     
     /* Sidebar */
-    --fi-sidebar-bg: #FFFFFF; /* White sidebar */
+    --fi-sidebar-bg: #FAFAFA; /* Softer off-white sidebar */
     --fi-sidebar-item-active: var(--brand-red);
     --fi-sidebar-item-hover: #F3F4F6; /* Light gray */
-    --fi-sidebar-text: #45464F;
+    --fi-sidebar-text: #4B5563;
     --fi-sidebar-text-active: #ffffff;
 
     /* Surface */
-    --fi-main-bg: #FBF8FC; /* Soft grayish purple background from Figma */
+    --fi-main-bg: #F3F4F6; /* Soft gray for the main canvas, reduces white glare */
 
     /* Card */
     --fi-card-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
@@ -39,7 +39,7 @@ html, body {
 /* ── SIDEBAR ─────────────────────────────────────────── */
 .fi-sidebar {
     background-color: var(--fi-sidebar-bg) !important;
-    border-right: 1px solid #E4E1E5 !important;
+    border-right: 1px solid #E5E7EB !important;
 }
 
 .fi-sidebar-header {
@@ -48,27 +48,28 @@ html, body {
 }
 
 .fi-brand-name {
-    color: var(--brand-red) !important;
-    font-family: 'Chivo', sans-serif !important;
+    color: #111827 !important;
+    font-family: 'Chivo', serif !important;
     font-weight: 900 !important;
-    font-size: 1.5rem !important;
+    font-size: 1.25rem !important;
     letter-spacing: 0 !important;
     text-transform: none;
 }
 
 .fi-sidebar-group-label {
-    display: none !important; /* Hide group labels to match the clean mockup */
+    display: none !important;
 }
 
 .fi-sidebar-item-button {
     color: var(--fi-sidebar-text) !important;
-    font-weight: 500 !important;
-    border-radius: 9999px !important; /* Pill shape */
-    margin: 0.25rem 1rem !important;
-    padding: 0.6rem 1.2rem !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important; /* Slightly rounded */
+    margin: 0.2rem 1rem !important;
+    padding: 0.7rem 1rem !important;
     font-size: 0.85rem !important;
     gap: 0.8rem !important;
     transition: all 0.2s ease !important;
+    border-left: none !important;
 }
 
 .fi-sidebar-item-button:hover {
@@ -78,9 +79,9 @@ html, body {
 
 .fi-sidebar-item-button[aria-current="page"],
 .fi-sidebar-item-button.fi-active {
-    background: var(--fi-sidebar-item-active) !important;
-    color: var(--fi-sidebar-text-active) !important;
-    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3) !important;
+    background: #FEE2E2 !important; /* Very soft red tint */
+    color: var(--brand-red) !important;
+    box-shadow: none !important;
 }
 
 .fi-sidebar-item-icon {
@@ -90,8 +91,8 @@ html, body {
 
 /* ── TOPBAR ──────────────────────────────────────────── */
 .fi-topbar {
-    background-color: #FFFFFF !important;
-    border-bottom: 1px solid #E4E1E5 !important;
+    background-color: #FAFAFA !important;
+    border-bottom: 1px solid #E5E7EB !important;
     box-shadow: none !important;
 }
 
@@ -99,13 +100,13 @@ html, body {
 .fi-topbar .fi-breadcrumbs-item-label,
 .fi-topbar button,
 .fi-topbar svg {
-    color: #1B1B1E !important;
+    color: #4B5563 !important;
 }
 
 .fi-topbar-global-search-input {
-    background: #F9FAFB !important;
+    background: #FFFFFF !important;
     border: 1px solid #E5E7EB !important;
-    color: #1B1B1E !important;
+    color: #111827 !important;
     border-radius: 9999px !important; /* Pill search */
 }
 .fi-topbar-global-search-input::placeholder {
@@ -115,29 +116,29 @@ html, body {
 /* ── MAIN CONTENT ────────────────────────────────────── */
 .fi-main {
     background: var(--fi-main-bg) !important;
-    padding-top: 1rem !important;
+    padding-top: 2rem !important;
 }
 
 .fi-page-header-heading {
-    color: #1B1B1E !important;
-    font-family: 'Chivo', sans-serif !important;
-    font-weight: 700 !important;
-    font-size: 2rem !important; /* 32px matching Figma specs */
+    color: #111827 !important;
+    font-family: 'Chivo', serif !important;
+    font-weight: 800 !important;
+    font-size: 1.75rem !important;
 }
 
 /* ── CARDS / SECTIONS ────────────────────────────────── */
 .fi-section,
 .fi-card {
     background: #ffffff !important;
-    border: none !important;
-    border-radius: var(--fi-card-radius) !important;
-    box-shadow: var(--fi-card-shadow) !important;
+    border: 1px solid #F3F4F6 !important; /* Softer border */
+    border-radius: 0.8rem !important; /* Soft rounded corners */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02) !important; /* Very soft shadow */
 }
 
 .fi-section-header-heading {
-    color: #111827 !important;
-    font-family: 'Chivo', sans-serif !important;
-    font-weight: 700 !important;
+    color: #1F2937 !important;
+    font-family: 'Chivo', serif !important;
+    font-weight: 800 !important;
     font-size: 1.25rem !important;
 }
 
@@ -206,10 +207,10 @@ html, body {
 
 /* ── BUTTONS ─────────────────────────────────────────── */
 .fi-btn {
-    border-radius: 9999px !important; /* Pill buttons */
+    border-radius: 2px !important;
     font-weight: 600 !important;
     font-size: 0.8rem !important;
-    padding: 0.4rem 1rem !important;
+    padding: 0.5rem 1.25rem !important;
     box-shadow: none !important;
 }
 
@@ -231,8 +232,8 @@ html, body {
 .fi-fo-text-input-wrp input,
 .fi-fo-textarea-wrp textarea,
 .fi-fo-select-wrp select {
-    border-radius: 0.5rem !important;
-    border-color: #E5E7EB !important;
+    border-radius: 2px !important;
+    border: 1px solid #E5E7EB !important;
     background: #F9FAFB !important;
     font-size: 0.85rem !important;
     box-shadow: none !important;
@@ -256,7 +257,7 @@ html, body {
 
 /* ── PAGINATION ──────────────────────────────────────── */
 .fi-pagination-item a {
-    border-radius: 50% !important; /* Circular pagination */
+    border-radius: 2px !important;
 }
 
 /* ── SCROLLBAR ───────────────────────────────────────── */

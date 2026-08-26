@@ -18,7 +18,7 @@
                 </h1>
                 
                 <p class="font-['Hanken_Grotesk'] text-lg leading-[29px] text-[#5C403C] max-w-[672px] mt-1">
-                    Hubungi departemen Teknik Otomotif SMK Negeri 1 Bangsri untuk informasi akademik, kemitraan industri, atau pertanyaan umum. Kami siap membantu Anda.
+                    Hubungi departemen Teknik dan Bisnis Sepeda Motor SMK Negeri 1 Bangsri untuk informasi akademik, kemitraan industri, atau pertanyaan umum. Kami siap membantu Anda.
                 </p>
             </div>
         </section>
@@ -211,7 +211,7 @@
             <div class="max-w-[1280px] mx-auto py-12 px-16 flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="flex flex-col gap-2">
                     <h3 class="font-['Chivo'] font-bold text-2xl text-[#1B1B1E]">Terhubung dengan Kami</h3>
-                    <p class="font-['Hanken_Grotesk'] text-base text-[#5C403C]">Ikuti perkembangan terbaru departemen Teknik Otomotif.</p>
+                    <p class="font-['Hanken_Grotesk'] text-base text-[#5C403C]">Ikuti perkembangan terbaru departemen Teknik dan Bisnis Sepeda Motor (TBSM).</p>
                 </div>
                 
                 <div class="flex items-center gap-4">

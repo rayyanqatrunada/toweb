@@ -46,15 +46,15 @@ unset($__defined_vars, $__key, $__value); ?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo e($title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'Teknik Otomotif') . ' | ' . $settings->get('site_tagline', 'Website Resmi')); ?></title>
+    <title><?php echo e($title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'TBSM') . ' | ' . $settings->get('site_tagline', 'Website Resmi')); ?></title>
     
     <!-- Meta SEO & Open Graph -->
-    <meta name="description" content="<?php echo e($description ?? $settings->get('site_description', 'Website Resmi Program Keahlian Teknik Otomotif')); ?>">
+    <meta name="description" content="<?php echo e($description ?? $settings->get('site_description', 'Website Resmi Program Keahlian TBSM')); ?>">
     <meta name="robots" content="<?php echo e($robots); ?>">
     <link rel="canonical" href="<?php echo e($canonical ?? url()->current()); ?>">
     
-    <meta property="og:title" content="<?php echo e($title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'Teknik Otomotif') . ' | ' . $settings->get('site_tagline', 'Website Resmi')); ?>">
-    <meta property="og:description" content="<?php echo e($description ?? $settings->get('site_description', 'Website Resmi Program Keahlian Teknik Otomotif')); ?>">
+    <meta property="og:title" content="<?php echo e($title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'TBSM') . ' | ' . $settings->get('site_tagline', 'Website Resmi')); ?>">
+    <meta property="og:description" content="<?php echo e($description ?? $settings->get('site_description', 'Website Resmi Program Keahlian TBSM')); ?>">
     <meta property="og:type" content="<?php echo e($ogType); ?>">
     <meta property="og:url" content="<?php echo e($canonical ?? url()->current()); ?>">
     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($ogImage): ?>
@@ -64,8 +64,8 @@ unset($__defined_vars, $__key, $__value); ?>
     <?php else: ?>
     <meta name="twitter:card" content="summary">
     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-    <meta name="twitter:title" content="<?php echo e($title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'Teknik Otomotif') . ' | ' . $settings->get('site_tagline', 'Website Resmi')); ?>">
-    <meta name="twitter:description" content="<?php echo e($description ?? $settings->get('site_description', 'Website Resmi Program Keahlian Teknik Otomotif')); ?>">
+    <meta name="twitter:title" content="<?php echo e($title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'TBSM') . ' | ' . $settings->get('site_tagline', 'Website Resmi')); ?>">
+    <meta name="twitter:description" content="<?php echo e($description ?? $settings->get('site_description', 'Website Resmi Program Keahlian TBSM')); ?>">
 
     <!-- JSON-LD -->
     <?php echo $__env->yieldPushContent('json-ld'); ?>

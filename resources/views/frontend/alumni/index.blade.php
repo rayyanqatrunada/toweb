@@ -22,7 +22,7 @@
                 </h1>
                 
                 <p class="font-sans font-normal text-[16px] lg:text-[18px] leading-[1.6] text-[#F0EDF1] max-w-[590px]">
-                    Inspirasi dari para lulusan Teknik Otomotif {{ $settings->get('site_name', 'SMK Negeri 1 Bangsri') }} yang kini berkarier di industri otomotif terkemuka dan membangun masa depan.
+                    Inspirasi dari para lulusan Teknik dan Bisnis Sepeda Motor (TBSM) {{ $settings->get('site_name', 'SMK Negeri 1 Bangsri') }} yang kini berkarier di industri otomotif terkemuka dan membangun masa depan.
                 </p>
                 
             </div>

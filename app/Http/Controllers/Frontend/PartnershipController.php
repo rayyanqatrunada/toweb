@@ -10,28 +10,24 @@ class PartnershipController extends Controller
 {
     public function index()
     {
-        // Gunakan withCount alih-alih with('partnerships') untuk menghindari
-        // memuat semua baris partnership ke memori. select() hanya kolom yang
-        // diperlukan di tampilan list.
-        $partners = IndustryPartner::select(
-                'id', 'name', 'slug', 'industry_type', 'logo', 'address', 'website', 'published_at'
-            )
-            ->withCount('partnerships')
-            ->withCount(['jobVacancies' => function ($q) {
-                $q->published()->where(function ($query) {
-                    $query->whereNull('deadline')
-                          ->orWhere('deadline', '>=', now());
-                });
-            }])
-            ->published()
-            ->latest('published_at')
-            ->paginate(12);
-        return view('frontend.partnership', compact('partners'));
+        // Hanya ada 1 mitra untuk jurusan TBSM, jadi kita langsung ambil mitra pertama beserta lowongan kerjanya.
+        $partner = IndustryPartner::with(['jobVacancies' => function($query) {
+            $query->published()->latest();
+        }])->published()->first();
+        
+        if (!$partner) {
+            // Jika belum ada mitra sama sekali, mungkin tampilkan view kosong atau 404
+            abort(404, 'Belum ada data kemitraan.');
+        }
+
+        return view('frontend.partnership_show', compact('partner'));
     }
     
     public function show($slug)
     {
-        $partner = IndustryPartner::published()->where('slug', $slug)->firstOrFail();
+        $partner = IndustryPartner::with(['jobVacancies' => function($query) {
+            $query->published()->latest();
+        }])->published()->where('slug', $slug)->firstOrFail();
         return view('frontend.partnership_show', compact('partner'));
     }
 }

@@ -11,15 +11,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'Teknik Otomotif') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}</title>
+    <title>{{ $title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'TBSM') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}</title>
     
     <!-- Meta SEO & Open Graph -->
-    <meta name="description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian Teknik Otomotif') }}">
+    <meta name="description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian TBSM') }}">
     <meta name="robots" content="{{ $robots }}">
     <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
     
-    <meta property="og:title" content="{{ $title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'Teknik Otomotif') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}">
-    <meta property="og:description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian Teknik Otomotif') }}">
+    <meta property="og:title" content="{{ $title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'TBSM') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}">
+    <meta property="og:description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian TBSM') }}">
     <meta property="og:type" content="{{ $ogType }}">
     <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
     @if($ogImage)
@@ -29,8 +29,8 @@
     @else
     <meta name="twitter:card" content="summary">
     @endif
-    <meta name="twitter:title" content="{{ $title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'Teknik Otomotif') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}">
-    <meta name="twitter:description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian Teknik Otomotif') }}">
+    <meta name="twitter:title" content="{{ $title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'TBSM') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}">
+    <meta name="twitter:description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian TBSM') }}">
 
     <!-- JSON-LD -->
     @stack('json-ld')

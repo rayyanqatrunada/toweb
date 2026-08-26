@@ -4,8 +4,9 @@
             
             <!-- Brand Section -->
             <div class="flex flex-col gap-4 w-full max-w-[384px]">
-                <a href="{{ route('home') }}" class="font-heading font-extrabold text-[20px] text-figma-bg-card leading-[28px]">
-                    Teknik Otomotif
+                <a href="{{ route('home') }}" class="font-heading font-extrabold text-[20px] text-figma-bg-card leading-tight">
+                    TEKNIK DAN BISNIS SEPEDA MOTOR<br>
+                    <span class="text-[16px] text-figma-gray-light font-medium">SMK NEGERI 1 BANGSRI</span>
                 </a>
                 <p class="font-sans text-[14px] leading-[22px] text-figma-gray-light">
                     {{ $settings->get('site_description', 'Mencetak mekanik dan ahli otomotif masa depan yang kompeten, tangguh, dan berdaya saing di industri modern.') }}
@@ -63,7 +64,7 @@
     <div class="bg-[#101011] border-t border-figma-gray-dark">
         <div class="max-w-[1280px] mx-auto px-6 md:px-16 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="font-sans text-[14px] text-figma-gray">
-                &copy; {{ date('Y') }} {{ $settings->get('site_name', 'Teknik Otomotif') }}. Seluruh Hak Cipta Dilindungi.
+                &copy; {{ date('Y') }} {{ $settings->get('site_name', 'TBSM') }}. Seluruh Hak Cipta Dilindungi.
             </p>
             <a href="/admin" class="font-sans text-[14px] text-figma-gray hover:text-figma-gray-light transition-colors">Portal Admin</a>
         </div>

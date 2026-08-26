@@ -43,7 +43,7 @@ class ManageSettings extends Page implements HasForms
             'contact_address' => $settings->get('contact_address'),
             'contact_phone' => $settings->get('contact_phone'),
             'contact_email' => $settings->get('contact_email'),
-            'profile_history' => $settings->get('profile_history', 'Sejarah singkat jurusan Teknik Otomotif bermula dari...'),
+            'profile_history' => $settings->get('profile_history', 'Sejarah singkat jurusan Teknik dan Bisnis Sepeda Motor (TBSM) bermula dari...'),
             'profile_vision' => $settings->get('profile_vision', 'Menjadi program studi otomotif terdepan di tingkat nasional.'),
             'profile_mission' => $settings->get('profile_mission', '<ul><li>Menyelenggarakan pendidikan berkualitas...</li></ul>'),
         ]);

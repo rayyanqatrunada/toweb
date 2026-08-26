@@ -2,7 +2,7 @@
     'headline',
     'description',
     'imageUrl' => 'https://images.unsplash.com/photo-1530630458144-014709e10016?auto=format&fit=crop&w=800&q=80',
-    'eyebrowText' => 'JURUSAN TEKNIK OTOMOTIF',
+    'eyebrowText' => 'JURUSAN TEKNIK DAN BISNIS SEPEDA MOTOR',
     'stats' => null
 ])
 

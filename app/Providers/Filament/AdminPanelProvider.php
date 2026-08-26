@@ -40,7 +40,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->maxContentWidth('full')
             ->font('Hanken Grotesk')
-            ->brandName('Teknik Otomotif')
+            ->brandName('TBSM')
             ->favicon(asset('logo.png'))
             ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')

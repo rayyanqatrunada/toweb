@@ -35,9 +35,9 @@ class HomeController extends Controller
             Facility::select('id', 'name', 'slug', 'description', 'photo')->latest()->take(3)->get()
         );
 
-        $partners = Cache::remember('homepage:partners', 600, fn() =>
-            IndustryPartner::select('id', 'name', 'slug', 'logo', 'industry_type')
-                ->published()->latest()->take(8)->get()
+        $partner = Cache::remember('homepage:partner_main', 600, fn() =>
+            IndustryPartner::select('id', 'name', 'slug', 'logo', 'industry_type', 'description')
+                ->published()->latest()->first()
         );
 
         $jobVacancies = Cache::remember('homepage:jobs', 300, fn() =>
@@ -61,6 +61,11 @@ class HomeController extends Controller
             Announcement::select('id', 'title', 'slug', 'created_at')->active()->latest()->take(3)->get()
         );
 
+        $achievements = Cache::remember('homepage:achievements_list', 600, fn() =>
+            Achievement::select('id', 'title', 'slug', 'rank', 'organizer', 'date')
+                ->published()->latest('date')->latest()->take(3)->get()
+        );
+
         $galleries = Cache::remember('homepage:galleries', 600, fn() =>
             GalleryAlbum::select('id', 'title', 'slug', 'thumbnail', 'published_at')
                 ->with('items:id,gallery_album_id,file_path,type')
@@ -71,10 +76,14 @@ class HomeController extends Controller
             Teacher::where('is_head_of_department', true)->where('is_active', true)->first()
         );
 
+        $teachers = Cache::remember('homepage:teachers_list', 1800, fn() =>
+            Teacher::where('is_active', true)->where('is_head_of_department', false)->latest()->take(3)->get()
+        );
+
         return view('frontend.home', compact(
             'alumniCount', 'partnerCount', 'achievementCount', 'facilityCount',
-            'programs', 'facilities', 'partners', 'jobVacancies',
-            'alumnis', 'latestNews', 'agendas', 'galleries', 'headOfDepartment'
+            'programs', 'facilities', 'partner', 'jobVacancies',
+            'alumnis', 'latestNews', 'agendas', 'galleries', 'headOfDepartment', 'achievements', 'teachers'
         ));
     }
 

@@ -6,7 +6,7 @@
       "@@type": "AboutPage",
       "mainEntity": {
         "@@type": "EducationalOrganization",
-        "name": "{{ $settings->get('site_name', 'Teknik Otomotif') }}",
+        "name": "{{ $settings->get('site_name', 'TBSM') }}",
         "description": "{!! strip_tags($settings->get('site_description')) !!}"
       }
     }
@@ -26,7 +26,7 @@
                 <div class="lg:col-span-5 reveal-on-scroll reveal-up">
                     <x-frontend.ui.eyebrow>ABOUT THE DEPARTMENT</x-frontend.ui.eyebrow>
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal-900 tracking-tight leading-[1.1] mt-4 mb-6">
-                        {{ $settings->get('site_name', 'Teknik Otomotif') }}
+                        {{ $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor') }}
                     </h1>
                     <p class="text-lg text-charcoal-600 font-medium leading-relaxed mb-8 border-l-2 border-primary-600 pl-4">
                         Membangun kompetensi teknis, karakter disiplin, dan kesiapan untuk memimpin di era industri otomotif modern.
@@ -63,7 +63,7 @@
                         <ul class="space-y-6">
                             <li class="pb-6 border-b border-charcoal-200">
                                 <span class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-1">01 / IDENTITAS</span>
-                                <span class="block font-bold text-charcoal-900">{{ $settings->get('site_name', 'Jurusan Teknik Otomotif') }}</span>
+                                <span class="block font-bold text-charcoal-900">{{ $settings->get('site_name', 'Jurusan Teknik dan Bisnis Sepeda Motor') }}</span>
                             </li>
                             <li class="pb-6 border-b border-charcoal-200">
                                 <span class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-1">02 / FOKUS PENDIDIKAN</span>
@@ -85,7 +85,7 @@
                     </h2>
                     
                     <div class="prose prose-lg prose-charcoal prose-p:leading-relaxed prose-a:text-primary-600 hover:prose-a:text-primary-700 max-w-none">
-                        {!! \App\Support\HtmlSanitizer::clean($settings->get('profile_history', '<p>Sejarah singkat jurusan Teknik Otomotif bermula dari dedikasi kami untuk mencetak tenaga kerja profesional. Dengan fasilitas yang terus berkembang, kami selalu berusaha menyesuaikan kurikulum dengan teknologi terkini di dunia otomotif.</p>')) !!}
+                        {!! \App\Support\HtmlSanitizer::clean($settings->get('profile_history', '<p>Sejarah singkat jurusan Teknik dan Bisnis Sepeda Motor (TBSM) bermula dari dedikasi kami untuk mencetak tenaga kerja profesional. Dengan fasilitas yang terus berkembang, kami selalu berusaha menyesuaikan kurikulum dengan teknologi terkini di dunia otomotif.</p>')) !!}
                     </div>
                 </div>
             </div>

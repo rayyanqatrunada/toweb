@@ -5,7 +5,7 @@
       "@@context": "https://schema.org",
       "@@type": "WebPage",
       "name": "Profil Guru & Tenaga Pengajar",
-      "description": "Profil tenaga pendidik profesional dan berpengalaman di bidang teknik otomotif."
+      "description": "Profil tenaga pendidik profesional dan berpengalaman di bidang teknik dan bisnis sepeda motor."
     }
     </script>
     @endpush

@@ -2,7 +2,7 @@
     <div class="bg-charcoal-50 py-16 lg:py-24 border-b border-charcoal-200">
         <div class="max-w-screen-xl mx-auto px-4 text-center reveal-on-scroll reveal-up">
             <h1 class="text-3xl md:text-5xl font-bold text-charcoal-900 mb-4">Pencarian Global</h1>
-            <p class="text-charcoal-600 text-lg max-w-2xl mx-auto">Temukan informasi seputar jurusan Teknik Otomotif.</p>
+            <p class="text-charcoal-600 text-lg max-w-2xl mx-auto">Temukan informasi seputar jurusan Teknik dan Bisnis Sepeda Motor (TBSM).</p>
             <form action="{{ route('search') }}" method="GET" class="mt-8 max-w-xl mx-auto relative reveal-on-scroll reveal-up delay-100">
                 <input type="text" name="q" value="{{ $q }}" placeholder="Ketik kata kunci pencarian..." class="w-full px-6 py-4 rounded-full text-charcoal-800 bg-white border border-charcoal-200 focus:outline-none focus:ring-4 focus:ring-primary-100 shadow-sm text-lg">
                 <button type="submit" class="absolute right-2 top-2 bottom-2 bg-primary-600 text-white px-6 rounded-full font-semibold hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 transition">Cari</button>

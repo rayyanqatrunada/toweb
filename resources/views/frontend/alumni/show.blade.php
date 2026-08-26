@@ -1,6 +1,6 @@
 <x-layouts.app 
     :title="$alumni->name . ' - Profil Alumni'"
-    :description="$alumni->bio ? Str::limit(strip_tags($alumni->bio), 150) : 'Profil lulusan Teknik Otomotif angkatan ' . $alumni->graduation_year"
+    :description="$alumni->bio ? Str::limit(strip_tags($alumni->bio), 150) : 'Profil lulusan Teknik dan Bisnis Sepeda Motor (TBSM) angkatan ' . $alumni->graduation_year"
 >
     <!-- Header Page -->
     <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
