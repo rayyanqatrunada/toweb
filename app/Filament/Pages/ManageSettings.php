@@ -19,7 +19,7 @@ class ManageSettings extends Page implements HasForms
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-cog-6-tooth';
     protected static ?string $navigationLabel = 'Pengaturan Web';
     protected static ?string $title = 'Pengaturan Website';
-    protected static string | \UnitEnum | null $navigationGroup = 'Sistem';
+    protected static string | \UnitEnum | null $navigationGroup = 'SYSTEM';
 
     protected string $view = 'filament.pages.manage-settings';
 
@@ -27,14 +27,15 @@ class ManageSettings extends Page implements HasForms
 
     public function mount(SettingsService $settings): void
     {
+        $heroSlidesJson = $settings->get('hero_slides');
+        $heroSlides = $heroSlidesJson ? json_decode($heroSlidesJson, true) : [];
+
         $this->form->fill([
             'site_name' => $settings->get('site_name'),
             'site_tagline' => $settings->get('site_tagline'),
             'site_description' => $settings->get('site_description'),
             'site_logo' => $settings->get('site_logo'),
-            'hero_title' => $settings->get('hero_title'),
-            'hero_subtitle' => $settings->get('hero_subtitle'),
-            'hero_image' => $settings->get('hero_image'),
+            'hero_slides' => $heroSlides,
             'head_quote' => $settings->get('head_quote'),
             'youtube_video_id' => $settings->get('youtube_video_id'),
             'social_youtube' => $settings->get('social_youtube'),
@@ -62,12 +63,36 @@ class ManageSettings extends Page implements HasForms
                         \Filament\Forms\Components\FileUpload::make('site_logo')->label('Logo Website')->image()->directory('settings')->maxSize(2048),
                     ]),
 
-                Section::make('Konten Beranda (Hero)')
-                    ->description('Teks utama yang muncul di halaman paling depan.')
+                Section::make('Konten Beranda (Hero Slider)')
+                    ->description('Atur gambar latar, judul, dan subjudul untuk slider di halaman depan.')
                     ->schema([
-                        TextInput::make('hero_title')->label('Judul Utama (Hero)')->required(),
-                        Textarea::make('hero_subtitle')->label('Subjudul (Hero)')->required()->rows(2),
-                        \Filament\Forms\Components\FileUpload::make('hero_image')->label('Gambar Latar Hero')->image()->directory('settings')->maxSize(5120),
+                        \Filament\Forms\Components\Repeater::make('hero_slides')
+                            ->label('Slide Hero')
+                            ->schema([
+                                \Filament\Forms\Components\FileUpload::make('image')
+                                    ->label('Gambar Latar')
+                                    ->image()
+                                    ->directory('hero-slides')
+                                    ->required()
+                                    ->maxSize(5120),
+                                TextInput::make('eyebrow')
+                                    ->label('Teks Kecil Atas (Eyebrow)')
+                                    ->default('TEKNIK DAN BISNIS SEPEDA MOTOR')
+                                    ->required(),
+                                TextInput::make('title')
+                                    ->label('Judul Utama')
+                                    ->required(),
+                                Textarea::make('desc')
+                                    ->label('Deskripsi Singkat')
+                                    ->rows(2)
+                                    ->required(),
+                            ])
+                            ->collapsible()
+                            ->itemLabel(fn (array $state): ?string => $state['title'] ?? null)
+                            ->defaultItems(1)
+                            ->maxItems(5)
+                            ->reorderableWithButtons(),
+                            
                         Textarea::make('head_quote')->label('Kutipan Kepala Jurusan')->required()->rows(2),
                     ]),
                 
@@ -104,6 +129,10 @@ class ManageSettings extends Page implements HasForms
         $data = $this->form->getState();
 
         foreach ($data as $key => $value) {
+            // Encode the repeater array to JSON
+            if ($key === 'hero_slides') {
+                $value = json_encode($value);
+            }
             $settings->set($key, $value);
         }
 

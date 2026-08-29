@@ -6,6 +6,7 @@ use App\Models\Post;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
+use App\Filament\Resources\Posts\PostResource;
 
 class LatestPostsWidget extends BaseWidget
 {
@@ -20,23 +21,19 @@ class LatestPostsWidget extends BaseWidget
                 Post::query()
                     ->with(['category', 'user'])
                     ->latest()
-                    ->limit(6)
+                    ->limit(5)
             )
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->label('Judul')
-                    ->limit(55)
+                    ->limit(50)
                     ->searchable()
                     ->weight(\Filament\Support\Enums\FontWeight::Medium),
 
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Kategori')
                     ->badge()
-                    ->color('primary'),
-
-                Tables\Columns\TextColumn::make('user.name')
-                    ->label('Penulis')
-                    ->icon('heroicon-m-user'),
+                    ->color('gray'),
 
                 Tables\Columns\TextColumn::make('status')
                     ->label('Status')
@@ -47,7 +44,7 @@ class LatestPostsWidget extends BaseWidget
                         default     => 'gray',
                     })
                     ->formatStateUsing(fn (string $state) => match ($state) {
-                        'published' => 'Publikasi',
+                        'published' => 'Published',
                         'draft'     => 'Draft',
                         default     => ucfirst($state),
                     }),
@@ -59,10 +56,13 @@ class LatestPostsWidget extends BaseWidget
             ])
             ->actions([
                 \Filament\Actions\Action::make('edit')
-                    ->url(fn (Post $record): string => route('filament.admin.resources.posts.edit', $record))
+                    ->url(fn (Post $record): string => PostResource::getUrl('edit', ['record' => $record]))
                     ->icon('heroicon-m-pencil-square')
                     ->label('Edit'),
             ])
+            ->emptyStateHeading('Belum ada artikel')
+            ->emptyStateDescription('Mulai dengan membuat artikel pertama.')
+            ->emptyStateIcon('heroicon-o-newspaper')
             ->paginated(false);
     }
 }

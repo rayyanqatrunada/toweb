@@ -47,7 +47,7 @@ class AchievementForm
                         DatePicker::make('date')
                             ->label('Achievement Date')
                             ->required(),
-                        Textarea::make('description')
+                        \Filament\Forms\Components\RichEditor::make('description')
                             ->columnSpanFull(),
                     ])->columns(2),
 

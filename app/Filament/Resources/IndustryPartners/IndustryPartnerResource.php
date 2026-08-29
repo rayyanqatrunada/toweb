@@ -19,7 +19,7 @@ class IndustryPartnerResource extends Resource
     protected static ?string $model = IndustryPartner::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
-    protected static string | \UnitEnum | null $navigationGroup = 'KARIER & INDUSTRI';
+    protected static string | \UnitEnum | null $navigationGroup = 'INDUSTRY';
 
     public static function form(Schema $schema): Schema
     {

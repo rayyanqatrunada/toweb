@@ -19,7 +19,7 @@ class AnnouncementResource extends Resource
     protected static ?string $model = Announcement::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSpeakerWave;
-    protected static string | \UnitEnum | null $navigationGroup = 'KONTEN';
+    protected static string | \UnitEnum | null $navigationGroup = 'CONTENT';
 
     public static function form(Schema $schema): Schema
     {

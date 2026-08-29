@@ -5,65 +5,88 @@ namespace App\Filament\Widgets;
 use App\Models\Post;
 use App\Models\Teacher;
 use App\Models\Alumni;
-use App\Models\Internship;
 use App\Models\Achievement;
 use App\Models\JobVacancy;
 use App\Models\Announcement;
 use App\Models\GalleryAlbum;
+use App\Models\Program;
+use App\Models\IndustryPartner;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use Illuminate\Support\Facades\DB;
 
 class StatsOverview extends BaseWidget
 {
-    protected static ?int $sort = 1;
+    protected static ?int $sort = -1;
 
     protected function getStats(): array
     {
-        $totalPosts       = Post::count();
-        $publishedPosts   = Post::where('status', 'published')->count();
+        // Aggregate post stats in a single query
+        $postStats = Post::query()
+            ->selectRaw('COUNT(*) as total')
+            ->selectRaw("SUM(CASE WHEN status = 'published' THEN 1 ELSE 0 END) as published")
+            ->selectRaw("SUM(CASE WHEN status = 'draft' THEN 1 ELSE 0 END) as draft")
+            ->first();
+
+        // Batch count other models — 1 query per model but only COUNT
         $totalTeachers    = Teacher::count();
         $totalAlumni      = Alumni::count();
-        $totalInternship  = Internship::count();
         $totalAchievement = Achievement::count();
-        $totalJobVacancy  = JobVacancy::where('status', 'published')->count();
-        $totalAnnouncement = Announcement::count();
+        $activeJobs       = JobVacancy::where('status', 'published')->count();
+        $totalPrograms    = Program::count();
+        $totalPartners    = IndustryPartner::count();
+        $activeAnnouncements = Announcement::where('is_active', true)->count();
+        $totalGallery     = GalleryAlbum::count();
 
         return [
-            Stat::make('Total Artikel', $totalPosts)
-                ->description($publishedPosts . ' dipublikasikan')
+            Stat::make('Artikel', $postStats->total)
+                ->description($postStats->published . ' dipublikasikan, ' . $postStats->draft . ' draft')
                 ->descriptionIcon('heroicon-m-check-circle')
-                ->color('info')
+                ->color('primary')
                 ->icon('heroicon-o-newspaper'),
 
-            Stat::make('Guru & Staff', $totalTeachers)
-                ->description('Tenaga pengajar terdaftar')
-                ->descriptionIcon('heroicon-m-academic-cap')
-                ->color('success')
-                ->icon('heroicon-o-academic-cap'),
-
-            Stat::make('Alumni', $totalAlumni)
-                ->description('Data alumni terdata')
-                ->descriptionIcon('heroicon-m-users')
-                ->color('warning')
-                ->icon('heroicon-o-users'),
-
-            Stat::make('Program Magang', $totalInternship)
-                ->description('Program PKL / magang')
-                ->descriptionIcon('heroicon-m-briefcase')
-                ->color('primary')
-                ->icon('heroicon-o-briefcase'),
+            Stat::make('Pengumuman', $activeAnnouncements)
+                ->description('Pengumuman aktif')
+                ->descriptionIcon('heroicon-m-speaker-wave')
+                ->color('info')
+                ->icon('heroicon-o-speaker-wave'),
 
             Stat::make('Prestasi', $totalAchievement)
                 ->description('Penghargaan & prestasi')
                 ->descriptionIcon('heroicon-m-trophy')
-                ->color('danger')
+                ->color('warning')
                 ->icon('heroicon-o-trophy'),
 
-            Stat::make('Lowongan Kerja', $totalJobVacancy)
-                ->description('Lowongan aktif / published')
-                ->descriptionIcon('heroicon-m-building-office-2')
-                ->color('gray')
+            Stat::make('Alumni', $totalAlumni)
+                ->description('Alumni terdata')
+                ->descriptionIcon('heroicon-m-users')
+                ->color('success')
+                ->icon('heroicon-o-users'),
+
+            Stat::make('Lowongan Aktif', $activeJobs)
+                ->description('Lowongan published')
+                ->descriptionIcon('heroicon-m-briefcase')
+                ->color('info')
                 ->icon('heroicon-o-building-office-2'),
+
+            Stat::make('Galeri', $totalGallery)
+                ->description('Album galeri')
+                ->descriptionIcon('heroicon-m-photo')
+                ->color('success')
+                ->icon('heroicon-o-photo'),
+
+            Stat::make('Guru & Staff', $totalTeachers)
+                ->description('Tenaga pengajar')
+                ->descriptionIcon('heroicon-m-academic-cap')
+                ->color('gray')
+                ->icon('heroicon-o-academic-cap'),
+
+            Stat::make('Program', $totalPrograms)
+                ->description('Program keahlian')
+                ->descriptionIcon('heroicon-m-book-open')
+                ->color('gray')
+                ->icon('heroicon-o-book-open'),
         ];
     }
 }
+

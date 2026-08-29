@@ -7,7 +7,8 @@ $__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
     'canonical' => null,
     'robots' => 'index, follow',
     'ogImage' => null,
-    'ogType' => 'website'
+    'ogType' => 'website',
+    'noPaddingTop' => false
 ]));
 
 foreach ($attributes->all() as $__key => $__value) {
@@ -29,7 +30,8 @@ foreach (array_filter(([
     'canonical' => null,
     'robots' => 'index, follow',
     'ogImage' => null,
-    'ogType' => 'website'
+    'ogType' => 'website',
+    'noPaddingTop' => false
 ]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
     $$__key = $$__key ?? $__value;
 }
@@ -109,7 +111,25 @@ unset($__defined_vars, $__key, $__value); ?>
         }
     </style>
 </head>
-<body class="font-sans antialiased text-figma-dark bg-[#FAFAFA] flex flex-col min-h-screen selection:bg-figma-red selection:text-white">
+<body class="font-sans antialiased text-figma-dark bg-[#FAFAFA] flex flex-col min-h-screen selection:bg-figma-red selection:text-white relative">
+
+    <!-- Global Background Decorations (Parallax effect on scroll) -->
+    <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+        <!-- 1. Grid/Blueprint Pattern -->
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 40px 40px;"></div>
+        
+        <!-- 2. Vertical Accent Lines (Container aligned) -->
+        <div class="absolute inset-0 flex justify-center opacity-[0.04]">
+            <div class="w-full max-w-[1280px] h-full flex justify-between border-x border-black">
+                <div class="w-1/3 h-full border-r border-black"></div>
+                <div class="w-1/3 h-full border-r border-black"></div>
+            </div>
+        </div>
+
+        <!-- 3. Ambient Red Glow (Top Left & Bottom Right) -->
+        <div class="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-figma-red opacity-[0.05] blur-[120px]"></div>
+        <div class="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-figma-red opacity-[0.04] blur-[140px]"></div>
+    </div>
 
     <!-- Skip Navigation (A11y) -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-red-600 focus:text-white focus:font-bold focus:rounded-md focus:outline-none focus:ring-4 focus:ring-red-300">
@@ -141,7 +161,7 @@ unset($__defined_vars, $__key, $__value); ?>
 <?php endif; ?>
     </header>
 
-    <main id="main-content" class="flex-grow pt-[64px]">
+    <main id="main-content" class="flex-grow <?php echo e($noPaddingTop ? '' : 'pt-[64px]'); ?>">
         <?php echo e($slot); ?>
 
     </main>

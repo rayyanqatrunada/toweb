@@ -2,7 +2,7 @@
 
 $__newAttributes = [];
 $__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
-    'mainImage' => null
+    'slidesJson' => null
 ]));
 
 foreach ($attributes->all() as $__key => $__value) {
@@ -19,7 +19,7 @@ unset($__propNames);
 unset($__newAttributes);
 
 foreach (array_filter(([
-    'mainImage' => null
+    'slidesJson' => null
 ]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
     $$__key = $$__key ?? $__value;
 }
@@ -33,9 +33,9 @@ foreach ($attributes->all() as $__key => $__value) {
 unset($__defined_vars, $__key, $__value); ?>
 
 <?php
-    $slides = [
+    $defaultSlides = [
         [
-            'image' => $mainImage ? Storage::url($mainImage) : 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1920&auto=format&fit=crop',
+            'image' => 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1920&auto=format&fit=crop',
             'eyebrow' => 'TEKNIK DAN BISNIS SEPEDA MOTOR',
             'title' => 'Menyiapkan Generasi Profesional di Dunia Otomotif',
             'desc' => 'Program keahlian yang membekali peserta didik dengan kompetensi teknis dan profesional di bidang sepeda motor serta kesiapan dunia kerja.'
@@ -45,17 +45,27 @@ unset($__defined_vars, $__key, $__value); ?>
             'eyebrow' => 'FASILITAS STANDAR INDUSTRI',
             'title' => 'Pusat Keunggulan Vokasi Otomotif',
             'desc' => 'Menggunakan fasilitas laboratorium yang dirancang menyerupai lingkungan kerja industri otomotif sesungguhnya untuk pengalaman belajar maksimal.'
-        ],
-        [
-            'image' => 'https://images.unsplash.com/photo-1503375176161-0498a9d18721?q=80&w=1920&auto=format&fit=crop',
-            'eyebrow' => 'PENGEMBANGAN KARAKTER',
-            'title' => 'Karakter Kuat, Kinerja Akurat',
-            'desc' => 'Membangun kedisiplinan, etos kerja tinggi, dan integritas untuk mencetak mekanik andal masa depan yang siap bersaing.'
         ]
     ];
+
+    $dbSlides = $slidesJson ? json_decode($slidesJson, true) : [];
+    
+    $slides = [];
+    if (!empty($dbSlides) && is_array($dbSlides)) {
+        foreach ($dbSlides as $slide) {
+            $slides[] = [
+                'image' => !empty($slide['image']) ? Storage::url($slide['image']) : $defaultSlides[0]['image'],
+                'eyebrow' => $slide['eyebrow'] ?? 'TEKNIK DAN BISNIS SEPEDA MOTOR',
+                'title' => $slide['title'] ?? 'TBSM',
+                'desc' => $slide['desc'] ?? ''
+            ];
+        }
+    } else {
+        $slides = $defaultSlides;
+    }
 ?>
 
-<section class="relative w-full h-[680px] lg:h-[780px] bg-charcoal-900 overflow-hidden mt-[64px]" data-hero-slider aria-label="Hero Image Slider">
+<section class="relative w-full h-[680px] lg:h-[780px] bg-charcoal-900 overflow-hidden" data-hero-slider aria-label="Hero Image Slider">
     
     <!-- Slides Container -->
     <div class="relative w-full h-full">

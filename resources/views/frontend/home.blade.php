@@ -1,4 +1,4 @@
-<x-layouts.app title="Beranda">
+<x-layouts.app title="Beranda" :no-padding-top="true">
     @push('json-ld')
     <script type="application/ld+json">
     {
@@ -15,7 +15,7 @@
     <main class="flex flex-col items-center bg-white w-full overflow-hidden">
         
         <!-- 01. Hero Section -->
-        <x-frontend.home.hero-slider :main-image="$settings->get('hero_image')" />
+        <x-frontend.home.hero-slider :slides-json="$settings->get('hero_slides')" />
 
         <!-- 02. Introduction -->
         <x-frontend.home.intro />

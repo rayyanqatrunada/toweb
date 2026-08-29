@@ -19,7 +19,7 @@ class PostResource extends Resource
     protected static ?string $model = Post::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedNewspaper;
-    protected static string | \UnitEnum | null $navigationGroup = 'KONTEN';
+    protected static string | \UnitEnum | null $navigationGroup = 'CONTENT';
 
     public static function form(Schema $schema): Schema
     {

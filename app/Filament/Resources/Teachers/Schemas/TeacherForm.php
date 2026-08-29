@@ -17,8 +17,14 @@ class TeacherForm
                     ->required(),
                 TextInput::make('nip'),
                 TextInput::make('position'),
+                TextInput::make('specialization')
+                    ->label('Spesialisasi'),
                 TextInput::make('phone')
                     ->tel(),
+                \Filament\Forms\Components\Textarea::make('bio')
+                    ->label('Biografi Singkat')
+                    ->rows(3)
+                    ->columnSpanFull(),
                 \Filament\Forms\Components\FileUpload::make('photo')
                     ->image()
                     ->directory('teachers'),

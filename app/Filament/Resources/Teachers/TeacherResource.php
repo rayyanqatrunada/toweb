@@ -19,7 +19,7 @@ class TeacherResource extends Resource
     protected static ?string $model = Teacher::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
-    protected static string | \UnitEnum | null $navigationGroup = 'AKADEMIK';
+    protected static string | \UnitEnum | null $navigationGroup = 'ACADEMIC';
 
     public static function form(Schema $schema): Schema
     {

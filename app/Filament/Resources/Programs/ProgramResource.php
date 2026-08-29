@@ -19,7 +19,7 @@ class ProgramResource extends Resource
     protected static ?string $model = Program::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBookOpen;
-    protected static string | \UnitEnum | null $navigationGroup = 'AKADEMIK';
+    protected static string | \UnitEnum | null $navigationGroup = 'ACADEMIC';
 
     public static function form(Schema $schema): Schema
     {
@@ -34,7 +34,7 @@ class ProgramResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\CompetenciesRelationManager::class,
         ];
     }
 

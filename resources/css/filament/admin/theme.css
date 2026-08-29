@@ -4,263 +4,383 @@
 @source '../../../../resources/views/filament/**/*';
 
 /* =====================================================
- * PORTAL ADMIN TO — Modern UI Dashboard Theme
- * Inspired by User Design Request
+ * TBSM ADMINISTRATION SYSTEM — Design System v2
+ * Professional CMS for Jurusan TBSM
  * ===================================================== */
 
-/* ── CSS VARIABLES: COLOR SYSTEM ──────────────────── */
+/* ── DESIGN TOKENS ─────────────────────────────────── */
 :root {
-    /* Brand Red */
-    --brand-red: #DC2626; /* Red from the mockup */
-    --brand-red-hover: #B91C1C;
-    
-    /* Sidebar */
-    --fi-sidebar-bg: #FAFAFA; /* Softer off-white sidebar */
-    --fi-sidebar-item-active: var(--brand-red);
-    --fi-sidebar-item-hover: #F3F4F6; /* Light gray */
-    --fi-sidebar-text: #4B5563;
-    --fi-sidebar-text-active: #ffffff;
+    --tbsm-red: #DC2626;
+    --tbsm-red-hover: #B91C1C;
+    --tbsm-red-soft: #FEF2F2;
+    --tbsm-red-ring: rgba(220, 38, 38, 0.12);
 
-    /* Surface */
-    --fi-main-bg: #F3F4F6; /* Soft gray for the main canvas, reduces white glare */
+    --tbsm-charcoal: #18181B;
+    --tbsm-dark: #09090B;
 
-    /* Card */
-    --fi-card-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
-    --fi-card-radius: 0.8rem;
+    --tbsm-bg: #F7F7F8;
+    --tbsm-surface: #FFFFFF;
+    --tbsm-border: #E4E4E7;
+    --tbsm-border-light: #F4F4F5;
+    --tbsm-muted: #71717A;
+    --tbsm-muted-light: #A1A1AA;
+
+    --tbsm-success: #16A34A;
+    --tbsm-warning: #D97706;
+    --tbsm-danger: #DC2626;
+    --tbsm-info: #2563EB;
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+    --shadow-lg: 0 4px 16px rgba(0,0,0,0.06);
 }
 
-/* ── GLOBAL FONT & SMOOTHING ────────────────────────── */
+/* ── GLOBAL ────────────────────────────────────────── */
 html, body {
+    background-color: var(--tbsm-bg) !important;
+    color: var(--tbsm-charcoal);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--fi-main-bg) !important;
 }
 
-/* ── SIDEBAR ─────────────────────────────────────────── */
-.fi-sidebar {
-    background-color: var(--fi-sidebar-bg) !important;
-    border-right: 1px solid #E5E7EB !important;
+/* Extremely subtle technical grid */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.018;
+    background-image:
+        linear-gradient(var(--tbsm-charcoal) 1px, transparent 1px),
+        linear-gradient(90deg, var(--tbsm-charcoal) 1px, transparent 1px);
+    background-size: 48px 48px;
 }
 
-.fi-sidebar-header {
-    border-bottom: none !important;
-    padding: 2rem 1.5rem 1rem !important;
-}
-
-.fi-brand-name {
-    color: #111827 !important;
-    font-family: 'Chivo', serif !important;
-    font-weight: 900 !important;
-    font-size: 1.25rem !important;
-    letter-spacing: 0 !important;
-    text-transform: none;
-}
-
-.fi-sidebar-group-label {
+/* Remove body::after ambient glow */
+body::after {
     display: none !important;
 }
 
+/* ── SIDEBAR ───────────────────────────────────────── */
+.fi-sidebar {
+    background-color: var(--tbsm-charcoal) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.fi-sidebar-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 1.25rem 1.25rem !important;
+}
+
+.fi-brand-name {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1.3 !important;
+}
+
+/* Navigation Group Labels — visible, structured */
+.fi-sidebar-group-label {
+    color: rgba(255, 255, 255, 0.35) !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    padding: 0 0.75rem !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
 .fi-sidebar-item-button {
-    color: var(--fi-sidebar-text) !important;
-    font-weight: 600 !important;
-    border-radius: 6px !important; /* Slightly rounded */
-    margin: 0.2rem 1rem !important;
-    padding: 0.7rem 1rem !important;
+    color: rgba(255, 255, 255, 0.55) !important;
+    font-weight: 500 !important;
     font-size: 0.85rem !important;
-    gap: 0.8rem !important;
-    transition: all 0.2s ease !important;
-    border-left: none !important;
+    border-radius: var(--radius-md) !important;
+    margin: 1px 0.75rem !important;
+    padding: 0.55rem 0.75rem !important;
+    transition: all 0.15s ease !important;
+    gap: 0.65rem !important;
 }
 
 .fi-sidebar-item-button:hover {
-    color: #111827 !important;
-    background: var(--fi-sidebar-item-hover) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
 }
 
+/* Active nav item */
 .fi-sidebar-item-button[aria-current="page"],
 .fi-sidebar-item-button.fi-active {
-    background: #FEE2E2 !important; /* Very soft red tint */
-    color: var(--brand-red) !important;
-    box-shadow: none !important;
+    background: rgba(220, 38, 38, 0.12) !important;
+    color: #FFFFFF !important;
 }
 
 .fi-sidebar-item-icon {
-    width: 1.1rem !important;
-    height: 1.1rem !important;
+    width: 1.15rem !important;
+    height: 1.15rem !important;
+    color: inherit !important;
+    flex-shrink: 0;
 }
 
-/* ── TOPBAR ──────────────────────────────────────────── */
+.fi-sidebar-item-button[aria-current="page"] .fi-sidebar-item-icon,
+.fi-sidebar-item-button.fi-active .fi-sidebar-item-icon {
+    color: var(--tbsm-red) !important;
+}
+
+/* ── TOPBAR ────────────────────────────────────────── */
 .fi-topbar {
-    background-color: #FAFAFA !important;
-    border-bottom: 1px solid #E5E7EB !important;
+    background-color: var(--tbsm-surface) !important;
+    border-bottom: 1px solid var(--tbsm-border) !important;
     box-shadow: none !important;
 }
 
 .fi-topbar .fi-icon-btn,
-.fi-topbar .fi-breadcrumbs-item-label,
 .fi-topbar button,
 .fi-topbar svg {
-    color: #4B5563 !important;
+    color: var(--tbsm-muted) !important;
 }
 
+.fi-breadcrumbs-item-label {
+    color: var(--tbsm-muted) !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+}
+.fi-breadcrumbs-item:last-child .fi-breadcrumbs-item-label {
+    color: var(--tbsm-charcoal) !important;
+    font-weight: 600 !important;
+}
+
+/* Global search */
 .fi-topbar-global-search-input {
-    background: #FFFFFF !important;
-    border: 1px solid #E5E7EB !important;
-    color: #111827 !important;
-    border-radius: 9999px !important; /* Pill search */
+    background: var(--tbsm-bg) !important;
+    border: 1px solid var(--tbsm-border) !important;
+    color: var(--tbsm-charcoal) !important;
+    border-radius: var(--radius-md) !important;
+    font-size: 0.85rem !important;
+}
+.fi-topbar-global-search-input:focus {
+    border-color: var(--tbsm-red) !important;
+    box-shadow: 0 0 0 3px var(--tbsm-red-ring) !important;
 }
 .fi-topbar-global-search-input::placeholder {
-    color: #9CA3AF !important;
+    color: var(--tbsm-muted-light) !important;
+}
+.fi-topbar-global-search-icon {
+    color: var(--tbsm-muted-light) !important;
 }
 
-/* ── MAIN CONTENT ────────────────────────────────────── */
+/* ── MAIN CONTENT ──────────────────────────────────── */
 .fi-main {
-    background: var(--fi-main-bg) !important;
-    padding-top: 2rem !important;
+    background: transparent !important;
+    position: relative;
+    z-index: 1;
 }
 
+/* ── PAGE HEADER ───────────────────────────────────── */
 .fi-page-header-heading {
-    color: #111827 !important;
-    font-family: 'Chivo', serif !important;
-    font-weight: 800 !important;
-    font-size: 1.75rem !important;
+    color: var(--tbsm-dark) !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+    letter-spacing: -0.015em !important;
 }
 
-/* ── CARDS / SECTIONS ────────────────────────────────── */
+.fi-page-header-subheading {
+    color: var(--tbsm-muted) !important;
+    font-size: 0.875rem !important;
+}
+
+/* ── CARDS & SECTIONS ──────────────────────────────── */
 .fi-section,
 .fi-card {
-    background: #ffffff !important;
-    border: 1px solid #F3F4F6 !important; /* Softer border */
-    border-radius: 0.8rem !important; /* Soft rounded corners */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02) !important; /* Very soft shadow */
+    background: var(--tbsm-surface) !important;
+    border: 1px solid var(--tbsm-border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
 }
 
 .fi-section-header-heading {
-    color: #1F2937 !important;
-    font-family: 'Chivo', serif !important;
-    font-weight: 800 !important;
-    font-size: 1.25rem !important;
+    color: var(--tbsm-charcoal) !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
 }
 
-/* ── STATS OVERVIEW WIDGET ───────────────────────────── */
+/* ── STATS OVERVIEW CARDS ──────────────────────────── */
 .fi-wi-stats-overview-card {
-    background: #ffffff !important;
-    border: 1px solid #E5E7EB !important; /* Very subtle border */
-    border-radius: 0.6rem !important;
-    box-shadow: none !important; /* Flatten out stat cards */
+    background: var(--tbsm-surface) !important;
+    border: 1px solid var(--tbsm-border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
     padding: 1.25rem !important;
-    display: flex;
-    flex-direction: column;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease !important;
 }
 
-/* Make the active/first stat card red like the mockup */
-.fi-wi-stats-overview-card:nth-child(3) {
-    background: var(--brand-red) !important;
-    border: none !important;
-    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.25) !important;
-}
-.fi-wi-stats-overview-card:nth-child(3) .fi-wi-stats-overview-card-value,
-.fi-wi-stats-overview-card:nth-child(3) .fi-wi-stats-overview-card-label,
-.fi-wi-stats-overview-card:nth-child(3) .fi-wi-stats-overview-card-description,
-.fi-wi-stats-overview-card:nth-child(3) svg {
-    color: #ffffff !important;
-}
-
-.fi-wi-stats-overview-card-value {
-    color: #111827 !important;
-    font-weight: 800 !important;
-    font-size: 1.5rem !important;
+.fi-wi-stats-overview-card:hover {
+    box-shadow: var(--shadow-md) !important;
+    border-color: #D4D4D8 !important;
 }
 
 .fi-wi-stats-overview-card-label {
-    color: #6B7280 !important;
-    font-weight: 600 !important;
-    font-size: 0.7rem !important;
-    text-transform: capitalize !important;
+    color: var(--tbsm-muted) !important;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
 }
 
-/* ── TABLES ──────────────────────────────────────────── */
+.fi-wi-stats-overview-card-value {
+    color: var(--tbsm-dark) !important;
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.2 !important;
+    margin-top: 0.25rem !important;
+}
+
+.fi-wi-stats-overview-card-description {
+    color: var(--tbsm-muted) !important;
+    font-size: 0.75rem !important;
+    margin-top: 0.25rem !important;
+}
+
+/* Remove override that made first card dark */
+.fi-wi-stats-overview-card:nth-child(1) {
+    background: var(--tbsm-surface) !important;
+    border: 1px solid var(--tbsm-border) !important;
+}
+.fi-wi-stats-overview-card:nth-child(1) .fi-wi-stats-overview-card-value,
+.fi-wi-stats-overview-card:nth-child(1) .fi-wi-stats-overview-card-label,
+.fi-wi-stats-overview-card:nth-child(1) .fi-wi-stats-overview-card-description,
+.fi-wi-stats-overview-card:nth-child(1) svg {
+    color: inherit !important;
+}
+
+/* ── TABLES & LIST PAGES ───────────────────────────── */
+/* Ensure the table container is clean and rounded */
+.fi-ta-content {
+    background: var(--tbsm-surface) !important;
+    border: 1px solid var(--tbsm-border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-sm) !important;
+    overflow: hidden !important;
+}
+
+/* Force the table header toolbar (search, filters) to be light */
+.fi-ta-header-toolbar {
+    background: var(--tbsm-surface) !important;
+    border-bottom: 1px solid var(--tbsm-border) !important;
+    padding: 1rem 1.25rem !important;
+}
+
+/* Force the table footer (pagination) to be light */
+.fi-ta-footer {
+    background: var(--tbsm-bg) !important;
+    border-top: 1px solid var(--tbsm-border) !important;
+    padding: 1rem 1.25rem !important;
+}
+
 .fi-ta-header-cell {
-    background: #ffffff !important;
-    color: #6B7280 !important;
+    background: var(--tbsm-bg) !important;
+    color: var(--tbsm-muted) !important;
     font-weight: 600 !important;
-    font-size: 0.7rem !important;
-    text-transform: none !important;
-    border-bottom: 1px solid #F3F4F6 !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+    border-bottom: 1px solid var(--tbsm-border) !important;
     padding: 0.75rem 1rem !important;
 }
 
 .fi-ta-row {
-    background: #ffffff !important;
+    background: var(--tbsm-surface) !important;
+    transition: background-color 0.1s ease !important;
 }
-.fi-ta-row:hover .fi-ta-cell {
-    background: #F9FAFB !important;
+.fi-ta-row:hover {
+    background: var(--tbsm-bg) !important;
 }
 
 .fi-ta-cell {
-    color: #374151 !important;
+    color: var(--tbsm-charcoal) !important;
     font-size: 0.85rem !important;
-    font-weight: 500 !important;
-    border-bottom: 1px solid #F3F4F6 !important;
+    font-weight: 400 !important;
+    border-bottom: 1px solid var(--tbsm-border-light) !important;
     padding: 0.75rem 1rem !important;
 }
 
-/* ── BUTTONS ─────────────────────────────────────────── */
+/* First column (title) stronger */
+.fi-ta-cell:first-child {
+    font-weight: 500 !important;
+}
+
+/* ── BUTTONS ───────────────────────────────────────── */
 .fi-btn {
-    border-radius: 2px !important;
+    border-radius: var(--radius-md) !important;
     font-weight: 600 !important;
-    font-size: 0.8rem !important;
-    padding: 0.5rem 1.25rem !important;
+    font-size: 0.85rem !important;
+    transition: all 0.15s ease !important;
     box-shadow: none !important;
 }
 
 .fi-btn-color-primary {
-    background-color: var(--brand-red) !important;
+    background-color: var(--tbsm-red) !important;
+    color: #FFFFFF !important;
 }
 .fi-btn-color-primary:hover {
-    background-color: var(--brand-red-hover) !important;
+    background-color: var(--tbsm-red-hover) !important;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15) !important;
 }
 
-/* ── FORM FIELDS ─────────────────────────────────────── */
+/* ── FORMS ─────────────────────────────────────────── */
 .fi-fo-field-wrp-label {
-    color: #374151 !important;
+    color: var(--tbsm-charcoal) !important;
     font-weight: 600 !important;
-    font-size: 0.8rem !important;
+    font-size: 0.85rem !important;
 }
 
 .fi-input,
 .fi-fo-text-input-wrp input,
 .fi-fo-textarea-wrp textarea,
 .fi-fo-select-wrp select {
-    border-radius: 2px !important;
-    border: 1px solid #E5E7EB !important;
-    background: #F9FAFB !important;
-    font-size: 0.85rem !important;
-    box-shadow: none !important;
+    border-radius: var(--radius-md) !important;
+    border: 1px solid #D4D4D8 !important;
+    background: var(--tbsm-surface) !important;
+    font-size: 0.875rem !important;
+    box-shadow: var(--shadow-sm) !important;
+    color: var(--tbsm-charcoal) !important;
 }
 
 .fi-input:focus,
 .fi-fo-text-input-wrp input:focus,
 .fi-fo-textarea-wrp textarea:focus {
-    border-color: var(--brand-red) !important;
-    background: #ffffff !important;
-    box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1) !important;
+    border-color: var(--tbsm-red) !important;
+    box-shadow: 0 0 0 3px var(--tbsm-red-ring) !important;
 }
 
-/* ── BADGES ──────────────────────────────────────────── */
+/* ── BADGES ────────────────────────────────────────── */
 .fi-badge {
-    border-radius: 9999px !important;
-    font-weight: 700 !important;
-    font-size: 0.65rem !important;
-    padding: 0.2rem 0.6rem !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 600 !important;
+    font-size: 0.7rem !important;
+    padding: 0.2rem 0.5rem !important;
 }
 
-/* ── PAGINATION ──────────────────────────────────────── */
-.fi-pagination-item a {
-    border-radius: 2px !important;
+/* ── PAGINATION ────────────────────────────────────── */
+.fi-pagination-item a,
+.fi-pagination-item button {
+    border-radius: var(--radius-sm) !important;
 }
 
-/* ── SCROLLBAR ───────────────────────────────────────── */
+/* ── MODALS ────────────────────────────────────────── */
+.fi-modal-window {
+    border-radius: var(--radius-xl) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* ── SCROLLBAR ─────────────────────────────────────── */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -269,14 +389,165 @@ html, body {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: #CBD5E1;
-    border-radius: 9999px;
+    background: #D4D4D8;
+    border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #94A3B8;
+    background: #A1A1AA;
 }
 
-/* Fix global search icon color */
-.fi-topbar-global-search-icon {
-    color: #9CA3AF !important;
+/* Sidebar scrollbar */
+.fi-sidebar ::-webkit-scrollbar-track {
+    background: var(--tbsm-charcoal);
+}
+.fi-sidebar ::-webkit-scrollbar-thumb {
+    background: #3f3f46;
+}
+
+/* ── CUSTOM DASHBOARD WIDGETS ──────────────────────── */
+
+/* Welcome Widget */
+.tbsm-welcome {
+    background: var(--tbsm-surface);
+    border: 1px solid var(--tbsm-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.tbsm-welcome h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--tbsm-dark);
+    margin: 0;
+}
+.tbsm-welcome p {
+    font-size: 0.875rem;
+    color: var(--tbsm-muted);
+    margin: 0.25rem 0 0;
+}
+.tbsm-welcome-date {
+    font-size: 0.8rem;
+    color: var(--tbsm-muted-light);
+    white-space: nowrap;
+}
+
+/* Quick Actions */
+.tbsm-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.75rem;
+}
+.tbsm-quick-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--tbsm-surface);
+    border: 1px solid var(--tbsm-border);
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--tbsm-charcoal);
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+.tbsm-quick-action:hover {
+    border-color: var(--tbsm-red);
+    color: var(--tbsm-red);
+    box-shadow: var(--shadow-sm);
+}
+.tbsm-quick-action svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    color: var(--tbsm-muted);
+}
+.tbsm-quick-action:hover svg {
+    color: var(--tbsm-red);
+}
+
+
+
+/* Website Status Widget */
+.tbsm-system-status {
+    background: var(--tbsm-surface);
+    border: 1px solid var(--tbsm-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+}
+.tbsm-system-status h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--tbsm-charcoal);
+    margin: 0 0 1rem;
+}
+
+/* Activity Panel */
+.tbsm-activity {
+    background: var(--tbsm-surface);
+    border: 1px solid var(--tbsm-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+}
+.tbsm-activity h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--tbsm-charcoal);
+    margin: 0 0 1rem;
+}
+.tbsm-activity-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+}
+.tbsm-activity-item + .tbsm-activity-item {
+    border-top: 1px solid var(--tbsm-border-light);
+}
+.tbsm-activity-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--tbsm-red);
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+}
+.tbsm-activity-content {
+    flex: 1;
+    min-width: 0;
+}
+.tbsm-activity-text {
+    font-size: 0.8rem;
+    color: var(--tbsm-charcoal);
+    line-height: 1.4;
+}
+.tbsm-activity-time {
+    font-size: 0.7rem;
+    color: var(--tbsm-muted-light);
+    margin-top: 0.15rem;
+}
+
+/* Empty state */
+.tbsm-empty {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+.tbsm-empty svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--tbsm-muted-light);
+    margin: 0 auto 0.75rem;
+}
+.tbsm-empty h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--tbsm-charcoal);
+    margin: 0 0 0.25rem;
+}
+.tbsm-empty p {
+    font-size: 0.8rem;
+    color: var(--tbsm-muted);
+    margin: 0;
 }

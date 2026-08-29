@@ -10,15 +10,18 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\WelcomeWidget;
+use App\Filament\Widgets\QuickActionsWidget;
 use App\Filament\Widgets\StatsOverview;
 use App\Filament\Widgets\LatestPostsWidget;
+use App\Filament\Widgets\RecentActivityWidget;
+use App\Filament\Widgets\WebsiteStatusWidget;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,28 +34,41 @@ class AdminPanelProvider extends PanelProvider
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login(\App\Filament\Pages\Auth\Login::class)
             ->colors([
-                'primary' => '#DC2626', // Custom red from Figma
-                'gray'    => Color::Slate,
+                'primary' => '#DC2626', // TBSM Red
+                'gray'    => Color::Zinc,
                 'danger'  => Color::Rose,
                 'success' => Color::Emerald,
                 'warning' => Color::Amber,
                 'info'    => Color::Blue,
             ])
+            ->darkMode(false) // Force Light Mode for the custom design system
             ->maxContentWidth('full')
-            ->font('Hanken Grotesk')
-            ->brandName('TBSM')
+            ->font('Inter')
+            ->brandName('TBSM Admin')
             ->favicon(asset('logo.png'))
             ->sidebarCollapsibleOnDesktop()
+            ->navigationGroups([
+                'OVERVIEW',
+                'CONTENT',
+                'ACADEMIC',
+                'ACHIEVEMENT',
+                'INDUSTRY',
+                'ALUMNI',
+                'MEDIA',
+                'SYSTEM',
+            ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
+                WelcomeWidget::class,
+                QuickActionsWidget::class,
                 StatsOverview::class,
                 LatestPostsWidget::class,
-                AccountWidget::class,
+                RecentActivityWidget::class,
+                WebsiteStatusWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

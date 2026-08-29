@@ -12,7 +12,7 @@ class Teacher extends Model
     use \App\Traits\CleansUpFiles;
     use LogsActivity;
 
-    protected $fillable = ['user_id', 'name', 'nip', 'position', 'phone', 'photo', 'is_head_of_department', 'is_active'];
+    protected $fillable = ['user_id', 'name', 'nip', 'position', 'specialization', 'phone', 'photo', 'bio', 'is_head_of_department', 'is_active'];
 
     protected function casts(): array
     {
