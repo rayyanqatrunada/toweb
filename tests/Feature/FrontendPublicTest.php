@@ -20,6 +20,7 @@ class FrontendPublicTest extends TestCase
 
     public function test_public_pages_load_correctly()
     {
+        \App\Models\IndustryPartner::create(['name' => 'Yamaha', 'slug' => 'yamaha', 'status' => 'published', 'is_active' => true]);
         $this->get('/')->assertStatus(200);
         $this->get('/tentang')->assertStatus(200);
         $this->get('/berita')->assertStatus(200);

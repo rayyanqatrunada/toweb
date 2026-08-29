@@ -41,6 +41,7 @@ class FrontendRouteTest extends TestCase
 
     public function test_partnership_page_returns_a_successful_response(): void
     {
+        \App\Models\IndustryPartner::create(['name' => 'Yamaha', 'slug' => 'yamaha', 'status' => 'published', 'is_active' => true]);
         $response = $this->get('/mitra-industri');
         $response->assertStatus(200);
     }

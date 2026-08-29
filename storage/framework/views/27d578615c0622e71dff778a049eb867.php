@@ -1,4 +1,15 @@
-<x-layouts.app title="Jejaring Alumni">
+<?php if (isset($component)) { $__componentOriginal5863877a5171c196453bfa0bd807e410 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal5863877a5171c196453bfa0bd807e410 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Jejaring Alumni']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('layouts.app'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'Jejaring Alumni']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
     
     <!-- Hero Section -->
     <section class="relative flex flex-col justify-center items-center py-20 lg:py-[150px] bg-[#1B1B1E] border-b border-[#E4E1E5] w-full min-h-[560px] overflow-hidden mt-[80px]">
@@ -22,7 +33,7 @@
                 </h1>
                 
                 <p class="font-sans font-normal text-[16px] lg:text-[18px] leading-[1.6] text-[#F0EDF1] max-w-[590px]">
-                    Inspirasi dari para lulusan Teknik dan Bisnis Sepeda Motor (TBSM) {{ $settings->get('site_name', 'SMK Negeri 1 Bangsri') }} yang kini berkarier di industri otomotif terkemuka dan membangun masa depan.
+                    Inspirasi dari para lulusan Teknik dan Bisnis Sepeda Motor (TBSM) <?php echo e($settings->get('site_name', 'SMK Negeri 1 Bangsri')); ?> yang kini berkarier di industri otomotif terkemuka dan membangun masa depan.
                 </p>
                 
             </div>
@@ -95,20 +106,20 @@
 
             <!-- Bento Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-[1152px] mx-auto reveal-on-scroll reveal-up delay-100">
-                @if($alumnis->count() > 0)
-                    @foreach($alumnis->take(5) as $index => $alumni)
-                        @if($index == 0)
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumnis->count() > 0): ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $alumnis->take(5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $alumni): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($index == 0): ?>
                             <!-- Item 1: Featured Story (Spans 1 col, 2 rows) -->
                             <div class="lg:col-span-1 lg:row-span-2 relative flex flex-col justify-end p-8 border border-[#E4E1E5] bg-[#FBF8FC] min-h-[522px] overflow-hidden group">
-                                @if($alumni->photo)
-                                    <img src="{{ Storage::url($alumni->photo) }}" alt="{{ $alumni->name }}" class="absolute inset-0 w-full h-full object-cover mix-blend-saturation group-hover:mix-blend-normal transition-all duration-500 z-0">
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->photo): ?>
+                                    <img src="<?php echo e(Storage::url($alumni->photo)); ?>" alt="<?php echo e($alumni->name); ?>" class="absolute inset-0 w-full h-full object-cover mix-blend-saturation group-hover:mix-blend-normal transition-all duration-500 z-0">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
-                                @else
+                                <?php else: ?>
                                     <div class="absolute inset-0 bg-[#E4E1E5] flex items-center justify-center z-0">
                                         <svg class="w-20 h-20 text-[#5F5E5E]/20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                     </div>
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                                @endif
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 
                                 <div class="absolute top-4 left-4 flex items-center bg-[#1B1B1E] px-3 py-1 gap-2 z-20 rounded-[2px]">
                                     <div class="w-2 h-2 rounded-full bg-[#B70011]"></div>
@@ -116,119 +127,137 @@
                                 </div>
                                 
                                 <div class="relative z-20 flex flex-col gap-1 border-l-2 border-[#B70011] pl-4">
-                                    <span class="font-sans font-bold text-[12px] tracking-[1.2px] text-gray-300 uppercase">Angkatan {{ $alumni->graduation_year }}</span>
+                                    <span class="font-sans font-bold text-[12px] tracking-[1.2px] text-gray-300 uppercase">Angkatan <?php echo e($alumni->graduation_year); ?></span>
                                     <h3 class="font-heading font-bold text-[24px] text-white mb-2">
-                                        <a href="{{ route('alumni.show', $alumni->slug) }}" class="hover:underline">{{ $alumni->name }}</a>
+                                        <a href="<?php echo e(route('alumni.show', $alumni->slug)); ?>" class="hover:underline"><?php echo e($alumni->name); ?></a>
                                     </h3>
-                                    <p class="font-sans font-bold text-[16px] text-figma-red">{{ $alumni->current_occupation ?: 'Alumni' }}@if($alumni->current_company), {{ $alumni->current_company }}@endif</p>
-                                    @if($alumni->success_story)
-                                        <p class="font-sans italic text-[16px] text-gray-300 mt-2 line-clamp-3">"{{ Str::limit(strip_tags($alumni->success_story), 100) }}"</p>
-                                    @endif
+                                    <p class="font-sans font-bold text-[16px] text-figma-red"><?php echo e($alumni->current_occupation ?: 'Alumni'); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->current_company): ?>, <?php echo e($alumni->current_company); ?><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?></p>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->success_story): ?>
+                                        <p class="font-sans italic text-[16px] text-gray-300 mt-2 line-clamp-3">"<?php echo e(Str::limit(strip_tags($alumni->success_story), 100)); ?>"</p>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
                             </div>
-                        @elseif($index == 1)
+                        <?php elseif($index == 1): ?>
                             <!-- Item 2: Top Right Card with red accent -->
                             <div class="flex flex-col justify-between p-6 bg-[#FBF8FC] border border-[#E4E1E5] relative min-h-[250px] group hover:border-[#B70011] transition-colors">
                                 <div class="absolute right-0 bottom-0 w-8 h-8 border-r border-b border-[#E4E1E5] opacity-50"></div>
                                 <div class="flex flex-col gap-1 mb-4">
                                     <div class="flex justify-between items-start mb-4">
-                                        <span class="font-sans font-bold text-[12px] tracking-[1.2px] text-[#5F5E5E] uppercase">Angkatan {{ $alumni->graduation_year }}</span>
+                                        <span class="font-sans font-bold text-[12px] tracking-[1.2px] text-[#5F5E5E] uppercase">Angkatan <?php echo e($alumni->graduation_year); ?></span>
                                         <div class="bg-[#B70011] px-2 py-1 rounded-[2px]">
                                             <span class="font-sans font-normal text-[10px] text-white uppercase">Entrepreneur</span>
                                         </div>
                                     </div>
                                     <h4 class="font-heading font-bold text-[18px] text-[#1B1B1E]">
-                                        <a href="{{ route('alumni.show', $alumni->slug) }}" class="hover:text-[#B70011]">{{ $alumni->name }}</a>
+                                        <a href="<?php echo e(route('alumni.show', $alumni->slug)); ?>" class="hover:text-[#B70011]"><?php echo e($alumni->name); ?></a>
                                     </h4>
-                                    <p class="font-sans text-[14px] text-[#B70011]">{{ $alumni->current_occupation ?: 'Alumni' }}@if($alumni->current_company), {{ $alumni->current_company }}@endif</p>
-                                    @if($alumni->success_story)
-                                        <p class="font-sans text-[14px] text-[#5C403C] mt-2 line-clamp-2">{{ Str::limit(strip_tags($alumni->success_story), 80) }}</p>
-                                    @endif
+                                    <p class="font-sans text-[14px] text-[#B70011]"><?php echo e($alumni->current_occupation ?: 'Alumni'); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->current_company): ?>, <?php echo e($alumni->current_company); ?><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?></p>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->success_story): ?>
+                                        <p class="font-sans text-[14px] text-[#5C403C] mt-2 line-clamp-2"><?php echo e(Str::limit(strip_tags($alumni->success_story), 80)); ?></p>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
                                 <div class="flex items-center gap-2 text-[#5F5E5E] mt-auto">
                                     <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13h-13L12 6.5z"/></svg>
-                                    <span class="font-sans font-bold text-[12px] tracking-[1.2px] uppercase">{{ $alumni->city ?: 'Indonesia' }}</span>
+                                    <span class="font-sans font-bold text-[12px] tracking-[1.2px] uppercase"><?php echo e($alumni->city ?: 'Indonesia'); ?></span>
                                 </div>
                             </div>
-                        @elseif($index == 2 || $index == 4)
+                        <?php elseif($index == 2 || $index == 4): ?>
                             <!-- Item 3 & 5: Standard Card -->
                             <div class="flex flex-col justify-between p-6 bg-[#FBF8FC] border border-[#E4E1E5] min-h-[250px] hover:shadow-md transition-shadow">
                                 <div class="flex flex-col gap-1 mb-4">
                                     <div class="flex justify-between items-start mb-4">
-                                        <span class="font-sans font-bold text-[12px] tracking-[1.2px] text-[#5F5E5E] uppercase">Angkatan {{ $alumni->graduation_year }}</span>
+                                        <span class="font-sans font-bold text-[12px] tracking-[1.2px] text-[#5F5E5E] uppercase">Angkatan <?php echo e($alumni->graduation_year); ?></span>
                                         <div class="bg-[#1B1B1E] px-2 py-1 rounded-[2px]">
                                             <span class="font-sans font-normal text-[10px] text-white uppercase">Work Placement</span>
                                         </div>
                                     </div>
                                     <h4 class="font-heading font-bold text-[18px] text-[#1B1B1E]">
-                                        <a href="{{ route('alumni.show', $alumni->slug) }}" class="hover:text-[#B70011]">{{ $alumni->name }}</a>
+                                        <a href="<?php echo e(route('alumni.show', $alumni->slug)); ?>" class="hover:text-[#B70011]"><?php echo e($alumni->name); ?></a>
                                     </h4>
-                                    <p class="font-sans text-[14px] text-[#B70011]">{{ $alumni->current_occupation ?: 'Alumni' }}@if($alumni->current_company), {{ $alumni->current_company }}@endif</p>
-                                    @if($alumni->success_story)
-                                        <p class="font-sans text-[14px] text-[#5C403C] mt-2 line-clamp-2">{{ Str::limit(strip_tags($alumni->success_story), 80) }}</p>
-                                    @endif
+                                    <p class="font-sans text-[14px] text-[#B70011]"><?php echo e($alumni->current_occupation ?: 'Alumni'); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->current_company): ?>, <?php echo e($alumni->current_company); ?><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?></p>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->success_story): ?>
+                                        <p class="font-sans text-[14px] text-[#5C403C] mt-2 line-clamp-2"><?php echo e(Str::limit(strip_tags($alumni->success_story), 80)); ?></p>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
-                                @if($alumni->city)
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->city): ?>
                                 <div class="flex items-center gap-2 text-[#5F5E5E] mt-auto">
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                                    <span class="font-sans font-bold text-[12px] tracking-[1.2px] uppercase">{{ $alumni->city }}</span>
+                                    <span class="font-sans font-bold text-[12px] tracking-[1.2px] uppercase"><?php echo e($alumni->city); ?></span>
                                 </div>
-                                @endif
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                             </div>
-                        @elseif($index == 3)
+                        <?php elseif($index == 3): ?>
                             <!-- Item 4: Dark Card -->
                             <div class="flex flex-col justify-between p-6 bg-[#1B1B1E] border border-[#E4E1E5] relative min-h-[250px] overflow-hidden">
                                 <div class="absolute inset-0 bg-[linear-gradient(55deg,transparent_2.3%,rgba(228,228,231,0.5)_2.3%,rgba(228,228,231,0.5)_4.6%)] opacity-20 pointer-events-none"></div>
                                 <div class="relative z-10 flex flex-col gap-1 mb-4">
                                     <div class="flex justify-between items-start mb-4">
-                                        <span class="font-sans font-bold text-[12px] tracking-[1.2px] text-[#C8C6C5] uppercase">Angkatan {{ $alumni->graduation_year }}</span>
+                                        <span class="font-sans font-bold text-[12px] tracking-[1.2px] text-[#C8C6C5] uppercase">Angkatan <?php echo e($alumni->graduation_year); ?></span>
                                         <div class="border border-[#E4E1E5] px-2 py-1 rounded-[2px]">
                                             <span class="font-sans font-normal text-[10px] text-white uppercase">Success Story</span>
                                         </div>
                                     </div>
                                     <h4 class="font-heading font-bold text-[18px] text-white">
-                                        <a href="{{ route('alumni.show', $alumni->slug) }}" class="hover:text-figma-red">{{ $alumni->name }}</a>
+                                        <a href="<?php echo e(route('alumni.show', $alumni->slug)); ?>" class="hover:text-figma-red"><?php echo e($alumni->name); ?></a>
                                     </h4>
-                                    <p class="font-sans text-[14px] text-[#FFDAD6]">{{ $alumni->current_occupation ?: 'Alumni' }}@if($alumni->current_company), {{ $alumni->current_company }}@endif</p>
-                                    @if($alumni->success_story)
-                                        <p class="font-sans text-[14px] text-[#F0EDF1] mt-2 line-clamp-2">"{{ Str::limit(strip_tags($alumni->success_story), 80) }}"</p>
-                                    @endif
+                                    <p class="font-sans text-[14px] text-[#FFDAD6]"><?php echo e($alumni->current_occupation ?: 'Alumni'); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->current_company): ?>, <?php echo e($alumni->current_company); ?><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?></p>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumni->success_story): ?>
+                                        <p class="font-sans text-[14px] text-[#F0EDF1] mt-2 line-clamp-2">"<?php echo e(Str::limit(strip_tags($alumni->success_story), 80)); ?>"</p>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
                                 <div class="relative z-10 flex justify-end mt-auto">
-                                    <a href="{{ route('alumni.show', $alumni->slug) }}" class="w-6 h-6 flex justify-center items-center rounded-full border border-[#FFDAD6] text-[#FFDAD6] hover:bg-[#FFDAD6] hover:text-[#1B1B1E] transition-colors">
+                                    <a href="<?php echo e(route('alumni.show', $alumni->slug)); ?>" class="w-6 h-6 flex justify-center items-center rounded-full border border-[#FFDAD6] text-[#FFDAD6] hover:bg-[#FFDAD6] hover:text-[#1B1B1E] transition-colors">
                                         <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                     </a>
                                 </div>
                             </div>
-                        @endif
-                    @endforeach
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
 
                     <!-- Item 6: Lihat Semua -->
-                    @if($alumnis->count() >= 5 || $alumnis->hasPages())
-                    <a href="{{ $alumnis->nextPageUrl() ?? route('alumni.index') }}" class="flex flex-col justify-center items-center p-6 bg-[#FBF8FC] border border-[#E4E1E5] min-h-[250px] group hover:bg-gray-100 transition-colors cursor-pointer">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumnis->count() >= 5 || $alumnis->hasPages()): ?>
+                    <a href="<?php echo e($alumnis->nextPageUrl() ?? route('alumni.index')); ?>" class="flex flex-col justify-center items-center p-6 bg-[#FBF8FC] border border-[#E4E1E5] min-h-[250px] group hover:bg-gray-100 transition-colors cursor-pointer">
                         <div class="w-10 h-10 bg-figma-red flex justify-center items-center rounded-[2px] mb-4 group-hover:scale-110 transition-transform">
                             <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                         </div>
                         <span class="font-sans font-bold text-[12px] tracking-[1.2px] text-[#1B1B1E] uppercase">Lihat Semua Profil</span>
                     </a>
-                    @endif
-                @else
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                <?php else: ?>
                     <div class="col-span-1 lg:col-span-3 py-16 text-center">
-                        <x-frontend.ui.empty-state 
-                            title="Belum Ada Data Alumni" 
-                            message="Data jejaring alumni belum tersedia saat ini." 
-                            icon="users" 
-                        />
+                        <?php if (isset($component)) { $__componentOriginalb1651f2374e13365b46984f667e2eec8 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalb1651f2374e13365b46984f667e2eec8 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.ui.empty-state','data' => ['title' => 'Belum Ada Data Alumni','message' => 'Data jejaring alumni belum tersedia saat ini.','icon' => 'users']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.ui.empty-state'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'Belum Ada Data Alumni','message' => 'Data jejaring alumni belum tersedia saat ini.','icon' => 'users']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalb1651f2374e13365b46984f667e2eec8)): ?>
+<?php $attributes = $__attributesOriginalb1651f2374e13365b46984f667e2eec8; ?>
+<?php unset($__attributesOriginalb1651f2374e13365b46984f667e2eec8); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalb1651f2374e13365b46984f667e2eec8)): ?>
+<?php $component = $__componentOriginalb1651f2374e13365b46984f667e2eec8; ?>
+<?php unset($__componentOriginalb1651f2374e13365b46984f667e2eec8); ?>
+<?php endif; ?>
                     </div>
-                @endif
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
 
             <!-- Pagination (if standard view is needed) -->
-            @if($alumnis->hasPages() && $alumnis->currentPage() > 1)
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumnis->hasPages() && $alumnis->currentPage() > 1): ?>
                 <div class="mt-8 flex justify-center">
-                    {{ $alumnis->links() }}
+                    <?php echo e($alumnis->links()); ?>
+
                 </div>
-            @endif
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
         </div>
     </section>
@@ -251,11 +280,21 @@
                 Mari bangun jejaring profesional yang lebih kuat. Perbarui data diri Anda untuk tetap terhubung dengan almamater, adik tingkat, dan peluang karir di industri otomotif.
             </p>
             
-            <a href="{{ route('contact.index') }}" class="flex items-center gap-2 bg-figma-red hover:bg-figma-dark-red text-white transition-colors px-8 py-4 rounded-[2px]">
+            <a href="<?php echo e(route('contact.index')); ?>" class="flex items-center gap-2 bg-figma-red hover:bg-figma-dark-red text-white transition-colors px-8 py-4 rounded-[2px]">
                 <span class="font-sans font-bold text-[12px] tracking-[1.2px] uppercase">Update Profil Alumni</span>
                 <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
         </div>
     </section>
 
-</x-layouts.app>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal5863877a5171c196453bfa0bd807e410)): ?>
+<?php $attributes = $__attributesOriginal5863877a5171c196453bfa0bd807e410; ?>
+<?php unset($__attributesOriginal5863877a5171c196453bfa0bd807e410); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5863877a5171c196453bfa0bd807e410)): ?>
+<?php $component = $__componentOriginal5863877a5171c196453bfa0bd807e410; ?>
+<?php unset($__componentOriginal5863877a5171c196453bfa0bd807e410); ?>
+<?php endif; ?>
+<?php /**PATH /home/Rayy/Project/Github/TBSM WEB/toweb/resources/views/frontend/alumni/index.blade.php ENDPATH**/ ?>
