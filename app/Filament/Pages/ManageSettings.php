@@ -44,6 +44,8 @@ class ManageSettings extends Page implements HasForms
             'contact_address' => $settings->get('contact_address'),
             'contact_phone' => $settings->get('contact_phone'),
             'contact_email' => $settings->get('contact_email'),
+            'contact_operating_hours' => $settings->get('contact_operating_hours', 'Senin - Jumat: 07:00 - 15:30 WIB'),
+            'contact_map_embed' => $settings->get('contact_map_embed'),
             'profile_history' => $settings->get('profile_history', 'Sejarah singkat jurusan Teknik dan Bisnis Sepeda Motor (TBSM) bermula dari...'),
             'profile_vision' => $settings->get('profile_vision', 'Menjadi program studi otomotif terdepan di tingkat nasional.'),
             'profile_mission' => $settings->get('profile_mission', '<ul><li>Menyelenggarakan pendidikan berkualitas...</li></ul>'),
@@ -105,11 +107,13 @@ class ManageSettings extends Page implements HasForms
                     ]),
                 
                 Section::make('Informasi Kontak')
-                    ->description('Alamat, Email, dan Telepon yang tampil di footer.')
+                    ->description('Alamat, Email, Telepon, jam operasional, dan peta Google Maps.')
                     ->schema([
                         TextInput::make('contact_address')->label('Alamat Lengkap')->required(),
                         TextInput::make('contact_phone')->label('Nomor Telepon/WA')->required(),
                         TextInput::make('contact_email')->label('Email')->email()->required(),
+                        TextInput::make('contact_operating_hours')->label('Jam Operasional')->required()->default('Senin - Jumat: 07:00 - 15:30 WIB'),
+                        Textarea::make('contact_map_embed')->label('URL Embed Google Maps')->helperText('Paste URL dari Google Maps > Share > Embed a Map. Cukup URL src-nya saja.')->rows(2),
                     ]),
 
                 Section::make('Media Sosial & YouTube')

@@ -76,6 +76,7 @@ body::after {
 .fi-sidebar-header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     padding: 1.25rem 1.25rem !important;
+    overflow: visible !important;
 }
 
 .fi-brand-name {
@@ -86,50 +87,83 @@ body::after {
     line-height: 1.3 !important;
 }
 
+/* Collapsed sidebar — ensure icon/logo is visible and centered */
+.fi-sidebar-nav-collapsed-icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    color: #FFFFFF !important;
+}
+.fi-sidebar[data-collapsed] .fi-sidebar-header,
+.fi-sidebar-header-collapsed {
+    padding: 1.25rem 0.5rem !important;
+    justify-content: center !important;
+    overflow: visible !important;
+}
+
+/* Force smaller gaps between navigation items/groups */
+.fi-sidebar-nav-groups {
+    gap: 0.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.fi-sidebar-nav {
+    gap: 0.5rem !important;
+    padding: 0.5rem !important;
+}
+
+.fi-sidebar-group {
+    margin-bottom: 0.25rem !important;
+}
+
 /* Navigation Group Labels — visible, structured */
 .fi-sidebar-group-label {
-    color: rgba(255, 255, 255, 0.35) !important;
+    color: rgba(255, 255, 255, 0.75) !important;
     font-size: 0.65rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
-    padding: 0 0.75rem !important;
-    margin-top: 1.25rem !important;
-    margin-bottom: 0.25rem !important;
+    padding: 0 0.6rem !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.15rem !important;
 }
 
-.fi-sidebar-item-button {
-    color: rgba(255, 255, 255, 0.55) !important;
+.fi-sidebar-group-collapse-btn {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.fi-sidebar-item-btn {
+    color: rgba(255, 255, 255, 0.85) !important;
     font-weight: 500 !important;
     font-size: 0.85rem !important;
     border-radius: var(--radius-md) !important;
-    margin: 1px 0.75rem !important;
-    padding: 0.55rem 0.75rem !important;
+    margin: 0px 0.5rem !important;
+    padding: 0.4rem 0.6rem !important;
     transition: all 0.15s ease !important;
-    gap: 0.65rem !important;
+    gap: 0.5rem !important;
 }
 
-.fi-sidebar-item-button:hover {
+.fi-sidebar-item-btn:hover {
     color: rgba(255, 255, 255, 0.9) !important;
     background: rgba(255, 255, 255, 0.05) !important;
 }
 
 /* Active nav item */
-.fi-sidebar-item-button[aria-current="page"],
-.fi-sidebar-item-button.fi-active {
+.fi-sidebar-item-btn[aria-current="page"],
+.fi-sidebar-item.fi-active .fi-sidebar-item-btn {
     background: rgba(220, 38, 38, 0.12) !important;
     color: #FFFFFF !important;
 }
 
 .fi-sidebar-item-icon {
-    width: 1.15rem !important;
-    height: 1.15rem !important;
+    width: 1.05rem !important;
+    height: 1.05rem !important;
     color: inherit !important;
     flex-shrink: 0;
 }
 
-.fi-sidebar-item-button[aria-current="page"] .fi-sidebar-item-icon,
-.fi-sidebar-item-button.fi-active .fi-sidebar-item-icon {
+.fi-sidebar-item-btn[aria-current="page"] .fi-sidebar-item-icon,
+.fi-sidebar-item.fi-active .fi-sidebar-item-icon {
     color: var(--tbsm-red) !important;
 }
 

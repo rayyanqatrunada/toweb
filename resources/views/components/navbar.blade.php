@@ -44,7 +44,7 @@
                     <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('galeri*') || request()->is('alumni*') || request()->is('unduhan*') ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
                 </a>
                 
-                <a href="{{ route('about') }}#contact" class="px-5 py-2 ml-4 bg-figma-red text-white font-sans text-[14px] tracking-[-0.5px] uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors focus-ring shadow-sm">Hubungi Kami</a>
+                <a href="{{ route('contact.index') }}" class="px-5 py-2 ml-4 bg-figma-red text-white font-sans text-[14px] tracking-[-0.5px] uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors focus-ring shadow-sm">Hubungi Kami</a>
                 
                 <button type="button" @click="$dispatch('open-search')" aria-label="Search" class="text-figma-gray hover:text-figma-dark transition-colors focus-ring p-1 ml-2">
                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -95,7 +95,7 @@
             <a href="{{ route('partnership.index') }}" class="block font-sans text-xl tracking-[-0.8px] uppercase {{ request()->is('mitra-industri*') || request()->is('pkl*') || request()->is('lowongan*') ? 'text-figma-dark font-bold' : 'text-figma-gray' }}">Industri</a>
             <a href="{{ route('news.index') }}" class="block font-sans text-xl tracking-[-0.8px] uppercase {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('galeri*') || request()->is('alumni*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray' }}">Publikasi</a>
             
-            <a href="{{ route('about') }}#contact" class="block text-center mt-8 px-6 py-3 bg-figma-red text-white font-sans text-lg uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors">Hubungi Kami</a>
+            <a href="{{ route('contact.index') }}" class="block text-center mt-8 px-6 py-3 bg-figma-red text-white font-sans text-lg uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors">Hubungi Kami</a>
         </div>
     </div>
 </nav>

@@ -46,6 +46,8 @@ class AdminPanelProvider extends PanelProvider
             ->font('Inter')
             ->brandName('TBSM Admin')
             ->favicon(asset('logo.png'))
+            ->sidebarWidth('14rem')
+            ->collapsedSidebarWidth('4rem')
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
                 'OVERVIEW',
