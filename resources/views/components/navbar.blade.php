@@ -39,9 +39,14 @@
                     <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ request()->is('pkl*') || request()->is('mitra-industri*') || request()->is('lowongan*') ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
                 </a>
                 
-                <a href="{{ route('news.index') }}" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('galeri*') || request()->is('alumni*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark' }}">
+                <a href="{{ route('gallery.index') }}" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors {{ request()->is('galeri*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark' }}">
+                    Galeri
+                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ request()->is('galeri*') ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
+                </a>
+                
+                <a href="{{ route('news.index') }}" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('alumni*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark' }}">
                     Publikasi
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('galeri*') || request()->is('alumni*') || request()->is('unduhan*') ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
+                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('alumni*') || request()->is('unduhan*') ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
                 </a>
                 
                 <a href="{{ route('contact.index') }}" class="px-5 py-2 ml-4 bg-figma-red text-white font-sans text-[14px] tracking-[-0.5px] uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors focus-ring shadow-sm">Hubungi Kami</a>
@@ -93,7 +98,8 @@
             <a href="{{ route('about') }}" class="block font-sans text-xl tracking-[-0.8px] uppercase {{ request()->routeIs('about') ? 'text-figma-dark font-bold' : 'text-figma-gray' }}">Tentang</a>
             <a href="{{ route('academic.programs') }}" class="block font-sans text-xl tracking-[-0.8px] uppercase {{ request()->is('akademik*') ? 'text-figma-dark font-bold' : 'text-figma-gray' }}">Akademik</a>
             <a href="{{ route('partnership.index') }}" class="block font-sans text-xl tracking-[-0.8px] uppercase {{ request()->is('mitra-industri*') || request()->is('pkl*') || request()->is('lowongan*') ? 'text-figma-dark font-bold' : 'text-figma-gray' }}">Industri</a>
-            <a href="{{ route('news.index') }}" class="block font-sans text-xl tracking-[-0.8px] uppercase {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('galeri*') || request()->is('alumni*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray' }}">Publikasi</a>
+            <a href="{{ route('gallery.index') }}" class="block font-sans text-xl tracking-[-0.8px] uppercase {{ request()->is('galeri*') ? 'text-figma-dark font-bold' : 'text-figma-gray' }}">Galeri</a>
+            <a href="{{ route('news.index') }}" class="block font-sans text-xl tracking-[-0.8px] uppercase {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('alumni*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray' }}">Publikasi</a>
             
             <a href="{{ route('contact.index') }}" class="block text-center mt-8 px-6 py-3 bg-figma-red text-white font-sans text-lg uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors">Hubungi Kami</a>
         </div>

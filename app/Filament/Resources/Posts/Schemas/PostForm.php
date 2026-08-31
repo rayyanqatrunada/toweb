@@ -14,6 +14,8 @@ class PostForm
     {
         return $schema
             ->components([
+                \Filament\Schemas\Components\Section::make('Informasi Utama')
+                    ->schema([
                 TextInput::make('title')
                     ->required()
                     ->live(onBlur: true)
@@ -49,6 +51,7 @@ class PostForm
                 DateTimePicker::make('published_at'),
                 \Filament\Forms\Components\Hidden::make('user_id')
                     ->default(fn () => auth()->id()),
+                                ])->columns(2)->columnSpanFull(),
             ]);
     }
 }

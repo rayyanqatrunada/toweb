@@ -39,6 +39,7 @@ class IndustryPartnerResource extends Resource
     {
         return [
             RelationManagers\PartnershipsRelationManager::class,
+            RelationManagers\JobVacanciesRelationManager::class,
         ];
     }
 

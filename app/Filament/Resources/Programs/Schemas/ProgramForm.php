@@ -12,6 +12,8 @@ class ProgramForm
     {
         return $schema
             ->components([
+                \Filament\Schemas\Components\Section::make('Informasi Utama')
+                    ->schema([
                 TextInput::make('name')
                     ->required()
                     ->live(onBlur: true)
@@ -25,6 +27,7 @@ class ProgramForm
                     ->image()
                     ->directory('programs')
                     ->columnSpanFull(),
+                                ])->columns(2)->columnSpanFull(),
             ]);
     }
 }

@@ -13,6 +13,8 @@ class AnnouncementForm
     {
         return $schema
             ->components([
+                \Filament\Schemas\Components\Section::make('Informasi Utama')
+                    ->schema([
                 TextInput::make('title')
                     ->required()
                     ->live(onBlur: true)
@@ -31,6 +33,7 @@ class AnnouncementForm
                 Toggle::make('is_active')
                     ->default(true)
                     ->required(),
+                                ])->columns(2)->columnSpanFull(),
             ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Alumnis\Schemas;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -19,6 +20,8 @@ class AlumniForm
     {
         return $schema
             ->components([
+                Group::make()
+                    ->schema([
                 Section::make('Identity')
                     ->description('Private & basic identification.')
                     ->schema([
@@ -41,7 +44,7 @@ class AlumniForm
                             ->maxLength(50)
                             ->unique(ignoreRecord: true)
                             ->required(),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Profile')
                     ->schema([
@@ -57,7 +60,7 @@ class AlumniForm
                             ->maxLength(255),
                         RichEditor::make('bio')
                             ->columnSpanFull(),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Career')
                     ->schema([
@@ -67,7 +70,7 @@ class AlumniForm
                             ->maxLength(255),
                         RichEditor::make('achievements')
                             ->columnSpanFull(),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Privacy & Visibility')
                     ->schema([
@@ -88,7 +91,11 @@ class AlumniForm
                             ->label('Published At'),
                     ])->columns(3),
 
-                Section::make('SEO')
+                                    ])->columnSpan(['lg' => 2]),
+
+                Group::make()
+                    ->schema([
+                        Section::make('SEO')
                     ->schema([
                         TextInput::make('meta_title')
                             ->maxLength(255),
@@ -96,6 +103,7 @@ class AlumniForm
                             ->maxLength(65535)
                             ->columnSpanFull(),
                     ]),
-            ]);
+                    ])->columnSpan(['lg' => 1]),
+            ])->columns(3);
     }
 }

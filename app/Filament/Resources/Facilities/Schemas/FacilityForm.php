@@ -13,6 +13,8 @@ class FacilityForm
     {
         return $schema
             ->components([
+                \Filament\Schemas\Components\Section::make('Informasi Utama')
+                    ->schema([
                 TextInput::make('name')
                     ->required()
                     ->live(onBlur: true)
@@ -37,6 +39,7 @@ class FacilityForm
                     ])
                     ->default('good')
                     ->required(),
+                                ])->columns(2)->columnSpanFull(),
             ]);
     }
 }

@@ -12,12 +12,15 @@ class DownloadCategoryForm
     {
         return $schema
             ->components([
+                \Filament\Schemas\Components\Section::make('Informasi Utama')
+                    ->schema([
                 TextInput::make('name')
                     ->required(),
                 TextInput::make('slug')
                     ->required(),
                 Textarea::make('description')
                     ->columnSpanFull(),
+                                ])->columns(2)->columnSpanFull(),
             ]);
     }
 }

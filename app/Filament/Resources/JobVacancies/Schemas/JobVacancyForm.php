@@ -5,6 +5,7 @@ namespace App\Filament\Resources\JobVacancies\Schemas;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\RichEditor;
+use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -18,6 +19,8 @@ class JobVacancyForm
     {
         return $schema
             ->components([
+                Group::make()
+                    ->schema([
                 Section::make('Basic Information')
                     ->schema([
                         Select::make('industry_partner_id')
@@ -38,7 +41,7 @@ class JobVacancyForm
                         TextInput::make('position')
                             ->required()
                             ->maxLength(255),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Job Details')
                     ->schema([
@@ -101,7 +104,11 @@ class JobVacancyForm
                             ->label('Application Deadline'),
                     ])->columns(3),
 
-                Section::make('Publishing')
+                                    ])->columnSpan(['lg' => 2]),
+
+                Group::make()
+                    ->schema([
+                        Section::make('Publishing')
                     ->schema([
                         Select::make('status')
                             ->options([
@@ -114,7 +121,7 @@ class JobVacancyForm
                             ->default('draft'),
                         DateTimePicker::make('published_at')
                             ->label('Published At'),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('SEO')
                     ->schema([
@@ -124,6 +131,7 @@ class JobVacancyForm
                             ->maxLength(65535)
                             ->columnSpanFull(),
                     ]),
-            ]);
+                    ])->columnSpan(['lg' => 1]),
+            ])->columns(3);
     }
 }

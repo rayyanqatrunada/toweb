@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Internships\Schemas;
 
 use Filament\Forms\Components\DatePicker;
+use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -39,7 +40,7 @@ class InternshipForm
                             ->required(),
                         DatePicker::make('end_date')
                             ->afterOrEqual('start_date'),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Status')
                     ->schema([
@@ -59,6 +60,6 @@ class InternshipForm
                         Textarea::make('description')
                             ->columnSpanFull(),
                     ]),
-            ]);
+            ])->columns(2);
     }
 }

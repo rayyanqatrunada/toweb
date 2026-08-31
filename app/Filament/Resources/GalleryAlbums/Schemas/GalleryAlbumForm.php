@@ -5,6 +5,7 @@ namespace App\Filament\Resources\GalleryAlbums\Schemas;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -18,6 +19,8 @@ class GalleryAlbumForm
     {
         return $schema
             ->components([
+                Group::make()
+                    ->schema([
                 Section::make('Basic Information')
                     ->schema([
                         TextInput::make('title')
@@ -35,7 +38,7 @@ class GalleryAlbumForm
                         DatePicker::make('event_date'),
                         TextInput::make('location')
                             ->maxLength(255),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Cover Image')
                     ->schema([
@@ -46,7 +49,11 @@ class GalleryAlbumForm
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Publishing')
+                                    ])->columnSpan(['lg' => 2]),
+
+                Group::make()
+                    ->schema([
+                        Section::make('Publishing')
                     ->schema([
                         Select::make('status')
                             ->options([
@@ -70,6 +77,7 @@ class GalleryAlbumForm
                             ->maxLength(65535)
                             ->columnSpanFull(),
                     ]),
-            ]);
+                    ])->columnSpan(['lg' => 1]),
+            ])->columns(3);
     }
 }

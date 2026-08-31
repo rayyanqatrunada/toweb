@@ -18,6 +18,10 @@ class GalleryAlbumResource extends Resource
 {
     protected static ?string $model = GalleryAlbum::class;
 
+    protected static ?string $modelLabel = 'Album Galeri';
+    protected static ?string $pluralModelLabel = 'Album Galeri';
+    protected static ?string $navigationLabel = 'Galeri';
+    
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
     protected static string | \UnitEnum | null $navigationGroup = '1. Operasional Harian';
 

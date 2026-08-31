@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Downloads\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -18,6 +19,8 @@ class DownloadForm
     {
         return $schema
             ->components([
+                Group::make()
+                    ->schema([
                 Section::make('Basic Information')
                     ->schema([
                         TextInput::make('title')
@@ -36,7 +39,7 @@ class DownloadForm
                         Textarea::make('description')
                             ->maxLength(65535)
                             ->columnSpanFull(),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('File Upload')
                     ->schema([
@@ -83,7 +86,7 @@ class DownloadForm
                             ->numeric()
                             ->disabled()
                             ->default(0),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Visibility & Publishing')
                     ->schema([
@@ -103,9 +106,13 @@ class DownloadForm
                         TextInput::make('sort_order')
                             ->numeric()
                             ->default(0),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
-                Section::make('SEO')
+                                    ])->columnSpan(['lg' => 2]),
+
+                Group::make()
+                    ->schema([
+                        Section::make('SEO')
                     ->schema([
                         TextInput::make('meta_title')
                             ->maxLength(255),
@@ -113,6 +120,7 @@ class DownloadForm
                             ->maxLength(65535)
                             ->columnSpanFull(),
                     ]),
-            ]);
+                    ])->columnSpan(['lg' => 1]),
+            ])->columns(3);
     }
 }
