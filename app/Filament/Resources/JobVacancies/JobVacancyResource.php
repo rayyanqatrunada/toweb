@@ -19,7 +19,7 @@ class JobVacancyResource extends Resource
     protected static ?string $model = JobVacancy::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
-    protected static string | \UnitEnum | null $navigationGroup = 'INDUSTRY';
+    protected static string | \UnitEnum | null $navigationGroup = '2. Konten Situasional';
 
     public static function form(Schema $schema): Schema
     {

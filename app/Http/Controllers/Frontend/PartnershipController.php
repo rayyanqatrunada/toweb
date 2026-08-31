@@ -13,6 +13,8 @@ class PartnershipController extends Controller
         // Hanya ada 1 mitra untuk jurusan TBSM, jadi kita langsung ambil mitra pertama beserta lowongan kerjanya.
         $partner = IndustryPartner::with(['jobVacancies' => function($query) {
             $query->published()->latest();
+        }, 'internships' => function($query) {
+            $query->published()->latest();
         }])->published()->first();
         
         if (!$partner) {
@@ -22,8 +24,9 @@ class PartnershipController extends Controller
                 'industry_type' => 'Data mitra industri belum ditambahkan di sistem.',
                 'description' => '<p>Halaman ini akan menampilkan profil mitra industri utama dari program keahlian TBSM. Saat ini data belum tersedia. Administrator dapat menambahkan data mitra melalui dashboard admin.</p>',
             ]);
-            // Pastikan relasi jobVacancies tidak null agar view tidak error
+            // Pastikan relasi jobVacancies dan internships tidak null agar view tidak error
             $partner->setRelation('jobVacancies', collect([]));
+            $partner->setRelation('internships', collect([]));
         }
 
         return view('frontend.partnership_show', compact('partner'));
@@ -32,6 +35,8 @@ class PartnershipController extends Controller
     public function show($slug)
     {
         $partner = IndustryPartner::with(['jobVacancies' => function($query) {
+            $query->published()->latest();
+        }, 'internships' => function($query) {
             $query->published()->latest();
         }])->published()->where('slug', $slug)->firstOrFail();
         return view('frontend.partnership_show', compact('partner'));

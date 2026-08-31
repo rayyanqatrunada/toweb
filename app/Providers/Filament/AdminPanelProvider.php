@@ -50,14 +50,9 @@ class AdminPanelProvider extends PanelProvider
             ->collapsedSidebarWidth('4rem')
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
-                'OVERVIEW',
-                'CONTENT',
-                'ACADEMIC',
-                'ACHIEVEMENT',
-                'INDUSTRY',
-                'ALUMNI',
-                'MEDIA',
-                'SYSTEM',
+                '1. Operasional Harian',
+                '2. Konten Situasional',
+                '3. Master Data & Pengaturan',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

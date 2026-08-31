@@ -19,7 +19,11 @@ class IndustryPartnerResource extends Resource
     protected static ?string $model = IndustryPartner::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
-    protected static string | \UnitEnum | null $navigationGroup = 'INDUSTRY';
+    protected static string | \UnitEnum | null $navigationGroup = '3. Master Data & Pengaturan';
+    
+    protected static ?string $navigationLabel = 'Profil Mitra';
+    protected static ?string $modelLabel = 'Profil Mitra';
+    protected static ?string $pluralModelLabel = 'Profil Mitra';
 
     public static function form(Schema $schema): Schema
     {
@@ -41,9 +45,7 @@ class IndustryPartnerResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListIndustryPartners::route('/'),
-            'create' => CreateIndustryPartner::route('/create'),
-            'edit' => EditIndustryPartner::route('/{record}/edit'),
+            'index' => Pages\EditIndustryPartner::route('/'),
         ];
     }
 }

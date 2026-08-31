@@ -19,7 +19,7 @@ class AchievementResource extends Resource
     protected static ?string $model = Achievement::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTrophy;
-    protected static string | \UnitEnum | null $navigationGroup = 'ACHIEVEMENT';
+    protected static string | \UnitEnum | null $navigationGroup = '2. Konten Situasional';
 
     public static function form(Schema $schema): Schema
     {

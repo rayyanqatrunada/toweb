@@ -19,7 +19,7 @@ class InternshipResource extends Resource
     protected static ?string $model = Internship::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
-    protected static string | \UnitEnum | null $navigationGroup = 'INDUSTRY';
+    protected static string | \UnitEnum | null $navigationGroup = '2. Konten Situasional';
 
     public static function form(Schema $schema): Schema
     {

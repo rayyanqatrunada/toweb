@@ -19,7 +19,7 @@ class FacilityResource extends Resource
     protected static ?string $model = Facility::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
-    protected static string | \UnitEnum | null $navigationGroup = 'ACADEMIC';
+    protected static string | \UnitEnum | null $navigationGroup = '3. Master Data & Pengaturan';
 
     public static function form(Schema $schema): Schema
     {

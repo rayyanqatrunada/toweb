@@ -19,7 +19,7 @@ class GalleryAlbumResource extends Resource
     protected static ?string $model = GalleryAlbum::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
-    protected static string | \UnitEnum | null $navigationGroup = 'MEDIA';
+    protected static string | \UnitEnum | null $navigationGroup = '1. Operasional Harian';
 
     public static function form(Schema $schema): Schema
     {

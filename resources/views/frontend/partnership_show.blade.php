@@ -122,8 +122,74 @@
         </x-frontend.layout.container>
     </section>
 
-    <!-- Section 3: Bursa Karir -->
+    <!-- Section 3: Program PKL / Magang -->
     <section class="py-20 md:py-28 bg-white reveal-on-scroll reveal-up">
+        <x-frontend.layout.container class="max-w-5xl">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                    <h2 class="font-heading font-extrabold text-[32px] md:text-[40px] text-figma-dark mb-4">Informasi PKL / Magang</h2>
+                    <div class="w-24 h-[3px] bg-figma-red"></div>
+                </div>
+                @if(isset($partner->internships) && $partner->internships->count() > 0)
+                    <div class="font-sans font-bold text-gray-500 bg-gray-100 px-4 py-2 rounded-lg">
+                        {{ $partner->internships->count() }} Program Tersedia
+                    </div>
+                @endif
+            </div>
+
+            @if(isset($partner->internships) && $partner->internships->count() > 0)
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    @foreach($partner->internships as $internship)
+                        <a href="{{ route('internships.show', $internship->id) }}" class="flex flex-col justify-between p-6 md:p-8 bg-white border-2 border-gray-100 hover:border-figma-red hover:shadow-xl transition-all duration-300 gap-6 rounded-2xl group">
+                            
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-md
+                                        @if($internship->status === 'ongoing') bg-green-100 text-green-700
+                                        @elseif($internship->status === 'planned') bg-blue-100 text-blue-700
+                                        @elseif($internship->status === 'completed') bg-gray-100 text-gray-600
+                                        @else bg-gray-100 text-gray-700 @endif
+                                    ">
+                                        {{ $internship->status === 'ongoing' ? 'Sedang Berjalan' : ($internship->status === 'planned' ? 'Akan Datang' : ($internship->status === 'completed' ? 'Selesai' : ucfirst($internship->status))) }}
+                                    </span>
+                                </div>
+                                
+                                <h3 class="font-heading font-bold text-[22px] text-figma-dark group-hover:text-figma-red transition-colors mb-3">{{ $internship->title }}</h3>
+                                
+                                <div class="flex items-center gap-2 font-sans text-[15px] text-gray-500 mb-4">
+                                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <span>{{ $internship->start_date ? $internship->start_date->format('d M Y') : '-' }} - {{ $internship->end_date ? $internship->end_date->format('d M Y') : '-' }}</span>
+                                </div>
+                                
+                                @if($internship->description)
+                                    <p class="font-sans text-gray-600 line-clamp-2 text-[15px]">{{ strip_tags($internship->description) }}</p>
+                                @endif
+                            </div>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-100 text-right">
+                                <span class="inline-flex items-center font-bold text-figma-red text-[14px] group-hover:underline">
+                                    Lihat Selengkapnya <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </span>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            @else
+                <div class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-16 text-center flex flex-col items-center justify-center">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-6 text-gray-300">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-[24px] text-figma-dark mb-3">Belum Ada Info PKL</h3>
+                    <p class="font-sans text-[16px] text-gray-500 max-w-md">Saat ini belum ada informasi program Praktek Kerja Lapangan (PKL) yang diterbitkan oleh mitra ini.</p>
+                </div>
+            @endif
+        </x-frontend.layout.container>
+    </section>
+
+    <!-- Section 4: Bursa Karir -->
+    <section class="py-20 md:py-28 bg-gray-50 border-y border-gray-200 relative reveal-on-scroll reveal-up">
         <x-frontend.layout.container class="max-w-5xl">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
                 <div>
