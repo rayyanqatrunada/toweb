@@ -79,7 +79,7 @@
     </section>
 
     <!-- Success Stories Showcase (Bento Grid) -->
-    <section class="flex flex-col items-center bg-[#FBF8FC] py-16 lg:py-[96px] px-6 lg:px-[64px] w-full relative">
+    <section class="flex flex-col items-center py-16 lg:py-[96px] px-6 lg:px-[64px] w-full relative">
         <div class="absolute right-0 top-[80px] w-[256px] h-[256px] opacity-20 pointer-events-none bg-[linear-gradient(45deg,transparent_2.76%,rgba(228,228,231,0.5)_2.76%,rgba(228,228,231,0.5)_5.52%)]"></div>
         
         <div class="flex flex-col w-full max-w-[1280px] gap-12 z-10">
