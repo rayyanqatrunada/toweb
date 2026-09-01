@@ -43,6 +43,7 @@
 
     <!-- Vite Styles & Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
     <!-- Motion System -->
     <style>
         @media (prefers-reduced-motion: no-preference) {
@@ -77,22 +78,42 @@
 </head>
 <body class="font-sans antialiased text-figma-dark bg-[#FAFAFA] flex flex-col min-h-screen selection:bg-figma-red selection:text-white relative">
 
-    <!-- Global Background Decorations (Parallax effect on scroll) -->
-    <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-        <!-- 1. Grid/Blueprint Pattern -->
-        <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 40px 40px;"></div>
-        
-        <!-- 2. Vertical Accent Lines (Container aligned) -->
-        <div class="absolute inset-0 flex justify-center opacity-[0.04]">
-            <div class="w-full max-w-[1280px] h-full flex justify-between border-x border-black">
-                <div class="w-1/3 h-full border-r border-black"></div>
-                <div class="w-1/3 h-full border-r border-black"></div>
-            </div>
-        </div>
+    <!-- Global Ambient Glow (Fixed) -->
+    <div class="fixed inset-0 z-[-2] pointer-events-none overflow-hidden">
+        <div class="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-figma-red opacity-[0.03] blur-[120px]"></div>
+        <div class="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-figma-red opacity-[0.02] blur-[140px]"></div>
+    </div>
 
-        <!-- 3. Ambient Red Glow (Top Left & Bottom Right) -->
-        <div class="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-figma-red opacity-[0.05] blur-[120px]"></div>
-        <div class="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-figma-red opacity-[0.04] blur-[140px]"></div>
+    <!-- Scrollable Decorative Backgrounds (Absolute to body) -->
+    <div class="absolute inset-0 z-[-1] pointer-events-none overflow-hidden w-full h-full">
+        <!-- Grid block 1 (60% nempel kanan) -->
+        <div class="absolute top-[5%] right-0 w-[60%] h-[500px] opacity-[0.04]" style="background-image: linear-gradient(#1B1B1E 1px, transparent 1px), linear-gradient(90deg, #1B1B1E 1px, transparent 1px); background-size: 32px 32px;"></div>
+        
+        <!-- Grid block 2 (70% nempel kiri) -->
+        <div class="absolute top-[25%] left-0 w-[70%] h-[600px] opacity-[0.03]" style="background-image: linear-gradient(#1B1B1E 1px, transparent 1px), linear-gradient(90deg, #1B1B1E 1px, transparent 1px); background-size: 40px 40px;"></div>
+        
+        <!-- Grid block 3 (30% center agak serong kiri) -->
+        <div class="absolute top-[50%] left-[30%] w-[35%] h-[400px] opacity-[0.04] -rotate-6" style="background-image: linear-gradient(#1B1B1E 1px, transparent 1px), linear-gradient(90deg, #1B1B1E 1px, transparent 1px); background-size: 24px 24px;"></div>
+        
+        <!-- Grid block 4 (Bottom mix) -->
+        <div class="absolute top-[75%] right-[10%] w-[50%] h-[500px] opacity-[0.03]" style="background-image: linear-gradient(#1B1B1E 1px, transparent 1px), linear-gradient(90deg, #1B1B1E 1px, transparent 1px); background-size: 48px 48px;"></div>
+        
+        <!-- Random Shapes (Lingkaran) -->
+        <div class="absolute top-[12%] left-[15%] w-72 h-72 rounded-full border border-[#1B1B1E] opacity-[0.05]"></div>
+        <div class="absolute top-[35%] right-[20%] w-96 h-96 rounded-full border-2 border-[#DC2626] opacity-[0.03]"></div>
+        <div class="absolute top-[65%] left-[8%] w-48 h-48 rounded-full border border-[#1B1B1E] opacity-[0.04]"></div>
+        <div class="absolute top-[85%] right-[30%] w-64 h-64 rounded-full border border-[#1B1B1E] opacity-[0.03]"></div>
+        
+        <!-- Random Shapes (Kotak / Persegi) -->
+        <div class="absolute top-[18%] right-[25%] w-48 h-48 border border-[#1B1B1E] opacity-[0.04] rotate-12"></div>
+        <div class="absolute top-[42%] left-[22%] w-40 h-40 border border-[#DC2626] opacity-[0.03] -rotate-12"></div>
+        <div class="absolute top-[58%] right-[15%] w-56 h-56 border border-[#1B1B1E] opacity-[0.04] rotate-45"></div>
+        <div class="absolute top-[82%] left-[25%] w-32 h-32 border border-[#1B1B1E] opacity-[0.05] -rotate-6"></div>
+        
+        <!-- Dotted accents -->
+        <div class="absolute top-[8%] right-[5%] w-[200px] h-[200px] opacity-[0.1]" style="background-image: radial-gradient(#1B1B1E 2px, transparent 2px); background-size: 24px 24px;"></div>
+        <div class="absolute top-[48%] left-[5%] w-[150px] h-[150px] opacity-[0.1]" style="background-image: radial-gradient(#DC2626 2px, transparent 2px); background-size: 20px 20px;"></div>
+        <div class="absolute top-[88%] right-[5%] w-[250px] h-[250px] opacity-[0.1]" style="background-image: radial-gradient(#1B1B1E 2px, transparent 2px); background-size: 32px 32px;"></div>
     </div>
 
     <!-- Skip Navigation (A11y) -->
@@ -133,6 +154,7 @@
             document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
         });
     </script>
+    @livewireScripts
 </body>
 </html>
 

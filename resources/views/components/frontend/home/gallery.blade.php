@@ -1,6 +1,6 @@
 @props(['galleries'])
 
-<section class="w-full bg-charcoal-50 py-24 lg:py-32 overflow-hidden border-t border-gray-100">
+<section class="w-full py-24 lg:py-32 overflow-hidden border-t border-gray-100 relative">
     <div class="max-w-[1280px] mx-auto px-6 md:px-16">
         
         <div class="flex flex-col items-center text-center mb-12 md:mb-16 reveal-on-scroll reveal-up">

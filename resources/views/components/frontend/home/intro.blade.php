@@ -1,4 +1,4 @@
-<section class="w-full bg-white py-24 lg:py-32 overflow-hidden">
+<section class="w-full py-24 lg:py-32 overflow-hidden relative">
     <div class="max-w-[1280px] mx-auto px-6 md:px-16">
         <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
             

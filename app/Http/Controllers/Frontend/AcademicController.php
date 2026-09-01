@@ -36,7 +36,7 @@ class AcademicController extends Controller
     public function facilities()
     {
         $facilities = Cache::remember('academic:facilities', 3600, fn() =>
-            Facility::select('id', 'name', 'slug', 'description', 'photo', 'capacity')
+            Facility::select('id', 'name', 'slug', 'description', 'photo')
                 ->latest()
                 ->get()
         );

@@ -1,6 +1,6 @@
 @props(['programs'])
 
-<section class="w-full bg-white py-24 lg:py-32 border-t border-gray-100 overflow-hidden">
+<section class="w-full py-24 lg:py-32 border-t border-gray-100 overflow-hidden relative">
     <div class="max-w-[1280px] mx-auto px-6 md:px-16">
         
         <!-- Header -->

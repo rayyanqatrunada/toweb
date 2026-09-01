@@ -1,5 +1,5 @@
 <x-layouts.app title="Kontak & Lokasi">
-    <div class="w-full min-h-screen bg-[#FBF8FC] flex flex-col items-center">
+    <div class="w-full min-h-screen flex flex-col items-center relative">
         <!-- Hero Section -->
         <section class="relative w-full bg-white border-b border-[#E4E1E5] flex flex-col px-6 md:px-16 pt-28 pb-16 md:pt-32 md:pb-20 isolation-auto">
             <!-- Gradient Overlay -->

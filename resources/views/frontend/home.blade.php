@@ -12,7 +12,7 @@
     @endpush
 
     <!-- Main Auto Layout Wrapper -->
-    <main class="flex flex-col items-center bg-white w-full overflow-hidden">
+    <main class="flex flex-col items-center w-full overflow-hidden relative">
         
         <!-- 01. Hero Section -->
         <x-frontend.home.hero-slider :slides-json="$settings->get('hero_slides')" />

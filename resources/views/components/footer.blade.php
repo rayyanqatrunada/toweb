@@ -63,10 +63,9 @@
     
     <div class="bg-[#101011] border-t border-figma-gray-dark">
         <div class="max-w-[1280px] mx-auto px-6 md:px-16 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="font-sans text-[14px] text-figma-gray">
+            <p class="font-sans text-[14px] text-figma-gray text-center w-full md:text-left">
                 &copy; {{ date('Y') }} {{ $settings->get('site_name', 'TBSM') }}. Seluruh Hak Cipta Dilindungi.
             </p>
-            <a href="/admin" class="font-sans text-[14px] text-figma-gray hover:text-figma-gray-light transition-colors">Portal Admin</a>
         </div>
     </div>
 </footer>

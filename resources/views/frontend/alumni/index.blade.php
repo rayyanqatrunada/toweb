@@ -68,7 +68,7 @@
     </section>
 
     <!-- Success Stories Showcase (Bento Grid) -->
-    <section class="flex flex-col items-center bg-[#FBF8FC] py-16 lg:py-[96px] px-6 lg:px-[64px] w-full relative">
+    <section class="flex flex-col items-center py-16 lg:py-[96px] px-6 lg:px-[64px] w-full relative">
         <div class="absolute right-0 top-[80px] w-[256px] h-[256px] opacity-20 pointer-events-none bg-[linear-gradient(45deg,transparent_2.76%,rgba(228,228,231,0.5)_2.76%,rgba(228,228,231,0.5)_5.52%)]"></div>
         
         <div class="flex flex-col w-full max-w-[1280px] gap-12 z-10">
@@ -233,29 +233,46 @@
         </div>
     </section>
 
-    <!-- Engagement Section -->
-    <section class="flex flex-col items-center bg-[#F5F3F6] py-24 lg:py-[96px] px-6 lg:px-[256px] w-full border-y border-[#E4E1E5] relative">
-        <div class="absolute left-10 top-10 w-4 h-4 border-l border-t border-[#5F5E5E] opacity-50"></div>
-        <div class="absolute right-10 bottom-10 w-4 h-4 border-r border-b border-[#5F5E5E] opacity-50"></div>
-        
-        <div class="flex flex-col items-center text-center max-w-[768px] z-10 reveal-on-scroll reveal-up">
-            <div class="w-9 h-10 bg-figma-red flex justify-center items-center rounded-[2px] mb-6">
-                <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-            </div>
-            
-            <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-[#1B1B1E] mb-4">
-                Are you an Alumnus?
+    <!-- Other Alumni Gallery -->
+    @if($alumnis->count() > 5 || $alumnis->currentPage() > 1)
+    <section class="flex flex-col items-center bg-[#F5F3F6] py-16 lg:py-[96px] px-6 lg:px-[64px] w-full border-t border-[#E4E1E5]">
+        <div class="flex flex-col w-full max-w-[1280px] z-10 reveal-on-scroll reveal-up">
+            <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-[#1B1B1E] mb-8 text-center">
+                Alumni Lainnya
             </h2>
             
-            <p class="font-sans font-normal text-[16px] lg:text-[18px] leading-[1.6] text-[#5F5E5E] max-w-[532px] mb-8">
-                Mari bangun jejaring profesional yang lebih kuat. Perbarui data diri Anda untuk tetap terhubung dengan almamater, adik tingkat, dan peluang karir di industri otomotif.
-            </p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
+                @php
+                    $otherAlumnis = $alumnis->currentPage() == 1 ? $alumnis->slice(5) : $alumnis;
+                @endphp
+                @foreach($otherAlumnis as $alumni)
+                <a href="{{ route('alumni.show', $alumni->slug) }}" class="group relative flex flex-col items-center bg-[#FBF8FC] border border-[#E4E1E5] p-4 overflow-hidden hover:border-[#B70011] transition-colors">
+                    <div class="w-full aspect-[3/4] relative overflow-hidden mb-4 bg-gray-100">
+                        @if($alumni->photo)
+                            <img src="{{ Storage::url($alumni->photo) }}" alt="{{ $alumni->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        @else
+                            <div class="w-full h-full flex items-center justify-center bg-[#E4E1E5]">
+                                <svg class="w-12 h-12 text-[#5F5E5E]/30" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                            </div>
+                        @endif
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                    </div>
+                    
+                    <h3 class="font-heading font-bold text-[18px] text-[#1B1B1E] group-hover:text-[#B70011] text-center line-clamp-1 w-full">{{ $alumni->name }}</h3>
+                    <p class="font-sans text-[14px] text-[#5F5E5E] text-center mb-1">Angkatan {{ $alumni->graduation_year }}</p>
+                    <p class="font-sans font-medium text-[12px] text-[#B70011] text-center uppercase tracking-wide line-clamp-1">{{ $alumni->current_occupation ?: 'Alumni' }}</p>
+                </a>
+                @endforeach
+            </div>
             
-            <a href="{{ route('contact.index') }}" class="flex items-center gap-2 bg-figma-red hover:bg-figma-dark-red text-white transition-colors px-8 py-4 rounded-[2px]">
-                <span class="font-sans font-bold text-[12px] tracking-[1.2px] uppercase">Update Profil Alumni</span>
-                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            </a>
+            <!-- Pagination -->
+            @if($alumnis->hasPages())
+                <div class="mt-12 flex justify-center w-full">
+                    {{ $alumnis->links() }}
+                </div>
+            @endif
         </div>
     </section>
+    @endif
 
 </x-layouts.app>
