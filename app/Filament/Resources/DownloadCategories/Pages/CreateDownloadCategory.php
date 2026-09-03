@@ -8,4 +8,10 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateDownloadCategory extends CreateRecord
 {
     protected static string $resource = DownloadCategoryResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
+

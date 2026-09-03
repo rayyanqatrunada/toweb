@@ -14,7 +14,7 @@
         <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent"></div>
     </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20 lg:py-32">
+    <div class="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full py-20 lg:py-32">
         <div class="max-w-3xl">
             
             <x-frontend.hero.eyebrow class="text-red-500 mb-4">

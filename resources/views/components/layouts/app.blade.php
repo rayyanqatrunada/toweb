@@ -13,6 +13,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ? $title . ' | ' . $settings->get('site_name', 'SMK Negeri 1') : $settings->get('site_name', 'TBSM') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}</title>
+    @if($logo = app(\App\Services\SettingsService::class)->get('site_logo'))
+    <link rel="icon" href="{{ Storage::url($logo) }}">
+    @endif
     
     <!-- Meta SEO & Open Graph -->
     <meta name="description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian TBSM') }}">

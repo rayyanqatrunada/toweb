@@ -6,14 +6,23 @@
     class="fixed top-0 w-full z-[100] transition-all duration-300 bg-[#FBF8FC]/90 backdrop-blur-md border-b"
     :class="scrolled ? 'border-[#E4E1E5] shadow-sm' : 'border-transparent'">
     
-    <div class="max-w-[1280px] mx-auto px-6 md:px-16 relative">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-16 relative">
         <div class="flex justify-between items-center transition-all duration-300 h-[64px]">
             
             <!-- Logo Section -->
             <a href="{{ route('home') }}" class="flex-shrink-0 flex items-center gap-4 group focus-ring outline-none">
-                <div class="font-heading font-extrabold text-[20px] text-figma-dark leading-none uppercase">
-                    TBSM
-                </div>
+                @if($logo = app(\App\Services\SettingsService::class)->get('site_logo'))
+                    <div class="flex items-center gap-3">
+                        <img src="{{ Storage::url($logo) }}" alt="{{ app(\App\Services\SettingsService::class)->get('site_name', 'TBSM') }}" class="h-10 w-auto">
+                        <div class="font-heading font-extrabold text-[20px] text-figma-dark leading-none uppercase">
+                            TBSM
+                        </div>
+                    </div>
+                @else
+                    <div class="font-heading font-extrabold text-[20px] text-figma-dark leading-none uppercase">
+                        {{ app(\App\Services\SettingsService::class)->get('site_name', 'TBSM') }}
+                    </div>
+                @endif
             </a>
 
             <!-- Desktop Menu -->

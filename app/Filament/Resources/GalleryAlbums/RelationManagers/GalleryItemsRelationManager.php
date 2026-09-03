@@ -26,6 +26,16 @@ class GalleryItemsRelationManager extends RelationManager
                     ->maxSize(5120) // 5MB
                     ->directory('galleries/items')
                     ->columnSpanFull(),
+                Forms\Components\Select::make('aspect_ratio')
+                    ->label('Ukuran Layout Grid')
+                    ->options([
+                        '1:1' => 'Persegi (1:1 / Normal)',
+                        '4:3' => 'Mendatar (4:3 / Lebar)',
+                        '3:4' => 'Memanjang (3:4 / Tinggi)',
+                        'large' => 'Besar (2x2 / Dominan)',
+                    ])
+                    ->default('1:1')
+                    ->required(),
                 Forms\Components\TextInput::make('title')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('alt_text')

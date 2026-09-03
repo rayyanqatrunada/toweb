@@ -49,6 +49,7 @@ class ManageSettings extends Page implements HasForms
             'profile_history' => $settings->get('profile_history', 'Sejarah singkat jurusan Teknik dan Bisnis Sepeda Motor (TBSM) bermula dari...'),
             'profile_vision' => $settings->get('profile_vision', 'Menjadi program studi otomotif terdepan di tingkat nasional.'),
             'profile_mission' => $settings->get('profile_mission', '<ul><li>Menyelenggarakan pendidikan berkualitas...</li></ul>'),
+            'homepage_about_image' => $settings->get('homepage_about_image'),
         ]);
     }
 
@@ -101,6 +102,7 @@ class ManageSettings extends Page implements HasForms
                 Section::make('Profil Jurusan (Tentang Kami)')
                     ->description('Konten untuk halaman Profil/Tentang Kami.')
                     ->schema([
+                        \Filament\Forms\Components\FileUpload::make('homepage_about_image')->label('Gambar Tentang Kami (Beranda)')->image()->directory('settings')->maxSize(2048),
                         \Filament\Forms\Components\RichEditor::make('profile_history')->label('Sejarah Singkat')->required(),
                         Textarea::make('profile_vision')->label('Visi Jurusan')->required()->rows(3),
                         \Filament\Forms\Components\RichEditor::make('profile_mission')->label('Misi Jurusan')->required(),
@@ -113,7 +115,7 @@ class ManageSettings extends Page implements HasForms
                         TextInput::make('contact_phone')->label('Nomor Telepon/WA')->required(),
                         TextInput::make('contact_email')->label('Email')->email()->required(),
                         TextInput::make('contact_operating_hours')->label('Jam Operasional')->required()->default('Senin - Jumat: 07:00 - 15:30 WIB'),
-                        Textarea::make('contact_map_embed')->label('URL Embed Google Maps')->helperText('Paste URL dari Google Maps > Share > Embed a Map. Cukup URL src-nya saja.')->rows(2),
+                        Textarea::make('contact_map_embed')->label('Kode Embed Google Maps')->helperText('Buka Google Maps > Cari Lokasi > Klik "Share" (Bagikan) > Pilih tab "Embed a map" (Sematkan peta) > Klik "Copy HTML". Lalu paste seluruh kodenya di sini.')->rows(3),
                     ]),
 
                 Section::make('Media Sosial & YouTube')

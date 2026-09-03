@@ -29,7 +29,7 @@ foreach ($attributes->all() as $__key => $__value) {
 unset($__defined_vars, $__key, $__value); ?>
 
 <section class="w-full py-24 lg:py-32 overflow-hidden border-t border-gray-100 relative">
-    <div class="max-w-[1280px] mx-auto px-6 md:px-16">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-16">
         
         <div class="flex flex-col items-center text-center mb-12 md:mb-16 reveal-on-scroll reveal-up">
             <div class="flex items-center gap-3 mb-4">

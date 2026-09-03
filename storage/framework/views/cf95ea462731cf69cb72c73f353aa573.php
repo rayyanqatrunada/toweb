@@ -186,19 +186,30 @@
             <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             
             <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($album->items->isNotEmpty()): ?>
-                <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[200px] md:auto-rows-[250px] gap-4 md:gap-6 grid-flow-dense">
                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $album->items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-                        <div class="break-inside-avoid relative group rounded-3xl overflow-hidden shadow-sm border border-charcoal-200 bg-charcoal-50 reveal-on-scroll reveal-up">
+                        <?php
+                            $spanClass = 'col-span-1 row-span-1';
+                            if ($item->aspect_ratio === '3:4' || $item->aspect_ratio === '9:16') {
+                                $spanClass = 'col-span-1 row-span-2';
+                            } elseif ($item->aspect_ratio === '4:3' || $item->aspect_ratio === '16:9') {
+                                $spanClass = 'col-span-2 row-span-1';
+                            }
+                            if ($item->is_featured) {
+                                $spanClass = 'col-span-2 row-span-2';
+                            }
+                        ?>
+                        <div class="<?php echo e($spanClass); ?> relative group rounded-3xl overflow-hidden shadow-sm border border-charcoal-200 bg-charcoal-50 reveal-on-scroll reveal-up">
                             <button type="button" @click.prevent="openModal('<?php echo e(Storage::url($item->file_path)); ?>', <?php echo \Illuminate\Support\Js::from($item->title ?? $album->title)->toHtml() ?>, <?php echo \Illuminate\Support\Js::from($item->description ?? '')->toHtml() ?>)" class="block h-full w-full text-left focus:outline-none">
                                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(Storage::disk('public')->exists($item->file_path)): ?>
-                                    <img src="<?php echo e(Storage::url($item->file_path)); ?>" alt="<?php echo e($item->alt_text ?? $item->title ?? $album->title); ?>" class="w-full h-auto min-h-[250px] max-h-[600px] object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                                    <img src="<?php echo e(Storage::url($item->file_path)); ?>" alt="<?php echo e($item->alt_text ?? $item->title ?? $album->title); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                                     <div class="absolute inset-0 bg-charcoal-950/0 group-hover:bg-charcoal-950/30 transition-colors duration-300 flex items-center justify-center pointer-events-none">
                                         <div class="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl text-primary-600">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
                                         </div>
                                     </div>
                                 <?php else: ?>
-                                    <div class="w-full h-[250px] bg-gradient-to-br from-charcoal-100 via-charcoal-50 to-charcoal-200 relative overflow-hidden flex flex-col items-center justify-center pointer-events-none">
+                                    <div class="w-full h-full bg-gradient-to-br from-charcoal-100 via-charcoal-50 to-charcoal-200 relative overflow-hidden flex flex-col items-center justify-center pointer-events-none">
                                         <!-- Geometric Accents -->
                                         <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-100 rounded-full mix-blend-multiply opacity-50 transition-transform duration-700 group-hover:scale-150"></div>
                                         <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-primary-200 rounded-full mix-blend-multiply opacity-50 transition-transform duration-700 group-hover:scale-150"></div>
@@ -209,7 +220,7 @@
                                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                             </button>
                             <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($item->title || $item->description): ?>
-                                <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                                <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/60 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none">
                                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($item->title): ?><h4 class="font-bold text-white mb-1 line-clamp-1"><?php echo e($item->title); ?></h4><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($item->description): ?><p class="text-sm text-charcoal-200 line-clamp-2"><?php echo e($item->description); ?></p><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>

@@ -20,7 +20,7 @@
         </div>
         
         <!-- Content Container -->
-        <div class="relative z-10 flex flex-col items-start px-6 lg:px-[64px] w-full max-w-[1280px]">
+        <div class="relative z-10 flex flex-col items-start px-6 lg:px-[64px] w-full max-w-[1440px]">
             <div class="flex flex-col border-l-2 border-[#E4E1E5] pl-4 lg:pl-6 max-w-[760px] reveal-on-scroll reveal-right">
                 
                 <div class="flex items-center gap-3 mb-4">
@@ -82,7 +82,7 @@
     <section class="flex flex-col items-center py-16 lg:py-[96px] px-6 lg:px-[64px] w-full relative">
         <div class="absolute right-0 top-[80px] w-[256px] h-[256px] opacity-20 pointer-events-none bg-[linear-gradient(45deg,transparent_2.76%,rgba(228,228,231,0.5)_2.76%,rgba(228,228,231,0.5)_5.52%)]"></div>
         
-        <div class="flex flex-col w-full max-w-[1280px] gap-12 z-10">
+        <div class="flex flex-col w-full max-w-[1440px] gap-12 z-10">
             
             <!-- Header -->
             <div class="flex flex-col md:flex-row justify-between items-end border-b border-[#E4E1E5] pb-6 reveal-on-scroll reveal-up">
@@ -265,7 +265,7 @@
     <!-- Other Alumni Gallery -->
     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($alumnis->count() > 5 || $alumnis->currentPage() > 1): ?>
     <section class="flex flex-col items-center bg-[#F5F3F6] py-16 lg:py-[96px] px-6 lg:px-[64px] w-full border-t border-[#E4E1E5]">
-        <div class="flex flex-col w-full max-w-[1280px] z-10 reveal-on-scroll reveal-up">
+        <div class="flex flex-col w-full max-w-[1440px] z-10 reveal-on-scroll reveal-up">
             <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-[#1B1B1E] mb-8 text-center">
                 Alumni Lainnya
             </h2>

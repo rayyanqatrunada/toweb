@@ -1,7 +1,7 @@
 @props(['facilities'])
 
 <section class="w-full bg-figma-bg-section py-24 lg:py-32 overflow-hidden">
-    <div class="max-w-[1280px] mx-auto px-6 md:px-16">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-16">
         
         <!-- Header -->
         <div class="flex flex-col items-center text-center mb-16 md:mb-24 reveal-on-scroll reveal-up">

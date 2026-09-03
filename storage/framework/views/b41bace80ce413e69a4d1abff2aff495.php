@@ -44,7 +44,7 @@ unset($__defined_vars, $__key, $__value); ?>
      but keeping it simple: just show the numbers clearly. -->
 
 <section class="w-full bg-charcoal-950 py-16 lg:py-24 border-y border-charcoal-800">
-    <div class="max-w-[1280px] mx-auto px-6 md:px-16">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-16">
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 divide-x-0 md:divide-x md:divide-charcoal-800 reveal-on-scroll reveal-up">
             

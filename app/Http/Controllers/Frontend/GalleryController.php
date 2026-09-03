@@ -8,13 +8,24 @@ use App\Models\GalleryAlbum;
 
 class GalleryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $albums = GalleryAlbum::select('id', 'title', 'slug', 'thumbnail', 'published_at')
-                              ->with(['featuredImage:id,gallery_album_id,file_path'])
-                              ->withCount('items')
-                              ->published()->latest()->paginate(9);
-        return view('frontend.gallery', compact('albums'));
+        $albums = GalleryAlbum::select('id', 'title', 'slug')->published()->get();
+        
+        $query = \App\Models\GalleryItem::with('album')
+                    ->whereHas('album', function($q) {
+                        $q->published();
+                    });
+
+        if ($request->has('album') && $request->album !== 'all') {
+            $query->whereHas('album', function($q) use ($request) {
+                $q->where('slug', $request->album);
+            });
+        }
+
+        $items = $query->orderBy('gallery_album_id')->orderBy('sort_order')->orderBy('id')->paginate(30);
+
+        return view('frontend.gallery', compact('albums', 'items'));
     }
 
     public function show($slug)

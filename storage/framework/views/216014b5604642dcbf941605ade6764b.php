@@ -120,7 +120,11 @@
 
                         <div class="w-full h-[320px] bg-[#F0EDF1] border border-[#E4E1E5] relative overflow-hidden">
                             <?php
-                                $mapUrl = $settings->get('contact_map_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.8115664421886!2d110.72856427499308!3d-6.532853293459958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e71239c0fa46445%3A0xc3910c0e5a6104f2!2sSMK%20Negeri%201%20Bangsri!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid');
+                                $mapRaw = $settings->get('contact_map_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.8115664421886!2d110.72856427499308!3d-6.532853293459958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e71239c0fa46445%3A0xc3910c0e5a6104f2!2sSMK%20Negeri%201%20Bangsri!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid');
+                                $mapUrl = $mapRaw;
+                                if (preg_match('/src="([^"]+)"/', $mapRaw, $matches)) {
+                                    $mapUrl = $matches[1];
+                                }
                             ?>
                             <iframe 
                                 src="<?php echo e($mapUrl); ?>" 
@@ -249,7 +253,7 @@ unset($__errorArgs, $__bag); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendB
 
         <!-- Social Media Banner -->
         <section class="w-full bg-[#F5F3F6] border-t border-[#E4E1E5]">
-            <div class="max-w-[1280px] mx-auto py-12 px-6 md:px-16 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="max-w-[1440px] mx-auto py-12 px-6 md:px-16 flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="flex flex-col gap-2">
                     <h3 class="font-['Chivo'] font-bold text-2xl text-[#1B1B1E]">Terhubung dengan Kami</h3>
                     <p class="font-['Hanken_Grotesk'] text-base text-[#5C403C]">Ikuti perkembangan terbaru departemen Teknik dan Bisnis Sepeda Motor (TBSM).</p>

@@ -1,5 +1,5 @@
 <section class="w-full py-24 lg:py-32 overflow-hidden relative">
-    <div class="max-w-[1280px] mx-auto px-6 md:px-16">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-16">
         
         <!-- Section Header -->
         <div class="flex flex-col items-center text-center mb-16 md:mb-24 reveal-on-scroll reveal-up">

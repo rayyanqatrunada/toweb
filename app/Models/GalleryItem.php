@@ -16,7 +16,7 @@ class GalleryItem extends Model
     use HasFactory;
 
     protected $fillable = [
-        'gallery_album_id', 'file_path', 'type', 'description',
+        'gallery_album_id', 'file_path', 'type', 'aspect_ratio', 'description',
         'title', 'alt_text', 'sort_order', 'is_featured'
     ];
 

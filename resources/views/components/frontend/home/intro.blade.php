@@ -1,5 +1,5 @@
 <section class="w-full py-24 lg:py-32 overflow-hidden relative">
-    <div class="max-w-[1280px] mx-auto px-6 md:px-16">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-16">
         <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
             
             <!-- Left Content: Text (Asymmetric - narrower) -->
@@ -48,7 +48,10 @@
                 
                 <!-- Main Image -->
                 <div class="relative w-full aspect-[4/3] bg-gray-200 overflow-hidden shadow-2xl shadow-charcoal-900/5">
-                    <img src="https://images.unsplash.com/photo-1635831968846-512ce24e930f?q=80&w=1200&auto=format&fit=crop" 
+                    @php
+                        $aboutImage = app(\App\Services\SettingsService::class)->get('homepage_about_image');
+                    @endphp
+                    <img src="{{ $aboutImage ? Storage::url($aboutImage) : 'https://images.unsplash.com/photo-1635831968846-512ce24e930f?q=80&w=1200&auto=format&fit=crop' }}" 
                          alt="Siswa TBSM Praktik" 
                          class="w-full h-full object-cover mix-blend-multiply opacity-90 grayscale hover:grayscale-0 transition-all duration-700" 
                          loading="lazy">

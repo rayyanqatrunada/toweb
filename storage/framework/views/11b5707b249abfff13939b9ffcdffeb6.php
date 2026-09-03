@@ -89,7 +89,7 @@ unset($__defined_vars, $__key, $__value); ?>
 
                 <!-- Text Content inside slide to fade together -->
                 <div class="absolute inset-0 z-30 flex items-center">
-                    <div class="w-full max-w-[1280px] mx-auto px-6 md:px-16 flex flex-col justify-center">
+                    <div class="w-full max-w-[1440px] mx-auto px-6 md:px-16 flex flex-col justify-center">
                         <div class="max-w-[720px] <?php echo e($index === 0 ? 'reveal-on-scroll reveal-up' : ''); ?>">
                             <!-- Eyebrow -->
                             <div class="flex items-center gap-3 mb-4">
@@ -147,7 +147,7 @@ unset($__defined_vars, $__key, $__value); ?>
 
     <!-- Slider Controls -->
     <div class="absolute bottom-0 left-0 w-full z-40 bg-gradient-to-t from-charcoal-950 to-transparent pt-12 pb-8">
-        <div class="max-w-[1280px] mx-auto px-6 md:px-16 flex items-center justify-between">
+        <div class="max-w-[1440px] mx-auto px-6 md:px-16 flex items-center justify-between">
             
             <!-- Dots Indicator -->
             <div class="flex items-center gap-3">
