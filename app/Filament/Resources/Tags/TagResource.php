@@ -19,7 +19,7 @@ class TagResource extends Resource
     protected static ?string $model = Tag::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHashtag;
-    protected static string | \UnitEnum | null $navigationGroup = '3. Master Data & Pengaturan';
+    protected static string | \UnitEnum | null $navigationGroup = '3. Publikasi & Informasi';
 
     public static function form(Schema $schema): Schema
     {

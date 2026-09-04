@@ -19,7 +19,7 @@ class IndustryPartnerResource extends Resource
     protected static ?string $model = IndustryPartner::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
-    protected static string | \UnitEnum | null $navigationGroup = '3. Master Data & Pengaturan';
+    protected static string | \UnitEnum | null $navigationGroup = '2. Kemitraan & Karir';
     
     protected static ?string $navigationLabel = 'Profil Mitra';
     protected static ?string $modelLabel = 'Profil Mitra';

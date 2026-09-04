@@ -52,9 +52,11 @@ class AdminPanelProvider extends PanelProvider
             ->collapsedSidebarWidth('4rem')
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
-                '1. Operasional Harian',
-                '2. Konten Situasional',
-                '3. Master Data & Pengaturan',
+                '1. Profil & Akademik',
+                '2. Kemitraan & Karir',
+                '3. Publikasi & Informasi',
+                '4. Pusat Layanan',
+                '5. Pengaturan Sistem',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

@@ -18,7 +18,7 @@ class ContactMessageResource extends Resource
     protected static ?string $model = ContactMessage::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedEnvelope;
-    protected static string | \UnitEnum | null $navigationGroup = '1. Operasional Harian';
+    protected static string | \UnitEnum | null $navigationGroup = '4. Pusat Layanan';
     protected static ?string $navigationLabel = 'Pesan Kontak';
     protected static ?string $modelLabel = 'Pesan Kontak';
     protected static ?string $pluralModelLabel = 'Pesan Kontak';

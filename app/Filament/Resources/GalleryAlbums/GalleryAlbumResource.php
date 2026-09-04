@@ -23,7 +23,7 @@ class GalleryAlbumResource extends Resource
     protected static ?string $navigationLabel = 'Galeri';
     
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
-    protected static string | \UnitEnum | null $navigationGroup = '1. Operasional Harian';
+    protected static string | \UnitEnum | null $navigationGroup = '3. Publikasi & Informasi';
 
     public static function form(Schema $schema): Schema
     {

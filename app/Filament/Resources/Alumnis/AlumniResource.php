@@ -19,7 +19,7 @@ class AlumniResource extends Resource
     protected static ?string $model = Alumni::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
-    protected static string | \UnitEnum | null $navigationGroup = '3. Master Data & Pengaturan';
+    protected static string | \UnitEnum | null $navigationGroup = '2. Kemitraan & Karir';
 
     public static function form(Schema $schema): Schema
     {

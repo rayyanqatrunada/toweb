@@ -20,7 +20,7 @@ class JobVacancyResource extends Resource
 
     protected static bool $shouldRegisterNavigation = false;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
-    protected static string | \UnitEnum | null $navigationGroup = '2. Konten Situasional';
+    protected static string | \UnitEnum | null $navigationGroup = '2. Kemitraan & Karir';
 
     public static function form(Schema $schema): Schema
     {
