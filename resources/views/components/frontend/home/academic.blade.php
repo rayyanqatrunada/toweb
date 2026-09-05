@@ -39,9 +39,9 @@
                         <div class="order-2 {{ $index % 2 == 0 ? 'md:order-1' : 'md:order-2 lg:pl-16' }}">
                             <div class="text-figma-red/20 font-heading font-black text-[64px] leading-none mb-2">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</div>
                             <h3 class="font-heading font-bold text-[32px] md:text-[40px] text-figma-dark mb-4 leading-[1.1]">{{ $program->name }}</h3>
-                            <p class="font-sans text-[16px] text-gray-600 leading-[1.7] mb-8">
-                                {{ $program->description ?? 'Program ini membekali siswa dengan keterampilan teknis otomotif terkini yang disesuaikan dengan standar kebutuhan industri.' }}
-                            </p>
+                            <div class="font-sans text-[16px] text-gray-600 leading-[1.7] mb-8 [&>p]:mb-4 [&>h4]:font-heading [&>h4]:font-bold [&>h4]:text-figma-dark [&>h4]:text-[18px] [&>h4]:mb-2 [&>ul]:list-disc [&>ul]:pl-5 [&>ul>li]:mb-1">
+                                {!! $program->description ?? 'Program ini membekali siswa dengan keterampilan teknis otomotif terkini yang disesuaikan dengan standar kebutuhan industri.' !!}
+                            </div>
                             
                             @if($program->competencies && $program->competencies->count() > 0)
                                 <h4 class="font-heading font-bold text-[18px] text-figma-dark mb-4">Kompetensi Utama:</h4>
@@ -60,8 +60,8 @@
                         
                         <!-- Image Block -->
                         <div class="order-1 {{ $index % 2 == 0 ? 'md:order-2' : 'md:order-1' }} relative w-full aspect-square md:aspect-[4/5] bg-gray-100 group overflow-hidden border border-gray-200">
-                            <!-- In a real scenario we'd use $program->photo, but falling back to an unsplash image for visual -->
-                            <img src="{{ $program->photo ? Storage::url($program->photo) : 'https://images.unsplash.com/photo-1610491462702-42e6ecd6a982?q=80&w=800&auto=format&fit=crop' }}" 
+                            <!-- In a real scenario we'd use $program->thumbnail, but falling back to an unsplash image for visual -->
+                            <img src="{{ $program->thumbnail ? Storage::url($program->thumbnail) : 'https://images.unsplash.com/photo-1610491462702-42e6ecd6a982?q=80&w=800&auto=format&fit=crop' }}" 
                                  alt="{{ $program->name }}" 
                                  class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-105 transition-all duration-700" loading="lazy">
                             <div class="absolute inset-0 border-[16px] border-white/20 pointer-events-none z-10"></div>
