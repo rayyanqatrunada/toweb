@@ -26,6 +26,7 @@ class PostForm
                 \Filament\Forms\Components\FileUpload::make('thumbnail')
                     ->image()
                     ->directory('posts')
+                    ->imageEditor()
                     ->columnSpanFull(),
                 Textarea::make('excerpt')
                     ->columnSpanFull(),

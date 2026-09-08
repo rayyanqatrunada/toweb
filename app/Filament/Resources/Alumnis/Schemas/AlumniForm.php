@@ -52,6 +52,7 @@ class AlumniForm
                             ->image()
                             ->maxSize(2048)
                             ->directory('alumni-photos')
+                            ->imageEditor()
                             ->columnSpanFull(),
                         TextInput::make('city')
                             ->maxLength(255),

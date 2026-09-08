@@ -26,7 +26,8 @@ class FacilityForm
                     ->columnSpanFull(),
                 \Filament\Forms\Components\FileUpload::make('photo')
                     ->image()
-                    ->directory('facilities'),
+                    ->directory('facilities')
+                    ->imageEditor(),
                 TextInput::make('quantity')
                     ->required()
                     ->numeric()

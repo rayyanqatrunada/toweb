@@ -46,6 +46,7 @@ class GalleryAlbumForm
                             ->image()
                             ->maxSize(5120) // 5MB
                             ->directory('galleries/covers')
+                            ->imageEditor()
                             ->columnSpanFull(),
                     ]),
 

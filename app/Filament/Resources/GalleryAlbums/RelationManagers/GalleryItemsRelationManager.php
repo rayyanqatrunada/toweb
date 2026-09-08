@@ -25,6 +25,14 @@ class GalleryItemsRelationManager extends RelationManager
                     ->required()
                     ->maxSize(5120) // 5MB
                     ->directory('galleries/items')
+                    ->imageEditor()
+                    ->imageEditorAspectRatioOptions([
+                        null => 'Bebas',
+                        '1:1' => 'Persegi (1:1)',
+                        '4:3' => 'Lanskap (4:3)',
+                        '3:4' => 'Potret (3:4)',
+                        '16:9' => 'Lebar (16:9)',
+                    ])
                     ->columnSpanFull(),
                 Forms\Components\Select::make('aspect_ratio')
                     ->label('Ukuran Layout Grid')

@@ -28,6 +28,7 @@ class ManageSettings extends Page implements HasForms
     public function mount(SettingsService $settings): void
     {
         $this->form->fill([
+            'site_short_name' => $settings->get('site_short_name', 'TBSM'),
             'site_name' => $settings->get('site_name'),
             'site_tagline' => $settings->get('site_tagline'),
             'site_description' => $settings->get('site_description'),
@@ -56,10 +57,11 @@ class ManageSettings extends Page implements HasForms
                 Section::make('Identitas Website')
                     ->description('Pengaturan dasar website dan SEO.')
                     ->schema([
-                        TextInput::make('site_name')->label('Nama Website')->required(),
+                        TextInput::make('site_short_name')->label('Singkatan / Nama Singkat (Tampil di sebelah logo)')->required()->default('TBSM'),
+                        TextInput::make('site_name')->label('Nama Website Lengkap')->required(),
                         TextInput::make('site_tagline')->label('Tagline Singkat')->required(),
                         Textarea::make('site_description')->label('Deskripsi Website (SEO & Footer)')->required()->rows(3),
-                        \Filament\Forms\Components\FileUpload::make('site_logo')->label('Logo Website')->image()->directory('settings')->maxSize(2048),
+                        \Filament\Forms\Components\FileUpload::make('site_logo')->label('Logo Website')->image()->directory('settings')->maxSize(2048)->imageEditor(),
                     ]),
 
                 Section::make('Kutipan Beranda')
@@ -71,7 +73,7 @@ class ManageSettings extends Page implements HasForms
                 Section::make('Profil Jurusan (Tentang Kami)')
                     ->description('Konten untuk halaman Profil/Tentang Kami.')
                     ->schema([
-                        \Filament\Forms\Components\FileUpload::make('homepage_about_image')->label('Gambar Tentang Kami (Beranda)')->image()->directory('settings')->maxSize(2048),
+                        \Filament\Forms\Components\FileUpload::make('homepage_about_image')->label('Gambar Tentang Kami (Beranda)')->image()->directory('settings')->maxSize(2048)->imageEditor(),
                         \Filament\Forms\Components\RichEditor::make('profile_history')->label('Sejarah Singkat')->required(),
                         Textarea::make('profile_vision')->label('Visi Jurusan')->required()->rows(3),
                         \Filament\Forms\Components\RichEditor::make('profile_mission')->label('Misi Jurusan')->required(),

@@ -50,7 +50,9 @@ class ManageHeroSlider extends Page implements HasForms
                                     ->image()
                                     ->directory('hero-slides')
                                     ->required()
-                                    ->maxSize(5120),
+                                    ->maxSize(5120)
+                                    ->imageEditor()
+                                    ->imageCropAspectRatio('16:9'),
                                 TextInput::make('eyebrow')
                                     ->label('Teks Kecil Atas (Eyebrow)')
                                     ->default('TEKNIK DAN BISNIS SEPEDA MOTOR')

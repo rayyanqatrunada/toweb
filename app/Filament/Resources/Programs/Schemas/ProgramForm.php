@@ -26,6 +26,7 @@ class ProgramForm
                 \Filament\Forms\Components\FileUpload::make('thumbnail')
                     ->image()
                     ->directory('programs')
+                    ->imageEditor()
                     ->columnSpanFull(),
                                 ])->columns(2)->columnSpanFull(),
             ]);

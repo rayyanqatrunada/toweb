@@ -29,7 +29,8 @@ class TeacherForm
                     ->columnSpanFull(),
                 \Filament\Forms\Components\FileUpload::make('photo')
                     ->image()
-                    ->directory('teachers'),
+                    ->directory('teachers')
+                    ->imageEditor(),
                 \Filament\Forms\Components\Toggle::make('is_active')
                     ->label('Aktif / Tampilkan di Publik')
                     ->default(true),

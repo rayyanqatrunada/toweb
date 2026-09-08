@@ -15,7 +15,7 @@
                     <div class="flex items-center gap-3">
                         <img src="{{ Storage::url($logo) }}" alt="{{ app(\App\Services\SettingsService::class)->get('site_name', 'TBSM') }}" class="h-10 w-auto">
                         <div class="font-heading font-extrabold text-[20px] text-figma-dark leading-none uppercase">
-                            TBSM
+                            {{ app(\App\Services\SettingsService::class)->get('site_short_name', 'TBSM') }}
                         </div>
                     </div>
                 @else
@@ -62,9 +62,9 @@
                     <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ request()->is('galeri*') ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
                 </a>
                 
-                <a href="{{ route('news.index') }}" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('alumni*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark' }}">
+                <a href="{{ route('news.index') }}" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark' }}">
                     Publikasi
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('alumni*') || request()->is('unduhan*') ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
+                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('unduhan*') ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
                 </a>
                 
                 <a href="{{ route('contact.index') }}" class="px-5 py-2 ml-4 bg-figma-red text-white font-sans text-[14px] tracking-[-0.5px] uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors focus-ring shadow-sm">Hubungi Kami</a>
@@ -110,7 +110,7 @@
                 <a href="{{ route('partnership.index') }}" class="px-6 py-3 font-sans text-[15px] font-medium {{ request()->is('mitra-industri*') || request()->is('pkl*') || request()->is('lowongan*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50' }}">Industri</a>
                 <a href="{{ route('alumni.index') }}" class="px-6 py-3 font-sans text-[15px] font-medium {{ request()->is('alumni*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50' }}">Alumni</a>
                 <a href="{{ route('gallery.index') }}" class="px-6 py-3 font-sans text-[15px] font-medium {{ request()->is('galeri*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50' }}">Galeri</a>
-                <a href="{{ route('news.index') }}" class="px-6 py-3 font-sans text-[15px] font-medium {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('alumni*') || request()->is('unduhan*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50' }}">Publikasi</a>
+                <a href="{{ route('news.index') }}" class="px-6 py-3 font-sans text-[15px] font-medium {{ request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('unduhan*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50' }}">Publikasi</a>
                 
                 <div class="px-6 pt-3 pb-1 mt-2 border-t border-gray-100">
                     <a href="{{ route('contact.index') }}" class="block w-full text-center py-2.5 bg-figma-red text-white font-sans text-[14px] font-medium rounded-lg hover:bg-figma-dark-red transition-colors">Hubungi Kami</a>

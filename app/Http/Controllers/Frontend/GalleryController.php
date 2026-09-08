@@ -23,7 +23,7 @@ class GalleryController extends Controller
             });
         }
 
-        $items = $query->orderBy('gallery_album_id')->orderBy('sort_order')->orderBy('id')->paginate(30);
+        $items = $query->orderBy('gallery_album_id')->orderBy('sort_order')->orderBy('id')->paginate(24);
 
         return view('frontend.gallery', compact('albums', 'items'));
     }

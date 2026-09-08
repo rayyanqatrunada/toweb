@@ -84,6 +84,8 @@ unset($__defined_vars, $__key, $__value); ?>
     <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
     <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::styles(); ?>
 
+    <?php echo $__env->yieldPushContent('styles'); ?>
+    
     <!-- Motion System -->
     <style>
         @media (prefers-reduced-motion: no-preference) {
@@ -239,6 +241,7 @@ unset($__defined_vars, $__key, $__value); ?>
     </script>
     <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::scripts(); ?>
 
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 </html>
 

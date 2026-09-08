@@ -64,7 +64,8 @@ class IndustryPartnerForm
                             ->image()
                             ->maxSize(2048)
                             ->disk('public')
-                            ->directory('industry_partners'),
+                            ->directory('industry_partners')
+                            ->imageEditor(),
                     ]),
 
                 Section::make('Publishing')

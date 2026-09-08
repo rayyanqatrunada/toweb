@@ -47,6 +47,8 @@
     <!-- Vite Styles & Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+    @stack('styles')
+    
     <!-- Motion System -->
     <style>
         @media (prefers-reduced-motion: no-preference) {
@@ -158,6 +160,7 @@
         });
     </script>
     @livewireScripts
+    @stack('scripts')
 </body>
 </html>
 
