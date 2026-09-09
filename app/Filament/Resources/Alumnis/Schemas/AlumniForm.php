@@ -73,6 +73,27 @@ class AlumniForm
                             ->columnSpanFull(),
                     ])->columns(2)->columnSpanFull(),
 
+                Section::make('Alumni Unggulan')
+                    ->description('Tandai alumni ini sebagai unggulan agar ditampilkan secara khusus di halaman alumni.')
+                    ->schema([
+                        Toggle::make('is_featured')
+                            ->label('Tampilkan sebagai Alumni Unggulan')
+                            ->helperText('Alumni unggulan akan ditampilkan dengan layout besar di bagian atas halaman alumni.')
+                            ->default(false)
+                            ->columnSpanFull(),
+                        TextInput::make('featured_order')
+                            ->label('Urutan Tampil')
+                            ->helperText('Urutan kecil tampil lebih dulu. Alumni unggulan 1 & 2 akan ditampilkan paling atas.')
+                            ->numeric()
+                            ->default(0)
+                            ->minValue(0),
+                        Textarea::make('success_story')
+                            ->label('Cerita Sukses / Kutipan')
+                            ->helperText('Tuliskan kutipan atau ringkasan kisah sukses alumni ini.')
+                            ->rows(4)
+                            ->columnSpanFull(),
+                    ])->columns(2)->columnSpanFull(),
+
                 Section::make('Privacy & Visibility')
                     ->schema([
                         Toggle::make('is_public')

@@ -21,7 +21,8 @@ class Alumni extends Model
     protected $fillable = [
         'user_id', 'name', 'slug', 'student_id', 'graduation_year', 'photo',
         'city', 'education', 'current_occupation', 'current_company',
-        'bio', 'achievements', 'is_public', 'status', 'published_at',
+        'bio', 'achievements', 'success_story', 'is_public', 'is_featured',
+        'featured_order', 'status', 'published_at',
         'meta_title', 'meta_description'
     ];
 
@@ -29,7 +30,9 @@ class Alumni extends Model
     {
         return [
             'is_public' => 'boolean',
+            'is_featured' => 'boolean',
             'graduation_year' => 'integer',
+            'featured_order' => 'integer',
             'published_at' => 'datetime',
         ];
     }
@@ -51,6 +54,11 @@ class Alumni extends Model
     public function scopePublic(Builder $query): void
     {
         $query->published()->where('is_public', true);
+    }
+
+    public function scopeFeatured(Builder $query): void
+    {
+        $query->where('is_featured', true)->orderBy('featured_order')->orderBy('name');
     }
 
     protected static function booted()
