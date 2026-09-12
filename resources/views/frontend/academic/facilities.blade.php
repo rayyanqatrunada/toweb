@@ -3,7 +3,11 @@
     <!-- Hero Section -->
     <section class="relative flex flex-col justify-center items-center py-20 lg:py-[150px] bg-[#1B1B1E] w-full min-h-[600px] mt-[80px]">
         <!-- Image Background -->
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=1280&auto=format&fit=crop')] bg-cover bg-center opacity-40"></div>
+        @if($settings->get('header_academic_facilities_image'))
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('{{ Storage::url($settings->get('header_academic_facilities_image')) }}')"></div>
+        @else
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=1280&auto=format&fit=crop')] bg-cover bg-center opacity-40"></div>
+        @endif
         
         <!-- Content Container -->
         <div class="relative flex flex-col items-center gap-4 z-10 px-6 max-w-[768px] reveal-on-scroll reveal-up">

@@ -15,8 +15,13 @@
 
     <!-- 01. PAGE HERO -->
     <section class="relative bg-charcoal-50 overflow-hidden border-b border-charcoal-200 lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
-        <!-- Technical Grid Background -->
-        <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: linear-gradient(to right, #cbd5e1 1px, transparent 1px), linear-gradient(to bottom, #cbd5e1 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+        <!-- Background -->
+        @if($settings->get('header_about_image'))
+            <img src="{{ Storage::url($settings->get('header_about_image')) }}" alt="About Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
+        @else
+            <!-- Technical Grid Background -->
+            <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: linear-gradient(to right, #cbd5e1 1px, transparent 1px), linear-gradient(to bottom, #cbd5e1 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+        @endif
         
         <x-frontend.layout.container class="relative z-10">
             <x-frontend.breadcrumbs :items="['Profil Jurusan' => route('about')]" class="mb-8" />

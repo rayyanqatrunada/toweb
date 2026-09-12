@@ -39,6 +39,11 @@
                     <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->routeIs('about') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
                 </a>
 
+                <a href="<?php echo e(route('achievements.index')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->is('prestasi*') && !request()->is('berita*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
+                    Prestasi
+                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->is('prestasi*') && !request()->is('berita*') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
+                </a>
+
                 <a href="<?php echo e(route('academic.programs')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->routeIs('academic.programs') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
                     Akademik
                     <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->routeIs('academic.programs') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
@@ -64,9 +69,9 @@
                     <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->is('galeri*') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
                 </a>
                 
-                <a href="<?php echo e(route('news.index')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
+                <a href="<?php echo e(route('news.index')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
                     Publikasi
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('unduhan*') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
+                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
                 </a>
                 
                 <a href="<?php echo e(route('contact.index')); ?>" class="px-5 py-2 ml-4 bg-figma-red text-white font-sans text-[14px] tracking-[-0.5px] uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors focus-ring shadow-sm">Hubungi Kami</a>
@@ -107,12 +112,13 @@
             <div class="flex flex-col py-3">
                 <a href="<?php echo e(route('home')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->routeIs('home') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Beranda</a>
                 <a href="<?php echo e(route('about')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->routeIs('about') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Tentang</a>
+                <a href="<?php echo e(route('achievements.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('prestasi*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Prestasi</a>
                 <a href="<?php echo e(route('academic.programs')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->routeIs('academic.programs') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Akademik</a>
                 <a href="<?php echo e(route('academic.facilities')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->routeIs('academic.facilities') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Fasilitas</a>
                 <a href="<?php echo e(route('partnership.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('mitra-industri*') || request()->is('pkl*') || request()->is('lowongan*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Industri</a>
                 <a href="<?php echo e(route('alumni.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('alumni*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Alumni</a>
                 <a href="<?php echo e(route('gallery.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('galeri*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Galeri</a>
-                <a href="<?php echo e(route('news.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('berita*') || request()->is('pengumuman*') || request()->is('prestasi*') || request()->is('unduhan*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Publikasi</a>
+                <a href="<?php echo e(route('news.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Publikasi</a>
                 
                 <div class="px-6 pt-3 pb-1 mt-2 border-t border-gray-100">
                     <a href="<?php echo e(route('contact.index')); ?>" class="block w-full text-center py-2.5 bg-figma-red text-white font-sans text-[14px] font-medium rounded-lg hover:bg-figma-dark-red transition-colors">Hubungi Kami</a>

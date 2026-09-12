@@ -3,7 +3,12 @@
         
         <!-- Hero Section -->
         <section class="w-full relative border-b border-[#E4E1E5] flex justify-center"
-            style="background: linear-gradient(90deg, #E4E4E7 1px, transparent 1px), linear-gradient(180deg, #E4E4E7 1px, transparent 1px), #FFFFFF; background-size: 48px 48px; background-position: center top;">
+            @if($settings->get('header_gallery_image'))
+                style="background-image: url('{{ Storage::url($settings->get('header_gallery_image')) }}'); background-size: cover; background-position: center;"
+            @else
+                style="background: linear-gradient(90deg, #E4E4E7 1px, transparent 1px), linear-gradient(180deg, #E4E4E7 1px, transparent 1px), #FFFFFF; background-size: 48px 48px; background-position: center top;"
+            @endif
+        >
             
             <div class="flex flex-col items-start px-6 md:px-16 py-16 md:py-32 w-full max-w-[1440px] relative">
                 <!-- Decorative Accent -->
@@ -63,10 +68,31 @@
             </div>
 
             <!-- Bento Grid -->
-            @if($items->count() > 0)
+            @if($items->count() > 0 || (isset($achievements) && $achievements->count() > 0))
                 <div class="w-full bento-gallery-grid">
+                    @php
+                        $allGalleryItems = collect();
+                        if (isset($achievements)) {
+                            foreach($achievements as $ach) {
+                                $allGalleryItems->push((object)[
+                                    'file_path' => $ach->photo,
+                                    'title' => $ach->title,
+                                    'album_title' => 'Prestasi',
+                                    'description' => $ach->description,
+                                ]);
+                            }
+                        }
+                        foreach($items as $item) {
+                            $allGalleryItems->push((object)[
+                                'file_path' => $item->file_path,
+                                'title' => $item->title,
+                                'album_title' => $item->album ? $item->album->title : null,
+                                'description' => $item->description,
+                            ]);
+                        }
+                    @endphp
                     
-                    @foreach($items as $index => $item)
+                    @foreach($allGalleryItems as $index => $item)
                         @php
                             // Repeating pattern every 6 items:
                             // 0: Large (2col × 2row)
@@ -87,15 +113,15 @@
                         <div class="bento-item {{ $sizeClass }} group relative bg-white border border-[#E4E1E5] overflow-hidden {{ $animationClasses }}">
                             
                             <img src="{{ Storage::url($item->file_path) }}" 
-                                 alt="{{ $item->title ?? $item->album->title ?? 'Gallery image' }}" 
+                                 alt="{{ $item->title ?? $item->album_title ?? 'Gallery image' }}" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                             
                             <!-- Overlay -->
                             <div class="absolute inset-[1px] bg-[rgba(27,27,30,0.8)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end items-start p-4 md:p-6">
                                 
-                                @if($item->album)
+                                @if($item->album_title)
                                 <div class="flex items-center uppercase font-sans font-bold text-[12px] tracking-[1.2px] text-[#FFDAD6] mb-1 pb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                    {{ Str::limit($item->album->title, 25) }}
+                                    {{ Str::limit($item->album_title, 25) }}
                                 </div>
                                 @endif
                                 

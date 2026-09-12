@@ -12,7 +12,11 @@
 
     <!-- HERO SECTION (BENTO STYLE) -->
     <section class="relative bg-charcoal-50 overflow-hidden lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
-        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-charcoal-200/50 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+        @if($settings->get('header_academic_programs_image'))
+            <img src="{{ Storage::url($settings->get('header_academic_programs_image')) }}" alt="Programs Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
+        @else
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-charcoal-200/50 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 z-0"></div>
+        @endif
         
         <x-frontend.layout.container class="relative z-10">
             <x-frontend.breadcrumbs :items="['Akademik' => '#', 'Program Keahlian' => route('academic.programs')]" class="mb-8" />

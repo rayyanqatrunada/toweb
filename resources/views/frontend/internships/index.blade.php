@@ -1,12 +1,17 @@
 <x-layouts.app title="Program Praktik Kerja Lapangan (PKL)">
     <!-- Hero Section -->
     <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
-        <!-- Abstract Pattern Background -->
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
-            </svg>
-        </div>
+        <!-- Background -->
+        @if($settings->get('header_partnership_image'))
+            <img src="{{ Storage::url($settings->get('header_partnership_image')) }}" alt="Internships Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
+        @else
+            <!-- Abstract Pattern Background -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+                <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
+                </svg>
+            </div>
+        @endif
         <x-frontend.layout.container class="relative z-10 text-center max-w-3xl mx-auto reveal-on-scroll reveal-up">
             <x-frontend.ui.eyebrow class="text-primary-600 mb-4 justify-center">Program Kemitraan</x-frontend.ui.eyebrow>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-tight tracking-tight">Praktik Kerja Lapangan</h1>

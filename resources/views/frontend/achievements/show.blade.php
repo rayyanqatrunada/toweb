@@ -39,9 +39,12 @@
             
             <div class="flex flex-wrap items-center justify-center text-charcoal-600 text-sm gap-y-4 gap-x-4 md:gap-x-6 mt-6">
                 <!-- Rank -->
+                @php
+                    $rankLabel = str_starts_with(strtolower($achievement->rank), 'juara') ? strtoupper($achievement->rank) : 'JUARA ' . strtoupper($achievement->rank);
+                @endphp
                 <div class="flex items-center font-bold text-amber-600 bg-amber-50 px-4 py-2.5 rounded-xl border border-amber-200 shadow-sm">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    JUARA {{ strtoupper($achievement->rank) }}
+                    {{ $rankLabel }}
                 </div>
                 
                 <!-- Organizer -->
@@ -82,10 +85,29 @@
                 <div class="mb-12 rounded-3xl overflow-hidden shadow-2xl shadow-amber-900/10 border-4 border-amber-50 relative group">
                     <!-- Subtle Gold Ribbon Overlay on image -->
                     <div class="absolute -right-12 top-8 rotate-45 bg-amber-500 text-amber-950 font-black text-xs tracking-widest uppercase py-1.5 px-16 shadow-lg z-20 pointer-events-none group-hover:scale-110 transition-transform duration-500">
-                        JUARA {{ $achievement->rank }}
+                        {{ $rankLabel }}
                     </div>
                     
                     <img src="{{ Storage::url($achievement->photo) }}" alt="{{ $achievement->title }}" fetchpriority="high" class="w-full object-cover max-h-[600px]" loading="eager">
+                </div>
+            @endif
+
+            @if($achievement->participants->count() > 0)
+                <div class="mb-10 bg-amber-50/50 border border-amber-200/80 rounded-2xl p-6 sm:p-8">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-amber-800 mb-4 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3.005 3.005 0 013.75-2.906z"/></svg>
+                        Siswa / Tim Berprestasi
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        @foreach($achievement->participants as $p)
+                            <div class="bg-white px-4 py-3 rounded-xl border border-amber-200/60 shadow-sm flex items-center justify-between">
+                                <span class="font-bold text-charcoal-900 text-sm sm:text-base">{{ $p->student_name }}</span>
+                                @if($p->student_id)
+                                    <span class="text-xs font-mono text-charcoal-500 bg-charcoal-100 px-2 py-0.5 rounded">NIS: {{ $p->student_id }}</span>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             @endif
 

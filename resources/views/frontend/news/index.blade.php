@@ -1,12 +1,17 @@
 <x-layouts.app title="Berita & Informasi">
     <!-- Hero Section -->
     <section class="bg-charcoal-50 border-b border-charcoal-200 relative overflow-hidden lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
-        <!-- Abstract Pattern Background -->
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
-            </svg>
-        </div>
+        <!-- Background -->
+        @if($settings->get('header_news_image'))
+            <img src="{{ Storage::url($settings->get('header_news_image')) }}" alt="News Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
+        @else
+            <!-- Abstract Pattern Background -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+                <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
+                </svg>
+            </div>
+        @endif
         
         <x-frontend.layout.container class="relative z-10 reveal-on-scroll reveal-up">
             <x-frontend.breadcrumbs :items="['Berita & Informasi' => route('news.index')]" class="mb-8" />

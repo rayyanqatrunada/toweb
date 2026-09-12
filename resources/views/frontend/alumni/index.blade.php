@@ -5,7 +5,9 @@
         <!-- Background Image with Gradient Overlay -->
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-r from-[#1B1B1E] via-[#1B1B1E]/80 to-transparent z-10"></div>
-            @if($featuredAlumni->count() > 0 && $featuredAlumni->first()->photo)
+            @if($settings->get('header_alumni_image'))
+                <img src="{{ Storage::url($settings->get('header_alumni_image')) }}" alt="Alumni Background" class="w-full h-full object-cover opacity-40">
+            @elseif($featuredAlumni->count() > 0 && $featuredAlumni->first()->photo)
                 <img src="{{ Storage::url($featuredAlumni->first()->photo) }}" alt="Alumni Background" class="w-full h-full object-cover opacity-40">
             @else
                 <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=1280&auto=format&fit=crop" alt="Background" class="w-full h-full object-cover opacity-40">
@@ -202,33 +204,6 @@
         </div>
     </section>
     @endif
-
-    <!-- Engagement CTA Section -->
-    <section class="flex flex-col items-center bg-[#F5F3F6] py-16 lg:py-[96px] px-6 lg:px-[256px] w-full border-y border-[#E4E1E5] relative">
-        <!-- Corner accents -->
-        <div class="absolute left-10 top-10 w-4 h-4 border-l border-t border-[#5F5E5E] opacity-50 hidden lg:block"></div>
-        <div class="absolute right-10 bottom-10 w-4 h-4 border-r border-b border-[#5F5E5E] opacity-50 hidden lg:block"></div>
-        
-        <div class="flex flex-col items-center max-w-[768px] text-center reveal-on-scroll reveal-up">
-            <!-- Icon -->
-            <div class="w-9 h-10 bg-[#B70011] flex justify-center items-center mb-6">
-                <svg class="w-5 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-            </div>
-            
-            <h2 class="font-heading font-bold text-[32px] lg:text-[40px] leading-[48px] tracking-[-0.4px] text-[#1B1B1E] mb-4">
-                Are you an Alumnus?
-            </h2>
-            
-            <p class="font-sans text-[18px] leading-[29px] text-[#5F5E5E] mb-8 max-w-[576px]">
-                Mari bangun jejaring profesional yang lebih kuat. Perbarui data diri Anda untuk tetap terhubung dengan almamater, adik tingkat, dan peluang karir di industri otomotif.
-            </p>
-            
-            <a href="{{ route('contact.index') }}" class="inline-flex items-center gap-2 px-8 py-4 bg-[#DC2626] border border-[#DC2626] text-white font-sans font-bold text-[12px] tracking-[1.2px] uppercase hover:bg-[#B91C1C] transition-colors">
-                Update Profil Alumni
-                <svg class="w-[9px] h-[9px]" fill="currentColor" viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>
-            </a>
-        </div>
-    </section>
 
     <!-- Footer CTA -->
     <x-frontend.home.final-cta />

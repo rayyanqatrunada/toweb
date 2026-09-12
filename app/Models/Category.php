@@ -20,6 +20,11 @@ class Category extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function achievements()
+    {
+        return $this->hasMany(Achievement::class);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

@@ -17,7 +17,15 @@ class GalleryController extends Controller
                         $q->published();
                     });
 
-        if ($request->has('album') && $request->album !== 'all') {
+        $achievements = collect();
+        if (!$request->has('album') || $request->album === 'all') {
+            if ($request->get('page', 1) == 1) {
+                $achievements = \App\Models\Achievement::whereNotNull('photo')
+                                    ->published()
+                                    ->orderBy('date', 'desc')
+                                    ->get();
+            }
+        } else {
             $query->whereHas('album', function($q) use ($request) {
                 $q->where('slug', $request->album);
             });
@@ -25,7 +33,7 @@ class GalleryController extends Controller
 
         $items = $query->orderBy('gallery_album_id')->orderBy('sort_order')->orderBy('id')->paginate(24);
 
-        return view('frontend.gallery', compact('albums', 'items'));
+        return view('frontend.gallery', compact('albums', 'items', 'achievements'));
     }
 
     public function show($slug)
