@@ -15,12 +15,14 @@ class AchievementController extends Controller
         $totalAchievements = Achievement::published()->count();
         $nationalCount = Achievement::published()->where('level', 'national')->count();
 
-        // 6 latest for roadmap
+        // 6 recent for roadmap (ordered chronologically: oldest first -> newest last)
         $recentAchievements = Achievement::with(['category', 'participants'])
                                 ->published()
                                 ->latest('date')
                                 ->take(6)
-                                ->get();
+                                ->get()
+                                ->sortBy('date')
+                                ->values();
 
         // 2 featured (Juara 1, highest level first, with photo)
         $featuredAchievements = Achievement::with(['category', 'participants'])
