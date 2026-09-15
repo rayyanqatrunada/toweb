@@ -19,7 +19,7 @@ class ManageHeroSlider extends Page implements HasForms
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-photo';
     protected static ?string $navigationLabel = 'Hero Slider';
     protected static ?string $title = 'Pengaturan Hero Slider';
-    protected static string | \UnitEnum | null $navigationGroup = '3. Publikasi & Informasi';
+    protected static string | \UnitEnum | null $navigationGroup = 'Publikasi & Informasi';
 
     protected string $view = 'filament.pages.manage-settings';
 

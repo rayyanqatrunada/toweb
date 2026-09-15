@@ -44,19 +44,29 @@ class AdminPanelProvider extends PanelProvider
             ->darkMode(false) // Force Light Mode for the custom design system
             ->maxContentWidth('full')
             ->font('Inter')
-            ->brandName('TBSM Admin')
+            ->brandName(fn () => (app(\App\Services\SettingsService::class)->get('site_short_name', 'TBSM') ?: 'TBSM') . ' Admin')
             ->brandLogo(fn () => view('filament.logo'))
-            ->favicon(asset('logo.png'))
+            ->brandLogoHeight('2.5rem')
+            ->favicon(function () {
+                try {
+                    $logo = app(\App\Services\SettingsService::class)->get('site_logo');
+                    return ($logo && \Illuminate\Support\Facades\Storage::disk('public')->exists($logo))
+                        ? \Illuminate\Support\Facades\Storage::url($logo)
+                        : asset('logo.png');
+                } catch (\Throwable $e) {
+                    return asset('logo.png');
+                }
+            })
             ->databaseNotifications()
-            ->sidebarWidth('14rem')
+            ->sidebarWidth('15rem')
             ->collapsedSidebarWidth('4rem')
             ->sidebarCollapsibleOnDesktop()
             ->navigationGroups([
-                '1. Profil & Akademik',
-                '2. Kemitraan & Karir',
-                '3. Publikasi & Informasi',
-                '4. Pusat Layanan',
-                '5. Pengaturan Sistem',
+                'Profil & Akademik',
+                'Kemitraan & Karir',
+                'Publikasi & Informasi',
+                'Pusat Layanan',
+                'Pengaturan Sistem',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

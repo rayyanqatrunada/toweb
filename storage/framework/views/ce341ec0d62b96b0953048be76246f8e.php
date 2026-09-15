@@ -23,6 +23,27 @@
         <?php echo e(\Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::SIDEBAR_START)); ?>
 
 
+        
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($isSidebarCollapsibleOnDesktop || $isSidebarFullyCollapsibleOnDesktop): ?>
+            <button
+                type="button"
+                x-data="{}"
+                x-on:click="$store.sidebar.isOpen ? $store.sidebar.close() : $store.sidebar.open()"
+                x-bind:title="$store.sidebar.isOpen ? 'Tutup sidebar' : 'Buka sidebar'"
+                class="fi-sidebar-edge-toggle"
+                aria-label="Toggle sidebar"
+            >
+                <svg 
+                    class="fi-sidebar-edge-toggle-icon" 
+                    x-bind:class="{ 'rotate-180': ! $store.sidebar.isOpen }"
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                >
+                    <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
         <div class="fi-sidebar-header-ctn">
             <header
                 class="fi-sidebar-header"

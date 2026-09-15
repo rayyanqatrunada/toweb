@@ -369,7 +369,7 @@
                                 {{-- Tanggal Pelaksanaan --}}
                                 <div class="py-3.5 first:pt-0">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
-                                        📅 Tanggal Pelaksanaan
+                                        Tanggal Pelaksanaan
                                     </span>
                                     <span class="font-sans font-bold text-base text-[#1B1B1E]">
                                         {{ $achievement->date ? $achievement->date->translatedFormat('l, d F Y') : '-' }}
@@ -384,7 +384,7 @@
                                 {{-- Peringkat & Gelar --}}
                                 <div class="py-3.5">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
-                                        🏆 Peringkat / Predikat
+                                        Peringkat / Predikat
                                     </span>
                                     <span class="font-sans font-bold text-base text-amber-700">
                                         {{ $rankLabel }}
@@ -394,7 +394,7 @@
                                 {{-- Tingkat Kompetisi --}}
                                 <div class="py-3.5">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
-                                        🌐 Tingkat / Jangkauan
+                                        Tingkat / Jangkauan
                                     </span>
                                     <span class="inline-flex items-center px-2.5 py-1 bg-red-50 text-[#DC2626] border border-red-200 text-xs font-sans font-bold uppercase rounded-[2px]">
                                         Tingkat {{ $levelLabel }}
@@ -404,7 +404,7 @@
                                 {{-- Penyelenggara Resmi --}}
                                 <div class="py-3.5">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
-                                        🏢 Instansi Penyelenggara
+                                        Instansi Penyelenggara
                                     </span>
                                     <span class="font-sans font-medium text-sm text-[#1B1B1E] leading-snug block">
                                         {{ $achievement->organizer ?? 'Penyelenggara Lomba Resmi' }}
@@ -414,7 +414,7 @@
                                 {{-- Kategori / Bidang Kejuruan --}}
                                 <div class="py-3.5">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
-                                        📂 Bidang Kejuruan
+                                        Bidang Kejuruan
                                     </span>
                                     <span class="font-sans font-medium text-sm text-[#1B1B1E] block">
                                         {{ $achievement->category ? $achievement->category->name : 'Teknik dan Bisnis Sepeda Motor' }}
@@ -424,7 +424,7 @@
                                 {{-- Validasi Status --}}
                                 <div class="py-3.5 last:pb-0">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
-                                        🛡️ Status Validasi Arsip
+                                        Status Validasi Arsip
                                     </span>
                                     <div class="flex items-center gap-2 text-xs font-sans font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-[2px] border border-emerald-200">
                                         <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>

@@ -71,6 +71,59 @@ body::after {
 .fi-sidebar {
     background-color: var(--tbsm-charcoal) !important;
     border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+    overflow: visible !important;
+}
+
+/* Sidebar right-edge floating minimize/expand toggle button */
+.fi-sidebar-edge-toggle {
+    position: absolute !important;
+    top: 1.15rem !important;
+    right: -12px !important;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 9999px !important;
+    background: #FFFFFF !important;
+    border: 1px solid #D1D5DB !important;
+    box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.16), 0 1px 3px -1px rgba(0, 0, 0, 0.1) !important;
+    color: #374151 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 50 !important;
+    padding: 0 !important;
+    outline: none !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.fi-sidebar-edge-toggle .fi-sidebar-edge-toggle-icon {
+    width: 14px !important;
+    height: 14px !important;
+    color: inherit !important;
+    display: block !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.fi-sidebar-edge-toggle .fi-sidebar-edge-toggle-icon.rotate-180 {
+    transform: rotate(180deg) !important;
+}
+
+.fi-sidebar-edge-toggle:hover {
+    background: var(--tbsm-red, #DC2626) !important;
+    border-color: var(--tbsm-red, #DC2626) !important;
+    color: #FFFFFF !important;
+    transform: scale(1.15) !important;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35) !important;
+}
+
+.fi-sidebar-edge-toggle:active {
+    transform: scale(0.92) !important;
+}
+
+@media (max-width: 1023px) {
+    .fi-sidebar-edge-toggle {
+        display: none !important;
+    }
 }
 
 .fi-sidebar-header {
@@ -144,6 +197,34 @@ body::after {
     gap: 0.5rem !important;
 }
 
+/* Sub-menu items indented forward ("sedikit maju kedepan") under navigation groups */
+.fi-sidebar-group-items {
+    margin-left: 0.75rem !important;
+    padding-left: 0.35rem !important;
+    border-left: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.15rem !important;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.35rem !important;
+}
+
+.fi-sidebar-group-items .fi-sidebar-item-btn {
+    margin: 0px 0.15rem !important;
+    padding: 0.38rem 0.55rem !important;
+    font-size: 0.835rem !important;
+}
+
+/* For nested sub-group items if any */
+.fi-sidebar-sub-group-items {
+    margin-left: 0.85rem !important;
+    padding-left: 0.35rem !important;
+    border-left: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.15rem !important;
+}
+
 .fi-sidebar-item-btn:hover,
 .fi-sidebar-item-btn:hover .fi-sidebar-item-label {
     color: rgba(255, 255, 255, 0.95) !important;
@@ -174,6 +255,14 @@ body::after {
     background-color: var(--tbsm-surface) !important;
     border-bottom: 1px solid var(--tbsm-border) !important;
     box-shadow: none !important;
+}
+
+.fi-topbar-start {
+    gap: 0.75rem !important;
+}
+
+.fi-topbar-start .fi-logo {
+    margin-inline-start: 0 !important;
 }
 
 .fi-topbar .fi-icon-btn,

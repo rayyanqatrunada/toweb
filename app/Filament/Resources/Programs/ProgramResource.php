@@ -19,7 +19,7 @@ class ProgramResource extends Resource
     protected static ?string $model = Program::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBookOpen;
-    protected static string | \UnitEnum | null $navigationGroup = '1. Profil & Akademik';
+    protected static string | \UnitEnum | null $navigationGroup = 'Profil & Akademik';
 
     public static function form(Schema $schema): Schema
     {

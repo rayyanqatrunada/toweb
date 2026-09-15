@@ -18,7 +18,7 @@ class ManagePageHeaders extends Page implements HasForms
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-photo';
     protected static ?string $navigationLabel = 'Foto Header Halaman';
     protected static ?string $title = 'Pengaturan Foto Header Halaman';
-    protected static string | \UnitEnum | null $navigationGroup = '5. Pengaturan Sistem';
+    protected static string | \UnitEnum | null $navigationGroup = 'Pengaturan Sistem';
     protected static ?int $navigationSort = 2;
 
     protected string $view = 'filament.pages.manage-page-headers';

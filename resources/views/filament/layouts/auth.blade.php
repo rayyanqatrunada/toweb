@@ -98,22 +98,42 @@
                 </svg>
             </div>
 
+            @php
+                try {
+                    $authSettings = app(\App\Services\SettingsService::class);
+                    $authLogo = $authSettings->get('site_logo');
+                    $authLogoUrl = ($authLogo && \Illuminate\Support\Facades\Storage::disk('public')->exists($authLogo))
+                        ? \Illuminate\Support\Facades\Storage::url($authLogo)
+                        : (file_exists(public_path('logo.png')) ? asset('logo.png') : null);
+                    $authShortName = $authSettings->get('site_short_name') ?: 'TBSM';
+                    $authSiteName = $authSettings->get('site_name') ?: 'TEKNIK DAN BISNIS SEPEDA MOTOR';
+                } catch (\Throwable $e) {
+                    $authLogoUrl = file_exists(public_path('logo.png')) ? asset('logo.png') : null;
+                    $authShortName = 'TBSM';
+                    $authSiteName = 'TEKNIK DAN BISNIS SEPEDA MOTOR';
+                }
+            @endphp
+
             <!-- Content -->
             <div class="relative z-10 w-full reveal-on-scroll reveal-up h-full flex flex-col">
                 <!-- Top Left Logo -->
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-[#181818] rounded-lg flex items-center justify-center text-white font-black text-xl tracking-tighter">
-                        T.
-                    </div>
-                    <span class="font-heading font-bold text-lg tracking-widest text-[#111111]">TBSM</span>
+                    @if ($authLogoUrl)
+                        <img src="{{ $authLogoUrl }}" alt="{{ $authShortName }}" class="h-10 w-auto object-contain">
+                    @else
+                        <div class="w-10 h-10 bg-[#181818] rounded-lg flex items-center justify-center text-white font-black text-xl tracking-tighter">
+                            {{ substr($authShortName, 0, 1) }}
+                        </div>
+                    @endif
+                    <span class="font-heading font-bold text-lg tracking-widest text-[#111111]">{{ $authShortName }}</span>
                 </div>
 
                 <div class="mt-auto mb-20">
-                    <h1 class="font-heading font-black text-[38px] md:text-[44px] text-[#111111] leading-[1.1] mb-6 tracking-tight max-w-lg">
-                        TEKNIK DAN BISNIS SEPEDA MOTOR
+                    <h1 class="font-heading font-black text-[38px] md:text-[44px] text-[#111111] leading-[1.1] mb-6 tracking-tight max-w-lg uppercase">
+                        {{ $authSiteName }}
                     </h1>
                     <p class="font-sans text-[16px] text-gray-500 max-w-md leading-relaxed border-l-2 border-figma-red pl-4 font-medium">
-                        Portal Administrasi Jurusan TBSM
+                        Portal Administrasi Jurusan {{ $authShortName }}
                     </p>
                 </div>
             </div>
@@ -134,10 +154,14 @@
             <div class="w-full max-w-[400px] mx-auto flex-1 flex flex-col justify-center relative z-10 py-8">
                 <!-- Mobile Only Brand Area -->
                 <div class="lg:hidden mb-10 flex flex-col items-center">
-                    <div class="w-12 h-12 bg-[#181818] rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-tighter mb-4">
-                        T.
-                    </div>
-                    <h2 class="font-heading font-black text-2xl text-[#111111] mb-1">TBSM</h2>
+                    @if ($authLogoUrl)
+                        <img src="{{ $authLogoUrl }}" alt="{{ $authShortName }}" class="h-12 w-auto object-contain mb-4">
+                    @else
+                        <div class="w-12 h-12 bg-[#181818] rounded-xl flex items-center justify-center text-white font-black text-2xl tracking-tighter mb-4">
+                            {{ substr($authShortName, 0, 1) }}
+                        </div>
+                    @endif
+                    <h2 class="font-heading font-black text-2xl text-[#111111] mb-1">{{ $authShortName }}</h2>
                     <p class="font-sans text-[11px] text-gray-500 font-bold uppercase tracking-[2px]">Admin Panel</p>
                 </div>
 
@@ -148,7 +172,7 @@
                 
                 <!-- Minimal Footer -->
                 <div class="mt-12 text-center text-[12px] text-gray-400 font-sans">
-                    &copy; {{ date('Y') }} TBSM &mdash; Admin Panel
+                    &copy; {{ date('Y') }} {{ $authShortName }} &mdash; Admin Panel
                 </div>
             </div>
 
