@@ -59,14 +59,27 @@ class AchievementForm
                 Group::make()
                     ->schema([
                         Section::make('Media')
-                    ->schema([
-                        FileUpload::make('photo')->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
-                            ->image()
-                            ->maxSize(2048)
-                            ->disk('public')
-                            ->directory('achievements')
-                            ->imageEditor(),
-                    ]),
+                            ->schema([
+                                FileUpload::make('photo')
+                                    ->label('Foto Utama (Sertifikat / Piala / Panggung)')
+                                    ->image()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                                    ->maxSize(3072)
+                                    ->disk('public')
+                                    ->directory('achievements')
+                                    ->imageEditor()
+                                    ->helperText('Foto utama yang ditampilkan di kartu rekam jejak dan banner prestasi.'),
+                                FileUpload::make('supporting_photos')
+                                    ->label('Foto Pendukung (Dokumentasi Tambahan)')
+                                    ->multiple()
+                                    ->reorderable()
+                                    ->image()
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(3072)
+                                    ->disk('public')
+                                    ->directory('achievements/gallery')
+                                    ->helperText('Foto dokumentasi tambahan selama kompetisi atau penyerahan piala. Jika tidak diisi (hanya 1 foto utama), bagian foto pendukung pada halaman publik otomatis disembunyikan.'),
+                            ]),
 
                 Section::make('Publishing')
                     ->schema([

@@ -1,24 +1,29 @@
-<x-layouts.app 
-    :title="$achievement->title"
-    :description="Str::limit(strip_tags($achievement->description), 150)"
-    :canonical="route('achievements.show', $achievement->slug)"
-    :ogImage="$achievement->photo ? Storage::url($achievement->photo) : null"
-    ogType="article"
->
-    @push('json-ld')
+<?php if (isset($component)) { $__componentOriginal5863877a5171c196453bfa0bd807e410 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal5863877a5171c196453bfa0bd807e410 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => $achievement->title,'description' => Str::limit(strip_tags($achievement->description), 150),'canonical' => route('achievements.show', $achievement->slug),'ogImage' => $achievement->photo ? Storage::url($achievement->photo) : null,'ogType' => 'article']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('layouts.app'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($achievement->title),'description' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(Str::limit(strip_tags($achievement->description), 150)),'canonical' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('achievements.show', $achievement->slug)),'ogImage' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($achievement->photo ? Storage::url($achievement->photo) : null),'ogType' => 'article']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+    <?php $__env->startPush('json-ld'); ?>
     <script type="application/ld+json">
     {
-      "@@context": "https://schema.org",
+      "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "{{ $achievement->title }}",
+      "headline": "<?php echo e($achievement->title); ?>",
       "image": [
-        "{{ $achievement->photo ? Storage::url($achievement->photo) : url('/default-image.jpg') }}"
+        "<?php echo e($achievement->photo ? Storage::url($achievement->photo) : url('/default-image.jpg')); ?>"
        ],
-      "datePublished": "{{ $achievement->date ? $achievement->date->toIso8601String() : $achievement->created_at->toIso8601String() }}",
-      "dateModified": "{{ $achievement->updated_at->toIso8601String() }}"
+      "datePublished": "<?php echo e($achievement->date ? $achievement->date->toIso8601String() : $achievement->created_at->toIso8601String()); ?>",
+      "dateModified": "<?php echo e($achievement->updated_at->toIso8601String()); ?>"
     }
     </script>
-    @endpush
+    <?php $__env->stopPush(); ?>
 
     <main class="flex flex-col items-center bg-[#FBF8FC] w-full overflow-hidden relative"
           x-data="{
@@ -44,35 +49,33 @@
           @keydown.escape.window="closeLightbox()"
     >
 
-        {{-- ═══════════════════════════════════════════════════════════════════
-            HEADER SECTION WITH RICH BACKGROUND DECORATIONS
-        ═══════════════════════════════════════════════════════════════════ --}}
+        
         <header class="w-full bg-[#F5F3F6] border-b border-[#E4E1E5] relative overflow-hidden">
-            {{-- Background Layer 1: Engineering Grid --}}
+            
             <div class="absolute inset-0 pointer-events-none opacity-40 bg-[linear-gradient(90deg,#E4E4E7_1px,transparent_1px),linear-gradient(180deg,#E4E4E7_1px,transparent_1px)] bg-[size:36px_36px]"></div>
 
-            {{-- Background Layer 2: Subtle Dot Matrix --}}
+            
             <div class="absolute inset-0 pointer-events-none opacity-15" style="background-image: radial-gradient(#9CA3AF 1px, transparent 1px); background-size: 24px 24px;"></div>
 
-            {{-- Background Layer 3: Diagonal Technical Hatching (Top Right & Bottom Left) --}}
+            
             <div class="absolute -right-6 -top-6 w-64 h-64 opacity-25 pointer-events-none hidden lg:block" style="background: repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(228,228,231,0.7) 3px, rgba(228,228,231,0.7) 6px);"></div>
             <div class="absolute -left-6 -bottom-6 w-52 h-52 opacity-20 pointer-events-none hidden lg:block" style="background: repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(228,228,231,0.7) 3px, rgba(228,228,231,0.7) 6px);"></div>
 
-            {{-- Background Layer 4: Ambient Glow Orbs --}}
+            
             <div class="absolute -top-24 -right-24 w-96 h-96 bg-[#DC2626]/5 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-            {{-- Background Layer 5: Technical Corner Framing & Watermarks --}}
+            
             <div class="absolute right-6 top-6 w-16 h-16 border-r border-t border-[#E4E1E5] pointer-events-none hidden md:block"></div>
             <div class="absolute left-6 bottom-6 w-16 h-16 border-l border-b border-[#E4E1E5] pointer-events-none hidden md:block"></div>
             <div class="absolute left-8 top-7 font-mono text-[10px] tracking-[2px] uppercase text-[#1B1B1E]/25 select-none pointer-events-none hidden xl:block">// TBSM.ARCHIVE.REC</div>
-            <div class="absolute right-8 bottom-7 font-mono text-[10px] tracking-[2px] uppercase text-[#1B1B1E]/25 select-none pointer-events-none hidden xl:block">ID // {{ substr(md5($achievement->slug), 0, 8) }}</div>
+            <div class="absolute right-8 bottom-7 font-mono text-[10px] tracking-[2px] uppercase text-[#1B1B1E]/25 select-none pointer-events-none hidden xl:block">ID // <?php echo e(substr(md5($achievement->slug), 0, 8)); ?></div>
 
-            {{-- Content Container --}}
+            
             <div class="max-w-[1440px] mx-auto px-6 md:px-16 py-14 lg:py-20 relative z-10">
                 <div class="max-w-4xl mx-auto text-center reveal-on-scroll reveal-up">
-                    {{-- Level Eyebrow Badge --}}
-                    @php
+                    
+                    <?php
                         $levelLabel = match($achievement->level) {
                             'national' => 'NASIONAL',
                             'province' => 'PROVINSI',
@@ -82,114 +85,135 @@
                             default => strtoupper($achievement->level),
                         };
                         $rankLabel = str_starts_with(strtolower($achievement->rank), 'juara') ? strtoupper($achievement->rank) : 'JUARA ' . strtoupper($achievement->rank);
-                    @endphp
+                    ?>
                     <div class="flex justify-center mb-5">
                         <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-[2px] text-xs font-sans font-bold tracking-[1.2px] uppercase bg-amber-100/80 text-amber-800 border border-amber-300/80 shadow-sm">
                             <span class="w-1.5 h-1.5 bg-amber-600 rounded-full"></span>
-                            PRESTASI TINGKAT {{ $levelLabel }}
+                            PRESTASI TINGKAT <?php echo e($levelLabel); ?>
+
                         </span>
                     </div>
                     
-                    {{-- Title --}}
+                    
                     <h1 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[46px] lg:leading-[52px] tracking-[-1px] text-[#1B1B1E] uppercase mb-6">
-                        {{ $achievement->title }}
+                        <?php echo e($achievement->title); ?>
+
                     </h1>
                     
-                    {{-- Meta Badges Strip --}}
+                    
                     <div class="flex flex-wrap items-center justify-center text-[#5F5E5E] text-sm gap-3 sm:gap-4 mt-6">
                         <!-- Rank -->
                         <div class="flex items-center font-sans font-bold text-amber-700 bg-white px-4 py-2.5 rounded-[2px] border border-amber-300/70 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
                             <svg class="w-4 h-4 mr-2 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            {{ $rankLabel }}
+                            <?php echo e($rankLabel); ?>
+
                         </div>
                         
                         <!-- Organizer -->
                         <div class="flex items-center font-sans font-medium text-[#1B1B1E] bg-white px-4 py-2.5 rounded-[2px] border border-[#E4E1E5] shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
                             <svg class="w-4 h-4 mr-2 text-[#5F5E5E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            <span class="line-clamp-1 max-w-[200px] sm:max-w-xs" title="{{ $achievement->organizer }}">{{ $achievement->organizer ?? 'Penyelenggara Lomba Resmi' }}</span>
+                            <span class="line-clamp-1 max-w-[200px] sm:max-w-xs" title="<?php echo e($achievement->organizer); ?>"><?php echo e($achievement->organizer ?? 'Penyelenggara Lomba Resmi'); ?></span>
                         </div>
                         
                         <!-- Date (Highlighted prominently) -->
                         <div class="flex items-center font-sans font-bold text-[#DC2626] bg-white px-4 py-2.5 rounded-[2px] border border-[#DC2626]/30 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
                             <svg class="w-4 h-4 mr-2 text-[#DC2626]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            {{ $achievement->date ? $achievement->date->translatedFormat('d F Y') : '-' }}
+                            <?php echo e($achievement->date ? $achievement->date->translatedFormat('d F Y') : '-'); ?>
+
                         </div>
 
                         <!-- Category -->
-                        @if($achievement->category)
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($achievement->category): ?>
                         <div class="flex items-center font-sans font-medium text-[#1B1B1E] bg-white px-4 py-2.5 rounded-[2px] border border-[#E4E1E5] shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
                             <svg class="w-4 h-4 mr-2 text-[#5F5E5E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
-                            {{ $achievement->category->name }}
+                            <?php echo e($achievement->category->name); ?>
+
                         </div>
-                        @endif
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                     </div>
                 </div>
             </div>
         </header>
 
-        {{-- ═══════════════════════════════════════════════════════════════════
-            BREADCRUMBS BAR
-        ═══════════════════════════════════════════════════════════════════ --}}
-        @php
+        
+        <?php
             $breadcrumbs = [
                 'Prestasi & Penghargaan' => route('achievements.index'),
                 Str::limit($achievement->title, 40) => '#'
             ];
-        @endphp
+        ?>
         <div class="w-full bg-[#FBF8FC] border-b border-[#E4E1E5]">
             <div class="max-w-[1440px] mx-auto px-6 md:px-16 py-3.5">
-                <x-frontend.breadcrumbs :items="$breadcrumbs" />
+                <?php if (isset($component)) { $__componentOriginal98ae32034a5e9865062f4201185788de = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal98ae32034a5e9865062f4201185788de = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.breadcrumbs','data' => ['items' => $breadcrumbs]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.breadcrumbs'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['items' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($breadcrumbs)]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal98ae32034a5e9865062f4201185788de)): ?>
+<?php $attributes = $__attributesOriginal98ae32034a5e9865062f4201185788de; ?>
+<?php unset($__attributesOriginal98ae32034a5e9865062f4201185788de); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal98ae32034a5e9865062f4201185788de)): ?>
+<?php $component = $__componentOriginal98ae32034a5e9865062f4201185788de; ?>
+<?php unset($__componentOriginal98ae32034a5e9865062f4201185788de); ?>
+<?php endif; ?>
             </div>
         </div>
 
-        {{-- ═══════════════════════════════════════════════════════════════════
-            MAIN ARTICLE & FACT SHEET LAYOUT (INFORMATIVE 2-COLUMN STRUCTURE)
-        ═══════════════════════════════════════════════════════════════════ --}}
+        
         <section class="w-full py-12 lg:py-20 relative overflow-hidden min-h-[60vh]">
-            {{-- Background Canvas 1: Subtle Grid --}}
+            
             <div class="absolute inset-0 pointer-events-none opacity-30 bg-[linear-gradient(90deg,#E4E4E7_1px,transparent_1px),linear-gradient(180deg,#E4E4E7_1px,transparent_1px)] bg-[size:48px_48px]"></div>
 
-            {{-- Background Canvas 2: Dot Matrix Layer --}}
+            
             <div class="absolute inset-0 pointer-events-none opacity-15" style="background-image: radial-gradient(#9CA3AF 1px, transparent 1px); background-size: 28px 28px;"></div>
 
-            {{-- Background Canvas 3: Ambient Color Glows --}}
+            
             <div class="absolute top-1/4 -left-40 w-[550px] h-[550px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none"></div>
             <div class="absolute top-2/3 -right-40 w-[550px] h-[550px] bg-[#DC2626]/5 rounded-full blur-[140px] pointer-events-none"></div>
             <div class="absolute bottom-10 left-1/3 w-[450px] h-[450px] bg-[#1B1B1E]/3 rounded-full blur-[120px] pointer-events-none"></div>
 
-            {{-- Background Canvas 4: Blueprint Hatching Blocks --}}
+            
             <div class="absolute -left-10 top-40 w-44 h-80 opacity-15 pointer-events-none hidden xl:block" style="background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(228,228,231,0.8) 4px, rgba(228,228,231,0.8) 8px);"></div>
             <div class="absolute -right-10 bottom-40 w-44 h-80 opacity-15 pointer-events-none hidden xl:block" style="background: repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(228,228,231,0.8) 4px, rgba(228,228,231,0.8) 8px);"></div>
 
-            {{-- Background Canvas 5: Engineering Crosshairs --}}
+            
             <div class="absolute left-8 top-16 text-[#5F5E5E]/25 font-mono text-sm select-none pointer-events-none hidden lg:block">+</div>
             <div class="absolute right-8 top-16 text-[#5F5E5E]/25 font-mono text-sm select-none pointer-events-none hidden lg:block">+</div>
             <div class="absolute left-8 bottom-24 text-[#5F5E5E]/25 font-mono text-sm select-none pointer-events-none hidden lg:block">+</div>
             <div class="absolute right-8 bottom-24 text-[#5F5E5E]/25 font-mono text-sm select-none pointer-events-none hidden lg:block">+</div>
 
-            {{-- Container --}}
+            
             <div class="max-w-[1440px] mx-auto px-6 md:px-16 relative z-10 w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                     
-                    {{-- ─────────────────────────────────────────────────────────
-                        LEFT COLUMN (8 Cols): MAIN ARTICLE, PHOTOS & DETAILS
-                    ───────────────────────────────────────────────────────── --}}
+                    
                     <div class="lg:col-span-8 flex flex-col gap-8">
                         
-                        {{-- Main Content Card --}}
+                        
                         <article class="bg-white rounded-[2px] shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-[#E4E1E5] p-6 sm:p-10 lg:p-12 reveal-on-scroll reveal-up">
                             
-                            {{-- Featured Photo (Main / Primary Photo) --}}
-                            @if($achievement->photo)
+                            
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($achievement->photo): ?>
                                 <div class="mb-10 rounded-[2px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-[#E4E1E5] relative group cursor-pointer"
-                                     @click="openLightbox('{{ Storage::url($achievement->photo) }}', '{{ addslashes($achievement->title) }} (Foto Utama)')"
+                                     @click="openLightbox('<?php echo e(Storage::url($achievement->photo)); ?>', '<?php echo e(addslashes($achievement->title)); ?> (Foto Utama)')"
                                      title="Klik untuk memperbesar foto">
                                     <!-- Gold Ribbon Overlay on image -->
                                     <div class="absolute -right-12 top-8 rotate-45 bg-amber-500 text-amber-950 font-sans font-black text-xs tracking-widest uppercase py-1.5 px-16 shadow-lg z-20 pointer-events-none group-hover:scale-105 transition-transform duration-500">
-                                        {{ $rankLabel }}
+                                        <?php echo e($rankLabel); ?>
+
                                     </div>
                                     
-                                    <img src="{{ Storage::url($achievement->photo) }}" alt="{{ $achievement->title }}" fetchpriority="high" class="w-full object-cover max-h-[580px] group-hover:scale-[1.02] transition-transform duration-500" loading="eager">
+                                    <img src="<?php echo e(Storage::url($achievement->photo)); ?>" alt="<?php echo e($achievement->title); ?>" fetchpriority="high" class="w-full object-cover max-h-[580px] group-hover:scale-[1.02] transition-transform duration-500" loading="eager">
                                     
                                     <!-- Zoom Hint Overlay -->
                                     <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
@@ -199,37 +223,41 @@
                                         </span>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-                            {{-- Fact Highlight Grid (Quick Metrics Under Photo) --}}
+                            
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-[#F5F3F6] rounded-[2px] border border-[#E4E1E5] mb-10">
                                 <div class="p-2 border-r border-[#E4E1E5]/60 last:border-r-0">
                                     <span class="block font-sans font-bold text-[10px] uppercase tracking-wider text-[#5F5E5E]">Tanggal</span>
                                     <span class="font-heading font-bold text-sm text-[#1B1B1E] mt-0.5 block">
-                                        {{ $achievement->date ? $achievement->date->translatedFormat('d M Y') : '-' }}
+                                        <?php echo e($achievement->date ? $achievement->date->translatedFormat('d M Y') : '-'); ?>
+
                                     </span>
                                 </div>
                                 <div class="p-2 border-r border-[#E4E1E5]/60 last:border-r-0">
                                     <span class="block font-sans font-bold text-[10px] uppercase tracking-wider text-[#5F5E5E]">Peringkat</span>
                                     <span class="font-heading font-bold text-sm text-amber-700 mt-0.5 block">
-                                        {{ $rankLabel }}
+                                        <?php echo e($rankLabel); ?>
+
                                     </span>
                                 </div>
                                 <div class="p-2 border-r border-[#E4E1E5]/60 last:border-r-0">
                                     <span class="block font-sans font-bold text-[10px] uppercase tracking-wider text-[#5F5E5E]">Tingkat</span>
                                     <span class="font-heading font-bold text-sm text-[#DC2626] mt-0.5 block">
-                                        {{ $levelLabel }}
+                                        <?php echo e($levelLabel); ?>
+
                                     </span>
                                 </div>
                                 <div class="p-2">
                                     <span class="block font-sans font-bold text-[10px] uppercase tracking-wider text-[#5F5E5E]">Tahun</span>
                                     <span class="font-heading font-bold text-sm text-[#1B1B1E] mt-0.5 block">
-                                        {{ $achievement->date ? $achievement->date->format('Y') : '-' }}
+                                        <?php echo e($achievement->date ? $achievement->date->format('Y') : '-'); ?>
+
                                     </span>
                                 </div>
                             </div>
 
-                            {{-- Section: Description & Narrative --}}
+                            
                             <div class="mb-10">
                                 <div class="flex items-center gap-2 mb-4">
                                     <span class="w-2.5 h-2.5 bg-[#DC2626] rounded-[2px]"></span>
@@ -239,30 +267,28 @@
                                 </div>
 
                                 <div class="prose prose-lg max-w-none prose-headings:font-heading prose-headings:font-bold prose-headings:text-[#1B1B1E] prose-p:font-sans prose-p:text-[#3B3A3E] prose-p:leading-relaxed prose-a:text-[#DC2626] hover:prose-a:underline prose-img:rounded-[2px] prose-img:shadow-md">
-                                    @if(!empty(trim(strip_tags($achievement->description))))
-                                        {!! \App\Support\HtmlSanitizer::clean($achievement->description) !!}
-                                    @else
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty(trim(strip_tags($achievement->description)))): ?>
+                                        <?php echo \App\Support\HtmlSanitizer::clean($achievement->description); ?>
+
+                                    <?php else: ?>
                                         <p class="text-[#3B3A3E] leading-relaxed">
-                                            Pencapaian bergengsi ini ditorehkan oleh perwakilan kompetensi keahlian Teknik dan Bisnis Sepeda Motor (TBSM) SMK Negeri 1 Bangsri dalam ajang <strong>{{ $achievement->title }}</strong> yang diselenggarakan oleh <strong>{{ $achievement->organizer ?? 'penyelenggara resmi' }}</strong> pada <strong>{{ $achievement->date ? $achievement->date->translatedFormat('d F Y') : 'periode tahun kompetisi' }}</strong>.
+                                            Pencapaian bergengsi ini ditorehkan oleh perwakilan kompetensi keahlian Teknik dan Bisnis Sepeda Motor (TBSM) SMK Negeri 1 Bangsri dalam ajang <strong><?php echo e($achievement->title); ?></strong> yang diselenggarakan oleh <strong><?php echo e($achievement->organizer ?? 'penyelenggara resmi'); ?></strong> pada <strong><?php echo e($achievement->date ? $achievement->date->translatedFormat('d F Y') : 'periode tahun kompetisi'); ?></strong>.
                                         </p>
                                         <p class="text-[#5F5E5E] leading-relaxed mt-3">
-                                            Prestasi ini merupakan buah dari pembinaan intensif di bengkel praktik kejuruan berstandar industri, penguasaan SOP servis terkini, serta dedikasi peserta didik dan instruktur kejuruan dalam menjunjung tinggi standar kualitas vokasi tingkat {{ strtolower($levelLabel) }}.
+                                            Prestasi ini merupakan buah dari pembinaan intensif di bengkel praktik kejuruan berstandar industri, penguasaan SOP servis terkini, serta dedikasi peserta didik dan instruktur kejuruan dalam menjunjung tinggi standar kualitas vokasi tingkat <?php echo e(strtolower($levelLabel)); ?>.
                                         </p>
-                                    @endif
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
                             </div>
 
-                            {{-- ─────────────────────────────────────────────────────
-                                SECTION: FOTO PENDUKUNG (SUPPORTING PHOTOS / GALLERY)
-                                [RULE: HILANGKAN JIKA FOTO CUMA 1 / TIDAK ADA FOTO PENDUKUNG]
-                            ───────────────────────────────────────────────────── --}}
-                            @php
+                            
+                            <?php
                                 $supportingPhotos = is_array($achievement->supporting_photos) 
                                     ? array_filter($achievement->supporting_photos) 
                                     : [];
-                            @endphp
+                            ?>
 
-                            @if(count($supportingPhotos) > 0)
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(count($supportingPhotos) > 0): ?>
                                 <div class="mt-12 pt-10 border-t border-[#E4E1E5]">
                                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
                                         <div>
@@ -273,25 +299,25 @@
                                                 </h3>
                                             </div>
                                             <p class="font-sans text-xs sm:text-sm text-[#5F5E5E]">
-                                                Galeri foto suasana kompetisi, penyerahan penghargaan, dan dinamika tim ({{ count($supportingPhotos) }} Foto Tambahan).
+                                                Galeri foto suasana kompetisi, penyerahan penghargaan, dan dinamika tim (<?php echo e(count($supportingPhotos)); ?> Foto Tambahan).
                                             </p>
                                         </div>
                                         <span class="inline-flex items-center px-3 py-1 bg-[#F5F3F6] border border-[#E4E1E5] rounded-[2px] text-[11px] font-mono font-bold text-[#5F5E5E]">
-                                            TOTAL {{ count($supportingPhotos) }} FOTO
+                                            TOTAL <?php echo e(count($supportingPhotos)); ?> FOTO
                                         </span>
                                     </div>
 
-                                    {{-- Grid of Supporting Photos --}}
+                                    
                                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                                        @foreach($supportingPhotos as $spIdx => $sPhoto)
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $supportingPhotos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $spIdx => $sPhoto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                                             <div class="relative group rounded-[2px] overflow-hidden border border-[#E4E1E5] shadow-sm bg-[#F5F3F6] cursor-pointer aspect-[4/3]"
-                                                 @click="openLightbox('{{ Storage::url($sPhoto) }}', 'Dokumentasi Tambahan #{{ $spIdx + 1 }} - {{ addslashes($achievement->title) }}')">
-                                                <img src="{{ Storage::url($sPhoto) }}" 
-                                                     alt="Foto Pendukung {{ $spIdx + 1 }} {{ $achievement->title }}" 
+                                                 @click="openLightbox('<?php echo e(Storage::url($sPhoto)); ?>', 'Dokumentasi Tambahan #<?php echo e($spIdx + 1); ?> - <?php echo e(addslashes($achievement->title)); ?>')">
+                                                <img src="<?php echo e(Storage::url($sPhoto)); ?>" 
+                                                     alt="Foto Pendukung <?php echo e($spIdx + 1); ?> <?php echo e($achievement->title); ?>" 
                                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                                                      loading="lazy">
                                                 
-                                                {{-- Hover Overlay with Zoom Icon --}}
+                                                
                                                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-3 text-center">
                                                     <div class="w-9 h-9 rounded-full bg-white/90 text-[#1B1B1E] flex items-center justify-center mb-1 shadow-md transform group-hover:scale-110 transition-transform">
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
@@ -299,18 +325,19 @@
                                                     <span class="font-sans font-bold text-[11px] text-white tracking-wider uppercase drop-shadow-sm">Lihat Foto</span>
                                                 </div>
 
-                                                {{-- Corner Index Pill --}}
+                                                
                                                 <div class="absolute bottom-2 left-2 px-2 py-0.5 bg-black/70 backdrop-blur-sm text-white font-mono text-[10px] rounded-[2px]">
-                                                    #{{ $spIdx + 1 }}
+                                                    #<?php echo e($spIdx + 1); ?>
+
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-                            {{-- Participants / Team Section --}}
-                            @if($achievement->participants->count() > 0)
+                            
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($achievement->participants->count() > 0): ?>
                                 <div class="mt-12 pt-10 border-t border-[#E4E1E5]">
                                     <div class="bg-[#FBF8FC] border border-amber-200/80 rounded-[2px] p-6 sm:p-8">
                                         <h3 class="text-xs font-sans font-bold uppercase tracking-widest text-amber-800 mb-4 flex items-center gap-2">
@@ -318,25 +345,25 @@
                                             Siswa &amp; Tim Berprestasi
                                         </h3>
                                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                            @foreach($achievement->participants as $p)
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $achievement->participants; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                                                 <div class="bg-white px-4 py-3 rounded-[2px] border border-amber-200/60 shadow-sm flex items-center justify-between">
                                                     <div>
-                                                        <span class="font-sans font-bold text-[#1B1B1E] text-sm sm:text-base block">{{ $p->student_name }}</span>
+                                                        <span class="font-sans font-bold text-[#1B1B1E] text-sm sm:text-base block"><?php echo e($p->student_name); ?></span>
                                                         <span class="text-[11px] text-[#5F5E5E] font-sans">Peserta / Delegasi Vokasi</span>
                                                     </div>
-                                                    @if($p->student_id)
-                                                        <span class="text-xs font-mono text-[#5F5E5E] bg-[#F5F3F6] px-2 py-0.5 rounded-[2px]">NIS: {{ $p->student_id }}</span>
-                                                    @endif
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($p->student_id): ?>
+                                                        <span class="text-xs font-mono text-[#5F5E5E] bg-[#F5F3F6] px-2 py-0.5 rounded-[2px]">NIS: <?php echo e($p->student_id); ?></span>
+                                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                 </div>
-                                            @endforeach
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-                            {{-- Bottom Action: Back Button --}}
+                            
                             <div class="mt-12 pt-8 border-t border-[#E4E1E5] flex justify-between items-center flex-wrap gap-4">
-                                <a href="{{ route('achievements.index') }}" class="group inline-flex items-center gap-2 px-5 py-2.5 bg-[#F5F3F6] hover:bg-[#E4E1E5] text-[#1B1B1E] font-sans font-bold text-xs uppercase tracking-[1px] rounded-[2px] transition-all border border-[#E4E1E5]">
+                                <a href="<?php echo e(route('achievements.index')); ?>" class="group inline-flex items-center gap-2 px-5 py-2.5 bg-[#F5F3F6] hover:bg-[#E4E1E5] text-[#1B1B1E] font-sans font-bold text-xs uppercase tracking-[1px] rounded-[2px] transition-all border border-[#E4E1E5]">
                                     <svg class="w-4 h-4 text-[#5F5E5E] group-hover:text-[#DC2626] transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                                     Kembali ke Rekam Jejak Prestasi
                                 </a>
@@ -348,12 +375,10 @@
                         </article>
                     </div>
 
-                    {{-- ─────────────────────────────────────────────────────────
-                        RIGHT COLUMN (4 Cols): STICKY INFORMATIVE FACT SHEET
-                    ───────────────────────────────────────────────────────── --}}
+                    
                     <aside class="lg:col-span-4 flex flex-col gap-6 sticky top-24">
                         
-                        {{-- 1. Official Fact Sheet Card --}}
+                        
                         <div class="bg-white rounded-[2px] shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-[#E4E1E5] overflow-hidden reveal-on-scroll reveal-up">
                             <div class="bg-[#1B1B1E] px-6 py-4 flex items-center justify-between">
                                 <div class="flex items-center gap-2">
@@ -366,62 +391,68 @@
                             </div>
 
                             <div class="p-6 flex flex-col divide-y divide-[#F0EDF1]">
-                                {{-- Tanggal Pelaksanaan --}}
+                                
                                 <div class="py-3.5 first:pt-0">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
                                         📅 Tanggal Pelaksanaan
                                     </span>
                                     <span class="font-sans font-bold text-base text-[#1B1B1E]">
-                                        {{ $achievement->date ? $achievement->date->translatedFormat('l, d F Y') : '-' }}
+                                        <?php echo e($achievement->date ? $achievement->date->translatedFormat('l, d F Y') : '-'); ?>
+
                                     </span>
-                                    @if($achievement->date)
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($achievement->date): ?>
                                         <span class="block text-xs font-mono text-[#5F5E5E] mt-0.5">
-                                            Tahun Anggaran / Kompetisi: {{ $achievement->date->format('Y') }}
+                                            Tahun Anggaran / Kompetisi: <?php echo e($achievement->date->format('Y')); ?>
+
                                         </span>
-                                    @endif
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
 
-                                {{-- Peringkat & Gelar --}}
+                                
                                 <div class="py-3.5">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
                                         🏆 Peringkat / Predikat
                                     </span>
                                     <span class="font-sans font-bold text-base text-amber-700">
-                                        {{ $rankLabel }}
+                                        <?php echo e($rankLabel); ?>
+
                                     </span>
                                 </div>
 
-                                {{-- Tingkat Kompetisi --}}
+                                
                                 <div class="py-3.5">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
                                         🌐 Tingkat / Jangkauan
                                     </span>
                                     <span class="inline-flex items-center px-2.5 py-1 bg-red-50 text-[#DC2626] border border-red-200 text-xs font-sans font-bold uppercase rounded-[2px]">
-                                        Tingkat {{ $levelLabel }}
+                                        Tingkat <?php echo e($levelLabel); ?>
+
                                     </span>
                                 </div>
 
-                                {{-- Penyelenggara Resmi --}}
+                                
                                 <div class="py-3.5">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
                                         🏢 Instansi Penyelenggara
                                     </span>
                                     <span class="font-sans font-medium text-sm text-[#1B1B1E] leading-snug block">
-                                        {{ $achievement->organizer ?? 'Penyelenggara Lomba Resmi' }}
+                                        <?php echo e($achievement->organizer ?? 'Penyelenggara Lomba Resmi'); ?>
+
                                     </span>
                                 </div>
 
-                                {{-- Kategori / Bidang Kejuruan --}}
+                                
                                 <div class="py-3.5">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
                                         📂 Bidang Kejuruan
                                     </span>
                                     <span class="font-sans font-medium text-sm text-[#1B1B1E] block">
-                                        {{ $achievement->category ? $achievement->category->name : 'Teknik dan Bisnis Sepeda Motor' }}
+                                        <?php echo e($achievement->category ? $achievement->category->name : 'Teknik dan Bisnis Sepeda Motor'); ?>
+
                                     </span>
                                 </div>
 
-                                {{-- Validasi Status --}}
+                                
                                 <div class="py-3.5 last:pb-0">
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
                                         🛡️ Status Validasi Arsip
@@ -434,14 +465,14 @@
                             </div>
                         </div>
 
-                        {{-- 2. Social Share Card --}}
+                        
                         <div class="bg-white rounded-[2px] shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-[#E4E1E5] p-5">
                             <span class="block font-sans font-bold text-xs uppercase tracking-wider text-[#1B1B1E] mb-3">
                                 Bagikan Informasi Prestasi
                             </span>
                             <div class="flex items-center gap-2">
-                                {{-- WhatsApp --}}
-                                <a href="https://api.whatsapp.com/send?text={{ urlencode($achievement->title . ' - Prestasi TBSM SMKN 1 Bangsri: ' . url()->current()) }}" 
+                                
+                                <a href="https://api.whatsapp.com/send?text=<?php echo e(urlencode($achievement->title . ' - Prestasi TBSM SMKN 1 Bangsri: ' . url()->current())); ?>" 
                                    target="_blank" 
                                    rel="noopener noreferrer"
                                    class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold rounded-[2px] transition-colors shadow-sm">
@@ -449,7 +480,7 @@
                                     WhatsApp
                                 </a>
 
-                                {{-- Salin Link Button --}}
+                                
                                 <button @click="copyUrl()" 
                                         type="button" 
                                         class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-[#F5F3F6] hover:bg-[#E4E1E5] text-[#1B1B1E] text-xs font-bold rounded-[2px] transition-colors border border-[#E4E1E5]">
@@ -460,41 +491,42 @@
                             </div>
                         </div>
 
-                        {{-- 3. Related / Other Achievements --}}
-                        @if(isset($relatedAchievements) && $relatedAchievements->isNotEmpty())
+                        
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($relatedAchievements) && $relatedAchievements->isNotEmpty()): ?>
                             <div class="bg-white rounded-[2px] shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-[#E4E1E5] p-5">
                                 <div class="flex items-center justify-between mb-4 pb-2 border-b border-[#F0EDF1]">
                                     <span class="font-sans font-bold text-xs uppercase tracking-wider text-[#1B1B1E]">
                                         Prestasi Terkait Lainnya
                                     </span>
-                                    <a href="{{ route('achievements.index') }}" class="text-[11px] text-[#DC2626] font-bold hover:underline">Lihat Semua &rarr;</a>
+                                    <a href="<?php echo e(route('achievements.index')); ?>" class="text-[11px] text-[#DC2626] font-bold hover:underline">Lihat Semua &rarr;</a>
                                 </div>
 
                                 <div class="flex flex-col divide-y divide-[#F0EDF1]">
-                                    @foreach($relatedAchievements as $rel)
-                                        <a href="{{ route('achievements.show', $rel->slug) }}" class="py-3 first:pt-0 last:pb-0 group flex items-center gap-3">
-                                            @if($rel->photo)
-                                                <img src="{{ Storage::url($rel->photo) }}" alt="{{ $rel->title }}" class="w-14 h-14 object-cover rounded-[2px] border border-[#E4E1E5] flex-shrink-0 group-hover:scale-105 transition-transform" loading="lazy">
-                                            @else
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $relatedAchievements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                        <a href="<?php echo e(route('achievements.show', $rel->slug)); ?>" class="py-3 first:pt-0 last:pb-0 group flex items-center gap-3">
+                                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($rel->photo): ?>
+                                                <img src="<?php echo e(Storage::url($rel->photo)); ?>" alt="<?php echo e($rel->title); ?>" class="w-14 h-14 object-cover rounded-[2px] border border-[#E4E1E5] flex-shrink-0 group-hover:scale-105 transition-transform" loading="lazy">
+                                            <?php else: ?>
                                                 <div class="w-14 h-14 bg-[#F5F3F6] rounded-[2px] border border-[#E4E1E5] flex items-center justify-center text-[10px] text-[#5F5E5E] flex-shrink-0">
                                                     TBSM
                                                 </div>
-                                            @endif
+                                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                             <div class="flex-grow min-w-0">
                                                 <span class="block font-sans font-bold text-xs text-[#1B1B1E] group-hover:text-[#DC2626] transition-colors truncate">
-                                                    {{ $rel->title }}
+                                                    <?php echo e($rel->title); ?>
+
                                                 </span>
                                                 <div class="flex items-center gap-2 text-[11px] text-[#5F5E5E] mt-0.5">
-                                                    <span class="font-semibold text-amber-700">{{ $rel->rank }}</span>
+                                                    <span class="font-semibold text-amber-700"><?php echo e($rel->rank); ?></span>
                                                     <span>&bull;</span>
-                                                    <span>{{ $rel->date ? $rel->date->format('Y') : '-' }}</span>
+                                                    <span><?php echo e($rel->date ? $rel->date->format('Y') : '-'); ?></span>
                                                 </div>
                                             </div>
                                         </a>
-                                    @endforeach
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                 </div>
                             </div>
-                        @endif
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                     </aside>
 
@@ -502,9 +534,7 @@
             </div>
         </section>
 
-        {{-- ═══════════════════════════════════════════════════════════════════
-            LIGHTBOX MODAL FOR IMAGES (INTERACTIVE FULL PREVIEW)
-        ═══════════════════════════════════════════════════════════════════ --}}
+        
         <div x-show="lightboxOpen" 
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
@@ -516,20 +546,20 @@
              style="display: none;"
              @click="closeLightbox()">
             
-            {{-- Close Button --}}
+            
             <button type="button" 
                     @click="closeLightbox()" 
                     class="absolute top-4 right-4 z-50 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full transition-colors focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
-            {{-- Modal Content Card --}}
+            
             <div class="relative max-w-5xl max-h-[90vh] flex flex-col items-center" @click.stop>
                 <img :src="activeImage" 
                      :alt="activeCaption" 
                      class="max-w-full max-h-[80vh] object-contain rounded-[2px] shadow-2xl border border-white/10">
                 
-                {{-- Caption bar --}}
+                
                 <div x-show="activeCaption" class="mt-3 px-4 py-1.5 bg-black/60 rounded-full text-white text-xs font-sans tracking-wide text-center">
                     <span x-text="activeCaption"></span>
                 </div>
@@ -537,4 +567,14 @@
         </div>
 
     </main>
-</x-layouts.app>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal5863877a5171c196453bfa0bd807e410)): ?>
+<?php $attributes = $__attributesOriginal5863877a5171c196453bfa0bd807e410; ?>
+<?php unset($__attributesOriginal5863877a5171c196453bfa0bd807e410); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5863877a5171c196453bfa0bd807e410)): ?>
+<?php $component = $__componentOriginal5863877a5171c196453bfa0bd807e410; ?>
+<?php unset($__componentOriginal5863877a5171c196453bfa0bd807e410); ?>
+<?php endif; ?>
+<?php /**PATH /home/Rayy/Project/Github/TBSM WEB/toweb/resources/views/frontend/achievements/show.blade.php ENDPATH**/ ?>

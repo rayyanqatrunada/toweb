@@ -90,6 +90,13 @@ class AchievementController extends Controller
     {
         $achievement = Achievement::with(['category', 'participants'])->published()->where('slug', $slug)->firstOrFail();
         
-        return view('frontend.achievements.show', compact('achievement'));
+        $relatedAchievements = Achievement::published()
+            ->where('id', '!=', $achievement->id)
+            ->when($achievement->category_id, fn($q) => $q->orderByRaw('category_id = ? desc', [$achievement->category_id]))
+            ->latest('date')
+            ->take(3)
+            ->get();
+
+        return view('frontend.achievements.show', compact('achievement', 'relatedAchievements'));
     }
 }

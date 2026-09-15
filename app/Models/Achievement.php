@@ -16,7 +16,7 @@ class Achievement extends Model
     use HasFactory;
     protected $fillable = [
         'title', 'slug', 'category_id', 'level', 'rank', 'organizer', 'date', 
-        'description', 'photo', 'status', 'published_at', 'meta_title', 'meta_description'
+        'description', 'photo', 'supporting_photos', 'status', 'published_at', 'meta_title', 'meta_description'
     ];
 
     protected function casts(): array
@@ -24,6 +24,7 @@ class Achievement extends Model
         return [
             'date' => 'date',
             'published_at' => 'datetime',
+            'supporting_photos' => 'array',
         ];
     }
 
@@ -66,6 +67,6 @@ class Achievement extends Model
 
     public function getFileFields(): array
     {
-        return ['photo'];
+        return ['photo', 'supporting_photos'];
     }
 }
