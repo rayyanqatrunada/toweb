@@ -1,6 +1,6 @@
 <x-layouts.app title="Pengumuman & Agenda">
     <!-- Hero Section -->
-    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
+    <div class="bg-charcoal-50 pt-10 pb-14 lg:pt-14 lg:pb-20 relative overflow-hidden border-b border-charcoal-200">
         <!-- Abstract Pattern Background -->
         <div class="absolute inset-0 opacity-10 pointer-events-none">
             <svg class="h-full w-full" fill="none" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -16,17 +16,6 @@
                 </p>
             </div>
         </x-frontend.layout.container>
-    </div>
-
-    <!-- Breadcrumbs -->
-    <div class="bg-white border-b border-charcoal-100 hidden md:block">
-        <x-frontend.layout.container>
-            <x-frontend.breadcrumbs :items="['Pengumuman & Agenda' => route('announcements.index')]" class="py-4" />
-        </x-frontend.layout.container>
-    </div>
-    
-    <div class="md:hidden">
-        <x-frontend.breadcrumbs :items="['Pengumuman' => route('announcements.index')]" />
     </div>
 
     <section class="bg-white min-h-[50vh] pt-12 pb-20 lg:pt-16 lg:pb-24">

@@ -65,7 +65,7 @@ unset($__defined_vars, $__key, $__value); ?>
     }
 ?>
 
-<section class="relative w-full h-[680px] lg:h-[780px] bg-charcoal-900 overflow-hidden" data-hero-slider aria-label="Hero Image Slider">
+<section id="hero-slider" class="relative w-full h-[680px] lg:h-[780px] bg-charcoal-900 overflow-hidden" data-hero-slider aria-label="Hero Image Slider">
     
     <!-- Slides Container -->
     <div class="relative w-full h-full">

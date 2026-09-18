@@ -1,6 +1,6 @@
 <x-layouts.app title="Bursa Kerja Khusus (BKK)">
     <!-- Hero Section -->
-    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
+    <div class="bg-charcoal-50 pt-10 pb-14 lg:pt-14 lg:pb-20 relative overflow-hidden border-b border-charcoal-200">
         <!-- Background -->
         @if($settings->get('header_partnership_image'))
             <img src="{{ Storage::url($settings->get('header_partnership_image')) }}" alt="Jobs Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
@@ -21,17 +21,6 @@
                 </p>
             </div>
         </x-frontend.layout.container>
-    </div>
-
-    <!-- Breadcrumbs -->
-    <div class="bg-white border-b border-charcoal-100 hidden md:block">
-        <x-frontend.layout.container>
-            <x-frontend.breadcrumbs :items="['Bursa Kerja Khusus' => route('jobs.index')]" class="py-4" />
-        </x-frontend.layout.container>
-    </div>
-    
-    <div class="md:hidden">
-        <x-frontend.breadcrumbs :items="['BKK' => route('jobs.index')]" />
     </div>
 
     <section class="bg-white min-h-[50vh] pt-12 pb-20 lg:pt-16 lg:pb-24">

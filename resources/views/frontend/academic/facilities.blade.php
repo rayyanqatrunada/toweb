@@ -1,7 +1,7 @@
 <x-layouts.app title="Fasilitas Unggulan">
     
     <!-- Hero Section -->
-    <section class="relative flex flex-col justify-center items-center py-20 lg:py-[150px] bg-[#1B1B1E] w-full min-h-[600px] mt-[80px]">
+    <section class="relative flex flex-col justify-center items-center py-16 lg:py-24 bg-[#1B1B1E] w-full min-h-[500px]">
         <!-- Image Background -->
         @if($settings->get('header_academic_facilities_image'))
             <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('{{ Storage::url($settings->get('header_academic_facilities_image')) }}')"></div>

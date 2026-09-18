@@ -116,6 +116,19 @@ unset($__defined_vars, $__key, $__value); ?>
                 transition: none !important;
             }
         }
+
+        /* Global Scrollbar Removal for User Pages */
+        html,
+        body,
+        * {
+            -ms-overflow-style: none !important; /* IE and Edge */
+            scrollbar-width: none !important; /* Firefox */
+        }
+        *::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-figma-dark bg-[#FAFAFA] flex flex-col min-h-screen selection:bg-figma-red selection:text-white relative">

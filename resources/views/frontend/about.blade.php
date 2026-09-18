@@ -14,7 +14,7 @@
     @endpush
 
     <!-- 01. PAGE HERO -->
-    <section class="relative bg-charcoal-50 overflow-hidden border-b border-charcoal-200 lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
+    <section class="relative bg-charcoal-50 overflow-hidden border-b border-charcoal-200 pt-10 pb-16 lg:pt-14 lg:pb-24">
         <!-- Background -->
         @if($settings->get('header_about_image'))
             <img src="{{ Storage::url($settings->get('header_about_image')) }}" alt="About Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
@@ -24,7 +24,6 @@
         @endif
         
         <x-frontend.layout.container class="relative z-10">
-            <x-frontend.breadcrumbs :items="['Profil Jurusan' => route('about')]" class="mb-8" />
             
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                 <!-- Text Content (lg:col-span-6 or 5) -->
@@ -134,10 +133,24 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                 
                 <div class="lg:col-span-5 relative reveal-on-scroll reveal-left">
-                    <div class="aspect-[4/5] relative rounded-3xl overflow-hidden bg-charcoal-100 shadow-xl">
-                        <img src="{{ isset($headOfDepartment) && $headOfDepartment->photo ? Storage::url($headOfDepartment->photo) : 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800&auto=format&fit=crop' }}" alt="Kepala Jurusan" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+                    <div class="aspect-[4/5] relative rounded-3xl overflow-hidden bg-charcoal-100 shadow-xl flex items-center justify-center">
+                        @php
+                            $hasAboutHeadPhoto = isset($headOfDepartment) && $headOfDepartment->hasValidPhoto();
+                            $aboutHeadPhotoUrl = isset($headOfDepartment) ? $headOfDepartment->photo_url : null;
+                        @endphp
+                        @if($hasAboutHeadPhoto && $aboutHeadPhotoUrl)
+                            <img src="{{ $aboutHeadPhotoUrl }}" alt="{{ $headOfDepartment->name }}" class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy">
+                        @else
+                            <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-charcoal-800 to-charcoal-950 text-white p-8 text-center">
+                                <div class="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center font-heading font-black text-3xl mb-4 border border-white/20">
+                                    {{ isset($headOfDepartment) ? strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $headOfDepartment->name)), 0, 2)) : 'KJ' }}
+                                </div>
+                                <h4 class="font-heading font-bold text-xl">{{ isset($headOfDepartment) ? $headOfDepartment->name : 'Ketua Kompetensi Keahlian' }}</h4>
+                                <p class="text-charcoal-400 text-xs mt-1">TBSM SMKN 1 Bangsri</p>
+                            </div>
+                        @endif
                         <!-- Bottom Gradient -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900/50 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-charcoal-900/50 to-transparent pointer-events-none"></div>
                     </div>
                 </div>
 
@@ -146,13 +159,18 @@
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" /></svg>
                     </div>
                     
+                    @php
+                        $aboutHeadQuote = (isset($headOfDepartment) && !empty($headOfDepartment->bio))
+                            ? $headOfDepartment->bio
+                            : $settings->get('head_quote', 'Fokus kami adalah membentuk mekanik yang tidak hanya mengerti mesin, tetapi memiliki etos kerja dan kedisiplinan setara dengan tuntutan industri profesional.');
+                    @endphp
                     <p class="text-xl lg:text-2xl font-bold text-charcoal-900 leading-relaxed italic mb-8">
-                        "{!! \App\Support\HtmlSanitizer::clean($settings->get('head_quote', 'Fokus kami adalah membentuk mekanik yang tidak hanya mengerti mesin, tetapi memiliki etos kerja dan kedisiplinan setara dengan tuntutan industri profesional.')) !!}"
+                        "{!! \App\Support\HtmlSanitizer::clean($aboutHeadQuote) !!}"
                     </p>
                     
                     <div>
                         <h3 class="text-lg font-extrabold text-charcoal-900 uppercase tracking-wide">{{ isset($headOfDepartment) ? $headOfDepartment->name : 'Ketua Jurusan' }}</h3>
-                        <p class="text-sm font-bold text-primary-600 mt-1">Kepala Program Keahlian Otomotif</p>
+                        <p class="text-sm font-bold text-primary-600 mt-1">{{ isset($headOfDepartment) && $headOfDepartment->position ? $headOfDepartment->position : 'Kepala Program Keahlian Otomotif' }}</p>
                     </div>
                 </div>
 

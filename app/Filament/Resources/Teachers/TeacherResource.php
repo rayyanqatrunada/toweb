@@ -18,8 +18,13 @@ class TeacherResource extends Resource
 {
     protected static ?string $model = Teacher::class;
 
+    protected static ?string $modelLabel = 'Guru & Tenaga Pendidik';
+    protected static ?string $pluralModelLabel = 'Guru & Tenaga Pengajar';
+    protected static ?string $navigationLabel = 'Guru & Tenaga Pengajar';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
     protected static string | \UnitEnum | null $navigationGroup = 'Profil & Akademik';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema
     {

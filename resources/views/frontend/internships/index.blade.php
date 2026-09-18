@@ -1,6 +1,6 @@
 <x-layouts.app title="Program Praktik Kerja Lapangan (PKL)">
     <!-- Hero Section -->
-    <div class="bg-charcoal-50 py-16 lg:py-24 relative overflow-hidden border-b border-charcoal-200">
+    <div class="bg-charcoal-50 pt-10 pb-14 lg:pt-14 lg:pb-20 relative overflow-hidden border-b border-charcoal-200">
         <!-- Background -->
         @if($settings->get('header_partnership_image'))
             <img src="{{ Storage::url($settings->get('header_partnership_image')) }}" alt="Internships Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
@@ -19,17 +19,6 @@
                 Informasi dan peluang Praktik Kerja Lapangan (PKL) bersama mitra industri terkemuka.
             </p>
         </x-frontend.layout.container>
-    </div>
-
-    <!-- Breadcrumbs -->
-    <div class="bg-white border-b border-charcoal-100 hidden md:block">
-        <x-frontend.layout.container>
-            <x-frontend.breadcrumbs :items="['Program PKL' => route('internships.index')]" class="py-4" />
-        </x-frontend.layout.container>
-    </div>
-    
-    <div class="md:hidden">
-        <x-frontend.breadcrumbs :items="['PKL' => route('internships.index')]" />
     </div>
 
     <section class="bg-white min-h-[50vh] pt-12 pb-20 lg:pt-16 lg:pb-24">

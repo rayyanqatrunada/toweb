@@ -1,5 +1,5 @@
 <x-layouts.app title="Pencarian Global" robots="noindex, follow">
-    <div class="bg-charcoal-50 py-16 lg:py-24 border-b border-charcoal-200">
+    <div class="bg-charcoal-50 pt-10 pb-14 lg:pt-14 lg:pb-20 border-b border-charcoal-200">
         <div class="max-w-screen-xl mx-auto px-4 text-center reveal-on-scroll reveal-up">
             <h1 class="text-3xl md:text-5xl font-bold text-charcoal-900 mb-4">Pencarian Global</h1>
             <p class="text-charcoal-600 text-lg max-w-2xl mx-auto">Temukan informasi seputar jurusan Teknik dan Bisnis Sepeda Motor (TBSM).</p>

@@ -20,7 +20,7 @@
     </script>
     @endpush
 
-    <main class="flex flex-col items-center bg-[#FBF8FC] w-full overflow-hidden relative"
+    <div class="flex flex-col items-center bg-[#FBF8FC] w-full overflow-hidden relative"
           x-data="{
               lightboxOpen: false,
               activeImage: '',
@@ -536,5 +536,5 @@
             </div>
         </div>
 
-    </main>
+    </div>
 </x-layouts.app>

@@ -1,7 +1,7 @@
 <x-layouts.app title="Kontak & Lokasi">
     <div class="w-full min-h-screen flex flex-col items-center relative">
         <!-- Hero Section -->
-        <section class="relative w-full bg-white border-b border-[#E4E1E5] flex flex-col px-6 md:px-16 pt-28 pb-16 md:pt-32 md:pb-20 isolation-auto">
+        <section class="relative w-full bg-white border-b border-[#E4E1E5] flex flex-col px-6 md:px-16 pt-10 pb-12 md:pt-14 md:pb-16 isolation-auto">
         <!-- Background -->
         @if($settings->get('header_contact_image'))
             <img src="{{ Storage::url($settings->get('header_contact_image')) }}" alt="Contact Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">

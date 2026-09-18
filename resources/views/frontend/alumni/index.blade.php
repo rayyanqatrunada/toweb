@@ -1,7 +1,7 @@
 <x-layouts.app title="Jejaring Alumni">
     
     <!-- Hero Section -->
-    <section class="relative flex flex-col justify-center items-center py-20 lg:py-[150px] bg-[#1B1B1E] border-b border-[#E4E1E5] w-full min-h-[560px] overflow-hidden mt-[80px]">
+    <section class="relative flex flex-col justify-center items-center py-16 lg:py-24 bg-[#1B1B1E] border-b border-[#E4E1E5] w-full min-h-[500px] overflow-hidden">
         <!-- Background Image with Gradient Overlay -->
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-r from-[#1B1B1E] via-[#1B1B1E]/80 to-transparent z-10"></div>

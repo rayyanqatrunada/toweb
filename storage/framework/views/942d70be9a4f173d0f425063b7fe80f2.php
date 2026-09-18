@@ -1,26 +1,68 @@
+<?php
+    $isHome = request()->routeIs('home');
+    $menuItems = [
+        ['label' => 'Beranda', 'route' => route('home'), 'active' => request()->routeIs('home')],
+        ['label' => 'Tentang', 'route' => route('about'), 'active' => request()->routeIs('about')],
+        ['label' => 'Prestasi', 'route' => route('achievements.index'), 'active' => request()->is('prestasi*') && !request()->is('berita*')],
+        ['label' => 'Akademik', 'route' => route('academic.programs'), 'active' => request()->routeIs('academic.programs')],
+        ['label' => 'Fasilitas', 'route' => route('academic.facilities'), 'active' => request()->routeIs('academic.facilities')],
+        ['label' => 'Industri', 'route' => route('partnership.index'), 'active' => request()->is('pkl*') || request()->is('mitra-industri*') || request()->is('lowongan*')],
+        ['label' => 'Alumni', 'route' => route('alumni.index'), 'active' => request()->is('alumni*')],
+        ['label' => 'Galeri', 'route' => route('gallery.index'), 'active' => request()->is('galeri*')],
+        ['label' => 'Publikasi', 'route' => route('news.index'), 'active' => request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*')],
+    ];
+?>
+
 <nav x-data="{ 
         mobileMenuOpen: false, 
-        scrolled: false 
+        scrolled: false,
+        scrolledPastHero: false,
+        isHome: <?php echo e($isHome ? 'true' : 'false'); ?>,
+        checkScroll() {
+            this.scrolled = window.pageYOffset > 10;
+            if (!this.isHome) {
+                this.scrolledPastHero = true;
+                return;
+            }
+            const hero = document.getElementById('hero-slider') || document.querySelector('[data-hero-slider]');
+            if (hero) {
+                const heroBottom = hero.getBoundingClientRect().bottom;
+                // Navbar is 64px tall; if hero bottom is <= 64px, it has scrolled past the hero
+                this.scrolledPastHero = heroBottom <= 64;
+            } else {
+                this.scrolledPastHero = window.pageYOffset > 600;
+            }
+        }
     }" 
-    @scroll.window="scrolled = (window.pageYOffset > 10)"
-    class="fixed top-0 w-full z-[100] transition-all duration-300 bg-[#FBF8FC]/90 backdrop-blur-md border-b"
-    :class="scrolled ? 'border-[#E4E1E5] shadow-sm' : 'border-transparent'">
+    x-init="checkScroll()"
+    @scroll.window.passive="checkScroll()"
+    @resize.window.passive="checkScroll()"
+    class="fixed top-0 w-full z-[100] transition-all duration-300 border-b"
+    :class="{
+        'bg-[#FBF8FC]/95 backdrop-blur-md border-[#E4E1E5] shadow-sm': scrolledPastHero || (!isHome && scrolled),
+        'bg-[#FBF8FC]/90 backdrop-blur-md border-transparent': !isHome && !scrolled,
+        'bg-charcoal-950/60 backdrop-blur-md border-white/10 shadow-sm': isHome && !scrolledPastHero && scrolled && !mobileMenuOpen,
+        'bg-gradient-to-b from-black/80 via-black/40 to-transparent border-transparent': isHome && !scrolledPastHero && !scrolled && !mobileMenuOpen,
+        'bg-white/95 backdrop-blur-md border-[#E4E1E5] shadow-md': mobileMenuOpen
+    }">
     
     <div class="max-w-[1440px] mx-auto px-6 md:px-16 relative">
         <div class="flex justify-between items-center transition-all duration-300 h-[64px]">
             
             <!-- Logo Section -->
-            <a href="<?php echo e(route('home')); ?>" class="flex-shrink-0 flex items-center gap-4 group focus-ring outline-none">
+            <a href="<?php echo e(route('home')); ?>" class="shrink-0 flex items-center gap-4 group focus-ring outline-hidden">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($logo = app(\App\Services\SettingsService::class)->get('site_logo')): ?>
                     <div class="flex items-center gap-3">
                         <img src="<?php echo e(Storage::url($logo)); ?>" alt="<?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'TBSM')); ?>" class="h-10 w-auto">
-                        <div class="font-heading font-extrabold text-[20px] text-figma-dark leading-none uppercase">
+                        <div class="font-heading font-extrabold text-[20px] leading-none uppercase transition-colors duration-300"
+                             :class="(scrolledPastHero || !isHome || mobileMenuOpen) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
                             <?php echo e(app(\App\Services\SettingsService::class)->get('site_short_name', 'TBSM')); ?>
 
                         </div>
                     </div>
                 <?php else: ?>
-                    <div class="font-heading font-extrabold text-[20px] text-figma-dark leading-none uppercase">
+                    <div class="font-heading font-extrabold text-[20px] leading-none uppercase transition-colors duration-300"
+                         :class="(scrolledPastHero || !isHome || mobileMenuOpen) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
                         <?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'TBSM')); ?>
 
                     </div>
@@ -29,65 +71,37 @@
 
             <!-- Desktop Menu -->
             <div class="hidden lg:flex lg:items-center lg:space-x-6 flex-grow justify-end">
-                <a href="<?php echo e(route('home')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->routeIs('home') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
-                    Beranda
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->routeIs('home') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
-                </a>
-                
-                <a href="<?php echo e(route('about')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->routeIs('about') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
-                    Tentang
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->routeIs('about') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
-                </a>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $menuItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                    <a href="<?php echo e($item['route']); ?>" 
+                       class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors duration-300"
+                       :class="(scrolledPastHero || !isHome) 
+                           ? '<?php echo e($item['active'] ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>' 
+                           : '<?php echo e($item['active'] ? 'text-white font-bold drop-shadow-sm' : 'text-white/85 hover:text-white drop-shadow-sm'); ?>'">
+                        <?php echo e($item['label']); ?>
 
-                <a href="<?php echo e(route('achievements.index')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->is('prestasi*') && !request()->is('berita*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
-                    Prestasi
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->is('prestasi*') && !request()->is('berita*') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
-                </a>
-
-                <a href="<?php echo e(route('academic.programs')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->routeIs('academic.programs') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
-                    Akademik
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->routeIs('academic.programs') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
-                </a>
-
-                <a href="<?php echo e(route('academic.facilities')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->routeIs('academic.facilities') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
-                    Fasilitas
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->routeIs('academic.facilities') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
-                </a>
-
-                <a href="<?php echo e(route('partnership.index')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->is('pkl*') || request()->is('mitra-industri*') || request()->is('lowongan*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
-                    Industri
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->is('pkl*') || request()->is('mitra-industri*') || request()->is('lowongan*') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
+                        <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e($item['active'] ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
+                    </a>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                
+                <a href="<?php echo e(route('contact.index')); ?>" class="px-5 py-2 ml-4 bg-figma-red text-white font-sans text-[14px] tracking-[-0.5px] uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors focus-ring shadow-sm">
+                    Hubungi Kami
                 </a>
                 
-                <a href="<?php echo e(route('alumni.index')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->is('alumni*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
-                    Alumni
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->is('alumni*') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
-                </a>
                 
-                <a href="<?php echo e(route('gallery.index')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->is('galeri*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
-                    Galeri
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->is('galeri*') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
-                </a>
                 
-                <a href="<?php echo e(route('news.index')); ?>" class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors <?php echo e(request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*') ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark'); ?>">
-                    Publikasi
-                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 <?php echo e(request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*') ? 'w-full' : 'w-0 group-hover:w-full'); ?>"></span>
-                </a>
-                
-                <a href="<?php echo e(route('contact.index')); ?>" class="px-5 py-2 ml-4 bg-figma-red text-white font-sans text-[14px] tracking-[-0.5px] uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors focus-ring shadow-sm">Hubungi Kami</a>
-                
-                <button type="button" @click="$dispatch('open-search')" aria-label="Search" class="text-figma-gray hover:text-figma-dark transition-colors focus-ring p-1 ml-2">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                </button>
             </div>
 
             <!-- Mobile Actions -->
             <div class="flex lg:hidden items-center space-x-2">
-                <button type="button" @click="$dispatch('open-search')" aria-label="Search" class="text-figma-gray hover:text-figma-dark transition-colors focus-ring p-2">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                </button>
                 
-                <button type="button" aria-controls="mobile-navigation" :aria-expanded="mobileMenuOpen.toString()" @click="mobileMenuOpen = !mobileMenuOpen" class="inline-flex items-center justify-center p-2 rounded-lg text-figma-dark hover:bg-gray-100 transition-colors focus-ring">
+                
+                
+                <button type="button" 
+                        aria-controls="mobile-navigation" 
+                        :aria-expanded="mobileMenuOpen.toString()" 
+                        @click="mobileMenuOpen = !mobileMenuOpen" 
+                        class="inline-flex items-center justify-center p-2 rounded-lg transition-colors duration-300 focus-ring"
+                        :class="(scrolledPastHero || !isHome || mobileMenuOpen) ? 'text-figma-dark hover:bg-gray-100' : 'text-white hover:bg-white/15 drop-shadow-sm'">
                     <span class="sr-only">Toggle menu</span>
                     <svg x-show="!mobileMenuOpen" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                     <svg x-show="mobileMenuOpen" style="display: none;" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -110,18 +124,18 @@
              style="display: none;">
             
             <div class="flex flex-col py-3">
-                <a href="<?php echo e(route('home')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->routeIs('home') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Beranda</a>
-                <a href="<?php echo e(route('about')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->routeIs('about') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Tentang</a>
-                <a href="<?php echo e(route('achievements.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('prestasi*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Prestasi</a>
-                <a href="<?php echo e(route('academic.programs')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->routeIs('academic.programs') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Akademik</a>
-                <a href="<?php echo e(route('academic.facilities')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->routeIs('academic.facilities') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Fasilitas</a>
-                <a href="<?php echo e(route('partnership.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('mitra-industri*') || request()->is('pkl*') || request()->is('lowongan*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Industri</a>
-                <a href="<?php echo e(route('alumni.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('alumni*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Alumni</a>
-                <a href="<?php echo e(route('gallery.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('galeri*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Galeri</a>
-                <a href="<?php echo e(route('news.index')); ?>" class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e(request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*') ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">Publikasi</a>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $menuItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                    <a href="<?php echo e($item['route']); ?>" 
+                       class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e($item['active'] ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">
+                        <?php echo e($item['label']); ?>
+
+                    </a>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                 
                 <div class="px-6 pt-3 pb-1 mt-2 border-t border-gray-100">
-                    <a href="<?php echo e(route('contact.index')); ?>" class="block w-full text-center py-2.5 bg-figma-red text-white font-sans text-[14px] font-medium rounded-lg hover:bg-figma-dark-red transition-colors">Hubungi Kami</a>
+                    <a href="<?php echo e(route('contact.index')); ?>" class="block w-full text-center py-2.5 bg-figma-red text-white font-sans text-[14px] font-medium rounded-lg hover:bg-figma-dark-red transition-colors">
+                        Hubungi Kami
+                    </a>
                 </div>
             </div>
         </div>

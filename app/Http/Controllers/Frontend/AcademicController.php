@@ -24,7 +24,7 @@ class AcademicController extends Controller
     public function teachers()
     {
         $teachers = Cache::remember('academic:teachers', 1800, fn() =>
-            Teacher::select('id', 'name', 'nip', 'position', 'photo', 'is_head_of_department', 'is_active')
+            Teacher::select('id', 'name', 'nip', 'position', 'specialization', 'bio', 'photo', 'is_head_of_department', 'is_active')
                 ->where('is_active', true)
                 ->orderBy('is_head_of_department', 'desc')
                 ->orderBy('name')

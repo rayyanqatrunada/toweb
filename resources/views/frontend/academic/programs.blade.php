@@ -13,7 +13,7 @@
     <!-- ============================================================================ -->
     <!-- 01. HERO SECTION -->
     <!-- ============================================================================ -->
-    <section class="relative bg-charcoal-50 overflow-hidden pt-4 pb-14 lg:pt-8 lg:pb-20 border-b border-charcoal-200">
+    <section class="relative bg-charcoal-50 overflow-hidden pt-10 pb-14 lg:pt-14 lg:pb-20 border-b border-charcoal-200">
         @if($settings->get('header_academic_programs_image'))
             <img src="{{ Storage::url($settings->get('header_academic_programs_image')) }}" alt="Programs Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
         @else
@@ -24,7 +24,6 @@
         <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: linear-gradient(to right, #cbd5e1 1px, transparent 1px), linear-gradient(to bottom, #cbd5e1 1px, transparent 1px); background-size: 2.5rem 2.5rem;"></div>
 
         <x-frontend.layout.container class="relative z-10">
-            <x-frontend.breadcrumbs :items="['Akademik' => '#', 'Program & Kurikulum' => route('academic.programs')]" class="mb-8" />
             
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
                 <div class="lg:col-span-8">

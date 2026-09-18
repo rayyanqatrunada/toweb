@@ -26,7 +26,7 @@
         }
     </style>
 
-    <main class="flex flex-col items-center bg-[#FBF8FC] w-full overflow-hidden relative">
+    <div class="flex flex-col items-center bg-[#FBF8FC] w-full overflow-hidden relative">
 
         {{-- ═══════════════════════════════════════════════════════════════════
             SECTION 1 — HERO / HEADER & METRICS
@@ -458,7 +458,7 @@
             </div>
         </section>
 
-    </main>
+    </div>
 
     @push('scripts')
     <script>

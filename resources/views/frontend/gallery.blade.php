@@ -1,5 +1,5 @@
 <x-layouts.app title="Galeri Dokumentasi">
-    <main class="flex flex-col items-center bg-[#FBF8FC] w-full overflow-hidden relative">
+    <div class="flex flex-col items-center bg-[#FBF8FC] w-full overflow-hidden relative">
         
         <!-- Hero Section -->
         <section class="w-full relative border-b border-[#E4E1E5] flex justify-center"
@@ -10,7 +10,7 @@
             @endif
         >
             
-            <div class="flex flex-col items-start px-6 md:px-16 py-16 md:py-32 w-full max-w-[1440px] relative">
+            <div class="flex flex-col items-start px-6 md:px-16 py-12 md:py-20 w-full max-w-[1440px] relative">
                 <!-- Decorative Accent -->
                 <div class="absolute right-0 top-0 w-32 md:w-64 h-32 md:h-64 opacity-50 border-b border-l border-[#E4E1E5] flex flex-col pointer-events-none hidden md:flex">
                     <div class="flex-1 border border-[#E4E4E7] m-4 opacity-20"></div>
@@ -163,7 +163,7 @@
         <!-- Final CTA -->
         <x-frontend.home.final-cta />
 
-    </main>
+    </div>
 
     @push('styles')
     <style>

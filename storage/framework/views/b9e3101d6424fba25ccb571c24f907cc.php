@@ -1,16 +1,27 @@
-<x-layouts.app title="Struktur Organisasi & Dewan Guru TBSM">
-    @push('json-ld')
+<?php if (isset($component)) { $__componentOriginal5863877a5171c196453bfa0bd807e410 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal5863877a5171c196453bfa0bd807e410 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Struktur Organisasi & Dewan Guru TBSM']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('layouts.app'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'Struktur Organisasi & Dewan Guru TBSM']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+    <?php $__env->startPush('json-ld'); ?>
     <script type="application/ld+json">
     {
-      "@@context": "https://schema.org",
-      "@@type": "WebPage",
+      "@context": "https://schema.org",
+      "@type": "WebPage",
       "name": "Struktur Organisasi & Dewan Guru TBSM SMK Negeri 1 Bangsri",
       "description": "Bagan struktur organisasi resmi kejuruan dan direktori profil dewan guru instruktur otomotif tersertifikasi Astra Honda Motor di SMK Negeri 1 Bangsri."
     }
     </script>
-    @endpush
+    <?php $__env->stopPush(); ?>
 
-    @php
+    <?php
         // Pemetaan data guru berdasarkan peran dalam struktur organisasi resmi
         $hod = $teachers->first(fn($t) => $t->is_head_of_department || stripos($t->position, 'Ketua Kompetensi') !== false || stripos($t->position, 'Kepala Jurusan') !== false) 
             ?: $teachers->first();
@@ -33,7 +44,7 @@
             ->merge($clusterLab->pluck('id'))
             ->merge($clusterIndustry->pluck('id'));
         $otherTeachers = $teachers->whereNotIn('id', $chartedIds);
-    @endphp
+    ?>
 
     <!-- 1. HERO SECTION (CLEAN & AIRY) -->
     <section class="relative bg-gradient-to-b from-slate-100/90 via-white to-slate-50 overflow-hidden border-b border-slate-200/80 pt-12 pb-16 lg:pt-20 lg:pb-24">
@@ -42,10 +53,21 @@
         <div class="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none translate-y-1/2"></div>
         <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none"></div>
 
-        <x-frontend.layout.container class="relative z-10">
+        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'relative z-10']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.layout.container'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'relative z-10']); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
             <!-- Breadcrumb -->
             <nav class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 mb-6 reveal-on-scroll reveal-up">
-                <a href="{{ route('home') }}" class="hover:text-red-600 transition-colors">Beranda</a>
+                <a href="<?php echo e(route('home')); ?>" class="hover:text-red-600 transition-colors">Beranda</a>
                 <span>/</span>
                 <span class="text-slate-400">Akademik</span>
                 <span>/</span>
@@ -84,7 +106,8 @@
             <div class="mt-14 pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 reveal-on-scroll reveal-up delay-300">
                 <div class="flex items-center gap-3.5">
                     <div class="w-12 h-12 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 font-black text-xl font-heading shrink-0">
-                        {{ count($teachers) }}
+                        <?php echo e(count($teachers)); ?>
+
                     </div>
                     <div>
                         <div class="font-bold text-slate-900 text-sm">Pendidik & Instruktur</div>
@@ -122,7 +145,16 @@
                     </div>
                 </div>
             </div>
-        </x-frontend.layout.container>
+         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
     </section>
 
     <!-- 2. BAGAN STRUKTUR ORGANISASI VISUAL (ENGINEERED TREE & CLUSTER SYSTEM) -->
@@ -198,7 +230,18 @@
             }
         </style>
 
-        <x-frontend.layout.container>
+        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.layout.container'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
             <!-- Section Header & Controls -->
             <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6 reveal-on-scroll reveal-up">
                 <div class="max-w-2xl">
@@ -275,7 +318,7 @@
 
                                 <!-- TINGKAT 1: KETUA KOMPETENSI KEAHLIAN -->
                                 <div class="flex flex-col items-center relative z-20">
-                                    <a href="#guru-{{ $hod?->id ?? 1 }}" class="group block focus:outline-none" title="Lihat Profil {{ $hod->name }}">
+                                    <a href="#guru-<?php echo e($hod?->id ?? 1); ?>" class="group block focus:outline-none" title="Lihat Profil <?php echo e($hod->name); ?>">
                                         <div class="w-80 sm:w-[340px] rounded-2xl p-[1.5px] bg-gradient-to-b from-red-600 via-rose-500 to-amber-500 shadow-xl shadow-red-600/10 hover:shadow-2xl hover:shadow-red-600/20 hover:-translate-y-1.5 transition-all duration-500">
                                             <div class="bg-white rounded-[calc(1rem-1.5px)] p-5 text-center relative overflow-hidden">
                                                 <!-- Top Crown Badge -->
@@ -286,26 +329,29 @@
 
                                                 <!-- Photo Ring -->
                                                 <div class="w-24 h-24 sm:w-26 sm:h-26 rounded-full overflow-hidden mx-auto mb-3 border-4 border-white shadow-lg ring-3 ring-amber-400 bg-slate-100 relative group-hover:ring-red-600 transition-all duration-300">
-                                                    @if($hod && $hod->hasValidPhoto() && $hod->photo_url)
-                                                        <img src="{{ $hod->photo_url }}" alt="{{ $hod->name }}" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-500" loading="eager">
-                                                    @else
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($hod && $hod->hasValidPhoto() && $hod->photo_url): ?>
+                                                        <img src="<?php echo e($hod->photo_url); ?>" alt="<?php echo e($hod->name); ?>" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-500" loading="eager">
+                                                    <?php else: ?>
                                                         <div class="w-full h-full flex items-center justify-center bg-slate-900 text-amber-400 font-heading font-black text-2xl">
-                                                            {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $hod->name)), 0, 2)) }}
+                                                            <?php echo e(strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $hod->name)), 0, 2))); ?>
+
                                                         </div>
-                                                    @endif
+                                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                 </div>
 
                                                 <h3 class="font-heading font-black text-base sm:text-lg text-slate-900 leading-tight group-hover:text-red-600 transition-colors uppercase mb-1.5">
-                                                    {{ $hod->name }}
+                                                    <?php echo e($hod->name); ?>
+
                                                 </h3>
 
                                                 <div class="inline-block px-3 py-1 rounded-lg bg-red-50 border border-red-200 text-red-700 font-bold text-xs uppercase tracking-wider mb-2">
-                                                    {{ $hod->position ?? 'Ketua Kompetensi Keahlian' }}
+                                                    <?php echo e($hod->position ?? 'Ketua Kompetensi Keahlian'); ?>
+
                                                 </div>
 
-                                                @if($hod->nip)
-                                                    <div class="text-[10px] font-mono text-slate-400">NIP: {{ $hod->nip }}</div>
-                                                @endif
+                                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($hod->nip): ?>
+                                                    <div class="text-[10px] font-mono text-slate-400">NIP: <?php echo e($hod->nip); ?></div>
+                                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                             </div>
                                         </div>
                                     </a>
@@ -321,28 +367,29 @@
                                     <!-- 1. Bendahara -->
                                     <div class="org-tree-col w-1/3 px-3">
                                         <div class="tree-node-dot"></div>
-                                        <a href="#guru-{{ $bendahara?->id ?? 2 }}" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil {{ $bendahara->name }}">
+                                        <a href="#guru-<?php echo e($bendahara?->id ?? 2); ?>" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil <?php echo e($bendahara->name); ?>">
                                             <div class="rounded-2xl p-[1px] bg-gradient-to-b from-slate-200 via-slate-100 to-slate-200 hover:from-slate-400 hover:to-slate-300 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                                 <div class="bg-white rounded-[calc(1rem-1px)] p-4 text-center">
                                                     <div class="inline-block px-2.5 py-0.5 rounded-full bg-slate-900 text-slate-200 text-[9px] font-black uppercase tracking-wider mb-2.5">
                                                         PENGELOLA JURUSAN
                                                     </div>
                                                     <div class="w-18 h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden mx-auto mb-2.5 border-3 border-white shadow ring-2 ring-slate-200 bg-slate-100">
-                                                        @if($bendahara && $bendahara->hasValidPhoto() && $bendahara->photo_url)
-                                                            <img src="{{ $bendahara->photo_url }}" alt="{{ $bendahara->name }}" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
-                                                        @else
+                                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($bendahara && $bendahara->hasValidPhoto() && $bendahara->photo_url): ?>
+                                                            <img src="<?php echo e($bendahara->photo_url); ?>" alt="<?php echo e($bendahara->name); ?>" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
+                                                        <?php else: ?>
                                                             <div class="w-full h-full flex items-center justify-center bg-slate-800 text-amber-300 font-bold text-lg">AL</div>
-                                                        @endif
+                                                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                     </div>
                                                     <h4 class="font-heading font-black text-sm text-slate-900 uppercase leading-snug group-hover:text-red-600 transition-colors mb-1">
-                                                        {{ $bendahara->name ?? 'Akhmad Lutfianto, S.Pd.' }}
+                                                        <?php echo e($bendahara->name ?? 'Akhmad Lutfianto, S.Pd.'); ?>
+
                                                     </h4>
                                                     <div class="inline-block px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700 font-bold text-[11px] uppercase tracking-wider mb-1">
                                                         Bendahara
                                                     </div>
-                                                    @if($bendahara?->nip)
-                                                        <div class="text-[9px] font-mono text-slate-400">NIP: {{ $bendahara->nip }}</div>
-                                                    @endif
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($bendahara?->nip): ?>
+                                                        <div class="text-[9px] font-mono text-slate-400">NIP: <?php echo e($bendahara->nip); ?></div>
+                                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                 </div>
                                             </div>
                                         </a>
@@ -351,28 +398,29 @@
                                     <!-- 2. Sekretaris -->
                                     <div class="org-tree-col w-1/3 px-3">
                                         <div class="tree-node-dot !border-red-600 !bg-red-50"></div>
-                                        <a href="#guru-{{ $sekretaris?->id ?? 3 }}" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil {{ $sekretaris->name }}">
+                                        <a href="#guru-<?php echo e($sekretaris?->id ?? 3); ?>" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil <?php echo e($sekretaris->name); ?>">
                                             <div class="rounded-2xl p-[1px] bg-gradient-to-b from-slate-200 via-slate-100 to-slate-200 hover:from-red-300 hover:to-slate-300 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                                 <div class="bg-white rounded-[calc(1rem-1px)] p-4 text-center">
                                                     <div class="inline-block px-2.5 py-0.5 rounded-full bg-slate-900 text-slate-200 text-[9px] font-black uppercase tracking-wider mb-2.5">
                                                         PENGELOLA JURUSAN
                                                     </div>
                                                     <div class="w-18 h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden mx-auto mb-2.5 border-3 border-white shadow ring-2 ring-slate-200 bg-slate-100">
-                                                        @if($sekretaris && $sekretaris->hasValidPhoto() && $sekretaris->photo_url)
-                                                            <img src="{{ $sekretaris->photo_url }}" alt="{{ $sekretaris->name }}" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
-                                                        @else
+                                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($sekretaris && $sekretaris->hasValidPhoto() && $sekretaris->photo_url): ?>
+                                                            <img src="<?php echo e($sekretaris->photo_url); ?>" alt="<?php echo e($sekretaris->name); ?>" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
+                                                        <?php else: ?>
                                                             <div class="w-full h-full flex items-center justify-center bg-slate-800 text-amber-300 font-bold text-lg">AW</div>
-                                                        @endif
+                                                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                     </div>
                                                     <h4 class="font-heading font-black text-sm text-slate-900 uppercase leading-snug group-hover:text-red-600 transition-colors mb-1">
-                                                        {{ $sekretaris->name ?? 'Ahmad Wildan, S.Pd.' }}
+                                                        <?php echo e($sekretaris->name ?? 'Ahmad Wildan, S.Pd.'); ?>
+
                                                     </h4>
                                                     <div class="inline-block px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700 font-bold text-[11px] uppercase tracking-wider mb-1">
                                                         Sekretaris
                                                     </div>
-                                                    @if($sekretaris?->nip)
-                                                        <div class="text-[9px] font-mono text-slate-400">NIP: {{ $sekretaris->nip }}</div>
-                                                    @endif
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($sekretaris?->nip): ?>
+                                                        <div class="text-[9px] font-mono text-slate-400">NIP: <?php echo e($sekretaris->nip); ?></div>
+                                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                 </div>
                                             </div>
                                         </a>
@@ -381,28 +429,29 @@
                                     <!-- 3. Kepala Laboratorium -->
                                     <div class="org-tree-col w-1/3 px-3">
                                         <div class="tree-node-dot !border-amber-500"></div>
-                                        <a href="#guru-{{ $kepalaLab?->id ?? 4 }}" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil {{ $kepalaLab->name }}">
+                                        <a href="#guru-<?php echo e($kepalaLab?->id ?? 4); ?>" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil <?php echo e($kepalaLab->name); ?>">
                                             <div class="rounded-2xl p-[1px] bg-gradient-to-b from-amber-300 via-amber-100 to-amber-200 hover:from-amber-500 hover:to-orange-400 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                                 <div class="bg-white rounded-[calc(1rem-1px)] p-4 text-center">
                                                     <div class="inline-block px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 text-white text-[9px] font-black uppercase tracking-wider mb-2.5 shadow-xs">
                                                         KEPALA BENGKEL & LAB
                                                     </div>
                                                     <div class="w-18 h-18 sm:w-20 sm:h-20 rounded-full overflow-hidden mx-auto mb-2.5 border-3 border-white shadow ring-2 ring-amber-400 bg-slate-100">
-                                                        @if($kepalaLab && $kepalaLab->hasValidPhoto() && $kepalaLab->photo_url)
-                                                            <img src="{{ $kepalaLab->photo_url }}" alt="{{ $kepalaLab->name }}" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
-                                                        @else
+                                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($kepalaLab && $kepalaLab->hasValidPhoto() && $kepalaLab->photo_url): ?>
+                                                            <img src="<?php echo e($kepalaLab->photo_url); ?>" alt="<?php echo e($kepalaLab->name); ?>" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
+                                                        <?php else: ?>
                                                             <div class="w-full h-full flex items-center justify-center bg-slate-800 text-amber-300 font-bold text-lg">GZ</div>
-                                                        @endif
+                                                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                     </div>
                                                     <h4 class="font-heading font-black text-sm text-slate-900 uppercase leading-snug group-hover:text-amber-600 transition-colors mb-1">
-                                                        {{ $kepalaLab->name ?? 'Galih Zainawan, S.Pd.' }}
+                                                        <?php echo e($kepalaLab->name ?? 'Galih Zainawan, S.Pd.'); ?>
+
                                                     </h4>
                                                     <div class="inline-block px-2.5 py-0.5 rounded-md bg-amber-50 border border-amber-200 text-amber-800 font-bold text-[11px] uppercase tracking-wider mb-1">
                                                         Kepala Laboratorium
                                                     </div>
-                                                    @if($kepalaLab?->nip)
-                                                        <div class="text-[9px] font-mono text-slate-400">NIP: {{ $kepalaLab->nip }}</div>
-                                                    @endif
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($kepalaLab?->nip): ?>
+                                                        <div class="text-[9px] font-mono text-slate-400">NIP: <?php echo e($kepalaLab->nip); ?></div>
+                                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                 </div>
                                             </div>
                                         </a>
@@ -427,17 +476,18 @@
                                     <!-- 1. Event & Prestasi -->
                                     <div class="org-tree-col w-1/4 px-2 sm:px-2.5">
                                         <div class="tree-node-dot !border-amber-500"></div>
-                                        <a href="#guru-{{ $bidangPrestasi?->id ?? 5 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $bidangPrestasi->name }}">
+                                        <a href="#guru-<?php echo e($bidangPrestasi?->id ?? 5); ?>" class="group block w-full focus:outline-none" title="Lihat Profil <?php echo e($bidangPrestasi->name); ?>">
                                             <div class="bg-white rounded-2xl border-t-4 border-amber-500 border-x border-b border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-3.5 text-center">
                                                 <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white shadow ring-2 ring-slate-200 bg-slate-100">
-                                                    @if($bidangPrestasi && $bidangPrestasi->hasValidPhoto() && $bidangPrestasi->photo_url)
-                                                        <img src="{{ $bidangPrestasi->photo_url }}" alt="{{ $bidangPrestasi->name }}" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
-                                                    @else
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($bidangPrestasi && $bidangPrestasi->hasValidPhoto() && $bidangPrestasi->photo_url): ?>
+                                                        <img src="<?php echo e($bidangPrestasi->photo_url); ?>" alt="<?php echo e($bidangPrestasi->name); ?>" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
+                                                    <?php else: ?>
                                                         <div class="w-full h-full flex items-center justify-center bg-slate-800 text-amber-300 font-bold text-sm">AJ</div>
-                                                    @endif
+                                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                 </div>
                                                 <h5 class="font-heading font-bold text-xs sm:text-sm text-slate-900 uppercase leading-snug group-hover:text-red-600 transition-colors mb-1">
-                                                    {{ $bidangPrestasi->name ?? 'Ahmad Arif Johan, S.Pd.' }}
+                                                    <?php echo e($bidangPrestasi->name ?? 'Ahmad Arif Johan, S.Pd.'); ?>
+
                                                 </h5>
                                                 <div class="inline-block px-2 py-0.5 rounded-md bg-amber-50 border border-amber-200 text-amber-800 font-bold text-[10px] uppercase tracking-wide">
                                                     Bidang Event & Prestasi
@@ -449,17 +499,18 @@
                                     <!-- 2. Bidang IDUKA -->
                                     <div class="org-tree-col w-1/4 px-2 sm:px-2.5">
                                         <div class="tree-node-dot !border-emerald-600"></div>
-                                        <a href="#guru-{{ $bidangIduka?->id ?? 6 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $bidangIduka->name }}">
+                                        <a href="#guru-<?php echo e($bidangIduka?->id ?? 6); ?>" class="group block w-full focus:outline-none" title="Lihat Profil <?php echo e($bidangIduka->name); ?>">
                                             <div class="bg-white rounded-2xl border-t-4 border-emerald-500 border-x border-b border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-3.5 text-center">
                                                 <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white shadow ring-2 ring-slate-200 bg-slate-100">
-                                                    @if($bidangIduka && $bidangIduka->hasValidPhoto() && $bidangIduka->photo_url)
-                                                        <img src="{{ $bidangIduka->photo_url }}" alt="{{ $bidangIduka->name }}" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
-                                                    @else
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($bidangIduka && $bidangIduka->hasValidPhoto() && $bidangIduka->photo_url): ?>
+                                                        <img src="<?php echo e($bidangIduka->photo_url); ?>" alt="<?php echo e($bidangIduka->name); ?>" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
+                                                    <?php else: ?>
                                                         <div class="w-full h-full flex items-center justify-center bg-slate-800 text-amber-300 font-bold text-sm">HK</div>
-                                                    @endif
+                                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                 </div>
                                                 <h5 class="font-heading font-bold text-xs sm:text-sm text-slate-900 uppercase leading-snug group-hover:text-red-600 transition-colors mb-1">
-                                                    {{ $bidangIduka->name ?? 'Hisyam Kholil, S.Pd.' }}
+                                                    <?php echo e($bidangIduka->name ?? 'Hisyam Kholil, S.Pd.'); ?>
+
                                                 </h5>
                                                 <div class="inline-block px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-[10px] uppercase tracking-wide">
                                                     Bidang IDUKA
@@ -471,17 +522,18 @@
                                     <!-- 3. Bidang PKL -->
                                     <div class="org-tree-col w-1/4 px-2 sm:px-2.5">
                                         <div class="tree-node-dot !border-blue-600"></div>
-                                        <a href="#guru-{{ $bidangPkl?->id ?? 7 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $bidangPkl->name }}">
+                                        <a href="#guru-<?php echo e($bidangPkl?->id ?? 7); ?>" class="group block w-full focus:outline-none" title="Lihat Profil <?php echo e($bidangPkl->name); ?>">
                                             <div class="bg-white rounded-2xl border-t-4 border-blue-500 border-x border-b border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-3.5 text-center">
                                                 <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white shadow ring-2 ring-slate-200 bg-slate-100">
-                                                    @if($bidangPkl && $bidangPkl->hasValidPhoto() && $bidangPkl->photo_url)
-                                                        <img src="{{ $bidangPkl->photo_url }}" alt="{{ $bidangPkl->name }}" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
-                                                    @else
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($bidangPkl && $bidangPkl->hasValidPhoto() && $bidangPkl->photo_url): ?>
+                                                        <img src="<?php echo e($bidangPkl->photo_url); ?>" alt="<?php echo e($bidangPkl->name); ?>" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
+                                                    <?php else: ?>
                                                         <div class="w-full h-full flex items-center justify-center bg-slate-800 text-amber-300 font-bold text-sm">MS</div>
-                                                    @endif
+                                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                 </div>
                                                 <h5 class="font-heading font-bold text-xs sm:text-sm text-slate-900 uppercase leading-snug group-hover:text-red-600 transition-colors mb-1">
-                                                    {{ $bidangPkl->name ?? 'Muslikan, S.Pd.' }}
+                                                    <?php echo e($bidangPkl->name ?? 'Muslikan, S.Pd.'); ?>
+
                                                 </h5>
                                                 <div class="inline-block px-2 py-0.5 rounded-md bg-blue-50 border border-blue-200 text-blue-800 font-bold text-[10px] uppercase tracking-wide">
                                                     Bidang PKL
@@ -493,17 +545,18 @@
                                     <!-- 4. Toolman (Teknisi Bengkel / Lab) -->
                                     <div class="org-tree-col w-1/4 px-2 sm:px-2.5">
                                         <div class="tree-node-dot !border-slate-700"></div>
-                                        <a href="#guru-{{ $toolman?->id ?? 8 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $toolman->name }}">
+                                        <a href="#guru-<?php echo e($toolman?->id ?? 8); ?>" class="group block w-full focus:outline-none" title="Lihat Profil <?php echo e($toolman->name); ?>">
                                             <div class="bg-white rounded-2xl border-t-4 border-slate-800 border-x border-b border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-3.5 text-center relative">
                                                 <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white shadow ring-2 ring-slate-200 bg-slate-100">
-                                                    @if($toolman && $toolman->hasValidPhoto() && $toolman->photo_url)
-                                                        <img src="{{ $toolman->photo_url }}" alt="{{ $toolman->name }}" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
-                                                    @else
+                                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($toolman && $toolman->hasValidPhoto() && $toolman->photo_url): ?>
+                                                        <img src="<?php echo e($toolman->photo_url); ?>" alt="<?php echo e($toolman->name); ?>" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-300" loading="lazy">
+                                                    <?php else: ?>
                                                         <div class="w-full h-full flex items-center justify-center bg-slate-800 text-amber-300 font-bold text-sm">KT</div>
-                                                    @endif
+                                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                                 </div>
                                                 <h5 class="font-heading font-bold text-xs sm:text-sm text-slate-900 uppercase leading-snug group-hover:text-red-600 transition-colors mb-1">
-                                                    {{ $toolman->name ?? 'Khasan Taufik' }}
+                                                    <?php echo e($toolman->name ?? 'Khasan Taufik'); ?>
+
                                                 </h5>
                                                 <div class="inline-block px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-800 font-bold text-[10px] uppercase tracking-wide">
                                                     Toolman / Teknisi Lab
@@ -535,17 +588,17 @@
                                     <p class="text-xs text-slate-500 mb-6 leading-relaxed">Perumusan arah kebijakan kejuruan, kepemimpinan akademik, administrasi persuratan, serta tata kelola keuangan program.</p>
                                     
                                     <div class="space-y-4">
-                                        @foreach($clusterLeadership as $leader)
-                                            <a href="#guru-{{ $leader->id }}" class="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-white hover:shadow-md border border-transparent hover:border-slate-200 transition-all duration-200 group">
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $clusterLeadership; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $leader): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                            <a href="#guru-<?php echo e($leader->id); ?>" class="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-white hover:shadow-md border border-transparent hover:border-slate-200 transition-all duration-200 group">
                                                 <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-sm ring-1 ring-slate-200">
-                                                    <img src="{{ $leader->photo_url }}" alt="{{ $leader->name }}" class="w-full h-full object-cover object-top aspect-square" loading="lazy">
+                                                    <img src="<?php echo e($leader->photo_url); ?>" alt="<?php echo e($leader->name); ?>" class="w-full h-full object-cover object-top aspect-square" loading="lazy">
                                                 </div>
                                                 <div class="min-w-0 flex-grow">
-                                                    <div class="font-heading font-bold text-xs sm:text-sm text-slate-900 group-hover:text-red-600 transition-colors truncate uppercase">{{ $leader->name }}</div>
-                                                    <div class="text-[11px] font-semibold text-red-600 truncate">{{ $leader->position }}</div>
+                                                    <div class="font-heading font-bold text-xs sm:text-sm text-slate-900 group-hover:text-red-600 transition-colors truncate uppercase"><?php echo e($leader->name); ?></div>
+                                                    <div class="text-[11px] font-semibold text-red-600 truncate"><?php echo e($leader->position); ?></div>
                                                 </div>
                                             </a>
-                                        @endforeach
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -560,17 +613,17 @@
                                     <p class="text-xs text-slate-500 mb-6 leading-relaxed">Standardisasi keselamatan bengkel (5R/K3), perawatan berkala bike-lift dan SST presisi, kalibrasi scanner injeksi HIDS, serta ketersediaan suku cadang resmi.</p>
                                     
                                     <div class="space-y-4">
-                                        @foreach($clusterLab as $labStaff)
-                                            <a href="#guru-{{ $labStaff->id }}" class="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-white hover:shadow-md border border-transparent hover:border-slate-200 transition-all duration-200 group">
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $clusterLab; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $labStaff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                            <a href="#guru-<?php echo e($labStaff->id); ?>" class="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-white hover:shadow-md border border-transparent hover:border-slate-200 transition-all duration-200 group">
                                                 <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-sm ring-1 ring-amber-200">
-                                                    <img src="{{ $labStaff->photo_url }}" alt="{{ $labStaff->name }}" class="w-full h-full object-cover object-top aspect-square" loading="lazy">
+                                                    <img src="<?php echo e($labStaff->photo_url); ?>" alt="<?php echo e($labStaff->name); ?>" class="w-full h-full object-cover object-top aspect-square" loading="lazy">
                                                 </div>
                                                 <div class="min-w-0 flex-grow">
-                                                    <div class="font-heading font-bold text-xs sm:text-sm text-slate-900 group-hover:text-amber-600 transition-colors truncate uppercase">{{ $labStaff->name }}</div>
-                                                    <div class="text-[11px] font-semibold text-amber-700 truncate">{{ $labStaff->position }}</div>
+                                                    <div class="font-heading font-bold text-xs sm:text-sm text-slate-900 group-hover:text-amber-600 transition-colors truncate uppercase"><?php echo e($labStaff->name); ?></div>
+                                                    <div class="text-[11px] font-semibold text-amber-700 truncate"><?php echo e($labStaff->position); ?></div>
                                                 </div>
                                             </a>
-                                        @endforeach
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -585,17 +638,17 @@
                                     <p class="text-xs text-slate-500 mb-6 leading-relaxed">Sinkronisasi kurikulum industri Astra Honda Motor, pengorganisasian magang siswa di jaringan AHASS, dan pembinaan kontingen LKS tingkat regional & nasional.</p>
                                     
                                     <div class="space-y-4">
-                                        @foreach($clusterIndustry as $indStaff)
-                                            <a href="#guru-{{ $indStaff->id }}" class="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-white hover:shadow-md border border-transparent hover:border-slate-200 transition-all duration-200 group">
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $clusterIndustry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $indStaff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                            <a href="#guru-<?php echo e($indStaff->id); ?>" class="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-white hover:shadow-md border border-transparent hover:border-slate-200 transition-all duration-200 group">
                                                 <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-white shadow-sm ring-1 ring-slate-200">
-                                                    <img src="{{ $indStaff->photo_url }}" alt="{{ $indStaff->name }}" class="w-full h-full object-cover object-top aspect-square" loading="lazy">
+                                                    <img src="<?php echo e($indStaff->photo_url); ?>" alt="<?php echo e($indStaff->name); ?>" class="w-full h-full object-cover object-top aspect-square" loading="lazy">
                                                 </div>
                                                 <div class="min-w-0 flex-grow">
-                                                    <div class="font-heading font-bold text-xs sm:text-sm text-slate-900 group-hover:text-red-600 transition-colors truncate uppercase">{{ $indStaff->name }}</div>
-                                                    <div class="text-[11px] font-semibold text-slate-700 truncate">{{ $indStaff->position }}</div>
+                                                    <div class="font-heading font-bold text-xs sm:text-sm text-slate-900 group-hover:text-red-600 transition-colors truncate uppercase"><?php echo e($indStaff->name); ?></div>
+                                                    <div class="text-[11px] font-semibold text-slate-700 truncate"><?php echo e($indStaff->position); ?></div>
                                                 </div>
                                             </a>
-                                        @endforeach
+                                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -631,12 +684,32 @@
 
                 </div>
             </div>
-        </x-frontend.layout.container>
+         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
     </section>
 
     <!-- 3. DIREKTORI PROFIL LENGKAP DEWAN GURU (GROUPED DIRECTORY GRID) -->
     <section id="direktori-guru" class="py-24 lg:py-32 bg-white">
-        <x-frontend.layout.container>
+        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.layout.container'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
             <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll reveal-up">
                 <div class="flex items-center justify-center gap-3 mb-4">
@@ -663,21 +736,23 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    @foreach($clusterLeadership as $leader)
-                        <div id="guru-{{ $leader->id }}" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-red-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $clusterLeadership; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $leader): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <div id="guru-<?php echo e($leader->id); ?>" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-red-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group">
                             <!-- Photo Container -->
                             <div class="h-64 sm:h-72 bg-slate-200 overflow-hidden relative">
-                                @if($leader->hasValidPhoto() && $leader->photo_url)
-                                    <img src="{{ $leader->photo_url }}" alt="{{ $leader->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
-                                @else
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($leader->hasValidPhoto() && $leader->photo_url): ?>
+                                    <img src="<?php echo e($leader->photo_url); ?>" alt="<?php echo e($leader->name); ?>" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                                <?php else: ?>
                                     <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white font-heading font-black text-5xl">
-                                        {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $leader->name)), 0, 2)) }}
+                                        <?php echo e(strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $leader->name)), 0, 2))); ?>
+
                                     </div>
-                                @endif
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-4 left-4 right-4">
                                     <span class="inline-block px-3 py-1 rounded-md bg-red-600 text-white text-[10px] font-black uppercase tracking-widest shadow-sm">
-                                        {{ $leader->position ?? 'Pengelola Kejuruan' }}
+                                        <?php echo e($leader->position ?? 'Pengelola Kejuruan'); ?>
+
                                     </span>
                                 </div>
                             </div>
@@ -686,38 +761,39 @@
                             <div class="p-6 flex flex-col flex-grow justify-between">
                                 <div>
                                     <h4 class="font-heading font-black text-xl text-slate-900 group-hover:text-red-600 transition-colors leading-snug mb-1">
-                                        {{ $leader->name }}
-                                    </h4>
-                                    @if($leader->nip)
-                                        <p class="text-xs font-mono text-slate-500 mb-4 pb-3 border-b border-slate-200">NIP: {{ $leader->nip }}</p>
-                                    @endif
+                                        <?php echo e($leader->name); ?>
 
-                                    @if($leader->specialization)
+                                    </h4>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($leader->nip): ?>
+                                        <p class="text-xs font-mono text-slate-500 mb-4 pb-3 border-b border-slate-200">NIP: <?php echo e($leader->nip); ?></p>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($leader->specialization): ?>
                                         <div class="mb-4">
                                             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Bidang Spesialisasi:</span>
                                             <div class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
                                                 <svg class="w-3.5 h-3.5 text-red-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
-                                                <span>{{ $leader->specialization }}</span>
+                                                <span><?php echo e($leader->specialization); ?></span>
                                             </div>
                                         </div>
-                                    @endif
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
-                                        "{{ $leader->bio ?? 'Mendedikasikan diri untuk memajukan pendidikan vokasi otomotif berstandar industri.' }}"
+                                        "<?php echo e($leader->bio ?? 'Mendedikasikan diri untuk memajukan pendidikan vokasi otomotif berstandar industri.'); ?>"
                                     </p>
                                 </div>
 
-                                @if($leader->phone)
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($leader->phone): ?>
                                     <div class="mt-6 pt-4 border-t border-slate-200 flex justify-end">
-                                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $leader->phone) }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
+                                        <a href="https://wa.me/<?php echo e(preg_replace('/[^0-9]/', '', $leader->phone)); ?>" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
                                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086.159.058 1.011.477 1.184.564.173.087.289.13.332.202.043.073.043.419-.101.824z"/></svg>
                                             <span>Kontak Instruktur</span>
                                         </a>
                                     </div>
-                                @endif
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                             </div>
                         </div>
-                    @endforeach
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                 </div>
             </div>
 
@@ -732,21 +808,23 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
-                    @foreach($clusterLab as $labStaff)
-                        <div id="guru-{{ $labStaff->id }}" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-amber-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col sm:flex-row group">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $clusterLab; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $labStaff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <div id="guru-<?php echo e($labStaff->id); ?>" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-amber-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col sm:flex-row group">
                             <!-- Photo -->
                             <div class="w-full sm:w-2/5 h-64 sm:h-auto bg-slate-200 overflow-hidden relative shrink-0">
-                                @if($labStaff->hasValidPhoto() && $labStaff->photo_url)
-                                    <img src="{{ $labStaff->photo_url }}" alt="{{ $labStaff->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
-                                @else
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($labStaff->hasValidPhoto() && $labStaff->photo_url): ?>
+                                    <img src="<?php echo e($labStaff->photo_url); ?>" alt="<?php echo e($labStaff->name); ?>" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                                <?php else: ?>
                                     <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white font-heading font-black text-4xl">
-                                        {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $labStaff->name)), 0, 2)) }}
+                                        <?php echo e(strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $labStaff->name)), 0, 2))); ?>
+
                                     </div>
-                                @endif
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent sm:hidden"></div>
                                 <div class="absolute bottom-3 left-3 sm:hidden">
                                     <span class="inline-block px-2.5 py-0.5 rounded bg-amber-500 text-white text-[10px] font-black uppercase tracking-wider">
-                                        {{ $labStaff->position }}
+                                        <?php echo e($labStaff->position); ?>
+
                                     </span>
                                 </div>
                             </div>
@@ -755,29 +833,31 @@
                             <div class="p-6 flex flex-col justify-between flex-grow">
                                 <div>
                                     <span class="hidden sm:inline-block px-2.5 py-1 rounded bg-amber-500 text-white text-[10px] font-black uppercase tracking-wider mb-2">
-                                        {{ $labStaff->position }}
+                                        <?php echo e($labStaff->position); ?>
+
                                     </span>
                                     <h4 class="font-heading font-black text-lg sm:text-xl text-slate-900 group-hover:text-amber-600 transition-colors leading-snug mb-1">
-                                        {{ $labStaff->name }}
-                                    </h4>
-                                    @if($labStaff->nip)
-                                        <p class="text-xs font-mono text-slate-500 mb-3">NIP: {{ $labStaff->nip }}</p>
-                                    @endif
+                                        <?php echo e($labStaff->name); ?>
 
-                                    @if($labStaff->specialization)
+                                    </h4>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($labStaff->nip): ?>
+                                        <p class="text-xs font-mono text-slate-500 mb-3">NIP: <?php echo e($labStaff->nip); ?></p>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($labStaff->specialization): ?>
                                         <div class="mb-3">
                                             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Keahlian:</span>
-                                            <p class="text-xs font-bold text-slate-800">{{ $labStaff->specialization }}</p>
+                                            <p class="text-xs font-bold text-slate-800"><?php echo e($labStaff->specialization); ?></p>
                                         </div>
-                                    @endif
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                                     <p class="text-xs text-slate-600 leading-relaxed italic">
-                                        "{{ $labStaff->bio ?? 'Menjaga kelayakan dan kepresisian peralatan praktik bengkel otomotif.' }}"
+                                        "<?php echo e($labStaff->bio ?? 'Menjaga kelayakan dan kepresisian peralatan praktik bengkel otomotif.'); ?>"
                                     </p>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                 </div>
             </div>
 
@@ -792,21 +872,23 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    @foreach($clusterIndustry as $industryStaff)
-                        <div id="guru-{{ $industryStaff->id }}" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-red-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $clusterIndustry; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $industryStaff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <div id="guru-<?php echo e($industryStaff->id); ?>" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-red-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group">
                             <!-- Photo Container -->
                             <div class="h-64 sm:h-72 bg-slate-200 overflow-hidden relative">
-                                @if($industryStaff->hasValidPhoto() && $industryStaff->photo_url)
-                                    <img src="{{ $industryStaff->photo_url }}" alt="{{ $industryStaff->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
-                                @else
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($industryStaff->hasValidPhoto() && $industryStaff->photo_url): ?>
+                                    <img src="<?php echo e($industryStaff->photo_url); ?>" alt="<?php echo e($industryStaff->name); ?>" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                                <?php else: ?>
                                     <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white font-heading font-black text-5xl">
-                                        {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $industryStaff->name)), 0, 2)) }}
+                                        <?php echo e(strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $industryStaff->name)), 0, 2))); ?>
+
                                     </div>
-                                @endif
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-4 left-4 right-4">
                                     <span class="inline-block px-3 py-1 rounded-md bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest shadow-sm">
-                                        {{ $industryStaff->position ?? 'Koordinator Bidang' }}
+                                        <?php echo e($industryStaff->position ?? 'Koordinator Bidang'); ?>
+
                                     </span>
                                 </div>
                             </div>
@@ -815,34 +897,35 @@
                             <div class="p-6 flex flex-col flex-grow justify-between">
                                 <div>
                                     <h4 class="font-heading font-black text-xl text-slate-900 group-hover:text-red-600 transition-colors leading-snug mb-1.5">
-                                        {{ $industryStaff->name }}
-                                    </h4>
-                                    @if($industryStaff->nip)
-                                        <p class="text-xs font-mono text-slate-500 mb-4 pb-3 border-b border-slate-200">NIP: {{ $industryStaff->nip }}</p>
-                                    @endif
+                                        <?php echo e($industryStaff->name); ?>
 
-                                    @if($industryStaff->specialization)
+                                    </h4>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($industryStaff->nip): ?>
+                                        <p class="text-xs font-mono text-slate-500 mb-4 pb-3 border-b border-slate-200">NIP: <?php echo e($industryStaff->nip); ?></p>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($industryStaff->specialization): ?>
                                         <div class="mb-4">
                                             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Bidang Spesialisasi:</span>
                                             <div class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
                                                 <svg class="w-3.5 h-3.5 text-red-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
-                                                <span>{{ $industryStaff->specialization }}</span>
+                                                <span><?php echo e($industryStaff->specialization); ?></span>
                                             </div>
                                         </div>
-                                    @endif
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
-                                        "{{ $industryStaff->bio ?? 'Membimbing dan memfasilitasi siswa terhubung langsung dengan realitas dunia kerja otomotif.' }}"
+                                        "<?php echo e($industryStaff->bio ?? 'Membimbing dan memfasilitasi siswa terhubung langsung dengan realitas dunia kerja otomotif.'); ?>"
                                     </p>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                 </div>
             </div>
 
             <!-- GURU & INSTRUKTUR TAMBAHAN (JIKA ADA DATA TAMBAHAN DI KEMUDIAN HARI) -->
-            @if($otherTeachers->count() > 0)
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($otherTeachers->count() > 0): ?>
                 <div>
                     <div class="flex items-center gap-4 mb-8 pb-4 border-b border-slate-200">
                         <div class="w-3 h-8 bg-slate-400 rounded-sm"></div>
@@ -853,34 +936,55 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        @foreach($otherTeachers as $ot)
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $otherTeachers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ot): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                             <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center">
                                 <div class="w-24 h-24 rounded-full overflow-hidden mb-4 bg-slate-100 border-2 border-slate-200">
-                                    @if($ot->hasValidPhoto() && $ot->photo_url)
-                                        <img src="{{ $ot->photo_url }}" alt="{{ $ot->name }}" class="w-full h-full object-cover object-top aspect-square">
-                                    @else
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($ot->hasValidPhoto() && $ot->photo_url): ?>
+                                        <img src="<?php echo e($ot->photo_url); ?>" alt="<?php echo e($ot->name); ?>" class="w-full h-full object-cover object-top aspect-square">
+                                    <?php else: ?>
                                         <div class="w-full h-full flex items-center justify-center bg-slate-800 text-white font-bold text-xl">
-                                            {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $ot->name)), 0, 2)) }}
+                                            <?php echo e(strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $ot->name)), 0, 2))); ?>
+
                                         </div>
-                                    @endif
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
-                                <h4 class="font-heading font-bold text-base text-slate-900 mb-1">{{ $ot->name }}</h4>
-                                <p class="text-xs text-red-600 font-semibold mb-2">{{ $ot->position ?? 'Guru Kejuruan' }}</p>
-                                @if($ot->nip)
-                                    <span class="text-[10px] font-mono text-slate-400">NIP: {{ $ot->nip }}</span>
-                                @endif
+                                <h4 class="font-heading font-bold text-base text-slate-900 mb-1"><?php echo e($ot->name); ?></h4>
+                                <p class="text-xs text-red-600 font-semibold mb-2"><?php echo e($ot->position ?? 'Guru Kejuruan'); ?></p>
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($ot->nip): ?>
+                                    <span class="text-[10px] font-mono text-slate-400">NIP: <?php echo e($ot->nip); ?></span>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                             </div>
-                        @endforeach
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                     </div>
                 </div>
-            @endif
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-        </x-frontend.layout.container>
+         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
     </section>
 
     <!-- 4. STANDAR KUALIFIKASI INSTRUKTUR AHM -->
     <section class="py-20 bg-slate-50 border-t border-slate-200">
-        <x-frontend.layout.container>
+        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.layout.container'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-5">
                     <span class="text-xs font-black uppercase tracking-widest text-red-600 block mb-3">STANDARISASI PENDIDIK</span>
@@ -928,23 +1032,42 @@
                             Kami membuka pintu dialog seluas-luasnya bagi orang tua, mitra industri, dan calon peserta didik yang ingin mengetahui lebih dalam seputar kurikulum, magang AHASS, dan fasilitas laboratorium.
                         </p>
                         <div class="flex flex-wrap gap-4">
-                            <a href="{{ route('academic.programs') }}" class="px-6 py-3 bg-red-600 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-red-700 transition-colors shadow-lg shadow-red-900/40">
+                            <a href="<?php echo e(route('academic.programs')); ?>" class="px-6 py-3 bg-red-600 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-red-700 transition-colors shadow-lg shadow-red-900/40">
                                 Lihat Program Keahlian
                             </a>
-                            <a href="{{ route('academic.facilities') }}" class="px-6 py-3 bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-white/20 transition-colors">
+                            <a href="<?php echo e(route('academic.facilities')); ?>" class="px-6 py-3 bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-white/20 transition-colors">
                                 Jelajahi Fasilitas Bengkel
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </x-frontend.layout.container>
+         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
+<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
+<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
+<?php endif; ?>
     </section>
 
-</x-layouts.app>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal5863877a5171c196453bfa0bd807e410)): ?>
+<?php $attributes = $__attributesOriginal5863877a5171c196453bfa0bd807e410; ?>
+<?php unset($__attributesOriginal5863877a5171c196453bfa0bd807e410); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5863877a5171c196453bfa0bd807e410)): ?>
+<?php $component = $__componentOriginal5863877a5171c196453bfa0bd807e410; ?>
+<?php unset($__componentOriginal5863877a5171c196453bfa0bd807e410); ?>
+<?php endif; ?>
 
 
 
 
 
 
+<?php /**PATH /home/Rayy/Project/Github/TBSM WEB/toweb/resources/views/frontend/academic/teachers.blade.php ENDPATH**/ ?>

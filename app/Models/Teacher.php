@@ -32,11 +32,13 @@ class Teacher extends Model
         static::saved(function ($teacher) {
             \Illuminate\Support\Facades\Cache::forget('academic:teachers');
             \Illuminate\Support\Facades\Cache::forget('homepage:head_of_department');
+            \Illuminate\Support\Facades\Cache::forget('homepage:teachers_list');
         });
         
         static::deleted(function ($teacher) {
             \Illuminate\Support\Facades\Cache::forget('academic:teachers');
             \Illuminate\Support\Facades\Cache::forget('homepage:head_of_department');
+            \Illuminate\Support\Facades\Cache::forget('homepage:teachers_list');
         });
 
         static::saving(function ($teacher) {
@@ -45,6 +47,21 @@ class Teacher extends Model
                 static::where('id', '!=', $teacher->id)->update(['is_head_of_department' => false]);
             }
         });
+    }
+
+    public function hasValidPhoto(): bool
+    {
+        return !empty($this->photo) 
+            && !str_contains($this->photo, 'guru-') 
+            && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->photo);
+    }
+
+    public function getPhotoUrlAttribute(): ?string
+    {
+        if ($this->hasValidPhoto()) {
+            return \Illuminate\Support\Facades\Storage::url($this->photo);
+        }
+        return null;
     }
 
     public function getActivitylogOptions(): LogOptions

@@ -1,6 +1,6 @@
 <x-layouts.app title="Berita & Informasi">
     <!-- Hero Section -->
-    <section class="bg-charcoal-50 border-b border-charcoal-200 relative overflow-hidden lg: pt-2 pb-16 lg:pt-4 lg:pb-24">
+    <section class="bg-charcoal-50 border-b border-charcoal-200 relative overflow-hidden pt-10 pb-16 lg:pt-14 lg:pb-24">
         <!-- Background -->
         @if($settings->get('header_news_image'))
             <img src="{{ Storage::url($settings->get('header_news_image')) }}" alt="News Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
@@ -14,7 +14,6 @@
         @endif
         
         <x-frontend.layout.container class="relative z-10 reveal-on-scroll reveal-up">
-            <x-frontend.breadcrumbs :items="['Berita & Informasi' => route('news.index')]" class="mb-8" />
             
             <x-frontend.ui.eyebrow class="text-primary-600">INSTITUTIONAL KNOWLEDGE</x-frontend.ui.eyebrow>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal-900 tracking-tight leading-[1.1] mt-4 mb-6">
