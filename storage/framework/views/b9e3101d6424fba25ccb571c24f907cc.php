@@ -103,45 +103,45 @@
             </div>
 
             <!-- Highlights Bar -->
-            <div class="mt-14 pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 reveal-on-scroll reveal-up delay-300">
-                <div class="flex items-center gap-3.5">
-                    <div class="w-12 h-12 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 font-black text-xl font-heading shrink-0">
+            <div class="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 reveal-on-scroll reveal-up delay-300">
+                <div class="flex items-center gap-3 sm:gap-3.5">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 font-black text-lg sm:text-xl font-heading shrink-0">
                         <?php echo e(count($teachers)); ?>
 
                     </div>
                     <div>
-                        <div class="font-bold text-slate-900 text-sm">Pendidik & Instruktur</div>
-                        <div class="text-xs text-slate-500">Keluarga Besar TBSM</div>
+                        <div class="font-bold text-slate-900 text-xs sm:text-sm">Pendidik & Instruktur</div>
+                        <div class="text-[11px] sm:text-xs text-slate-500">Keluarga Besar TBSM</div>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-3.5">
-                    <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 font-black text-xl font-heading shrink-0">
+                <div class="flex items-center gap-3 sm:gap-3.5">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 font-black text-lg sm:text-xl font-heading shrink-0">
                         AHM
                     </div>
                     <div>
-                        <div class="font-bold text-slate-900 text-sm">Kurikulum Industri</div>
-                        <div class="text-xs text-slate-500">PT Astra Honda Motor</div>
+                        <div class="font-bold text-slate-900 text-xs sm:text-sm">Kurikulum Industri</div>
+                        <div class="text-[11px] sm:text-xs text-slate-500">PT Astra Honda Motor</div>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-3.5">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 font-black text-xl font-heading shrink-0">
+                <div class="flex items-center gap-3 sm:gap-3.5">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 font-black text-lg sm:text-xl font-heading shrink-0">
                         BNSP
                     </div>
                     <div>
-                        <div class="font-bold text-slate-900 text-sm">Asesor Kompetensi</div>
-                        <div class="text-xs text-slate-500">LSP Pihak Pertama</div>
+                        <div class="font-bold text-slate-900 text-xs sm:text-sm">Asesor Kompetensi</div>
+                        <div class="text-[11px] sm:text-xs text-slate-500">LSP Pihak Pertama</div>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-3.5">
-                    <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 font-black text-xl font-heading shrink-0">
+                <div class="flex items-center gap-3 sm:gap-3.5">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 font-black text-lg sm:text-xl font-heading shrink-0">
                         5R
                     </div>
                     <div>
-                        <div class="font-bold text-slate-900 text-sm">Budaya Kerja Jepang</div>
-                        <div class="text-xs text-slate-500">Disiplin & Keselamatan</div>
+                        <div class="font-bold text-slate-900 text-xs sm:text-sm">Budaya Kerja Jepang</div>
+                        <div class="text-[11px] sm:text-xs text-slate-500">Disiplin & Keselamatan</div>
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@
     </section>
 
     <!-- 2. BAGAN STRUKTUR ORGANISASI VISUAL (ENGINEERED TREE & CLUSTER SYSTEM) -->
-    <section id="bagan-organisasi" class="py-20 lg:py-28 bg-slate-100/60 relative overflow-hidden border-b border-slate-200" x-data="{ activeTab: 'tree' }">
+    <section id="bagan-organisasi" class="py-14 sm:py-20 lg:py-28 bg-slate-100/60 relative overflow-hidden border-b border-slate-200" x-data="{ activeTab: (window.innerWidth < 768 ? 'cards' : 'tree') }">
         <style>
             /* Flawless Tree Engine Connectors */
             .org-tree-row {
@@ -243,7 +243,7 @@
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
             <!-- Section Header & Controls -->
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6 reveal-on-scroll reveal-up">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-10 gap-6 reveal-on-scroll reveal-up">
                 <div class="max-w-2xl">
                     <div class="flex items-center gap-2 mb-2">
                         <span class="w-6 h-[2px] bg-red-600"></span>
@@ -252,26 +252,26 @@
                     <h2 class="font-heading font-black text-2xl sm:text-4xl lg:text-5xl text-slate-900 uppercase tracking-tight">
                         Bagan Struktur Organisasi
                     </h2>
-                    <p class="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
+                    <p class="text-slate-600 text-xs sm:text-base mt-2 leading-relaxed">
                         Diagram hierarki kepemimpinan kejuruan, manajerial fasilitas bengkel berstandar AHASS, serta koordinator operasional TBSM SMK Negeri 1 Bangsri.
                     </p>
                 </div>
 
-                <!-- View Mode Segmented Control -->
-                <div class="flex items-center bg-white p-1.5 rounded-2xl border border-slate-200/90 shadow-sm shrink-0 self-start lg:self-end">
+                <!-- View Mode Segmented Control (Fully responsive on mobile) -->
+                <div class="flex items-center w-full sm:w-auto bg-white p-1 rounded-2xl border border-slate-200/90 shadow-sm shrink-0 self-start lg:self-end">
                     <button 
                         @click="activeTab = 'tree'" 
                         :class="activeTab === 'tree' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'"
-                        class="px-4 py-2 rounded-xl text-xs font-heading font-black uppercase tracking-wider transition-all duration-200 flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                        <span>Bagan Pohon Hierarki</span>
+                        class="flex-1 sm:flex-initial px-3.5 sm:px-4 py-2.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-heading font-black uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        <span>Bagan Pohon</span>
                     </button>
                     <button 
                         @click="activeTab = 'cards'" 
                         :class="activeTab === 'cards' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'"
-                        class="px-4 py-2 rounded-xl text-xs font-heading font-black uppercase tracking-wider transition-all duration-200 flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
-                        <span>Klaster Peran & Tugas</span>
+                        class="flex-1 sm:flex-initial px-3.5 sm:px-4 py-2.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-heading font-black uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                        <span>Klaster Peran</span>
                     </button>
                 </div>
             </div>

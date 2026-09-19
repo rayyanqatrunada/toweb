@@ -1,27 +1,27 @@
 @props(['facilities'])
 
-<section class="w-full bg-figma-bg-section py-24 lg:py-32 overflow-hidden">
-    <div class="max-w-[1440px] mx-auto px-6 md:px-16">
+<section class="w-full bg-figma-bg-section py-12 sm:py-16 md:py-24 lg:py-32 overflow-hidden">
+    <div class="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16">
         
         <!-- Header -->
-        <div class="flex flex-col items-center text-center mb-16 md:mb-24 reveal-on-scroll reveal-up">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-8 h-[2px] bg-figma-red"></div>
-                <span class="font-sans font-bold text-[14px] leading-none tracking-[2px] text-figma-gray uppercase">
+        <div class="flex flex-col items-center text-center mb-10 sm:mb-16 md:mb-24 reveal-on-scroll reveal-up">
+            <div class="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+                <div class="w-6 sm:w-8 h-[2px] bg-figma-red"></div>
+                <span class="font-sans font-bold text-[12px] sm:text-[14px] leading-none tracking-[1.5px] sm:tracking-[2px] text-figma-gray uppercase">
                     Fasilitas Pembelajaran
                 </span>
-                <div class="w-8 h-[2px] bg-figma-red"></div>
+                <div class="w-6 sm:w-8 h-[2px] bg-figma-red"></div>
             </div>
-            <h2 class="font-heading font-extrabold text-[36px] md:text-[48px] leading-[1.1] tracking-[-1px] text-figma-dark max-w-[720px] mb-6">
+            <h2 class="font-heading font-extrabold text-[26px] sm:text-[34px] md:text-[48px] leading-[1.15] sm:leading-[1.1] tracking-tight sm:tracking-[-1px] text-figma-dark max-w-[720px] mb-3 sm:mb-6">
                 Peralatan Berstandar Industri Terkini
             </h2>
-            <p class="font-sans text-[16px] text-gray-600 max-w-[640px]">
+            <p class="font-sans text-[14px] sm:text-[16px] text-gray-600 max-w-[640px]">
                 Seluruh ruang praktik dirancang untuk mensimulasikan lingkungan bengkel resmi, lengkap dengan peralatan spesial (special tools) dan kendaraan praktik terbaru.
             </p>
         </div>
 
         @if($facilities && $facilities->count() > 0)
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 reveal-on-scroll reveal-up">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 reveal-on-scroll reveal-up">
                 
                 @php
                     $featuredFacility = $facilities->first();
@@ -29,36 +29,37 @@
                 @endphp
 
                 <!-- Featured Facility -->
-                <div class="md:col-span-8 relative bg-charcoal-950 aspect-video md:aspect-auto h-full min-h-[400px] overflow-hidden group">
+                <div class="md:col-span-8 relative bg-charcoal-950 aspect-video md:aspect-auto h-full min-h-[300px] sm:min-h-[380px] md:min-h-[400px] overflow-hidden group rounded-lg sm:rounded-none">
                     <img src="{{ $featuredFacility->photo ? Storage::url($featuredFacility->photo) : 'https://images.unsplash.com/photo-1599252328221-5c8c50b73df7?q=80&w=1200&auto=format&fit=crop' }}" 
                          alt="{{ $featuredFacility->name }}" 
                          class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" loading="lazy">
                     
                     <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/40 to-transparent"></div>
                     
-                    <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full z-10">
-                        <h3 class="font-heading font-bold text-[32px] text-white mb-3">{{ $featuredFacility->name }}</h3>
-                        <p class="font-sans text-[16px] text-gray-300 max-w-[500px] line-clamp-3 mb-6">
+                    <div class="absolute bottom-0 left-0 p-5 sm:p-8 md:p-12 w-full z-10">
+                        <h3 class="font-heading font-bold text-[22px] sm:text-[28px] md:text-[32px] text-white mb-2 sm:mb-3 leading-tight">{{ $featuredFacility->name }}</h3>
+                        <p class="font-sans text-[13px] sm:text-[15px] md:text-[16px] text-gray-300 max-w-[500px] line-clamp-2 sm:line-clamp-3 mb-4 sm:mb-6">
                             {{ $featuredFacility->description ?? 'Fasilitas bengkel utama untuk praktik kelistrikan dan perakitan mesin.' }}
                         </p>
-                        <a href="{{ route('academic.facilities') }}" class="inline-flex items-center gap-2 text-white hover:text-figma-red transition-colors font-sans font-bold text-[14px] uppercase tracking-wide">
-                            Lihat Detail <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        <a href="{{ route('academic.facilities') }}" class="inline-flex items-center gap-2 text-white hover:text-figma-red transition-colors font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wide">
+                            <span>Lihat Detail</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                         </a>
                     </div>
                 </div>
 
                 <!-- Secondary Facilities -->
-                <div class="md:col-span-4 flex flex-col gap-6 lg:gap-8">
+                <div class="md:col-span-4 flex flex-col gap-5 sm:gap-6 lg:gap-8">
                     @foreach($otherFacilities as $index => $facility)
-                        <div class="relative bg-charcoal-900 flex-1 min-h-[240px] overflow-hidden group">
+                        <div class="relative bg-charcoal-900 flex-1 min-h-[190px] sm:min-h-[220px] overflow-hidden group rounded-lg sm:rounded-none">
                             <img src="{{ $facility->photo ? Storage::url($facility->photo) : 'https://images.unsplash.com/photo-1625806693899-73e46c7de29b?q=80&w=600&auto=format&fit=crop' }}" 
                                  alt="{{ $facility->name }}" 
                                  class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/60 to-transparent"></div>
                             
-                            <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full z-10">
-                                <h3 class="font-heading font-bold text-[24px] text-white mb-2">{{ $facility->name }}</h3>
-                                <p class="font-sans text-[14px] text-gray-400 line-clamp-2">
+                            <div class="absolute bottom-0 left-0 p-5 sm:p-6 md:p-8 w-full z-10">
+                                <h3 class="font-heading font-bold text-[18px] sm:text-[22px] md:text-[24px] text-white mb-1.5 sm:mb-2 leading-tight">{{ $facility->name }}</h3>
+                                <p class="font-sans text-[13px] sm:text-[14px] text-gray-400 line-clamp-2">
                                     {{ $facility->description ?? 'Laboratorium pendukung untuk diagnostic tool dan sistem injeksi.' }}
                                 </p>
                             </div>
@@ -67,10 +68,10 @@
                     
                     <!-- View All CTA block if there's space -->
                     @if($otherFacilities->count() < 2)
-                        <a href="{{ route('academic.facilities') }}" class="flex-1 min-h-[240px] bg-figma-red text-white flex flex-col items-center justify-center p-8 text-center hover:bg-figma-dark-red transition-colors group">
-                            <svg class="w-10 h-10 mb-4 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                            <span class="font-heading font-bold text-[20px] mb-2">Semua Fasilitas</span>
-                            <span class="font-sans text-[14px] text-white/80">Jelajahi ekosistem praktik TBSM</span>
+                        <a href="{{ route('academic.facilities') }}" class="flex-1 min-h-[190px] sm:min-h-[220px] bg-figma-red text-white flex flex-col items-center justify-center p-6 sm:p-8 text-center hover:bg-figma-dark-red transition-colors group rounded-lg sm:rounded-none">
+                            <svg class="w-8 sm:w-10 h-8 sm:h-10 mb-3 sm:mb-4 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                            <span class="font-heading font-bold text-[18px] sm:text-[20px] mb-1 sm:mb-2">Semua Fasilitas</span>
+                            <span class="font-sans text-[13px] sm:text-[14px] text-white/80">Jelajahi ekosistem praktik TBSM</span>
                         </a>
                     @endif
                 </div>
@@ -78,8 +79,8 @@
             </div>
             
             @if($otherFacilities->count() >= 2)
-            <div class="mt-12 text-center">
-                <a href="{{ route('academic.facilities') }}" class="inline-flex items-center justify-center px-8 py-3 border border-figma-dark text-figma-dark font-sans font-bold text-[14px] uppercase tracking-wide hover:bg-figma-dark hover:text-white transition-colors focus-ring">
+            <div class="mt-8 sm:mt-12 text-center">
+                <a href="{{ route('academic.facilities') }}" class="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-8 py-3.5 border border-figma-dark text-figma-dark font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wide hover:bg-figma-dark hover:text-white transition-colors focus-ring rounded-sm">
                     Jelajahi Semua Fasilitas
                 </a>
             </div>

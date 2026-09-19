@@ -32,11 +32,11 @@
                         {{ $settings->get('academic_hero_badge', 'KURIKULUM & KOMPETENSI KEJURUAN') }}
                     </div>
                     
-                    <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-charcoal-950 tracking-tighter leading-[0.95] mb-6 uppercase reveal-on-scroll reveal-up delay-100">
+                    <h1 class="text-3xl sm:text-5xl lg:text-7xl font-black text-charcoal-950 tracking-tight leading-[1.05] sm:leading-[0.95] mb-4 sm:mb-6 uppercase reveal-on-scroll reveal-up delay-100">
                         {!! nl2br(e($settings->get('academic_hero_title', "AKADEMIK & \nKURIKULUM TBSM"))) !!}
                     </h1>
                     
-                    <p class="text-base lg:text-lg text-charcoal-600 font-medium leading-relaxed max-w-2xl reveal-on-scroll reveal-up delay-200">
+                    <p class="text-sm sm:text-base lg:text-lg text-charcoal-600 font-medium leading-relaxed max-w-2xl reveal-on-scroll reveal-up delay-200">
                         {{ $settings->get('academic_hero_subtitle', 'Standar kompetensi kejuruan teknik sepeda motor berbasis industri Astra Honda Motor (AHM) dengan Kurikulum Merdeka terintegrasi, dirancang untuk melahirkan teknisi profesional dan wirausahawan tangguh.') }}
                     </p>
                 </div>
@@ -68,15 +68,15 @@
                 </div>
             </div>
 
-            <!-- Quick Jump Anchor Bar -->
-            <div class="mt-10 pt-5 border-t border-charcoal-200/80 flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs font-bold text-charcoal-600 reveal-on-scroll reveal-up delay-200">
-                <span class="text-charcoal-400 uppercase tracking-widest text-[10px] mr-1">Navigasi Cepat:</span>
-                <a href="#program-keahlian" class="px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">01. Spesifikasi Kompetensi</a>
-                <a href="#struktur-kurikulum" class="px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">02. Peta Kurikulum</a>
-                <a href="#sertifikasi" class="px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">03. Sertifikasi LSP & Industri</a>
-                <a href="#program-unggulan" class="px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">04. Program Unggulan</a>
-                <a href="#prospek-karir" class="px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">05. Pilihan Karir</a>
-                <a href="#roadmap-akademik" class="px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">06. Alur 3 Tahun</a>
+            <!-- Quick Jump Anchor Bar (Horizontally scrollable on mobile) -->
+            <div class="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-charcoal-200/80 flex items-center gap-2 sm:gap-2.5 text-xs font-bold text-charcoal-600 overflow-x-auto whitespace-nowrap scrollbar-none pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap reveal-on-scroll reveal-up delay-200">
+                <span class="text-charcoal-400 uppercase tracking-widest text-[10px] mr-1 shrink-0">Navigasi:</span>
+                <a href="#program-keahlian" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">01. Spesifikasi Kompetensi</a>
+                <a href="#struktur-kurikulum" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">02. Peta Kurikulum</a>
+                <a href="#sertifikasi" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">03. Sertifikasi LSP & Industri</a>
+                <a href="#program-unggulan" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">04. Program Unggulan</a>
+                <a href="#prospek-karir" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">05. Pilihan Karir</a>
+                <a href="#roadmap-akademik" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">06. Alur 3 Tahun</a>
             </div>
         </x-frontend.layout.container>
     </section>

@@ -36,7 +36,7 @@
             </div>
 
             <!-- Links Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:w-[480px]">
+            <div class="grid grid-cols-2 gap-6 sm:gap-8 lg:w-[480px]">
                 
                 <!-- Column 1 -->
                 <ul class="flex flex-col gap-2">

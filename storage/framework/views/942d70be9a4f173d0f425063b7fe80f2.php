@@ -109,32 +109,53 @@
             </div>
         </div>
 
+        <!-- Backdrop Scrim for Mobile Menu -->
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             @click="mobileMenuOpen = false" 
+             class="fixed inset-0 bg-black/50 backdrop-blur-xs z-[85] lg:hidden"
+             style="display: none;"></div>
+
         <!-- Compact Mobile Navigation Dropdown -->
         <div x-show="mobileMenuOpen" 
-             x-transition:enter="transition ease-out duration-200 origin-top"
-             x-transition:enter-start="opacity-0 scale-y-95 -translate-y-2"
-             x-transition:enter-end="opacity-100 scale-y-100 translate-y-0"
+             x-transition:enter="transition ease-out duration-250 origin-top"
+             x-transition:enter-start="opacity-0 scale-95 -translate-y-3"
+             x-transition:enter-end="opacity-100 scale-100 translate-y-0"
              x-transition:leave="transition ease-in duration-150 origin-top"
-             x-transition:leave-start="opacity-100 scale-y-100 translate-y-0"
-             x-transition:leave-end="opacity-0 scale-y-95 -translate-y-2"
+             x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+             x-transition:leave-end="opacity-0 scale-95 -translate-y-3"
              @click.away="mobileMenuOpen = false"
              @keydown.escape.window="mobileMenuOpen = false"
-             class="absolute top-full left-0 right-0 mt-2 mx-4 z-[90] bg-white rounded-xl border border-[#E4E1E5] shadow-xl overflow-hidden lg:hidden" 
+             class="absolute top-full left-0 right-0 mt-2 mx-3 sm:mx-6 z-[95] bg-white rounded-2xl border border-[#E4E1E5] shadow-2xl overflow-hidden max-h-[calc(100vh-84px)] overflow-y-auto lg:hidden" 
              id="mobile-navigation" 
              style="display: none;">
             
-            <div class="flex flex-col py-3">
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $menuItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-                    <a href="<?php echo e($item['route']); ?>" 
-                       class="px-6 py-3 font-sans text-[15px] font-medium <?php echo e($item['active'] ? 'text-figma-red bg-red-50' : 'text-figma-gray hover:bg-gray-50'); ?>">
-                        <?php echo e($item['label']); ?>
+            <div class="flex flex-col py-2.5 divide-y divide-gray-100/70">
+                <div class="py-1">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $menuItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <a href="<?php echo e($item['route']); ?>" 
+                           class="flex items-center justify-between px-5 py-3 font-sans text-[15px] transition-colors rounded-lg mx-2 <?php echo e($item['active'] ? 'text-figma-red bg-red-50/80 font-bold' : 'text-figma-dark hover:bg-gray-50 font-medium'); ?>">
+                            <span class="flex items-center gap-3">
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($item['active']): ?>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-figma-red"></span>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                <?php echo e($item['label']); ?>
 
-                    </a>
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                            </span>
+                            <svg class="w-4 h-4 <?php echo e($item['active'] ? 'text-figma-red' : 'text-gray-400'); ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                </div>
                 
-                <div class="px-6 pt-3 pb-1 mt-2 border-t border-gray-100">
-                    <a href="<?php echo e(route('contact.index')); ?>" class="block w-full text-center py-2.5 bg-figma-red text-white font-sans text-[14px] font-medium rounded-lg hover:bg-figma-dark-red transition-colors">
-                        Hubungi Kami
+                <div class="p-4 bg-gray-50/80">
+                    <a href="<?php echo e(route('contact.index')); ?>" class="flex items-center justify-center gap-2 w-full text-center py-3 bg-figma-red text-white font-sans text-[14px] font-bold uppercase tracking-wider rounded-xl hover:bg-figma-dark-red transition-all shadow-md shadow-figma-red/20 active:scale-[0.98]">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span>Hubungi Kami</span>
                     </a>
                 </div>
             </div>

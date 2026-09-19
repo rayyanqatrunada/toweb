@@ -91,26 +91,46 @@ unset($__defined_vars, $__key, $__value); ?>
         @media (prefers-reduced-motion: no-preference) {
             .reveal-on-scroll {
                 opacity: 0;
-                transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+                transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             }
             .reveal-up {
-                transform: translateY(30px);
+                transform: translateY(24px);
+            }
+            .reveal-left {
+                transform: translateX(-24px);
+            }
+            .reveal-right {
+                transform: translateX(24px);
             }
             .reveal-fade {
                 transform: none;
             }
-            .is-revealed {
-                opacity: 1;
-                transform: translateY(0);
+            .is-revealed,
+            .reveal-on-scroll.is-visible {
+                opacity: 1 !important;
+                transform: none !important;
             }
-            .delay-100 { transition-delay: 100ms; }
-            .delay-200 { transition-delay: 200ms; }
-            .delay-300 { transition-delay: 300ms; }
-            .delay-400 { transition-delay: 400ms; }
-            .delay-500 { transition-delay: 500ms; }
+            .delay-100 { transition-delay: 80ms; }
+            .delay-200 { transition-delay: 160ms; }
+            .delay-300 { transition-delay: 240ms; }
+            .delay-400 { transition-delay: 320ms; }
+            .delay-500 { transition-delay: 400ms; }
+
+            /* Mobile-specific smooth & fast reveal */
+            @media (max-width: 768px) {
+                .reveal-on-scroll {
+                    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+                }
+                .reveal-up {
+                    transform: translateY(14px);
+                }
+                .reveal-left, .reveal-right {
+                    transform: none;
+                }
+            }
         }
         @media (prefers-reduced-motion: reduce) {
-            .reveal-on-scroll, .reveal-up, .reveal-fade, .is-revealed {
+            .reveal-on-scroll, .reveal-up, .reveal-left, .reveal-right, .reveal-fade, .is-revealed, .reveal-on-scroll.is-visible {
                 opacity: 1 !important;
                 transform: none !important;
                 transition: none !important;
@@ -234,7 +254,10 @@ unset($__defined_vars, $__key, $__value); ?>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (prefersReducedMotion) return;
+            if (prefersReducedMotion) {
+                document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
+                return;
+            }
 
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
@@ -245,11 +268,18 @@ unset($__defined_vars, $__key, $__value); ?>
                 });
             }, {
                 root: null,
-                rootMargin: '0px 0px -50px 0px',
-                threshold: 0.1
+                rootMargin: '120px 0px 60px 0px',
+                threshold: 0.01
             });
 
             document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+            // Safety fallback: pastikan semua konten terlihat jika observer belum trigger dalam 1.2 detik
+            setTimeout(() => {
+                document.querySelectorAll('.reveal-on-scroll:not(.is-revealed)').forEach(el => {
+                    el.classList.add('is-revealed');
+                });
+            }, 1200);
         });
     </script>
     <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::scripts(); ?>

@@ -14,7 +14,7 @@
     @endpush
 
     <!-- 01. PAGE HERO -->
-    <section class="relative bg-charcoal-50 overflow-hidden border-b border-charcoal-200 pt-10 pb-16 lg:pt-14 lg:pb-24">
+    <section class="relative bg-charcoal-50 overflow-hidden border-b border-charcoal-200 pt-8 pb-12 sm:pt-10 sm:pb-16 lg:pt-14 lg:pb-24">
         <!-- Background -->
         @if($settings->get('header_about_image'))
             <img src="{{ Storage::url($settings->get('header_about_image')) }}" alt="About Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
@@ -25,14 +25,14 @@
         
         <x-frontend.layout.container class="relative z-10">
             
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
                 <!-- Text Content (lg:col-span-6 or 5) -->
                 <div class="lg:col-span-5 reveal-on-scroll reveal-up">
                     <x-frontend.ui.eyebrow>ABOUT THE DEPARTMENT</x-frontend.ui.eyebrow>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal-900 tracking-tight leading-[1.1] mt-4 mb-6">
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal-900 tracking-tight leading-[1.12] mt-3 sm:mt-4 mb-4 sm:mb-6">
                         {{ $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor') }}
                     </h1>
-                    <p class="text-lg text-charcoal-600 font-medium leading-relaxed mb-8 border-l-2 border-primary-600 pl-4">
+                    <p class="text-base sm:text-lg text-charcoal-600 font-medium leading-relaxed mb-6 sm:mb-8 border-l-2 border-primary-600 pl-4">
                         Membangun kompetensi teknis, karakter disiplin, dan kesiapan untuk memimpin di era industri otomotif modern.
                     </p>
                     <div class="flex items-center gap-4 text-xs font-bold text-charcoal-500 uppercase tracking-wider">
@@ -164,7 +164,7 @@
                             ? $headOfDepartment->bio
                             : $settings->get('head_quote', 'Fokus kami adalah membentuk mekanik yang tidak hanya mengerti mesin, tetapi memiliki etos kerja dan kedisiplinan setara dengan tuntutan industri profesional.');
                     @endphp
-                    <p class="text-xl lg:text-2xl font-bold text-charcoal-900 leading-relaxed italic mb-8">
+                    <p class="text-base sm:text-xl lg:text-2xl font-bold text-charcoal-900 leading-relaxed italic mb-6 sm:mb-8">
                         "{!! \App\Support\HtmlSanitizer::clean($aboutHeadQuote) !!}"
                     </p>
                     
@@ -255,7 +255,7 @@
                     <h2 class="text-3xl font-extrabold text-white tracking-tight mt-2">Dukungan Infrastruktur Industri</h2>
                 </div>
                 <div class="mt-6 md:mt-0">
-                    <x-frontend.ui.button href="{{ route('academic.facilities') }}" variant="outline" class="border-charcoal-700 text-white hover:bg-charcoal-800">
+                    <x-frontend.ui.button href="{{ route('academic.facilities') }}" variant="outline-dark">
                         Galeri Fasilitas
                     </x-frontend.ui.button>
                 </div>
