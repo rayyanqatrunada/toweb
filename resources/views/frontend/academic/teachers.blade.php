@@ -36,15 +36,15 @@
     @endphp
 
     <!-- 1. HERO SECTION (CLEAN & AIRY) -->
-    <section class="relative bg-gradient-to-b from-slate-100/90 via-white to-slate-50 overflow-hidden border-b border-slate-200/80 pt-12 pb-16 lg:pt-20 lg:pb-24">
+    <section class="relative bg-gradient-to-b from-slate-100/90 via-white to-slate-50 overflow-hidden border-b border-slate-200/80 pt-8 pb-10 sm:pt-12 sm:pb-16 lg:pt-20 lg:pb-24">
         <!-- Ambient radial glow -->
         <div class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[100px] pointer-events-none -translate-y-1/2"></div>
         <div class="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[100px] pointer-events-none translate-y-1/2"></div>
         <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none"></div>
 
-        <x-frontend.layout.container class="relative z-10">
+        <x-frontend.layout.container class="relative z-10 px-4 sm:px-6 md:px-8">
             <!-- Breadcrumb -->
-            <nav class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 mb-6 reveal-on-scroll reveal-up">
+            <nav class="flex items-center gap-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4 sm:mb-6 reveal-on-scroll reveal-up">
                 <a href="{{ route('home') }}" class="hover:text-red-600 transition-colors">Beranda</a>
                 <span>/</span>
                 <span class="text-slate-400">Akademik</span>
@@ -53,35 +53,35 @@
             </nav>
 
             <div class="max-w-4xl">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-6 reveal-on-scroll reveal-up">
+                <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-4 sm:mb-6 reveal-on-scroll reveal-up">
                     <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-                    <span class="text-[11px] font-black uppercase tracking-widest text-slate-700">TATA KELOLA & DEWAN INSTRUKTUR</span>
+                    <span class="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-slate-700">TATA KELOLA & DEWAN INSTRUKTUR</span>
                 </div>
 
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.08] uppercase text-slate-900 mb-6 reveal-on-scroll reveal-up delay-100">
+                <h1 class="text-2xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.1] sm:leading-[1.08] uppercase text-slate-900 mb-4 sm:mb-6 reveal-on-scroll reveal-up delay-100">
                     Struktur Organisasi & <br class="hidden sm:inline">
                     <span class="bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 bg-clip-text text-transparent">Dewan Guru TBSM</span>
                 </h1>
 
-                <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl reveal-on-scroll reveal-up delay-200">
+                <p class="text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl reveal-on-scroll reveal-up delay-200">
                     Hierarki kepemimpinan kejuruan, tata kelola fasilitas laboratorium bengkel berstandar AHASS, serta tim instruktur bersertifikasi Astra Honda Motor dalam mendidik calon teknisi andal di SMK Negeri 1 Bangsri.
                 </p>
 
                 <!-- Action Jumps -->
-                <div class="flex flex-wrap items-center gap-4 mt-8 reveal-on-scroll reveal-up delay-300">
-                    <a href="#bagan-organisasi" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white font-heading font-bold text-xs uppercase tracking-wider hover:bg-red-600 shadow-md hover:shadow-xl transition-all duration-300">
+                <div class="flex flex-wrap items-center gap-2.5 sm:gap-4 mt-6 sm:mt-8 reveal-on-scroll reveal-up delay-300">
+                    <a href="#bagan-organisasi" class="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-slate-900 text-white font-heading font-bold text-xs uppercase tracking-wider hover:bg-red-600 shadow-md hover:shadow-xl transition-all duration-300 active:scale-95">
                         <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                        <span>Lihat Bagan Struktur</span>
+                        <span>Lihat Bagan</span>
                     </a>
-                    <a href="#direktori-guru" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-slate-800 border border-slate-300 font-heading font-bold text-xs uppercase tracking-wider hover:border-slate-400 hover:bg-slate-50 shadow-sm transition-all duration-300">
+                    <a href="#direktori-guru" class="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-white text-slate-800 border border-slate-300 font-heading font-bold text-xs uppercase tracking-wider hover:border-slate-400 hover:bg-slate-50 shadow-sm transition-all duration-300 active:scale-95">
                         <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                        <span>Direktori Profil Lengkap</span>
+                        <span>Direktori Profil</span>
                     </a>
                 </div>
             </div>
 
             <!-- Highlights Bar -->
-            <div class="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 reveal-on-scroll reveal-up delay-300">
+            <div class="mt-8 sm:mt-14 pt-6 sm:pt-8 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-6 reveal-on-scroll reveal-up delay-300">
                 <div class="flex items-center gap-3 sm:gap-3.5">
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 font-black text-lg sm:text-xl font-heading shrink-0">
                         {{ count($teachers) }}
@@ -635,83 +635,83 @@
     </section>
 
     <!-- 3. DIREKTORI PROFIL LENGKAP DEWAN GURU (GROUPED DIRECTORY GRID) -->
-    <section id="direktori-guru" class="py-24 lg:py-32 bg-white">
-        <x-frontend.layout.container>
+    <section id="direktori-guru" class="py-12 sm:py-20 lg:py-32 bg-white">
+        <x-frontend.layout.container class="px-4 sm:px-6 md:px-8">
             <!-- Section Header -->
-            <div class="text-center max-w-3xl mx-auto mb-20 reveal-on-scroll reveal-up">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <div class="w-8 h-[2px] bg-red-600"></div>
-                    <span class="font-sans font-bold text-xs uppercase tracking-[2px] text-slate-500">Profil & Kompetensi Pendidik</span>
-                    <div class="w-8 h-[2px] bg-red-600"></div>
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal-on-scroll reveal-up">
+                <div class="flex items-center justify-center gap-2.5 sm:gap-3 mb-2 sm:mb-4">
+                    <div class="w-6 sm:w-8 h-[2px] bg-red-600"></div>
+                    <span class="font-sans font-bold text-[11px] sm:text-xs uppercase tracking-[2px] text-slate-500">Profil & Kompetensi Pendidik</span>
+                    <div class="w-6 sm:w-8 h-[2px] bg-red-600"></div>
                 </div>
-                <h2 class="font-heading font-black text-3xl sm:text-5xl text-slate-900 tracking-tight leading-tight uppercase mb-5">
+                <h2 class="font-heading font-black text-2xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight leading-tight uppercase mb-3 sm:mb-5">
                     Direktori Tenaga Pendidik & Keahlian
                 </h2>
-                <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                <p class="text-slate-600 text-xs sm:text-base leading-relaxed">
                     Setiap tenaga pendidik dan instruktur memiliki spesialisasi keahlian otomotif bersertifikat untuk membimbing siswa dari teori dasar hingga servis motor terkini.
                 </p>
             </div>
 
             <!-- KLASTER 1: PIMPINAN & TATA KELOLA KEJURUAN -->
-            <div class="mb-20">
-                <div class="flex items-center gap-4 mb-8 pb-4 border-b border-slate-200">
-                    <div class="w-3 h-8 bg-red-600 rounded-sm"></div>
+            <div class="mb-10 sm:mb-16">
+                <div class="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-slate-200">
+                    <div class="w-2.5 sm:w-3 h-6 sm:h-8 bg-red-600 rounded-sm"></div>
                     <div>
-                        <h3 class="font-heading font-black text-2xl text-slate-900 uppercase tracking-tight">Pimpinan & Tata Kelola Kejuruan</h3>
-                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Perumusan Kurikulum, Administrasi, & Pengelolaan Keuangan Program</p>
+                        <h3 class="font-heading font-black text-lg sm:text-2xl text-slate-900 uppercase tracking-tight">Pimpinan & Tata Kelola Kejuruan</h3>
+                        <p class="text-[11px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider">Perumusan Kurikulum, Administrasi, & Pengelolaan Keuangan</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-8">
                     @foreach($clusterLeadership as $leader)
-                        <div id="guru-{{ $leader->id }}" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-red-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group">
+                        <div id="guru-{{ $leader->id }}" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-red-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-row sm:flex-col group">
                             <!-- Photo Container -->
-                            <div class="h-64 sm:h-72 bg-slate-200 overflow-hidden relative">
+                            <div class="w-28 sm:w-full h-auto sm:h-72 min-h-[140px] bg-slate-200 overflow-hidden relative shrink-0">
                                 @if($leader->hasValidPhoto() && $leader->photo_url)
                                     <img src="{{ $leader->photo_url }}" alt="{{ $leader->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
                                 @else
-                                    <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white font-heading font-black text-5xl">
+                                    <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white font-heading font-black text-3xl sm:text-5xl">
                                         {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $leader->name)), 0, 2)) }}
                                     </div>
                                 @endif
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                                <div class="absolute bottom-4 left-4 right-4">
-                                    <span class="inline-block px-3 py-1 rounded-md bg-red-600 text-white text-[10px] font-black uppercase tracking-widest shadow-sm">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4">
+                                    <span class="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-md bg-red-600 text-white text-[9px] sm:text-[10px] font-black uppercase tracking-wider sm:tracking-widest shadow-sm truncate max-w-full">
                                         {{ $leader->position ?? 'Pengelola Kejuruan' }}
                                     </span>
                                 </div>
                             </div>
 
                             <!-- Detail Content -->
-                            <div class="p-6 flex flex-col flex-grow justify-between">
+                            <div class="p-3.5 sm:p-6 flex flex-col flex-grow justify-between min-w-0">
                                 <div>
-                                    <h4 class="font-heading font-black text-xl text-slate-900 group-hover:text-red-600 transition-colors leading-snug mb-1">
+                                    <h4 class="font-heading font-black text-sm sm:text-xl text-slate-900 group-hover:text-red-600 transition-colors leading-snug mb-1 line-clamp-2 sm:line-clamp-none">
                                         {{ $leader->name }}
                                     </h4>
                                     @if($leader->nip)
-                                        <p class="text-xs font-mono text-slate-500 mb-4 pb-3 border-b border-slate-200">NIP: {{ $leader->nip }}</p>
+                                        <p class="text-[10px] sm:text-xs font-mono text-slate-500 mb-2 sm:mb-4 pb-1.5 sm:pb-3 border-b border-slate-200">NIP: {{ $leader->nip }}</p>
                                     @endif
 
                                     @if($leader->specialization)
-                                        <div class="mb-4">
-                                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Bidang Spesialisasi:</span>
-                                            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
-                                                <svg class="w-3.5 h-3.5 text-red-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
-                                                <span>{{ $leader->specialization }}</span>
+                                        <div class="mb-2 sm:mb-4">
+                                            <span class="hidden sm:block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Bidang Spesialisasi:</span>
+                                            <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-slate-800 bg-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-slate-200 shadow-2xs truncate max-w-full">
+                                                <svg class="w-3.5 h-3.5 text-red-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106-2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
+                                                <span class="truncate">{{ $leader->specialization }}</span>
                                             </div>
                                         </div>
                                     @endif
 
-                                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
+                                    <p class="text-[11px] sm:text-sm text-slate-600 leading-relaxed italic line-clamp-2 sm:line-clamp-none">
                                         "{{ $leader->bio ?? 'Mendedikasikan diri untuk memajukan pendidikan vokasi otomotif berstandar industri.' }}"
                                     </p>
                                 </div>
 
                                 @if($leader->phone)
-                                    <div class="mt-6 pt-4 border-t border-slate-200 flex justify-end">
-                                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $leader->phone) }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors">
-                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086.159.058 1.011.477 1.184.564.173.087.289.13.332.202.043.073.043.419-.101.824z"/></svg>
-                                            <span>Kontak Instruktur</span>
+                                    <div class="mt-2.5 sm:mt-6 pt-2 sm:pt-4 border-t border-slate-200 flex justify-end">
+                                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $leader->phone) }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs font-bold text-emerald-600 hover:text-emerald-700 transition-colors active:scale-95">
+                                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086.159.058 1.011.477 1.184.564.173.087.289.13.332.202.043.073.043.419-.101.824z"/></svg>
+                                            <span>Kontak WA</span>
                                         </a>
                                     </div>
                                 @endif
@@ -722,56 +722,56 @@
             </div>
 
             <!-- KLASTER 2: LABORATORIUM, BENGKEL & SARANA PRAKTIK -->
-            <div class="mb-20">
-                <div class="flex items-center gap-4 mb-8 pb-4 border-b border-slate-200">
-                    <div class="w-3 h-8 bg-amber-500 rounded-sm"></div>
+            <div class="mb-10 sm:mb-16">
+                <div class="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-slate-200">
+                    <div class="w-2.5 sm:w-3 h-6 sm:h-8 bg-amber-500 rounded-sm"></div>
                     <div>
-                        <h3 class="font-heading font-black text-2xl text-slate-900 uppercase tracking-tight">Laboratorium, Bengkel & Sarana Presisi</h3>
-                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tata Kelola Standar Bengkel Resmi AHASS, Kalibrasi SST & Bike Lift</p>
+                        <h3 class="font-heading font-black text-lg sm:text-2xl text-slate-900 uppercase tracking-tight">Laboratorium, Bengkel & Sarana Presisi</h3>
+                        <p class="text-[11px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider">Tata Kelola Standar Bengkel Resmi AHASS, Kalibrasi SST & Bike Lift</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-8 max-w-4xl">
                     @foreach($clusterLab as $labStaff)
-                        <div id="guru-{{ $labStaff->id }}" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-amber-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col sm:flex-row group">
+                        <div id="guru-{{ $labStaff->id }}" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-amber-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-row sm:flex-row group">
                             <!-- Photo -->
-                            <div class="w-full sm:w-2/5 h-64 sm:h-auto bg-slate-200 overflow-hidden relative shrink-0">
+                            <div class="w-28 sm:w-2/5 h-auto sm:h-auto min-h-[140px] bg-slate-200 overflow-hidden relative shrink-0">
                                 @if($labStaff->hasValidPhoto() && $labStaff->photo_url)
                                     <img src="{{ $labStaff->photo_url }}" alt="{{ $labStaff->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
                                 @else
-                                    <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white font-heading font-black text-4xl">
+                                    <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white font-heading font-black text-3xl sm:text-4xl">
                                         {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $labStaff->name)), 0, 2)) }}
                                     </div>
                                 @endif
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent sm:hidden"></div>
-                                <div class="absolute bottom-3 left-3 sm:hidden">
-                                    <span class="inline-block px-2.5 py-0.5 rounded bg-amber-500 text-white text-[10px] font-black uppercase tracking-wider">
+                                <div class="absolute bottom-2 left-2 sm:hidden">
+                                    <span class="inline-block px-2 py-0.5 rounded bg-amber-500 text-white text-[9px] font-black uppercase tracking-wider">
                                         {{ $labStaff->position }}
                                     </span>
                                 </div>
                             </div>
 
                             <!-- Detail -->
-                            <div class="p-6 flex flex-col justify-between flex-grow">
+                            <div class="p-3.5 sm:p-6 flex flex-col justify-between flex-grow min-w-0">
                                 <div>
                                     <span class="hidden sm:inline-block px-2.5 py-1 rounded bg-amber-500 text-white text-[10px] font-black uppercase tracking-wider mb-2">
                                         {{ $labStaff->position }}
                                     </span>
-                                    <h4 class="font-heading font-black text-lg sm:text-xl text-slate-900 group-hover:text-amber-600 transition-colors leading-snug mb-1">
+                                    <h4 class="font-heading font-black text-sm sm:text-xl text-slate-900 group-hover:text-amber-600 transition-colors leading-snug mb-1 line-clamp-2 sm:line-clamp-none">
                                         {{ $labStaff->name }}
                                     </h4>
                                     @if($labStaff->nip)
-                                        <p class="text-xs font-mono text-slate-500 mb-3">NIP: {{ $labStaff->nip }}</p>
+                                        <p class="text-[10px] sm:text-xs font-mono text-slate-500 mb-2 sm:mb-3">NIP: {{ $labStaff->nip }}</p>
                                     @endif
 
                                     @if($labStaff->specialization)
-                                        <div class="mb-3">
-                                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Keahlian:</span>
-                                            <p class="text-xs font-bold text-slate-800">{{ $labStaff->specialization }}</p>
+                                        <div class="mb-2 sm:mb-3">
+                                            <span class="hidden sm:block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Keahlian:</span>
+                                            <p class="text-[11px] sm:text-xs font-bold text-slate-800 truncate">{{ $labStaff->specialization }}</p>
                                         </div>
                                     @endif
 
-                                    <p class="text-xs text-slate-600 leading-relaxed italic">
+                                    <p class="text-[11px] sm:text-xs text-slate-600 leading-relaxed italic line-clamp-2 sm:line-clamp-none">
                                         "{{ $labStaff->bio ?? 'Menjaga kelayakan dan kepresisian peralatan praktik bengkel otomotif.' }}"
                                     </p>
                                 </div>
@@ -782,56 +782,56 @@
             </div>
 
             <!-- KLASTER 3: HUBUNGAN INDUSTRI, PKL & PRESTASI -->
-            <div class="mb-20">
-                <div class="flex items-center gap-4 mb-8 pb-4 border-b border-slate-200">
-                    <div class="w-3 h-8 bg-slate-900 rounded-sm"></div>
+            <div class="mb-10 sm:mb-16">
+                <div class="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-slate-200">
+                    <div class="w-2.5 sm:w-3 h-6 sm:h-8 bg-slate-900 rounded-sm"></div>
                     <div>
-                        <h3 class="font-heading font-black text-2xl text-slate-900 uppercase tracking-tight">Kemitraan Industri, PKL & Prestasi Kejuruan</h3>
-                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Kerjasama DUDI, Penempatan Magang di AHASS, & Pembinaan Lomba LKS</p>
+                        <h3 class="font-heading font-black text-lg sm:text-2xl text-slate-900 uppercase tracking-tight">Kemitraan Industri, PKL & Prestasi Kejuruan</h3>
+                        <p class="text-[11px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider">Kerjasama DUDI, Penempatan Magang di AHASS, & Pembinaan Lomba LKS</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-8">
                     @foreach($clusterIndustry as $industryStaff)
-                        <div id="guru-{{ $industryStaff->id }}" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-red-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group">
+                        <div id="guru-{{ $industryStaff->id }}" class="scroll-mt-28 bg-slate-50/70 rounded-2xl border border-slate-200 hover:border-red-300 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-row sm:flex-col group">
                             <!-- Photo Container -->
-                            <div class="h-64 sm:h-72 bg-slate-200 overflow-hidden relative">
+                            <div class="w-28 sm:w-full h-auto sm:h-72 min-h-[140px] bg-slate-200 overflow-hidden relative shrink-0">
                                 @if($industryStaff->hasValidPhoto() && $industryStaff->photo_url)
                                     <img src="{{ $industryStaff->photo_url }}" alt="{{ $industryStaff->name }}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" loading="lazy">
                                 @else
-                                    <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white font-heading font-black text-5xl">
+                                    <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 to-slate-950 text-white font-heading font-black text-3xl sm:text-5xl">
                                         {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $industryStaff->name)), 0, 2)) }}
                                     </div>
                                 @endif
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                                <div class="absolute bottom-4 left-4 right-4">
-                                    <span class="inline-block px-3 py-1 rounded-md bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest shadow-sm">
+                                <div class="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4">
+                                    <span class="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-md bg-slate-900 text-white text-[9px] sm:text-[10px] font-black uppercase tracking-wider sm:tracking-widest shadow-sm truncate max-w-full">
                                         {{ $industryStaff->position ?? 'Koordinator Bidang' }}
                                     </span>
                                 </div>
                             </div>
 
                             <!-- Detail Content -->
-                            <div class="p-6 flex flex-col flex-grow justify-between">
+                            <div class="p-3.5 sm:p-6 flex flex-col flex-grow justify-between min-w-0">
                                 <div>
-                                    <h4 class="font-heading font-black text-xl text-slate-900 group-hover:text-red-600 transition-colors leading-snug mb-1.5">
+                                    <h4 class="font-heading font-black text-sm sm:text-xl text-slate-900 group-hover:text-red-600 transition-colors leading-snug mb-1 line-clamp-2 sm:line-clamp-none">
                                         {{ $industryStaff->name }}
                                     </h4>
                                     @if($industryStaff->nip)
-                                        <p class="text-xs font-mono text-slate-500 mb-4 pb-3 border-b border-slate-200">NIP: {{ $industryStaff->nip }}</p>
+                                        <p class="text-[10px] sm:text-xs font-mono text-slate-500 mb-2 sm:mb-4 pb-1.5 sm:pb-3 border-b border-slate-200">NIP: {{ $industryStaff->nip }}</p>
                                     @endif
 
                                     @if($industryStaff->specialization)
-                                        <div class="mb-4">
-                                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Bidang Spesialisasi:</span>
-                                            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
+                                        <div class="mb-2 sm:mb-4">
+                                            <span class="hidden sm:block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Bidang Spesialisasi:</span>
+                                            <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-slate-800 bg-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-slate-200 shadow-2xs truncate max-w-full">
                                                 <svg class="w-3.5 h-3.5 text-red-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
-                                                <span>{{ $industryStaff->specialization }}</span>
+                                                <span class="truncate">{{ $industryStaff->specialization }}</span>
                                             </div>
                                         </div>
                                     @endif
 
-                                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
+                                    <p class="text-[11px] sm:text-sm text-slate-600 leading-relaxed italic line-clamp-2 sm:line-clamp-none">
                                         "{{ $industryStaff->bio ?? 'Membimbing dan memfasilitasi siswa terhubung langsung dengan realitas dunia kerja otomotif.' }}"
                                     </p>
                                 </div>
@@ -844,30 +844,30 @@
             <!-- GURU & INSTRUKTUR TAMBAHAN (JIKA ADA DATA TAMBAHAN DI KEMUDIAN HARI) -->
             @if($otherTeachers->count() > 0)
                 <div>
-                    <div class="flex items-center gap-4 mb-8 pb-4 border-b border-slate-200">
-                        <div class="w-3 h-8 bg-slate-400 rounded-sm"></div>
+                    <div class="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-8 pb-3 sm:pb-4 border-b border-slate-200">
+                        <div class="w-2.5 sm:w-3 h-6 sm:h-8 bg-slate-400 rounded-sm"></div>
                         <div>
-                            <h3 class="font-heading font-black text-2xl text-slate-900 uppercase tracking-tight">Tenaga Pengajar Lainnya</h3>
-                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tim Pengampu Mata Pelajaran Produktif & Muatan Kejuruan</p>
+                            <h3 class="font-heading font-black text-lg sm:text-2xl text-slate-900 uppercase tracking-tight">Tenaga Pengajar Lainnya</h3>
+                            <p class="text-[11px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider">Tim Pengampu Mata Pelajaran Produktif & Muatan Kejuruan</p>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                         @foreach($otherTeachers as $ot)
-                            <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center">
-                                <div class="w-24 h-24 rounded-full overflow-hidden mb-4 bg-slate-100 border-2 border-slate-200">
+                            <div class="bg-white rounded-2xl border border-slate-200 p-3.5 sm:p-5 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center">
+                                <div class="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden mb-2 sm:mb-4 bg-slate-100 border-2 border-slate-200">
                                     @if($ot->hasValidPhoto() && $ot->photo_url)
                                         <img src="{{ $ot->photo_url }}" alt="{{ $ot->name }}" class="w-full h-full object-cover object-top aspect-square">
                                     @else
-                                        <div class="w-full h-full flex items-center justify-center bg-slate-800 text-white font-bold text-xl">
+                                        <div class="w-full h-full flex items-center justify-center bg-slate-800 text-white font-bold text-sm sm:text-xl">
                                             {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $ot->name)), 0, 2)) }}
                                         </div>
                                     @endif
                                 </div>
-                                <h4 class="font-heading font-bold text-base text-slate-900 mb-1">{{ $ot->name }}</h4>
-                                <p class="text-xs text-red-600 font-semibold mb-2">{{ $ot->position ?? 'Guru Kejuruan' }}</p>
+                                <h4 class="font-heading font-bold text-xs sm:text-base text-slate-900 mb-0.5 sm:mb-1 line-clamp-2">{{ $ot->name }}</h4>
+                                <p class="text-[11px] sm:text-xs text-red-600 font-semibold mb-1 sm:mb-2">{{ $ot->position ?? 'Guru Kejuruan' }}</p>
                                 @if($ot->nip)
-                                    <span class="text-[10px] font-mono text-slate-400">NIP: {{ $ot->nip }}</span>
+                                    <span class="text-[9px] sm:text-[10px] font-mono text-slate-400">NIP: {{ $ot->nip }}</span>
                                 @endif
                             </div>
                         @endforeach

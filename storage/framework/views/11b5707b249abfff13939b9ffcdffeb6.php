@@ -65,7 +65,7 @@ unset($__defined_vars, $__key, $__value); ?>
     }
 ?>
 
-<section id="hero-slider" class="relative w-full h-[600px] sm:h-[680px] lg:h-[780px] bg-charcoal-900 overflow-hidden" data-hero-slider aria-label="Hero Image Slider">
+<section id="hero-slider" class="relative w-full h-[470px] sm:h-[560px] lg:h-[740px] bg-charcoal-900 overflow-hidden" data-hero-slider aria-label="Hero Image Slider">
     
     <!-- Slides Container -->
     <div class="relative w-full h-full">
@@ -81,7 +81,7 @@ unset($__defined_vars, $__key, $__value); ?>
                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                 
                 <!-- Dark Gradient Overlay for Contrast -->
-                <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/95 via-charcoal-900/75 to-charcoal-900/40 sm:to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950/95 via-charcoal-900/80 to-charcoal-900/45 sm:to-transparent"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-transparent to-black/30"></div>
                 
                 <!-- Decorative Elements per slide -->
@@ -89,45 +89,45 @@ unset($__defined_vars, $__key, $__value); ?>
 
                 <!-- Text Content inside slide to fade together -->
                 <div class="absolute inset-0 z-30 flex items-center">
-                    <div class="w-full max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16 flex flex-col justify-center pt-10 sm:pt-0">
+                    <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 flex flex-col justify-center pt-8 sm:pt-0">
                         <div class="max-w-[720px] <?php echo e($index === 0 ? 'reveal-on-scroll reveal-up' : ''); ?>">
                             <!-- Eyebrow -->
-                            <div class="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
-                                <div class="w-6 sm:w-8 h-[2px] bg-figma-red"></div>
-                                <span class="font-sans font-bold text-[12px] sm:text-[14px] leading-none tracking-[1.5px] sm:tracking-[2px] text-figma-red uppercase">
+                            <div class="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-4">
+                                <div class="w-5 sm:w-8 h-[2px] bg-figma-red"></div>
+                                <span class="font-sans font-bold text-[11px] sm:text-[14px] leading-none tracking-[1.5px] sm:tracking-[2px] text-figma-red uppercase">
                                     <?php echo e($slide['eyebrow']); ?>
 
                                 </span>
                             </div>
                             
-                            <!-- H1 (Only for first slide for SEO, others use span/div or H2) -->
+                            <!-- H1 / H2 -->
                             <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($index === 0): ?>
-                                <h1 class="font-heading font-extrabold text-[28px] sm:text-[40px] md:text-[56px] lg:text-[64px] leading-[1.12] sm:leading-[1.1] tracking-tight sm:tracking-[-1.5px] text-white mb-3 sm:mb-6 drop-shadow-sm">
+                                <h1 class="font-heading font-extrabold text-[22px] sm:text-[36px] md:text-[50px] lg:text-[60px] leading-[1.18] sm:leading-[1.1] tracking-tight sm:tracking-[-1.5px] text-white mb-2.5 sm:mb-5 drop-shadow-sm">
                                     <?php echo e($slide['title']); ?>
 
                                 </h1>
                             <?php else: ?>
-                                <h2 class="font-heading font-extrabold text-[28px] sm:text-[40px] md:text-[56px] lg:text-[64px] leading-[1.12] sm:leading-[1.1] tracking-tight sm:tracking-[-1.5px] text-white mb-3 sm:mb-6 drop-shadow-sm">
+                                <h2 class="font-heading font-extrabold text-[22px] sm:text-[36px] md:text-[50px] lg:text-[60px] leading-[1.18] sm:leading-[1.1] tracking-tight sm:tracking-[-1.5px] text-white mb-2.5 sm:mb-5 drop-shadow-sm">
                                     <?php echo e($slide['title']); ?>
 
                                 </h2>
                             <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                             
                             <!-- Description -->
-                            <p class="font-sans font-normal text-[14px] sm:text-[17px] md:text-[20px] leading-[1.55] sm:leading-[1.6] text-gray-300 mb-6 sm:mb-10 max-w-[580px] line-clamp-3 sm:line-clamp-none">
+                            <p class="font-sans font-normal text-[13px] sm:text-[16px] md:text-[18px] leading-[1.5] text-gray-300 mb-4 sm:mb-8 max-w-[580px] line-clamp-2 sm:line-clamp-none">
                                 <?php echo e($slide['desc']); ?>
 
                             </p>
                             
-                            <!-- CTAs (Static links, so they are the same on every slide) -->
-                            <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-                                <a href="<?php echo e(route('about')); ?>" class="flex justify-center items-center px-6 sm:px-8 py-3.5 sm:py-4 bg-figma-red text-white font-sans font-bold text-[14px] sm:text-[16px] tracking-[-0.5px] uppercase rounded-[2px] w-full sm:w-auto h-[48px] sm:h-[56px] hover:bg-figma-dark-red transition-all duration-300 focus-ring shadow-lg shadow-figma-red/20 group">
+                            <!-- CTAs (Ergonomic App-Style Buttons) -->
+                            <div class="flex flex-row items-center gap-2.5 sm:gap-4">
+                                <a href="<?php echo e(route('about')); ?>" class="flex-1 sm:flex-initial flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 bg-figma-red text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-xl sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-figma-dark-red transition-all duration-300 focus-ring shadow-md shadow-figma-red/20 active:scale-95 group">
                                     <span>Jelajahi TBSM</span>
-                                    <svg class="w-4 sm:w-5 h-4 sm:h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                    <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5 ml-1.5 sm:ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                                 </a>
                                 
-                                <a href="<?php echo e(route('academic.programs')); ?>" class="box-border flex justify-center items-center px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-white/20 bg-white/5 backdrop-blur-sm text-white font-sans font-bold text-[14px] sm:text-[16px] tracking-[-0.5px] uppercase rounded-[2px] w-full sm:w-auto h-[48px] sm:h-[56px] hover:bg-white/10 hover:border-white/40 transition-all duration-300 focus-ring">
-                                    <span>Kenali Program Kami</span>
+                                <a href="<?php echo e(route('academic.programs')); ?>" class="flex-1 sm:flex-initial box-border flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 border border-white/30 sm:border-2 sm:border-white/20 bg-white/10 sm:bg-white/5 backdrop-blur-sm text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-xl sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-white/15 hover:border-white/40 transition-all duration-300 focus-ring active:scale-95">
+                                    <span>Program</span>
                                 </a>
                             </div>
                         </div>
@@ -145,30 +145,30 @@ unset($__defined_vars, $__key, $__value); ?>
     <!-- Bottom-Right Bracket -->
     <div class="hidden sm:block absolute bottom-32 right-6 md:right-12 z-20 pointer-events-none w-16 h-16 border-b-2 border-r-2 border-figma-red opacity-50"></div>
 
-    <!-- Slider Controls -->
-    <div class="absolute bottom-0 left-0 w-full z-40 bg-gradient-to-t from-charcoal-950 via-charcoal-950/80 to-transparent pt-8 sm:pt-12 pb-5 sm:pb-8">
-        <div class="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16 flex items-center justify-between">
+    <!-- Slider Controls (Tighter and clean on mobile) -->
+    <div class="absolute bottom-0 left-0 w-full z-40 bg-gradient-to-t from-charcoal-950 via-charcoal-950/80 to-transparent pt-4 sm:pt-12 pb-3 sm:pb-8">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 flex items-center justify-between">
             
             <!-- Dots Indicator -->
-            <div class="flex items-center gap-2.5 sm:gap-3">
+            <div class="flex items-center gap-1.5 sm:gap-3">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $slides; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $slide): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-                    <button type="button" aria-label="Go to slide <?php echo e($index + 1); ?>" class="hero-dot h-2 rounded-full transition-all duration-300 focus-ring <?php echo e($index === 0 ? 'bg-figma-red w-7 sm:w-8' : 'bg-white/50 w-2 hover:bg-white'); ?>"></button>
+                    <button type="button" aria-label="Go to slide <?php echo e($index + 1); ?>" class="hero-dot h-1.5 sm:h-2 rounded-full transition-all duration-300 focus-ring <?php echo e($index === 0 ? 'bg-figma-red w-6 sm:w-8' : 'bg-white/50 w-2 hover:bg-white'); ?>"></button>
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
             </div>
 
             <!-- Counter & Arrows -->
-            <div class="flex items-center gap-4 sm:gap-6">
+            <div class="flex items-center gap-3 sm:gap-6">
                 <div class="hidden sm:flex items-baseline gap-1 font-heading text-white">
                     <span class="hero-counter-current text-[18px] sm:text-[20px] font-bold">01</span>
                     <span class="text-[13px] sm:text-[14px] text-gray-500 font-normal">/ 0<?php echo e(count($slides)); ?></span>
                 </div>
                 
-                <div class="flex items-center gap-2">
-                    <button type="button" class="hero-prev w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 bg-charcoal-900/50 backdrop-blur-sm text-white hover:bg-figma-red hover:border-figma-red transition-all duration-300 focus-ring active:scale-95" aria-label="Previous Slide">
-                        <svg class="w-4 sm:w-5 h-4 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                    <button type="button" class="hero-prev w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 bg-charcoal-900/50 backdrop-blur-sm text-white hover:bg-figma-red hover:border-figma-red transition-all duration-300 focus-ring active:scale-95" aria-label="Previous Slide">
+                        <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                     </button>
-                    <button type="button" class="hero-next w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 bg-charcoal-900/50 backdrop-blur-sm text-white hover:bg-figma-red hover:border-figma-red transition-all duration-300 focus-ring active:scale-95" aria-label="Next Slide">
-                        <svg class="w-4 sm:w-5 h-4 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <button type="button" class="hero-next w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 bg-charcoal-900/50 backdrop-blur-sm text-white hover:bg-figma-red hover:border-figma-red transition-all duration-300 focus-ring active:scale-95" aria-label="Next Slide">
+                        <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </button>
                 </div>
             </div>

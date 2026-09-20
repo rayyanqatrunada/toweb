@@ -194,11 +194,20 @@
                     </div>
                 </div>
 
+                <!-- Mobile Swipe Hint -->
+                <div class="md:hidden flex items-center justify-between mb-3 px-1">
+                    <span class="text-[11px] font-bold text-charcoal-400 uppercase tracking-wider">4 Pilar Keahlian</span>
+                    <span class="text-[11px] font-semibold text-primary-600 flex items-center gap-1">
+                        Geser pilar
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </span>
+                </div>
+
                 <!-- 4 PILLARS DETAILED CARDS (Mesin, Sasis, Kelistrikan, Pengelolaan Bengkel) -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 reveal-on-scroll reveal-up delay-100">
+                <div class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-3 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none reveal-on-scroll reveal-up delay-100">
                     
                     <!-- 1. MESIN (ENGINE) -->
-                    <div class="bg-white rounded-3xl p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group">
+                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:max-w-none md:shrink bg-white rounded-3xl p-5 sm:p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group shadow-sm">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 font-black text-xs flex items-center justify-center border border-primary-100 group-hover:bg-primary-600 group-hover:text-white transition-colors">
@@ -234,7 +243,7 @@
                     </div>
 
                     <!-- 2. SASIS (CHASSIS) -->
-                    <div class="bg-white rounded-3xl p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group">
+                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:max-w-none md:shrink bg-white rounded-3xl p-5 sm:p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group shadow-sm">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 font-black text-xs flex items-center justify-center border border-primary-100 group-hover:bg-primary-600 group-hover:text-white transition-colors">
@@ -270,7 +279,7 @@
                     </div>
 
                     <!-- 3. KELISTRIKAN (ELECTRICAL) -->
-                    <div class="bg-white rounded-3xl p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group">
+                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:max-w-none md:shrink bg-white rounded-3xl p-5 sm:p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group shadow-sm">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 font-black text-xs flex items-center justify-center border border-primary-100 group-hover:bg-primary-600 group-hover:text-white transition-colors">
@@ -306,7 +315,7 @@
                     </div>
 
                     <!-- 4. PENGELOLAAN BENGKEL (MANAGEMENT) -->
-                    <div class="bg-white rounded-3xl p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group">
+                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:max-w-none md:shrink bg-white rounded-3xl p-5 sm:p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group shadow-sm">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 font-black text-xs flex items-center justify-center border border-primary-100 group-hover:bg-primary-600 group-hover:text-white transition-colors">

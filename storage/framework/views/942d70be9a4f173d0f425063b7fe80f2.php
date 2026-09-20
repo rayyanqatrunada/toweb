@@ -37,6 +37,7 @@
     x-init="checkScroll()"
     @scroll.window.passive="checkScroll()"
     @resize.window.passive="checkScroll()"
+    @toggle-mobile-menu.window="mobileMenuOpen = !mobileMenuOpen"
     class="fixed top-0 w-full z-[100] transition-all duration-300 border-b"
     :class="{
         'bg-[#FBF8FC]/95 backdrop-blur-md border-[#E4E1E5] shadow-sm': scrolledPastHero || (!isHome && scrolled),
@@ -46,22 +47,22 @@
         'bg-white/95 backdrop-blur-md border-[#E4E1E5] shadow-md': mobileMenuOpen
     }">
     
-    <div class="max-w-[1440px] mx-auto px-6 md:px-16 relative">
-        <div class="flex justify-between items-center transition-all duration-300 h-[64px]">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 relative">
+        <div class="flex justify-between items-center transition-all duration-300 h-[56px] lg:h-[64px]">
             
             <!-- Logo Section -->
-            <a href="<?php echo e(route('home')); ?>" class="shrink-0 flex items-center gap-4 group focus-ring outline-hidden">
+            <a href="<?php echo e(route('home')); ?>" class="shrink-0 flex items-center gap-3 sm:gap-4 group focus-ring outline-hidden">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($logo = app(\App\Services\SettingsService::class)->get('site_logo')): ?>
-                    <div class="flex items-center gap-3">
-                        <img src="<?php echo e(Storage::url($logo)); ?>" alt="<?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'TBSM')); ?>" class="h-10 w-auto">
-                        <div class="font-heading font-extrabold text-[20px] leading-none uppercase transition-colors duration-300"
+                    <div class="flex items-center gap-2.5 sm:gap-3">
+                        <img src="<?php echo e(Storage::url($logo)); ?>" alt="<?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'TBSM')); ?>" class="h-8 sm:h-10 w-auto">
+                        <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
                              :class="(scrolledPastHero || !isHome || mobileMenuOpen) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
                             <?php echo e(app(\App\Services\SettingsService::class)->get('site_short_name', 'TBSM')); ?>
 
                         </div>
                     </div>
                 <?php else: ?>
-                    <div class="font-heading font-extrabold text-[20px] leading-none uppercase transition-colors duration-300"
+                    <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
                          :class="(scrolledPastHero || !isHome || mobileMenuOpen) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
                         <?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'TBSM')); ?>
 
@@ -135,7 +136,18 @@
              id="mobile-navigation" 
              style="display: none;">
             
-            <div class="flex flex-col py-2.5 divide-y divide-gray-100/70">
+            <!-- App-Like Menu Header -->
+            <div class="px-5 py-3 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+                    <span class="text-xs font-heading font-black tracking-wider uppercase text-slate-800">Menu Navigasi</span>
+                </div>
+                <button type="button" @click="mobileMenuOpen = false" class="p-1 text-slate-400 hover:text-slate-700 rounded-lg active:scale-95" aria-label="Tutup Menu">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            
+            <div class="flex flex-col py-2 divide-y divide-gray-100/70">
                 <div class="py-1">
                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $menuItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                         <a href="<?php echo e($item['route']); ?>" 

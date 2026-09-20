@@ -221,7 +221,7 @@ unset($__defined_vars, $__key, $__value); ?>
 <?php endif; ?>
     </header>
 
-    <main id="main-content" class="flex-grow <?php echo e($noPaddingTop ? '' : 'pt-[64px]'); ?>">
+    <main id="main-content" class="flex-grow pb-16 lg:pb-0 <?php echo e($noPaddingTop ? '' : 'pt-[64px]'); ?>">
         <?php echo e($slot); ?>
 
     </main>
@@ -250,6 +250,30 @@ unset($__defined_vars, $__key, $__value); ?>
 <?php unset($__componentOriginal8a8716efb3c62a45938aca52e78e0322); ?>
 <?php endif; ?>
     </footer>
+
+    <!-- Native App-like Mobile Bottom Navigation -->
+    <?php if (isset($component)) { $__componentOriginal6adbe3b652407eed1f1583bc7f2e3b54 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6adbe3b652407eed1f1583bc7f2e3b54 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.mobile-bottom-nav','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('mobile-bottom-nav'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6adbe3b652407eed1f1583bc7f2e3b54)): ?>
+<?php $attributes = $__attributesOriginal6adbe3b652407eed1f1583bc7f2e3b54; ?>
+<?php unset($__attributesOriginal6adbe3b652407eed1f1583bc7f2e3b54); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6adbe3b652407eed1f1583bc7f2e3b54)): ?>
+<?php $component = $__componentOriginal6adbe3b652407eed1f1583bc7f2e3b54; ?>
+<?php unset($__componentOriginal6adbe3b652407eed1f1583bc7f2e3b54); ?>
+<?php endif; ?>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

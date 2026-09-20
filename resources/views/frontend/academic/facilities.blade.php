@@ -1,7 +1,7 @@
 <x-layouts.app title="Fasilitas Unggulan">
     
     <!-- Hero Section -->
-    <section class="relative flex flex-col justify-center items-center py-12 sm:py-16 lg:py-24 bg-[#1B1B1E] w-full min-h-[340px] sm:min-h-[440px]">
+    <section class="relative flex flex-col justify-center items-center py-8 sm:py-16 lg:py-24 bg-[#1B1B1E] w-full min-h-[280px] sm:min-h-[440px]">
         <!-- Image Background -->
         @if($settings->get('header_academic_facilities_image'))
             <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('{{ Storage::url($settings->get('header_academic_facilities_image')) }}')"></div>
@@ -10,95 +10,95 @@
         @endif
         
         <!-- Content Container -->
-        <div class="relative flex flex-col items-center gap-3 sm:gap-4 z-10 px-4 sm:px-6 max-w-[768px] reveal-on-scroll reveal-up">
+        <div class="relative flex flex-col items-center gap-2.5 sm:gap-4 z-10 px-4 sm:px-6 max-w-[768px] reveal-on-scroll reveal-up">
             <!-- Label -->
-            <div class="flex flex-row justify-center items-center px-3 py-1 bg-[#1B1B1E]/80 border border-[#E4E1E5] rounded-[2px]">
-                <span class="font-sans font-bold text-[11px] sm:text-[12px] leading-[12px] tracking-[1.2px] text-[#FFB4AB] uppercase">
+            <div class="flex flex-row justify-center items-center px-3 py-1 bg-[#1B1B1E]/80 border border-[#E4E1E5] rounded-full">
+                <span class="font-sans font-bold text-[10px] sm:text-[12px] leading-[12px] tracking-[1.2px] text-[#FFB4AB] uppercase">
                     Infrastruktur Teknik
                 </span>
             </div>
             
             <!-- Heading -->
-            <h1 class="font-heading font-extrabold text-[32px] sm:text-[44px] lg:text-[64px] leading-[1.1] tracking-[-0.8px] sm:tracking-[-1.28px] text-[#FBF8FC] text-center mb-1 sm:mb-2">
+            <h1 class="font-heading font-extrabold text-[26px] sm:text-[44px] lg:text-[64px] leading-[1.1] tracking-[-0.8px] sm:tracking-[-1.28px] text-[#FBF8FC] text-center mb-1">
                 Fasilitas Unggulan
             </h1>
             
             <!-- Description -->
-            <p class="font-sans font-normal text-[14px] sm:text-[16px] lg:text-[18px] leading-[1.6] text-[#E4E1E5] text-center max-w-[756px]">
+            <p class="font-sans font-normal text-[13px] sm:text-[16px] lg:text-[18px] leading-[1.6] text-[#E4E1E5] text-center max-w-[756px]">
                 Lingkungan belajar berstandar industri dengan peralatan diagnostik terkini, dirancang untuk mencetak teknisi otomotif profesional yang siap menghadapi tantangan teknologi masa depan.
             </p>
         </div>
     </section>
 
     <!-- Section - Facility Categories Bento Grid -->
-    <section class="flex flex-col items-center py-12 sm:py-16 lg:py-[96px] px-4 sm:px-6 lg:px-[64px] w-full relative">
-        <div class="flex flex-col w-full max-w-[1152px] z-10 gap-8 sm:gap-12">
+    <section class="flex flex-col items-center py-8 sm:py-16 lg:py-[96px] px-4 sm:px-6 lg:px-[64px] w-full relative">
+        <div class="flex flex-col w-full max-w-[1152px] z-10 gap-6 sm:gap-12">
             
             <!-- Header -->
-            <div class="flex flex-col border-b border-[#E4E1E5] pb-4 reveal-on-scroll reveal-up">
-                <h2 class="font-heading font-bold text-[26px] sm:text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-[#1B1B1E]">
+            <div class="flex flex-col border-b border-[#E4E1E5] pb-3 sm:pb-4 reveal-on-scroll reveal-up">
+                <h2 class="font-heading font-bold text-[20px] sm:text-[32px] lg:text-[40px] leading-[1.2] tracking-[-0.4px] text-[#1B1B1E]">
                     Area Praktik Terpadu
                 </h2>
             </div>
             
             <!-- Bento Grid Container -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 w-full reveal-on-scroll reveal-up delay-100">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 w-full reveal-on-scroll reveal-up delay-100">
                 
                 <!-- Lab Engine (Large - Top Left) -->
-                <div class="lg:col-span-8 flex flex-col bg-white border border-[#E4E1E5] p-5 sm:p-6 lg:p-8 gap-5 sm:gap-6 relative overflow-hidden group hover:border-[#DC2626] transition-colors">
+                <div class="lg:col-span-8 flex flex-col bg-white border border-[#E4E1E5] p-4 sm:p-6 lg:p-8 gap-4 sm:gap-6 relative overflow-hidden group hover:border-[#DC2626] transition-colors rounded-2xl shadow-sm">
                     <div class="absolute top-0 right-0 w-[200px] h-[200px] opacity-20 pointer-events-none bg-[linear-gradient(45deg,transparent_2.76%,rgba(228,228,231,0.5)_2.76%,rgba(228,228,231,0.5)_5.52%)] z-10"></div>
                     
-                    <div class="flex flex-col gap-2 z-20">
-                        <div class="w-12 h-[2px] bg-[#DC2626] mb-2"></div>
-                        <h3 class="font-heading font-bold text-[22px] sm:text-[24px] lg:text-[32px] text-[#1B1B1E]">Laboratorium Engine</h3>
-                        <p class="font-sans text-[14px] sm:text-[16px] leading-[1.5] text-[#5F5E5E] max-w-[500px]">
+                    <div class="flex flex-col gap-1.5 sm:gap-2 z-20">
+                        <div class="w-10 sm:w-12 h-[2px] bg-[#DC2626] mb-1 sm:mb-2"></div>
+                        <h3 class="font-heading font-bold text-[18px] sm:text-[24px] lg:text-[32px] text-[#1B1B1E]">Laboratorium Engine</h3>
+                        <p class="font-sans text-[13px] sm:text-[16px] leading-[1.5] text-[#5F5E5E] max-w-[500px]">
                             Fasilitas pembongkaran, perakitan, dan pengujian performa mesin pembakaran dalam, dilengkapi dengan simulator injeksi elektronik dan sistem kontrol gas buang berstandar Euro 4.
                         </p>
                     </div>
                     
-                    <div class="w-full h-[256px] lg:h-[300px] mt-4 relative overflow-hidden bg-[#F0EDF1]">
-                        <img src="https://images.unsplash.com/photo-1632823462991-3f2d2429671d?q=80&w=800&auto=format&fit=crop" alt="Laboratorium Engine" class="w-full h-full object-cover mix-blend-saturation group-hover:mix-blend-normal transition-all duration-500 group-hover:scale-105">
+                    <div class="w-full h-[200px] sm:h-[256px] lg:h-[300px] mt-2 sm:mt-4 relative overflow-hidden bg-[#F0EDF1] rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1632823462991-3f2d2429671d?q=80&w=800&auto=format&fit=crop" alt="Laboratorium Engine" class="w-full h-full object-cover mix-blend-saturation group-hover:mix-blend-normal transition-all duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                 </div>
 
                 <!-- Bengkel Sasis (Tall - Top Right) -->
-                <div class="lg:col-span-4 flex flex-col bg-white border border-[#E4E1E5] p-6 lg:p-8 gap-6 group hover:border-[#1C1B1B] transition-colors">
-                    <div class="flex flex-col gap-2 h-full">
-                        <div class="w-12 h-[2px] bg-[#1C1B1B] mb-2"></div>
-                        <h3 class="font-heading font-bold text-[24px] text-[#1B1B1E]">Bengkel Sasis & Pemindah Tenaga</h3>
-                        <p class="font-sans text-[16px] leading-[1.5] text-[#5F5E5E]">
+                <div class="lg:col-span-4 flex flex-col bg-white border border-[#E4E1E5] p-4 sm:p-6 lg:p-8 gap-4 sm:gap-6 group hover:border-[#1C1B1B] transition-colors rounded-2xl shadow-sm">
+                    <div class="flex flex-col gap-1.5 sm:gap-2 h-full">
+                        <div class="w-10 sm:w-12 h-[2px] bg-[#1C1B1B] mb-1 sm:mb-2"></div>
+                        <h3 class="font-heading font-bold text-[18px] sm:text-[24px] text-[#1B1B1E]">Bengkel Sasis & Pemindah Tenaga</h3>
+                        <p class="font-sans text-[13px] sm:text-[16px] leading-[1.5] text-[#5F5E5E]">
                             Fokus pada sistem suspensi, pengereman ABS, dan transmisi manual/otomatis modern.
                         </p>
                     </div>
                     
-                    <div class="w-full h-[192px] lg:h-[240px] mt-auto relative overflow-hidden bg-[#F0EDF1]">
-                        <img src="https://images.unsplash.com/photo-1486262715619-6708146fbdb8?q=80&w=800&auto=format&fit=crop" alt="Bengkel Sasis" class="w-full h-full object-cover mix-blend-saturation group-hover:mix-blend-normal transition-all duration-500 group-hover:scale-105">
+                    <div class="w-full h-[180px] sm:h-[192px] lg:h-[240px] mt-auto relative overflow-hidden bg-[#F0EDF1] rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1486262715619-6708146fbdb8?q=80&w=800&auto=format&fit=crop" alt="Bengkel Sasis" class="w-full h-full object-cover mix-blend-saturation group-hover:mix-blend-normal transition-all duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                 </div>
 
                 <!-- Lab Kelistrikan (Small - Bottom Left) -->
-                <div class="lg:col-span-4 flex flex-col justify-center bg-white border border-[#E4E1E5] p-6 lg:p-8 gap-6 group hover:border-[#1C1B1B] transition-colors">
-                    <div class="flex flex-col gap-2">
-                        <div class="w-12 h-[2px] bg-[#1C1B1B] mb-2"></div>
-                        <h3 class="font-heading font-bold text-[24px] text-[#1B1B1E]">Lab Kelistrikan Otomotif</h3>
-                        <p class="font-sans text-[16px] leading-[1.5] text-[#5F5E5E]">
+                <div class="lg:col-span-4 flex flex-col justify-center bg-white border border-[#E4E1E5] p-4 sm:p-6 lg:p-8 gap-4 sm:gap-6 group hover:border-[#1C1B1B] transition-colors rounded-2xl shadow-sm">
+                    <div class="flex flex-col gap-1.5 sm:gap-2">
+                        <div class="w-10 sm:w-12 h-[2px] bg-[#1C1B1B] mb-1 sm:mb-2"></div>
+                        <h3 class="font-heading font-bold text-[18px] sm:text-[24px] text-[#1B1B1E]">Lab Kelistrikan Otomotif</h3>
+                        <p class="font-sans text-[13px] sm:text-[16px] leading-[1.5] text-[#5F5E5E]">
                             Simulasi sistem kelistrikan bodi, AC, dan manajemen mesin (ECU) menggunakan modul latih interaktif.
                         </p>
                     </div>
                 </div>
 
                 <!-- Unit Produksi (Wide - Bottom Right) -->
-                <div class="lg:col-span-8 flex flex-col md:flex-row bg-white border border-[#E4E1E5] p-6 lg:p-8 gap-6 lg:gap-12 group hover:border-[#1C1B1B] transition-colors items-center">
-                    <div class="flex flex-col gap-2 w-full md:w-1/2">
-                        <div class="w-12 h-[2px] bg-[#1C1B1B] mb-2"></div>
-                        <h3 class="font-heading font-bold text-[24px] text-[#1B1B1E]">Unit Produksi & Jasa</h3>
-                        <p class="font-sans text-[16px] leading-[1.5] text-[#5F5E5E]">
+                <div class="lg:col-span-8 flex flex-col md:flex-row bg-white border border-[#E4E1E5] p-4 sm:p-6 lg:p-8 gap-4 sm:gap-6 lg:gap-12 group hover:border-[#1C1B1B] transition-colors items-center rounded-2xl shadow-sm">
+                    <div class="flex flex-col gap-1.5 sm:gap-2 w-full md:w-1/2">
+                        <div class="w-10 sm:w-12 h-[2px] bg-[#1C1B1B] mb-1 sm:mb-2"></div>
+                        <h3 class="font-heading font-bold text-[18px] sm:text-[24px] text-[#1B1B1E]">Unit Produksi & Jasa</h3>
+                        <p class="font-sans text-[13px] sm:text-[16px] leading-[1.5] text-[#5F5E5E]">
                             Teaching factory yang melayani perbaikan kendaraan umum, memberikan pengalaman nyata menghadapi pelanggan dan memecahkan masalah teknis aktual.
                         </p>
                     </div>
                     
-                    <div class="w-full md:w-1/2 h-[160px] lg:h-[200px] relative overflow-hidden bg-[#F0EDF1]">
-                        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop" alt="Unit Produksi" class="w-full h-full object-cover mix-blend-saturation group-hover:mix-blend-normal transition-all duration-500 group-hover:scale-105">
+                    <div class="w-full md:w-1/2 h-[160px] lg:h-[200px] relative overflow-hidden bg-[#F0EDF1] rounded-xl">
+                        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop" alt="Unit Produksi" class="w-full h-full object-cover mix-blend-saturation group-hover:mix-blend-normal transition-all duration-500 group-hover:scale-105" loading="lazy">
                     </div>
                 </div>
 

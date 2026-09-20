@@ -29,10 +29,10 @@
                 <!-- Text Content (lg:col-span-6 or 5) -->
                 <div class="lg:col-span-5 reveal-on-scroll reveal-up">
                     <x-frontend.ui.eyebrow>ABOUT THE DEPARTMENT</x-frontend.ui.eyebrow>
-                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal-900 tracking-tight leading-[1.12] mt-3 sm:mt-4 mb-4 sm:mb-6">
+                    <h1 class="text-2xl sm:text-5xl lg:text-6xl font-extrabold text-charcoal-900 tracking-tight leading-[1.12] mt-3 sm:mt-4 mb-4 sm:mb-6">
                         {{ $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor') }}
                     </h1>
-                    <p class="text-base sm:text-lg text-charcoal-600 font-medium leading-relaxed mb-6 sm:mb-8 border-l-2 border-primary-600 pl-4">
+                    <p class="text-sm sm:text-lg text-charcoal-600 font-medium leading-relaxed mb-6 sm:mb-8 border-l-2 border-primary-600 pl-4">
                         Membangun kompetensi teknis, karakter disiplin, dan kesiapan untuk memimpin di era industri otomotif modern.
                     </p>
                     <div class="flex items-center gap-4 text-xs font-bold text-charcoal-500 uppercase tracking-wider">

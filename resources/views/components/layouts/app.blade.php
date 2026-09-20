@@ -163,13 +163,16 @@
         <x-navbar />
     </header>
 
-    <main id="main-content" class="flex-grow {{ $noPaddingTop ? '' : 'pt-[64px]' }}">
+    <main id="main-content" class="flex-grow pb-16 lg:pb-0 {{ $noPaddingTop ? '' : 'pt-[64px]' }}">
         {{ $slot }}
     </main>
 
     <footer>
         <x-footer />
     </footer>
+
+    <!-- Native App-like Mobile Bottom Navigation -->
+    <x-mobile-bottom-nav />
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

@@ -1,14 +1,14 @@
 <footer class="bg-figma-dark mt-auto border-t border-figma-gray relative overflow-hidden">
-    <div class="max-w-[1440px] mx-auto px-6 md:px-16 py-10">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 py-8 sm:py-10">
         <div class="flex flex-col lg:flex-row justify-between gap-8">
             
             <!-- Brand Section -->
-            <div class="flex flex-col gap-4 w-full max-w-[384px]">
-                <a href="<?php echo e(route('home')); ?>" class="font-heading font-extrabold text-[20px] text-figma-bg-card leading-tight">
+            <div class="flex flex-col gap-3 sm:gap-4 w-full max-w-[384px]">
+                <a href="<?php echo e(route('home')); ?>" class="font-heading font-extrabold text-[18px] sm:text-[20px] text-figma-bg-card leading-tight">
                     TEKNIK DAN BISNIS SEPEDA MOTOR<br>
-                    <span class="text-[16px] text-figma-gray-light font-medium">SMK NEGERI 1 BANGSRI</span>
+                    <span class="text-[14px] sm:text-[16px] text-figma-gray-light font-medium">SMK NEGERI 1 BANGSRI</span>
                 </a>
-                <p class="font-sans text-[14px] leading-[22px] text-figma-gray-light">
+                <p class="font-sans text-[13px] sm:text-[14px] leading-[20px] sm:leading-[22px] text-figma-gray-light">
                     <?php echo e($settings->get('site_description', 'Mencetak mekanik dan ahli otomotif masa depan yang kompeten, tangguh, dan berdaya saing di industri modern.')); ?>
 
                 </p>
@@ -41,20 +41,20 @@
                 
                 <!-- Column 1 -->
                 <ul class="flex flex-col gap-2">
-                    <li><a href="<?php echo e(route('about')); ?>" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Tentang Kami</a></li>
-                    <li><a href="<?php echo e(route('about')); ?>#visi-misi" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Visi & Misi</a></li>
-                    <li><a href="<?php echo e(route('academic.programs')); ?>" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Program Keahlian</a></li>
-                    <li><a href="<?php echo e(route('academic.facilities')); ?>" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Fasilitas</a></li>
+                    <li><a href="<?php echo e(route('about')); ?>" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Tentang Kami</a></li>
+                    <li><a href="<?php echo e(route('about')); ?>#visi-misi" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Visi & Misi</a></li>
+                    <li><a href="<?php echo e(route('academic.programs')); ?>" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Program Keahlian</a></li>
+                    <li><a href="<?php echo e(route('academic.facilities')); ?>" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Fasilitas</a></li>
                 </ul>
 
                 <!-- Column 2 -->
                 <ul class="flex flex-col gap-2">
-                    <li><a href="<?php echo e(route('news.index')); ?>" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Berita</a></li>
-                    <li><a href="<?php echo e(route('announcements.index')); ?>" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Pengumuman</a></li>
-                    <li><a href="<?php echo e(route('news.index', ['category' => 'prestasi'])); ?>" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Prestasi</a></li>
-                    <li><a href="<?php echo e(route('partnership.index')); ?>" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Mitra Industri</a></li>
-                    <li><a href="<?php echo e(route('alumni.index')); ?>" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Jejaring Alumni</a></li>
-                    <li><a href="<?php echo e(route('gallery.index')); ?>" class="font-sans text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Galeri</a></li>
+                    <li><a href="<?php echo e(route('news.index')); ?>" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Berita</a></li>
+                    <li><a href="<?php echo e(route('announcements.index')); ?>" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Pengumuman</a></li>
+                    <li><a href="<?php echo e(route('news.index', ['category' => 'prestasi'])); ?>" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Prestasi</a></li>
+                    <li><a href="<?php echo e(route('partnership.index')); ?>" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Mitra Industri</a></li>
+                    <li><a href="<?php echo e(route('alumni.index')); ?>" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Jejaring Alumni</a></li>
+                    <li><a href="<?php echo e(route('gallery.index')); ?>" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Galeri</a></li>
                 </ul>
 
             </div>
@@ -63,8 +63,8 @@
     </div>
     
     <div class="bg-[#101011] border-t border-figma-gray-dark">
-        <div class="max-w-[1440px] mx-auto px-6 md:px-16 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="font-sans text-[14px] text-figma-gray text-center w-full md:text-left">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 py-6 pb-24 md:pb-6 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+            <p class="font-sans text-[12px] sm:text-[14px] text-figma-gray text-center w-full md:text-left">
                 &copy; <?php echo e(date('Y')); ?> <?php echo e($settings->get('site_name', 'TBSM')); ?>. Seluruh Hak Cipta Dilindungi.
             </p>
         </div>
