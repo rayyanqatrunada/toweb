@@ -54,16 +54,16 @@
             <a href="{{ route('home') }}" class="shrink-0 flex items-center gap-3 sm:gap-4 group focus-ring outline-hidden">
                 @if($logo = app(\App\Services\SettingsService::class)->get('site_logo'))
                     <div class="flex items-center gap-2.5 sm:gap-3">
-                        <img src="{{ Storage::url($logo) }}" alt="{{ app(\App\Services\SettingsService::class)->get('site_name', 'TBSM') }}" class="h-8 sm:h-10 w-auto">
+                        <img src="{{ Storage::url($logo) }}" alt="{{ app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor') }}" class="h-8 sm:h-10 w-auto">
                         <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
                              :class="(scrolledPastHero || !isHome || mobileMenuOpen) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
-                            {{ app(\App\Services\SettingsService::class)->get('site_short_name', 'TBSM') }}
+                            {{ app(\App\Services\SettingsService::class)->get('site_short_name', 'TSM') }}
                         </div>
                     </div>
                 @else
                     <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
                          :class="(scrolledPastHero || !isHome || mobileMenuOpen) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
-                        {{ app(\App\Services\SettingsService::class)->get('site_name', 'TBSM') }}
+                        {{ app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor') }}
                     </div>
                 @endif
             </a>
@@ -84,24 +84,10 @@
                 <a href="{{ route('contact.index') }}" class="px-5 py-2 ml-4 bg-figma-red text-white font-sans text-[14px] tracking-[-0.5px] uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors focus-ring shadow-sm">
                     Hubungi Kami
                 </a>
-                
-                {{-- Tombol Search Desktop (Disembunyikan Sementara) --}}
-                {{--
-                <button type="button" @click="$dispatch('open-search')" aria-label="Search" class="text-figma-gray hover:text-figma-dark transition-colors focus-ring p-1 ml-2">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                </button>
-                --}}
             </div>
 
             <!-- Mobile Actions -->
-            <div class="flex lg:hidden items-center space-x-2">
-                {{-- Tombol Search Mobile (Disembunyikan Sementara) --}}
-                {{--
-                <button type="button" @click="$dispatch('open-search')" aria-label="Search" class="text-figma-gray hover:text-figma-dark transition-colors focus-ring p-2">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                </button>
-                --}}
-                
+            <div class="flex lg:hidden items-center space-x-1.5">
                 <button type="button" 
                         aria-controls="mobile-navigation" 
                         :aria-expanded="mobileMenuOpen.toString()" 
@@ -178,5 +164,3 @@
         </div>
     </div>
 </nav>
-
-<x-global-search-modal />

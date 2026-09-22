@@ -25,11 +25,17 @@ class AchievementController extends Controller
                                 ->values();
 
         // 2 featured (Juara 1, highest level first, with photo)
+        $levelOrder = "CASE level WHEN 'national' THEN 1 WHEN 'province' THEN 2 WHEN 'district' THEN 3 ELSE 4 END ASC";
+        $isMySql = in_array(\Illuminate\Support\Facades\DB::getDriverName(), ['mysql', 'mariadb']);
+        $rankOrder = $isMySql
+            ? "CAST(REGEXP_REPLACE(rank, '[^0-9]', '') AS UNSIGNED) ASC"
+            : "rank ASC";
+
         $featuredAchievements = Achievement::with(['category', 'participants'])
                                 ->published()
                                 ->whereNotNull('photo')
-                                ->orderByRaw("FIELD(level, 'national', 'province', 'district') ASC")
-                                ->orderByRaw("CAST(REGEXP_REPLACE(rank, '[^0-9]', '') AS UNSIGNED) ASC")
+                                ->orderByRaw($levelOrder)
+                                ->orderByRaw($rankOrder)
                                 ->orderBy('date', 'desc')
                                 ->take(2)
                                 ->get();
@@ -68,8 +74,12 @@ class AchievementController extends Controller
         $categories = Category::whereHas('achievements')->get();
 
         // Available years
+        $yearExpr = \Illuminate\Support\Facades\DB::getDriverName() === 'sqlite'
+            ? "strftime('%Y', date) as year"
+            : "YEAR(date) as year";
+
         $years = Achievement::published()
-                    ->selectRaw('YEAR(date) as year')
+                    ->selectRaw($yearExpr)
                     ->distinct()
                     ->orderBy('year', 'desc')
                     ->pluck('year')

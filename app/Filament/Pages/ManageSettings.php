@@ -61,7 +61,16 @@ class ManageSettings extends Page implements HasForms
                         TextInput::make('site_name')->label('Nama Website Lengkap')->required(),
                         TextInput::make('site_tagline')->label('Tagline Singkat')->required(),
                         Textarea::make('site_description')->label('Deskripsi Website (SEO & Footer)')->required()->rows(3),
-                        \Filament\Forms\Components\FileUpload::make('site_logo')->label('Logo Website')->image()->directory('settings')->maxSize(2048)->imageEditor(),
+                        \Filament\Forms\Components\FileUpload::make('site_logo')
+                            ->label('Logo Website')
+                            ->disk('public')
+                            ->visibility('public')
+                            ->image()
+                            ->directory('settings')
+                            ->maxSize(2048)
+                            ->openable()
+                            ->downloadable()
+                            ->imageEditor(),
                     ]),
 
                 Section::make('Kutipan Beranda')
@@ -73,7 +82,17 @@ class ManageSettings extends Page implements HasForms
                 Section::make('Profil Jurusan (Tentang Kami)')
                     ->description('Konten untuk halaman Profil/Tentang Kami.')
                     ->schema([
-                        \Filament\Forms\Components\FileUpload::make('homepage_about_image')->label('Gambar Tentang Kami (Beranda)')->image()->directory('settings')->maxSize(2048)->imageEditor(),
+                        \Filament\Forms\Components\FileUpload::make('homepage_about_image')
+                            ->label('Gambar Tentang Kami (Beranda)')
+                            ->disk('public')
+                            ->visibility('public')
+                            ->image()
+                            ->directory('settings')
+                            ->maxSize(3072)
+                            ->openable()
+                            ->downloadable()
+                            ->imageEditor()
+                            ->imageEditorAspectRatios(['16:9', '4:3', '1:1', null]),
                         \Filament\Forms\Components\RichEditor::make('profile_history')->label('Sejarah Singkat')->required(),
                         Textarea::make('profile_vision')->label('Visi Jurusan')->required()->rows(3),
                         \Filament\Forms\Components\RichEditor::make('profile_mission')->label('Misi Jurusan')->required(),

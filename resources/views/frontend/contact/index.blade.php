@@ -23,7 +23,7 @@
                 </h1>
                 
                 <p class="font-['Hanken_Grotesk'] text-base md:text-lg leading-[29px] text-[#5C403C] max-w-[672px] mt-1">
-                    Hubungi departemen Teknik dan Bisnis Sepeda Motor SMK Negeri 1 Bangsri untuk informasi akademik, kemitraan industri, atau pertanyaan umum. Kami siap membantu Anda.
+                    Hubungi departemen {{ $settings->get('site_name', 'Teknik Sepeda Motor') }} SMK Negeri 1 Bangsri untuk informasi akademik, kemitraan industri, atau pertanyaan umum. Kami siap membantu Anda.
                 </p>
             </div>
         </section>
@@ -154,6 +154,10 @@
 
                             <form action="{{ route('contact.store') }}" method="POST" class="flex flex-col gap-6 relative z-10">
                                 @csrf
+                                {{-- Honeypot field for spam bots --}}
+                                <div class="hidden" style="display:none;" aria-hidden="true">
+                                    <input type="text" name="website_hp" tabindex="-1" autocomplete="off">
+                                </div>
                                 
                                 <!-- Name -->
                                 <div class="flex flex-col gap-2">
@@ -221,7 +225,7 @@
             <div class="max-w-[1440px] mx-auto py-12 px-6 md:px-16 flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="flex flex-col gap-2">
                     <h3 class="font-['Chivo'] font-bold text-2xl text-[#1B1B1E]">Terhubung dengan Kami</h3>
-                    <p class="font-['Hanken_Grotesk'] text-base text-[#5C403C]">Ikuti perkembangan terbaru departemen Teknik dan Bisnis Sepeda Motor (TBSM).</p>
+                    <p class="font-['Hanken_Grotesk'] text-base text-[#5C403C]">Ikuti perkembangan terbaru departemen {{ $settings->get('site_name', 'Teknik Sepeda Motor') }} ({{ $settings->get('site_short_name', 'TSM') }}).</p>
                 </div>
                 
                 <div class="flex items-center gap-4">

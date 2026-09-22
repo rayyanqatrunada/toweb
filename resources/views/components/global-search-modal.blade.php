@@ -2,6 +2,8 @@
 <div 
     x-data="{ isSearchOpen: false, searchQuery: '' }" 
     @open-search.window="isSearchOpen = true; $nextTick(() => { $refs.searchInput.focus() })"
+    @keydown.window.prevent.cmd.k="isSearchOpen = true; $nextTick(() => { $refs.searchInput.focus() })"
+    @keydown.window.prevent.ctrl.k="isSearchOpen = true; $nextTick(() => { $refs.searchInput.focus() })"
     @keydown.escape.window="isSearchOpen = false"
 >
     <!-- Overlay & Modal Container -->
@@ -59,7 +61,7 @@
 
             <!-- Petunjuk Keyboard Aksesibilitas (Hanya Desktop) -->
             <div class="hidden sm:flex px-6 py-4 border-t border-slate-100 bg-slate-50 text-xs text-slate-400 items-center justify-between">
-                <span>Tekan <kbd class="font-sans font-semibold border border-slate-300 rounded px-1.5 py-0.5 shadow-sm text-slate-500 bg-white">Enter</kbd> untuk mencari ke seluruh sistem.</span>
+                <span>Tekan <kbd class="font-sans font-semibold border border-slate-300 rounded px-1.5 py-0.5 shadow-sm text-slate-500 bg-white">Enter</kbd> untuk mencari, atau <kbd class="font-sans font-semibold border border-slate-300 rounded px-1.5 py-0.5 shadow-sm text-slate-500 bg-white">Ctrl+K</kbd> kapan saja.</span>
                 <span>Tekan <kbd class="font-sans font-semibold border border-slate-300 rounded px-1.5 py-0.5 shadow-sm text-slate-500 bg-white">Esc</kbd> untuk menutup.</span>
             </div>
         </div>

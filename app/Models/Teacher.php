@@ -14,6 +14,8 @@ class Teacher extends Model
 
     protected $fillable = ['user_id', 'name', 'nip', 'position', 'specialization', 'phone', 'photo', 'bio', 'is_head_of_department', 'is_active'];
 
+    protected $hidden = ['nip'];
+
     protected function casts(): array
     {
         return [

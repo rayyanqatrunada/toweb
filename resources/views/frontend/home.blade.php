@@ -4,7 +4,7 @@
     {
       "@@context": "https://schema.org",
       "@type": "EducationalOrganization",
-      "name": "{{ $settings->get('site_name', 'TBSM') }}",
+      "name": "{{ $settings->get('site_name', 'Teknik Sepeda Motor') }}",
       "url": "{{ url('/') }}",
       "logo": "{{ url('/logo.png') }}"
     }
@@ -59,6 +59,9 @@
         <x-frontend.home.final-cta />
 
     </main>
+
+    <!-- Floating Scroll To Top Button (Homepage Only) -->
+    <x-frontend.home.scroll-to-top />
 
     @push('scripts')
     <!-- The hero slider logic is included in app.js via Vite -->

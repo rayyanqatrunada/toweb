@@ -3,18 +3,29 @@
 ])
 
 @php
+    $siteName = $settings->get('site_name', 'Teknik Sepeda Motor');
+    $siteShortName = $settings->get('site_short_name', 'TSM');
+
     $defaultSlides = [
         [
-            'image' => 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1920&auto=format&fit=crop',
-            'eyebrow' => 'TEKNIK DAN BISNIS SEPEDA MOTOR',
+            'image' => asset('storage/hero-slides/slide-1.jpg'),
+            'eyebrow' => strtoupper($siteName),
             'title' => 'Menyiapkan Generasi Profesional di Dunia Otomotif',
-            'desc' => 'Program keahlian yang membekali peserta didik dengan kompetensi teknis dan profesional di bidang sepeda motor serta kesiapan dunia kerja.'
+            'desc' => 'Program keahlian yang membekali peserta didik dengan kompetensi teknis dan profesional di bidang sepeda motor serta kesiapan dunia kerja.',
+            'button_primary_text' => 'Jelajahi ' . $siteShortName,
+            'button_primary_url' => route('about'),
+            'button_secondary_text' => 'Program',
+            'button_secondary_url' => route('academic.programs'),
         ],
         [
-            'image' => 'https://images.unsplash.com/photo-1530630458144-014709e10016?q=80&w=1920&auto=format&fit=crop',
+            'image' => asset('storage/hero-slides/slide-2.jpg'),
             'eyebrow' => 'FASILITAS STANDAR INDUSTRI',
             'title' => 'Pusat Keunggulan Vokasi Otomotif',
-            'desc' => 'Menggunakan fasilitas laboratorium yang dirancang menyerupai lingkungan kerja industri otomotif sesungguhnya untuk pengalaman belajar maksimal.'
+            'desc' => 'Menggunakan fasilitas laboratorium yang dirancang menyerupai lingkungan kerja industri otomotif sesungguhnya untuk pengalaman belajar maksimal.',
+            'button_primary_text' => 'Lihat Fasilitas',
+            'button_primary_url' => route('academic.facilities'),
+            'button_secondary_text' => 'Kemitraan Industri',
+            'button_secondary_url' => route('partnership.index'),
         ]
     ];
 
@@ -22,12 +33,27 @@
     
     $slides = [];
     if (!empty($dbSlides) && is_array($dbSlides)) {
-        foreach ($dbSlides as $slide) {
+        foreach ($dbSlides as $index => $slide) {
+            $rawImg = $slide['image'] ?? null;
+            if (!empty($rawImg)) {
+                if (str_starts_with($rawImg, 'http://') || str_starts_with($rawImg, 'https://') || str_starts_with($rawImg, '/')) {
+                    $img = $rawImg;
+                } else {
+                    $img = Storage::url($rawImg);
+                }
+            } else {
+                $img = $defaultSlides[$index % count($defaultSlides)]['image'];
+            }
+
             $slides[] = [
-                'image' => !empty($slide['image']) ? Storage::url($slide['image']) : $defaultSlides[0]['image'],
-                'eyebrow' => $slide['eyebrow'] ?? 'TEKNIK DAN BISNIS SEPEDA MOTOR',
-                'title' => $slide['title'] ?? 'TBSM',
-                'desc' => $slide['desc'] ?? ''
+                'image' => $img,
+                'eyebrow' => !empty($slide['eyebrow']) ? $slide['eyebrow'] : strtoupper($siteName),
+                'title' => !empty($slide['title']) ? $slide['title'] : $siteShortName,
+                'desc' => $slide['desc'] ?? '',
+                'button_primary_text' => $slide['button_primary_text'] ?? ('Jelajahi ' . $siteShortName),
+                'button_primary_url' => $slide['button_primary_url'] ?? route('about'),
+                'button_secondary_text' => $slide['button_secondary_text'] ?? 'Program',
+                'button_secondary_url' => $slide['button_secondary_url'] ?? route('academic.programs'),
             ];
         }
     } else {
@@ -81,21 +107,29 @@
                             @endif
                             
                             <!-- Description -->
-                            <p class="font-sans font-normal text-[13px] sm:text-[16px] md:text-[18px] leading-[1.5] text-gray-300 mb-4 sm:mb-8 max-w-[580px] line-clamp-2 sm:line-clamp-none">
-                                {{ $slide['desc'] }}
-                            </p>
+                            @if(!empty($slide['desc']))
+                                <p class="font-sans font-normal text-[13px] sm:text-[16px] md:text-[18px] leading-[1.5] text-gray-300 mb-4 sm:mb-8 max-w-[580px] line-clamp-2 sm:line-clamp-none">
+                                    {{ $slide['desc'] }}
+                                </p>
+                            @endif
                             
                             <!-- CTAs (Ergonomic App-Style Buttons) -->
-                            <div class="flex flex-row items-center gap-2.5 sm:gap-4">
-                                <a href="{{ route('about') }}" class="flex-1 sm:flex-initial flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 bg-figma-red text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-xl sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-figma-dark-red transition-all duration-300 focus-ring shadow-md shadow-figma-red/20 active:scale-95 group">
-                                    <span>Jelajahi TBSM</span>
-                                    <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5 ml-1.5 sm:ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                                </a>
-                                
-                                <a href="{{ route('academic.programs') }}" class="flex-1 sm:flex-initial box-border flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 border border-white/30 sm:border-2 sm:border-white/20 bg-white/10 sm:bg-white/5 backdrop-blur-sm text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-xl sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-white/15 hover:border-white/40 transition-all duration-300 focus-ring active:scale-95">
-                                    <span>Program</span>
-                                </a>
-                            </div>
+                            @if(!empty($slide['button_primary_text']) || !empty($slide['button_secondary_text']))
+                                <div class="flex flex-row items-center gap-2.5 sm:gap-4">
+                                    @if(!empty($slide['button_primary_text']))
+                                        <a href="{{ $slide['button_primary_url'] ?? '#' }}" class="flex-1 sm:flex-initial flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 bg-figma-red text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-xl sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-figma-dark-red transition-all duration-300 focus-ring shadow-md shadow-figma-red/20 active:scale-95 group">
+                                            <span>{{ $slide['button_primary_text'] }}</span>
+                                            <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5 ml-1.5 sm:ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                        </a>
+                                    @endif
+                                    
+                                    @if(!empty($slide['button_secondary_text']))
+                                        <a href="{{ $slide['button_secondary_url'] ?? '#' }}" class="flex-1 sm:flex-initial box-border flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 border border-white/30 sm:border-2 sm:border-white/20 bg-white/10 sm:bg-white/5 backdrop-blur-sm text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-xl sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-white/15 hover:border-white/40 transition-all duration-300 focus-ring active:scale-95">
+                                            <span>{{ $slide['button_secondary_text'] }}</span>
+                                        </a>
+                                    @endif
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -111,34 +145,36 @@
     <!-- Bottom-Right Bracket -->
     <div class="hidden sm:block absolute bottom-32 right-6 md:right-12 z-20 pointer-events-none w-16 h-16 border-b-2 border-r-2 border-figma-red opacity-50"></div>
 
-    <!-- Slider Controls (Tighter and clean on mobile) -->
-    <div class="absolute bottom-0 left-0 w-full z-40 bg-gradient-to-t from-charcoal-950 via-charcoal-950/80 to-transparent pt-4 sm:pt-12 pb-3 sm:pb-8">
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 flex items-center justify-between">
-            
-            <!-- Dots Indicator -->
-            <div class="flex items-center gap-1.5 sm:gap-3">
-                @foreach($slides as $index => $slide)
-                    <button type="button" aria-label="Go to slide {{ $index + 1 }}" class="hero-dot h-1.5 sm:h-2 rounded-full transition-all duration-300 focus-ring {{ $index === 0 ? 'bg-figma-red w-6 sm:w-8' : 'bg-white/50 w-2 hover:bg-white' }}"></button>
-                @endforeach
-            </div>
-
-            <!-- Counter & Arrows -->
-            <div class="flex items-center gap-3 sm:gap-6">
-                <div class="hidden sm:flex items-baseline gap-1 font-heading text-white">
-                    <span class="hero-counter-current text-[18px] sm:text-[20px] font-bold">01</span>
-                    <span class="text-[13px] sm:text-[14px] text-gray-500 font-normal">/ 0{{ count($slides) }}</span>
-                </div>
+    @if(count($slides) > 1)
+        <!-- Slider Controls (Tighter and clean on mobile) -->
+        <div class="absolute bottom-0 left-0 w-full z-40 bg-gradient-to-t from-charcoal-950 via-charcoal-950/80 to-transparent pt-4 sm:pt-12 pb-3 sm:pb-8">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 flex items-center justify-between">
                 
-                <div class="flex items-center gap-1.5 sm:gap-2">
-                    <button type="button" class="hero-prev w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 bg-charcoal-900/50 backdrop-blur-sm text-white hover:bg-figma-red hover:border-figma-red transition-all duration-300 focus-ring active:scale-95" aria-label="Previous Slide">
-                        <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                    </button>
-                    <button type="button" class="hero-next w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 bg-charcoal-900/50 backdrop-blur-sm text-white hover:bg-figma-red hover:border-figma-red transition-all duration-300 focus-ring active:scale-95" aria-label="Next Slide">
-                        <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </button>
+                <!-- Dots Indicator -->
+                <div class="flex items-center gap-1.5 sm:gap-3">
+                    @foreach($slides as $index => $slide)
+                        <button type="button" aria-label="Go to slide {{ $index + 1 }}" class="hero-dot h-1.5 sm:h-2 rounded-full transition-all duration-300 focus-ring {{ $index === 0 ? 'bg-figma-red w-6 sm:w-8' : 'bg-white/50 w-2 hover:bg-white' }}"></button>
+                    @endforeach
                 </div>
-            </div>
 
+                <!-- Counter & Arrows -->
+                <div class="flex items-center gap-3 sm:gap-6">
+                    <div class="hidden sm:flex items-baseline gap-1 font-heading text-white">
+                        <span class="hero-counter-current text-[18px] sm:text-[20px] font-bold">01</span>
+                        <span class="text-[13px] sm:text-[14px] text-gray-500 font-normal">/ 0{{ count($slides) }}</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                        <button type="button" class="hero-prev w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 bg-charcoal-900/50 backdrop-blur-sm text-white hover:bg-figma-red hover:border-figma-red transition-all duration-300 focus-ring active:scale-95" aria-label="Previous Slide">
+                            <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        </button>
+                        <button type="button" class="hero-next w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 bg-charcoal-900/50 backdrop-blur-sm text-white hover:bg-figma-red hover:border-figma-red transition-all duration-300 focus-ring active:scale-95" aria-label="Next Slide">
+                            <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
+    @endif
 </section>

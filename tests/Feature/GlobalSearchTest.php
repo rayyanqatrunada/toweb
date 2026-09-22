@@ -18,64 +18,25 @@ class GlobalSearchTest extends TestCase
         $this->withoutVite();
     }
 
-    public function test_empty_search_query_returns_ok_state()
+    public function test_search_route_is_disabled_and_returns_404()
     {
         $response = $this->get('/search');
-        $response->assertStatus(200);
-        $response->assertSee('Mulai Pencarian');
+        $response->assertStatus(404);
     }
 
-    public function test_search_shows_public_post_and_hides_draft()
+    public function test_navbar_does_not_render_search_triggers()
     {
-        $user = User::factory()->create();
-        
-        $category = Category::factory()->create([
-            'name' => 'News',
-            'slug' => 'news'
-        ]);
-
-        Post::create([
-            'user_id' => $user->id,
-            'category_id' => $category->id,
-            'title' => 'Berita Juara Olimpiade',
-            'slug' => 'berita-juara-olimpiade',
-            'excerpt' => 'Excerpt',
-            'content' => 'Content',
-            'status' => 'published',
-            'published_at' => now(),
-        ]);
-
-        Post::create([
-            'user_id' => $user->id,
-            'category_id' => $category->id,
-            'title' => 'Berita Rahasia Sekolah',
-            'slug' => 'berita-rahasia-sekolah',
-            'excerpt' => 'Excerpt',
-            'content' => 'Content',
-            'status' => 'draft',
-            'published_at' => null,
-        ]);
-
-        $response = $this->get('/search?q=Berita');
+        $response = $this->get('/');
         $response->assertStatus(200);
-        
-        $response->assertSee('Berita Juara Olimpiade');
-        $response->assertDontSee('Berita Rahasia Sekolah');
+        $response->assertDontSee('Cari Informasi');
+        $response->assertDontSee('open-search');
+        $response->assertDontSee('x-global-search-modal');
     }
 
-    public function test_search_malicious_input_is_handled_safely()
+    public function test_404_page_does_not_render_search_form()
     {
-        $response = $this->get('/search?q=\' OR 1=1; --');
-        $response->assertStatus(200);
-        $response->assertSee('Pencarian tidak menemukan hasil');
-    }
-
-    public function test_long_input_is_truncated()
-    {
-        $longQuery = str_repeat('A', 150);
-        $response = $this->get('/search?q=' . $longQuery);
-        $response->assertStatus(200);
-        $response->assertSee(str_repeat('A', 100));
-        $response->assertDontSee(str_repeat('A', 150));
+        $response = $this->get('/non-existent-page-url');
+        $response->assertStatus(404);
+        $response->assertDontSee('Cari berita, prestasi, guru, fasilitas...');
     }
 }

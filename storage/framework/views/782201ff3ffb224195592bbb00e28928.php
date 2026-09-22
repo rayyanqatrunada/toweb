@@ -34,113 +34,147 @@ foreach ($attributes->all() as $__key => $__value) {
 
 unset($__defined_vars, $__key, $__value); ?>
 
-<section class="w-full py-8 sm:py-16 md:py-24 lg:py-32 overflow-hidden border-t border-gray-100 relative">
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
+<section class="w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden border-t border-slate-100 bg-slate-50/50 relative">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
         
-        <div class="flex flex-col items-center text-center mb-6 sm:mb-16 md:mb-24 reveal-on-scroll reveal-up">
-            <div class="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-4">
-                <div class="w-5 sm:w-8 h-[2px] bg-figma-red"></div>
-                <span class="font-sans font-bold text-[11px] sm:text-[14px] leading-none tracking-[1.5px] sm:tracking-[2px] text-figma-gray uppercase">
-                    Tim Akademik
-                </span>
-                <div class="w-5 sm:w-8 h-[2px] bg-figma-red"></div>
+        
+        <div class="flex flex-col items-center text-center mb-8 sm:mb-12 lg:mb-14 reveal-on-scroll reveal-up">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-100 mb-3 sm:mb-4">
+                <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+                <span class="text-xs font-heading font-black tracking-widest uppercase text-red-700">Tim Akademik & Instruktur</span>
             </div>
-            <h2 class="font-heading font-extrabold text-[20px] sm:text-[34px] md:text-[48px] leading-[1.2] sm:leading-[1.1] tracking-tight sm:tracking-[-1px] text-figma-dark max-w-[720px] mb-2 sm:mb-6">
+            <h2 class="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-slate-900 tracking-tight max-w-2xl mb-3">
                 Instruktur Berpengalaman Standar Industri
             </h2>
-            <p class="md:hidden text-[11px] text-gray-400 font-medium flex items-center gap-1">
-                <span>Geser ke samping untuk melihat dewan guru</span>
-                <svg class="w-3.5 h-3.5 text-figma-red animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            <p class="text-sm sm:text-base text-slate-600 max-w-xl font-sans leading-relaxed">
+                Didukung tenaga pendidik profesional dan instruktur bersertifikasi Astra Honda Motor dalam membimbing kompetensi teknis peserta didik.
             </p>
         </div>
 
-        <div class="flex flex-col lg:flex-row gap-5 sm:gap-8 lg:gap-12 reveal-on-scroll reveal-up">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch reveal-on-scroll reveal-up">
             
-            <!-- Featured: Head of Department (Compact on Mobile) -->
-            <div class="w-full lg:w-5/12 bg-charcoal-950 p-4 sm:p-8 md:p-12 text-white relative overflow-hidden group rounded-2xl shadow-xl flex flex-col justify-between">
-                <div class="absolute -top-12 -right-12 w-48 h-48 bg-figma-red opacity-10 rounded-full group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-                <div class="absolute bottom-0 left-0 w-full h-1 bg-figma-red"></div>
+            
+            <div class="lg:col-span-5 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-zinc-950 p-6 sm:p-8 lg:p-9 text-white relative overflow-hidden border border-slate-800 shadow-xl shadow-slate-900/10 flex flex-col justify-between group">
                 
+                <div class="absolute -top-16 -right-16 w-56 h-56 bg-red-600/15 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-700"></div>
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-rose-600 to-amber-500"></div>
+
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($headOfDepartment): ?>
                     <?php
                         $hasHeadPhoto = $headOfDepartment->hasValidPhoto();
                         $headPhotoUrl = $headOfDepartment->photo_url;
                         $headQuote = !empty($headOfDepartment->bio) 
                             ? $headOfDepartment->bio 
-                            : (isset($settings) ? $settings->get('head_quote') : app(\App\Services\SettingsService::class)->get('head_quote', 'Misi kami adalah menjembatani jarak antara teori di sekolah dengan realita di bengkel, sehingga siswa TBSM siap di industri.'));
+                            : (isset($settings) ? $settings->get('head_quote') : app(\App\Services\SettingsService::class)->get('head_quote', 'Mendedikasikan diri memimpin sinkronisasi kurikulum berbasis industri untuk mencetak lulusan berintegritas dan siap kerja.'));
                     ?>
-                    <div class="flex flex-col h-full z-10 relative">
-                        <div class="flex items-center justify-between gap-4 mb-2">
-                            <h3 class="font-heading font-bold text-[15px] sm:text-[22px] text-white">Kepala Kompetensi Keahlian</h3>
-                            <span class="px-2 py-0.5 sm:px-3 sm:py-1 bg-figma-red text-white text-[9px] sm:text-[10px] font-black uppercase tracking-widest rounded-full">Kajur</span>
-                        </div>
-                        <div class="w-8 sm:w-12 h-1 bg-figma-red mb-3 sm:mb-8"></div>
+                    
+                    <div class="relative z-10 flex flex-col h-full justify-between">
                         
-                        <!-- Mobile Layout: Side-by-side Avatar & Info -->
-                        <div class="flex flex-row md:flex-col items-center md:items-start gap-3.5 sm:gap-6 mb-3 sm:mb-6">
-                            <!-- Avatar -->
-                            <div class="w-16 h-16 sm:w-36 sm:h-36 md:w-44 md:h-44 bg-charcoal-800 rounded-full overflow-hidden border-2 sm:border-4 border-charcoal-700 shadow-xl shrink-0 flex items-center justify-center">
-                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($hasHeadPhoto && $headPhotoUrl): ?>
-                                    <img src="<?php echo e($headPhotoUrl); ?>" alt="<?php echo e($headOfDepartment->name); ?>" class="w-full h-full object-cover object-top aspect-square" loading="eager">
-                                <?php else: ?>
-                                    <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-charcoal-800 to-charcoal-900 text-charcoal-300 font-heading font-black text-xl sm:text-4xl">
-                                        <span><?php echo e(strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $headOfDepartment->name)), 0, 2))); ?></span>
-                                    </div>
-                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-4">
+                                <span class="text-[11px] sm:text-xs font-heading font-black tracking-widest uppercase text-slate-400">Kepemimpinan Jurusan</span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-black tracking-wider uppercase shadow-xs">Kajur</span>
                             </div>
+
                             
-                            <div class="flex-1 min-w-0">
-                                <h4 class="font-heading font-bold text-[16px] sm:text-[28px] md:text-[32px] leading-tight mb-0.5 sm:mb-2 text-white truncate md:overflow-visible md:whitespace-normal"><?php echo e($headOfDepartment->name); ?></h4>
-                                <p class="font-sans text-[12px] sm:text-[15px] font-medium text-figma-red truncate md:overflow-visible"><?php echo e($headOfDepartment->position ?? 'Ketua Kompetensi Keahlian TBSM'); ?></p>
+                            <div class="flex flex-col sm:flex-row lg:flex-col items-center sm:items-start text-center sm:text-left gap-4 sm:gap-5 mb-5">
+                                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl shrink-0 bg-slate-800 flex items-center justify-center">
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($hasHeadPhoto && $headPhotoUrl): ?>
+                                        <img src="<?php echo e($headPhotoUrl); ?>" alt="<?php echo e($headOfDepartment->name); ?>" class="w-full h-full object-cover object-top" loading="eager">
+                                    <?php else: ?>
+                                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 text-slate-300 font-heading font-black text-2xl">
+                                            <?php echo e(strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $headOfDepartment->name)), 0, 2))); ?>
+
+                                        </div>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                </div>
+
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="font-heading font-bold text-xl sm:text-2xl text-white leading-snug tracking-tight mb-1">
+                                        <?php echo e($headOfDepartment->name); ?>
+
+                                    </h3>
+                                    <div class="text-sm font-semibold text-red-400 mb-2">
+                                        <?php echo e($headOfDepartment->position ?? 'Ketua Kompetensi Keahlian'); ?>
+
+                                    </div>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($headOfDepartment->specialization): ?>
+                                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-white/10 text-slate-200 border border-white/10">
+                                            <svg class="w-3.5 h-3.5 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                            <span><?php echo e($headOfDepartment->specialization); ?></span>
+                                        </div>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                </div>
+                            </div>
+
+                            
+                            <div class="relative bg-white/5 border border-white/10 rounded-xl p-4 sm:p-5 mt-2">
+                                <svg class="w-6 h-6 text-red-500/40 absolute top-3 right-3" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                </svg>
+                                <p class="font-sans text-xs sm:text-sm leading-relaxed text-slate-300 italic pr-4">
+                                    "<?php echo e($headQuote); ?>"
+                                </p>
                             </div>
                         </div>
+
                         
-                        <blockquote class="font-sans text-[12px] sm:text-[15px] leading-[1.55] text-gray-300 italic flex-grow bg-white/5 border-l-2 border-figma-red p-3 sm:p-4 rounded-r-lg line-clamp-3 sm:line-clamp-none">
-                            "<?php echo e($headQuote); ?>"
-                        </blockquote>
+                        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-sans">SMK Negeri 1 Bangsri</span>
+                            <a href="<?php echo e(route('academic.teachers')); ?>" class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-red-400 hover:text-red-300 transition-colors">
+                                <span>Profil Pendidik</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </a>
+                        </div>
                     </div>
                 <?php else: ?>
-                    <div class="flex items-center justify-center h-full min-h-[160px]">
-                        <p class="text-gray-500 italic text-sm">Data Kepala Jurusan belum diatur.</p>
+                    <div class="flex items-center justify-center h-full min-h-[220px]">
+                        <p class="text-slate-400 italic text-sm">Data Kepala Jurusan belum diatur.</p>
                     </div>
                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
 
-            <!-- Other Teachers List (Swipeable Snap Cards on Mobile | Vertical Column on Desktop) -->
-            <div class="w-full lg:w-7/12 flex flex-col justify-between">
+            
+            <div class="lg:col-span-7 flex flex-col justify-between gap-3 sm:gap-4">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($teachers && $teachers->count() > 0): ?>
-                    <div class="flex lg:flex-col gap-3 sm:gap-5 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-3 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0 scrollbar-none">
+                    <div class="flex flex-col gap-3 sm:gap-3.5">
                         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $teachers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $teacher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                             <?php
                                 $hasPhoto = $teacher->hasValidPhoto();
                                 $photoUrl = $teacher->photo_url;
                                 $initials = strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $teacher->name)), 0, 2));
                             ?>
-                            <div class="w-[78vw] max-w-[310px] lg:w-auto shrink-0 snap-center flex flex-row items-center p-3.5 sm:p-5 md:p-6 bg-white border border-gray-200 rounded-2xl hover:shadow-lg transition-all duration-300 gap-3.5 sm:gap-5 group shadow-sm md:shadow-none">
-                                <!-- Circular Avatar Container -->
-                                <div class="w-14 h-14 sm:w-20 sm:h-20 rounded-full overflow-hidden shrink-0 bg-charcoal-100 border-2 border-gray-200 group-hover:border-figma-red transition-all duration-300 relative flex items-center justify-center shadow-xs">
+                            <div class="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-2xs hover:shadow-md hover:border-red-500/40 transition-all duration-300 flex flex-col sm:flex-row sm:items-center gap-3.5 sm:gap-4 group">
+                                
+                                <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden shrink-0 bg-slate-100 border-2 border-slate-200 group-hover:border-red-500 transition-colors shadow-2xs flex items-center justify-center">
                                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($hasPhoto && $photoUrl): ?>
-                                        <img src="<?php echo e($photoUrl); ?>" alt="<?php echo e($teacher->name); ?>" class="w-full h-full object-cover object-top aspect-square" loading="lazy">
+                                        <img src="<?php echo e($photoUrl); ?>" alt="<?php echo e($teacher->name); ?>" class="w-full h-full object-cover object-top" loading="lazy">
                                     <?php else: ?>
-                                        <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-charcoal-50 to-charcoal-200 text-charcoal-600 font-heading font-black text-sm sm:text-xl select-none">
-                                            <span><?php echo e($initials); ?></span>
+                                        <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 text-slate-700 font-heading font-black text-base select-none">
+                                            <?php echo e($initials); ?>
+
                                         </div>
                                     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
                                 
-                                <div class="text-left flex-1 min-w-0">
-                                    <h4 class="font-heading font-bold text-[14px] sm:text-[18px] text-figma-dark group-hover:text-figma-red transition-colors truncate">
-                                        <?php echo e($teacher->name); ?>
+                                
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex flex-wrap items-center justify-between gap-1.5 mb-1">
+                                        <h4 class="font-heading font-bold text-base sm:text-lg text-slate-900 group-hover:text-red-600 transition-colors leading-snug">
+                                            <?php echo e($teacher->name); ?>
 
-                                    </h4>
-                                    <div class="text-[11px] sm:text-[13px] font-sans font-semibold text-figma-gray truncate mb-1">
-                                        <?php echo e($teacher->position ?? 'Guru Kejuruan Otomotif'); ?>
+                                        </h4>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200 shrink-0">
+                                            <?php echo e($teacher->position ?? 'Guru Kejuruan'); ?>
 
+                                        </span>
                                     </div>
-                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($teacher->specialization): ?>
-                                        <div class="inline-block px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-red-50 text-red-700 border border-red-100 truncate max-w-full">
-                                            <?php echo e($teacher->specialization); ?>
 
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($teacher->specialization): ?>
+                                        <div class="text-xs sm:text-[13px] text-slate-600 font-medium leading-relaxed flex items-start gap-1.5 mt-1">
+                                            <span class="text-red-500 font-bold shrink-0 mt-0.5">•</span>
+                                            <span class="line-clamp-2 text-slate-600"><?php echo e($teacher->specialization); ?></span>
                                         </div>
                                     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
@@ -148,15 +182,27 @@ unset($__defined_vars, $__key, $__value); ?>
                         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
                     </div>
                     
-                    <div class="mt-4 flex justify-center lg:justify-start">
-                        <a href="<?php echo e(route('academic.teachers')); ?>" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 sm:px-8 py-3 bg-white border border-slate-300 text-slate-800 font-sans font-bold text-[12px] sm:text-[14px] uppercase tracking-wider hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all rounded-xl shadow-xs focus-ring active:scale-95">
-                            <span>Lihat Seluruh Dewan Guru</span>
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    
+                    <div class="mt-2 pt-1">
+                        <a href="<?php echo e(route('academic.teachers')); ?>" class="group flex items-center justify-between w-full p-4 sm:p-4.5 bg-white hover:bg-slate-900 border border-slate-200 hover:border-slate-900 rounded-2xl transition-all duration-300 shadow-2xs hover:shadow-lg">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-red-50 group-hover:bg-red-600 flex items-center justify-center text-red-600 group-hover:text-white transition-colors shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                </div>
+                                <div class="text-left">
+                                    <div class="font-heading font-bold text-sm sm:text-base text-slate-900 group-hover:text-white transition-colors">Lihat Seluruh Dewan Guru & Instruktur</div>
+                                    <div class="text-xs text-slate-500 group-hover:text-slate-300 transition-colors">Bagan struktur organisasi resmi & profil dewan guru lengkap</div>
+                                </div>
+                            </div>
+                            <div class="hidden sm:flex items-center gap-1.5 text-red-600 group-hover:text-white font-bold text-xs uppercase tracking-wider transition-colors shrink-0">
+                                <span>Selengkapnya</span>
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </div>
                         </a>
                     </div>
                 <?php else: ?>
-                    <div class="flex items-center justify-center h-full min-h-[140px] bg-white border border-gray-200 p-5 rounded-2xl">
-                        <p class="text-gray-500 italic text-sm">Data Guru belum tersedia.</p>
+                    <div class="flex items-center justify-center h-full min-h-[160px] bg-white border border-slate-200 p-6 rounded-2xl">
+                        <p class="text-slate-500 italic text-sm">Data Dewan Guru belum tersedia.</p>
                     </div>
                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>

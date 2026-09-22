@@ -7,7 +7,7 @@
             Masuk ke Admin Panel
         </h2>
         <p class="text-[14px] text-gray-500 font-sans">
-            Kelola konten dan informasi resmi Jurusan TBSM.
+            Kelola konten dan informasi resmi Jurusan {{ app(\App\Services\SettingsService::class)->get('site_short_name', 'TSM') }}.
         </p>
     </div>
 

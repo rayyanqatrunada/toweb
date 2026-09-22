@@ -1,10 +1,10 @@
-<x-layouts.app title="Struktur Organisasi & Dewan Guru TBSM">
+<x-layouts.app title="Struktur Organisasi & Dewan Guru {{ $settings->get('site_short_name', 'TSM') }}">
     @push('json-ld')
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
       "@@type": "WebPage",
-      "name": "Struktur Organisasi & Dewan Guru TBSM SMK Negeri 1 Bangsri",
+      "name": "Struktur Organisasi & Dewan Guru {{ $settings->get('site_short_name', 'TSM') }} SMK Negeri 1 Bangsri",
       "description": "Bagan struktur organisasi resmi kejuruan dan direktori profil dewan guru instruktur otomotif tersertifikasi Astra Honda Motor di SMK Negeri 1 Bangsri."
     }
     </script>
@@ -60,7 +60,7 @@
 
                 <h1 class="text-2xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.1] sm:leading-[1.08] uppercase text-slate-900 mb-4 sm:mb-6 reveal-on-scroll reveal-up delay-100">
                     Struktur Organisasi & <br class="hidden sm:inline">
-                    <span class="bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 bg-clip-text text-transparent">Dewan Guru TBSM</span>
+                    <span class="bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 bg-clip-text text-transparent">Dewan Guru {{ $settings->get('site_short_name', 'TSM') }}</span>
                 </h1>
 
                 <p class="text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl reveal-on-scroll reveal-up delay-200">
@@ -88,7 +88,7 @@
                     </div>
                     <div>
                         <div class="font-bold text-slate-900 text-xs sm:text-sm">Pendidik & Instruktur</div>
-                        <div class="text-[11px] sm:text-xs text-slate-500">Keluarga Besar TBSM</div>
+                        <div class="text-[11px] sm:text-xs text-slate-500">Keluarga Besar {{ $settings->get('site_short_name', 'TSM') }}</div>
                     </div>
                 </div>
 
@@ -210,7 +210,7 @@
                         Bagan Struktur Organisasi
                     </h2>
                     <p class="text-slate-600 text-xs sm:text-base mt-2 leading-relaxed">
-                        Diagram hierarki kepemimpinan kejuruan, manajerial fasilitas bengkel berstandar AHASS, serta koordinator operasional TBSM SMK Negeri 1 Bangsri.
+                        Diagram hierarki kepemimpinan kejuruan, manajerial fasilitas bengkel berstandar AHASS, serta koordinator operasional {{ $settings->get('site_short_name', 'TSM') }} SMK Negeri 1 Bangsri.
                     </p>
                 </div>
 
@@ -275,7 +275,7 @@
 
                                 <!-- TINGKAT 1: KETUA KOMPETENSI KEAHLIAN -->
                                 <div class="flex flex-col items-center relative z-20">
-                                    <a href="#guru-{{ $hod?->id ?? 1 }}" class="group block focus:outline-none" title="Lihat Profil {{ $hod->name }}">
+                                    <a href="#guru-{{ $hod?->id ?? 1 }}" class="group block focus:outline-none" title="Lihat Profil {{ $hod?->name ?? 'Pimpinan Kejuruan' }}">
                                         <div class="w-80 sm:w-[340px] rounded-2xl p-[1.5px] bg-gradient-to-b from-red-600 via-rose-500 to-amber-500 shadow-xl shadow-red-600/10 hover:shadow-2xl hover:shadow-red-600/20 hover:-translate-y-1.5 transition-all duration-500">
                                             <div class="bg-white rounded-[calc(1rem-1.5px)] p-5 text-center relative overflow-hidden">
                                                 <!-- Top Crown Badge -->
@@ -290,22 +290,20 @@
                                                         <img src="{{ $hod->photo_url }}" alt="{{ $hod->name }}" class="w-full h-full object-cover object-top aspect-square group-hover:scale-108 transition-transform duration-500" loading="eager">
                                                     @else
                                                         <div class="w-full h-full flex items-center justify-center bg-slate-900 text-amber-400 font-heading font-black text-2xl">
-                                                            {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $hod->name)), 0, 2)) }}
+                                                            {{ strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $hod?->name ?? 'PK')), 0, 2)) }}
                                                         </div>
                                                     @endif
                                                 </div>
 
                                                 <h3 class="font-heading font-black text-base sm:text-lg text-slate-900 leading-tight group-hover:text-red-600 transition-colors uppercase mb-1.5">
-                                                    {{ $hod->name }}
+                                                    {{ $hod?->name ?? 'Pimpinan Kejuruan' }}
                                                 </h3>
 
                                                 <div class="inline-block px-3 py-1 rounded-lg bg-red-50 border border-red-200 text-red-700 font-bold text-xs uppercase tracking-wider mb-2">
-                                                    {{ $hod->position ?? 'Ketua Kompetensi Keahlian' }}
+                                                    {{ $hod?->position ?? 'Ketua Kompetensi Keahlian' }}
                                                 </div>
 
-                                                @if($hod->nip)
-                                                    <div class="text-[10px] font-mono text-slate-400">NIP: {{ $hod->nip }}</div>
-                                                @endif
+
                                             </div>
                                         </div>
                                     </a>
@@ -321,7 +319,7 @@
                                     <!-- 1. Bendahara -->
                                     <div class="org-tree-col w-1/3 px-3">
                                         <div class="tree-node-dot"></div>
-                                        <a href="#guru-{{ $bendahara?->id ?? 2 }}" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil {{ $bendahara->name }}">
+                                        <a href="#guru-{{ $bendahara?->id ?? 2 }}" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil {{ $bendahara?->name ?? 'Bendahara' }}">
                                             <div class="rounded-2xl p-[1px] bg-gradient-to-b from-slate-200 via-slate-100 to-slate-200 hover:from-slate-400 hover:to-slate-300 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                                 <div class="bg-white rounded-[calc(1rem-1px)] p-4 text-center">
                                                     <div class="inline-block px-2.5 py-0.5 rounded-full bg-slate-900 text-slate-200 text-[9px] font-black uppercase tracking-wider mb-2.5">
@@ -340,9 +338,7 @@
                                                     <div class="inline-block px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700 font-bold text-[11px] uppercase tracking-wider mb-1">
                                                         Bendahara
                                                     </div>
-                                                    @if($bendahara?->nip)
-                                                        <div class="text-[9px] font-mono text-slate-400">NIP: {{ $bendahara->nip }}</div>
-                                                    @endif
+
                                                 </div>
                                             </div>
                                         </a>
@@ -351,7 +347,7 @@
                                     <!-- 2. Sekretaris -->
                                     <div class="org-tree-col w-1/3 px-3">
                                         <div class="tree-node-dot !border-red-600 !bg-red-50"></div>
-                                        <a href="#guru-{{ $sekretaris?->id ?? 3 }}" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil {{ $sekretaris->name }}">
+                                        <a href="#guru-{{ $sekretaris?->id ?? 3 }}" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil {{ $sekretaris?->name ?? 'Sekretaris' }}">
                                             <div class="rounded-2xl p-[1px] bg-gradient-to-b from-slate-200 via-slate-100 to-slate-200 hover:from-red-300 hover:to-slate-300 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                                 <div class="bg-white rounded-[calc(1rem-1px)] p-4 text-center">
                                                     <div class="inline-block px-2.5 py-0.5 rounded-full bg-slate-900 text-slate-200 text-[9px] font-black uppercase tracking-wider mb-2.5">
@@ -370,9 +366,7 @@
                                                     <div class="inline-block px-2.5 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-slate-700 font-bold text-[11px] uppercase tracking-wider mb-1">
                                                         Sekretaris
                                                     </div>
-                                                    @if($sekretaris?->nip)
-                                                        <div class="text-[9px] font-mono text-slate-400">NIP: {{ $sekretaris->nip }}</div>
-                                                    @endif
+
                                                 </div>
                                             </div>
                                         </a>
@@ -381,7 +375,7 @@
                                     <!-- 3. Kepala Laboratorium -->
                                     <div class="org-tree-col w-1/3 px-3">
                                         <div class="tree-node-dot !border-amber-500"></div>
-                                        <a href="#guru-{{ $kepalaLab?->id ?? 4 }}" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil {{ $kepalaLab->name }}">
+                                        <a href="#guru-{{ $kepalaLab?->id ?? 4 }}" class="group block w-full max-w-[270px] focus:outline-none" title="Lihat Profil {{ $kepalaLab?->name ?? 'Kepala Laboratorium' }}">
                                             <div class="rounded-2xl p-[1px] bg-gradient-to-b from-amber-300 via-amber-100 to-amber-200 hover:from-amber-500 hover:to-orange-400 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                                 <div class="bg-white rounded-[calc(1rem-1px)] p-4 text-center">
                                                     <div class="inline-block px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 text-white text-[9px] font-black uppercase tracking-wider mb-2.5 shadow-xs">
@@ -400,9 +394,7 @@
                                                     <div class="inline-block px-2.5 py-0.5 rounded-md bg-amber-50 border border-amber-200 text-amber-800 font-bold text-[11px] uppercase tracking-wider mb-1">
                                                         Kepala Laboratorium
                                                     </div>
-                                                    @if($kepalaLab?->nip)
-                                                        <div class="text-[9px] font-mono text-slate-400">NIP: {{ $kepalaLab->nip }}</div>
-                                                    @endif
+
                                                 </div>
                                             </div>
                                         </a>
@@ -427,7 +419,7 @@
                                     <!-- 1. Event & Prestasi -->
                                     <div class="org-tree-col w-1/4 px-2 sm:px-2.5">
                                         <div class="tree-node-dot !border-amber-500"></div>
-                                        <a href="#guru-{{ $bidangPrestasi?->id ?? 5 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $bidangPrestasi->name }}">
+                                        <a href="#guru-{{ $bidangPrestasi?->id ?? 5 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $bidangPrestasi?->name ?? 'Bidang Event & Prestasi' }}">
                                             <div class="bg-white rounded-2xl border-t-4 border-amber-500 border-x border-b border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-3.5 text-center">
                                                 <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white shadow ring-2 ring-slate-200 bg-slate-100">
                                                     @if($bidangPrestasi && $bidangPrestasi->hasValidPhoto() && $bidangPrestasi->photo_url)
@@ -449,7 +441,7 @@
                                     <!-- 2. Bidang IDUKA -->
                                     <div class="org-tree-col w-1/4 px-2 sm:px-2.5">
                                         <div class="tree-node-dot !border-emerald-600"></div>
-                                        <a href="#guru-{{ $bidangIduka?->id ?? 6 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $bidangIduka->name }}">
+                                        <a href="#guru-{{ $bidangIduka?->id ?? 6 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $bidangIduka?->name ?? 'Bidang IDUKA' }}">
                                             <div class="bg-white rounded-2xl border-t-4 border-emerald-500 border-x border-b border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-3.5 text-center">
                                                 <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white shadow ring-2 ring-slate-200 bg-slate-100">
                                                     @if($bidangIduka && $bidangIduka->hasValidPhoto() && $bidangIduka->photo_url)
@@ -471,7 +463,7 @@
                                     <!-- 3. Bidang PKL -->
                                     <div class="org-tree-col w-1/4 px-2 sm:px-2.5">
                                         <div class="tree-node-dot !border-blue-600"></div>
-                                        <a href="#guru-{{ $bidangPkl?->id ?? 7 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $bidangPkl->name }}">
+                                        <a href="#guru-{{ $bidangPkl?->id ?? 7 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $bidangPkl?->name ?? 'Bidang PKL' }}">
                                             <div class="bg-white rounded-2xl border-t-4 border-blue-500 border-x border-b border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-3.5 text-center">
                                                 <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white shadow ring-2 ring-slate-200 bg-slate-100">
                                                     @if($bidangPkl && $bidangPkl->hasValidPhoto() && $bidangPkl->photo_url)
@@ -493,7 +485,7 @@
                                     <!-- 4. Toolman (Teknisi Bengkel / Lab) -->
                                     <div class="org-tree-col w-1/4 px-2 sm:px-2.5">
                                         <div class="tree-node-dot !border-slate-700"></div>
-                                        <a href="#guru-{{ $toolman?->id ?? 8 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $toolman->name }}">
+                                        <a href="#guru-{{ $toolman?->id ?? 8 }}" class="group block w-full focus:outline-none" title="Lihat Profil {{ $toolman?->name ?? 'Toolman' }}">
                                             <div class="bg-white rounded-2xl border-t-4 border-slate-800 border-x border-b border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-3.5 text-center relative">
                                                 <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 border-2 border-white shadow ring-2 ring-slate-200 bg-slate-100">
                                                     @if($toolman && $toolman->hasValidPhoto() && $toolman->photo_url)
@@ -613,7 +605,7 @@
                             </div>
                             <div>
                                 <div class="font-heading font-black text-sm sm:text-base uppercase tracking-wider text-white">
-                                    Struktur Resmi Tata Kelola Kejuruan TBSM
+                                    Struktur Resmi Tata Kelola Kejuruan {{ $settings->get('site_short_name', 'TSM') }}
                                 </div>
                                 <div class="text-xs text-slate-400 mt-0.5">
                                     SMK Negeri 1 Bangsri • Terakreditasi & Binaan Resmi PT Astra Honda Motor (AHM)
@@ -688,9 +680,7 @@
                                     <h4 class="font-heading font-black text-sm sm:text-xl text-slate-900 group-hover:text-red-600 transition-colors leading-snug mb-1 line-clamp-2 sm:line-clamp-none">
                                         {{ $leader->name }}
                                     </h4>
-                                    @if($leader->nip)
-                                        <p class="text-[10px] sm:text-xs font-mono text-slate-500 mb-2 sm:mb-4 pb-1.5 sm:pb-3 border-b border-slate-200">NIP: {{ $leader->nip }}</p>
-                                    @endif
+
 
                                     @if($leader->specialization)
                                         <div class="mb-2 sm:mb-4">
@@ -760,9 +750,7 @@
                                     <h4 class="font-heading font-black text-sm sm:text-xl text-slate-900 group-hover:text-amber-600 transition-colors leading-snug mb-1 line-clamp-2 sm:line-clamp-none">
                                         {{ $labStaff->name }}
                                     </h4>
-                                    @if($labStaff->nip)
-                                        <p class="text-[10px] sm:text-xs font-mono text-slate-500 mb-2 sm:mb-3">NIP: {{ $labStaff->nip }}</p>
-                                    @endif
+
 
                                     @if($labStaff->specialization)
                                         <div class="mb-2 sm:mb-3">
@@ -817,9 +805,7 @@
                                     <h4 class="font-heading font-black text-sm sm:text-xl text-slate-900 group-hover:text-red-600 transition-colors leading-snug mb-1 line-clamp-2 sm:line-clamp-none">
                                         {{ $industryStaff->name }}
                                     </h4>
-                                    @if($industryStaff->nip)
-                                        <p class="text-[10px] sm:text-xs font-mono text-slate-500 mb-2 sm:mb-4 pb-1.5 sm:pb-3 border-b border-slate-200">NIP: {{ $industryStaff->nip }}</p>
-                                    @endif
+
 
                                     @if($industryStaff->specialization)
                                         <div class="mb-2 sm:mb-4">
@@ -866,9 +852,7 @@
                                 </div>
                                 <h4 class="font-heading font-bold text-xs sm:text-base text-slate-900 mb-0.5 sm:mb-1 line-clamp-2">{{ $ot->name }}</h4>
                                 <p class="text-[11px] sm:text-xs text-red-600 font-semibold mb-1 sm:mb-2">{{ $ot->position ?? 'Guru Kejuruan' }}</p>
-                                @if($ot->nip)
-                                    <span class="text-[9px] sm:text-[10px] font-mono text-slate-400">NIP: {{ $ot->nip }}</span>
-                                @endif
+
                             </div>
                         @endforeach
                     </div>
@@ -888,7 +872,7 @@
                         Kualifikasi & Sertifikasi Mutu Pengajar
                     </h2>
                     <p class="text-slate-600 text-base leading-relaxed mb-8">
-                        Guru kejuruan TBSM SMK Negeri 1 Bangsri wajib mengikuti sertifikasi berjenjang dari PT Astra Honda Motor dan LSP Pihak Pertama guna menjamin kurikulum yang diajarkan selalu relevan dengan dinamika teknologi terkini.
+                        Guru kejuruan {{ $settings->get('site_short_name', 'TSM') }} SMK Negeri 1 Bangsri wajib mengikuti sertifikasi berjenjang dari PT Astra Honda Motor dan LSP Pihak Pertama guna menjamin kurikulum yang diajarkan selalu relevan dengan dinamika teknologi terkini.
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-start gap-4">

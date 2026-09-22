@@ -4,8 +4,8 @@
             
             <!-- Brand Section -->
             <div class="flex flex-col gap-3 sm:gap-4 w-full max-w-[384px]">
-                <a href="<?php echo e(route('home')); ?>" class="font-heading font-extrabold text-[18px] sm:text-[20px] text-figma-bg-card leading-tight">
-                    TEKNIK DAN BISNIS SEPEDA MOTOR<br>
+                <a href="<?php echo e(route('home')); ?>" class="font-heading font-extrabold text-[18px] sm:text-[20px] text-figma-bg-card leading-tight uppercase">
+                    <?php echo e(strtoupper($settings->get('site_name', 'Teknik Sepeda Motor'))); ?><br>
                     <span class="text-[14px] sm:text-[16px] text-figma-gray-light font-medium">SMK NEGERI 1 BANGSRI</span>
                 </a>
                 <p class="font-sans text-[13px] sm:text-[14px] leading-[20px] sm:leading-[22px] text-figma-gray-light">
@@ -65,7 +65,7 @@
     <div class="bg-[#101011] border-t border-figma-gray-dark">
         <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 py-6 pb-24 md:pb-6 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
             <p class="font-sans text-[12px] sm:text-[14px] text-figma-gray text-center w-full md:text-left">
-                &copy; <?php echo e(date('Y')); ?> <?php echo e($settings->get('site_name', 'TBSM')); ?>. Seluruh Hak Cipta Dilindungi.
+                &copy; <?php echo e(date('Y')); ?> <?php echo e($settings->get('site_name', 'Teknik Sepeda Motor')); ?>. Seluruh Hak Cipta Dilindungi.
             </p>
         </div>
     </div>

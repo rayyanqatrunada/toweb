@@ -18,7 +18,7 @@ class TeacherForm
         return $schema
             ->components([
                 Section::make('Identitas & Jabatan Tenaga Pendidik')
-                    ->description('Lengkapi data identitas pengajar, NIP, serta bidang keahlian otomotif.')
+                    ->description('Lengkapi data identitas pengajar serta bidang keahlian otomotif.')
                     ->schema([
                         Hidden::make('user_id')
                             ->default(fn () => auth()->id()),
@@ -28,11 +28,6 @@ class TeacherForm
                             ->placeholder('Contoh: Ahmad Wildan, S.Pd.')
                             ->required()
                             ->maxLength(255),
-
-                        TextInput::make('nip')
-                            ->label('NIP / NUPTK / Kode Guru')
-                            ->placeholder('198503032008032003')
-                            ->maxLength(50),
 
                         TextInput::make('position')
                             ->label('Jabatan / Peran di Sekolah')

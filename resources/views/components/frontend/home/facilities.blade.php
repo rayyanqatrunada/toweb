@@ -39,7 +39,7 @@
             <div class="md:hidden flex gap-3.5 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 scrollbar-none">
                 <!-- Featured Card -->
                 <div class="w-[82vw] max-w-[310px] shrink-0 snap-center relative bg-charcoal-950 aspect-[16/12] rounded-2xl overflow-hidden group shadow-md">
-                    <img src="{{ $featuredFacility->photo ? Storage::url($featuredFacility->photo) : 'https://images.unsplash.com/photo-1599252328221-5c8c50b73df7?q=80&w=1200&auto=format&fit=crop' }}" 
+                    <img src="{{ $featuredFacility->photo ? Storage::url($featuredFacility->photo) : asset('storage/facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg') }}" 
                          alt="{{ $featuredFacility->name }}" 
                          class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/50 to-transparent"></div>
@@ -96,7 +96,7 @@
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </div>
                     <span class="font-heading font-black text-base uppercase mb-1">Semua Fasilitas</span>
-                    <span class="text-xs text-white/80">Jelajahi ekosistem TBSM &rarr;</span>
+                    <span class="text-xs text-white/80">Jelajahi ekosistem {{ $settings->get('site_short_name', 'TSM') }} &rarr;</span>
                 </a>
             </div>
 
@@ -105,7 +105,7 @@
                 
                 <!-- Featured Facility -->
                 <div class="md:col-span-8 relative bg-charcoal-950 min-h-[400px] overflow-hidden group rounded-xl">
-                    <img src="{{ $featuredFacility->photo ? Storage::url($featuredFacility->photo) : 'https://images.unsplash.com/photo-1599252328221-5c8c50b73df7?q=80&w=1200&auto=format&fit=crop' }}" 
+                    <img src="{{ $featuredFacility->photo ? Storage::url($featuredFacility->photo) : asset('storage/facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg') }}" 
                          alt="{{ $featuredFacility->name }}" 
                          class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" loading="lazy">
                     
@@ -145,7 +145,7 @@
                         <a href="{{ route('academic.facilities') }}" class="flex-1 min-h-[200px] bg-figma-red text-white flex flex-col items-center justify-center p-8 text-center hover:bg-figma-dark-red transition-colors group rounded-xl">
                             <svg class="w-10 h-10 mb-4 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                             <span class="font-heading font-bold text-[20px] mb-2">Semua Fasilitas</span>
-                            <span class="font-sans text-[14px] text-white/80">Jelajahi ekosistem praktik TBSM</span>
+                            <span class="font-sans text-[14px] text-white/80">Jelajahi ekosistem praktik {{ $settings->get('site_short_name', 'TSM') }}</span>
                         </a>
                     @endif
                 </div>

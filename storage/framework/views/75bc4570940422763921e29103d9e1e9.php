@@ -15,7 +15,7 @@
     {
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
-      "name": "<?php echo e($settings->get('site_name', 'TBSM')); ?>",
+      "name": "<?php echo e($settings->get('site_name', 'Teknik Sepeda Motor')); ?>",
       "url": "<?php echo e(url('/')); ?>",
       "logo": "<?php echo e(url('/logo.png')); ?>"
     }
@@ -338,6 +338,30 @@
 <?php endif; ?>
 
     </main>
+
+    <!-- Floating Scroll To Top Button (Homepage Only) -->
+    <?php if (isset($component)) { $__componentOriginalea9fa2a5a665f40cd8ab803e7541bc1d = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalea9fa2a5a665f40cd8ab803e7541bc1d = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.home.scroll-to-top','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('frontend.home.scroll-to-top'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalea9fa2a5a665f40cd8ab803e7541bc1d)): ?>
+<?php $attributes = $__attributesOriginalea9fa2a5a665f40cd8ab803e7541bc1d; ?>
+<?php unset($__attributesOriginalea9fa2a5a665f40cd8ab803e7541bc1d); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalea9fa2a5a665f40cd8ab803e7541bc1d)): ?>
+<?php $component = $__componentOriginalea9fa2a5a665f40cd8ab803e7541bc1d; ?>
+<?php unset($__componentOriginalea9fa2a5a665f40cd8ab803e7541bc1d); ?>
+<?php endif; ?>
 
     <?php $__env->startPush('scripts'); ?>
     <!-- The hero slider logic is included in app.js via Vite -->

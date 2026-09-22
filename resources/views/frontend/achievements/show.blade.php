@@ -65,7 +65,7 @@
             {{-- Background Layer 5: Technical Corner Framing & Watermarks --}}
             <div class="absolute right-6 top-6 w-16 h-16 border-r border-t border-[#E4E1E5] pointer-events-none hidden md:block"></div>
             <div class="absolute left-6 bottom-6 w-16 h-16 border-l border-b border-[#E4E1E5] pointer-events-none hidden md:block"></div>
-            <div class="absolute left-8 top-7 font-mono text-[10px] tracking-[2px] uppercase text-[#1B1B1E]/25 select-none pointer-events-none hidden xl:block">// TBSM.ARCHIVE.REC</div>
+            <div class="absolute left-8 top-7 font-mono text-[10px] tracking-[2px] uppercase text-[#1B1B1E]/25 select-none pointer-events-none hidden xl:block">// {{ $settings->get('site_short_name', 'TSM') }}.ARCHIVE.REC</div>
             <div class="absolute right-8 bottom-7 font-mono text-[10px] tracking-[2px] uppercase text-[#1B1B1E]/25 select-none pointer-events-none hidden xl:block">ID // {{ substr(md5($achievement->slug), 0, 8) }}</div>
 
             {{-- Content Container --}}
@@ -243,7 +243,7 @@
                                         {!! \App\Support\HtmlSanitizer::clean($achievement->description) !!}
                                     @else
                                         <p class="text-[#3B3A3E] leading-relaxed">
-                                            Pencapaian bergengsi ini ditorehkan oleh perwakilan kompetensi keahlian Teknik dan Bisnis Sepeda Motor (TBSM) SMK Negeri 1 Bangsri dalam ajang <strong>{{ $achievement->title }}</strong> yang diselenggarakan oleh <strong>{{ $achievement->organizer ?? 'penyelenggara resmi' }}</strong> pada <strong>{{ $achievement->date ? $achievement->date->translatedFormat('d F Y') : 'periode tahun kompetisi' }}</strong>.
+                                            Pencapaian bergengsi ini ditorehkan oleh perwakilan kompetensi keahlian {{ $settings->get('site_name', 'Teknik Sepeda Motor') }} ({{ $settings->get('site_short_name', 'TSM') }}) SMK Negeri 1 Bangsri dalam ajang <strong>{{ $achievement->title }}</strong> yang diselenggarakan oleh <strong>{{ $achievement->organizer ?? 'penyelenggara resmi' }}</strong> pada <strong>{{ $achievement->date ? $achievement->date->translatedFormat('d F Y') : 'periode tahun kompetisi' }}</strong>.
                                         </p>
                                         <p class="text-[#5F5E5E] leading-relaxed mt-3">
                                             Prestasi ini merupakan buah dari pembinaan intensif di bengkel praktik kejuruan berstandar industri, penguasaan SOP servis terkini, serta dedikasi peserta didik dan instruktur kejuruan dalam menjunjung tinggi standar kualitas vokasi tingkat {{ strtolower($levelLabel) }}.
@@ -341,7 +341,7 @@
                                     Kembali ke Rekam Jejak Prestasi
                                 </a>
                                 <span class="font-mono text-[11px] text-[#8E8B8F] uppercase tracking-wider">
-                                    Pusat Keunggulan Kejuruan TBSM
+                                    Pusat Keunggulan Kejuruan {{ $settings->get('site_short_name', 'TSM') }}
                                 </span>
                             </div>
                             
@@ -417,7 +417,7 @@
                                         Bidang Kejuruan
                                     </span>
                                     <span class="font-sans font-medium text-sm text-[#1B1B1E] block">
-                                        {{ $achievement->category ? $achievement->category->name : 'Teknik dan Bisnis Sepeda Motor' }}
+                                        {{ $achievement->category ? $achievement->category->name : $settings->get('site_name', 'Teknik Sepeda Motor') }}
                                     </span>
                                 </div>
 
@@ -441,7 +441,7 @@
                             </span>
                             <div class="flex items-center gap-2">
                                 {{-- WhatsApp --}}
-                                <a href="https://api.whatsapp.com/send?text={{ urlencode($achievement->title . ' - Prestasi TBSM SMKN 1 Bangsri: ' . url()->current()) }}" 
+                                <a href="https://api.whatsapp.com/send?text={{ urlencode($achievement->title . ' - Prestasi ' . $settings->get('site_short_name', 'TSM') . ' SMKN 1 Bangsri: ' . url()->current()) }}" 
                                    target="_blank" 
                                    rel="noopener noreferrer"
                                    class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold rounded-[2px] transition-colors shadow-sm">
@@ -477,7 +477,7 @@
                                                 <img src="{{ Storage::url($rel->photo) }}" alt="{{ $rel->title }}" class="w-14 h-14 object-cover rounded-[2px] border border-[#E4E1E5] flex-shrink-0 group-hover:scale-105 transition-transform" loading="lazy">
                                             @else
                                                 <div class="w-14 h-14 bg-[#F5F3F6] rounded-[2px] border border-[#E4E1E5] flex items-center justify-center text-[10px] text-[#5F5E5E] flex-shrink-0">
-                                                    TBSM
+                                                    {{ $settings->get('site_short_name', 'TSM') }}
                                                 </div>
                                             @endif
                                             <div class="flex-grow min-w-0">

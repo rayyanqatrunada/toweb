@@ -47,7 +47,7 @@ unset($__defined_vars, $__key, $__value); ?>
                 </h2>
                 
                 <p class="font-sans text-[16px] text-gray-600 leading-[1.6] mb-8">
-                    Siswa TBSM secara konsisten mencetak prestasi di berbagai ajang kompetisi keahlian otomotif tingkat regional hingga nasional. Hal ini membuktikan bahwa kurikulum dan metode praktik yang kami terapkan membuahkan hasil unggul.
+                    Siswa <?php echo e($settings->get('site_short_name', 'TSM')); ?> secara konsisten mencetak prestasi di berbagai ajang kompetisi keahlian otomotif tingkat regional hingga nasional. Hal ini membuktikan bahwa kurikulum dan metode praktik yang kami terapkan membuahkan hasil unggul.
                 </p>
 
                 <a href="<?php echo e(route('achievements.index')); ?>" class="group flex items-center gap-4 text-figma-dark hover:text-figma-red transition-colors font-sans font-bold text-[16px] uppercase tracking-[-0.5px]">

@@ -91,19 +91,7 @@
     .delay-500 { transition-delay: 500ms; }
 }
 
-/* ── HIDE SCROLLBAR GLOBALLY FOR FRONTEND USER PAGES ── */
-html,
-body,
-* {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-}
-
-*::-webkit-scrollbar {
-    display: none;
-    width: 0 !important;
-    height: 0 !important;
-}
+/* ── SCROLLBAR UTILITY FOR CAROUSELS & HORIZONTAL SCROLL CONTAINERS ── */
 
 .hide-scrollbar,
 .no-scrollbar,

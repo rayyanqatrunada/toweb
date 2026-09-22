@@ -35,6 +35,47 @@ class FrontendPublicTest extends TestCase
         $this->get('/lowongan')->assertStatus(200);
         $this->get('/alumni')->assertStatus(200);
         $this->get('/unduhan')->assertStatus(200);
+        $this->get('/kontak')->assertStatus(200);
+    }
+
+    public function test_contact_form_submits_successfully()
+    {
+        $payload = [
+            'name' => 'Rayyan Qatrunada',
+            'email' => 'putraqhoniansyah@gmail.com',
+            'subject' => 'Informasi Akademik',
+            'message' => 'Apa saja materi kejuruan TBSM?',
+        ];
+
+        $response = $this->post('/kontak', $payload);
+
+        $response->assertRedirect();
+        $response->assertSessionHas('success');
+
+        $this->assertDatabaseHas('contact_messages', [
+            'name' => 'Rayyan Qatrunada',
+            'email' => 'putraqhoniansyah@gmail.com',
+            'subject' => 'Informasi Akademik',
+            'message' => 'Apa saja materi kejuruan TBSM?',
+        ]);
+    }
+
+    public function test_contact_form_honeypot_prevents_spam()
+    {
+        $payload = [
+            'name' => 'Bot Spammer',
+            'email' => 'bot@spam.com',
+            'subject' => 'Buy meds',
+            'message' => 'Spam content',
+            'website_hp' => 'http://spamsite.com',
+        ];
+
+        $response = $this->post('/kontak', $payload);
+
+        $response->assertRedirect();
+        $this->assertDatabaseMissing('contact_messages', [
+            'email' => 'bot@spam.com',
+        ]);
     }
 
     public function test_draft_post_is_not_visible()

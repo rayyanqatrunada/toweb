@@ -54,17 +54,17 @@
             <a href="<?php echo e(route('home')); ?>" class="shrink-0 flex items-center gap-3 sm:gap-4 group focus-ring outline-hidden">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($logo = app(\App\Services\SettingsService::class)->get('site_logo')): ?>
                     <div class="flex items-center gap-2.5 sm:gap-3">
-                        <img src="<?php echo e(Storage::url($logo)); ?>" alt="<?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'TBSM')); ?>" class="h-8 sm:h-10 w-auto">
+                        <img src="<?php echo e(Storage::url($logo)); ?>" alt="<?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor')); ?>" class="h-8 sm:h-10 w-auto">
                         <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
                              :class="(scrolledPastHero || !isHome || mobileMenuOpen) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
-                            <?php echo e(app(\App\Services\SettingsService::class)->get('site_short_name', 'TBSM')); ?>
+                            <?php echo e(app(\App\Services\SettingsService::class)->get('site_short_name', 'TSM')); ?>
 
                         </div>
                     </div>
                 <?php else: ?>
                     <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
                          :class="(scrolledPastHero || !isHome || mobileMenuOpen) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
-                        <?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'TBSM')); ?>
+                        <?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor')); ?>
 
                     </div>
                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
@@ -87,16 +87,10 @@
                 <a href="<?php echo e(route('contact.index')); ?>" class="px-5 py-2 ml-4 bg-figma-red text-white font-sans text-[14px] tracking-[-0.5px] uppercase rounded-[2px] hover:bg-figma-dark-red transition-colors focus-ring shadow-sm">
                     Hubungi Kami
                 </a>
-                
-                
-                
             </div>
 
             <!-- Mobile Actions -->
-            <div class="flex lg:hidden items-center space-x-2">
-                
-                
-                
+            <div class="flex lg:hidden items-center space-x-1.5">
                 <button type="button" 
                         aria-controls="mobile-navigation" 
                         :aria-expanded="mobileMenuOpen.toString()" 
@@ -174,27 +168,4 @@
         </div>
     </div>
 </nav>
-
-<?php if (isset($component)) { $__componentOriginal884ec1d8c6b8f530aa8698d5404840a3 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal884ec1d8c6b8f530aa8698d5404840a3 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.global-search-modal','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('global-search-modal'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
-
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal884ec1d8c6b8f530aa8698d5404840a3)): ?>
-<?php $attributes = $__attributesOriginal884ec1d8c6b8f530aa8698d5404840a3; ?>
-<?php unset($__attributesOriginal884ec1d8c6b8f530aa8698d5404840a3); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal884ec1d8c6b8f530aa8698d5404840a3)): ?>
-<?php $component = $__componentOriginal884ec1d8c6b8f530aa8698d5404840a3; ?>
-<?php unset($__componentOriginal884ec1d8c6b8f530aa8698d5404840a3); ?>
-<?php endif; ?>
 <?php /**PATH /home/Rayy/Project/Github/TBSM WEB/toweb/resources/views/components/navbar.blade.php ENDPATH**/ ?>

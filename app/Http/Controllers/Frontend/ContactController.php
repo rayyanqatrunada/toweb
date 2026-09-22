@@ -15,6 +15,11 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
+        // Honeypot check: jika field tersembunyi terisi, abaikan (bot detected)
+        if ($request->filled('website_hp')) {
+            return redirect()->back()->with('success', 'Pesan Anda berhasil dikirim. Kami akan segera menghubungi Anda.');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',

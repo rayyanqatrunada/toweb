@@ -2,7 +2,10 @@
     
     <!-- Background Elements -->
     <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1599252251347-1f4869c45bf9?q=80&w=1920&auto=format&fit=crop" alt="Background CTA" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="lazy">
+        <?php
+            $ctaBg = $settings->get('homepage_about_image') ?: 'facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg';
+        ?>
+        <img src="<?php echo e(Storage::url($ctaBg)); ?>" alt="Background CTA" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="lazy">
         <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950 via-charcoal-900/90 to-charcoal-900/80"></div>
     </div>
     

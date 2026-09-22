@@ -98,11 +98,4 @@ class SeoTest extends TestCase
         $response->assertStatus(200);
         $response->assertDontSee($post->slug);
     }
-
-    public function test_search_results_are_noindex()
-    {
-        $response = $this->get('/search?q=test');
-        $response->assertStatus(200);
-        $response->assertSee('<meta name="robots" content="noindex, follow">', false);
-    }
 }

@@ -3,7 +3,7 @@
     'headline',
     'description',
     'imageUrl',
-    'eyebrowText' => 'JURUSAN TEKNIK DAN BISNIS SEPEDA MOTOR',
+    'eyebrowText' => null,
     'stats' => null
 ])
 

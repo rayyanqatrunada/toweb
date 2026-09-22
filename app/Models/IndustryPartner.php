@@ -58,12 +58,14 @@ class IndustryPartner extends Model
             // Key harus plural — sesuai HomeController::index() 'homepage:stats:partners'
             \Illuminate\Support\Facades\Cache::forget('homepage:stats:partners');
             \Illuminate\Support\Facades\Cache::forget('homepage:partners');
+            \Illuminate\Support\Facades\Cache::forget('homepage:partner_main');
             \Illuminate\Support\Facades\Cache::forget('homepage:jobs');
             \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
         static::deleted(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:stats:partners');
             \Illuminate\Support\Facades\Cache::forget('homepage:partners');
+            \Illuminate\Support\Facades\Cache::forget('homepage:partner_main');
             \Illuminate\Support\Facades\Cache::forget('homepage:jobs');
             \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });

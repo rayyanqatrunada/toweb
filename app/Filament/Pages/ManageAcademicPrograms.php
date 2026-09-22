@@ -31,10 +31,14 @@ class ManageAcademicPrograms extends Page implements HasForms
 
     public function mount(SettingsService $settings): void
     {
+        $siteName = $settings->get('site_name', 'Teknik Sepeda Motor');
+        $siteShortName = $settings->get('site_short_name', 'TSM');
+        $schoolName = $settings->get('school_name', 'SMK Negeri 1 Bangsri');
+
         $this->form->fill([
             // 01. Hero & Metrik
             'academic_hero_badge' => $settings->get('academic_hero_badge', 'KURIKULUM & KOMPETENSI KEJURUAN'),
-            'academic_hero_title' => $settings->get('academic_hero_title', 'AKADEMIK & KURIKULUM TBSM'),
+            'academic_hero_title' => $settings->get('academic_hero_title', 'AKADEMIK & KURIKULUM ' . $siteShortName),
             'academic_hero_subtitle' => $settings->get('academic_hero_subtitle', 'Standar kompetensi kejuruan teknik sepeda motor berbasis industri Astra Honda Motor (AHM) dengan Kurikulum Merdeka terintegrasi, dirancang untuk melahirkan teknisi profesional dan wirausahawan tangguh.'),
             'academic_partner_name' => $settings->get('academic_partner_name', 'Astra Honda Motor (AHASS)'),
             'academic_praktikum_pct' => $settings->get('academic_praktikum_pct', '70%'),
@@ -63,7 +67,7 @@ class ManageAcademicPrograms extends Page implements HasForms
             'academic_curriculum_heading' => $settings->get('academic_curriculum_heading', 'Peta Mata Pelajaran Produktif'),
             'academic_curriculum_subheading' => $settings->get('academic_curriculum_subheading', 'Pola pembelajaran bertahap dari pengenalan fondasi otomotif dasar, konsentrasi kejuruan, hingga pemantapan industri dan magang penuh di bengkel resmi AHASS.'),
             'academic_syllabus_file' => $settings->get('academic_syllabus_file'),
-            'academic_syllabus_modal_intro' => $settings->get('academic_syllabus_modal_intro', 'Kurikulum Teknik dan Bisnis Sepeda Motor (TBSM) SMK Negeri 1 Bangsri dirancang berdasarkan Kepmendikbudristek Kurikulum Merdeka yang diselaraskan secara konsisten dengan kompetensi industri PT Astra Honda Motor.'),
+            'academic_syllabus_modal_intro' => $settings->get('academic_syllabus_modal_intro', "Kurikulum {$siteName} ({$siteShortName}) {$schoolName} dirancang berdasarkan Kepmendikbudristek Kurikulum Merdeka yang diselaraskan secara konsisten dengan kompetensi industri PT Astra Honda Motor."),
             'academic_syllabus_modal_hours' => $settings->get('academic_syllabus_modal_hours', "• Kelas X (Fase E): Dasar-Dasar Kejuruan Otomotif (12 JP) + Koding & AI (2 JP).\n• Kelas XI (Fase F): Konsentrasi Keahlian Mesin, Sasis, Kelistrikan (18 JP) + PKK (5 JP).\n• Kelas XII (Fase F): Pemantapan Troubleshooting (14 JP) + PKL Industri AHASS (6 Bulan Penuh)."),
             'academic_syllabus_modal_standards' => $settings->get('academic_syllabus_modal_standards', 'Siswa dinyatakan kompeten setelah menyelesaikan seluruh modul capaian pembelajaran, lulus Uji Kompetensi Keahlian (UKK) dari penguji eksternal, dan memperoleh sertifikat kompetensi BNSP / Astra Motor.'),
 
@@ -159,10 +163,10 @@ class ManageAcademicPrograms extends Page implements HasForms
 
             // 07. Instruktur & CTA
             'academic_teacher_title' => $settings->get('academic_teacher_title', 'Dibimbing oleh Instruktur Tersertifikasi Astra Motor'),
-            'academic_teacher_desc' => $settings->get('academic_teacher_desc', 'Guru kejuruan dan instruktur TBSM SMK Negeri 1 Bangsri rutin mengikuti program peningkatan kompetensi dan sertifikasi berjenjang di Astra Motor Training Center.'),
+            'academic_teacher_desc' => $settings->get('academic_teacher_desc', "Guru kejuruan dan instruktur {$siteShortName} {$schoolName} rutin mengikuti program peningkatan kompetensi dan sertifikasi berjenjang di Astra Motor Training Center."),
 
             'academic_cta_badge' => $settings->get('academic_cta_badge', 'SIAP BERKARIER DI DUNIA OTOMOTIF?'),
-            'academic_cta_title' => $settings->get('academic_cta_title', 'Wujudkan Masa Depan Teknisi Andal Bersama TBSM SMKN 1 Bangsri'),
+            'academic_cta_title' => $settings->get('academic_cta_title', "Wujudkan Masa Depan Teknisi Andal Bersama {$siteShortName} {$schoolName}"),
             'academic_cta_desc' => $settings->get('academic_cta_desc', 'Dapatkan pendidikan vokasi berkualitas dengan fasilitas laboratorium berstandar Astra Honda Motor dan peluang kerja nyata setelah lulus.'),
         ]);
     }

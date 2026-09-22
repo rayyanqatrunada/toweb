@@ -4,9 +4,11 @@
     <div class="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-charcoal-950">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
-            <!-- Using Unsplash as a fallback background, simulating a workshop/industry -->
-            <img src="https://images.unsplash.com/photo-1599252328221-5c8c50b73df7?q=80&w=1920&auto=format&fit=crop" 
-                 alt="Industri Otomotif" 
+            @php
+                $partnerBg = $settings->get('header_partnership_image') ?: ($settings->get('homepage_about_image') ?: 'facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg');
+            @endphp
+            <img src="{{ Storage::url($partnerBg) }}" 
+                 alt="{{ $partner->name }}" 
                  class="w-full h-full object-cover mix-blend-overlay opacity-40">
             <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/60 to-transparent"></div>
         </div>
@@ -91,7 +93,7 @@
                     </div>
                     <h3 class="font-heading font-bold text-[22px] text-figma-dark mb-4">Sinkronisasi Kurikulum</h3>
                     <p class="font-sans text-[15px] text-gray-600 leading-relaxed">
-                        Kurikulum TBSM diselaraskan secara penuh dengan standar kompetensi teknis Astra Honda Motor, memastikan materi yang dipelajari relevan dengan kebutuhan bengkel resmi AHASS.
+                        Kurikulum {{ $settings->get('site_short_name', 'TSM') }} diselaraskan secara penuh dengan standar kompetensi teknis Astra Honda Motor, memastikan materi yang dipelajari relevan dengan kebutuhan bengkel resmi AHASS.
                     </p>
                 </div>
 

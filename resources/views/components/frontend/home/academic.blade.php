@@ -40,7 +40,7 @@
                             <div class="text-figma-red/20 font-heading font-black text-[36px] sm:text-[48px] md:text-[64px] leading-none mb-1 sm:mb-2">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</div>
                             <h3 class="font-heading font-bold text-[22px] sm:text-[30px] md:text-[40px] text-figma-dark mb-3 sm:mb-4 leading-[1.15] sm:leading-[1.1]">{{ $program->name }}</h3>
                             <div class="font-sans text-[14px] sm:text-[16px] text-gray-600 leading-[1.65] sm:leading-[1.7] mb-6 sm:mb-8 [&>p]:mb-3 [&>h4]:font-heading [&>h4]:font-bold [&>h4]:text-figma-dark [&>h4]:text-[16px] sm:[&>h4]:text-[18px] [&>h4]:mb-2 [&>ul]:list-disc [&>ul]:pl-5 [&>ul>li]:mb-1">
-                                {!! $program->description ?? 'Program ini membekali siswa dengan keterampilan teknis otomotif terkini yang disesuaikan dengan standar kebutuhan industri.' !!}
+                                {!! \App\Support\HtmlSanitizer::clean($program->description ?? 'Program ini membekali siswa dengan keterampilan teknis otomotif terkini yang disesuaikan dengan standar kebutuhan industri.') !!}
                             </div>
                             
                             @if($program->competencies && $program->competencies->count() > 0)

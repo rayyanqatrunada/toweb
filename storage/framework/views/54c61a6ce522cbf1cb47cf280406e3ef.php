@@ -43,11 +43,12 @@ unset($__defined_vars, $__key, $__value); ?>
                 </div>
                 
                 <h2 class="font-heading font-extrabold text-[36px] md:text-[48px] leading-[1.1] tracking-[-1px] text-figma-dark mb-6">
-                    Peluang Karier Lulusan TBSM
+                    Peluang Karier Lulusan <?php echo e($settings->get('site_short_name', 'TSM')); ?>
+
                 </h2>
                 
                 <p class="font-sans text-[16px] text-gray-600 leading-[1.6] mb-8">
-                    Dengan ekosistem kelas industri yang terintegrasi, lulusan jurusan TBSM dipersiapkan tidak hanya sebagai mekanik andal, tetapi juga untuk mengisi posisi strategis di berbagai sektor otomotif.
+                    Dengan ekosistem kelas industri yang terintegrasi, lulusan jurusan <?php echo e($settings->get('site_short_name', 'TSM')); ?> dipersiapkan tidak hanya sebagai mekanik andal, tetapi juga untuk mengisi posisi strategis di berbagai sektor otomotif.
                 </p>
 
                 <ul class="space-y-4 mb-8">
@@ -125,7 +126,7 @@ unset($__defined_vars, $__key, $__value); ?>
                         <div class="absolute bottom-8 left-8 right-8">
                             <div class="bg-white/90 backdrop-blur-sm p-6 border-l-4 border-figma-red">
                                 <h3 class="font-heading font-bold text-[20px] text-figma-dark mb-2">Pusat Bursa Kerja Khusus (BKK)</h3>
-                                <p class="font-sans text-[14px] text-gray-600">Terhubung langsung dengan ratusan mitra industri untuk memfasilitasi penempatan kerja bagi lulusan TBSM.</p>
+                                <p class="font-sans text-[14px] text-gray-600">Terhubung langsung dengan ratusan mitra industri untuk memfasilitasi penempatan kerja bagi lulusan <?php echo e($settings->get('site_short_name', 'TSM')); ?>.</p>
                             </div>
                         </div>
                     </div>

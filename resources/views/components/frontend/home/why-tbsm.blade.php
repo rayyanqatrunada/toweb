@@ -11,7 +11,7 @@
                 <div class="w-5 sm:w-8 h-[2px] bg-figma-red"></div>
             </div>
             <h2 class="font-heading font-extrabold text-[20px] sm:text-[34px] md:text-[48px] leading-[1.2] sm:leading-[1.1] tracking-tight sm:tracking-[-1px] text-figma-dark max-w-[720px]">
-                Mengapa Memilih TBSM?
+                Mengapa Memilih {{ $settings->get('site_short_name', 'TSM') }}?
             </h2>
             <!-- Mobile Swipe Hint -->
             <p class="md:hidden text-[11px] text-gray-400 font-medium mt-1.5 flex items-center gap-1">

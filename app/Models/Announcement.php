@@ -32,9 +32,17 @@ class Announcement extends Model
     {
         static::saved(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:agendas');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
+            for ($i = 1; $i <= 5; $i++) {
+                \Illuminate\Support\Facades\Cache::forget("announcements:index:page:{$i}");
+            }
         });
         static::deleted(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:agendas');
+            \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
+            for ($i = 1; $i <= 5; $i++) {
+                \Illuminate\Support\Facades\Cache::forget("announcements:index:page:{$i}");
+            }
         });
     }
 

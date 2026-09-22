@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextBtn = sliderHero.querySelector('.hero-next');
         const counterCurrent = sliderHero.querySelector('.hero-counter-current');
         
+        if (slides.length <= 1) {
+            return;
+        }
+
         let currentSlide = 0;
         let slideInterval;
         const autoPlayDelay = 6000; // 6 seconds
@@ -50,8 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Remove active classes
             slides[currentSlide].classList.remove('opacity-100', 'z-10');
             slides[currentSlide].classList.add('opacity-0', 'z-0');
-            if (dots.length > 0) dots[currentSlide].classList.remove('bg-figma-red', 'w-8');
-            if (dots.length > 0) dots[currentSlide].classList.add('bg-white/50', 'w-2');
+            if (dots.length > 0 && dots[currentSlide]) {
+                dots[currentSlide].classList.remove('bg-figma-red', 'w-6', 'sm:w-8');
+                dots[currentSlide].classList.add('bg-white/50', 'w-2');
+            }
 
             // Update index
             currentSlide = (index + slides.length) % slides.length;
@@ -59,8 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add active classes
             slides[currentSlide].classList.remove('opacity-0', 'z-0');
             slides[currentSlide].classList.add('opacity-100', 'z-10');
-            if (dots.length > 0) dots[currentSlide].classList.remove('bg-white/50', 'w-2');
-            if (dots.length > 0) dots[currentSlide].classList.add('bg-figma-red', 'w-8');
+            if (dots.length > 0 && dots[currentSlide]) {
+                dots[currentSlide].classList.remove('bg-white/50', 'w-2');
+                dots[currentSlide].classList.add('bg-figma-red', 'w-6', 'sm:w-8');
+            }
             
             // Update counter
             if (counterCurrent) {

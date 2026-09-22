@@ -40,7 +40,8 @@ unset($__defined_vars, $__key, $__value); ?>
                     </span>
                 </div>
                 <h2 class="font-heading font-extrabold text-[36px] md:text-[48px] leading-[1.1] tracking-[-1px] text-figma-dark">
-                    Kabar Terbaru dari TBSM
+                    Kabar Terbaru dari <?php echo e($settings->get('site_short_name', 'TSM')); ?>
+
                 </h2>
             </div>
             

@@ -11,20 +11,18 @@ use App\Http\Controllers\Frontend\InternshipController;
 use App\Http\Controllers\Frontend\JobController;
 use App\Http\Controllers\Frontend\AlumniController;
 use App\Http\Controllers\Frontend\DownloadController;
-use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\SitemapController;
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 Route::get('/robots.txt', function () {
-    return response("User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /search\n\nSitemap: " . url('/sitemap.xml'), 200)
+    return response("User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: " . url('/sitemap.xml'), 200)
         ->header('Content-Type', 'text/plain');
 });
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/search', [SearchController::class, 'index'])->middleware('throttle:60,1')->name('search');
 Route::get('/tentang', [HomeController::class, 'about'])->name('about');
 
 Route::get('/kontak', [App\Http\Controllers\Frontend\ContactController::class, 'index'])->name('contact.index');
-Route::post('/kontak', [App\Http\Controllers\Frontend\ContactController::class, 'store'])->name('contact.store');
+Route::post('/kontak', [App\Http\Controllers\Frontend\ContactController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');
 Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 

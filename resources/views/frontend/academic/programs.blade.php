@@ -4,8 +4,8 @@
     {
       "@@context": "https://schema.org",
       "@@type": "WebPage",
-      "name": "Program & Kurikulum Akademik TBSM",
-      "description": "Struktur kurikulum, spesifikasi kompetensi, sertifikasi industri, dan program unggulan Teknik dan Bisnis Sepeda Motor SMK Negeri 1 Bangsri binaan Astra Honda Motor."
+      "name": "Program & Kurikulum Akademik {{ $settings->get('site_short_name', 'TSM') }}",
+      "description": "Struktur kurikulum, spesifikasi kompetensi, sertifikasi industri, dan program unggulan {{ $settings->get('site_name', 'Teknik Sepeda Motor') }} SMK Negeri 1 Bangsri binaan Astra Honda Motor."
     }
     </script>
     @endpush
@@ -33,7 +33,7 @@
                     </div>
                     
                     <h1 class="text-3xl sm:text-5xl lg:text-7xl font-black text-charcoal-950 tracking-tight leading-[1.05] sm:leading-[0.95] mb-4 sm:mb-6 uppercase reveal-on-scroll reveal-up delay-100">
-                        {!! nl2br(e($settings->get('academic_hero_title', "AKADEMIK & \nKURIKULUM TBSM"))) !!}
+                        {!! nl2br(e($settings->get('academic_hero_title', "AKADEMIK & \nKURIKULUM " . $settings->get('site_short_name', 'TSM')))) !!}
                     </h1>
                     
                     <p class="text-sm sm:text-base lg:text-lg text-charcoal-600 font-medium leading-relaxed max-w-2xl reveal-on-scroll reveal-up delay-200">
@@ -137,7 +137,7 @@
                             </div>
 
                             <p class="text-sm text-charcoal-600 leading-relaxed mb-6">
-                                Program studi Teknik dan Bisnis Sepeda Motor (TBSM) membekali peserta didik dengan keahlian teknis perawatan motor injeksi mutakhir, didukung ekosistem bengkel nyata di sekolah.
+                                Program studi {{ $settings->get('site_name', 'Teknik Sepeda Motor') }} ({{ $settings->get('site_short_name', 'TSM') }}) membekali peserta didik dengan keahlian teknis perawatan motor injeksi mutakhir, didukung ekosistem bengkel nyata di sekolah.
                             </p>
 
                             <!-- 4 Highlight Chips (Mudah dipindai dan padat informasi) -->
@@ -908,7 +908,7 @@
                     Pilihan Karir & Prospek Kerja
                 </h2>
                 <p class="mt-3 text-base text-charcoal-600 leading-relaxed">
-                    Penguasaan keterampilan mekanik presisi dan pemahaman bisnis perbengkelan membuka tiga jalur utama karir lulusan TBSM SMK Negeri 1 Bangsri.
+                    Penguasaan keterampilan mekanik presisi dan pemahaman bisnis perbengkelan membuka tiga jalur utama karir lulusan {{ $settings->get('site_short_name', 'TSM') }} SMK Negeri 1 Bangsri.
                 </p>
             </div>
 
@@ -1110,7 +1110,7 @@
                         {{ $settings->get('academic_teacher_title', 'Dibimbing oleh Instruktur Tersertifikasi Astra Motor') }}
                     </h3>
                     <p class="text-xs sm:text-sm text-charcoal-600 leading-relaxed">
-                        {{ $settings->get('academic_teacher_desc', 'Guru kejuruan dan instruktur TBSM SMK Negeri 1 Bangsri rutin mengikuti program peningkatan kompetensi dan sertifikasi berjenjang di Astra Motor Training Center.') }}
+                        {{ $settings->get('academic_teacher_desc', 'Guru kejuruan dan instruktur ' . $settings->get('site_short_name', 'TSM') . ' SMK Negeri 1 Bangsri rutin mengikuti program peningkatan kompetensi dan sertifikasi berjenjang di Astra Motor Training Center.') }}
                     </p>
                 </div>
 
@@ -1138,7 +1138,7 @@
                 {{ $settings->get('academic_cta_badge', 'SIAP BERKARIER DI DUNIA OTOMOTIF?') }}
             </span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-tight mb-6">
-                {{ $settings->get('academic_cta_title', 'Wujudkan Masa Depan Teknisi Andal Bersama TBSM SMKN 1 Bangsri') }}
+                {{ $settings->get('academic_cta_title', 'Wujudkan Masa Depan Teknisi Andal Bersama ' . $settings->get('site_short_name', 'TSM') . ' SMKN 1 Bangsri') }}
             </h2>
             <p class="text-sm lg:text-base text-charcoal-400 leading-relaxed mb-8 max-w-xl mx-auto">
                 {{ $settings->get('academic_cta_desc', 'Dapatkan pendidikan vokasi berkualitas dengan fasilitas laboratorium berstandar Astra Honda Motor dan peluang kerja nyata setelah lulus.') }}
@@ -1163,7 +1163,7 @@
             <div class="flex items-center justify-between pb-4 mb-6 border-b border-charcoal-100">
                 <div>
                     <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">Dokumen Kurikulum</span>
-                    <h3 class="text-xl font-black text-charcoal-900 uppercase">Struktur Kurikulum TBSM</h3>
+                    <h3 class="text-xl font-black text-charcoal-900 uppercase">Struktur Kurikulum {{ $settings->get('site_short_name', 'TSM') }}</h3>
                 </div>
                 <button type="button" onclick="closeSyllabusModal()" class="w-9 h-9 rounded-xl bg-charcoal-100 hover:bg-charcoal-200 text-charcoal-700 flex items-center justify-center font-bold transition-colors">
                     ✕
@@ -1172,7 +1172,7 @@
 
             <div class="space-y-4 text-xs text-charcoal-700 leading-relaxed">
                 <p>
-                    {{ $settings->get('academic_syllabus_modal_intro', 'Kurikulum Teknik dan Bisnis Sepeda Motor (TBSM) SMK Negeri 1 Bangsri dirancang berdasarkan Kepmendikbudristek Kurikulum Merdeka yang diselaraskan secara konsisten dengan kompetensi industri PT Astra Honda Motor.') }}
+                    {{ $settings->get('academic_syllabus_modal_intro', 'Kurikulum ' . $settings->get('site_name', 'Teknik Sepeda Motor') . ' (' . $settings->get('site_short_name', 'TSM') . ') SMK Negeri 1 Bangsri dirancang berdasarkan Kepmendikbudristek Kurikulum Merdeka yang diselaraskan secara konsisten dengan kompetensi industri PT Astra Honda Motor.') }}
                 </p>
 
                 <div class="bg-charcoal-50 p-4 rounded-xl border border-charcoal-200">

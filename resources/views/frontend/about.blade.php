@@ -6,7 +6,7 @@
       "@@type": "AboutPage",
       "mainEntity": {
         "@@type": "EducationalOrganization",
-        "name": "{{ $settings->get('site_name', 'TBSM') }}",
+        "name": "{{ $settings->get('site_name', 'Teknik Sepeda Motor') }}",
         "description": "{!! strip_tags($settings->get('site_description')) !!}"
       }
     }
@@ -89,7 +89,7 @@
                     </h2>
                     
                     <div class="prose prose-lg prose-charcoal prose-p:leading-relaxed prose-a:text-primary-600 hover:prose-a:text-primary-700 max-w-none">
-                        {!! \App\Support\HtmlSanitizer::clean($settings->get('profile_history', '<p>Sejarah singkat jurusan Teknik dan Bisnis Sepeda Motor (TBSM) bermula dari dedikasi kami untuk mencetak tenaga kerja profesional. Dengan fasilitas yang terus berkembang, kami selalu berusaha menyesuaikan kurikulum dengan teknologi terkini di dunia otomotif.</p>')) !!}
+                        {!! \App\Support\HtmlSanitizer::clean($settings->get('profile_history', '<p>Sejarah singkat jurusan ' . $settings->get('site_name', 'Teknik Sepeda Motor') . ' (' . $settings->get('site_short_name', 'TSM') . ') bermula dari dedikasi kami untuk mencetak tenaga kerja profesional. Dengan fasilitas yang terus berkembang, kami selalu berusaha menyesuaikan kurikulum dengan teknologi terkini di dunia otomotif.</p>')) !!}
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                                     {{ isset($headOfDepartment) ? strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $headOfDepartment->name)), 0, 2)) : 'KJ' }}
                                 </div>
                                 <h4 class="font-heading font-bold text-xl">{{ isset($headOfDepartment) ? $headOfDepartment->name : 'Ketua Kompetensi Keahlian' }}</h4>
-                                <p class="text-charcoal-400 text-xs mt-1">TBSM SMKN 1 Bangsri</p>
+                                <p class="text-charcoal-400 text-xs mt-1">{{ $settings->get('site_short_name', 'TSM') }} SMKN 1 Bangsri</p>
                             </div>
                         @endif
                         <!-- Bottom Gradient -->

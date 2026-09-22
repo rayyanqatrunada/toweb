@@ -19,10 +19,11 @@ class PartnershipController extends Controller
         
         if (!$partner) {
             // Jika belum ada mitra sama sekali, tampilkan layout kosong (tanpa 404)
+            $shortName = app(\App\Services\SettingsService::class)->get('site_short_name', 'TSM');
             $partner = new IndustryPartner([
                 'name' => 'Mitra Belum Tersedia',
                 'industry_type' => 'Data mitra industri belum ditambahkan di sistem.',
-                'description' => '<p>Halaman ini akan menampilkan profil mitra industri utama dari program keahlian TBSM. Saat ini data belum tersedia. Administrator dapat menambahkan data mitra melalui dashboard admin.</p>',
+                'description' => '<p>Halaman ini akan menampilkan profil mitra industri utama dari program keahlian ' . $shortName . '. Saat ini data belum tersedia. Administrator dapat menambahkan data mitra melalui dashboard admin.</p>',
             ]);
             // Pastikan relasi jobVacancies dan internships tidak null agar view tidak error
             $partner->setRelation('jobVacancies', collect([]));

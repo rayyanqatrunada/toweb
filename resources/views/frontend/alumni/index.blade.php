@@ -29,7 +29,7 @@
                 
                 <div class="border-l-2 border-[#E4E1E5] pl-5 max-w-[590px]">
                     <p class="font-sans font-normal text-[16px] lg:text-[18px] leading-[29px] text-[#F0EDF1]">
-                        Inspirasi dari para lulusan {{ $settings->get('site_short_name', 'TBSM') }} {{ $settings->get('site_name', 'SMK Negeri 1 Bangsri') }} yang kini berkarier di industri otomotif terkemuka dan membangun masa depan.
+                        Inspirasi dari para lulusan {{ $settings->get('site_name', 'Teknik Sepeda Motor') }} ({{ $settings->get('site_short_name', 'TSM') }}) SMK Negeri 1 Bangsri yang kini berkarier di industri otomotif terkemuka dan membangun masa depan.
                     </p>
                 </div>
                 

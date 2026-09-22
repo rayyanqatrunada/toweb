@@ -29,11 +29,10 @@ class TeachersTable
                     ->defaultImageUrl(fn (Teacher $record): string => 'https://ui-avatars.com/api/?name=' . urlencode($record->name) . '&background=0f172a&color=ffffff&bold=true'),
 
                 TextColumn::make('name')
-                    ->label('Nama & NIP')
-                    ->searchable(['name', 'nip'])
+                    ->label('Nama Lengkap')
+                    ->searchable()
                     ->sortable()
-                    ->weight(FontWeight::Bold)
-                    ->description(fn (Teacher $record): ?string => $record->nip ? 'NIP: ' . $record->nip : null),
+                    ->weight(FontWeight::Bold),
 
                 TextColumn::make('position')
                     ->label('Jabatan')

@@ -2,9 +2,13 @@
     'headline',
     'description',
     'imageUrl' => 'https://images.unsplash.com/photo-1530630458144-014709e10016?auto=format&fit=crop&w=800&q=80',
-    'eyebrowText' => 'JURUSAN TEKNIK DAN BISNIS SEPEDA MOTOR',
+    'eyebrowText' => null,
     'stats' => null
 ])
+
+@php
+    $resolvedEyebrow = $eyebrowText ?: ('JURUSAN ' . strtoupper(app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor')));
+@endphp
 
 <section class="relative bg-slate-50 overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-28">
     <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +18,7 @@
             <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left flex flex-col justify-center">
                 
                 <x-frontend.hero.eyebrow class="text-red-600 mb-3">
-                    {{ $eyebrowText }}
+                    {{ $resolvedEyebrow }}
                 </x-frontend.hero.eyebrow>
                 
                 <x-frontend.hero.title class="text-slate-900 mb-5 leading-tight">
