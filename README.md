@@ -135,4 +135,3 @@ Bagian penting dari struktur direktori yang perlu diketahui oleh pengembang:
 * `/resources/views/frontend/`: Berisi seluruh tampilan halaman web publik berbasis Laravel Blade.
 * `/routes/web.php`: Tempat semua rute publik dideklarasikan.
 * `/database/migrations/`: Skema database yang menyusun inti aplikasi.
-* and to
