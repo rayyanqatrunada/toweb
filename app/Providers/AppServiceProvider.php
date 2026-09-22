@@ -21,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (app()->isProduction() || str_starts_with(config('app.url'), 'https://') || request()->header('x-forwarded-proto') === 'https') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         \Illuminate\Database\Eloquent\Model::preventLazyLoading(!app()->isProduction());
         
         \App\Models\Setting::observe(\App\Observers\SettingObserver::class);
