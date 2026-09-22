@@ -131,7 +131,7 @@ Untuk menjalankan sistem ini secara lokal, Anda harus menjalankan server backend
 
 Bagian penting dari struktur direktori yang perlu diketahui oleh pengembang:
 * `/app/Models/`: Berisi semua definisi entitas data dan relasinya.
-* `/app/Filament/Resources/`: Mengatur semua tampilan CRUD di dasbor admin.
+* `/app/Filament/Resources/`: Mengatur semua tampilan CRUD di dasboard admin.
 * `/resources/views/frontend/`: Berisi seluruh tampilan halaman web publik berbasis Laravel Blade.
 * `/routes/web.php`: Tempat semua rute publik dideklarasikan.
 * `/database/migrations/`: Skema database yang menyusun inti aplikasi.
