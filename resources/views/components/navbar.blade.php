@@ -13,23 +13,7 @@
     ];
 @endphp
 
-<style>
-    @media (max-width: 1023px) {
-        #main-top-navbar {
-            background-color: #ffffff !important;
-            background: #ffffff !important;
-            border-bottom: 1px solid #e2e8f0 !important;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-        }
-        #main-top-navbar .site-brand-text {
-            color: #0f172a !important;
-            text-shadow: none !important;
-        }
-    }
-</style>
-
-<nav id="main-top-navbar"
-    x-data="{ 
+<nav x-data="{ 
         scrolled: false,
         scrolledPastHero: false,
         isHome: {{ $isHome ? 'true' : 'false' }},
@@ -42,6 +26,7 @@
             const hero = document.getElementById('hero-slider') || document.querySelector('[data-hero-slider]');
             if (hero) {
                 const heroBottom = hero.getBoundingClientRect().bottom;
+                // Navbar is 64px tall; if hero bottom is <= 64px, it has scrolled past the hero
                 this.scrolledPastHero = heroBottom <= 64;
             } else {
                 this.scrolledPastHero = window.pageYOffset > 600;
@@ -51,12 +36,12 @@
     x-init="checkScroll()"
     @scroll.window.passive="checkScroll()"
     @resize.window.passive="checkScroll()"
-    class="fixed top-0 w-full z-[80] transition-all duration-300 border-b bg-white border-slate-200/80 shadow-xs lg:shadow-none"
+    class="fixed top-0 w-full z-[100] transition-all duration-300 border-b"
     :class="{
-        'lg:bg-[#FBF8FC]/95 lg:backdrop-blur-md lg:border-[#E4E1E5] lg:shadow-sm': scrolledPastHero || (!isHome && scrolled),
-        'lg:bg-[#FBF8FC]/90 lg:backdrop-blur-md lg:border-transparent': !isHome && !scrolled,
-        'lg:bg-charcoal-950/60 lg:backdrop-blur-md lg:border-white/10 lg:shadow-sm': isHome && !scrolledPastHero && scrolled,
-        'lg:bg-gradient-to-b lg:from-black/80 lg:via-black/40 lg:to-transparent lg:border-transparent': isHome && !scrolledPastHero && !scrolled
+        'bg-[#FBF8FC]/95 backdrop-blur-md border-[#E4E1E5] shadow-sm': scrolledPastHero || (!isHome && scrolled),
+        'bg-[#FBF8FC]/90 backdrop-blur-md border-transparent': !isHome && !scrolled,
+        'bg-charcoal-950/60 backdrop-blur-md border-white/10 shadow-sm': isHome && !scrolledPastHero && scrolled,
+        'bg-gradient-to-b from-black/80 via-black/40 to-transparent border-transparent': isHome && !scrolledPastHero && !scrolled
     }">
     
     <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 relative">
@@ -67,20 +52,14 @@
                 @if($logo = app(\App\Services\SettingsService::class)->get('site_logo'))
                     <div class="flex items-center gap-2.5 sm:gap-3">
                         <img src="{{ Storage::url($logo) }}" alt="{{ app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor') }}" class="h-8 sm:h-10 w-auto">
-                        <div class="site-brand-text font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300 text-figma-dark"
-                             :class="{
-                                 'lg:text-white lg:drop-shadow-sm': isHome && !scrolledPastHero,
-                                 'lg:text-figma-dark': !isHome || scrolledPastHero
-                             }">
+                        <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
+                             :class="(scrolledPastHero || !isHome) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
                             {{ app(\App\Services\SettingsService::class)->get('site_short_name', 'TSM') }}
                         </div>
                     </div>
                 @else
-                    <div class="site-brand-text font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300 text-figma-dark"
-                         :class="{
-                             'lg:text-white lg:drop-shadow-sm': isHome && !scrolledPastHero,
-                             'lg:text-figma-dark': !isHome || scrolledPastHero
-                         }">
+                    <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
+                         :class="(scrolledPastHero || !isHome) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
                         {{ app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor') }}
                     </div>
                 @endif
