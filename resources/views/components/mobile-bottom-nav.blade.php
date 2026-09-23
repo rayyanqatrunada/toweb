@@ -94,44 +94,28 @@
 @endphp
 
 <!-- Container Mobile Navigation & Expanding Bottom Drawer -->
-<div x-data="{ menuOpen: false }"
-     @toggle-mobile-menu.window="menuOpen = !menuOpen"
-     @keydown.escape.window="menuOpen = false"
-     class="lg:hidden">
+<div class="lg:hidden" id="mobile-nav-container">
 
     <!-- 1. Backdrop Scrim Gelap (Fade In/Out) -->
-    <div x-show="menuOpen"
-         x-transition:enter="transition-opacity ease-out duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition-opacity ease-in duration-200"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0"
-         @click="menuOpen = false"
-         class="fixed inset-0 bg-slate-950/65 backdrop-blur-sm z-[95]"
+    <div id="mobile-menu-backdrop"
+         onclick="window.closeMobileNavDrawer()"
+         class="fixed inset-0 bg-slate-950/65 backdrop-blur-sm z-[95] transition-opacity duration-300 opacity-0 pointer-events-none"
          style="display: none;"></div>
 
-    <!-- 2. Kotak Drawer yang Bergeser ke Atas (Solid White Bottom Sheet - 4 Kolom) -->
-    <div x-show="menuOpen"
-         x-transition:enter="transition cubic-bezier(0.16, 1, 0.3, 1) duration-300 transform"
-         x-transition:enter-start="translate-y-full opacity-0"
-         x-transition:enter-end="translate-y-0 opacity-100"
-         x-transition:leave="transition ease-in duration-200 transform"
-         x-transition:leave-start="translate-y-0 opacity-100"
-         x-transition:leave-end="translate-y-full opacity-0"
-         @click.away="menuOpen = false"
-         class="fixed left-0 right-0 z-[98] max-w-[540px] mx-auto px-3.5 pb-2"
+    <!-- 2. Kotak Drawer yang Bergeser ke Atas (Solid White Bottom Sheet - 4 Kolom Murni) -->
+    <div id="mobile-menu-drawer"
+         class="fixed left-0 right-0 z-[98] max-w-[540px] mx-auto px-3.5 pb-2 transition-all duration-300 transform translate-y-full opacity-0 pointer-events-none"
          style="display: none; bottom: 68px;">
 
         <div class="bg-white border border-slate-200/90 rounded-3xl shadow-[0_-16px_40px_rgba(0,0,0,0.22)] ring-1 ring-black/5 p-4 sm:p-5 overflow-hidden">
             
             <!-- Drag Handle Bar (Pill) -->
-            <button type="button" @click="menuOpen = false" class="w-full flex justify-center py-1 -mt-1 group cursor-grab focus:outline-none" aria-label="Tutup Panel">
+            <button type="button" onclick="window.closeMobileNavDrawer()" class="w-full flex justify-center py-1 -mt-1 group cursor-grab focus:outline-none" aria-label="Tutup Panel">
                 <span class="w-12 h-1.5 bg-slate-300 group-hover:bg-slate-400 rounded-full transition-colors"></span>
             </button>
 
             <!-- Header Panel Menu -->
-            <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3 mt-1">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3.5 mt-1">
                 <div class="flex items-center gap-2.5">
                     <div class="w-8 h-8 rounded-xl bg-red-50 text-red-600 flex items-center justify-center border border-red-100/80">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,29 +128,18 @@
                     </div>
                 </div>
                 <button type="button" 
-                        @click="menuOpen = false" 
+                        onclick="window.closeMobileNavDrawer()" 
                         class="p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 active:scale-90 transition-all focus:outline-none" 
                         aria-label="Tutup Menu">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
 
-            <!-- Tombol Pintas Pencarian Global (Quick Search Trigger) -->
-            <button type="button" 
-                    @click="$dispatch('open-search'); menuOpen = false" 
-                    class="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-slate-500 text-xs font-medium transition-all mb-3 group active:scale-[0.99] focus:outline-none">
-                <svg class="w-4 h-4 text-slate-400 group-hover:text-red-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-                <span class="group-hover:text-slate-800 transition-colors text-[11.5px]">Cari guru, fasilitas, atau info...</span>
-                <span class="ml-auto text-[10px] font-bold text-slate-500 bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs">Cari</span>
-            </button>
-
             <!-- KOTAK MENU: GRID 4 KOLOM PERSISI (Perkotak 4 Kolom) -->
-            <div class="grid grid-cols-4 gap-2 sm:gap-2.5 max-h-[50vh] overflow-y-auto pr-0.5" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+            <div class="grid grid-cols-4 gap-2 sm:gap-2.5 max-h-[58vh] overflow-y-auto pr-0.5" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
                 @foreach($menuTiles as $item)
                     <a href="{{ $item['route'] }}" 
-                       @click="menuOpen = false"
+                       onclick="window.closeMobileNavDrawer()"
                        class="flex flex-col items-center justify-center p-2 rounded-2xl transition-all duration-150 active:scale-90 group focus:outline-none {{ $item['active'] ? 'bg-red-50 border border-red-200 shadow-2xs' : 'bg-slate-50/70 hover:bg-slate-100 border border-slate-100' }}">
                        
                         <!-- Kotak Icon Persegi / Rounded Squircle -->
@@ -235,17 +208,6 @@
                 @endforeach
             </div>
 
-            <!-- Footer Panel: Tombol Hubungi Kami Cepat -->
-            <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-                <span class="text-[11px] text-slate-500 font-medium">Informasi & Kemitraan</span>
-                <a href="{{ route('contact.index') }}" 
-                   @click="menuOpen = false"
-                   class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-[11px] font-heading font-bold uppercase tracking-wider shadow-sm active:scale-95 transition-all">
-                    <span>Hubungi Kami</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-
         </div>
     </div>
 
@@ -256,7 +218,7 @@
             
             <!-- Tab 1: Beranda -->
             <a href="{{ route('home') }}" 
-               @click="menuOpen = false"
+               onclick="window.closeMobileNavDrawer()"
                class="flex-1 flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-90 group focus:outline-none {{ $isHome ? 'text-red-600' : 'text-slate-500 hover:text-slate-900' }}">
                 <div class="relative flex items-center justify-center w-8 h-8 rounded-full transition-colors {{ $isHome ? 'bg-red-50 text-red-600' : 'group-hover:bg-slate-100' }}">
                     <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="{{ $isHome ? 'currentColor' : 'none' }}" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,7 +235,7 @@
 
             <!-- Tab 2: Program -->
             <a href="{{ route('academic.programs') }}" 
-               @click="menuOpen = false"
+               onclick="window.closeMobileNavDrawer()"
                class="flex-1 flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-90 group focus:outline-none {{ $isPrograms ? 'text-red-600' : 'text-slate-500 hover:text-slate-900' }}">
                 <div class="relative flex items-center justify-center w-8 h-8 rounded-full transition-colors {{ $isPrograms ? 'bg-red-50 text-red-600' : 'group-hover:bg-slate-100' }}">
                     <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="{{ $isPrograms ? 'currentColor' : 'none' }}" stroke="currentColor" viewBox="0 0 24 24">
@@ -290,7 +252,7 @@
 
             <!-- Tab 3: Guru -->
             <a href="{{ route('academic.teachers') }}" 
-               @click="menuOpen = false"
+               onclick="window.closeMobileNavDrawer()"
                class="flex-1 flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-90 group focus:outline-none {{ $isTeachers ? 'text-red-600' : 'text-slate-500 hover:text-slate-900' }}">
                 <div class="relative flex items-center justify-center w-8 h-8 rounded-full transition-colors {{ $isTeachers ? 'bg-red-50 text-red-600' : 'group-hover:bg-slate-100' }}">
                     <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="{{ $isTeachers ? 'currentColor' : 'none' }}" stroke="currentColor" viewBox="0 0 24 24">
@@ -307,7 +269,7 @@
 
             <!-- Tab 4: Fasilitas -->
             <a href="{{ route('academic.facilities') }}" 
-               @click="menuOpen = false"
+               onclick="window.closeMobileNavDrawer()"
                class="flex-1 flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-90 group focus:outline-none {{ $isFacilities ? 'text-red-600' : 'text-slate-500 hover:text-slate-900' }}">
                 <div class="relative flex items-center justify-center w-8 h-8 rounded-full transition-colors {{ $isFacilities ? 'bg-red-50 text-red-600' : 'group-hover:bg-slate-100' }}">
                     <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="{{ $isFacilities ? 'currentColor' : 'none' }}" stroke="currentColor" viewBox="0 0 24 24">
@@ -324,34 +286,141 @@
 
             <!-- Tab 5: Menu Expanding Drawer Trigger (4 Kolom) -->
             <button type="button" 
-                    @click="menuOpen = !menuOpen"
+                    id="mobile-menu-btn"
+                    onclick="window.toggleMobileNavDrawer()"
                     aria-label="Buka Menu Lengkap" 
-                    :class="menuOpen ? 'text-red-600' : 'text-slate-500 hover:text-slate-900'"
-                    class="flex-1 flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-90 group focus:outline-none">
+                    class="flex-1 flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-90 group focus:outline-none text-slate-500 hover:text-slate-900">
                 
-                <div class="relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200"
-                     :class="menuOpen ? 'bg-red-50 text-red-600 rotate-90 scale-105' : 'group-hover:bg-slate-100 text-slate-500'">
+                <div id="mobile-menu-btn-icon-wrapper"
+                     class="relative flex items-center justify-center w-8 h-8 rounded-full transition-all duration-200 group-hover:bg-slate-100 text-slate-500">
                     
                     <!-- Ikon Menu (Saat Tertutup) -->
-                    <svg x-show="!menuOpen" class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="mobile-menu-icon-closed" class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
                     </svg>
                     
                     <!-- Ikon Close Silang (Saat Terbuka) -->
-                    <svg x-show="menuOpen" style="display: none;" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="mobile-menu-icon-open" style="display: none;" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
 
-                    <span x-show="menuOpen" class="absolute -bottom-1 w-1 h-1 rounded-full bg-red-600"></span>
+                    <span id="mobile-menu-dot" style="display: none;" class="absolute -bottom-1 w-1 h-1 rounded-full bg-red-600"></span>
                 </div>
                 
-                <span class="text-[10px] font-heading font-bold tracking-tight mt-0.5 transition-colors"
-                      :class="menuOpen ? 'text-red-600' : 'text-slate-500'">
-                    <span x-show="!menuOpen">Menu</span>
-                    <span x-show="menuOpen" style="display: none;">Tutup</span>
+                <span id="mobile-menu-btn-label" class="text-[10px] font-heading font-bold tracking-tight mt-0.5 transition-colors text-slate-500">
+                    Menu
                 </span>
             </button>
 
         </div>
     </nav>
 </div>
+
+<!-- Script Mandiri & Tangguh: Selalu Berjalan Tanpa Ketergantungan Alpine/Framework -->
+<script>
+    (function() {
+        window.openMobileNavDrawer = function() {
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+            const iconClosed = document.getElementById('mobile-menu-icon-closed');
+            const iconOpen = document.getElementById('mobile-menu-icon-open');
+            const dot = document.getElementById('mobile-menu-dot');
+            const label = document.getElementById('mobile-menu-btn-label');
+            const iconWrapper = document.getElementById('mobile-menu-btn-icon-wrapper');
+            const btn = document.getElementById('mobile-menu-btn');
+
+            if (!drawer || !backdrop) return;
+
+            drawer.style.display = 'block';
+            backdrop.style.display = 'block';
+            drawer.classList.remove('pointer-events-none');
+            backdrop.classList.remove('pointer-events-none');
+
+            // Force reflow
+            void drawer.offsetHeight;
+
+            drawer.classList.remove('translate-y-full', 'opacity-0');
+            drawer.classList.add('translate-y-0', 'opacity-100');
+            backdrop.classList.remove('opacity-0');
+            backdrop.classList.add('opacity-100');
+
+            if (iconClosed) iconClosed.style.display = 'none';
+            if (iconOpen) iconOpen.style.display = 'block';
+            if (dot) dot.style.display = 'block';
+            if (label) {
+                label.textContent = 'Tutup';
+                label.classList.add('text-red-600');
+                label.classList.remove('text-slate-500');
+            }
+            if (iconWrapper) {
+                iconWrapper.classList.add('bg-red-50', 'text-red-600', 'rotate-90', 'scale-105');
+                iconWrapper.classList.remove('text-slate-500');
+            }
+            if (btn) {
+                btn.classList.add('text-red-600');
+                btn.classList.remove('text-slate-500');
+            }
+        };
+
+        window.closeMobileNavDrawer = function() {
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+            const iconClosed = document.getElementById('mobile-menu-icon-closed');
+            const iconOpen = document.getElementById('mobile-menu-icon-open');
+            const dot = document.getElementById('mobile-menu-dot');
+            const label = document.getElementById('mobile-menu-btn-label');
+            const iconWrapper = document.getElementById('mobile-menu-btn-icon-wrapper');
+            const btn = document.getElementById('mobile-menu-btn');
+
+            if (!drawer || !backdrop) return;
+
+            drawer.classList.remove('translate-y-0', 'opacity-100');
+            drawer.classList.add('translate-y-full', 'opacity-0');
+            backdrop.classList.remove('opacity-100');
+            backdrop.classList.add('opacity-0');
+            drawer.classList.add('pointer-events-none');
+            backdrop.classList.add('pointer-events-none');
+
+            setTimeout(() => {
+                if (drawer.classList.contains('translate-y-full')) {
+                    drawer.style.display = 'none';
+                    backdrop.style.display = 'none';
+                }
+            }, 300);
+
+            if (iconClosed) iconClosed.style.display = 'block';
+            if (iconOpen) iconOpen.style.display = 'none';
+            if (dot) dot.style.display = 'none';
+            if (label) {
+                label.textContent = 'Menu';
+                label.classList.remove('text-red-600');
+                label.classList.add('text-slate-500');
+            }
+            if (iconWrapper) {
+                iconWrapper.classList.remove('bg-red-50', 'text-red-600', 'rotate-90', 'scale-105');
+                iconWrapper.classList.add('text-slate-500');
+            }
+            if (btn) {
+                btn.classList.remove('text-red-600');
+                btn.classList.add('text-slate-500');
+            }
+        };
+
+        window.toggleMobileNavDrawer = function() {
+            const drawer = document.getElementById('mobile-menu-drawer');
+            if (!drawer) return;
+            const isOpen = drawer.classList.contains('translate-y-0');
+            if (isOpen) {
+                window.closeMobileNavDrawer();
+            } else {
+                window.openMobileNavDrawer();
+            }
+        };
+
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.closeMobileNavDrawer();
+            }
+        });
+    })();
+</script>
