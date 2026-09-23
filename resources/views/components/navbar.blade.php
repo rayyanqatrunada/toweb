@@ -13,7 +13,23 @@
     ];
 @endphp
 
-<nav x-data="{ 
+<style>
+    @media (max-width: 1023px) {
+        #main-top-navbar {
+            background-color: #ffffff !important;
+            background: #ffffff !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+        }
+        #main-top-navbar .site-brand-text {
+            color: #0f172a !important;
+            text-shadow: none !important;
+        }
+    }
+</style>
+
+<nav id="main-top-navbar"
+    x-data="{ 
         scrolled: false,
         scrolledPastHero: false,
         isHome: {{ $isHome ? 'true' : 'false' }},
@@ -51,7 +67,7 @@
                 @if($logo = app(\App\Services\SettingsService::class)->get('site_logo'))
                     <div class="flex items-center gap-2.5 sm:gap-3">
                         <img src="{{ Storage::url($logo) }}" alt="{{ app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor') }}" class="h-8 sm:h-10 w-auto">
-                        <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300 text-figma-dark"
+                        <div class="site-brand-text font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300 text-figma-dark"
                              :class="{
                                  'lg:text-white lg:drop-shadow-sm': isHome && !scrolledPastHero,
                                  'lg:text-figma-dark': !isHome || scrolledPastHero
@@ -60,7 +76,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300 text-figma-dark"
+                    <div class="site-brand-text font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300 text-figma-dark"
                          :class="{
                              'lg:text-white lg:drop-shadow-sm': isHome && !scrolledPastHero,
                              'lg:text-figma-dark': !isHome || scrolledPastHero
