@@ -67,6 +67,33 @@ class SettingSeeder extends Seeder
             ['key' => 'facility_cta_desc', 'value' => 'Kami menyambut baik kunjungan calon siswa, orang tua, sekolah mitra tingkat SMP/MTs, dan mitra industri yang ingin melihat langsung ekosistem pembelajaran otomotif berstandar Astra Honda di SMKN 1 Bangsri.'],
             ['key' => 'facility_cta_button_text', 'value' => 'Hubungi Kami / Jadwalkan Kunjungan'],
             ['key' => 'facility_cta_button_url', 'value' => '/kontak'],
+
+            // Industry & Partnership Page Settings
+            ['key' => 'industry_hero_badge', 'value' => 'KEMITRAAN RESMI KELAS INDUSTRI BINAAN'],
+            ['key' => 'industry_hero_title', 'value' => 'Sinergi Industri Resmi Bersama PT Astra Honda Motor'],
+            ['key' => 'industry_hero_subtitle', 'value' => 'Program kemitraan strategis link & match kurikulum, sertifikasi kompetensi teknisi level Honda, fasilitas lab bengkel standar pabrikan, serta penyerapan magang dan kerja di jaringan bengkel resmi AHASS se-Kabupaten Jepara.'],
+            ['key' => 'industry_stat_1_val', 'value' => '2016'],
+            ['key' => 'industry_stat_1_label', 'value' => 'Tahun Awal Sinergi Binaan'],
+            ['key' => 'industry_stat_2_val', 'value' => 'Grade A+'],
+            ['key' => 'industry_stat_2_label', 'value' => 'Standar Akreditasi Lab Honda'],
+            ['key' => 'industry_stat_3_val', 'value' => '100%'],
+            ['key' => 'industry_stat_3_label', 'value' => 'Kurikulum Sinkronisasi PGM-FI'],
+            ['key' => 'industry_stat_4_val', 'value' => '8+ Cabang'],
+            ['key' => 'industry_stat_4_label', 'value' => 'Jaringan AHASS se-Kab. Jepara'],
+            ['key' => 'industry_pillars_badge', 'value' => '6 PILAR KEMITRAAN RESMI'],
+            ['key' => 'industry_pillars_title', 'value' => 'Ruang Lingkup Sinergi SMK & Industri'],
+            ['key' => 'industry_pillars_desc', 'value' => 'Enam pondasi kolaborasi komprehensif yang dirancang untuk menjamin kesiapan kerja lulusan TBSM SMKN 1 Bangsri di dunia industri otomotif modern.'],
+            ['key' => 'industry_roadmap_badge', 'value' => 'ROADMAP PENDIDIKAN VOKASI'],
+            ['key' => 'industry_roadmap_title', 'value' => 'Jalur Jenjang Karir & Kompetensi Siswa'],
+            ['key' => 'industry_roadmap_desc', 'value' => 'Perjalanan terstruktur 3 tahun dari penguasaan dasar mekanikal hingga sertifikasi teknisi AHASS siap pakai.'],
+            ['key' => 'industry_branch_badge', 'value' => 'JARINGAN KERJA SAMA SE-KABUPATEN JEPARA'],
+            ['key' => 'industry_branch_title', 'value' => 'Mitra Bengkel Resmi AHASS di Kabupaten Jepara'],
+            ['key' => 'industry_branch_desc', 'value' => 'Daftar bengkel resmi AHASS rekanan tempat siswa melaksanakan Praktik Kerja Lapangan (PKL), uji kompetensi eksternal, dan penempatan kerja lulusan di seluruh kecamatan se-Kabupaten Jepara.'],
+            ['key' => 'industry_cta_badge', 'value' => 'BURSA KERJA KHUSUS (BKK) TBSM'],
+            ['key' => 'industry_cta_title', 'value' => 'Siap Berkarir di Dunia Otomotif Bersama AHASS?'],
+            ['key' => 'industry_cta_desc', 'value' => 'Bagi siswa dan alumni TBSM SMKN 1 Bangsri yang ingin mendaftar magang PKL atau mengikuti seleksi rekrutmen mekanik resmi AHASS di wilayah Kabupaten Jepara dan sekitarnya, hubungi koordinator BKK kami.'],
+            ['key' => 'industry_cta_btn_text', 'value' => 'Konsultasi BKK & Magang'],
+            ['key' => 'industry_cta_btn_url', 'value' => 'https://wa.me/6282323429052?text=Halo%20Admin%20BKK%20TBSM%20SMKN%201%20Bangsri,%20saya%20ingin%20informasi%20lowongan%20dan%20magang%20AHASS.'],
         ];
 
         foreach ($settings as $setting) {

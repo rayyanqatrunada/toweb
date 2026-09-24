@@ -3,43 +3,74 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\IndustryPartner;
+use App\Models\IndustryPartnerBranch;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PartnershipController extends Controller
 {
     public function index()
     {
-        // Hanya ada 1 mitra untuk jurusan TBSM, jadi kita langsung ambil mitra pertama beserta lowongan kerjanya.
-        $partner = IndustryPartner::with(['jobVacancies' => function($query) {
-            $query->published()->latest();
-        }, 'internships' => function($query) {
-            $query->published()->latest();
-        }])->published()->first();
-        
+        // Hanya ada 1 mitra utama untuk jurusan TBSM (PT Astra Honda Motor / AHASS)
+        $partner = Cache::remember('industry:partner:main', 3600, function () {
+            return IndustryPartner::with([
+                'branches' => function ($query) {
+                    $query->active()->orderBy('is_main_branch', 'desc')->orderBy('sort_order', 'asc');
+                },
+                'jobVacancies' => function ($query) {
+                    $query->published()->latest();
+                },
+                'internships' => function ($query) {
+                    $query->published()->latest();
+                },
+                'partnerships' => function ($query) {
+                    $query->where('status', 'active')->latest();
+                },
+            ])->published()->first();
+        });
+
         if (!$partner) {
-            // Jika belum ada mitra sama sekali, tampilkan layout kosong (tanpa 404)
-            $shortName = app(\App\Services\SettingsService::class)->get('site_short_name', 'TSM');
+            $shortName = app(\App\Services\SettingsService::class)->get('site_short_name', 'TBSM');
             $partner = new IndustryPartner([
-                'name' => 'Mitra Belum Tersedia',
-                'industry_type' => 'Data mitra industri belum ditambahkan di sistem.',
-                'description' => '<p>Halaman ini akan menampilkan profil mitra industri utama dari program keahlian ' . $shortName . '. Saat ini data belum tersedia. Administrator dapat menambahkan data mitra melalui dashboard admin.</p>',
+                'name' => 'PT Astra Honda Motor (Astra Motor)',
+                'slug' => 'astra-honda-motor',
+                'industry_type' => 'Manufaktur & Distribusi Sepeda Motor Resmi (AHASS)',
+                'description' => '<p>Halaman ini menampilkan kemitraan strategis kelas industri binaan Astra Honda Motor untuk ' . $shortName . ' SMK Negeri 1 Bangsri.</p>',
+                'partnership_level' => 'Kelas Industri Binaan Grade A+',
             ]);
-            // Pastikan relasi jobVacancies dan internships tidak null agar view tidak error
+            $partner->setRelation('branches', collect([]));
             $partner->setRelation('jobVacancies', collect([]));
             $partner->setRelation('internships', collect([]));
+            $partner->setRelation('partnerships', collect([]));
         }
 
-        return view('frontend.partnership_show', compact('partner'));
+        $branches = $partner->branches;
+        $districts = $branches->pluck('district')->unique()->values();
+
+        return view('frontend.partnership_show', compact('partner', 'branches', 'districts'));
     }
-    
+
     public function show($slug)
     {
-        $partner = IndustryPartner::with(['jobVacancies' => function($query) {
-            $query->published()->latest();
-        }, 'internships' => function($query) {
-            $query->published()->latest();
-        }])->published()->where('slug', $slug)->firstOrFail();
-        return view('frontend.partnership_show', compact('partner'));
+        $partner = IndustryPartner::with([
+            'branches' => function ($query) {
+                $query->active()->orderBy('is_main_branch', 'desc')->orderBy('sort_order', 'asc');
+            },
+            'jobVacancies' => function ($query) {
+                $query->published()->latest();
+            },
+            'internships' => function ($query) {
+                $query->published()->latest();
+            },
+            'partnerships' => function ($query) {
+                $query->where('status', 'active')->latest();
+            },
+        ])->published()->where('slug', $slug)->firstOrFail();
+
+        $branches = $partner->branches;
+        $districts = $branches->pluck('district')->unique()->values();
+
+        return view('frontend.partnership_show', compact('partner', 'branches', 'districts'));
     }
 }

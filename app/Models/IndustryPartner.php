@@ -17,7 +17,9 @@ class IndustryPartner extends Model
 
     protected $fillable = [
         'name', 'slug', 'industry_type', 'description', 'address', 
-        'phone', 'email', 'website', 'logo', 'status', 'published_at', 
+        'phone', 'email', 'website', 'logo', 'banner_image', 'status', 'published_at', 
+        'mou_number', 'mou_start_date', 'mou_end_date', 'partnership_level', 
+        'headquarters_city', 'curriculum_sync_info',
         'meta_title', 'meta_description'
     ];
 
@@ -25,7 +27,14 @@ class IndustryPartner extends Model
     {
         return [
             'published_at' => 'datetime',
+            'mou_start_date' => 'date',
+            'mou_end_date' => 'date',
         ];
+    }
+
+    public function branches()
+    {
+        return $this->hasMany(IndustryPartnerBranch::class)->orderBy('is_main_branch', 'desc')->orderBy('sort_order', 'asc');
     }
 
     public function partnerships()
@@ -78,6 +87,6 @@ class IndustryPartner extends Model
 
     public function getFileFields(): array
     {
-        return ['logo'];
+        return ['logo', 'banner_image'];
     }
 }
