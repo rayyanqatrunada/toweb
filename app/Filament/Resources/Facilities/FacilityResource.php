@@ -19,7 +19,9 @@ class FacilityResource extends Resource
     protected static ?string $model = Facility::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
+    protected static ?string $navigationLabel = 'Daftar Sarana Fasilitas';
     protected static string | \UnitEnum | null $navigationGroup = 'Profil & Akademik';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema
     {

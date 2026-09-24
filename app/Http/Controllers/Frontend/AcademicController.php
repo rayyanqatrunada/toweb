@@ -36,9 +36,24 @@ class AcademicController extends Controller
     public function facilities()
     {
         $facilities = Cache::remember('academic:facilities', 3600, fn() =>
-            Facility::select('id', 'name', 'slug', 'description', 'photo', 'quantity', 'condition')
-                ->latest()
-                ->get()
+            Facility::select(
+                'id',
+                'name',
+                'slug',
+                'category',
+                'description',
+                'specifications',
+                'photo',
+                'quantity',
+                'capacity',
+                'safety_standards',
+                'condition',
+                'sort_order',
+                'is_featured'
+            )
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('id', 'asc')
+            ->get()
         );
         return view('frontend.academic.facilities', compact('facilities'));
     }
