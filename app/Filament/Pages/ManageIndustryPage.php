@@ -31,12 +31,10 @@ class ManageIndustryPage extends Page implements HasForms
 
     public function mount(SettingsService $settings): void
     {
-        $siteShortName = $settings->get('site_short_name', 'TBSM');
-
         $this->form->fill([
             // 01. Hero & Metrik Kemitraan
             'industry_hero_badge' => $settings->get('industry_hero_badge', 'KEMITRAAN KELAS INDUSTRI RESMI'),
-            'industry_hero_title' => $settings->get('industry_hero_title', 'KEMITRAAN INDUSTRI DENGAN PT ASTRA HONDA MOTOR'),
+            'industry_hero_title' => $settings->get('industry_hero_title', 'Kemitraan Industri PT Astra Honda Motor'),
             'industry_hero_subtitle' => $settings->get('industry_hero_subtitle', 'Komitmen strategis sejak 2016 antara SMK Negeri 1 Bangsri dengan PT Astra Honda Motor (AHM) untuk mencetak teknisi sepeda motor profesional berstandar bengkel resmi AHASS.'),
             'industry_hero_bg_image' => $settings->get('industry_hero_bg_image'),
             'industry_stat_1_val' => $settings->get('industry_stat_1_val', '2016'),
@@ -67,22 +65,10 @@ class ManageIndustryPage extends Page implements HasForms
             'industry_pillar_6_title' => $settings->get('industry_pillar_6_title', 'Prioritas Rekrutmen BKK SMKN 1 Bangsri'),
             'industry_pillar_6_desc' => $settings->get('industry_pillar_6_desc', 'Jalur cepat (fast-track) rekrutmen mekanik baru bagi lulusan TBSM SMKN 1 Bangsri langsung ke dealer dan bengkel AHASS rekanan tanpa perantara.'),
 
-            // 03. Alur Roadmap Karir Industri
-            'industry_roadmap_title' => $settings->get('industry_roadmap_title', 'Roadmap Penyiapan Karir Industri Siswa'),
-            'industry_roadmap_desc' => $settings->get('industry_roadmap_desc', 'Pola pembinaan bertahap terstruktur sejak awal masuk hingga penempatan kerja profesional di ekosistem Astra Honda.'),
-            'industry_roadmap_1_title' => $settings->get('industry_roadmap_1_title', 'Kelas X: Fondasi 5R & Mekanika Dasar'),
-            'industry_roadmap_1_desc' => $settings->get('industry_roadmap_1_desc', 'Penanaman budaya industri 5R, disiplin APD, pengenalan perkakas dasar, dan pemahaman prinsip dasar mesin sepeda motor.'),
-            'industry_roadmap_2_title' => $settings->get('industry_roadmap_2_title', 'Kelas XI: Kejuruan Injeksi & Praktik TeFa'),
-            'industry_roadmap_2_desc' => $settings->get('industry_roadmap_2_desc', 'Pendalaman teknologi injeksi PGM-FI, scanner HIDS, perawatan berkala, serta terjun langsung di unit Teaching Factory melayani konsumen.'),
-            'industry_roadmap_3_title' => $settings->get('industry_roadmap_3_title', 'Kelas XII: PKL 6 Bulan di AHASS & Uji Sertifikasi'),
-            'industry_roadmap_3_desc' => $settings->get('industry_roadmap_3_desc', 'Imersi kerja nyata 6 bulan penuh di bengkel resmi AHASS se-Kabupaten Jepara, diakhiri dengan Uji Kompetensi Keahlian (UKK) dan sertifikasi BNSP.'),
-            'industry_roadmap_4_title' => $settings->get('industry_roadmap_4_title', 'Pasca Lulus: Rekrutmen BKK & Karir Teknisi'),
-            'industry_roadmap_4_desc' => $settings->get('industry_roadmap_4_desc', 'Perekrutan langsung oleh jaringan AHASS, dealer Astra Motor, industri perakitan manufaktur, atau pendampingan wirausaha bengkel mandiri.'),
-
-            // 04. Call to Action (CTA)
+            // 03. Call to Action (CTA)
             'industry_cta_badge' => $settings->get('industry_cta_badge', 'HUBIN & BKK SMKN 1 BANGSRI'),
             'industry_cta_title' => $settings->get('industry_cta_title', 'Tertarik Bekerjasama atau Merekrut Lulusan Kami?'),
-            'industry_cta_desc' => $settings->get('industry_cta_desc', 'Bursa Kerja Khusus (BKK) SMK Negeri 1 Bangsri siap memfasilitasi kebutuhan tenaga teknisi otomotif kompeten dan berintegritas untuk jaringan industri otomotif di seluruh Indonesia.'),
+            'industry_cta_desc' => $settings->get('industry_cta_desc', 'Bursa Kerja Khusus (BKK) SMK Negeri 1 Bangsri siap memfasilitasi kebutuhan tenaga teknisi otomotif kompeten dan berintegritas untuk jaringan industri otomotif.'),
             'industry_cta_button_text' => $settings->get('industry_cta_button_text', 'Hubungi Hubin & BKK'),
             'industry_cta_button_url' => $settings->get('industry_cta_button_url', '/kontak'),
         ]);
@@ -111,7 +97,7 @@ class ManageIndustryPage extends Page implements HasForms
                                             ->required(),
                                         TextInput::make('industry_hero_title')
                                             ->label('Judul Utama (Heading)')
-                                            ->placeholder('Contoh: KEMITRAAN INDUSTRI DENGAN PT ASTRA HONDA MOTOR')
+                                            ->placeholder('Contoh: Kemitraan Industri PT Astra Honda Motor')
                                             ->required(),
                                         Textarea::make('industry_hero_subtitle')
                                             ->label('Deskripsi Pengantar Ringkas')
@@ -123,11 +109,11 @@ class ManageIndustryPage extends Page implements HasForms
                                             ->directory('industry_partners')
                                             ->image()
                                             ->imageEditor()
-                                            ->helperText('Biarkan kosong untuk menggunakan background bawaan.'),
+                                            ->helperText('Biarkan kosong untuk menggunakan background default.'),
                                     ]),
 
                                 Section::make('4 Kartu Statistik Metrik Kemitraan')
-                                    ->description('Angka sorotan utama seperti tahun binaan, jumlah cabang AHASS di Jepara, dan penyerapan kerja.')
+                                    ->description('Angka sorotan utama seperti tahun binaan resmi, cabang AHASS di Jepara, dan kualifikasi kelas.')
                                     ->icon('heroicon-o-chart-bar')
                                     ->schema([
                                         Section::make('Metrik 1')
@@ -165,7 +151,7 @@ class ManageIndustryPage extends Page implements HasForms
                             ->schema([
                                 Section::make('Pilar 1 & 2: Kurikulum & PKL')
                                     ->schema([
-                                        Section::make('Pilar 1: Kurikulum')
+                                        Section::make('Pilar 1: Kurikulum Industri')
                                             ->schema([
                                                 TextInput::make('industry_pillar_1_title')->label('Judul Pilar 1')->required(),
                                                 Textarea::make('industry_pillar_1_desc')->label('Deskripsi')->rows(2)->required(),
@@ -178,7 +164,7 @@ class ManageIndustryPage extends Page implements HasForms
                                             ])->columnSpan(1),
                                     ])->columns(2),
 
-                                Section::make('Pilar 3 & 4: Teaching Factory & Bantuan Sarana')
+                                Section::make('Pilar 3 & 4: Teaching Factory & Sarana')
                                     ->schema([
                                         Section::make('Pilar 3: Teaching Factory (TeFa)')
                                             ->schema([
@@ -193,7 +179,7 @@ class ManageIndustryPage extends Page implements HasForms
                                             ])->columnSpan(1),
                                     ])->columns(2),
 
-                                Section::make('Pilar 5 & 6: Sertifikasi & Rekrutmen Kerja BKK')
+                                Section::make('Pilar 5 & 6: Sertifikasi & Rekrutmen Kerja')
                                     ->schema([
                                         Section::make('Pilar 5: Sertifikasi Keahlian')
                                             ->schema([
@@ -210,40 +196,11 @@ class ManageIndustryPage extends Page implements HasForms
                             ]),
 
                         // =========================================================================
-                        // TAB 3: ALUR ROADMAP SISWA
-                        // =========================================================================
-                        Tab::make('Roadmap Karir Industri')
-                            ->icon('heroicon-o-arrow-trending-up')
-                            ->badge('03')
-                            ->schema([
-                                Section::make('Pengantar Roadmap Karir')
-                                    ->schema([
-                                        TextInput::make('industry_roadmap_title')->label('Judul Roadmap')->required(),
-                                        Textarea::make('industry_roadmap_desc')->label('Deskripsi Pengantar')->rows(2)->required(),
-                                    ]),
-
-                                Section::make('Tahapan Pembinaan 3 Tahun')
-                                    ->schema([
-                                        TextInput::make('industry_roadmap_1_title')->label('Fase 1 (Kelas X)')->required(),
-                                        Textarea::make('industry_roadmap_1_desc')->label('Keterangan Fase 1')->rows(2)->required(),
-
-                                        TextInput::make('industry_roadmap_2_title')->label('Fase 2 (Kelas XI)')->required(),
-                                        Textarea::make('industry_roadmap_2_desc')->label('Keterangan Fase 2')->rows(2)->required(),
-
-                                        TextInput::make('industry_roadmap_3_title')->label('Fase 3 (Kelas XII)')->required(),
-                                        Textarea::make('industry_roadmap_3_desc')->label('Keterangan Fase 3')->rows(2)->required(),
-
-                                        TextInput::make('industry_roadmap_4_title')->label('Fase 4 (Lulusan / Karir)')->required(),
-                                        Textarea::make('industry_roadmap_4_desc')->label('Keterangan Fase 4')->rows(2)->required(),
-                                    ]),
-                            ]),
-
-                        // =========================================================================
-                        // TAB 4: HUBIN BKK & CTA
+                        // TAB 3: BKK & CTA
                         // =========================================================================
                         Tab::make('BKK & Call to Action (CTA)')
                             ->icon('heroicon-o-megaphone')
-                            ->badge('04')
+                            ->badge('03')
                             ->schema([
                                 Section::make('Banner Ajakan Kerjasama / BKK')
                                     ->description('Informasi bursa kerja khusus dan penyaluran teknisi siap kerja.')

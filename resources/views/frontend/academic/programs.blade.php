@@ -1,349 +1,219 @@
-<x-layouts.app title="Program & Kurikulum Akademik">
+<x-layouts.app title="Program & Kurikulum Akademik" :no-padding-top="true">
     @push('json-ld')
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
       "@@type": "WebPage",
-      "name": "Program & Kurikulum Akademik {{ $settings->get('site_short_name', 'TSM') }}",
-      "description": "Struktur kurikulum, spesifikasi kompetensi, sertifikasi industri, dan program unggulan {{ $settings->get('site_name', 'Teknik Sepeda Motor') }} SMK Negeri 1 Bangsri binaan Astra Honda Motor."
+      "name": "Program & Kurikulum Akademik {{ $settings->get('site_short_name', 'TBSM') }}",
+      "description": "Struktur kurikulum, 4 pilar kompetensi kejuruan, dan sertifikasi industri {{ $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor') }} SMK Negeri 1 Bangsri binaan PT Astra Honda Motor."
     }
     </script>
     @endpush
 
-    <!-- ============================================================================ -->
-    <!-- 01. HERO SECTION -->
-    <!-- ============================================================================ -->
-    <section class="relative bg-charcoal-50 overflow-hidden pt-10 pb-14 lg:pt-14 lg:pb-20 border-b border-charcoal-200">
-        @if($settings->get('header_academic_programs_image'))
-            <img src="{{ Storage::url($settings->get('header_academic_programs_image')) }}" alt="Programs Background" class="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none">
-        @else
-            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-charcoal-200/50 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/3 z-0"></div>
-        @endif
-        
-        <!-- Subtle Mechanical Grid -->
-        <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: linear-gradient(to right, #cbd5e1 1px, transparent 1px), linear-gradient(to bottom, #cbd5e1 1px, transparent 1px); background-size: 2.5rem 2.5rem;"></div>
+    <!-- Main Layout Wrapper (Synchronized with Homepage theme) -->
+    <main class="flex flex-col items-center w-full overflow-hidden relative">
 
-        <x-frontend.layout.container class="relative z-10">
+        <!-- ============================================================================ -->
+        <!-- 01. HERO BANNER: AKADEMIK & KURIKULUM (Compact & Cinematic) -->
+        <!-- ============================================================================ -->
+        <section class="w-full bg-figma-dark py-12 sm:py-16 lg:py-20 relative overflow-hidden text-white border-b border-charcoal-800">
+            <!-- Background Photography with Overlay -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                @if($settings->get('header_academic_programs_image'))
+                    <img src="{{ Storage::url($settings->get('header_academic_programs_image')) }}" alt="Academic Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
+                @else
+                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1600&auto=format&fit=crop" alt="Academic Background" class="w-full h-full object-cover mix-blend-overlay opacity-25 grayscale" loading="eager">
+                @endif
+                <div class="absolute inset-0 bg-gradient-to-b from-charcoal-950/80 via-charcoal-900/90 to-charcoal-950"></div>
+            </div>
+
+            <!-- Technical Radial Grid -->
+            <div class="absolute inset-0 z-10 pointer-events-none opacity-[0.06]" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-                <div class="lg:col-span-8">
-                    <div class="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-full bg-white border border-charcoal-200 text-[10px] font-black uppercase tracking-widest text-charcoal-900 mb-6 shadow-2xs reveal-on-scroll reveal-up">
-                        <span class="w-2 h-2 rounded-full bg-primary-600 animate-pulse"></span>
+            <!-- Red Ambient Glow -->
+            <div class="absolute top-0 right-1/4 w-96 h-96 bg-figma-red/15 rounded-full blur-[120px] pointer-events-none -translate-y-1/2"></div>
+
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-20 text-center flex flex-col items-center">
+                <!-- Eyebrow with Brand Red Bar -->
+                <div class="flex items-center justify-center gap-2.5 sm:gap-3 mb-3 sm:mb-4 reveal-on-scroll reveal-up">
+                    <div class="w-6 sm:w-10 h-[2px] bg-figma-red"></div>
+                    <span class="font-sans font-bold text-[11px] sm:text-[13px] leading-none tracking-[2px] text-figma-red uppercase">
                         {{ $settings->get('academic_hero_badge', 'KURIKULUM & KOMPETENSI KEJURUAN') }}
+                    </span>
+                    <div class="w-6 sm:w-10 h-[2px] bg-figma-red"></div>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="font-heading font-black text-[24px] sm:text-[36px] md:text-[48px] lg:text-[56px] leading-[1.15] sm:leading-[1.1] tracking-tight sm:tracking-[-1px] text-white uppercase mb-3 sm:mb-5 max-w-[860px] drop-shadow-md reveal-on-scroll reveal-up delay-100">
+                    {!! nl2br(e($settings->get('academic_hero_title', 'Akademik & Kurikulum ' . $settings->get('site_short_name', 'TBSM')))) !!}
+                </h1>
+
+                <!-- Subtitle Description -->
+                <p class="font-sans text-[13px] sm:text-[16px] md:text-[18px] text-gray-300 leading-[1.6] max-w-[760px] mx-auto mb-6 sm:mb-8 reveal-on-scroll reveal-up delay-200">
+                    {{ $settings->get('academic_hero_subtitle', 'Penyelarasan Kurikulum Merdeka dengan standar AMTC PT Astra Honda Motor (AHM) untuk mencetak teknisi sepeda motor profesional, kompeten, dan siap kerja.') }}
+                </p>
+
+                <!-- 3 Quick Highlight Badges (Compact) -->
+                <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 reveal-on-scroll reveal-up delay-300">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-semibold text-white">
+                        <span class="w-2 h-2 rounded-full bg-figma-red animate-pulse"></span>
+                        <span>Proporsi: <strong class="text-white">{{ $settings->get('academic_praktikum_pct', '70%') }} Praktik</strong> / {{ $settings->get('academic_teori_pct', '30%') }} Teori</span>
                     </div>
-                    
-                    <h1 class="text-3xl sm:text-5xl lg:text-7xl font-black text-charcoal-950 tracking-tight leading-[1.05] sm:leading-[0.95] mb-4 sm:mb-6 uppercase reveal-on-scroll reveal-up delay-100">
-                        {!! nl2br(e($settings->get('academic_hero_title', "AKADEMIK & \nKURIKULUM " . $settings->get('site_short_name', 'TSM')))) !!}
-                    </h1>
-                    
-                    <p class="text-sm sm:text-base lg:text-lg text-charcoal-600 font-medium leading-relaxed max-w-2xl reveal-on-scroll reveal-up delay-200">
-                        {{ $settings->get('academic_hero_subtitle', 'Standar kompetensi kejuruan teknik sepeda motor berbasis industri Astra Honda Motor (AHM) dengan Kurikulum Merdeka terintegrasi, dirancang untuk melahirkan teknisi profesional dan wirausahawan tangguh.') }}
+
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-semibold text-white">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <span>Mitra Industri: <strong class="text-white">{{ $settings->get('academic_partner_name', 'Astra Honda Motor (AHASS)') }}</strong></span>
+                    </div>
+
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm text-xs font-semibold text-white">
+                        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                        <span>Lisensi: <strong class="text-white">BNSP & Honda Level 1</strong></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================================ -->
+        <!-- 02. 4 PILAR SPESIFIKASI KOMPETENSI (Compact 4-Grid, To The Point) -->
+        <!-- ============================================================================ -->
+        <section class="w-full py-12 sm:py-16 md:py-20 bg-white border-b border-gray-100 relative">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
+                
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-12 reveal-on-scroll reveal-up">
+                    <div>
+                        <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                            <div class="w-6 sm:w-10 h-[2px] bg-figma-red"></div>
+                            <span class="font-sans font-bold text-[11px] sm:text-[13px] leading-none tracking-[2px] text-figma-gray uppercase">
+                                4 Pilar Keahlian
+                            </span>
+                        </div>
+                        <h2 class="font-heading font-extrabold text-[22px] sm:text-[32px] md:text-[40px] leading-[1.15] text-figma-dark tracking-tight">
+                            Spesifikasi Kompetensi Lulusan
+                        </h2>
+                    </div>
+                    <p class="font-sans text-[13px] sm:text-[15px] text-gray-500 max-w-md leading-relaxed">
+                        Capaian pembelajaran teknis modular standar bengkel resmi Honda, menjamin penguasaan diagnosa dan pemeliharaan sepeda motor modern.
                     </p>
                 </div>
 
-                <div class="lg:col-span-4 reveal-on-scroll reveal-up delay-300">
-                    <div class="bg-white rounded-3xl p-6 border border-charcoal-200 shadow-sm">
-                        <div class="flex items-center gap-3 pb-4 mb-4 border-b border-charcoal-100">
-                            <div class="w-11 h-11 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center font-bold shrink-0">
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                </svg>
-                            </div>
-                            <div>
-                                <span class="block text-[10px] font-bold text-charcoal-400 uppercase tracking-widest">Mitra Industri Utama</span>
-                                <span class="block text-sm font-black text-charcoal-900 uppercase">{{ $settings->get('academic_partner_name', 'Astra Honda Motor (AHASS)') }}</span>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="bg-charcoal-50 rounded-2xl p-3.5 border border-charcoal-100">
-                                <span class="block text-2xl lg:text-3xl font-black text-primary-600">{{ $settings->get('academic_praktikum_pct', '70%') }}</span>
-                                <span class="text-[10px] font-bold uppercase text-charcoal-500 tracking-wider">{{ $settings->get('academic_praktikum_label', 'Praktikum & TeFa') }}</span>
-                            </div>
-                            <div class="bg-charcoal-50 rounded-2xl p-3.5 border border-charcoal-100">
-                                <span class="block text-2xl lg:text-3xl font-black text-charcoal-900">{{ $settings->get('academic_teori_pct', '30%') }}</span>
-                                <span class="text-[10px] font-bold uppercase text-charcoal-500 tracking-wider">{{ $settings->get('academic_teori_label', 'Teori & K3LH') }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Jump Anchor Bar (Horizontally scrollable on mobile) -->
-            <div class="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-charcoal-200/80 flex items-center gap-2 sm:gap-2.5 text-xs font-bold text-charcoal-600 overflow-x-auto whitespace-nowrap scrollbar-none pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap reveal-on-scroll reveal-up delay-200">
-                <span class="text-charcoal-400 uppercase tracking-widest text-[10px] mr-1 shrink-0">Navigasi:</span>
-                <a href="#program-keahlian" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">01. Spesifikasi Kompetensi</a>
-                <a href="#struktur-kurikulum" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">02. Peta Kurikulum</a>
-                <a href="#sertifikasi" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">03. Sertifikasi LSP & Industri</a>
-                <a href="#program-unggulan" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">04. Program Unggulan</a>
-                <a href="#prospek-karir" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">05. Pilihan Karir</a>
-                <a href="#roadmap-akademik" class="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-charcoal-200 hover:border-primary-600 hover:text-primary-600 transition-colors shadow-2xs">06. Alur 3 Tahun</a>
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- ============================================================================ -->
-    <!-- 02. PROGRAM KEAHLIAN & 4 PILAR KOMPETENSI TEKNIS -->
-    <!-- ============================================================================ -->
-    <section id="program-keahlian" class="bg-charcoal-50 py-16 lg:py-24 border-b border-charcoal-200 scroll-mt-16">
-        <x-frontend.layout.container>
-            <div class="max-w-3xl mb-12 reveal-on-scroll reveal-up">
-                <div class="inline-block py-1 px-3 rounded-md bg-primary-50 border border-primary-200 text-[10px] font-black uppercase tracking-widest text-primary-700 mb-3">
-                    01 / SPESIFIKASI CAPAIAN
-                </div>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-charcoal-950 uppercase tracking-tight leading-tight">
-                    4 Pilar Kompetensi Teknis
-                </h2>
-                <p class="mt-3 text-base text-charcoal-600 leading-relaxed">
-                    Setiap lulusan dibekali penguasaan modular berstandar bengkel resmi Astra Honda Motor, mencakup diagnosis mekanik, sasis, kelistrikan modern, hingga tata kelola bisnis bengkel.
-                </p>
-            </div>
-
-            @forelse($programs as $index => $program)
-                <!-- PROGRAM BENTO CONTAINER (RINGKAS & TIDAK MENGULANG KARIR) -->
-                <div id="{{ $program->slug }}" class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10 reveal-on-scroll reveal-up">
+                <!-- 4 Cards Grid (Clear, dense, zero filler) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     
-                    <!-- Left Bento: Program Identity Banner -->
-                    <div class="lg:col-span-5 bg-charcoal-900 rounded-3xl p-6 lg:p-8 relative overflow-hidden group shadow-sm flex flex-col justify-between min-h-[320px] lg:min-h-[380px]">
-                        <img src="{{ $program->thumbnail ? Storage::url($program->thumbnail) : 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=800&auto=format&fit=crop' }}" alt="{{ $program->name }}" class="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:opacity-65 group-hover:scale-105 transition-all duration-700" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/70 to-transparent"></div>
-                        
-                        <div class="relative z-10 flex items-center justify-between">
-                            <span class="inline-block py-1 px-3 rounded-md bg-white/20 backdrop-blur-md border border-white/20 text-[10px] font-black uppercase tracking-widest text-white">
-                                KONSENTRASI KEAHLIAN
-                            </span>
-                            <span class="text-xs font-mono font-bold text-primary-400">SMKN 1 BANGSRI</span>
-                        </div>
-
-                        <div class="relative z-10 mt-auto">
-                            <span class="block text-primary-400 text-xs font-bold uppercase tracking-wider mb-2">Binaan Resmi PT Astra Honda Motor</span>
-                            <h3 class="text-2xl lg:text-3xl font-black text-white tracking-tight uppercase leading-tight mb-2">
-                                {{ $program->name }}
-                            </h3>
-                            <p class="text-xs text-charcoal-300 line-clamp-2">
-                                Kurikulum terintegrasi Kurikulum Merdeka dan standar industri sepeda motor nasional dengan jaminan sertifikasi kompetensi.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Right Bento: Keunggulan Ringkas & Standar Mutu -->
-                    <div class="lg:col-span-7 bg-white rounded-3xl p-6 lg:p-8 border border-charcoal-200 shadow-sm flex flex-col justify-between">
+                    <!-- 1. Sistem Mesin (Engine) -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl sm:rounded-none p-5 sm:p-6 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
                         <div>
-                            <div class="flex items-center justify-between border-b border-charcoal-100 pb-4 mb-5">
-                                <span class="text-xs font-black uppercase tracking-widest text-charcoal-400">Standar Mutu Pembelajaran</span>
-                                <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                    Terakreditasi Baik
-                                </span>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-7 h-7 bg-figma-red text-white font-heading font-black text-xs flex items-center justify-center rounded-sm">01</span>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-white px-2 py-0.5 rounded border border-gray-200">Engine</span>
                             </div>
-
-                            <p class="text-sm text-charcoal-600 leading-relaxed mb-6">
-                                Program studi {{ $settings->get('site_name', 'Teknik Sepeda Motor') }} ({{ $settings->get('site_short_name', 'TSM') }}) membekali peserta didik dengan keahlian teknis perawatan motor injeksi mutakhir, didukung ekosistem bengkel nyata di sekolah.
-                            </p>
-
-                            <!-- 4 Highlight Chips (Mudah dipindai dan padat informasi) -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                                <div class="flex items-center gap-2.5 p-3 rounded-xl bg-charcoal-50 border border-charcoal-100 text-xs text-charcoal-800 font-semibold">
-                                    <div class="w-7 h-7 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center shrink-0">
-                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    </div>
-                                    <span>Lab Berstandar Resmi AHASS</span>
-                                </div>
-                                <div class="flex items-center gap-2.5 p-3 rounded-xl bg-charcoal-50 border border-charcoal-100 text-xs text-charcoal-800 font-semibold">
-                                    <div class="w-7 h-7 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center shrink-0">
-                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    </div>
-                                    <span>Guru Tersertifikasi Astra Motor</span>
-                                </div>
-                                <div class="flex items-center gap-2.5 p-3 rounded-xl bg-charcoal-50 border border-charcoal-100 text-xs text-charcoal-800 font-semibold">
-                                    <div class="w-7 h-7 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center shrink-0">
-                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    </div>
-                                    <span>Teaching Factory Pelayanan Nyata</span>
-                                </div>
-                                <div class="flex items-center gap-2.5 p-3 rounded-xl bg-charcoal-50 border border-charcoal-100 text-xs text-charcoal-800 font-semibold">
-                                    <div class="w-7 h-7 rounded-lg bg-primary-100 text-primary-600 flex items-center justify-center shrink-0">
-                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    </div>
-                                    <span>Penyaluran Kerja BKK Terpadu</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="pt-4 border-t border-charcoal-100 flex flex-wrap items-center justify-between gap-4 text-xs">
-                            <div class="flex items-center gap-2 text-charcoal-500 font-medium">
-                                <svg class="w-4 h-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                Masa Studi: <strong>3 Tahun (Fase E & F)</strong>
-                            </div>
-                            <div class="flex items-center gap-2 text-charcoal-500 font-medium">
-                                <svg class="w-4 h-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                Lisensi: <strong>Garuda BNSP & Astra Honda</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mobile Swipe Hint -->
-                <div class="md:hidden flex items-center justify-between mb-3 px-1">
-                    <span class="text-[11px] font-bold text-charcoal-400 uppercase tracking-wider">4 Pilar Keahlian</span>
-                    <span class="text-[11px] font-semibold text-primary-600 flex items-center gap-1">
-                        Geser pilar
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                    </span>
-                </div>
-
-                <!-- 4 PILLARS DETAILED CARDS (Mesin, Sasis, Kelistrikan, Pengelolaan Bengkel) -->
-                <div class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-3.5 lg:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-3 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none reveal-on-scroll reveal-up delay-100">
-                    
-                    <!-- 1. MESIN (ENGINE) -->
-                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:max-w-none md:shrink bg-white rounded-3xl p-5 sm:p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group shadow-sm">
-                        <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 font-black text-xs flex items-center justify-center border border-primary-100 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                                    01
-                                </span>
-                                <span class="text-[10px] font-black uppercase tracking-wider text-charcoal-500 bg-charcoal-100 px-2.5 py-0.5 rounded-full">Engine</span>
-                            </div>
-                            
-                            <h4 class="text-lg font-black text-charcoal-900 uppercase tracking-tight mb-2 group-hover:text-primary-600 transition-colors">
+                            <h3 class="font-heading font-bold text-[17px] sm:text-[19px] text-figma-dark mb-2 group-hover:text-figma-red transition-colors">
                                 {{ $settings->get('academic_comp_engine_title', 'Sistem Mesin') }}
-                            </h4>
-                            <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                                {{ $settings->get('academic_comp_engine_desc', 'Mendiagnosis gangguan atau kerusakan pada Engine Sepeda Motor meliputi komponen utama engine, sistem pelumasan, sistem pendinginan, dan sistem bahan bakar injeksi PGM-FI.') }}
+                            </h3>
+                            <p class="font-sans text-[12px] sm:text-[13px] text-gray-600 leading-relaxed mb-4">
+                                {{ $settings->get('academic_comp_engine_desc', 'Mendiagnosis dan servis komponen engine, sistem pendingin radiator, pelumasan, dan sistem bahan bakar injeksi PGM-FI.') }}
                             </p>
                         </div>
-
-                        <div class="pt-4 border-t border-charcoal-100">
-                            <span class="block text-[10px] font-bold uppercase text-charcoal-400 tracking-wider mb-2.5">Output Kemampuan Siswa:</span>
-                            <ul class="space-y-1.5 text-xs text-charcoal-700">
+                        <div class="pt-3 border-t border-gray-200">
+                            <span class="block text-[10px] font-bold uppercase text-gray-400 tracking-wider mb-1.5">Fokus Praktikum:</span>
+                            <ul class="space-y-1 text-xs text-gray-700">
                                 @php
-                                    $engineScopes = array_filter(array_map('trim', explode("\n", $settings->get('academic_comp_engine_scope', "Overhaul Silinder & Valve\nKalibrasi Injektor & Throttle Body\nSistem Pendingin Cair & Radiator"))));
+                                    $engineScopes = array_filter(array_map('trim', explode("\n", $settings->get('academic_comp_engine_scope', "Overhaul Silinder & Katup\nInjektor & Throttle Body PGM-FI\nRadiator & Pendingin Cair"))));
                                 @endphp
                                 @foreach($engineScopes as $scope)
-                                    <li class="flex items-start gap-2">
-                                        <svg class="w-3.5 h-3.5 text-primary-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>{{ $scope }}</span>
+                                    <li class="flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 bg-figma-red rounded-full shrink-0"></span>
+                                        <span class="line-clamp-1">{{ $scope }}</span>
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
                     </div>
 
-                    <!-- 2. SASIS (CHASSIS) -->
-                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:max-w-none md:shrink bg-white rounded-3xl p-5 sm:p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group shadow-sm">
+                    <!-- 2. Sistem Sasis (Chassis) -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl sm:rounded-none p-5 sm:p-6 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
                         <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 font-black text-xs flex items-center justify-center border border-primary-100 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                                    02
-                                </span>
-                                <span class="text-[10px] font-black uppercase tracking-wider text-charcoal-500 bg-charcoal-100 px-2.5 py-0.5 rounded-full">Chassis</span>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-7 h-7 bg-figma-red text-white font-heading font-black text-xs flex items-center justify-center rounded-sm">02</span>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-white px-2 py-0.5 rounded border border-gray-200">Chassis</span>
                             </div>
-                            
-                            <h4 class="text-lg font-black text-charcoal-900 uppercase tracking-tight mb-2 group-hover:text-primary-600 transition-colors">
+                            <h3 class="font-heading font-bold text-[17px] sm:text-[19px] text-figma-dark mb-2 group-hover:text-figma-red transition-colors">
                                 {{ $settings->get('academic_comp_chassis_title', 'Sistem Sasis') }}
-                            </h4>
-                            <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                                {{ $settings->get('academic_comp_chassis_desc', 'Mendiagnosis gangguan pada sasis sepeda motor beserta komponennya, meliputi sistem rem hidrolik (CBS/ABS), sistem kemudi, suspensi, rangka, pelek, dan ban.') }}
+                            </h3>
+                            <p class="font-sans text-[12px] sm:text-[13px] text-gray-600 leading-relaxed mb-4">
+                                {{ $settings->get('academic_comp_chassis_desc', 'Perawatan dan perbaikan sistem rem hidrolik (CBS/ABS), kemudi presisi, suspensi teleskopik/monoshock, pelek, dan ban.') }}
                             </p>
                         </div>
-
-                        <div class="pt-4 border-t border-charcoal-100">
-                            <span class="block text-[10px] font-bold uppercase text-charcoal-400 tracking-wider mb-2.5">Output Kemampuan Siswa:</span>
-                            <ul class="space-y-1.5 text-xs text-charcoal-700">
+                        <div class="pt-3 border-t border-gray-200">
+                            <span class="block text-[10px] font-bold uppercase text-gray-400 tracking-wider mb-1.5">Fokus Praktikum:</span>
+                            <ul class="space-y-1 text-xs text-gray-700">
                                 @php
-                                    $chassisScopes = array_filter(array_map('trim', explode("\n", $settings->get('academic_comp_chassis_scope', "Bleeding & Servis Rem CBS/ABS\nPerbaikan Suspensi & Kemudi\nWheel Alignment & Spoke Lacing"))));
+                                    $chassisScopes = array_filter(array_map('trim', explode("\n", $settings->get('academic_comp_chassis_scope', "Servis & Bleeding Rem CBS/ABS\nPerbaikan Suspensi & Kemudi\nWheel Alignment & Tyre Changer"))));
                                 @endphp
                                 @foreach($chassisScopes as $scope)
-                                    <li class="flex items-start gap-2">
-                                        <svg class="w-3.5 h-3.5 text-primary-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>{{ $scope }}</span>
+                                    <li class="flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 bg-figma-red rounded-full shrink-0"></span>
+                                        <span class="line-clamp-1">{{ $scope }}</span>
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
                     </div>
 
-                    <!-- 3. KELISTRIKAN (ELECTRICAL) -->
-                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:max-w-none md:shrink bg-white rounded-3xl p-5 sm:p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group shadow-sm">
+                    <!-- 3. Sistem Kelistrikan (Electrical) -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl sm:rounded-none p-5 sm:p-6 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
                         <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 font-black text-xs flex items-center justify-center border border-primary-100 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                                    03
-                                </span>
-                                <span class="text-[10px] font-black uppercase tracking-wider text-charcoal-500 bg-charcoal-100 px-2.5 py-0.5 rounded-full">Electrical</span>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-7 h-7 bg-figma-red text-white font-heading font-black text-xs flex items-center justify-center rounded-sm">03</span>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-white px-2 py-0.5 rounded border border-gray-200">Electrical</span>
                             </div>
-                            
-                            <h4 class="text-lg font-black text-charcoal-900 uppercase tracking-tight mb-2 group-hover:text-primary-600 transition-colors">
+                            <h3 class="font-heading font-bold text-[17px] sm:text-[19px] text-figma-dark mb-2 group-hover:text-figma-red transition-colors">
                                 {{ $settings->get('academic_comp_electrical_title', 'Sistem Kelistrikan') }}
-                            </h4>
-                            <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                                {{ $settings->get('academic_comp_electrical_desc', 'Mendiagnosis gangguan pada sistem kelistrikan motor, mencakup pengapian, pengisian, starter, penerangan LED, sistem pengaman (Smart Key / Alarm), instrumen dan sinyal.') }}
+                            </h3>
+                            <p class="font-sans text-[12px] sm:text-[13px] text-gray-600 leading-relaxed mb-4">
+                                {{ $settings->get('academic_comp_electrical_desc', 'Diagnosis scanner injeksi HIDS, starter ACG, sistem pengisian baterai, pencahayaan LED, serta fitur Smart Key / Alarm.') }}
                             </p>
                         </div>
-
-                        <div class="pt-4 border-t border-charcoal-100">
-                            <span class="block text-[10px] font-bold uppercase text-charcoal-400 tracking-wider mb-2.5">Output Kemampuan Siswa:</span>
-                            <ul class="space-y-1.5 text-xs text-charcoal-700">
+                        <div class="pt-3 border-t border-gray-200">
+                            <span class="block text-[10px] font-bold uppercase text-gray-400 tracking-wider mb-1.5">Fokus Praktikum:</span>
+                            <ul class="space-y-1 text-xs text-gray-700">
                                 @php
-                                    $elecScopes = array_filter(array_map('trim', explode("\n", $settings->get('academic_comp_electrical_scope', "Diagnosis Scanner Injeksi (HIDS)\nTroubleshooting Smart Key & Alarm\nWiring Harness & Pengisian Aki"))));
+                                    $elecScopes = array_filter(array_map('trim', explode("\n", $settings->get('academic_comp_electrical_scope', "Scanner Diagnostik HIDS / ECM\nSmart Key System & Alarm\nWiring Harness & Alternator"))));
                                 @endphp
                                 @foreach($elecScopes as $scope)
-                                    <li class="flex items-start gap-2">
-                                        <svg class="w-3.5 h-3.5 text-primary-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>{{ $scope }}</span>
+                                    <li class="flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 bg-figma-red rounded-full shrink-0"></span>
+                                        <span class="line-clamp-1">{{ $scope }}</span>
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
                     </div>
 
-                    <!-- 4. PENGELOLAAN BENGKEL (MANAGEMENT) -->
-                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center md:w-auto md:max-w-none md:shrink bg-white rounded-3xl p-5 sm:p-6 border border-charcoal-200 hover:border-primary-600 transition-all duration-300 hover:shadow-md flex flex-col justify-between group shadow-sm">
+                    <!-- 4. Pengelolaan Bengkel (Management) -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl sm:rounded-none p-5 sm:p-6 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-300">
                         <div>
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 font-black text-xs flex items-center justify-center border border-primary-100 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                                    04
-                                </span>
-                                <span class="text-[10px] font-black uppercase tracking-wider text-charcoal-500 bg-charcoal-100 px-2.5 py-0.5 rounded-full">Management</span>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-7 h-7 bg-figma-red text-white font-heading font-black text-xs flex items-center justify-center rounded-sm">04</span>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-white px-2 py-0.5 rounded border border-gray-200">Management</span>
                             </div>
-                            
-                            <h4 class="text-lg font-black text-charcoal-900 uppercase tracking-tight mb-2 group-hover:text-primary-600 transition-colors">
+                            <h3 class="font-heading font-bold text-[17px] sm:text-[19px] text-figma-dark mb-2 group-hover:text-figma-red transition-colors">
                                 {{ $settings->get('academic_comp_management_title', 'Pengelolaan Bengkel') }}
-                            </h4>
-                            <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                                {{ $settings->get('academic_comp_management_desc', 'Menerapkan pengelolaan teknis, alur Service Advisor (SA), estimasi biaya, inventaris suku cadang, serta manajemen operasional dan perawatan berkala sepeda motor.') }}
+                            </h3>
+                            <p class="font-sans text-[12px] sm:text-[13px] text-gray-600 leading-relaxed mb-4">
+                                {{ $settings->get('academic_comp_management_desc', 'Alur Service Advisor (SA), kalkulasi estimasi biaya, inventaris suku cadang HGP, dan budaya kerja industri 5R/K3LH.') }}
                             </p>
                         </div>
-
-                        <div class="pt-4 border-t border-charcoal-100">
-                            <span class="block text-[10px] font-bold uppercase text-charcoal-400 tracking-wider mb-2.5">Output Kemampuan Siswa:</span>
-                            <ul class="space-y-1.5 text-xs text-charcoal-700">
+                        <div class="pt-3 border-t border-gray-200">
+                            <span class="block text-[10px] font-bold uppercase text-gray-400 tracking-wider mb-1.5">Fokus Praktikum:</span>
+                            <ul class="space-y-1 text-xs text-gray-700">
                                 @php
                                     $mgmtScopes = array_filter(array_map('trim', explode("\n", $settings->get('academic_comp_management_scope', "Alur Service Advisor & Front Desk\nEstimasi Biaya & Faktur Servis\nInventaris Tools & Suku Cadang"))));
                                 @endphp
                                 @foreach($mgmtScopes as $scope)
-                                    <li class="flex items-start gap-2">
-                                        <svg class="w-3.5 h-3.5 text-primary-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span>{{ $scope }}</span>
+                                    <li class="flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 bg-figma-red rounded-full shrink-0"></span>
+                                        <span class="line-clamp-1">{{ $scope }}</span>
                                     </li>
                                 @endforeach
                             </ul>
@@ -351,924 +221,296 @@
                     </div>
 
                 </div>
-            @empty
-                <div class="py-20 reveal-on-scroll reveal-up">
-                    <x-frontend.ui.empty-state title="Belum Ada Program" message="Data program keahlian sedang dalam tahap sinkronisasi sistem." icon="document" />
-                </div>
-            @endforelse
-        </x-frontend.layout.container>
-    </section>
 
-    <!-- ============================================================================ -->
-    <!-- 03. STRUKTUR KURIKULUM & PETA MATA PELAJARAN (TABBED INTERACTION) -->
-    <!-- ============================================================================ -->
-    <section id="struktur-kurikulum" class="bg-white py-16 lg:py-24 border-b border-charcoal-200 scroll-mt-16">
-        <x-frontend.layout.container>
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 reveal-on-scroll reveal-up">
-                <div class="max-w-2xl">
-                    <div class="inline-block py-1 px-3 rounded-md bg-charcoal-100 border border-charcoal-200 text-[10px] font-black uppercase tracking-widest text-charcoal-800 mb-3">
-                        02 / STRUKTUR KURIKULUM MERDEKA
+            </div>
+        </section>
+
+        <!-- ============================================================================ -->
+        <!-- 03. STRUKTUR KURIKULUM 3 TAHUN (Tabbed, Dense, Fast Reading) -->
+        <!-- ============================================================================ -->
+        <section class="w-full py-12 sm:py-16 md:py-20 bg-gray-50 border-b border-gray-200 relative" x-data="{ activeTab: 'kelas10' }">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
+                
+                <!-- Section Header with Tab Switcher -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10 reveal-on-scroll reveal-up">
+                    <div>
+                        <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                            <div class="w-6 sm:w-10 h-[2px] bg-figma-red"></div>
+                            <span class="font-sans font-bold text-[11px] sm:text-[13px] leading-none tracking-[2px] text-figma-gray uppercase">
+                                Peta Pembelajaran
+                            </span>
+                        </div>
+                        <h2 class="font-heading font-extrabold text-[22px] sm:text-[32px] md:text-[40px] leading-[1.15] text-figma-dark tracking-tight">
+                            {{ $settings->get('academic_curriculum_heading', 'Struktur Kurikulum 3 Tahun') }}
+                        </h2>
                     </div>
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-charcoal-950 uppercase tracking-tight leading-tight">
-                        {{ $settings->get('academic_curriculum_heading', 'Peta Mata Pelajaran Produktif') }}
+
+                    <!-- 3 Grade Tabs -->
+                    <div class="flex items-center gap-1 bg-white p-1 rounded-sm border border-gray-200 shadow-xs self-start md:self-auto">
+                        <button 
+                            @click="activeTab = 'kelas10'"
+                            :class="activeTab === 'kelas10' ? 'bg-figma-dark text-white font-bold' : 'text-gray-600 hover:text-figma-dark'"
+                            class="px-4 py-2 text-xs sm:text-sm font-sans rounded-sm transition-all cursor-pointer"
+                        >
+                            Kelas X (Fase E)
+                        </button>
+                        <button 
+                            @click="activeTab = 'kelas11'"
+                            :class="activeTab === 'kelas11' ? 'bg-figma-dark text-white font-bold' : 'text-gray-600 hover:text-figma-dark'"
+                            class="px-4 py-2 text-xs sm:text-sm font-sans rounded-sm transition-all cursor-pointer"
+                        >
+                            Kelas XI (Fase F)
+                        </button>
+                        <button 
+                            @click="activeTab = 'kelas12'"
+                            :class="activeTab === 'kelas12' ? 'bg-figma-dark text-white font-bold' : 'text-gray-600 hover:text-figma-dark'"
+                            class="px-4 py-2 text-xs sm:text-sm font-sans rounded-sm transition-all cursor-pointer"
+                        >
+                            Kelas XII (PKL & UKK)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Panels -->
+                
+                <!-- TAB 1: KELAS X -->
+                <div x-show="activeTab === 'kelas10'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="space-y-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white border border-gray-200 p-6 sm:p-8 rounded-xl sm:rounded-none shadow-sm">
+                        <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-gray-200 pb-5 lg:pb-0 lg:pr-6 flex flex-col justify-between">
+                            <div>
+                                <span class="px-2.5 py-1 bg-figma-red text-white text-[10px] font-bold uppercase rounded-sm inline-block mb-3">Tingkat 1 • Fase E</span>
+                                <h3 class="font-heading font-bold text-[20px] text-figma-dark mb-2">
+                                    {{ $settings->get('academic_curriculum_x_title', 'Fondasi Kejuruan Otomotif') }}
+                                </h3>
+                                <p class="font-sans text-[13px] text-gray-600 leading-relaxed mb-4">
+                                    {{ $settings->get('academic_curriculum_x_desc', 'Penanaman budaya industri 5R, keselamatan kerja (K3LH), penguasaan alat ukur mekanik presisi, serta logika koding dan kecerdasan artifisial dasar.') }}
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-100 font-sans text-xs text-gray-500 space-y-1">
+                                <div class="flex justify-between"><span>Alokasi Kejuruan:</span><strong class="text-figma-dark">{{ $settings->get('academic_curriculum_x_hours', '12 JP / Minggu') }}</strong></div>
+                                <div class="flex justify-between"><span>Fokus:</span><strong class="text-figma-dark">{{ $settings->get('academic_curriculum_x_focus', 'Disiplin & Ketelitian Ukur') }}</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">GTO</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Gambar Teknik Otomotif</h4>
+                                <p class="text-xs text-gray-500">Standarisasi ISO, proyeksi ortogonal komponen mesin, dan pembacaan diagram wiring kendaraan.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">TDO</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Teknologi Dasar Otomotif</h4>
+                                <p class="text-xs text-gray-500">Konversi energi motor 4 tak, dasar hidrolika, pneumatik, dan karakteristik bahan bakar minyak/pelumas.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">PDO</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Peralatan Dasar Otomotif</h4>
+                                <p class="text-xs text-gray-500">Penguasaan hand tools, special service tools (SST), dan alat ukur presisi (Jangka Sorong, Micrometer).</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">KKA</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Koding & AI Otomotif Dasar</h4>
+                                <p class="text-xs text-gray-500">Logika komputasi, sensor elektronik cerdas, dan kontrol otomatis kendaraan roda dua masa kini.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: KELAS XI -->
+                <div x-show="activeTab === 'kelas11'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="space-y-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white border border-gray-200 p-6 sm:p-8 rounded-xl sm:rounded-none shadow-sm">
+                        <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-gray-200 pb-5 lg:pb-0 lg:pr-6 flex flex-col justify-between">
+                            <div>
+                                <span class="px-2.5 py-1 bg-figma-dark text-white text-[10px] font-bold uppercase rounded-sm inline-block mb-3">Tingkat 2 • Fase F</span>
+                                <h3 class="font-heading font-bold text-[20px] text-figma-dark mb-2">
+                                    {{ $settings->get('academic_curriculum_xi_title', 'Konsentrasi Keahlian & TeFa') }}
+                                </h3>
+                                <p class="font-sans text-[13px] text-gray-600 leading-relaxed mb-4">
+                                    {{ $settings->get('academic_curriculum_xi_desc', 'Pendalaman teknis 3 sistem utama sepeda motor, simulasi pelayanan servis konsumen nyata (Teaching Factory), dan proyek kewirausahaan.') }}
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-100 font-sans text-xs text-gray-500 space-y-1">
+                                <div class="flex justify-between"><span>Alokasi Kejuruan:</span><strong class="text-figma-dark">{{ $settings->get('academic_curriculum_xi_hours', '18 JP / Minggu') }}</strong></div>
+                                <div class="flex justify-between"><span>Fokus:</span><strong class="text-figma-dark">{{ $settings->get('academic_curriculum_xi_focus', 'Injeksi PGM-FI & TeFa Nyata') }}</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">ENGINE</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Perawatan Mesin Sepeda Motor</h4>
+                                <p class="text-xs text-gray-500">Tune-up injeksi PGM-FI, penyetelan katup, overhaul kepala silinder, dan sistem pendingin radiator.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">CHASSIS</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Perawatan Sasis & Kemudi</h4>
+                                <p class="text-xs text-gray-500">Perbaikan sistem rem hidrolik CBS/ABS, shock absorber teleskopik/monoshock, dan balancing roda.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">ELECTRICAL</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Perawatan Kelistrikan Motor</h4>
+                                <p class="text-xs text-gray-500">Pengujian sistem pengapian, alternator, starter ACG, sistem Smart Key, dan lampu LED terpadu.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">PKK</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Produk Kreatif & Kewirausahaan</h4>
+                                <p class="text-xs text-gray-500">Praktik pelayanan servis konsumen di Teaching Factory, kalkulasi jasa, dan suku cadang motor.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: KELAS XII -->
+                <div x-show="activeTab === 'kelas12'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="space-y-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white border border-gray-200 p-6 sm:p-8 rounded-xl sm:rounded-none shadow-sm">
+                        <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-gray-200 pb-5 lg:pb-0 lg:pr-6 flex flex-col justify-between">
+                            <div>
+                                <span class="px-2.5 py-1 bg-emerald-600 text-white text-[10px] font-bold uppercase rounded-sm inline-block mb-3">Tingkat 3 • Pemantapan</span>
+                                <h3 class="font-heading font-bold text-[20px] text-figma-dark mb-2">
+                                    {{ $settings->get('academic_curriculum_xii_title', 'Pemantapan Industri & PKL') }}
+                                </h3>
+                                <p class="font-sans text-[13px] text-gray-600 leading-relaxed mb-4">
+                                    {{ $settings->get('academic_curriculum_xii_desc', 'Pelaksanaan Praktik Kerja Lapangan (PKL) 6 bulan di AHASS, pemecahan masalah (troubleshooting) tingkat lanjut, dan Uji Sertifikasi LSP/UKK.') }}
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-100 font-sans text-xs text-gray-500 space-y-1">
+                                <div class="flex justify-between"><span>Alokasi PKL:</span><strong class="text-emerald-700">{{ $settings->get('academic_curriculum_xii_hours', '6 Bulan Penuh di AHASS') }}</strong></div>
+                                <div class="flex justify-between"><span>Fokus:</span><strong class="text-figma-dark">{{ $settings->get('academic_curriculum_xii_focus', 'UKK, BNSP, Rekrutmen BKK') }}</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-emerald-700 uppercase">PKL 6 BULAN</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Praktik Kerja Lapangan di AHASS</h4>
+                                <p class="text-xs text-gray-500">Penempatan kerja riil di jaringan bengkel resmi AHASS se-Kabupaten Jepara dan Karesidenan Pati.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">DIAGNOSIS</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Troubleshooting Lanjutan</h4>
+                                <p class="text-xs text-gray-500">Analisis kerusakan kompleks menggunakan scanner HIDS, multimeter digital, dan oscilloscope otomotif.</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-figma-red uppercase">SERTIFIKASI</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Uji Kompetensi Keahlian (UKK)</h4>
+                                <p class="text-xs text-gray-500">Uji kompetensi teknis resmi dengan penguji eksternal dari PT Astra Honda Motor (Main Dealer).</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 border border-gray-100 rounded-sm">
+                                <span class="text-[10px] font-bold text-amber-700 uppercase">BNSP LSP-P1</span>
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mt-0.5 mb-1">Sertifikasi Profesi Nasional</h4>
+                                <p class="text-xs text-gray-500">Sertifikat berlisensi Badan Nasional Sertifikasi Profesi (BNSP) pengakuan kompetensi kerja nasional.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================================ -->
+        <!-- 04. SERTIFIKASI & JAMINAN MUTU LULUSAN (3-Card Strip, Direct & Clear) -->
+        <!-- ============================================================================ -->
+        <section class="w-full py-12 sm:py-16 bg-white border-b border-gray-100 relative">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
+                
+                <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12 reveal-on-scroll reveal-up">
+                    <div class="flex items-center justify-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                        <div class="w-6 sm:w-10 h-[2px] bg-figma-red"></div>
+                        <span class="font-sans font-bold text-[11px] sm:text-[13px] leading-none tracking-[2px] text-figma-gray uppercase">
+                            Pengakuan Kompetensi
+                        </span>
+                        <div class="w-6 sm:w-10 h-[2px] bg-figma-red"></div>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-[22px] sm:text-[32px] md:text-[38px] text-figma-dark tracking-tight">
+                        Sertifikasi & Lisensi Resmi Lulusan
                     </h2>
-                    <p class="mt-3 text-base text-charcoal-600 leading-relaxed">
-                        {{ $settings->get('academic_curriculum_subheading', 'Pola pembelajaran bertahap dari pengenalan fondasi otomotif dasar, konsentrasi kejuruan, hingga pemantapan industri dan magang penuh di bengkel resmi AHASS.') }}
+                    <p class="font-sans text-[13px] sm:text-[15px] text-gray-500 mt-2">
+                        Setiap lulusan dibekali sertifikasi resmi yang diakui industri otomotif nasional dan standar kerja bengkel resmi.
                     </p>
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <button type="button" onclick="openSyllabusModal()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-charcoal-900 text-white font-bold text-xs uppercase tracking-wider hover:bg-primary-600 transition-colors shadow-sm focus-ring">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        Ringkasan Silabus PDF
-                    </button>
-                </div>
-            </div>
-
-            <!-- Tab Switcher -->
-            <div class="bg-charcoal-50 rounded-2xl p-1.5 border border-charcoal-200 inline-flex max-w-full overflow-x-auto mb-8 reveal-on-scroll reveal-up" role="tablist">
-                <button type="button" class="tab-btn active px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-200 text-white bg-charcoal-950 shadow-xs" data-target="tab-kelas-10">
-                    Kelas X (Fase E)
-                </button>
-                <button type="button" class="tab-btn px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-200 text-charcoal-600 hover:text-charcoal-900" data-target="tab-kelas-11">
-                    Kelas XI (Fase F)
-                </button>
-                <button type="button" class="tab-btn px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider transition-all duration-200 text-charcoal-600 hover:text-charcoal-900" data-target="tab-kelas-12">
-                    Kelas XII (Fase F & Magang)
-                </button>
-            </div>
-
-            <!-- TAB 1: KELAS X -->
-            <div id="tab-kelas-10" class="tab-panel block reveal-on-scroll reveal-up">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <div class="lg:col-span-4 bg-charcoal-950 text-white rounded-3xl p-6 lg:p-8 flex flex-col justify-between">
-                        <div>
-                            <span class="inline-block px-3 py-1 rounded bg-primary-600 text-white font-black text-[10px] uppercase tracking-widest mb-4">
-                                TINGKAT 1 / FASE E
-                            </span>
-                            <h3 class="text-2xl font-black uppercase tracking-tight mb-3">
-                                {{ $settings->get('academic_curriculum_x_title', 'Fondasi Kejuruan Otomotif') }}
-                            </h3>
-                            <p class="text-xs text-charcoal-300 leading-relaxed">
-                                {{ $settings->get('academic_curriculum_x_desc', 'Penanaman budaya kerja industri 5R, keselamatan kerja (K3LH), penguasaan alat ukur mekanik presisi, serta logika koding dan kecerdasan artifisial dasar.') }}
-                            </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+                    <!-- Cert 1: BNSP -->
+                    <div class="p-6 bg-gray-50 border border-gray-200 rounded-xl sm:rounded-none relative group hover:border-figma-red transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-700 font-heading font-bold text-sm flex items-center justify-center mb-4">
+                            BNSP
                         </div>
-                        <div class="mt-8 pt-6 border-t border-charcoal-800 space-y-3 text-xs">
-                            <div class="flex items-center justify-between text-charcoal-400">
-                                <span>Alokasi Kejuruan:</span>
-                                <strong class="text-white">{{ $settings->get('academic_curriculum_x_hours', '12 JP / Minggu') }}</strong>
-                            </div>
-                            <div class="flex items-center justify-between text-charcoal-400">
-                                <span>Fokus Utama:</span>
-                                <strong class="text-white">{{ $settings->get('academic_curriculum_x_focus', 'Disiplin & Ketelitian Ukur') }}</strong>
-                            </div>
-                        </div>
+                        <h3 class="font-heading font-bold text-[17px] text-figma-dark mb-1.5">{{ $settings->get('academic_cert_bnsp_title', 'Sertifikasi BNSP / LSP-P1') }}</h3>
+                        <span class="text-[11px] font-bold text-amber-700 uppercase tracking-wide block mb-3">{{ $settings->get('academic_cert_bnsp_license', 'LSP-P1 SMKN 1 Bangsri') }}</span>
+                        <p class="font-sans text-xs text-gray-600 leading-relaxed">
+                            {{ $settings->get('academic_cert_bnsp_desc', 'Sertifikat Garuda Emas resmi berstandar SKKNI, diakui di seluruh wilayah Republik Indonesia dan ASEAN.') }}
+                        </p>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Mapel 1 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Mata Pelajaran Wajib</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">GTO</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Gambar Teknik Otomotif</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Standarisasi ISO, proyeksi ortogonal komponen mesin, dan pembacaan diagram teknis perakitan kendaraan.
-                            </p>
+                    <!-- Cert 2: Honda AMTC -->
+                    <div class="p-6 bg-gray-50 border border-gray-200 rounded-xl sm:rounded-none relative group hover:border-figma-red transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-figma-red/10 text-figma-red font-heading font-bold text-sm flex items-center justify-center mb-4">
+                            AHM
                         </div>
+                        <h3 class="font-heading font-bold text-[17px] text-figma-dark mb-1.5">{{ $settings->get('academic_cert_ahm_title', 'Lisensi Astra Honda Motor') }}</h3>
+                        <span class="text-[11px] font-bold text-figma-red uppercase tracking-wide block mb-3">{{ $settings->get('academic_cert_ahm_level', 'AMTC Honda Level 1 Bronze') }}</span>
+                        <p class="font-sans text-xs text-gray-600 leading-relaxed">
+                            {{ $settings->get('academic_cert_ahm_desc', 'Standar keahlian mekanik resmi Honda yang membuka akses prioritas rekrutmen kerja langsung di jaringan AHASS.') }}
+                        </p>
+                    </div>
 
-                        <!-- Mapel 2 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Mata Pelajaran Wajib</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">TDO</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Teknologi Dasar Otomotif</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Konversi energi motor 4 tak, hidrolika, pneumatik, dan karakteristik material komponen motor.
-                            </p>
+                    <!-- Cert 3: UKK -->
+                    <div class="p-6 bg-gray-50 border border-gray-200 rounded-xl sm:rounded-none relative group hover:border-figma-red transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-700 font-heading font-bold text-sm flex items-center justify-center mb-4">
+                            UKK
                         </div>
-
-                        <!-- Mapel 3 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Mata Pelajaran Wajib</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">PDO</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Peralatan Dasar Otomotif</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Penguasaan hand tools, SST, dan alat ukur presisi (Jangka Sorong, Micrometer, Dial Gauge) standar bengkel Honda.
-                            </p>
-                        </div>
-
-                        <!-- Mapel 4 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Muatan Kurikulum Baru</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">KKA</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Koding & Kecerdasan Artifisial</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Logika komputasi, algoritma pemrograman dasar, sensor mikrokontroler cerdas, dan sistem kontrol kendaraan masa depan.
-                            </p>
-                        </div>
+                        <h3 class="font-heading font-bold text-[17px] text-figma-dark mb-1.5">{{ $settings->get('academic_cert_ukk_title', 'Uji Kompetensi Keahlian (UKK)') }}</h3>
+                        <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wide block mb-3">{{ $settings->get('academic_cert_ukk_issuer', 'Kemendikbud & DUDI Astra Motor') }}</span>
+                        <p class="font-sans text-xs text-gray-600 leading-relaxed">
+                            {{ $settings->get('academic_cert_ukk_desc', 'Verifikasi kemampuan akhir siswa yang diuji langsung oleh instruktur bengkel resmi eksternal.') }}
+                        </p>
                     </div>
                 </div>
+
             </div>
+        </section>
 
-            <!-- TAB 2: KELAS XI -->
-            <div id="tab-kelas-11" class="tab-panel hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <div class="lg:col-span-4 bg-charcoal-950 text-white rounded-3xl p-6 lg:p-8 flex flex-col justify-between">
-                        <div>
-                            <span class="inline-block px-3 py-1 rounded bg-primary-600 text-white font-black text-[10px] uppercase tracking-widest mb-4">
-                                TINGKAT 2 / FASE F
-                            </span>
-                            <h3 class="text-2xl font-black uppercase tracking-tight mb-3">
-                                {{ $settings->get('academic_curriculum_xi_title', 'Konsentrasi & TeFa Level 1') }}
-                            </h3>
-                            <p class="text-xs text-charcoal-300 leading-relaxed">
-                                {{ $settings->get('academic_curriculum_xi_desc', 'Masuk ke pendalaman teknis 3 sistem sepeda motor, simulasi pelayanan servis konsumen nyata (Teaching Factory), dan proyek produk kreatif kewirausahaan.') }}
-                            </p>
-                        </div>
-                        <div class="mt-8 pt-6 border-t border-charcoal-800 space-y-3 text-xs">
-                            <div class="flex items-center justify-between text-charcoal-400">
-                                <span>Alokasi Kejuruan:</span>
-                                <strong class="text-white">{{ $settings->get('academic_curriculum_xi_hours', '18 JP / Minggu') }}</strong>
-                            </div>
-                            <div class="flex items-center justify-between text-charcoal-400">
-                                <span>Fokus Utama:</span>
-                                <strong class="text-white">{{ $settings->get('academic_curriculum_xi_focus', 'Perawatan Berkala & TeFa') }}</strong>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Mapel 1 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Konsentrasi Keahlian</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">CHASSIS</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Sasis Sepeda Motor</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Perawatan rem CBS/ABS, kemudi presisi, suspensi teleskopik/monoshock, pelek, dan penggantian ban tubeless.
-                            </p>
-                        </div>
-
-                        <!-- Mapel 2 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Konsentrasi Keahlian</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">ELEC</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Kelistrikan Sepeda Motor</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Pengujian sistem alternator, motor starter, lampu LED, alarm cerdas Smart Key, dan jalur wiring bodi motor.
-                            </p>
-                        </div>
-
-                        <!-- Mapel 3 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Konsentrasi Keahlian</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">ENGINE</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Mesin Sepeda Motor</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Servis kepala silinder, penyetelan celah katup, pembersihan throttle body, dan kalibrasi injeksi PGM-FI Honda.
-                            </p>
-                        </div>
-
-                        <!-- Mapel 4 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Kewirausahaan Bengkel</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">PKK</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Produk Kreatif & Mapel Pilihan</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Layanan jasa servis cepat konsumen, perhitungan tarif kerja bengkel, dan manajemen toko suku cadang motor.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 3: KELAS XII -->
-            <div id="tab-kelas-12" class="tab-panel hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <div class="lg:col-span-4 bg-charcoal-950 text-white rounded-3xl p-6 lg:p-8 flex flex-col justify-between">
-                        <div>
-                            <span class="inline-block px-3 py-1 rounded bg-primary-600 text-white font-black text-[10px] uppercase tracking-widest mb-4">
-                                TINGKAT 3 / FASE F
-                            </span>
-                            <h3 class="text-2xl font-black uppercase tracking-tight mb-3">
-                                {{ $settings->get('academic_curriculum_xii_title', 'Pemantapan Industri & PKL') }}
-                            </h3>
-                            <p class="text-xs text-charcoal-300 leading-relaxed">
-                                {{ $settings->get('academic_curriculum_xii_desc', 'Pelaksanaan Praktik Kerja Lapangan (PKL) 6 bulan di AHASS, pemecahan masalah (troubleshooting) tingkat lanjut, pengelolaan manajemen bengkel, dan Uji Sertifikasi LSP/UKK.') }}
-                            </p>
-                        </div>
-                        <div class="mt-8 pt-6 border-t border-charcoal-800 space-y-3 text-xs">
-                            <div class="flex items-center justify-between text-charcoal-400">
-                                <span>Durasi Magang:</span>
-                                <strong class="text-white">{{ $settings->get('academic_curriculum_xii_hours', '6 Bulan Penuh di AHASS') }}</strong>
-                            </div>
-                            <div class="flex items-center justify-between text-charcoal-400">
-                                <span>Muara Kelulusan:</span>
-                                <strong class="text-white">{{ $settings->get('academic_curriculum_xii_focus', 'UKK, BNSP, Rekrutmen BKK') }}</strong>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Mapel 1 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Konsentrasi Lanjut</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">TROUBLE</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Troubleshooting 3 Sistem</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Analisis kerusakan sistem mesin, sasis, dan kelistrikan menggunakan alat diagnostic scanner (HIDS) resmi Honda.
-                            </p>
-                        </div>
-
-                        <!-- Mapel 2 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Keahlian Manajerial</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">WORKSHOP</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Pengelolaan Bengkel Sepeda Motor</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Alur penerimaan konsumen Service Advisor, estimasi waktu kerja teknisi (FRT), dan pembukuan suku cadang resmi.
-                            </p>
-                        </div>
-
-                        <!-- Mapel 3 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Pengalaman Industri</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">PKL AHASS</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Praktik Kerja Industri (PKL)</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Magang 6 bulan penuh di jaringan bengkel resmi AHASS se-Karesidenan Pati untuk mengasah jam terbang dan etos kerja.
-                            </p>
-                        </div>
-
-                        <!-- Mapel 4 -->
-                        <div class="bg-charcoal-50 rounded-2xl p-5 border border-charcoal-200 hover:bg-white hover:border-charcoal-300 transition-all">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-[10px] font-black text-primary-600 uppercase tracking-wider">Evaluasi Akhir</span>
-                                <span class="text-xs font-mono font-bold text-charcoal-400">UKK / LSP</span>
-                            </div>
-                            <h4 class="text-base font-bold text-charcoal-900 mb-1.5">Uji Kompetensi Keahlian (UKK)</h4>
-                            <p class="text-xs text-charcoal-500 leading-relaxed">
-                                Uji sertifikasi teknisi di hadapan asesor eksternal industri dan penerbitan lisensi kompetensi Garuda Emas BNSP.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- ============================================================================ -->
-    <!-- 04. SERTIFIKASI KEAHLIAN & LISENSI INDUSTRI -->
-    <!-- ============================================================================ -->
-    <section id="sertifikasi" class="bg-charcoal-50 py-16 lg:py-24 border-b border-charcoal-200 scroll-mt-16">
-        <x-frontend.layout.container>
-            <div class="max-w-3xl mb-12 reveal-on-scroll reveal-up">
-                <div class="inline-block py-1 px-3 rounded-md bg-primary-50 border border-primary-200 text-[10px] font-black uppercase tracking-widest text-primary-700 mb-3">
-                    03 / PENGAKUAN RESMI
-                </div>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-charcoal-950 uppercase tracking-tight leading-tight">
-                    Sertifikasi Keahlian & Lisensi
+        <!-- ============================================================================ -->
+        <!-- 05. CALL TO ACTION & SILABUS (Compact) -->
+        <!-- ============================================================================ -->
+        <section class="w-full bg-figma-dark py-12 sm:py-16 relative overflow-hidden text-center text-white">
+            <div class="max-w-[800px] mx-auto px-4 sm:px-8 relative z-10 reveal-on-scroll reveal-up">
+                <h2 class="font-heading font-black text-[22px] sm:text-[32px] md:text-[40px] text-white leading-tight mb-3">
+                    Tertarik Menjadi Bagian dari TBSM?
                 </h2>
-                <p class="mt-3 text-base text-charcoal-600 leading-relaxed">
-                    Setiap lulusan dibekali sertifikat kompetensi ganda dari negara dan industri mitra untuk memastikan daya saing dan legalitas kerja yang diakui luas.
+                <p class="font-sans text-xs sm:text-sm text-gray-300 max-w-lg mx-auto mb-6 leading-relaxed">
+                    Pelajari kurikulum kejuruan selengkapnya atau konsultasikan pendaftaran calon siswa dengan tim akademik kami.
                 </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-on-scroll reveal-up delay-100">
-                
-                <!-- CERT 1: UKK -->
-                <div class="bg-white rounded-3xl p-6 lg:p-8 border border-charcoal-200 shadow-sm flex flex-col justify-between hover:border-primary-600 transition-all group">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-charcoal-100 text-charcoal-900 flex items-center justify-center font-black mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                <div class="flex flex-wrap items-center justify-center gap-3">
+                    @if($syllabus = $settings->get('academic_syllabus_file'))
+                        <a 
+                            href="{{ Storage::url($syllabus) }}" 
+                            target="_blank" 
+                            class="px-6 py-3 bg-white text-figma-dark font-sans font-bold text-xs uppercase tracking-wide hover:bg-gray-100 transition-colors rounded-sm inline-flex items-center gap-2"
+                        >
+                            <svg class="w-4 h-4 text-figma-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">Evaluasi Nasional</span>
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mt-1 mb-2">
-                            {{ $settings->get('academic_cert_ukk_title', 'Uji Kompetensi Keahlian (UKK)') }}
-                        </h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-6">
-                            {{ $settings->get('academic_cert_ukk_desc', 'Penilaian capaian kemampuan teknis menyeluruh di akhir masa studi oleh tim asesor internal dan penguji eksternal dari industri mitra untuk memverifikasi kesiapan kerja.') }}
-                        </p>
-                    </div>
-
-                    <div class="pt-4 border-t border-charcoal-100 text-xs space-y-1.5">
-                        <div class="flex items-center justify-between text-charcoal-500">
-                            <span>Penerbit:</span>
-                            <strong class="text-charcoal-900">{{ $settings->get('academic_cert_ukk_issuer', 'Kemendikbudristek & DUDI') }}</strong>
-                        </div>
-                        <div class="flex items-center justify-between text-charcoal-500">
-                            <span>Sifat Sertifikat:</span>
-                            <strong class="text-emerald-600">{{ $settings->get('academic_cert_ukk_nature', 'Wajib Kelulusan SMK') }}</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CERT 2: BNSP / LSP-P1 -->
-                <div class="bg-white rounded-3xl p-6 lg:p-8 border-2 border-primary-600/40 shadow-sm flex flex-col justify-between hover:border-primary-600 transition-all group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-primary-600 text-white text-[9px] font-black uppercase tracking-widest py-1 px-3 rounded-bl-xl">
-                        Standar Nasional
-                    </div>
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center font-black mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
-                            </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">Badan Nasional Sertifikasi Profesi</span>
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mt-1 mb-2">
-                            {{ $settings->get('academic_cert_bnsp_title', 'Sertifikasi BNSP / LSP-P1') }}
-                        </h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-6">
-                            {{ $settings->get('academic_cert_bnsp_desc', 'Sertifikat Garuda Emas resmi dari BNSP melalui Lembaga Sertifikasi Profesi Pihak Pertama (LSP-P1) berstandar SKKNI, diakui di seluruh wilayah Republik Indonesia dan ASEAN.') }}
-                        </p>
-                    </div>
-
-                    <div class="pt-4 border-t border-charcoal-100 text-xs space-y-1.5">
-                        <div class="flex items-center justify-between text-charcoal-500">
-                            <span>Lembaga Lisensi:</span>
-                            <strong class="text-charcoal-900">{{ $settings->get('academic_cert_bnsp_license', 'BNSP (LSP-P1 SMKN 1)') }}</strong>
-                        </div>
-                        <div class="flex items-center justify-between text-charcoal-500">
-                            <span>Kualifikasi:</span>
-                            <strong class="text-primary-600">{{ $settings->get('academic_cert_bnsp_level', 'KKNI Level II Otomotif') }}</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CERT 3: AHM CERTIFICATION -->
-                <div class="bg-white rounded-3xl p-6 lg:p-8 border border-charcoal-200 shadow-sm flex flex-col justify-between hover:border-primary-600 transition-all group">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-charcoal-100 text-charcoal-900 flex items-center justify-center font-black mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                            </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">Mitra Industri Utama</span>
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mt-1 mb-2">
-                            {{ $settings->get('academic_cert_ahm_title', 'Lisensi Astra Honda Motor') }}
-                        </h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-6">
-                            {{ $settings->get('academic_cert_ahm_desc', 'Standarisasi mekanik resmi dari PT Astra Honda Motor melalui kurikulum binaan sejak 2016, membuka jalur prioritas rekrutmen kerja langsung ke jaringan AHASS nasional.') }}
-                        </p>
-                    </div>
-
-                    <div class="pt-4 border-t border-charcoal-100 text-xs space-y-1.5">
-                        <div class="flex items-center justify-between text-charcoal-500">
-                            <span>Lembaga Verifikasi:</span>
-                            <strong class="text-charcoal-900">{{ $settings->get('academic_cert_ahm_issuer', 'Astra Motor Training Center') }}</strong>
-                        </div>
-                        <div class="flex items-center justify-between text-charcoal-500">
-                            <span>Peluang Kerja:</span>
-                            <strong class="text-emerald-600">{{ $settings->get('academic_cert_ahm_opportunity', 'Prioritas Rekrutmen AHASS') }}</strong>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- ============================================================================ -->
-    <!-- 05. PROGRAM PEMBELAJARAN UNGGULAN (EKOSISTEM BELAJAR NYATA) -->
-    <!-- ============================================================================ -->
-    <section id="program-unggulan" class="bg-white py-16 lg:py-24 border-b border-charcoal-200 scroll-mt-16">
-        <x-frontend.layout.container>
-            <div class="max-w-3xl mb-12 reveal-on-scroll reveal-up">
-                <div class="inline-block py-1 px-3 rounded-md bg-primary-50 border border-primary-200 text-[10px] font-black uppercase tracking-widest text-primary-700 mb-3">
-                    04 / PROGRAM UNGGULAN
-                </div>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-charcoal-950 uppercase tracking-tight leading-tight">
-                    {{ $settings->get('academic_flagship_title', 'Ekosistem Belajar Nyata') }}
-                </h2>
-                <p class="mt-3 text-base text-charcoal-600 leading-relaxed">
-                    {{ $settings->get('academic_flagship_desc', 'Kami menghadirkan atmosfer industri langsung ke sekolah melalui fasilitas bengkel nyata, pembinaan keselamatan berkendara, dan budaya disiplin kerja tinggi.') }}
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-on-scroll reveal-up delay-100">
-                
-                <!-- 1. KELAS INDUSTRI ASTRA HONDA -->
-                <div class="bg-charcoal-50 rounded-3xl p-6 lg:p-8 border border-charcoal-200 hover:border-primary-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-white border border-charcoal-200 text-primary-600 flex items-center justify-center font-bold mb-5 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-all">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                            </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">{{ $settings->get('academic_prog_honda_badge', 'Binaan Resmi Sejak 2016') }}</span>
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mt-1 mb-2">{{ $settings->get('academic_prog_honda_title', 'Kelas Industri Honda') }}</h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                            {{ $settings->get('academic_prog_honda_desc', 'Sinkronisasi kurikulum resmi dengan standar PT Astra Honda Motor. Guru dan instruktur tersertifikasi berkala di Astra Motor Training Center, menggunakan bike lift dan modul ajar resmi AHASS.') }}
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-charcoal-200 text-xs font-bold text-charcoal-700 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0"></span>
-                        <span>{{ $settings->get('academic_prog_honda_tag', 'Standar bengkel resmi AHASS') }}</span>
-                    </div>
-                </div>
-
-                <!-- 2. TEACHING FACTORY (TEFA) -->
-                <div class="bg-charcoal-50 rounded-3xl p-6 lg:p-8 border border-charcoal-200 hover:border-primary-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-white border border-charcoal-200 text-primary-600 flex items-center justify-center font-bold mb-5 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-all">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
-                            </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">{{ $settings->get('academic_prog_tefa_badge', 'Unit Servis Konsumen') }}</span>
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mt-1 mb-2">{{ $settings->get('academic_prog_tefa_title', 'Teaching Factory (TeFa)') }}</h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                            {{ $settings->get('academic_prog_tefa_desc', 'Bengkel operasional nyata di lingkungan sekolah. Siswa mempraktikkan servis berkala, tune-up injeksi, ganti oli, dan perbaikan motor milik konsumen umum di bawah supervisi mekanik ahli.') }}
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-charcoal-200 text-xs font-bold text-charcoal-700 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0"></span>
-                        <span>{{ $settings->get('academic_prog_tefa_tag', 'Pengalaman servis pelanggan riil') }}</span>
-                    </div>
-                </div>
-
-                <!-- 3. PKL 6 BULAN DI AHASS -->
-                <div class="bg-charcoal-50 rounded-3xl p-6 lg:p-8 border border-charcoal-200 hover:border-primary-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-white border border-charcoal-200 text-primary-600 flex items-center justify-center font-bold mb-5 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-all">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">{{ $settings->get('academic_prog_pkl_badge', 'Imersi Dunia Usaha') }}</span>
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mt-1 mb-2">{{ $settings->get('academic_prog_pkl_title', 'Magang PKL di AHASS') }}</h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                            {{ $settings->get('academic_prog_pkl_desc', 'Praktik kerja industri 6 bulan penuh di jaringan bengkel resmi Honda se-Karesidenan Pati (Jepara, Pati, Kudus) untuk mengasah jam terbang dan adaptasi budaya kerja industri.') }}
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-charcoal-200 text-xs font-bold text-charcoal-700 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0"></span>
-                        <span>{{ $settings->get('academic_prog_pkl_tag', 'Durasi 6 bulan di bengkel resmi') }}</span>
-                    </div>
-                </div>
-
-                <!-- 4. SAFETY RIDING ACADEMY -->
-                <div class="bg-charcoal-50 rounded-3xl p-6 lg:p-8 border border-charcoal-200 hover:border-primary-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-white border border-charcoal-200 text-primary-600 flex items-center justify-center font-bold mb-5 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-all">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">{{ $settings->get('academic_prog_safety_badge', 'Juara Karesidenan & Nasional') }}</span>
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mt-1 mb-2">{{ $settings->get('academic_prog_safety_title', 'Safety Riding Academy') }}</h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                            {{ $settings->get('academic_prog_safety_desc', 'Program pelatihan berkendara aman berstandar Honda. SMKN 1 Bangsri konsisten menjuarai Safety Riding Competition putra & putri tingkat Karesidenan Pati hingga tingkat Nasional.') }}
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-charcoal-200 text-xs font-bold text-charcoal-700 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0"></span>
-                        <span>{{ $settings->get('academic_prog_safety_tag', 'Pelatihan keselamatan bersertifikat') }}</span>
-                    </div>
-                </div>
-
-                <!-- 5. BUDAYA KERJA 5R & APD -->
-                <div class="bg-charcoal-50 rounded-3xl p-6 lg:p-8 border border-charcoal-200 hover:border-primary-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-white border border-charcoal-200 text-primary-600 flex items-center justify-center font-bold mb-5 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-all">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                            </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">{{ $settings->get('academic_prog_5r_badge', 'Tata Tertib Bengkel') }}</span>
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mt-1 mb-2">{{ $settings->get('academic_prog_5r_title', 'Budaya Industri 5R & APD') }}</h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                            {{ $settings->get('academic_prog_5r_desc', 'Penerapan disiplin kerja ala Jepang: Ringkas, Rapi, Resik, Rawat, Rajin. Kewajiban pemakaian Alat Pelindung Diri (APD), standar rambut rapi (2-1-1), dan kebersihan area bengkel.') }}
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-charcoal-200 text-xs font-bold text-charcoal-700 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0"></span>
-                        <span>{{ $settings->get('academic_prog_5r_tag', 'Standar K3LH & kedisiplinan kerja') }}</span>
-                    </div>
-                </div>
-
-                <!-- 6. KONTES PRESTASI & LOMBA -->
-                <div class="bg-charcoal-50 rounded-3xl p-6 lg:p-8 border border-charcoal-200 hover:border-primary-600 transition-all flex flex-col justify-between group">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-white border border-charcoal-200 text-primary-600 flex items-center justify-center font-bold mb-5 group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-all">
-                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                            </svg>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">{{ $settings->get('academic_prog_lks_badge', 'Ajang Kompetisi Vokasi') }}</span>
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mt-1 mb-2">{{ $settings->get('academic_prog_lks_title', 'Lomba LKS & Kontes Honda') }}</h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-4">
-                            {{ $settings->get('academic_prog_lks_desc', 'Pembinaan khusus siswa dan guru untuk bertarung di Lomba Kompetensi Siswa (LKS) tingkat Kabupaten, Provinsi, hingga Kontes Guru & Siswa Nasional Astra Motor.') }}
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-charcoal-200 text-xs font-bold text-charcoal-700 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0"></span>
-                        <span>{{ $settings->get('academic_prog_lks_tag', 'Tradisi juara LKS & Astra Motor') }}</span>
-                    </div>
-                </div>
-
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- ============================================================================ -->
-    <!-- 06. PILIHAN KARIR & PROSPEK LULUSAN -->
-    <!-- ============================================================================ -->
-    <section id="prospek-karir" class="bg-charcoal-50 py-16 lg:py-24 border-b border-charcoal-200 scroll-mt-16">
-        <x-frontend.layout.container>
-            <div class="max-w-3xl mb-12 reveal-on-scroll reveal-up">
-                <div class="inline-block py-1 px-3 rounded-md bg-primary-50 border border-primary-200 text-[10px] font-black uppercase tracking-widest text-primary-700 mb-3">
-                    05 / MASA DEPAN LULUSAN
-                </div>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-charcoal-950 uppercase tracking-tight leading-tight">
-                    Pilihan Karir & Prospek Kerja
-                </h2>
-                <p class="mt-3 text-base text-charcoal-600 leading-relaxed">
-                    Penguasaan keterampilan mekanik presisi dan pemahaman bisnis perbengkelan membuka tiga jalur utama karir lulusan {{ $settings->get('site_short_name', 'TSM') }} SMK Negeri 1 Bangsri.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-on-scroll reveal-up delay-100">
-                
-                <!-- KARIR 1: TEKNISI SERVIS -->
-                <div class="bg-white rounded-3xl p-6 lg:p-8 border border-charcoal-200 hover:border-primary-600 transition-all flex flex-col justify-between group shadow-2xs">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <span class="w-10 h-10 rounded-2xl bg-primary-600 text-white font-black text-sm flex items-center justify-center">
-                                01
-                            </span>
-                            <span class="text-[10px] font-black uppercase tracking-widest text-primary-600 bg-primary-50 px-2.5 py-1 rounded-full">
-                                Jalur Utama
-                            </span>
-                        </div>
-                        
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mb-2">
-                            {{ $settings->get('academic_career_1_title', 'Teknisi Servis Sepeda Motor') }}
-                        </h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-6">
-                            {{ $settings->get('academic_career_1_desc', 'Menjadi teknisi mekanik handal dan profesional dalam servis dan perawatan berkala di jaringan bengkel resmi Honda (AHASS) maupun bengkel multibrand modern.') }}
-                        </p>
-                    </div>
-
-                    <div class="pt-4 border-t border-charcoal-100 text-xs space-y-1.5">
-                        <div class="text-[11px] font-bold text-charcoal-900">Jenjang Karir:</div>
-                        <div class="text-charcoal-600">{{ $settings->get('academic_career_1_ladder', 'Mekanik Pratama → Senior Mechanic → Service Advisor → Kepala Bengkel') }}</div>
-                    </div>
-                </div>
-
-                <!-- KARIR 2: PERAKITAN / MANUFAKTUR -->
-                <div class="bg-white rounded-3xl p-6 lg:p-8 border border-charcoal-200 hover:border-primary-600 transition-all flex flex-col justify-between group shadow-2xs">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <span class="w-10 h-10 rounded-2xl bg-charcoal-900 text-white font-black text-sm flex items-center justify-center">
-                                02
-                            </span>
-                            <span class="text-[10px] font-black uppercase tracking-widest text-charcoal-600 bg-charcoal-100 px-2.5 py-1 rounded-full">
-                                Manufaktur
-                            </span>
-                        </div>
-                        
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mb-2">
-                            {{ $settings->get('academic_career_2_title', 'Industri Perakitan Otomotif') }}
-                        </h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-6">
-                            {{ $settings->get('academic_career_2_desc', 'Bekerja di bidang perakitan sepeda motor, industri komponen presisi suku cadang, lini produksi pabrik otomotif (Assembly Line), dan Quality Control (QC).') }}
-                        </p>
-                    </div>
-
-                    <div class="pt-4 border-t border-charcoal-100 text-xs space-y-1.5">
-                        <div class="text-[11px] font-bold text-charcoal-900">Peluang Penempatan:</div>
-                        <div class="text-charcoal-600">{{ $settings->get('academic_career_2_placement', 'Pabrik Manufaktur Otomotif, Operator Lini Perakitan, Teknisi Quality Control') }}</div>
-                    </div>
-                </div>
-
-                <!-- KARIR 3: WIRAUSAHA BENGKEL -->
-                <div class="bg-white rounded-3xl p-6 lg:p-8 border border-charcoal-200 hover:border-primary-600 transition-all flex flex-col justify-between group shadow-2xs">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <span class="w-10 h-10 rounded-2xl bg-charcoal-900 text-white font-black text-sm flex items-center justify-center">
-                                03
-                            </span>
-                            <span class="text-[10px] font-black uppercase tracking-widest text-charcoal-600 bg-charcoal-100 px-2.5 py-1 rounded-full">
-                                Wirausaha
-                            </span>
-                        </div>
-                        
-                        <h3 class="text-xl font-black text-charcoal-950 uppercase tracking-tight mb-2">
-                            {{ $settings->get('academic_career_3_title', 'Wirausaha Bengkel Mandiri') }}
-                        </h3>
-                        <p class="text-xs text-charcoal-600 leading-relaxed mb-6">
-                            {{ $settings->get('academic_career_3_desc', 'Membuka usaha bengkel mandiri, toko suku cadang (spare parts store), jasa modifikasi standar, atau penyedia layanan panggilan darurat (home service).') }}
-                        </p>
-                    </div>
-
-                    <div class="pt-4 border-t border-charcoal-100 text-xs space-y-1.5">
-                        <div class="text-[11px] font-bold text-charcoal-900">Bekal Kompetensi:</div>
-                        <div class="text-charcoal-600">{{ $settings->get('academic_career_3_skills', 'Pengelolaan Bengkel, Estimasi Biaya Servis, Manajemen Toko Spare Parts') }}</div>
-                    </div>
-                </div>
-
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- ============================================================================ -->
-    <!-- 07. ROADMAP ALUR AKADEMIK SISWA (PERJALANAN 3 TAHUN) -->
-    <!-- ============================================================================ -->
-    <section id="roadmap-akademik" class="bg-white py-16 lg:py-24 border-b border-charcoal-200 scroll-mt-16">
-        <x-frontend.layout.container>
-            <div class="max-w-3xl mb-12 reveal-on-scroll reveal-up">
-                <div class="inline-block py-1 px-3 rounded-md bg-charcoal-100 border border-charcoal-200 text-[10px] font-black uppercase tracking-widest text-charcoal-800 mb-3">
-                    06 / ALUR PERJALANAN BELAJAR
-                </div>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-charcoal-950 uppercase tracking-tight leading-tight">
-                    Roadmap Belajar 3 Tahun
-                </h2>
-                <p class="mt-3 text-base text-charcoal-600 leading-relaxed">
-                    Tahapan sistematis yang dilalui peserta didik dari orientasi awal di kelas X sampai dengan kelulusan dan rekrutmen kerja industri di kelas XII.
-                </p>
-            </div>
-
-            <!-- TIMELINE CONTAINER -->
-            <div class="relative pl-6 lg:pl-10 border-l-2 border-primary-600/30 space-y-10 reveal-on-scroll reveal-up delay-100">
-                
-                <!-- STEP 1 -->
-                <div class="relative">
-                    <div class="absolute -left-[31px] lg:-left-[47px] top-1 w-6 h-6 rounded-full bg-primary-600 text-white flex items-center justify-center text-xs font-black shadow-sm ring-4 ring-white">
-                        1
-                    </div>
-                    <div class="bg-charcoal-50 rounded-2xl p-6 border border-charcoal-200 max-w-3xl">
-                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                            <span class="text-xs font-black uppercase tracking-widest text-primary-600">Tahun Pertama • Kelas X (Fase E)</span>
-                            <span class="text-[11px] font-bold text-charcoal-500">Semester 1 & 2</span>
-                        </div>
-                        <h4 class="text-lg font-black text-charcoal-900 uppercase mb-2">
-                            {{ $settings->get('academic_roadmap_1_title', 'Fondasi Mekanika, Pengukuran Presisi & Budaya 5R') }}
-                        </h4>
-                        <p class="text-xs text-charcoal-600 leading-relaxed">
-                            {{ $settings->get('academic_roadmap_1_desc', 'Siswa mempelajari dasar teknologi otomotif, gambar teknik, penguasaan hand tools dan alat ukur presisi (Jangka Sorong & Micrometer), serta pembentukan karakter disiplin industri (APD lengkap dan tata tertib 2-1-1).') }}
-                        </p>
-                    </div>
-                </div>
-
-                <!-- STEP 2 -->
-                <div class="relative">
-                    <div class="absolute -left-[31px] lg:-left-[47px] top-1 w-6 h-6 rounded-full bg-charcoal-900 text-white flex items-center justify-center text-xs font-black shadow-sm ring-4 ring-white">
-                        2
-                    </div>
-                    <div class="bg-charcoal-50 rounded-2xl p-6 border border-charcoal-200 max-w-3xl">
-                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                            <span class="text-xs font-black uppercase tracking-widest text-charcoal-700">Tahun Kedua • Kelas XI (Fase F)</span>
-                            <span class="text-[11px] font-bold text-charcoal-500">Semester 3 & 4</span>
-                        </div>
-                        <h4 class="text-lg font-black text-charcoal-900 uppercase mb-2">
-                            {{ $settings->get('academic_roadmap_2_title', 'Konsentrasi Kejuruan, Praktik TeFa & Safety Riding') }}
-                        </h4>
-                        <p class="text-xs text-charcoal-600 leading-relaxed">
-                            {{ $settings->get('academic_roadmap_2_desc', 'Mendalami perawatan mesin sepeda motor, sasis, dan kelistrikan. Siswa mulai diterjunkan pada unit Teaching Factory (TeFa) untuk melayani servis berkala sepeda motor nyata dan mendapatkan pembinaan Safety Riding bersertifikat.') }}
-                        </p>
-                    </div>
-                </div>
-
-                <!-- STEP 3 -->
-                <div class="relative">
-                    <div class="absolute -left-[31px] lg:-left-[47px] top-1 w-6 h-6 rounded-full bg-primary-600 text-white flex items-center justify-center text-xs font-black shadow-sm ring-4 ring-white">
-                        3
-                    </div>
-                    <div class="bg-charcoal-50 rounded-2xl p-6 border border-charcoal-200 max-w-3xl">
-                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                            <span class="text-xs font-black uppercase tracking-widest text-primary-600">Tahun Ketiga • Kelas XII (Fase F)</span>
-                            <span class="text-[11px] font-bold text-charcoal-500">Semester 5</span>
-                        </div>
-                        <h4 class="text-lg font-black text-charcoal-900 uppercase mb-2">
-                            {{ $settings->get('academic_roadmap_3_title', 'Praktik Kerja Lapangan (PKL) 6 Bulan di Bengkel Resmi AHASS') }}
-                        </h4>
-                        <p class="text-xs text-charcoal-600 leading-relaxed">
-                            {{ $settings->get('academic_roadmap_3_desc', 'Imersi kerja langsung di jaringan bengkel resmi Honda se-Karesidenan Pati. Siswa mengasah kecepatan, ketepatan diagnosa, pemecahan masalah konsumen, dan mentalitas profesional di bawah supervisi mekanik senior AHASS.') }}
-                        </p>
-                    </div>
-                </div>
-
-                <!-- STEP 4 -->
-                <div class="relative">
-                    <div class="absolute -left-[31px] lg:-left-[47px] top-1 w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-black shadow-sm ring-4 ring-white">
-                        ✓
-                    </div>
-                    <div class="bg-charcoal-50 rounded-2xl p-6 border border-charcoal-200 max-w-3xl">
-                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                            <span class="text-xs font-black uppercase tracking-widest text-emerald-700">Tahap Akhir • Kelas XII (Fase F)</span>
-                            <span class="text-[11px] font-bold text-charcoal-500">Semester 6</span>
-                        </div>
-                        <h4 class="text-lg font-black text-charcoal-900 uppercase mb-2">
-                            {{ $settings->get('academic_roadmap_4_title', 'Uji Sertifikasi BNSP / LSP-P1, Lisensi AHM & Rekrutmen Kerja') }}
-                        </h4>
-                        <p class="text-xs text-charcoal-600 leading-relaxed">
-                            {{ $settings->get('academic_roadmap_4_desc', 'Pengelolaan bengkel, pelaksanaan Uji Kompetensi Keahlian (UKK), asesmen lisensi BNSP, sertifikasi mekanik Astra Motor, serta penyaluran kerja langsung lewat Bursa Kerja Khusus (BKK) SMK Negeri 1 Bangsri.') }}
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- ============================================================================ -->
-    <!-- 08. TENAGA PENGAJAR / INSTRUKTUR INDUSTRI -->
-    <!-- ============================================================================ -->
-    <section class="bg-charcoal-50 py-12 lg:py-16 border-b border-charcoal-200">
-        <x-frontend.layout.container>
-            <div class="bg-white rounded-3xl p-6 lg:p-10 border border-charcoal-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 reveal-on-scroll reveal-up">
-                <div class="max-w-2xl">
-                    <span class="inline-block px-3 py-1 rounded bg-charcoal-100 text-charcoal-800 text-[10px] font-black uppercase tracking-widest mb-3">
-                        TENAGA PENDIDIK & INSTRUKTUR
-                    </span>
-                    <h3 class="text-2xl sm:text-3xl font-black text-charcoal-950 uppercase tracking-tight mb-2">
-                        {{ $settings->get('academic_teacher_title', 'Dibimbing oleh Instruktur Tersertifikasi Astra Motor') }}
-                    </h3>
-                    <p class="text-xs sm:text-sm text-charcoal-600 leading-relaxed">
-                        {{ $settings->get('academic_teacher_desc', 'Guru kejuruan dan instruktur ' . $settings->get('site_short_name', 'TSM') . ' SMK Negeri 1 Bangsri rutin mengikuti program peningkatan kompetensi dan sertifikasi berjenjang di Astra Motor Training Center.') }}
-                    </p>
-                </div>
-
-                <div class="shrink-0">
-                    <a href="{{ route('academic.teachers') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-charcoal-950 text-white font-black text-xs uppercase tracking-wider hover:bg-primary-600 transition-colors shadow-sm focus-ring">
-                        <span>Lihat Profil Pengampu</span>
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            <span>Unduh Ringkasan Silabus PDF</span>
+                        </a>
+                    @endif
+                    <a 
+                        href="{{ route('contact.index') }}" 
+                        class="px-6 py-3 bg-figma-red hover:bg-figma-dark-red text-white font-sans font-bold text-xs uppercase tracking-wide transition-colors rounded-sm inline-flex items-center gap-2 shadow-lg shadow-figma-red/20"
+                    >
+                        <span>Hubungi Kontak Jurusan</span>
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                         </svg>
                     </a>
                 </div>
             </div>
-        </x-frontend.layout.container>
-    </section>
+        </section>
 
-    <!-- ============================================================================ -->
-    <!-- 09. FINAL CALL TO ACTION (PPDB & FASILITAS) -->
-    <!-- ============================================================================ -->
-    <section class="bg-charcoal-950 text-white py-16 lg:py-24 relative overflow-hidden">
-        <div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: radial-gradient(#DC2626 1px, transparent 1px); background-size: 24px 24px;"></div>
-        <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-primary-600/15 blur-3xl pointer-events-none"></div>
+    </main>
 
-        <x-frontend.layout.container class="relative z-10 text-center max-w-3xl mx-auto reveal-on-scroll reveal-up">
-            <span class="inline-block py-1.5 px-3.5 rounded-full bg-white/10 border border-white/20 text-[10px] font-black uppercase tracking-widest text-primary-400 mb-6">
-                {{ $settings->get('academic_cta_badge', 'SIAP BERKARIER DI DUNIA OTOMOTIF?') }}
-            </span>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-tight mb-6">
-                {{ $settings->get('academic_cta_title', 'Wujudkan Masa Depan Teknisi Andal Bersama ' . $settings->get('site_short_name', 'TSM') . ' SMKN 1 Bangsri') }}
-            </h2>
-            <p class="text-sm lg:text-base text-charcoal-400 leading-relaxed mb-8 max-w-xl mx-auto">
-                {{ $settings->get('academic_cta_desc', 'Dapatkan pendidikan vokasi berkualitas dengan fasilitas laboratorium berstandar Astra Honda Motor dan peluang kerja nyata setelah lulus.') }}
-            </p>
-
-            <div class="flex flex-wrap items-center justify-center gap-4">
-                <a href="{{ route('academic.facilities') }}" class="px-8 py-3.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-black text-xs uppercase tracking-wider transition-colors shadow-lg focus-ring">
-                    Jelajahi Fasilitas Bengkel
-                </a>
-                <a href="{{ route('contact.index') }}" class="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-black text-xs uppercase tracking-wider transition-colors focus-ring">
-                    Kontak & Konsultasi Jurusan
-                </a>
-            </div>
-        </x-frontend.layout.container>
-    </section>
-
-    <!-- ============================================================================ -->
-    <!-- MODAL: RINGKASAN SILABUS & KURIKULUM -->
-    <!-- ============================================================================ -->
-    <div id="syllabus-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 lg:p-8 border border-charcoal-200 shadow-2xl relative">
-            <div class="flex items-center justify-between pb-4 mb-6 border-b border-charcoal-100">
-                <div>
-                    <span class="text-[10px] font-black uppercase tracking-widest text-primary-600">Dokumen Kurikulum</span>
-                    <h3 class="text-xl font-black text-charcoal-900 uppercase">Struktur Kurikulum {{ $settings->get('site_short_name', 'TSM') }}</h3>
-                </div>
-                <button type="button" onclick="closeSyllabusModal()" class="w-9 h-9 rounded-xl bg-charcoal-100 hover:bg-charcoal-200 text-charcoal-700 flex items-center justify-center font-bold transition-colors">
-                    ✕
-                </button>
-            </div>
-
-            <div class="space-y-4 text-xs text-charcoal-700 leading-relaxed">
-                <p>
-                    {{ $settings->get('academic_syllabus_modal_intro', 'Kurikulum ' . $settings->get('site_name', 'Teknik Sepeda Motor') . ' (' . $settings->get('site_short_name', 'TSM') . ') SMK Negeri 1 Bangsri dirancang berdasarkan Kepmendikbudristek Kurikulum Merdeka yang diselaraskan secara konsisten dengan kompetensi industri PT Astra Honda Motor.') }}
-                </p>
-
-                <div class="bg-charcoal-50 p-4 rounded-xl border border-charcoal-200">
-                    <h5 class="font-bold text-charcoal-900 uppercase text-[11px] mb-2">Struktur Alokasi Jam (JP):</h5>
-                    <div class="space-y-1 text-charcoal-600 whitespace-pre-line">
-                        {{ $settings->get('academic_syllabus_modal_hours', "• Kelas X (Fase E): Dasar-Dasar Kejuruan Otomotif (12 JP) + Koding & AI (2 JP).\n• Kelas XI (Fase F): Konsentrasi Keahlian Mesin, Sasis, Kelistrikan (18 JP) + PKK (5 JP).\n• Kelas XII (Fase F): Pemantapan Troubleshooting (14 JP) + PKL Industri AHASS (6 Bulan Penuh).") }}
-                    </div>
-                </div>
-
-                <div class="bg-primary-50 p-4 rounded-xl border border-primary-200 text-primary-900">
-                    <h5 class="font-bold uppercase text-[11px] mb-1">Standar Kelulusan Kompetensi:</h5>
-                    <p class="text-[11px] leading-relaxed">
-                        {{ $settings->get('academic_syllabus_modal_standards', 'Siswa dinyatakan kompeten setelah menyelesaikan seluruh modul capaian pembelajaran, lulus Uji Kompetensi Keahlian (UKK) dari penguji eksternal, dan memperoleh sertifikat kompetensi BNSP / Astra Motor.') }}
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-6 pt-4 border-t border-charcoal-100 flex flex-wrap items-center justify-end gap-3">
-                @if($syllabusFile = $settings->get('academic_syllabus_file'))
-                    <a href="{{ Storage::url($syllabusFile) }}" target="_blank" download class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-charcoal-900 hover:bg-black text-white font-bold text-xs uppercase tracking-wider transition-colors">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        <span>Unduh File PDF</span>
-                    </a>
-                @endif
-                <button type="button" onclick="window.print()" class="px-5 py-2.5 rounded-xl bg-charcoal-100 hover:bg-charcoal-200 text-charcoal-800 font-bold text-xs uppercase tracking-wider transition-colors">
-                    Cetak Halaman Ini
-                </button>
-                <button type="button" onclick="closeSyllabusModal()" class="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold text-xs uppercase tracking-wider transition-colors">
-                    Tutup
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB INTERACTION SCRIPT -->
-    @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabPanels = document.querySelectorAll('.tab-panel');
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetId = button.getAttribute('data-target');
-
-                    // Reset buttons
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('active', 'text-white', 'bg-charcoal-950', 'shadow-xs');
-                        btn.classList.add('text-charcoal-600');
-                    });
-
-                    // Activate current button
-                    button.classList.add('active', 'text-white', 'bg-charcoal-950', 'shadow-xs');
-                    button.classList.remove('text-charcoal-600');
-
-                    // Hide all panels
-                    tabPanels.forEach(panel => {
-                        panel.classList.add('hidden');
-                        panel.classList.remove('block');
-                    });
-
-                    // Show targeted panel
-                    const targetPanel = document.getElementById(targetId);
-                    if (targetPanel) {
-                        targetPanel.classList.remove('hidden');
-                        targetPanel.classList.add('block');
-                    }
-                });
-            });
-        });
-
-        function openSyllabusModal() {
-            const modal = document.getElementById('syllabus-modal');
-            if (modal) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeSyllabusModal() {
-            const modal = document.getElementById('syllabus-modal');
-            if (modal) {
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }
-        }
-
-        // Close on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeSyllabusModal();
-            }
-        });
-    </script>
-    @endpush
+    <!-- Floating Scroll To Top Button -->
+    <x-frontend.home.scroll-to-top />
 
 </x-layouts.app>
