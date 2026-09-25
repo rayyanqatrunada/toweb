@@ -9,7 +9,7 @@
 
 Website Resmi Konsentrasi Keahlian Teknik Sepeda Motor (TSM) SMK Negeri 1 Bangsri dirancang dan diimplementasikan sebagai **Enterprise School Web Platform & Content Management System (CMS)** modern. Sistem ini memadukan kecepatan penyajian konten publik berbasis *Server-Side Rendering* (SSR) dengan kapabilitas panel manajemen data relasional yang komprehensif, aman, dan mudah dioperasikan.
 
-Platform ini mengintegrasikan seluruh domain informasi vokasi: profil kurikulum berbasis kompetensi, data sarana laboratorium Teaching Factory (TeFa), basis data dewan guru, portofolio prestasi kejuaraan, direktori mitra industri (DUDI), portal lowongan kerja Bursa Kerja Khusus (BKK), sistem penelusuran lulusan (*Tracer Study*), publikasi berita/pengumuman, galeri dokumentasi, hingga pusat repositori berkas unduhan resmi.
+Platform ini mengintegrasikan seluruh domain informasi vokasi: profil kurikulum berbasis kompetensi, data sarana laboratorium dan bengkel praktik berstandar AHASS, basis data dewan guru, portofolio prestasi kejuaraan, direktori mitra industri (DUDI), portal lowongan kerja Bursa Kerja Khusus (BKK), sistem penelusuran lulusan (*Tracer Study*), publikasi berita/pengumuman, galeri dokumentasi, hingga pusat repositori berkas unduhan resmi.
 
 ```mermaid
 graph TD
@@ -192,7 +192,7 @@ erDiagram
 ### Entitas Utama Basis Data:
 1. **Pengaturan Global (`settings`)**: Konfigurasi dinamis `key-value` untuk identitas sekolah, logo, favicon, kontak, tagline, sosial media, dan teks legalitas.
 2. **Hero Slider (`hero_sliders`)**: Spanduk animasi halaman depan, berisi gambar banner, judul aksen, tombol aksi (CTA), dan nomor urut.
-3. **Akademik & Pengajar (`teachers`, `programs`, `facilities`)**: Data personil guru, kompetensi kurikulum, dan fasilitas laboratorium TeFa.
+3. **Akademik & Pengajar (`teachers`, `programs`, `facilities`)**: Data personil guru, kompetensi kurikulum, dan fasilitas laboratorium serta bengkel praktik kejuruan.
 4. **Kemitraan & Karir (`industry_partners`, `job_vacancies`, `internships`)**: Data industri rekanan (AHM, AHASS), bursa lowongan kerja BKK, dan penempatan PKL siswa.
 5. **Jejaring Mutu (`achievements`, `alumnis`)**: Bukti prestasi kejuaraan regional/nasional dan hasil pelacakan lulusan (*Tracer Study*).
 6. **Publikasi & Media (`posts`, `announcements`, `gallery_albums`, `gallery_photos`, `downloads`)**: Saluran berita artikel, maklumat resmi, album visual, dan dokumen silabus.

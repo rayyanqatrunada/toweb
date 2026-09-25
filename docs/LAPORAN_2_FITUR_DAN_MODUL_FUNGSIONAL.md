@@ -81,7 +81,7 @@ Halaman beranda disusun berdasarkan alur psikologi konversi informasi (*AIDA: At
   2. *Sistem Sasis*: Pengereman hidrolik CBS/ABS, suspensi teleskopik/monoshock, roda dan balancing.
   3. *Sistem Kelistrikan*: Analisa kerusakan scanner HIDS (Honda Intelligent Diagnostic System), Smart Key, alarm, pengisian aki.
   4. *Pengelolaan Bengkel*: Service Advisor (SA), administrasi faktur kerja, manajemen persediaan suku cadang resmi (Honda Genuine Parts).
-* **Peta Kurikulum Merdeka Fase E & F**: Tab interaktif kelas X, XI, dan XII yang memetakan jam belajar teori, praktikum TeFa, dan magang PKL.
+* **Peta Kurikulum Merdeka Fase E & F**: Tab interaktif kelas X, XI, dan XII yang memetakan jam belajar teori, praktikum bengkel kejuruan, dan magang PKL.
 * **Silabus Resmi & Unduhan Kurikulum**: *Modal popup* interaktif yang menyediakan unduhan dokumen silabus pembelajaran dalam format PDF.
 * **Sertifikasi Profesi**: Penjelasan skema sertifikasi kelulusan resmi: **UKK**, **BNSP / LSP-P1 berlogo Garuda**, dan **Sertifikat Mekanik Astra Honda Motor**.
 
@@ -89,7 +89,7 @@ Halaman beranda disusun berdasarkan alur psikologi konversi informasi (*AIDA: At
 
 ### 2.5 Modul Laboratorium & Fasilitas Bengkel (`/akademik/fasilitas`)
 * Direktori sarana praktikum lengkap dengan foto beresolusi tinggi dan spesifikasi teknis:
-  * Ruang TeFa Servis Sepeda Motor (Hydraulic Bike Lift berstandar bengkel resmi AHASS).
+  * Bengkel Praktik & Servis Sepeda Motor (Hydraulic Bike Lift berstandar bengkel resmi AHASS).
   * Laboratorium Kelistrikan & Simulator EFI PGM-FI.
   * Ruang Overhaul Mesin & Pengukuran Presisi.
   * Unit Alat Uji Diagnostik Digital (HIDS, Multitester Digital, Gas Analyzer).

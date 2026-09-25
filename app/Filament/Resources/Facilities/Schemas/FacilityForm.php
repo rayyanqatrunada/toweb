@@ -24,7 +24,7 @@ class FacilityForm
                     ->schema([
                         TextInput::make('name')
                             ->label('Nama Fasilitas / Laboratorium')
-                            ->placeholder('Contoh: Bengkel Teaching Factory (TeFa) & Pit Servis Honda AHASS')
+                            ->placeholder('Contoh: Bengkel Praktik & Pit Servis Honda AHASS')
                             ->required()
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state)))

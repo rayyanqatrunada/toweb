@@ -298,10 +298,10 @@
                                 03
                             </div>
                             <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
-                                {{ $settings->get('industry_pillar_3_title', 'Teaching Factory (TeFa) Standar AHASS') }}
+                                {{ $settings->get('industry_pillar_3_title', 'Laboratorium & Bengkel Standar AHASS') }}
                             </h3>
                             <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed">
-                                {{ $settings->get('industry_pillar_3_desc', 'Implementasi bengkel operasional berstandar bengkel resmi di sekolah, melayani servis riil kendaraan masyarakat dengan standar operasional prosedur (SOP) Astra Honda.') }}
+                                {{ $settings->get('industry_pillar_3_desc', 'Implementasi bengkel praktik kejuruan berstandar bengkel resmi AHASS di sekolah, menggunakan bike lift hidrolik, SOP servis, dan peralatan standar Astra Honda.') }}
                             </p>
                         </div>
                     </div>

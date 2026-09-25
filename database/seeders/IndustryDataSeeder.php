@@ -155,7 +155,7 @@ class IndustryDataSeeder extends Seeder
                 'pic_name' => 'Wahyu Triyono (Kepala Bengkel)',
                 'pic_phone' => '082242112044',
                 'internship_quota' => 4,
-                'facilities' => "6 Pit Servis Hidrolik\nFasilitas Spooring Roda & Tune Up\nArea TeFa Kerjasama Vokasi",
+                'facilities' => "6 Pit Servis Hidrolik\nFasilitas Spooring Roda & Tune Up\nArea Praktik Servis Kerjasama Vokasi",
                 'is_main_branch' => false,
                 'is_active' => true,
                 'sort_order' => 7,

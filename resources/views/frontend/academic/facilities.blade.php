@@ -5,7 +5,7 @@
       "@@context": "https://schema.org",
       "@@type": "WebPage",
       "name": "Fasilitas Bengkel {{ $settings->get('site_short_name', 'TBSM') }}",
-      "description": "Fasilitas bengkel standar industri Astra Honda Motor (AHASS), bike lift hidrolik, simulator injeksi PGM-FI, dan Teaching Factory di SMK Negeri 1 Bangsri."
+      "description": "Fasilitas bengkel standar industri Astra Honda Motor (AHASS), bike lift hidrolik, simulator injeksi PGM-FI, dan bengkel praktik kejuruan di SMK Negeri 1 Bangsri."
     }
     </script>
     @endpush
@@ -65,7 +65,7 @@
                         </div>
                         <div class="w-6 h-[2px] bg-figma-red mb-2 mx-auto md:mx-0"></div>
                         <div class="font-sans text-xs sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">
-                            {{ $settings->get('facility_stat_1_label', 'Proporsi Praktikum & TeFa') }}
+                            {{ $settings->get('facility_stat_1_label', 'Proporsi Praktik Kejuruan') }}
                         </div>
                     </div>
 
@@ -202,7 +202,7 @@
                                     
                                     <div class="absolute top-3 left-3 flex items-center gap-2">
                                         <span class="px-3 py-1 rounded-full bg-figma-dark/80 backdrop-blur-md text-white text-xs font-semibold">
-                                            {{ $facility->category ?? 'Peralatan Praktik' }}
+                                            {{ $facility->category_label ?? $facility->category ?? 'Peralatan Praktik' }}
                                         </span>
                                     </div>
 
@@ -238,7 +238,7 @@
                                     type="button" 
                                     @click="selectedFacility = {
                                         title: {{ json_encode($facility->title) }},
-                                        category: {{ json_encode($facility->category ?? 'Peralatan') }},
+                                        category: {{ json_encode($facility->category_label ?? $facility->category ?? 'Peralatan') }},
                                         description: {{ json_encode($facility->description ?? '') }},
                                         specification: {{ json_encode($facility->specification ?? '') }},
                                         condition: {{ json_encode($facility->condition ?? 'Sangat Baik') }},
@@ -413,7 +413,7 @@
         </section>
 
         <!-- ============================================================================ -->
-        <!-- 04. UNIT PRODUKSI TEACHING FACTORY (Substantial Dual Card) -->
+        <!-- 04. BENGKEL PRAKTIK & PERAWATAN SEPEDA MOTOR (Substantial Dual Card) -->
         <!-- ============================================================================ -->
         <section class="w-full py-16 sm:py-20 lg:py-24 bg-white overflow-hidden border-b border-gray-200/80 relative">
             <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
@@ -422,13 +422,13 @@
                     
                     <div class="lg:col-span-6">
                         <span class="text-xs font-bold uppercase tracking-wider text-figma-red block mb-2">
-                            {{ $settings->get('facility_tefa_badge', 'UNIT PRODUKSI & TEFA') }}
+                            {{ $settings->get('facility_tefa_badge', 'BENGKEL PRAKTIK KEJURUAN') }}
                         </span>
                         <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-figma-dark mb-3 leading-tight">
-                            {{ $settings->get('facility_tefa_title', 'Teaching Factory (TeFa) TBSM SMKN 1 Bangsri') }}
+                            {{ $settings->get('facility_tefa_title', 'Bengkel Praktik TBSM SMKN 1 Bangsri') }}
                         </h2>
                         <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed mb-6">
-                            {{ $settings->get('facility_tefa_subtitle', 'Layanan servis berkala dan perawatan sepeda motor untuk masyarakat dengan SOP berstandar bengkel resmi AHASS.') }}
+                            {{ $settings->get('facility_tefa_subtitle', 'Fasilitas praktik perawatan berkala dan pemeliharaan sepeda motor dengan standar operasional prosedur (SOP) bengkel resmi AHASS.') }}
                         </p>
                         
                         <div class="space-y-3 font-sans text-sm text-gray-700 bg-white p-5 rounded-xl border border-gray-200">
@@ -450,7 +450,7 @@
 
                     <div class="lg:col-span-6 lg:border-l lg:border-gray-200 lg:pl-8">
                         <h4 class="font-heading font-bold text-base sm:text-lg uppercase tracking-wider text-figma-dark block mb-4">
-                            Layanan Servis Konsumen Publik:
+                            Keterampilan Servis & Perawatan:
                         </h4>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-sans text-sm text-gray-700 mb-6">
@@ -481,7 +481,7 @@
                         </div>
 
                         <p class="text-xs text-gray-500 italic bg-white p-3.5 rounded-xl border border-gray-200">
-                            {{ $settings->get('facility_tefa_note', 'Dikerjakan siswa berprestasi di bawah bimbingan instruktur bersertifikasi Astra Motor.') }}
+                            {{ $settings->get('facility_tefa_note', 'Seluruh kegiatan praktik siswa dilaksanakan di bawah supervisi instruktur mekanik bersertifikasi Astra Motor.') }}
                         </p>
                     </div>
 

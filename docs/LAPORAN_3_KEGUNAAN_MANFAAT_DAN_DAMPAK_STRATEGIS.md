@@ -29,7 +29,7 @@ graph TD
 ### 2.1 Bagi Calon Siswa & Wali Murid (Orang Tua)
 Keputusan memilih jurusan di jenjang SMK adalah investasi masa depan anak. Website ini memberikan kepastian informasi (*assurance of quality*) melalui:
 1. **Transparansi Kompetensi Belajar**: Orang tua dapat melihat secara gamblang bahwa anak mereka tidak hanya diajarkan teori, melainkan komposisi praktikum dominan 70% yang mencakup 4 pilar teknis (Sistem Mesin PGM-FI, Sasis Rem CBS/ABS, Kelistrikan Digital Smart Key, dan Administrasi Manajemen Bengkel).
-2. **Kejelasan Kemitraan Industri Resmi**: Memastikan kepada masyarakat bahwa TSM SMKN 1 Bangsri merupakan sekolah binaan resmi **PT Astra Honda Motor (AHM)** sejak 2016, bukan sekadar klaim pemasaran, dibuktikan dengan portofolio MoU, kurikulum industri terstandar, dan sarana bengkel TeFa.
+2. **Kejelasan Kemitraan Industri Resmi**: Memastikan kepada masyarakat bahwa TSM SMKN 1 Bangsri merupakan sekolah binaan resmi **PT Astra Honda Motor (AHM)** sejak 2016, bukan sekadar klaim pemasaran, dibuktikan dengan portofolio MoU, kurikulum industri terstandar, dan sarana bengkel standar AHASS.
 3. **Gambaran Pasti Prospek Karir**: Mengikis stigma lama bahwa lulusan otomotif hanya menjadi "tambal ban". Website memaparkan 3 jalur nyata karir lulusan:
    * Teknisi Resmi Bengkel AHASS (dengan sertifikasi kompetensi AHM).
    * Tenaga Ahli Manufaktur & Perakitan Otomotif.

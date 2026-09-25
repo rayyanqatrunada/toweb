@@ -40,7 +40,7 @@ class ManageAcademicFacilities extends Page implements HasForms
             'facility_hero_subtitle' => $settings->get('facility_hero_subtitle', 'Dilengkapi bike lift hidrolik, simulator injeksi PGM-FI, engine overhaul stand berputar, special service tools (SST) lengkap, dan budaya kerja 5R/K3LH untuk mencetak teknisi profesional berstandar AHASS.'),
             'facility_hero_bg_image' => $settings->get('facility_hero_bg_image'),
             'facility_stat_1_val' => $settings->get('facility_stat_1_val', '70%'),
-            'facility_stat_1_label' => $settings->get('facility_stat_1_label', 'Proporsi Praktikum & TeFa'),
+            'facility_stat_1_label' => $settings->get('facility_stat_1_label', 'Proporsi Praktik Kejuruan'),
             'facility_stat_2_val' => $settings->get('facility_stat_2_val', '6 Pit'),
             'facility_stat_2_label' => $settings->get('facility_stat_2_label', 'Stall Servis Hidrolik AHASS'),
             'facility_stat_3_val' => $settings->get('facility_stat_3_val', '100%'),
@@ -66,14 +66,14 @@ class ManageAcademicFacilities extends Page implements HasForms
             'facility_k3_safety' => $settings->get('facility_k3_safety', 'Tabung Pemadam Api (APAR) Powder & CO2 di Setiap Sudut, Eye Washer Darurat, Kotak P3K Lengkap, Jalur Evakuasi Evacuation Assembly Point.'),
             'facility_k3_limbah' => $settings->get('facility_k3_limbah', 'Penampung Limbah B3 Berstandar Lingkungan: Drum Oli Bekas Bersegel, Pemilah Aki Bekas & Kain Majun Terkontaminasi.'),
 
-            // 03. Teaching Factory & Layanan TeFa
-            'facility_tefa_badge' => $settings->get('facility_tefa_badge', 'UNIT PRODUKSI & TEFA'),
-            'facility_tefa_title' => $settings->get('facility_tefa_title', 'Teaching Factory (TeFa) TBSM SMKN 1 Bangsri'),
-            'facility_tefa_subtitle' => $settings->get('facility_tefa_subtitle', 'Menghadirkan layanan perawatan berkala dan perbaikan sepeda motor untuk warga masyarakat, guru, dan siswa dengan kualitas pengerjaan berstandar bengkel resmi AHASS.'),
+            // 03. Bengkel Praktik & Layanan Perawatan
+            'facility_tefa_badge' => $settings->get('facility_tefa_badge', 'BENGKEL PRAKTIK KEJURUAN'),
+            'facility_tefa_title' => $settings->get('facility_tefa_title', 'Bengkel Praktik TBSM SMKN 1 Bangsri'),
+            'facility_tefa_subtitle' => $settings->get('facility_tefa_subtitle', 'Fasilitas praktik perawatan berkala dan pemeliharaan sepeda motor dengan standar operasional prosedur (SOP) bengkel resmi AHASS.'),
             'facility_tefa_hours' => $settings->get('facility_tefa_hours', 'Senin – Jumat : 08.00 – 15.00 WIB'),
             'facility_tefa_location' => $settings->get('facility_tefa_location', 'Gedung Bengkel Otomotif SMKN 1 Bangsri, Jl. Raya Bangsri - Keling, Jepara'),
             'facility_tefa_services' => $settings->get('facility_tefa_services', "Servis Berkala & Tune Up Injeksi PGM-FI (Reset Scanner ECM)\nPerawatan Transmisi Otomatis CVT (V-Belt & Roller)\nGanti Oli Mesin & Transmisi (Astra Honda Oil Asli)\nServis Sistem Pengereman Hidrolik (CBS / ABS)\nPembersihan Injektor Ultrasonik & Throttle Body\nPenggantian Suku Cadang Orisinal Honda Genuine Parts (HGP)\nUji Emisi Gas Buang Sepeda Motor"),
-            'facility_tefa_note' => $settings->get('facility_tefa_note', 'Seluruh proses pengerjaan dilakukan oleh siswa berprestasi kelas XI & XII di bawah supervisi mekanik instruktur bersertifikasi Astra Motor.'),
+            'facility_tefa_note' => $settings->get('facility_tefa_note', 'Seluruh kegiatan praktik siswa dilaksanakan di bawah supervisi instruktur mekanik bersertifikasi Astra Motor.'),
 
             // 04. Call to Action (CTA)
             'facility_cta_badge' => $settings->get('facility_cta_badge', 'KUNJUNGAN & INFORMASI'),
@@ -224,31 +224,31 @@ class ManageAcademicFacilities extends Page implements HasForms
                             ]),
 
                         // =========================================================================
-                        // TAB 3: TEACHING FACTORY & LAYANAN TEFA
+                        // TAB 3: BENGKEL PRAKTIK & LAYANAN PERAWATAN
                         // =========================================================================
-                        Tab::make('Teaching Factory (TeFa)')
-                            ->icon('heroicon-o-cog-6-tooth')
+                        Tab::make('Bengkel Praktik & Servis')
+                            ->icon('heroicon-o-wrench-screwdriver')
                             ->badge('03')
                             ->schema([
-                                Section::make('Identitas Unit Teaching Factory (TeFa)')
-                                    ->description('Unit layanan servis nyata untuk publik dan masyarakat sekitar.')
+                                Section::make('Identitas Bengkel Praktik TBSM')
+                                    ->description('Fasilitas bengkel praktik dan perawatan sepeda motor berstandar industri AHASS.')
                                     ->icon('heroicon-o-building-storefront')
                                     ->schema([
-                                        TextInput::make('facility_tefa_badge')->label('Badge TeFa')->required(),
-                                        TextInput::make('facility_tefa_title')->label('Nama Unit Layanan TeFa')->required(),
-                                        Textarea::make('facility_tefa_subtitle')->label('Deskripsi Layanan Konsumen')->rows(2)->required(),
-                                        TextInput::make('facility_tefa_hours')->label('Jam Operasional Layanan')->placeholder('Senin – Jumat : 08.00 – 15.00 WIB')->required(),
+                                        TextInput::make('facility_tefa_badge')->label('Badge Bengkel Praktik')->required(),
+                                        TextInput::make('facility_tefa_title')->label('Nama Fasilitas Bengkel Praktik')->required(),
+                                        Textarea::make('facility_tefa_subtitle')->label('Deskripsi Fasilitas & Layanan')->rows(2)->required(),
+                                        TextInput::make('facility_tefa_hours')->label('Jam Operasional Praktik / Bengkel')->placeholder('Senin – Jumat : 08.00 – 15.00 WIB')->required(),
                                         TextInput::make('facility_tefa_location')->label('Lokasi Gedung Bengkel')->required(),
                                     ]),
 
-                                Section::make('Menu Layanan & Catatan Supervisi')
-                                    ->description('Daftar jenis perawatan sepeda motor dan jaminan mutu supervisi instruktur.')
+                                Section::make('Keterampilan Servis & Catatan Supervisi')
+                                    ->description('Daftar keterampilan servis sepeda motor dan jaminan mutu supervisi instruktur.')
                                     ->icon('heroicon-o-clipboard-document-list')
                                     ->schema([
                                         Textarea::make('facility_tefa_services')
-                                            ->label('Daftar Layanan Servis Publik (1 Baris per Layanan)')
+                                            ->label('Daftar Keterampilan Servis & Perawatan (1 Baris per Layanan)')
                                             ->rows(6)
-                                            ->helperText('Tuliskan setiap layanan servis dalam baris baru.')
+                                            ->helperText('Tuliskan setiap jenis perawatan/servis dalam baris baru.')
                                             ->required(),
                                         Textarea::make('facility_tefa_note')
                                             ->label('Jaminan Supervisi Mekanik Instruktur')

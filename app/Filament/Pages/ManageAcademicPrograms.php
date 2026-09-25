@@ -65,7 +65,7 @@ class ManageAcademicPrograms extends Page implements HasForms
             'academic_curriculum_heading' => $settings->get('academic_curriculum_heading', 'Struktur Kurikulum 3 Tahun'),
             'academic_syllabus_file' => $settings->get('academic_syllabus_file'),
             'academic_syllabus_modal_intro' => $settings->get('academic_syllabus_modal_intro', "Kurikulum {$siteName} ({$siteShortName}) {$schoolName} diselaraskan secara penuh dengan standar industri PT Astra Honda Motor."),
-            'academic_syllabus_modal_hours' => $settings->get('academic_syllabus_modal_hours', "• Kelas X (Fase E): Dasar-Dasar Kejuruan Otomotif (12 JP)\n• Kelas XI (Fase F): Konsentrasi Keahlian Mesin, Sasis, Kelistrikan (18 JP) + TeFa\n• Kelas XII (Fase F): Pemantapan Troubleshooting & PKL AHASS (6 Bulan Penuh)"),
+            'academic_syllabus_modal_hours' => $settings->get('academic_syllabus_modal_hours', "• Kelas X (Fase E): Dasar-Dasar Kejuruan Otomotif (12 JP)\n• Kelas XI (Fase F): Konsentrasi Keahlian Mesin, Sasis, Kelistrikan (18 JP) + Praktikum Kejuruan\n• Kelas XII (Fase F): Pemantapan Troubleshooting & PKL AHASS (6 Bulan Penuh)"),
             'academic_syllabus_modal_standards' => $settings->get('academic_syllabus_modal_standards', 'Siswa dinyatakan kompeten setelah menyelesaikan seluruh modul capaian pembelajaran, lulus UKK dari asesor industri Astra Motor, dan bersertifikasi BNSP.'),
 
             'academic_curriculum_x_title' => $settings->get('academic_curriculum_x_title', 'Fondasi Kejuruan Otomotif'),
@@ -73,10 +73,10 @@ class ManageAcademicPrograms extends Page implements HasForms
             'academic_curriculum_x_hours' => $settings->get('academic_curriculum_x_hours', '12 JP / Minggu'),
             'academic_curriculum_x_focus' => $settings->get('academic_curriculum_x_focus', 'Disiplin & Ketelitian Ukur'),
 
-            'academic_curriculum_xi_title' => $settings->get('academic_curriculum_xi_title', 'Konsentrasi Keahlian & TeFa'),
-            'academic_curriculum_xi_desc' => $settings->get('academic_curriculum_xi_desc', 'Pendalaman teknis 3 sistem utama sepeda motor, simulasi pelayanan servis konsumen nyata (Teaching Factory), dan proyek kewirausahaan.'),
+            'academic_curriculum_xi_title' => $settings->get('academic_curriculum_xi_title', 'Konsentrasi Keahlian Otomotif'),
+            'academic_curriculum_xi_desc' => $settings->get('academic_curriculum_xi_desc', 'Pendalaman teknis 3 sistem utama sepeda motor, praktik kerja bangku dan perawatan berkala, serta proyek produk kreatif kewirausahaan.'),
             'academic_curriculum_xi_hours' => $settings->get('academic_curriculum_xi_hours', '18 JP / Minggu'),
-            'academic_curriculum_xi_focus' => $settings->get('academic_curriculum_xi_focus', 'Injeksi PGM-FI & TeFa Nyata'),
+            'academic_curriculum_xi_focus' => $settings->get('academic_curriculum_xi_focus', 'Injeksi PGM-FI & Perawatan Berkala'),
 
             'academic_curriculum_xii_title' => $settings->get('academic_curriculum_xii_title', 'Pemantapan Industri & PKL'),
             'academic_curriculum_xii_desc' => $settings->get('academic_curriculum_xii_desc', 'Pelaksanaan Praktik Kerja Lapangan (PKL) 6 bulan di AHASS, pemecahan masalah (troubleshooting) tingkat lanjut, dan Uji Sertifikasi LSP/UKK.'),

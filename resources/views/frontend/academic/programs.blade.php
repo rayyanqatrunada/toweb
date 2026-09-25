@@ -300,7 +300,7 @@
                             >
                                 <div>
                                     <span class="text-xs font-bold uppercase tracking-wider block" :class="activeTab === 'kelas11' ? 'text-figma-red' : 'text-gray-400'">Tingkat 2 • Fase F</span>
-                                    <span class="font-heading font-bold text-base block mt-0.5">Kelas XI (Konsentrasi & TeFa)</span>
+                                    <span class="font-heading font-bold text-base block mt-0.5">Kelas XI (Konsentrasi Kejuruan)</span>
                                 </div>
                                 <svg class="w-5 h-5 transition-transform" :class="activeTab === 'kelas11' ? 'translate-x-1 text-white' : 'text-gray-400 group-hover:translate-x-1'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -420,7 +420,7 @@
                                             Tingkat 2 • Fase F
                                         </span>
                                         <h3 class="font-heading font-bold text-2xl text-figma-dark">
-                                            {{ $settings->get('academic_curriculum_xi_title', 'Konsentrasi Keahlian & TeFa') }}
+                                            {{ $settings->get('academic_curriculum_xi_title', 'Konsentrasi Keahlian Otomotif') }}
                                         </h3>
                                     </div>
                                     <div class="flex items-center gap-3">
@@ -431,13 +431,13 @@
                                         <div class="w-[1px] h-8 bg-gray-200"></div>
                                         <div>
                                             <span class="text-xs text-gray-500 block">Fokus Utama:</span>
-                                            <strong class="text-sm font-bold text-figma-red">{{ $settings->get('academic_curriculum_xi_focus', 'Injeksi PGM-FI & TeFa Nyata') }}</strong>
+                                            <strong class="text-sm font-bold text-figma-red">{{ $settings->get('academic_curriculum_xi_focus', 'Injeksi PGM-FI & Perawatan Berkala') }}</strong>
                                         </div>
                                     </div>
                                 </div>
 
                                 <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed mb-6">
-                                    {{ $settings->get('academic_curriculum_xi_desc', 'Pendalaman teknis 3 sistem utama sepeda motor, simulasi pelayanan servis konsumen nyata (Teaching Factory), dan proyek kewirausahaan.') }}
+                                    {{ $settings->get('academic_curriculum_xi_desc', 'Pendalaman teknis 3 sistem utama sepeda motor, praktik kerja bangku dan perawatan berkala, serta proyek produk kreatif kewirausahaan.') }}
                                 </p>
 
                                 <!-- 4 Subject Modules -->
@@ -458,9 +458,9 @@
                                         <p class="text-sm text-gray-600 leading-relaxed">Scanner diagnostik HIDS, sistem pengisian ACG starter, pencahayaan LED, dan troubleshooting Smart Key.</p>
                                     </div>
                                     <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
-                                        <span class="text-xs font-bold text-figma-red uppercase tracking-wider">TEFA</span>
-                                        <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Teaching Factory & Servis Riil</h4>
-                                        <p class="text-sm text-gray-600 leading-relaxed">Simulasi alur Service Advisor (SA), estimasi biaya suku cadang, dan pengerjaan servis motor konsumen riil.</p>
+                                        <span class="text-xs font-bold text-figma-red uppercase tracking-wider">PRAKTIK</span>
+                                        <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Perawatan Berkala & Servis Nyata</h4>
+                                        <p class="text-sm text-gray-600 leading-relaxed">Simulasi alur Service Advisor (SA), estimasi biaya suku cadang, dan standar pemeliharaan berkala motor.</p>
                                     </div>
                                 </div>
                             </div>
@@ -684,7 +684,7 @@
                 <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
                     <h4 class="font-heading font-bold text-sm text-figma-dark mb-2">Alokasi Jam Pelajaran (JP):</h4>
                     <p class="text-xs sm:text-sm text-gray-700 whitespace-pre-line leading-relaxed">
-                        {{ $settings->get('academic_syllabus_modal_hours', "• Kelas X (Fase E): Dasar Kejuruan Otomotif (12 JP)\n• Kelas XI (Fase F): Konsentrasi Mesin, Sasis, Kelistrikan (18 JP) + TeFa\n• Kelas XII (Fase F): Pemantapan Troubleshooting & PKL AHASS (6 Bulan Penuh)") }}
+                        {{ $settings->get('academic_syllabus_modal_hours', "• Kelas X (Fase E): Dasar Kejuruan Otomotif (12 JP)\n• Kelas XI (Fase F): Konsentrasi Mesin, Sasis, Kelistrikan (18 JP) + Praktikum Kejuruan\n• Kelas XII (Fase F): Pemantapan Troubleshooting & PKL AHASS (6 Bulan Penuh)") }}
                     </p>
                 </div>
 

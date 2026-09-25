@@ -18,7 +18,7 @@
 
 ## 1. Latar Belakang & Gambaran Umum
 
-Website ini adalah platform digital terintegrasi milik **Konsentrasi Keahlian Teknik dan Bisnis Sepeda Motor (TBSM) SMK Negeri 1 Bangsri**. Dirancang khusus untuk memenuhi standar pendidikan vokasi modern, website ini mengintegrasikan profil jurusan berstandar industri, kurikulum berbasis kompetensi, sarana pembelajaran Teaching Factory (TeFa), hingga portal **Bursa Kerja Khusus (BKK)** dan jejaring alumni (*Tracer Study*).
+Website ini adalah platform digital terintegrasi milik **Konsentrasi Keahlian Teknik dan Bisnis Sepeda Motor (TBSM) SMK Negeri 1 Bangsri**. Dirancang khusus untuk memenuhi standar pendidikan vokasi modern, website ini mengintegrasikan profil jurusan berstandar industri, kurikulum berbasis kompetensi, sarana bengkel praktik berstandar AHASS, hingga portal **Bursa Kerja Khusus (BKK)** dan jejaring alumni (*Tracer Study*).
 
 Sebagai sekolah kejuruan yang telah menjalin kerjasama pembinaan resmi dengan **PT Astra Honda Motor (AHM)** sejak tahun 2016, website ini berfungsi sebagai "etalase digital" dan pusat layanan informasi yang menjembatani **Sekolah**, **Siswa/Orang Tua**, **Alumni**, serta **Dunia Usaha dan Dunia Industri (DUDI)**.
 
@@ -86,14 +86,14 @@ Halaman ini menyajikan struktur proses pembelajaran tanpa bertele-tele:
   4. *Pengelolaan Bengkel (Management):* Alur Service Advisor (SA), estimasi biaya/faktur servis, inventarisasi suku cadang (*spare parts*).
 * **Peta Kurikulum Merdeka (Tab Interaktif):**
   - *Kelas X (Fase E):* Gambar Teknik Otomotif (GTO), Teknologi Dasar Otomotif (TDO), Peralatan Dasar Otomotif (PDO), dan Koding & AI (KKA).
-  - *Kelas XI (Fase F):* Pendalaman konsentrasi 3 sistem, unit Teaching Factory (TeFa Level 1), dan Produk Kreatif Kewirausahaan (PKK).
+  - *Kelas XI (Fase F):* Pendalaman konsentrasi 3 sistem, simulasi perawatan berkala dan servis nyata, serta Produk Kreatif Kewirausahaan (PKK).
   - *Kelas XII (Fase F & Magang):* Pemecahan masalah tingkat lanjut (*Troubleshooting*), Pengelolaan Bengkel, dan Praktik Kerja Lapangan (PKL) 6 bulan penuh di AHASS.
 * **Dokumen Silabus & Kurikulum (Modal Dialog):** Ringkasan alokasi jam pelajaran (JP), standar kelulusan kompetensi, serta tombol pengunduhan dokumen PDF resmi kurikulum.
 * **Sertifikasi Keahlian & Lisensi Resmi:**
   - *Uji Kompetensi Keahlian (UKK):* Standar kelulusan Kemendikbudristek bersama DUDI.
   - *Sertifikasi BNSP / LSP-P1:* Lisensi nasional berstandar SKKNI berlogo Garuda Emas yang diakui se-ASEAN.
   - *Lisensi Astra Honda Motor:* Sertifikasi mekanik resmi yang membuka jalur prioritas rekrutmen kerja AHASS.
-* **Ekosistem Belajar (6 Program Unggulan):** Kelas Industri Honda, Teaching Factory (TeFa), Magang PKL di AHASS, Safety Riding Academy, Budaya Kerja 5R, dan Kontes LKS/Honda.
+* **Ekosistem Belajar (6 Program Unggulan):** Kelas Industri Honda, Bengkel Praktik & Servis, Magang PKL di AHASS, Safety Riding Academy, Budaya Kerja 5R, dan Kontes LKS/Honda.
 * **Pilihan Karir & Prospek Kerja:** 3 jalur nyata bagi lulusan (Teknisi Servis Sepeda Motor, Manufaktur Perakitan Otomotif, dan Wirausaha Bengkel Mandiri).
 * **Roadmap Belajar 3 Tahun:** Visualisasi tahapan siswa dari tahun pertama, tahun kedua, magang industri tahun ketiga, hingga rekrutmen kerja akhir.
 
@@ -111,7 +111,7 @@ Halaman ini menyajikan struktur proses pembelajaran tanpa bertele-tele:
 * **Tracer Study & Alumni (`/alumni`):** Statistik serapan alumni (Bekerja, Melanjutkan, Wirausaha / BMW) serta profil sukses alumni.
 
 ### G. Publikasi, Prestasi & Media
-* **Berita Terkini (`/berita`):** Artikel liputan workshop, kuliah umum industri, hingga kegiatan servis gratis TeFa.
+* **Berita Terkini (`/berita`):** Artikel liputan workshop, kuliah umum industri, hingga kegiatan servis gratis berkala sepeda motor.
 * **Pengumuman Resmi (`/pengumuman`):** Informasi administratif penting, seperti jadwal ujian, pembekalan PKL, atau registrasi ulang.
 * **Katalog Prestasi (`/prestasi`):** Dokumentasi capaian juara siswa pada LKS Otomotif, Safety Riding Honda tingkat karesidenan/nasional, serta penghargaan guru inovatif.
 * **Galeri Foto & Video (`/galeri`):** Dokumentasi visual kegiatan praktikum dan atmosfer belajar di bengkel.
@@ -199,7 +199,7 @@ Halaman ini adalah pusat kendali untuk seluruh teks di `/akademik/program`. Tela
    - **Peta Kurikulum (X, XI, XII):** Menentukan judul fase, deskripsi capaian, alokasi jam per minggu, serta fokus utama kelas masing-masing.
 
 3. **Tab 3: 🌟 Program Unggulan & Sertifikasi**
-   - **6 Program Unggulan:** Mengisi judul program, badge atas, deskripsi ringkas, dan tag bawah untuk program Kelas Industri Honda, Teaching Factory (TeFa), Magang PKL, Safety Riding, Budaya 5R, dan Kontes Prestasi LKS.
+   - **6 Program Unggulan:** Mengisi judul program, badge atas, deskripsi ringkas, dan tag bawah untuk program Kelas Industri Honda, Bengkel Praktik & Servis, Magang PKL, Safety Riding, Budaya 5R, dan Kontes Prestasi LKS.
    - **3 Sertifikasi Resmi:** Menentukan nama sertifikasi, deskripsi, lembaga penerbit (Kemendikbud/BNSP/Astra), dan level pengakuan.
 
 4. **Tab 4: 💼 Karir, Instruktur & CTA**
@@ -240,8 +240,8 @@ Aplikasi ini memiliki nilai lebih dibanding website profil sekolah biasa berkat 
    Penyajian kurikulum tidak kaku, melainkan modular berbasis hasil kerja nyata (*Action-Oriented Learning Outcome*).
 2. **Modal Silabus Interaktif dengan Unduhan Langsung:**
    Pengunjung tidak perlu mencari file PDF secara terpisah; modal dialog menyajikan ikhtisar alokasi JP dan tombol cetak/unduh instan.
-3. **Ekosistem Teaching Factory (TeFa):**
-   Mempromosikan bengkel sekolah sebagai unit layanan servis riil bagi masyarakat, melatih jiwa wirausaha dan interaksi pelanggan siswa.
+3. **Fasilitas Bengkel Praktik Berstandar AHASS:**
+   Mempromosikan sarana bengkel praktik sekolah berstandar bengkel resmi industri lengkap dengan bike lift hidrolik dan special service tools.
 4. **Penyelarasan BKK Real-Time:**
    Kemitraan MoU dengan AHASS terhubung langsung dengan ketersediaan lowongan kerja dan data penempatan PKL siswa.
 5. **SEO & Standar Performa Tinggi:**

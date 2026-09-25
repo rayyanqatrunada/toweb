@@ -36,7 +36,7 @@ class Facility extends Model
     public static function getCategoryOptions(): array
     {
         return [
-            'tefa_workshop' => 'Bengkel TeFa & Servis AHASS',
+            'tefa_workshop' => 'Bengkel Praktik & Servis AHASS',
             'electrical_lab' => 'Lab Kelistrikan & Injeksi PGM-FI',
             'engine_lab' => 'Ruang Overhaul Mesin & Presisi',
             'chassis_lab' => 'Lab Sasis & Sistem Rem',

@@ -8,7 +8,7 @@
                 </div>
                 <div>
                     <h3 class="text-sm font-bold text-gray-900 dark:text-white">Panel Pengaturan Halaman Fasilitas</h3>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">Kelola teks hero, metrik statistik, budaya industri 5R, K3LH, dan layanan Teaching Factory secara terpadu.</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">Kelola teks hero, metrik statistik, budaya industri 5R, K3LH, dan sarana bengkel praktik secara terpadu.</p>
                 </div>
             </div>
             <div class="flex items-center gap-2 shrink-0">

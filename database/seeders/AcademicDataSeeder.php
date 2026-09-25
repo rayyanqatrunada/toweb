@@ -103,12 +103,12 @@ class AcademicDataSeeder extends Seeder
         // 3. Facilities
         $facilities = [
             [
-                'name' => 'Bengkel Teaching Factory (TeFa) & Pit Servis Honda AHASS',
-                'slug' => 'bengkel-teaching-factory-tefa-pit-servis-honda-ahass',
+                'name' => 'Bengkel Praktik & Pit Servis Honda AHASS',
+                'slug' => 'bengkel-praktik-pit-servis-honda-ahass',
                 'category' => 'tefa_workshop',
-                'description' => '<p>Unit bengkel operasional berstandar bengkel resmi Astra Honda Motor (AHASS) di lingkungan SMKN 1 Bangsri. Berfungsi sebagai fasilitas praktik riil siswa sekaligus melayani servis berkala, tune-up injeksi PGM-FI, penggantian suku cadang asli HGP (Honda Genuine Parts), dan uji emisi sepeda motor untuk konsumen umum.</p>',
+                'description' => '<p>Unit bengkel operasional berstandar bengkel resmi Astra Honda Motor (AHASS) di lingkungan SMKN 1 Bangsri. Berfungsi sebagai fasilitas praktik kejuruan siswa untuk melatih keterampilan servis berkala, tune-up injeksi PGM-FI, penggantian suku cadang asli HGP (Honda Genuine Parts), dan uji kelayakan sepeda motor sesuai SOP industri.</p>',
                 'specifications' => "6 Stall Servis Resmi Berstandar AHASS\nExhaust Gas Extraction System (Penyedot Emisi Gas Buang)\nBike Lift Hidrolik Kapasitas 500 kg\nTool Cabinet & Mekanik Trolley Lengkap per Stall\nKompresor Udara Sentral Bertekanan Tinggi\nService Advisor Front Desk & Sistem Antrean Terkomputerisasi",
-                'photo' => 'facilities/bengkel-tefa-praktik.png',
+                'photo' => 'facilities/bengkel-praktik-otomotif.png',
                 'quantity' => 6,
                 'capacity' => '36 Siswa / 6 Pit Servis',
                 'safety_standards' => 'Wearpack Standar AHASS, Safety Shoes, Kacamata Pelindung, Tabung APAR 6 kg, Jalur Evakuasi Evacuation Point',

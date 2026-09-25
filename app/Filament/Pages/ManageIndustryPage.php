@@ -53,8 +53,8 @@ class ManageIndustryPage extends Page implements HasForms
             'industry_pillar_2_title' => $settings->get('industry_pillar_2_title', 'Praktik Kerja Lapangan (PKL) AHASS'),
             'industry_pillar_2_desc' => $settings->get('industry_pillar_2_desc', 'Siswa diterjunkan magang selama 6 bulan penuh di jaringan bengkel resmi AHASS se-Kabupaten Jepara dan Karesidenan Pati untuk merasakan ritme kerja industri sesungguhnya.'),
 
-            'industry_pillar_3_title' => $settings->get('industry_pillar_3_title', 'Teaching Factory (TeFa) Standar AHASS'),
-            'industry_pillar_3_desc' => $settings->get('industry_pillar_3_desc', 'Implementasi bengkel operasional berstandar bengkel resmi di sekolah, melayani servis riil kendaraan masyarakat dengan standar operasional prosedur (SOP) Astra Honda.'),
+            'industry_pillar_3_title' => $settings->get('industry_pillar_3_title', 'Laboratorium & Bengkel Standar AHASS'),
+            'industry_pillar_3_desc' => $settings->get('industry_pillar_3_desc', 'Implementasi bengkel praktik kejuruan berstandar bengkel resmi AHASS di sekolah, menggunakan bike lift hidrolik, SOP servis, dan peralatan standar Astra Honda.'),
 
             'industry_pillar_4_title' => $settings->get('industry_pillar_4_title', 'Bantuan Sarana & Special Tools (SST)'),
             'industry_pillar_4_desc' => $settings->get('industry_pillar_4_desc', 'Dukungan unit sepeda motor praktik Honda generasi terbaru, alat diagnostik HIDS (Honda Intelligent Diagnostic System), dan special service tools resmi pabrikan.'),
@@ -164,9 +164,9 @@ class ManageIndustryPage extends Page implements HasForms
                                             ])->columnSpan(1),
                                     ])->columns(2),
 
-                                Section::make('Pilar 3 & 4: Teaching Factory & Sarana')
+                                Section::make('Pilar 3 & 4: Bengkel Praktik & Sarana')
                                     ->schema([
-                                        Section::make('Pilar 3: Teaching Factory (TeFa)')
+                                        Section::make('Pilar 3: Laboratorium & Bengkel Standar AHASS')
                                             ->schema([
                                                 TextInput::make('industry_pillar_3_title')->label('Judul Pilar 3')->required(),
                                                 Textarea::make('industry_pillar_3_desc')->label('Deskripsi')->rows(2)->required(),
