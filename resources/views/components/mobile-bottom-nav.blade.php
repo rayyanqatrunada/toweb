@@ -78,6 +78,16 @@
             'icon' => 'mail',
         ],
     ];
+
+    $homeSections = [
+        ['id' => 'section-profil', 'num' => '01', 'title' => 'Profil Jurusan', 'desc' => 'Visi & kompetensi vokasi otomotif'],
+        ['id' => 'section-keunggulan', 'num' => '02', 'title' => 'Keunggulan TBSM', 'desc' => 'Standar industri AHASS & budaya 5S'],
+        ['id' => 'section-program', 'num' => '03', 'title' => 'Program Keahlian', 'desc' => 'Kurikulum modern & spesialisasi teknis'],
+        ['id' => 'section-fasilitas', 'num' => '04', 'title' => 'Fasilitas Bengkel', 'desc' => 'Laboratorium & sarana praktik lengkap'],
+        ['id' => 'section-kemitraan', 'num' => '05', 'title' => 'Mitra Industri', 'desc' => 'Sinergi PT Astra Honda Motor & DUDI'],
+        ['id' => 'section-prestasi', 'num' => '06', 'title' => 'Prestasi Siswa', 'desc' => 'Pencapaian ajang juara LKS & lomba'],
+        ['id' => 'section-guru', 'num' => '07', 'title' => 'Dewan Guru', 'desc' => 'Tim pendidik & instruktur tersertifikasi'],
+    ];
 @endphp
 
 <!-- Container Mobile Navigation & Bottom Drawer -->
@@ -89,11 +99,83 @@
          style="display: none; position: fixed; inset: 0; background-color: rgba(15, 23, 42, 0.65); z-index: 9998; opacity: 0; transition: opacity 0.3s ease;">
     </div>
 
+    @if($isHome)
+    <!-- 1B. Backdrop Scrim Gelap untuk Drawer Bagian Beranda -->
+    <div id="mobile-home-sections-backdrop"
+         onclick="window.closeMobileHomeSectionsDrawer()"
+         style="display: none; position: fixed; inset: 0; background-color: rgba(15, 23, 42, 0.65); z-index: 9998; opacity: 0; transition: opacity 0.3s ease;">
+    </div>
+
+    <!-- 2B. Drawer Bagian Beranda (Muncul Vertikal dari Tombol Beranda) -->
+    <div id="mobile-home-sections-drawer"
+         style="display: none; position: fixed; bottom: 72px; left: 12px; right: 12px; max-width: 480px; margin: 0 auto; z-index: 9999; transform: translateY(120%); opacity: 0; transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;">
+        <div style="background-color: #ffffff !important; border: 1px solid #e2e8f0; border-radius: 4px; box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.2); padding: 16px 14px 18px 14px; overflow: hidden;">
+            
+            <!-- Drag Handle Bar -->
+            <div onclick="window.closeMobileHomeSectionsDrawer()" style="width: 100%; display: flex; justify-content: center; padding: 2px 0 10px 0; cursor: pointer;">
+                <span style="display: block; width: 44px; height: 4px; background-color: #cbd5e1; border-radius: 2px;"></span>
+            </div>
+
+            <!-- Header Panel -->
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #f1f5f9; margin-bottom: 12px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 32px; height: 32px; border-radius: 2px; background-color: #fef2f2; color: #dc2626; display: flex; align-items: center; justify-content: center; border: 1px solid #fee2e2;">
+                        <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div style="font-family: system-ui, sans-serif; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #0f172a; line-height: 1;">Bagian Beranda TBSM</div>
+                        <div style="font-size: 11px; color: #64748b; margin-top: 3px;">Pilih bagian untuk otomatis bergeser</div>
+                    </div>
+                </div>
+                <button type="button" 
+                        onclick="window.closeMobileHomeSectionsDrawer()" 
+                        style="background: transparent; border: none; padding: 6px; border-radius: 2px; color: #94a3b8; cursor: pointer; display: flex; align-items: center; justify-content: center;"
+                        aria-label="Tutup Menu">
+                    <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- List Menu Vertikal Beranda -->
+            <div style="display: flex; flex-direction: column; gap: 4px; max-height: 52vh; overflow-y: auto;">
+                @foreach($homeSections as $sec)
+                    <button type="button"
+                            onclick="window.scrollToHomeSection('{{ $sec['id'] }}')"
+                            style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 10px 12px; background-color: #f8fafc; border: 1px solid #f1f5f9; border-radius: 2px; cursor: pointer; text-align: left; transition: background-color 0.15s;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-family: monospace; font-size: 12px; font-weight: 800; color: #dc2626; width: 22px;">{{ $sec['num'] }}</span>
+                            <div>
+                                <div style="font-family: system-ui, sans-serif; font-size: 13px; font-weight: 800; text-transform: uppercase; color: #0f172a; line-height: 1.2;">{{ $sec['title'] }}</div>
+                                <div style="font-size: 11px; color: #64748b; margin-top: 2px;">{{ $sec['desc'] }}</div>
+                            </div>
+                        </div>
+                        <svg style="width: 16px; height: 16px; color: #94a3b8;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                @endforeach
+                
+                <!-- Action Ke Paling Atas (Hero Banner) -->
+                <button type="button"
+                        onclick="window.scrollToHomeSection('hero-slider')"
+                        style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 6px; padding: 10px 12px; background-color: #fef2f2; border: 1px solid #fecaca; border-radius: 2px; cursor: pointer; color: #dc2626; font-family: system-ui, sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase;">
+                    <svg style="width: 14px; height: 14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                    <span>Kembali ke Bagian Paling Atas (Hero)</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    @endif
+
     <!-- 2. Kotak Drawer yang Bergeser ke Atas (Solid Pure White - 4 Kolom) -->
     <div id="mobile-menu-drawer"
          style="display: none; position: fixed; bottom: 72px; left: 12px; right: 12px; max-width: 520px; margin: 0 auto; z-index: 9999; transform: translateY(120%); opacity: 0; transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;">
 
-        <div style="background-color: #ffffff !important; border: 1px solid #e2e8f0; border-radius: 24px; box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.2); padding: 16px 14px 18px 14px; overflow: hidden;">
+        <div style="background-color: #ffffff !important; border: 1px solid #e2e8f0; border-radius: 4px; box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.2); padding: 16px 14px 18px 14px; overflow: hidden;">
             
             <!-- Drag Handle Bar (Pill) -->
             <div onclick="window.closeMobileNavDrawer()" style="width: 100%; display: flex; justify-content: center; padding: 2px 0 10px 0; cursor: pointer;">
@@ -205,19 +287,34 @@
         <div style="max-width: 540px; margin: 0 auto; padding: 0 8px; display: flex; align-items: center; justify-content: space-around; height: 100%; background: #ffffff !important;">
             
             <!-- Tab 1: Beranda -->
-            <a href="{{ route('home') }}" 
-               onclick="window.closeMobileNavDrawer()"
-               style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: {{ $isHome ? '#dc2626' : '#64748b' }};">
-                <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9999px; {{ $isHome ? 'background-color: #fef2f2;' : '' }}">
-                    <svg style="width: 20px; height: 20px;" fill="{{ $isHome ? 'currentColor' : 'none' }}" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="{{ $isHome ? '2.2' : '1.9' }}" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                    </svg>
-                    @if($isHome)
+            @if($isHome)
+                <button type="button" 
+                        onclick="window.toggleMobileHomeSectionsDrawer()"
+                        aria-label="Pilih Bagian Beranda"
+                        style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; color: #dc2626; padding: 0;">
+                    <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9999px; background-color: #fef2f2;">
+                        <svg style="width: 20px; height: 20px;" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
                         <span style="position: absolute; bottom: -3px; width: 4px; height: 4px; border-radius: 9999px; background-color: #dc2626;"></span>
-                    @endif
-                </div>
-                <span style="font-size: 10px; font-weight: 700; margin-top: 2px;">Beranda</span>
-            </a>
+                    </div>
+                    <span style="font-size: 10px; font-weight: 700; margin-top: 2px; display: flex; align-items: center; gap: 2px;">
+                        <span>Beranda</span>
+                        <svg style="width: 8px; height: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 15l7-7 7 7"/></svg>
+                    </span>
+                </button>
+            @else
+                <a href="{{ route('home') }}" 
+                   onclick="window.closeMobileNavDrawer()"
+                   style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: #64748b;">
+                    <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9999px;">
+                        <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <span style="font-size: 10px; font-weight: 700; margin-top: 2px;">Beranda</span>
+                </a>
+            @endif
 
             <!-- Tab 2: Program -->
             <a href="{{ route('academic.programs') }}" 
@@ -300,6 +397,9 @@
 <script>
 (function() {
     window.openMobileNavDrawer = function() {
+        if (typeof window.closeMobileHomeSectionsDrawer === 'function') {
+            window.closeMobileHomeSectionsDrawer();
+        }
         const drawer = document.getElementById('mobile-menu-drawer');
         const backdrop = document.getElementById('mobile-menu-backdrop');
         const iconClosed = document.getElementById('mobile-menu-icon-closed');
@@ -385,9 +485,68 @@
         }
     };
 
+    // --- Home Sections Drawer Controller (Vertical List from Beranda) ---
+    window.openMobileHomeSectionsDrawer = function() {
+        window.closeMobileNavDrawer();
+        const drawer = document.getElementById('mobile-home-sections-drawer');
+        const backdrop = document.getElementById('mobile-home-sections-backdrop');
+        if (!drawer || !backdrop) return;
+
+        drawer.style.display = 'block';
+        backdrop.style.display = 'block';
+
+        requestAnimationFrame(function() {
+            backdrop.style.opacity = '1';
+            drawer.style.transform = 'translateY(0)';
+            drawer.style.opacity = '1';
+        });
+    };
+
+    window.closeMobileHomeSectionsDrawer = function() {
+        const drawer = document.getElementById('mobile-home-sections-drawer');
+        const backdrop = document.getElementById('mobile-home-sections-backdrop');
+        if (!drawer || !backdrop) return;
+
+        backdrop.style.opacity = '0';
+        drawer.style.transform = 'translateY(120%)';
+        drawer.style.opacity = '0';
+
+        setTimeout(function() {
+            if (drawer.style.transform === 'translateY(120%)') {
+                drawer.style.display = 'none';
+                backdrop.style.display = 'none';
+            }
+        }, 320);
+    };
+
+    window.toggleMobileHomeSectionsDrawer = function() {
+        const drawer = document.getElementById('mobile-home-sections-drawer');
+        if (!drawer) return;
+        if (drawer.style.display === 'block' && drawer.style.opacity === '1') {
+            window.closeMobileHomeSectionsDrawer();
+        } else {
+            window.openMobileHomeSectionsDrawer();
+        }
+    };
+
+    window.scrollToHomeSection = function(id) {
+        window.closeMobileHomeSectionsDrawer();
+        if (id === 'hero-slider') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     window.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             window.closeMobileNavDrawer();
+            if (typeof window.closeMobileHomeSectionsDrawer === 'function') {
+                window.closeMobileHomeSectionsDrawer();
+            }
         }
     });
 })();

@@ -18,7 +18,9 @@
         <x-frontend.home.hero-slider :slides-json="$settings->get('hero_slides')" />
 
         <!-- 02. Introduction -->
-        <x-frontend.home.intro />
+        <div id="section-profil" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <x-frontend.home.intro />
+        </div>
         
         <!-- 03. Statistics -->
         <x-frontend.home.statistics 
@@ -29,22 +31,34 @@
         />
 
         <!-- 04. Why TBSM -->
-        <x-frontend.home.why-tbsm />
+        <div id="section-keunggulan" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <x-frontend.home.why-tbsm />
+        </div>
 
         <!-- 05. Academic / Programs -->
-        <x-frontend.home.academic :programs="$programs" />
+        <div id="section-program" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <x-frontend.home.academic :programs="$programs" />
+        </div>
 
         <!-- 06. Facilities -->
-        <x-frontend.home.facilities :facilities="$facilities" />
+        <div id="section-fasilitas" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <x-frontend.home.facilities :facilities="$facilities" />
+        </div>
 
         <!-- 07. Industry Partnership -->
-        <x-frontend.home.partnership :partner="$partner" />
+        <div id="section-kemitraan" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <x-frontend.home.partnership :partner="$partner" />
+        </div>
 
         <!-- 08. Achievements -->
-        <x-frontend.home.achievements :achievements="$achievements" />
+        <div id="section-prestasi" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <x-frontend.home.achievements :achievements="$achievements" />
+        </div>
 
         <!-- 09. Teachers / Instructors -->
-        <x-frontend.home.teachers :head-of-department="$headOfDepartment" :teachers="$teachers" />
+        <div id="section-guru" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <x-frontend.home.teachers :head-of-department="$headOfDepartment" :teachers="$teachers" />
+        </div>
 
         <!-- 10. News / Information -->
         <x-frontend.home.news :latest-news="$latestNews" />
