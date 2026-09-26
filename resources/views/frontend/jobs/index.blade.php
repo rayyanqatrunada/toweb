@@ -27,13 +27,13 @@
         <x-frontend.layout.container class="max-w-5xl">
             <div class="space-y-6">
                 @forelse($jobs as $job)
-                    <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl hover:border-charcoal-300 border border-charcoal-200 p-6 md:p-8 flex flex-col md:flex-row gap-6 transition-all duration-300 relative group overflow-hidden focus-within:ring-4 focus-within:ring-primary-500 hover:-translate-y-1 reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
+                    <div class="bg-white rounded-sm sm:rounded-none shadow-sm hover:shadow-xl hover:border-charcoal-300 border border-charcoal-200 p-6 md:p-8 flex flex-col md:flex-row gap-6 transition-all duration-300 relative group overflow-hidden focus-within:ring-4 focus-within:ring-primary-500 hover:-translate-y-1 reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
                         <!-- Decorative Indicator Line -->
                         <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-amber-500 transition-all duration-300 group-hover:w-2 group-hover:bg-primary-500"></div>
                         
                         <!-- Logo Partner -->
                         <div class="flex-shrink-0 flex items-start justify-center md:justify-start">
-                            <div class="w-20 h-20 md:w-24 md:h-24 rounded-xl bg-white border border-charcoal-200 shadow-sm flex items-center justify-center overflow-hidden">
+                            <div class="w-20 h-20 md:w-24 md:h-24 rounded-sm bg-white border border-charcoal-200 shadow-sm flex items-center justify-center overflow-hidden">
                                 @if($job->industryPartner && $job->industryPartner->logo)
                                     <img src="{{ Storage::url($job->industryPartner->logo) }}" alt="{{ $job->industryPartner->name }}" class="w-full h-full object-contain p-3">
                                 @else
@@ -55,7 +55,7 @@
                                 </div>
                                 
                                 @if($job->application_deadline)
-                                    <div class="bg-charcoal-50 border border-charcoal-100 px-4 py-2.5 rounded-xl text-left lg:text-right shrink-0 w-full lg:w-auto relative z-10">
+                                    <div class="bg-charcoal-50 border border-charcoal-100 px-4 py-2.5 rounded-sm text-left lg:text-right shrink-0 w-full lg:w-auto relative z-10">
                                         <span class="block text-[11px] font-black text-charcoal-400 uppercase tracking-widest mb-0.5">Tenggat Waktu</span>
                                         <span class="block text-sm font-bold {{ $job->application_deadline->isPast() ? 'text-primary-600' : 'text-charcoal-800' }}">{{ $job->application_deadline->translatedFormat('d M Y') }}</span>
                                     </div>
@@ -65,18 +65,18 @@
                             <!-- Badges -->
                             <div class="flex flex-wrap gap-2.5 mb-5 relative z-10">
                                 @if($job->location)
-                                    <span class="inline-flex items-center px-3 py-1 bg-charcoal-50 text-charcoal-600 border border-charcoal-100 text-xs font-semibold rounded-full">
+                                    <span class="inline-flex items-center px-3 py-1 bg-charcoal-50 text-charcoal-600 border border-charcoal-100 text-xs font-semibold rounded-sm">
                                         <svg class="w-3.5 h-3.5 mr-1.5 text-charcoal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                         {{ $job->location }}
                                     </span>
                                 @endif
                                 @if($job->employment_type)
-                                    <span class="inline-flex items-center px-3 py-1 bg-amber-50 text-amber-700 border border-amber-100 text-xs font-bold rounded-full uppercase tracking-wide">
+                                    <span class="inline-flex items-center px-3 py-1 bg-amber-50 text-amber-700 border border-amber-100 text-xs font-bold rounded-sm uppercase tracking-wide">
                                         {{ $job->employment_type }}
                                     </span>
                                 @endif
                                 @if($job->salary_text)
-                                    <span class="inline-flex items-center px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs font-semibold rounded-full">
+                                    <span class="inline-flex items-center px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs font-semibold rounded-sm">
                                         <svg class="w-3.5 h-3.5 mr-1.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         {{ $job->salary_text }}
                                     </span>

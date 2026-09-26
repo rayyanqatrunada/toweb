@@ -3,10 +3,10 @@
         type="button"
         aria-label="Kembali ke atas halaman"
         title="Kembali ke atas"
-        class="fixed z-50 bottom-[76px] sm:bottom-20 lg:bottom-8 right-4 sm:right-6 lg:right-8 flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-red-600 to-rose-600 hover:from-slate-900 hover:to-zinc-900 text-white shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-slate-900/30 border border-white/20 transition-all duration-300 ease-out opacity-0 translate-y-6 scale-90 pointer-events-none group focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+        class="fixed z-50 bottom-[76px] sm:bottom-20 lg:bottom-8 right-4 sm:right-6 lg:right-8 flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-sm sm:rounded-[2px] bg-gradient-to-tr from-red-600 to-rose-600 hover:from-slate-900 hover:to-zinc-900 text-white shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-slate-900/30 border border-white/20 transition-all duration-300 ease-out opacity-0 translate-y-6 scale-90 pointer-events-none group focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
     
     {{-- Subtle pulse ring on hover --}}
-    <span class="absolute inset-0 rounded-2xl bg-red-500 opacity-0 group-hover:animate-ping group-hover:opacity-20 pointer-events-none transition-opacity duration-300"></span>
+    <span class="absolute inset-0 rounded-sm sm:rounded-[2px] bg-red-500 opacity-0 group-hover:animate-ping group-hover:opacity-20 pointer-events-none transition-opacity duration-300"></span>
 
     {{-- Arrow Icon with sleek upward hover bounce --}}
     <svg class="w-5 h-5 sm:w-6 sm:h-6 transform transition-transform duration-300 group-hover:-translate-y-1" 

@@ -117,14 +117,14 @@
                             @if(!empty($slide['button_primary_text']) || !empty($slide['button_secondary_text']))
                                 <div class="flex flex-row items-center gap-2.5 sm:gap-4">
                                     @if(!empty($slide['button_primary_text']))
-                                        <a href="{{ $slide['button_primary_url'] ?? '#' }}" class="flex-1 sm:flex-initial flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 bg-figma-red text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-xl sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-figma-dark-red transition-all duration-300 focus-ring shadow-md shadow-figma-red/20 active:scale-95 group">
+                                        <a href="{{ $slide['button_primary_url'] ?? '#' }}" class="flex-1 sm:flex-initial flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 bg-figma-red text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-sm sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-figma-dark-red transition-all duration-300 focus-ring shadow-md shadow-figma-red/20 active:scale-95 group">
                                             <span>{{ $slide['button_primary_text'] }}</span>
                                             <svg class="w-3.5 sm:w-5 h-3.5 sm:h-5 ml-1.5 sm:ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                                         </a>
                                     @endif
                                     
                                     @if(!empty($slide['button_secondary_text']))
-                                        <a href="{{ $slide['button_secondary_url'] ?? '#' }}" class="flex-1 sm:flex-initial box-border flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 border border-white/30 sm:border-2 sm:border-white/20 bg-white/10 sm:bg-white/5 backdrop-blur-sm text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-xl sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-white/15 hover:border-white/40 transition-all duration-300 focus-ring active:scale-95">
+                                        <a href="{{ $slide['button_secondary_url'] ?? '#' }}" class="flex-1 sm:flex-initial box-border flex justify-center items-center px-4 sm:px-8 py-2.5 sm:py-4 border border-white/30 sm:border-2 sm:border-white/20 bg-white/10 sm:bg-white/5 backdrop-blur-sm text-white font-sans font-bold text-[12px] sm:text-[15px] tracking-tight uppercase rounded-sm sm:rounded-[2px] h-[44px] sm:h-[54px] hover:bg-white/15 hover:border-white/40 transition-all duration-300 focus-ring active:scale-95">
                                             <span>{{ $slide['button_secondary_text'] }}</span>
                                         </a>
                                     @endif

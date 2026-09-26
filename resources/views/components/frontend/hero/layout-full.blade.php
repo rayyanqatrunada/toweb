@@ -34,10 +34,10 @@
             </x-frontend.hero.description>
             
             <x-frontend.hero.cta-group>
-                <a href="#about" class="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-semibold rounded-md text-white bg-red-600 hover:bg-red-700 md:text-lg transition-all shadow-lg hover:shadow-red-600/30 hover:-translate-y-0.5">
+                <a href="#about" class="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-semibold rounded-sm sm:rounded-[2px] text-white bg-red-600 hover:bg-red-700 md:text-lg transition-all shadow-lg hover:shadow-red-600/30 hover:-translate-y-0.5">
                     Jelajahi Jurusan
                 </a>
-                <a href="{{ route('academic.programs') ?? '/akademik/program' }}" class="inline-flex items-center justify-center px-8 py-3.5 border-2 border-white/20 text-base font-semibold rounded-md text-white bg-transparent hover:bg-white/10 md:text-lg transition-all backdrop-blur-sm">
+                <a href="{{ route('academic.programs') ?? '/akademik/program' }}" class="inline-flex items-center justify-center px-8 py-3.5 border-2 border-white/20 text-base font-semibold rounded-sm sm:rounded-[2px] text-white bg-transparent hover:bg-white/10 md:text-lg transition-all backdrop-blur-sm">
                     Lihat Program Keahlian
                 </a>
             </x-frontend.hero.cta-group>

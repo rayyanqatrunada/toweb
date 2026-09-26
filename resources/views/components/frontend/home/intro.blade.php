@@ -47,7 +47,7 @@
                 <div class="hidden sm:block absolute -bottom-8 -left-8 w-48 h-48 bg-figma-red/5 -z-10"></div>
                 
                 <!-- Main Image Card -->
-                <div class="relative w-full aspect-[16/10] sm:aspect-[4/3] bg-gray-200 overflow-hidden shadow-md sm:shadow-2xl shadow-charcoal-900/5 rounded-2xl sm:rounded-none">
+                <div class="relative w-full aspect-[16/10] sm:aspect-[4/3] bg-gray-200 overflow-hidden shadow-md sm:shadow-2xl shadow-charcoal-900/5 rounded-sm sm:rounded-none">
                     @php
                         $aboutImage = app(\App\Services\SettingsService::class)->get('homepage_about_image');
                     @endphp
@@ -57,11 +57,11 @@
                          loading="lazy">
                     
                     <!-- Inner accent frame -->
-                    <div class="absolute inset-0 border-[6px] sm:border-[12px] border-white/15 pointer-events-none rounded-2xl sm:rounded-none"></div>
+                    <div class="absolute inset-0 border-[6px] sm:border-[12px] border-white/15 pointer-events-none rounded-sm sm:rounded-none"></div>
                 </div>
 
                 <!-- Floating Stats/Label (Placed outside overflow-hidden so it's never clipped) -->
-                <div class="absolute bottom-3 left-3 sm:-bottom-6 sm:-left-6 md:-left-8 bg-figma-dark text-white p-2.5 sm:p-5 lg:p-6 shadow-2xl flex items-center gap-2.5 sm:gap-4 rounded-xl sm:rounded-sm z-20">
+                <div class="absolute bottom-3 left-3 sm:-bottom-6 sm:-left-6 md:-left-8 bg-figma-dark text-white p-2.5 sm:p-5 lg:p-6 shadow-2xl flex items-center gap-2.5 sm:gap-4 rounded-sm sm:rounded-none z-20">
                     <div class="text-[24px] sm:text-[36px] lg:text-[40px] font-heading font-black leading-none text-figma-red shrink-0">70%</div>
                     <div class="font-sans text-[10px] sm:text-[13px] lg:text-[14px] uppercase tracking-wider text-gray-300 max-w-[85px] sm:max-w-[120px] leading-tight font-medium">
                         Pembelajaran Praktik

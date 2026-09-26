@@ -22,7 +22,7 @@
         <x-frontend.layout.container class="max-w-4xl">
             <div class="space-y-6">
                 @forelse($announcements as $announcement)
-                    <a href="{{ route('announcements.show', $announcement->slug) }}" class="flex flex-col sm:flex-row bg-white rounded-3xl border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden group focus-visible:ring-4 focus-visible:ring-primary-500 focus:outline-none reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
+                    <a href="{{ route('announcements.show', $announcement->slug) }}" class="flex flex-col sm:flex-row bg-white rounded-sm sm:rounded-none border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden group focus-visible:ring-4 focus-visible:ring-primary-500 focus:outline-none reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
                         <!-- Date Block -->
                         <div class="bg-charcoal-50 group-hover:bg-primary-50 px-6 py-6 flex flex-col items-center justify-center border-b sm:border-b-0 sm:border-r border-charcoal-100 min-w-[140px] transition-colors duration-300">
                             <span class="text-sm font-bold uppercase tracking-widest text-charcoal-500 group-hover:text-primary-600 transition-colors">{{ $announcement->created_at->translatedFormat('M') }}</span>
@@ -47,12 +47,12 @@
                                 {{ Str::limit(strip_tags($announcement->content), 180) }}
                             </p>
                             <div class="flex flex-wrap items-center text-xs font-medium mt-auto gap-3">
-                                <span class="flex items-center text-charcoal-500 bg-charcoal-50 border border-charcoal-100 px-3 py-1.5 rounded-lg">
+                                <span class="flex items-center text-charcoal-500 bg-charcoal-50 border border-charcoal-100 px-3 py-1.5 rounded-sm">
                                     <svg class="w-4 h-4 mr-1.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> 
                                     {{ $announcement->created_at->diffForHumans() }}
                                 </span>
                                 @if($announcement->file_attachment)
-                                <span class="flex items-center text-primary-700 bg-primary-50 border border-primary-100 px-3 py-1.5 rounded-lg">
+                                <span class="flex items-center text-primary-700 bg-primary-50 border border-primary-100 px-3 py-1.5 rounded-sm">
                                     <svg class="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" /></svg> 
                                     Ada Lampiran
                                 </span>

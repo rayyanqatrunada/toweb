@@ -7,8 +7,8 @@
     'class' => ''
 ])
 
-<div {{ $attributes->merge(['class' => 'flex flex-col items-center justify-center py-16 px-4 text-center border-2 border-dashed border-charcoal-200 rounded-3xl bg-charcoal-50/50 ' . $class]) }}>
-    <div class="w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-white shadow-sm border border-charcoal-100 text-charcoal-400">
+<div {{ $attributes->merge(['class' => 'flex flex-col items-center justify-center py-16 px-4 text-center border-2 border-dashed border-charcoal-200 rounded-sm sm:rounded-none bg-charcoal-50/50 ' . $class]) }}>
+    <div class="w-16 h-16 mb-4 flex items-center justify-center rounded-sm bg-white shadow-sm border border-charcoal-100 text-charcoal-400">
         @if($icon)
             {{ $icon }}
         @else

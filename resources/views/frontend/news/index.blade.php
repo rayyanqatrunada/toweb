@@ -38,7 +38,7 @@
                     <!-- Featured Article (First Post) -->
                     @php $featured = $news->first(); @endphp
                     <div class="lg:col-span-12 reveal-on-scroll reveal-up mb-6">
-                        <article class="group grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0 items-stretch bg-white border border-charcoal-200 rounded-3xl overflow-hidden hover:border-charcoal-300 transition-colors duration-500 shadow-sm hover:shadow-md">
+                        <article class="group grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0 items-stretch bg-white border border-charcoal-200 rounded-sm sm:rounded-none overflow-hidden hover:border-charcoal-300 transition-colors duration-500 shadow-sm hover:shadow-md">
                             
                             <!-- Image -->
                             <a href="{{ route('news.show', $featured->slug) }}" class="lg:col-span-3 relative aspect-video md:aspect-auto overflow-hidden block bg-charcoal-100">
@@ -52,7 +52,7 @@
                                 
                                 @if($featured->category)
                                     <span class="absolute top-6 left-6">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-primary-600 text-white shadow-sm">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-widest bg-primary-600 text-white shadow-sm">
                                             {{ $featured->category->name }}
                                         </span>
                                     </span>
@@ -89,7 +89,7 @@
                     <!-- Regular Articles -->
                     @foreach($news->skip(1) as $post)
                         <div class="lg:col-span-4 reveal-on-scroll reveal-up">
-                            <article class="flex flex-col h-full bg-white border border-charcoal-200 rounded-3xl overflow-hidden group hover:border-charcoal-300 transition-colors duration-500 shadow-sm hover:shadow-md">
+                            <article class="flex flex-col h-full bg-white border border-charcoal-200 rounded-sm sm:rounded-none overflow-hidden group hover:border-charcoal-300 transition-colors duration-500 shadow-sm hover:shadow-md">
                                 <a href="{{ route('news.show', $post->slug) }}" class="relative aspect-[16/10] overflow-hidden block bg-charcoal-100 focus:outline-none">
                                     @if($post->thumbnail)
                                         <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}" class="object-cover w-full h-full grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" loading="lazy">
@@ -101,7 +101,7 @@
                                     
                                     @if($post->category)
                                         <span class="absolute top-4 left-4">
-                                            <span class="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-widest bg-white/90 backdrop-blur-sm text-charcoal-900 border border-charcoal-200 shadow-sm">
+                                            <span class="inline-flex items-center px-2.5 py-1 rounded-sm text-[10px] font-extrabold uppercase tracking-widest bg-white/90 backdrop-blur-sm text-charcoal-900 border border-charcoal-200 shadow-sm">
                                                 {{ $post->category->name }}
                                             </span>
                                         </span>

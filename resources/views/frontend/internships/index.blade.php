@@ -25,26 +25,26 @@
         <x-frontend.layout.container class="max-w-6xl">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 @forelse($internships as $internship)
-                    <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-charcoal-300 border border-charcoal-200 flex flex-col group transition-all duration-300 relative overflow-hidden focus-within:ring-4 focus-within:ring-primary-500/30 reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
+                    <div class="bg-white rounded-sm sm:rounded-none shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-charcoal-300 border border-charcoal-200 flex flex-col group transition-all duration-300 relative overflow-hidden focus-within:ring-4 focus-within:ring-primary-500/30 reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
                         <!-- Top Accent Line -->
                         <div class="absolute top-0 left-0 right-0 h-1.5 bg-primary-500 transition-all duration-300 opacity-0 group-hover:opacity-100"></div>
 
                         <!-- Status Badge -->
                         <div class="absolute top-5 right-5 z-10">
                             @if($internship->status === 'open')
-                                <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-full text-xs font-bold shadow-sm flex items-center">
+                                <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-sm text-xs font-bold shadow-sm flex items-center">
                                     <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span> Pendaftaran Buka
                                 </span>
                             @elseif($internship->status === 'ongoing')
-                                <span class="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-full text-xs font-bold shadow-sm">Sedang Berjalan</span>
+                                <span class="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-sm text-xs font-bold shadow-sm">Sedang Berjalan</span>
                             @else
-                                <span class="bg-charcoal-50 text-charcoal-600 border border-charcoal-200 px-3 py-1 rounded-full text-xs font-bold shadow-sm">Selesai</span>
+                                <span class="bg-charcoal-50 text-charcoal-600 border border-charcoal-200 px-3 py-1 rounded-sm text-xs font-bold shadow-sm">Selesai</span>
                             @endif
                         </div>
 
                         <div class="p-6 md:p-8 flex-grow flex flex-col pt-8">
                             <div class="flex items-center space-x-4 mb-6">
-                                <div class="w-14 h-14 rounded-2xl bg-white border border-charcoal-100 shadow-sm flex items-center justify-center overflow-hidden flex-shrink-0 p-2">
+                                <div class="w-14 h-14 rounded-sm bg-white border border-charcoal-100 shadow-sm flex items-center justify-center overflow-hidden flex-shrink-0 p-2">
                                     @if($internship->industryPartner && $internship->industryPartner->logo)
                                         <img src="{{ Storage::url($internship->industryPartner->logo) }}" alt="{{ $internship->industryPartner->name }}" class="w-full h-full object-contain">
                                     @else
@@ -63,7 +63,7 @@
                                 </a>
                             </h2>
                             
-                            <div class="mb-6 space-y-2.5 mt-auto bg-charcoal-50 p-4 rounded-xl border border-charcoal-100 relative z-10">
+                            <div class="mb-6 space-y-2.5 mt-auto bg-charcoal-50 p-4 rounded-sm border border-charcoal-100 relative z-10">
                                 <div class="flex justify-between items-center text-sm">
                                     <span class="text-charcoal-500 font-medium">Mulai:</span>
                                     <span class="font-bold text-charcoal-900">{{ $internship->start_date ? $internship->start_date->translatedFormat('d M Y') : '-' }}</span>
@@ -76,7 +76,7 @@
                             
                             <div class="flex items-center justify-between mt-2">
                                 <span class="text-sm font-bold text-primary-600 group-hover:underline relative z-10">Lihat Detail</span>
-                                <div class="w-8 h-8 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                                <div class="w-8 h-8 rounded-sm bg-primary-50 text-primary-600 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                                 </div>
                             </div>

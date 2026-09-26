@@ -293,7 +293,7 @@
                                                 
                                                 {{-- Hover Overlay with Zoom Icon --}}
                                                 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-3 text-center">
-                                                    <div class="w-9 h-9 rounded-full bg-white/90 text-[#1B1B1E] flex items-center justify-center mb-1 shadow-md transform group-hover:scale-110 transition-transform">
+                                                    <div class="w-9 h-9 rounded-sm bg-white/90 text-[#1B1B1E] flex items-center justify-center mb-1 shadow-md transform group-hover:scale-110 transition-transform">
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
                                                     </div>
                                                     <span class="font-sans font-bold text-[11px] text-white tracking-wider uppercase drop-shadow-sm">Lihat Foto</span>
@@ -519,7 +519,7 @@
             {{-- Close Button --}}
             <button type="button" 
                     @click="closeLightbox()" 
-                    class="absolute top-4 right-4 z-50 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full transition-colors focus:outline-none">
+                    class="absolute top-4 right-4 z-50 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-sm sm:rounded-[2px] transition-colors focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
@@ -530,7 +530,7 @@
                      class="max-w-full max-h-[80vh] object-contain rounded-[2px] shadow-2xl border border-white/10">
                 
                 {{-- Caption bar --}}
-                <div x-show="activeCaption" class="mt-3 px-4 py-1.5 bg-black/60 rounded-full text-white text-xs font-sans tracking-wide text-center">
+                <div x-show="activeCaption" class="mt-3 px-4 py-1.5 bg-black/60 rounded-sm sm:rounded-[2px] text-white text-xs font-sans tracking-wide text-center">
                     <span x-text="activeCaption"></span>
                 </div>
             </div>

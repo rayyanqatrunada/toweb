@@ -38,14 +38,14 @@
             <!-- Mobile: Horizontal Snap Carousel (< md) -->
             <div class="md:hidden flex gap-3.5 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 scrollbar-none">
                 <!-- Featured Card -->
-                <div class="w-[82vw] max-w-[310px] shrink-0 snap-center relative bg-charcoal-950 aspect-[16/12] rounded-2xl overflow-hidden group shadow-md">
+                <div class="w-[82vw] max-w-[310px] shrink-0 snap-center relative bg-charcoal-950 aspect-[16/12] rounded-sm overflow-hidden group shadow-md">
                     <img src="{{ $featuredFacility->photo ? Storage::url($featuredFacility->photo) : asset('storage/facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg') }}" 
                          alt="{{ $featuredFacility->name }}" 
                          class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/50 to-transparent"></div>
                     
                     <div class="absolute top-3 left-3">
-                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-figma-red text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
+                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-sm bg-figma-red text-white text-[10px] font-bold uppercase tracking-wider shadow-sm">
                             <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
                             Fasilitas Utama
                         </span>
@@ -65,14 +65,14 @@
 
                 <!-- Secondary Facility Cards -->
                 @foreach($otherFacilities as $facility)
-                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center relative bg-charcoal-900 aspect-[16/12] rounded-2xl overflow-hidden group shadow-md">
+                    <div class="w-[82vw] max-w-[310px] shrink-0 snap-center relative bg-charcoal-900 aspect-[16/12] rounded-sm overflow-hidden group shadow-md">
                         <img src="{{ $facility->photo ? Storage::url($facility->photo) : 'https://images.unsplash.com/photo-1625806693899-73e46c7de29b?q=80&w=600&auto=format&fit=crop' }}" 
                              alt="{{ $facility->name }}" 
                              class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/60 to-transparent"></div>
                         
                         <div class="absolute top-3 left-3">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-sm bg-white/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider">
                                 Laboratorium
                             </span>
                         </div>
@@ -91,7 +91,7 @@
                 @endforeach
 
                 <!-- Quick Browse All Card -->
-                <a href="{{ route('academic.facilities') }}" class="w-[65vw] max-w-[240px] shrink-0 snap-center bg-figma-red rounded-2xl p-5 flex flex-col items-center justify-center text-center text-white shadow-md active:scale-95 transition-transform">
+                <a href="{{ route('academic.facilities') }}" class="w-[65vw] max-w-[240px] shrink-0 snap-center bg-figma-red rounded-sm p-5 flex flex-col items-center justify-center text-center text-white shadow-md active:scale-95 transition-transform">
                     <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mb-3">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </div>
@@ -104,7 +104,7 @@
             <div class="hidden md:grid md:grid-cols-12 gap-6 lg:gap-8 reveal-on-scroll reveal-up">
                 
                 <!-- Featured Facility -->
-                <div class="md:col-span-8 relative bg-charcoal-950 min-h-[400px] overflow-hidden group rounded-xl">
+                <div class="md:col-span-8 relative bg-charcoal-950 min-h-[400px] overflow-hidden group rounded-sm sm:rounded-none">
                     <img src="{{ $featuredFacility->photo ? Storage::url($featuredFacility->photo) : asset('storage/facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg') }}" 
                          alt="{{ $featuredFacility->name }}" 
                          class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" loading="lazy">
@@ -126,7 +126,7 @@
                 <!-- Secondary Facilities -->
                 <div class="md:col-span-4 flex flex-col gap-6 lg:gap-8">
                     @foreach($otherFacilities as $index => $facility)
-                        <div class="relative bg-charcoal-900 flex-1 min-h-[200px] overflow-hidden group rounded-xl">
+                        <div class="relative bg-charcoal-900 flex-1 min-h-[200px] overflow-hidden group rounded-sm sm:rounded-none">
                             <img src="{{ $facility->photo ? Storage::url($facility->photo) : 'https://images.unsplash.com/photo-1625806693899-73e46c7de29b?q=80&w=600&auto=format&fit=crop' }}" 
                                  alt="{{ $facility->name }}" 
                                  class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" loading="lazy">
@@ -142,8 +142,8 @@
                     @endforeach
                     
                     @if($otherFacilities->count() < 2)
-                        <a href="{{ route('academic.facilities') }}" class="flex-1 min-h-[200px] bg-figma-red text-white flex flex-col items-center justify-center p-8 text-center hover:bg-figma-dark-red transition-colors group rounded-xl">
-                            <svg class="w-10 h-10 mb-4 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        <a href="{{ route('academic.facilities') }}" class="flex-1 min-h-[200px] bg-figma-red text-white flex flex-col items-center justify-center p-8 text-center hover:bg-figma-dark-red transition-colors group rounded-sm sm:rounded-none">
+                            <svg class="w-10 h-10 mb-4 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                             <span class="font-heading font-bold text-[20px] mb-2">Semua Fasilitas</span>
                             <span class="font-sans text-[14px] text-white/80">Jelajahi ekosistem praktik {{ $settings->get('site_short_name', 'TSM') }}</span>
                         </a>
@@ -154,7 +154,7 @@
             
             @if($otherFacilities->count() >= 2)
             <div class="mt-6 sm:mt-12 text-center">
-                <a href="{{ route('academic.facilities') }}" class="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 border border-figma-dark text-figma-dark font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wide hover:bg-figma-dark hover:text-white transition-colors focus-ring rounded-xl sm:rounded-sm active:scale-95">
+                <a href="{{ route('academic.facilities') }}" class="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-3.5 border border-figma-dark text-figma-dark font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wide hover:bg-figma-dark hover:text-white transition-colors focus-ring rounded-sm sm:rounded-[2px] active:scale-95">
                     Jelajahi Semua Fasilitas
                 </a>
             </div>

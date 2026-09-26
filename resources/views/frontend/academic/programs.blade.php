@@ -55,17 +55,17 @@
 
                 <!-- 3 Key Metric Highlight Pills -->
                 <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 reveal-on-scroll reveal-up delay-300">
-                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-sm font-medium text-white shadow-xs">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-sm bg-white/10 border border-white/15 backdrop-blur-md text-sm font-medium text-white shadow-xs">
                         <span class="w-2.5 h-2.5 rounded-full bg-figma-red animate-pulse"></span>
                         <span>Proporsi: <strong class="text-white font-bold">{{ $settings->get('academic_praktikum_pct', '70%') }} Praktik</strong> / {{ $settings->get('academic_teori_pct', '30%') }} Teori</span>
                     </div>
 
-                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-sm font-medium text-white shadow-xs">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-sm bg-white/10 border border-white/15 backdrop-blur-md text-sm font-medium text-white shadow-xs">
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
                         <span>Mitra Binaan: <strong class="text-white font-bold">{{ $settings->get('academic_partner_name', 'Astra Honda Motor (AHASS)') }}</strong></span>
                     </div>
 
-                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-sm font-medium text-white shadow-xs">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-sm bg-white/10 border border-white/15 backdrop-blur-md text-sm font-medium text-white shadow-xs">
                         <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
                         <span>Sertifikasi: <strong class="text-white font-bold">BNSP & Honda Level 1</strong></span>
                     </div>
@@ -101,13 +101,13 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                     
                     <!-- 1. Sistem Mesin (Engine) -->
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 sm:p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-6 sm:p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
                         <div>
                             <div class="flex items-center justify-between mb-4">
-                                <span class="w-9 h-9 rounded-xl bg-figma-red/10 text-figma-red group-hover:bg-figma-red group-hover:text-white font-heading font-black text-sm flex items-center justify-center transition-colors">
+                                <span class="w-9 h-9 rounded-sm bg-figma-red/10 text-figma-red group-hover:bg-figma-red group-hover:text-white font-heading font-black text-sm flex items-center justify-center transition-colors">
                                     01
                                 </span>
-                                <span class="text-xs font-bold uppercase tracking-wider text-gray-500 bg-white px-2.5 py-1 rounded-full border border-gray-200">
+                                <span class="text-xs font-bold uppercase tracking-wider text-gray-500 bg-white px-2.5 py-1 rounded-sm border border-gray-200">
                                     Engine
                                 </span>
                             </div>
@@ -137,13 +137,13 @@
                     </div>
 
                     <!-- 2. Sistem Sasis (Chassis) -->
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 sm:p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-6 sm:p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
                         <div>
                             <div class="flex items-center justify-between mb-4">
-                                <span class="w-9 h-9 rounded-xl bg-figma-red/10 text-figma-red group-hover:bg-figma-red group-hover:text-white font-heading font-black text-sm flex items-center justify-center transition-colors">
+                                <span class="w-9 h-9 rounded-sm bg-figma-red/10 text-figma-red group-hover:bg-figma-red group-hover:text-white font-heading font-black text-sm flex items-center justify-center transition-colors">
                                     02
                                 </span>
-                                <span class="text-xs font-bold uppercase tracking-wider text-gray-500 bg-white px-2.5 py-1 rounded-full border border-gray-200">
+                                <span class="text-xs font-bold uppercase tracking-wider text-gray-500 bg-white px-2.5 py-1 rounded-sm border border-gray-200">
                                     Chassis
                                 </span>
                             </div>
@@ -173,13 +173,13 @@
                     </div>
 
                     <!-- 3. Sistem Kelistrikan (Electrical) -->
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 sm:p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-6 sm:p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
                         <div>
                             <div class="flex items-center justify-between mb-4">
-                                <span class="w-9 h-9 rounded-xl bg-figma-red/10 text-figma-red group-hover:bg-figma-red group-hover:text-white font-heading font-black text-sm flex items-center justify-center transition-colors">
+                                <span class="w-9 h-9 rounded-sm bg-figma-red/10 text-figma-red group-hover:bg-figma-red group-hover:text-white font-heading font-black text-sm flex items-center justify-center transition-colors">
                                     03
                                 </span>
-                                <span class="text-xs font-bold uppercase tracking-wider text-gray-500 bg-white px-2.5 py-1 rounded-full border border-gray-200">
+                                <span class="text-xs font-bold uppercase tracking-wider text-gray-500 bg-white px-2.5 py-1 rounded-sm border border-gray-200">
                                     Electrical
                                 </span>
                             </div>
@@ -209,13 +209,13 @@
                     </div>
 
                     <!-- 4. Pengelolaan Bengkel (Management) -->
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-6 sm:p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-300">
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-6 sm:p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-300">
                         <div>
                             <div class="flex items-center justify-between mb-4">
-                                <span class="w-9 h-9 rounded-xl bg-figma-red/10 text-figma-red group-hover:bg-figma-red group-hover:text-white font-heading font-black text-sm flex items-center justify-center transition-colors">
+                                <span class="w-9 h-9 rounded-sm bg-figma-red/10 text-figma-red group-hover:bg-figma-red group-hover:text-white font-heading font-black text-sm flex items-center justify-center transition-colors">
                                     04
                                 </span>
-                                <span class="text-xs font-bold uppercase tracking-wider text-gray-500 bg-white px-2.5 py-1 rounded-full border border-gray-200">
+                                <span class="text-xs font-bold uppercase tracking-wider text-gray-500 bg-white px-2.5 py-1 rounded-sm border border-gray-200">
                                     Management
                                 </span>
                             </div>
@@ -278,11 +278,11 @@
                     <div class="lg:col-span-4 space-y-4">
                         
                         <!-- Segmented Level Switcher -->
-                        <div class="bg-white border border-gray-200 rounded-2xl p-2.5 shadow-xs space-y-2">
+                        <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-2.5 shadow-xs space-y-2">
                             <button 
-                                @click="activeTab = 'kelas10'"
-                                :class="activeTab === 'kelas10' ? 'bg-figma-dark text-white shadow-md' : 'text-gray-700 hover:bg-gray-100'"
-                                class="w-full text-left px-5 py-4 rounded-xl font-sans transition-all flex items-center justify-between group cursor-pointer"
+                                 @click="activeTab = 'kelas10'"
+                                 :class="activeTab === 'kelas10' ? 'bg-figma-dark text-white shadow-md' : 'text-gray-700 hover:bg-gray-100'"
+                                 class="w-full text-left px-5 py-4 rounded-sm sm:rounded-[2px] font-sans transition-all flex items-center justify-between group cursor-pointer"
                             >
                                 <div>
                                     <span class="text-xs font-bold uppercase tracking-wider block" :class="activeTab === 'kelas10' ? 'text-figma-red' : 'text-gray-400'">Tingkat 1 • Fase E</span>
@@ -294,9 +294,9 @@
                             </button>
 
                             <button 
-                                @click="activeTab = 'kelas11'"
-                                :class="activeTab === 'kelas11' ? 'bg-figma-dark text-white shadow-md' : 'text-gray-700 hover:bg-gray-100'"
-                                class="w-full text-left px-5 py-4 rounded-xl font-sans transition-all flex items-center justify-between group cursor-pointer"
+                                 @click="activeTab = 'kelas11'"
+                                 :class="activeTab === 'kelas11' ? 'bg-figma-dark text-white shadow-md' : 'text-gray-700 hover:bg-gray-100'"
+                                 class="w-full text-left px-5 py-4 rounded-sm sm:rounded-[2px] font-sans transition-all flex items-center justify-between group cursor-pointer"
                             >
                                 <div>
                                     <span class="text-xs font-bold uppercase tracking-wider block" :class="activeTab === 'kelas11' ? 'text-figma-red' : 'text-gray-400'">Tingkat 2 • Fase F</span>
@@ -308,9 +308,9 @@
                             </button>
 
                             <button 
-                                @click="activeTab = 'kelas12'"
-                                :class="activeTab === 'kelas12' ? 'bg-figma-dark text-white shadow-md' : 'text-gray-700 hover:bg-gray-100'"
-                                class="w-full text-left px-5 py-4 rounded-xl font-sans transition-all flex items-center justify-between group cursor-pointer"
+                                 @click="activeTab = 'kelas12'"
+                                 :class="activeTab === 'kelas12' ? 'bg-figma-dark text-white shadow-md' : 'text-gray-700 hover:bg-gray-100'"
+                                 class="w-full text-left px-5 py-4 rounded-sm sm:rounded-[2px] font-sans transition-all flex items-center justify-between group cursor-pointer"
                             >
                                 <div>
                                     <span class="text-xs font-bold uppercase tracking-wider block" :class="activeTab === 'kelas12' ? 'text-emerald-400' : 'text-gray-400'">Tingkat 3 • Pemantapan</span>
@@ -323,9 +323,9 @@
                         </div>
 
                         <!-- Syllabus Download CTA Box -->
-                        <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-xs">
+                        <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-6 shadow-xs">
                             <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 rounded-xl bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
+                                <div class="w-10 h-10 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
                                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                     </svg>
@@ -341,7 +341,7 @@
                             <button 
                                 type="button"
                                 @click="$dispatch('open-modal', 'syllabus-modal')"
-                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-figma-dark text-white hover:bg-charcoal-800 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm sm:rounded-[2px] bg-figma-dark text-white hover:bg-charcoal-800 text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
                             >
                                 <svg class="w-4 h-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -358,10 +358,10 @@
                         
                         <!-- TAB 1: KELAS X -->
                         <div x-show="activeTab === 'kelas10'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
-                            <div class="bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl shadow-xs">
+                            <div class="bg-white border border-gray-200 p-6 sm:p-8 rounded-sm sm:rounded-none shadow-xs">
                                 <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-gray-100 mb-6">
                                     <div>
-                                        <span class="px-3 py-1 bg-figma-red/10 text-figma-red text-xs font-bold uppercase rounded-full inline-block mb-2">
+                                        <span class="px-3 py-1 bg-figma-red/10 text-figma-red text-xs font-bold uppercase rounded-sm inline-block mb-2">
                                             Tingkat 1 • Fase E
                                         </span>
                                         <h3 class="font-heading font-bold text-2xl text-figma-dark">
@@ -387,22 +387,22 @@
 
                                 <!-- 4 Subject Modules -->
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-figma-red uppercase tracking-wider">GTO</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Gambar Teknik Otomotif</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Standarisasi ISO, proyeksi ortogonal komponen mesin, dan pembacaan diagram wiring kendaraan roda dua.</p>
                                     </div>
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-figma-red uppercase tracking-wider">TDO</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Teknologi Dasar Otomotif</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Konversi energi motor 4 tak, dasar hidrolika, pneumatik, dan karakteristik bahan bakar serta pelumas resmi.</p>
                                     </div>
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-figma-red uppercase tracking-wider">PDO</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Peralatan Dasar Otomotif</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Penguasaan hand tools, special service tools (SST), dan alat ukur presisi (Jangka Sorong, Micrometer sekrup).</p>
                                     </div>
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-figma-red uppercase tracking-wider">KKA</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Koding & AI Otomotif</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Logika komputasi, sensor elektronik cerdas, dan kontrol otomatis sistem kendaraan injeksi modern.</p>
@@ -413,10 +413,10 @@
 
                         <!-- TAB 2: KELAS XI -->
                         <div x-show="activeTab === 'kelas11'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
-                            <div class="bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl shadow-xs">
+                            <div class="bg-white border border-gray-200 p-6 sm:p-8 rounded-sm sm:rounded-none shadow-xs">
                                 <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-gray-100 mb-6">
                                     <div>
-                                        <span class="px-3 py-1 bg-figma-dark text-white text-xs font-bold uppercase rounded-full inline-block mb-2">
+                                        <span class="px-3 py-1 bg-figma-dark text-white text-xs font-bold uppercase rounded-sm inline-block mb-2">
                                             Tingkat 2 • Fase F
                                         </span>
                                         <h3 class="font-heading font-bold text-2xl text-figma-dark">
@@ -442,22 +442,22 @@
 
                                 <!-- 4 Subject Modules -->
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-figma-red uppercase tracking-wider">ENGINE</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Perawatan Mesin Sepeda Motor</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Tune-up injeksi PGM-FI, penyetelan katup presisi, overhaul kepala silinder, dan sistem pendingin radiator.</p>
                                     </div>
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-figma-red uppercase tracking-wider">CHASSIS</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Perawatan Sasis & Kemudi</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Perbaikan sistem rem hidrolik CBS/ABS, shock absorber teleskopik/monoshock, dan wheel alignment roda.</p>
                                     </div>
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-figma-red uppercase tracking-wider">ELECTRICAL</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Kelistrikan Bodi & Smart Key</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Scanner diagnostik HIDS, sistem pengisian ACG starter, pencahayaan LED, dan troubleshooting Smart Key.</p>
                                     </div>
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-figma-red uppercase tracking-wider">PRAKTIK</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Perawatan Berkala & Servis Nyata</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Simulasi alur Service Advisor (SA), estimasi biaya suku cadang, dan standar pemeliharaan berkala motor.</p>
@@ -468,10 +468,10 @@
 
                         <!-- TAB 3: KELAS XII -->
                         <div x-show="activeTab === 'kelas12'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
-                            <div class="bg-white border border-gray-200 p-6 sm:p-8 rounded-2xl shadow-xs">
+                            <div class="bg-white border border-gray-200 p-6 sm:p-8 rounded-sm sm:rounded-none shadow-xs">
                                 <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-gray-100 mb-6">
                                     <div>
-                                        <span class="px-3 py-1 bg-emerald-700 text-white text-xs font-bold uppercase rounded-full inline-block mb-2">
+                                        <span class="px-3 py-1 bg-emerald-700 text-white text-xs font-bold uppercase rounded-sm inline-block mb-2">
                                             Tingkat 3 • Pemantapan
                                         </span>
                                         <h3 class="font-heading font-bold text-2xl text-figma-dark">
@@ -497,22 +497,22 @@
 
                                 <!-- 4 Subject Modules -->
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">MAGANG</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">PKL Industri AHASS 6 Bulan</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Imersi kerja penuh di bengkel resmi Honda, mengasah kecepatan, ketepatan, dan mentalitas profesional.</p>
                                     </div>
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">ADVANCED</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Troubleshooting Kompleks</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Analisis kasus kerusakan mesin injeksi yang tidak teratur, diagnosis kelistrikan rumit, dan uji performa dyno.</p>
                                     </div>
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">BENGKEL</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Manajemen Bengkel & SA</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Sistem informasi manajemen bengkel AHASS, administrasi garansi suku cadang, dan kepuasan pelanggan.</p>
                                     </div>
-                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-xl hover:bg-white hover:border-gray-300 transition-colors">
+                                    <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
                                         <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">SERTIFIKASI</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">UKK & Uji Lisensi BNSP</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Uji Kompetensi Keahlian dinilai asesor DUDI Astra Motor dan sertifikasi lisensi BNSP sebelum wisuda.</p>
@@ -553,9 +553,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     
                     <!-- 1. BNSP LSP-P1 -->
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-7 hover:border-amber-500 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-amber-500 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <div class="w-12 h-12 rounded-sm bg-amber-500/10 text-amber-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
@@ -577,9 +577,9 @@
                     </div>
 
                     <!-- 2. Lisensi Honda Motor -->
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-figma-red/10 text-figma-red flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <div class="w-12 h-12 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
@@ -601,9 +601,9 @@
                     </div>
 
                     <!-- 3. UKK Kemendikbud -->
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-2xl p-7 hover:border-emerald-600 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-emerald-600 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
                         <div>
-                            <div class="w-12 h-12 rounded-xl bg-emerald-600/10 text-emerald-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <div class="w-12 h-12 rounded-sm bg-emerald-600/10 text-emerald-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                                 </svg>
@@ -644,13 +644,13 @@
                     Dapatkan kurikulum berstandar Astra Honda Motor, sertifikasi BNSP resmi, dan fasilitas praktik berstandar bengkel resmi AHASS.
                 </p>
                 <div class="flex flex-wrap items-center justify-center gap-4">
-                    <a href="{{ route('partnership.index') }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-figma-red text-white hover:bg-red-700 font-sans font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all">
+                    <a href="{{ route('partnership.index') }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm sm:rounded-[2px] bg-figma-red text-white hover:bg-red-700 font-sans font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all">
                         <span>Lihat Mitra Industri & AHASS</span>
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </a>
-                    <a href="{{ route('academic.facilities') }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-sans font-bold text-sm sm:text-base border border-white/20 transition-all">
+                    <a href="{{ route('academic.facilities') }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm sm:rounded-[2px] bg-white/10 hover:bg-white/20 text-white font-sans font-bold text-sm sm:text-base border border-white/20 transition-all">
                         <span>Fasilitas Bengkel</span>
                     </a>
                 </div>
@@ -669,7 +669,7 @@
                     <span class="text-xs font-bold text-figma-red uppercase tracking-wider block">Dokumen Resmi</span>
                     <h3 class="font-heading font-bold text-xl text-figma-dark">Ringkasan Silabus & Kurikulum</h3>
                 </div>
-                <button type="button" @click="$dispatch('close-modal', 'syllabus-modal')" class="text-gray-400 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                <button type="button" @click="$dispatch('close-modal', 'syllabus-modal')" class="text-gray-400 hover:text-gray-700 p-2 rounded-sm hover:bg-gray-100 transition-colors">
                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -681,14 +681,14 @@
             </p>
 
             <div class="space-y-4 mb-6">
-                <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <div class="p-4 bg-gray-50 rounded-sm border border-gray-200">
                     <h4 class="font-heading font-bold text-sm text-figma-dark mb-2">Alokasi Jam Pelajaran (JP):</h4>
                     <p class="text-xs sm:text-sm text-gray-700 whitespace-pre-line leading-relaxed">
                         {{ $settings->get('academic_syllabus_modal_hours', "• Kelas X (Fase E): Dasar Kejuruan Otomotif (12 JP)\n• Kelas XI (Fase F): Konsentrasi Mesin, Sasis, Kelistrikan (18 JP) + Praktikum Kejuruan\n• Kelas XII (Fase F): Pemantapan Troubleshooting & PKL AHASS (6 Bulan Penuh)") }}
                     </p>
                 </div>
 
-                <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <div class="p-4 bg-gray-50 rounded-sm border border-gray-200">
                     <h4 class="font-heading font-bold text-sm text-figma-dark mb-2">Standar Kelulusan:</h4>
                     <p class="text-xs sm:text-sm text-gray-700 leading-relaxed">
                         {{ $settings->get('academic_syllabus_modal_standards', 'Siswa dinyatakan kompeten setelah menyelesaikan seluruh modul capaian pembelajaran, lulus UKK dari asesor industri Astra Motor, dan bersertifikasi BNSP.') }}
@@ -699,11 +699,11 @@
             <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                 <span class="text-xs text-gray-500">Format: Dokumen Digital Kurikulum Merdeka</span>
                 <div class="flex items-center gap-3">
-                    <button type="button" @click="$dispatch('close-modal', 'syllabus-modal')" class="px-4 py-2 rounded-lg border border-gray-300 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
+                    <button type="button" @click="$dispatch('close-modal', 'syllabus-modal')" class="px-4 py-2 rounded-sm sm:rounded-[2px] border border-gray-300 text-xs sm:text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
                         Tutup
                     </button>
                     @if($syllabus = $settings->get('academic_syllabus_file'))
-                        <a href="{{ Storage::url($syllabus) }}" target="_blank" download class="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-figma-red text-white text-xs sm:text-sm font-semibold hover:bg-red-700 transition-colors">
+                        <a href="{{ Storage::url($syllabus) }}" target="_blank" download class="inline-flex items-center gap-1.5 px-5 py-2 rounded-sm sm:rounded-[2px] bg-figma-red text-white text-xs sm:text-sm font-semibold hover:bg-red-700 transition-colors">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>

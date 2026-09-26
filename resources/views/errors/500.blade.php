@@ -30,11 +30,11 @@
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <button type="button" onclick="window.location.reload()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-figma-red hover:bg-figma-dark-red text-white font-sans font-bold text-[14px] uppercase tracking-wider rounded-xl transition-all shadow-md shadow-figma-red/20 active:scale-[0.98]">
+                <button type="button" onclick="window.location.reload()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-figma-red hover:bg-figma-dark-red text-white font-sans font-bold text-[14px] uppercase tracking-wider rounded-sm sm:rounded-[2px] transition-all shadow-md shadow-figma-red/20 active:scale-[0.98]">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
                     <span>Muat Ulang Halaman</span>
                 </button>
-                <a href="{{ route('home') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-gray-50 text-figma-dark border border-[#E4E1E5] font-sans font-bold text-[14px] uppercase tracking-wider rounded-xl transition-all shadow-sm active:scale-[0.98]">
+                <a href="{{ route('home') }}" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-gray-50 text-figma-dark border border-[#E4E1E5] font-sans font-bold text-[14px] uppercase tracking-wider rounded-sm sm:rounded-[2px] transition-all shadow-sm active:scale-[0.98]">
                     <span>Kembali ke Beranda</span>
                 </a>
             </div>

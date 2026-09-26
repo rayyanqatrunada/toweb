@@ -30,7 +30,7 @@
         </div>
         <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto reveal-on-scroll reveal-up">
             @if($post->category)
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-primary-100 text-primary-700 border border-primary-200 shadow-sm mb-6">
+                <span class="inline-flex items-center px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-widest bg-primary-100 text-primary-700 border border-primary-200 shadow-sm mb-6">
                     {{ $post->category->name }}
                 </span>
             @endif
@@ -52,12 +52,12 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             
             @if($post->thumbnail)
-                <div class="mb-12 rounded-3xl overflow-hidden shadow-xl shadow-charcoal-900/5 border border-charcoal-100">
+                <div class="mb-12 rounded-sm sm:rounded-none overflow-hidden shadow-xl shadow-charcoal-900/5 border border-charcoal-100">
                     <img src="{{ Storage::url($post->thumbnail) }}" alt="{{ $post->title }}" fetchpriority="high" class="w-full object-cover max-h-[500px]" loading="eager">
                 </div>
             @endif
 
-            <div class="prose prose-lg md:prose-xl prose-charcoal max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-p:leading-relaxed prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-img:rounded-3xl prose-img:shadow-md">
+            <div class="prose prose-lg md:prose-xl prose-charcoal max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-headings:text-charcoal-900 prose-p:text-charcoal-700 prose-p:leading-relaxed prose-a:text-primary-600 hover:prose-a:text-primary-700 prose-img:rounded-sm prose-img:shadow-md">
                 {!! \App\Support\HtmlSanitizer::clean($post->content) !!}
             </div>
 
@@ -65,7 +65,7 @@
                 <div class="mt-16 pt-8 border-t border-charcoal-100 flex flex-wrap gap-2 items-center">
                     <span class="text-charcoal-500 text-sm font-bold uppercase tracking-wider mr-2">Tags:</span>
                     @foreach($post->tags as $tag)
-                        <span class="bg-charcoal-50 border border-charcoal-200 text-charcoal-700 px-3 py-1 rounded-lg text-sm font-semibold hover:bg-charcoal-100 transition-colors cursor-default shadow-sm">{{ $tag->name }}</span>
+                        <span class="bg-charcoal-50 border border-charcoal-200 text-charcoal-700 px-3 py-1 rounded-sm text-sm font-semibold hover:bg-charcoal-100 transition-colors cursor-default shadow-sm">{{ $tag->name }}</span>
                     @endforeach
                 </div>
             @endif

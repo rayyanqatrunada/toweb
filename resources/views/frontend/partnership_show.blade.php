@@ -52,7 +52,7 @@
                 </h1>
 
                 <!-- Grade Status Pill -->
-                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-bold mb-6 reveal-on-scroll reveal-up delay-200">
+                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-sm bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-bold mb-6 reveal-on-scroll reveal-up delay-200">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span>{{ $partner->partnership_level ?? 'Kelas Industri Binaan Grade A+' }}</span>
                 </div>
@@ -137,8 +137,8 @@
 
                         <!-- 4 Highlights Cards -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-xl">
-                                <div class="w-8 h-8 rounded-lg bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
+                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-sm">
+                                <div class="w-8 h-8 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                     </svg>
@@ -146,8 +146,8 @@
                                 <span class="text-sm font-semibold text-figma-dark">Kurikulum Injeksi PGM-FI AMTC</span>
                             </div>
 
-                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-xl">
-                                <div class="w-8 h-8 rounded-lg bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
+                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-sm">
+                                <div class="w-8 h-8 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                     </svg>
@@ -155,8 +155,8 @@
                                 <span class="text-sm font-semibold text-figma-dark">Lab Standar AHASS Grade A+</span>
                             </div>
 
-                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-xl">
-                                <div class="w-8 h-8 rounded-lg bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
+                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-sm">
+                                <div class="w-8 h-8 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                     </svg>
@@ -164,8 +164,8 @@
                                 <span class="text-sm font-semibold text-figma-dark">Magang PKL 6 Bulan di AHASS</span>
                             </div>
 
-                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-xl">
-                                <div class="w-8 h-8 rounded-lg bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
+                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-sm">
+                                <div class="w-8 h-8 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                     </svg>
@@ -177,13 +177,13 @@
 
                     <!-- Right: Official MoU Status Card (5 Cols) -->
                     <div class="lg:col-span-5 reveal-on-scroll reveal-up delay-100">
-                        <div class="bg-gray-50/80 border border-gray-200 p-6 sm:p-8 rounded-2xl shadow-xs">
+                        <div class="bg-gray-50/80 border border-gray-200 p-6 sm:p-8 rounded-sm sm:rounded-none shadow-xs">
                             <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-6">
                                 <div class="flex items-center gap-3">
                                     @if($partner->logo)
                                         <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="h-10 w-auto object-contain">
                                     @else
-                                        <div class="w-10 h-10 bg-figma-red text-white font-heading font-black text-sm flex items-center justify-center rounded-xl">
+                                        <div class="w-10 h-10 bg-figma-red text-white font-heading font-black text-sm flex items-center justify-center rounded-sm">
                                             AHM
                                         </div>
                                     @endif
@@ -192,7 +192,7 @@
                                         <span class="text-xs text-gray-500">Memorandum of Understanding</span>
                                     </div>
                                 </div>
-                                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase">
+                                <span class="px-3 py-1 rounded-sm bg-emerald-100 text-emerald-800 text-xs font-bold uppercase">
                                     Aktif
                                 </span>
                             </div>
@@ -216,13 +216,13 @@
                                 </div>
                             </div>
 
-                            <div class="p-4 bg-white rounded-xl border border-gray-200 mb-6 text-xs text-gray-600 leading-relaxed">
+                            <div class="p-4 bg-white rounded-sm border border-gray-200 mb-6 text-xs text-gray-600 leading-relaxed">
                                 <strong class="text-figma-dark block mb-1">Cakupan Payung Hukum:</strong>
                                 Sinkronisasi kompetensi kurikulum nasional, pengadaan modul resmi AMTC, pelatihan guru berkala di Astra Motor Training Center, dan penempatan PKL wajib.
                             </div>
 
                             @if($partner->website)
-                                <a href="{{ $partner->website }}" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-figma-dark text-white hover:bg-charcoal-800 text-sm font-semibold transition-colors">
+                                <a href="{{ $partner->website }}" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm sm:rounded-[2px] bg-figma-dark text-white hover:bg-charcoal-800 text-sm font-semibold transition-colors">
                                     <span>Kunjungi Portal Resmi Astra Honda</span>
                                     <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -262,9 +262,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     
                     <!-- Pilar 1 -->
-                    <div class="bg-white border border-gray-200 rounded-2xl p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
                         <div>
-                            <div class="w-11 h-11 rounded-xl bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
                                 01
                             </div>
                             <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
@@ -277,9 +277,9 @@
                     </div>
 
                     <!-- Pilar 2 -->
-                    <div class="bg-white border border-gray-200 rounded-2xl p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
                         <div>
-                            <div class="w-11 h-11 rounded-xl bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
                                 02
                             </div>
                             <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
@@ -292,9 +292,9 @@
                     </div>
 
                     <!-- Pilar 3 -->
-                    <div class="bg-white border border-gray-200 rounded-2xl p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
                         <div>
-                            <div class="w-11 h-11 rounded-xl bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
                                 03
                             </div>
                             <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
@@ -307,9 +307,9 @@
                     </div>
 
                     <!-- Pilar 4 -->
-                    <div class="bg-white border border-gray-200 rounded-2xl p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
                         <div>
-                            <div class="w-11 h-11 rounded-xl bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
                                 04
                             </div>
                             <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
@@ -322,9 +322,9 @@
                     </div>
 
                     <!-- Pilar 5 -->
-                    <div class="bg-white border border-gray-200 rounded-2xl p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
                         <div>
-                            <div class="w-11 h-11 rounded-xl bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
                                 05
                             </div>
                             <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
@@ -337,9 +337,9 @@
                     </div>
 
                     <!-- Pilar 6 -->
-                    <div class="bg-white border border-gray-200 rounded-2xl p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
                         <div>
-                            <div class="w-11 h-11 rounded-xl bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
                                 06
                             </div>
                             <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
@@ -386,14 +386,14 @@
                 </div>
 
                 <!-- Interactive Search & District Filter Controls -->
-                <div class="bg-gray-50/80 border border-gray-200 p-5 rounded-2xl mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="bg-gray-50/80 border border-gray-200 p-5 rounded-sm sm:rounded-none mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
                     
                     <!-- District Pills -->
                     <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
                         <button 
                             @click="selectedDistrict = 'all'"
                             :class="selectedDistrict === 'all' ? 'bg-figma-dark text-white' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'"
-                            class="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                            class="px-4 py-2 rounded-sm sm:rounded-[2px] text-xs sm:text-sm font-semibold transition-all cursor-pointer"
                         >
                             Semua ({{ $branches->count() }})
                         </button>
@@ -405,7 +405,7 @@
                             <button 
                                 @click="selectedDistrict = '{{ $district }}'"
                                 :class="selectedDistrict === '{{ $district }}' ? 'bg-figma-dark text-white' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'"
-                                class="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                                class="px-4 py-2 rounded-sm sm:rounded-[2px] text-xs sm:text-sm font-semibold transition-all cursor-pointer"
                             >
                                 {{ $district }}
                             </button>
@@ -418,7 +418,7 @@
                             type="text" 
                             x-model="searchQuery" 
                             placeholder="Cari cabang AHASS..." 
-                            class="w-full pl-10 pr-4 py-2 text-xs sm:text-sm bg-white border border-gray-200 rounded-full focus:outline-none focus:border-figma-red focus:ring-1 focus:ring-figma-red transition-all"
+                            class="w-full pl-10 pr-4 py-2 text-xs sm:text-sm bg-white border border-gray-200 rounded-sm sm:rounded-[2px] focus:outline-none focus:border-figma-red focus:ring-1 focus:ring-figma-red transition-all"
                         >
                         <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -436,11 +436,11 @@
                             x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 scale-95"
                             x-transition:enter-end="opacity-100 scale-100"
-                            class="bg-white border border-gray-200 rounded-2xl p-6 shadow-xs hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                            class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-6 shadow-xs hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
                         >
                             <div>
                                 <div class="flex items-center justify-between gap-2 mb-3">
-                                    <span class="text-xs font-bold text-figma-red bg-figma-red/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                                    <span class="text-xs font-bold text-figma-red bg-figma-red/10 px-2.5 py-1 rounded-sm uppercase tracking-wider">
                                         {{ $branch->city ?? 'Jepara' }}
                                     </span>
                                     <span class="text-xs font-mono font-bold text-gray-400">
@@ -486,7 +486,7 @@
                                     @endphp
                                     <a href="https://wa.me/{{ $cleanPhone }}?text={{ urlencode('Halo AHASS ' . $branch->name . ', saya ingin bertanya mengenai layanan servis / informasi PKL siswa TBSM SMKN 1 Bangsri.') }}" 
                                        target="_blank" 
-                                       class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-colors">
+                                       class="inline-flex items-center gap-1.5 px-3 py-2 rounded-sm sm:rounded-[2px] bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-colors">
                                         <span>WhatsApp</span>
                                     </a>
                                 @endif
@@ -494,7 +494,7 @@
                                 @if($branch->maps_url)
                                     <a href="{{ $branch->maps_url }}" 
                                        target="_blank" 
-                                       class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold transition-colors">
+                                       class="inline-flex items-center gap-1.5 px-3 py-2 rounded-sm sm:rounded-[2px] bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold transition-colors">
                                         <svg class="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -529,13 +529,13 @@
                     {{ $settings->get('industry_cta_desc', 'Bursa Kerja Khusus (BKK) SMK Negeri 1 Bangsri siap memfasilitasi kebutuhan tenaga teknisi otomotif kompeten dan berintegritas untuk jaringan industri otomotif.') }}
                 </p>
                 <div class="flex flex-wrap items-center justify-center gap-4">
-                    <a href="{{ url($settings->get('industry_cta_button_url', '/kontak')) }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-figma-red text-white hover:bg-red-700 font-sans font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all">
+                    <a href="{{ url($settings->get('industry_cta_button_url', '/kontak')) }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm sm:rounded-[2px] bg-figma-red text-white hover:bg-red-700 font-sans font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all">
                         <span>{{ $settings->get('industry_cta_button_text', 'Hubungi Hubin & BKK') }}</span>
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </a>
-                    <a href="{{ route('academic.programs') }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-sans font-bold text-sm sm:text-base border border-white/20 transition-all">
+                    <a href="{{ route('academic.programs') }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm sm:rounded-[2px] bg-white/10 hover:bg-white/20 text-white font-sans font-bold text-sm sm:text-base border border-white/20 transition-all">
                         <span>Kurikulum Akademik</span>
                     </a>
                 </div>

@@ -132,35 +132,35 @@
                     <button 
                         @click="activeCategory = 'all'"
                         :class="activeCategory === 'all' ? 'bg-figma-dark text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
-                        class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                        class="px-5 py-2.5 rounded-sm sm:rounded-[2px] text-xs sm:text-sm font-semibold transition-all cursor-pointer"
                     >
                         Semua Fasilitas ({{ $facilities->count() }})
                     </button>
                     <button 
                         @click="activeCategory = 'pit'"
                         :class="activeCategory === 'pit' ? 'bg-figma-dark text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
-                        class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                        class="px-5 py-2.5 rounded-sm sm:rounded-[2px] text-xs sm:text-sm font-semibold transition-all cursor-pointer"
                     >
                         Pit Servis & Bike Lift
                     </button>
                     <button 
                         @click="activeCategory = 'engine'"
                         :class="activeCategory === 'engine' ? 'bg-figma-dark text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
-                        class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                        class="px-5 py-2.5 rounded-sm sm:rounded-[2px] text-xs sm:text-sm font-semibold transition-all cursor-pointer"
                     >
                         Unit Mesin & Injeksi
                     </button>
                     <button 
                         @click="activeCategory = 'scanner'"
                         :class="activeCategory === 'scanner' ? 'bg-figma-dark text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
-                        class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                        class="px-5 py-2.5 rounded-sm sm:rounded-[2px] text-xs sm:text-sm font-semibold transition-all cursor-pointer"
                     >
                         Scanner & Kelistrikan
                     </button>
                     <button 
                         @click="activeCategory = 'tools'"
                         :class="activeCategory === 'tools' ? 'bg-figma-dark text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
-                        class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                        class="px-5 py-2.5 rounded-sm sm:rounded-[2px] text-xs sm:text-sm font-semibold transition-all cursor-pointer"
                     >
                         Special Tools (SST) & Alat Ukur
                     </button>
@@ -185,7 +185,7 @@
                             x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 scale-95"
                             x-transition:enter-end="opacity-100 scale-100"
-                            class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-xl hover:border-figma-red transition-all duration-300 flex flex-col justify-between group"
+                            class="bg-white border border-gray-200 rounded-sm sm:rounded-none overflow-hidden shadow-xs hover:shadow-xl hover:border-figma-red transition-all duration-300 flex flex-col justify-between group"
                         >
                             <div>
                                 <!-- Image Thumbnail -->
@@ -201,14 +201,14 @@
                                     @endif
                                     
                                     <div class="absolute top-3 left-3 flex items-center gap-2">
-                                        <span class="px-3 py-1 rounded-full bg-figma-dark/80 backdrop-blur-md text-white text-xs font-semibold">
+                                        <span class="px-3 py-1 rounded-sm bg-figma-dark/80 backdrop-blur-md text-white text-xs font-semibold">
                                             {{ $facility->category_label ?? $facility->category ?? 'Peralatan Praktik' }}
                                         </span>
                                     </div>
 
                                     @if($facility->condition)
                                         <div class="absolute top-3 right-3">
-                                            <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500 text-white shadow-xs">
+                                            <span class="px-2.5 py-1 rounded-sm text-xs font-bold bg-emerald-500 text-white shadow-xs">
                                                 {{ $facility->condition }}
                                             </span>
                                         </div>
@@ -244,7 +244,7 @@
                                         condition: {{ json_encode($facility->condition ?? 'Sangat Baik') }},
                                         image: {{ json_encode($facility->image ? Storage::url($facility->image) : '') }}
                                     }; $dispatch('open-modal', 'facility-detail-modal')"
-                                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gray-50 hover:bg-figma-dark hover:text-white text-xs sm:text-sm font-semibold text-figma-dark transition-all border border-gray-200 cursor-pointer"
+                                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm sm:rounded-[2px] bg-gray-50 hover:bg-figma-dark hover:text-white text-xs sm:text-sm font-semibold text-figma-dark transition-all border border-gray-200 cursor-pointer"
                                 >
                                     <span>Lihat Spesifikasi Lengkap</span>
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -294,7 +294,7 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
                         <!-- 1. Ringkas (Seiri) -->
-                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
+                        <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
                             <div>
                                 <span class="font-heading font-black text-xs text-figma-red uppercase tracking-wider block mb-1">Seiri</span>
                                 <h4 class="font-heading font-bold text-lg text-figma-dark mb-2">
@@ -307,7 +307,7 @@
                         </div>
 
                         <!-- 2. Rapi (Seiton) -->
-                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
+                        <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
                             <div>
                                 <span class="font-heading font-black text-xs text-figma-red uppercase tracking-wider block mb-1">Seiton</span>
                                 <h4 class="font-heading font-bold text-lg text-figma-dark mb-2">
@@ -320,7 +320,7 @@
                         </div>
 
                         <!-- 3. Resik (Seiso) -->
-                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
+                        <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
                             <div>
                                 <span class="font-heading font-black text-xs text-figma-red uppercase tracking-wider block mb-1">Seiso</span>
                                 <h4 class="font-heading font-bold text-lg text-figma-dark mb-2">
@@ -333,7 +333,7 @@
                         </div>
 
                         <!-- 4. Rawat (Seiketsu) -->
-                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
+                        <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
                             <div>
                                 <span class="font-heading font-black text-xs text-figma-red uppercase tracking-wider block mb-1">Seiketsu</span>
                                 <h4 class="font-heading font-bold text-lg text-figma-dark mb-2">
@@ -346,7 +346,7 @@
                         </div>
 
                         <!-- 5. Rajin (Shitsuke) -->
-                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
+                        <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs hover:border-figma-red hover:shadow-md transition-all flex flex-col justify-between">
                             <div>
                                 <span class="font-heading font-black text-xs text-figma-red uppercase tracking-wider block mb-1">Shitsuke</span>
                                 <h4 class="font-heading font-bold text-lg text-figma-dark mb-2">
@@ -369,8 +369,8 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <!-- APD Card -->
-                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-xs">
-                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                        <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs">
+                            <div class="w-10 h-10 rounded-sm bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
@@ -382,8 +382,8 @@
                         </div>
 
                         <!-- Safety & APAR Card -->
-                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-xs">
-                            <div class="w-10 h-10 rounded-xl bg-red-50 text-figma-red flex items-center justify-center mb-4">
+                        <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs">
+                            <div class="w-10 h-10 rounded-sm bg-red-50 text-figma-red flex items-center justify-center mb-4">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                 </svg>
@@ -395,8 +395,8 @@
                         </div>
 
                         <!-- Limbah B3 Card -->
-                        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-xs">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+                        <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs">
+                            <div class="w-10 h-10 rounded-sm bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                 </svg>
@@ -418,7 +418,7 @@
         <section class="w-full py-16 sm:py-20 lg:py-24 bg-white overflow-hidden border-b border-gray-200/80 relative">
             <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
                 
-                <div class="bg-gray-50/80 border border-gray-200 p-8 sm:p-10 rounded-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-xs">
+                <div class="bg-gray-50/80 border border-gray-200 p-8 sm:p-10 rounded-sm sm:rounded-none grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-xs">
                     
                     <div class="lg:col-span-6">
                         <span class="text-xs font-bold uppercase tracking-wider text-figma-red block mb-2">
@@ -431,7 +431,7 @@
                             {{ $settings->get('facility_tefa_subtitle', 'Fasilitas praktik perawatan berkala dan pemeliharaan sepeda motor dengan standar operasional prosedur (SOP) bengkel resmi AHASS.') }}
                         </p>
                         
-                        <div class="space-y-3 font-sans text-sm text-gray-700 bg-white p-5 rounded-xl border border-gray-200">
+                        <div class="space-y-3 font-sans text-sm text-gray-700 bg-white p-5 rounded-sm border border-gray-200">
                             <div class="flex items-center gap-3">
                                 <svg class="w-5 h-5 text-figma-red shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -454,33 +454,33 @@
                         </h4>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-sans text-sm text-gray-700 mb-6">
-                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-xl border border-gray-200">
+                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-sm border border-gray-200">
                                 <span class="w-2 h-2 bg-figma-red rounded-full shrink-0"></span>
                                 <span>Tune Up & Scanner ECM</span>
                             </div>
-                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-xl border border-gray-200">
+                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-sm border border-gray-200">
                                 <span class="w-2 h-2 bg-figma-red rounded-full shrink-0"></span>
                                 <span>Servis Transmisi CVT</span>
                             </div>
-                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-xl border border-gray-200">
+                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-sm border border-gray-200">
                                 <span class="w-2 h-2 bg-figma-red rounded-full shrink-0"></span>
                                 <span>Ganti Oli Asli AHM Oil</span>
                             </div>
-                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-xl border border-gray-200">
+                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-sm border border-gray-200">
                                 <span class="w-2 h-2 bg-figma-red rounded-full shrink-0"></span>
                                 <span>Servis Rem CBS/ABS</span>
                             </div>
-                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-xl border border-gray-200">
+                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-sm border border-gray-200">
                                 <span class="w-2 h-2 bg-figma-red rounded-full shrink-0"></span>
                                 <span>Pembersihan Injektor</span>
                             </div>
-                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-xl border border-gray-200">
+                            <div class="flex items-center gap-2.5 p-3 bg-white rounded-sm border border-gray-200">
                                 <span class="w-2 h-2 bg-figma-red rounded-full shrink-0"></span>
                                 <span>Uji Emisi Gas Buang</span>
                             </div>
                         </div>
 
-                        <p class="text-xs text-gray-500 italic bg-white p-3.5 rounded-xl border border-gray-200">
+                        <p class="text-xs text-gray-500 italic bg-white p-3.5 rounded-sm border border-gray-200">
                             {{ $settings->get('facility_tefa_note', 'Seluruh kegiatan praktik siswa dilaksanakan di bawah supervisi instruktur mekanik bersertifikasi Astra Motor.') }}
                         </p>
                     </div>
@@ -505,13 +505,13 @@
                     {{ $settings->get('facility_cta_desc', 'Kami menyambut kunjungan calon siswa, orang tua, dan mitra industri yang ingin melihat ekosistem pembelajaran otomotif Astra Honda di SMKN 1 Bangsri.') }}
                 </p>
                 <div class="flex flex-wrap items-center justify-center gap-4">
-                    <a href="{{ url($settings->get('facility_cta_button_url', '/kontak')) }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-figma-red text-white hover:bg-red-700 font-sans font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all">
+                    <a href="{{ url($settings->get('facility_cta_button_url', '/kontak')) }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm sm:rounded-[2px] bg-figma-red text-white hover:bg-red-700 font-sans font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all">
                         <span>{{ $settings->get('facility_cta_button_text', 'Hubungi Kami / Jadwalkan Kunjungan') }}</span>
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </a>
-                    <a href="{{ route('academic.programs') }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-sans font-bold text-sm sm:text-base border border-white/20 transition-all">
+                    <a href="{{ route('academic.programs') }}" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm sm:rounded-[2px] bg-white/10 hover:bg-white/20 text-white font-sans font-bold text-sm sm:text-base border border-white/20 transition-all">
                         <span>Lihat Kurikulum</span>
                     </a>
                 </div>
@@ -531,7 +531,7 @@
                         <span class="text-xs font-bold text-figma-red uppercase tracking-wider block" x-text="selectedFacility.category"></span>
                         <h3 class="font-heading font-bold text-2xl text-figma-dark" x-text="selectedFacility.title"></h3>
                     </div>
-                    <button type="button" @click="$dispatch('close-modal', 'facility-detail-modal')" class="text-gray-400 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <button type="button" @click="$dispatch('close-modal', 'facility-detail-modal')" class="text-gray-400 hover:text-gray-700 p-2 rounded-sm hover:bg-gray-100 transition-colors">
                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -539,7 +539,7 @@
                 </div>
 
                 <template x-if="selectedFacility.image">
-                    <div class="h-64 w-full rounded-xl overflow-hidden mb-6 bg-gray-100">
+                    <div class="h-64 w-full rounded-sm overflow-hidden mb-6 bg-gray-100">
                         <img :src="selectedFacility.image" :alt="selectedFacility.title" class="w-full h-full object-cover">
                     </div>
                 </template>
@@ -551,7 +551,7 @@
                     </div>
 
                     <template x-if="selectedFacility.specification">
-                        <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                        <div class="p-4 bg-gray-50 rounded-sm border border-gray-200">
                             <h4 class="font-heading font-bold text-sm text-figma-dark mb-1">Spesifikasi Teknis:</h4>
                             <p class="text-xs sm:text-sm font-mono text-gray-800" x-text="selectedFacility.specification"></p>
                         </div>
@@ -559,12 +559,12 @@
 
                     <div class="flex items-center justify-between pt-2">
                         <span class="text-xs text-gray-500">Kondisi Alat / Pit:</span>
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800" x-text="selectedFacility.condition"></span>
+                        <span class="px-3 py-1 rounded-sm text-xs font-bold bg-emerald-100 text-emerald-800" x-text="selectedFacility.condition"></span>
                     </div>
                 </div>
 
                 <div class="pt-4 border-t border-gray-100 flex justify-end">
-                    <button type="button" @click="$dispatch('close-modal', 'facility-detail-modal')" class="px-5 py-2.5 rounded-xl bg-figma-dark text-white text-xs sm:text-sm font-semibold hover:bg-charcoal-800 transition-colors">
+                    <button type="button" @click="$dispatch('close-modal', 'facility-detail-modal')" class="px-5 py-2.5 rounded-sm sm:rounded-[2px] bg-figma-dark text-white text-xs sm:text-sm font-semibold hover:bg-charcoal-800 transition-colors">
                         Tutup Jendela
                     </button>
                 </div>

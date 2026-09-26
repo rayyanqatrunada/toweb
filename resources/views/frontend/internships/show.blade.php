@@ -12,7 +12,7 @@
         </div>
         <x-frontend.layout.container class="relative z-10 text-center max-w-4xl mx-auto reveal-on-scroll reveal-up">
             <div class="flex justify-center mb-6">
-                <span class="inline-flex items-center px-4 py-1.5 bg-primary-100 text-primary-700 rounded-full text-xs font-black tracking-widest uppercase border border-primary-200 shadow-sm">
+                <span class="inline-flex items-center px-4 py-1.5 bg-primary-100 text-primary-700 rounded-sm text-xs font-black tracking-widest uppercase border border-primary-200 shadow-sm">
                     Program Praktik Kerja Lapangan
                 </span>
             </div>
@@ -20,7 +20,7 @@
             <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-8 leading-[1.15] tracking-tight">{{ $internship->title }}</h1>
             
             <div class="flex flex-wrap items-center justify-center text-charcoal-600 text-sm gap-4 font-semibold">
-                <span class="flex items-center bg-white px-5 py-2.5 rounded-xl border border-charcoal-200 shadow-sm">
+                <span class="flex items-center bg-white px-5 py-2.5 rounded-sm border border-charcoal-200 shadow-sm">
                     <svg class="w-5 h-5 mr-2.5 opacity-70 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                     Mitra Industri: &nbsp;
                     @if($internship->industryPartner)
@@ -31,15 +31,15 @@
                 </span>
                 
                 @if($internship->status === 'open')
-                    <span class="flex items-center text-emerald-700 bg-emerald-50 px-5 py-2.5 rounded-xl border border-emerald-200 shadow-sm">
+                    <span class="flex items-center text-emerald-700 bg-emerald-50 px-5 py-2.5 rounded-sm border border-emerald-200 shadow-sm">
                         <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2.5 animate-pulse"></span> Pendaftaran Buka
                     </span>
                 @elseif($internship->status === 'ongoing')
-                    <span class="flex items-center text-blue-700 bg-blue-50 px-5 py-2.5 rounded-xl border border-blue-200 shadow-sm">
+                    <span class="flex items-center text-blue-700 bg-blue-50 px-5 py-2.5 rounded-sm border border-blue-200 shadow-sm">
                         Sedang Berjalan
                     </span>
                 @else
-                    <span class="flex items-center text-charcoal-500 bg-white px-5 py-2.5 rounded-xl border border-charcoal-200 shadow-sm">
+                    <span class="flex items-center text-charcoal-500 bg-white px-5 py-2.5 rounded-sm border border-charcoal-200 shadow-sm">
                         Selesai
                     </span>
                 @endif
@@ -51,8 +51,8 @@
         <x-frontend.layout.container class="max-w-4xl">
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-12">
-                <div class="bg-white border border-charcoal-200 shadow-sm rounded-2xl p-6 flex items-center">
-                    <div class="w-14 h-14 bg-charcoal-50 rounded-xl flex items-center justify-center text-charcoal-500 mr-5 shrink-0 border border-charcoal-100">
+                <div class="bg-white border border-charcoal-200 shadow-sm rounded-sm sm:rounded-none p-6 flex items-center">
+                    <div class="w-14 h-14 bg-charcoal-50 rounded-sm flex items-center justify-center text-charcoal-500 mr-5 shrink-0 border border-charcoal-100">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
                     <div>
@@ -61,8 +61,8 @@
                     </div>
                 </div>
                 
-                <div class="bg-white border border-charcoal-200 shadow-sm rounded-2xl p-6 flex items-center">
-                    <div class="w-14 h-14 bg-charcoal-50 rounded-xl flex items-center justify-center text-charcoal-500 mr-5 shrink-0 border border-charcoal-100">
+                <div class="bg-white border border-charcoal-200 shadow-sm rounded-sm sm:rounded-none p-6 flex items-center">
+                    <div class="w-14 h-14 bg-charcoal-50 rounded-sm flex items-center justify-center text-charcoal-500 mr-5 shrink-0 border border-charcoal-100">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
                     <div>
@@ -72,9 +72,9 @@
                 </div>
             </div>
             
-            <div class="bg-white rounded-3xl shadow-xl shadow-charcoal-900/5 border border-charcoal-100 p-8 lg:p-12">
+            <div class="bg-white rounded-sm sm:rounded-none shadow-xl shadow-charcoal-900/5 border border-charcoal-100 p-8 lg:p-12">
                 <h2 class="text-2xl lg:text-3xl font-bold text-charcoal-900 mb-8 flex items-center border-b border-charcoal-100 pb-6">
-                    <span class="w-10 h-10 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center mr-4 shrink-0 shadow-sm">
+                    <span class="w-10 h-10 rounded-sm bg-primary-100 text-primary-600 flex items-center justify-center mr-4 shrink-0 shadow-sm">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </span>
                     Informasi Program
@@ -85,7 +85,7 @@
                 </div>
                 
                 @if($internship->status === 'open')
-                <div class="mt-12 bg-charcoal-50 border border-charcoal-200 rounded-2xl p-6 text-center">
+                <div class="mt-12 bg-charcoal-50 border border-charcoal-200 rounded-sm sm:rounded-none p-6 text-center">
                     <p class="text-charcoal-600 font-medium mb-4">Pendaftaran saat ini sedang dibuka. Hubungi bagian kurikulum atau tim BKK untuk informasi lebih lanjut tentang pendaftaran.</p>
                 </div>
                 @endif

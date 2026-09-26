@@ -1,8 +1,8 @@
 @props(['title' => 'Belum Ada Data', 'message' => 'Data untuk halaman ini belum tersedia.', 'icon' => 'document'])
 
 <div class="col-span-full py-20 px-4">
-    <div class="max-w-md mx-auto bg-slate-50 border border-dashed border-slate-300 rounded-2xl p-10 text-center">
-        <div class="w-16 h-16 mx-auto bg-white border border-slate-200 text-slate-400 rounded-2xl flex items-center justify-center mb-5 shadow-sm transform -rotate-3 hover:rotate-0 transition-transform">
+    <div class="max-w-md mx-auto bg-slate-50 border border-dashed border-slate-300 rounded-sm sm:rounded-none p-10 text-center">
+        <div class="w-16 h-16 mx-auto bg-white border border-slate-200 text-slate-400 rounded-sm flex items-center justify-center mb-5 shadow-sm transform -rotate-3 hover:rotate-0 transition-transform">
             @if($icon === 'document')
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
             @elseif($icon === 'calendar')

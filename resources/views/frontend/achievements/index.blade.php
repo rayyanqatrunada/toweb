@@ -370,7 +370,7 @@
                                 <div>
                                     {{-- Unified Single Pill Badge (Juara 1 • Tingkat Nasional) --}}
                                     <div class="mb-4">
-                                        <span class="inline-flex items-center gap-2 px-3 py-1 bg-[#F5F3F6] border border-[#E4E1E5] rounded-full text-xs font-semibold text-[#1B1B1E]">
+                                        <span class="inline-flex items-center gap-2 px-3 py-1 bg-[#F5F3F6] border border-[#E4E1E5] rounded-sm text-xs font-semibold text-[#1B1B1E]">
                                             <span class="w-2 h-2 rounded-full {{ $isJuara1 ? 'bg-[#DC2626]' : 'bg-[#303033]' }}"></span>
                                             {{ $rankLabel }} &bull; {{ $levelLabel }}
                                         </span>

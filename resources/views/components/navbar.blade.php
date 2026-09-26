@@ -86,7 +86,7 @@
             <!-- Mobile Top Right Action: Tombol Hubungi Kami (Menggantikan Hamburger) -->
             <div class="flex lg:hidden items-center">
                 <a href="{{ route('contact.index') }}" 
-                   class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-figma-red text-white font-heading font-bold text-[11.5px] uppercase tracking-wider rounded-lg hover:bg-figma-dark-red transition-all shadow-xs active:scale-95 focus:outline-none">
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-figma-red text-white font-heading font-bold text-[11.5px] uppercase tracking-wider rounded-[2px] hover:bg-figma-dark-red transition-all shadow-xs active:scale-95 focus:outline-none">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
