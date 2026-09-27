@@ -44,7 +44,7 @@
 
                 <!-- Visual Content (lg:col-span-7) -->
                 <div class="lg:col-span-7 relative reveal-on-scroll reveal-right delay-100">
-                    <div class="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[16/10] rounded-sm sm:rounded-none overflow-hidden bg-charcoal-100 shadow-2xl">
+                    <div class="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[16/10] rounded-sm sm:rounded-[2px] overflow-hidden bg-charcoal-100 shadow-2xl">
                         <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop" alt="Kegiatan Praktik Otomotif" class="absolute inset-0 w-full h-full object-cover grayscale-[30%]" loading="eager">
                         <div class="absolute inset-0 bg-charcoal-900/10"></div>
                         
@@ -133,7 +133,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                 
                 <div class="lg:col-span-5 relative reveal-on-scroll reveal-left">
-                    <div class="aspect-[4/5] relative rounded-sm sm:rounded-none overflow-hidden bg-charcoal-100 shadow-xl flex items-center justify-center">
+                    <div class="aspect-[4/5] relative rounded-sm sm:rounded-[2px] overflow-hidden bg-charcoal-100 shadow-xl flex items-center justify-center">
                         @php
                             $hasAboutHeadPhoto = isset($headOfDepartment) && $headOfDepartment->hasValidPhoto();
                             $aboutHeadPhotoUrl = isset($headOfDepartment) ? $headOfDepartment->photo_url : null;
@@ -142,7 +142,7 @@
                             <img src="{{ $aboutHeadPhotoUrl }}" alt="{{ $headOfDepartment->name }}" class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy">
                         @else
                             <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-charcoal-800 to-charcoal-950 text-white p-8 text-center">
-                                <div class="w-24 h-24 rounded-sm bg-white/10 flex items-center justify-center font-heading font-black text-3xl mb-4 border border-white/20">
+                                <div class="w-24 h-24 rounded-sm sm:rounded-[2px] bg-white/10 flex items-center justify-center font-heading font-black text-3xl mb-4 border border-white/20">
                                     {{ isset($headOfDepartment) ? strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $headOfDepartment->name)), 0, 2)) : 'KJ' }}
                                 </div>
                                 <h4 class="font-heading font-bold text-xl">{{ isset($headOfDepartment) ? $headOfDepartment->name : 'Ketua Kompetensi Keahlian' }}</h4>
@@ -155,7 +155,7 @@
                 </div>
 
                 <div class="lg:col-span-7 flex flex-col justify-center reveal-on-scroll reveal-up">
-                    <div class="w-12 h-12 rounded-sm bg-primary-50 flex items-center justify-center text-primary-600 mb-6">
+                    <div class="w-12 h-12 rounded-sm sm:rounded-[2px] bg-primary-50 flex items-center justify-center text-primary-600 mb-6">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" /></svg>
                     </div>
                     
@@ -188,19 +188,19 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Principle 1 -->
-                <div class="bg-white p-8 rounded-sm sm:rounded-none border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all reveal-on-scroll reveal-up">
+                <div class="bg-white p-8 rounded-sm sm:rounded-[2px] border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all reveal-on-scroll reveal-up">
                     <span class="text-4xl font-light text-charcoal-300 block mb-4">01</span>
                     <h3 class="text-xl font-bold text-charcoal-900 mb-3">Technical Mastery</h3>
                     <p class="text-charcoal-600 text-sm leading-relaxed">Penguasaan penuh terhadap teori dasar, mekanisme mesin, dan teknologi diagnostik modern (EFI & Kendaraan Listrik).</p>
                 </div>
                 <!-- Principle 2 -->
-                <div class="bg-white p-8 rounded-sm sm:rounded-none border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all reveal-on-scroll reveal-up delay-100">
+                <div class="bg-white p-8 rounded-sm sm:rounded-[2px] border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all reveal-on-scroll reveal-up delay-100">
                     <span class="text-4xl font-light text-charcoal-300 block mb-4">02</span>
                     <h3 class="text-xl font-bold text-charcoal-900 mb-3">Industry Discipline</h3>
                     <p class="text-charcoal-600 text-sm leading-relaxed">Menerapkan budaya kerja 5S, standar K3 (Keselamatan dan Kesehatan Kerja), serta etos kerja industri sejak di bengkel sekolah.</p>
                 </div>
                 <!-- Principle 3 -->
-                <div class="bg-white p-8 rounded-sm sm:rounded-none border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all reveal-on-scroll reveal-up delay-200">
+                <div class="bg-white p-8 rounded-sm sm:rounded-[2px] border border-charcoal-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all reveal-on-scroll reveal-up delay-200">
                     <span class="text-4xl font-light text-charcoal-300 block mb-4">03</span>
                     <h3 class="text-xl font-bold text-charcoal-900 mb-3">Career Readiness</h3>
                     <p class="text-charcoal-600 text-sm leading-relaxed">Penyelarasan kurikulum dengan kebutuhan mitra industri untuk memastikan kesiapan lulusan di dunia kerja maupun wirausaha.</p>
@@ -228,7 +228,7 @@
                     @if(isset($programs) && $programs->isNotEmpty())
                         <div class="flex flex-col gap-4">
                             @foreach($programs as $index => $program)
-                            <a href="{{ route('academic.programs') }}#{{ $program->slug }}" class="group flex items-start p-6 rounded-sm sm:rounded-none border border-charcoal-200 hover:border-primary-200 hover:bg-charcoal-50 hover:shadow-md transition-all focus-ring reveal-on-scroll reveal-up delay-{{ $index * 100 }}">
+                            <a href="{{ route('academic.programs') }}#{{ $program->slug }}" class="group flex items-start p-6 rounded-sm sm:rounded-[2px] border border-charcoal-200 hover:border-primary-200 hover:bg-charcoal-50 hover:shadow-md transition-all focus-ring reveal-on-scroll reveal-up delay-{{ $index * 100 }}">
                                 <span class="text-xl font-bold text-charcoal-300 mr-6 mt-1">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                                 <div>
                                     <h3 class="text-xl font-bold text-charcoal-900 group-hover:text-primary-600 transition-colors mb-2">{{ $program->name }}</h3>
@@ -264,7 +264,7 @@
             @if(isset($facilities) && $facilities->isNotEmpty())
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
                 @foreach($facilities->take(3) as $facility)
-                <a href="{{ route('academic.facilities') }}" class="group block relative aspect-square rounded-sm sm:rounded-none overflow-hidden focus-ring reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 }}">
+                <a href="{{ route('academic.facilities') }}" class="group block relative aspect-square rounded-sm sm:rounded-[2px] overflow-hidden focus-ring reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 }}">
                     <img src="{{ $facility->photo ? Storage::url($facility->photo) : 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&auto=format&fit=crop' }}" alt="{{ $facility->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/50 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 right-6">

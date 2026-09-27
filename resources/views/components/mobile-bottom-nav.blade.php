@@ -59,12 +59,12 @@
             'active' => request()->is('galeri*'),
             'icon' => 'camera',
         ],
-        [
-            'label' => 'Berita',
-            'route' => route('news.index'),
-            'active' => request()->is('berita*') || request()->is('pengumuman*'),
-            'icon' => 'newspaper',
-        ],
+        // [
+        //     'label' => 'Berita',
+        //     'route' => route('news.index'),
+        //     'active' => request()->is('berita*') || request()->is('pengumuman*'),
+        //     'icon' => 'newspaper',
+        // ],
         [
             'label' => 'Unduhan',
             'route' => route('download.index'),

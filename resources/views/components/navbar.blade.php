@@ -9,7 +9,7 @@
         ['label' => 'Industri', 'route' => route('partnership.index'), 'active' => request()->is('pkl*') || request()->is('mitra-industri*') || request()->is('lowongan*')],
         ['label' => 'Alumni', 'route' => route('alumni.index'), 'active' => request()->is('alumni*')],
         ['label' => 'Galeri', 'route' => route('gallery.index'), 'active' => request()->is('galeri*')],
-        ['label' => 'Publikasi', 'route' => route('news.index'), 'active' => request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*')],
+        // ['label' => 'Publikasi', 'route' => route('news.index'), 'active' => request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*')],
     ];
 
     $homeSections = [
