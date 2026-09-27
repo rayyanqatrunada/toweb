@@ -28,9 +28,12 @@
         scrolledPastHero: false,
         isHome: {{ $isHome ? 'true' : 'false' }},
         homeDropdownOpen: false,
+        isHovered: false,
+        isPinned: false,
+        suppressHover: false,
+        hoverTimeout: null,
         mobileHomeDropdownOpen: false,
         activeSection: '',
-        hoverTimeout: null,
         checkScroll() {
             this.scrolled = window.pageYOffset > 10;
             if (!this.isHome) {
@@ -46,37 +49,56 @@
                 this.scrolledPastHero = window.pageYOffset > 600;
             }
         },
-        openHomeDropdown() {
-            if (!this.isHome) return;
-            clearTimeout(this.hoverTimeout);
-            this.homeDropdownOpen = true;
+        syncDropdownState() {
+            this.homeDropdownOpen = this.isHome && (this.isPinned || this.isHovered);
         },
-        closeHomeDropdown(delay = 200) {
+        onHoverEnter() {
+            if (!this.isHome || this.suppressHover) return;
+            clearTimeout(this.hoverTimeout);
+            this.isHovered = true;
+            this.syncDropdownState();
+        },
+        onHoverLeave(delay = 180) {
             if (!this.isHome) return;
             clearTimeout(this.hoverTimeout);
-            if (delay === 0) {
-                this.homeDropdownOpen = false;
+            this.hoverTimeout = setTimeout(() => {
+                this.isHovered = false;
+                this.suppressHover = false;
+                this.syncDropdownState();
+            }, delay);
+        },
+        togglePin() {
+            if (!this.isHome) return;
+            if (this.isPinned) {
+                this.isPinned = false;
+                this.isHovered = false;
+                this.suppressHover = true;
+                clearTimeout(this.hoverTimeout);
             } else {
-                this.hoverTimeout = setTimeout(() => {
-                    this.homeDropdownOpen = false;
-                }, delay);
+                this.isPinned = true;
+                this.isHovered = true;
+                this.suppressHover = false;
+                clearTimeout(this.hoverTimeout);
             }
-        },
-        toggleHomeDropdown() {
-            if (!this.isHome) return;
-            this.homeDropdownOpen = !this.homeDropdownOpen;
+            this.syncDropdownState();
         },
         scrollToSection(id) {
             const el = document.getElementById(id);
             if (el) {
                 el.scrollIntoView({ behavior: 'smooth' });
             }
-            this.homeDropdownOpen = false;
+            if (!this.isPinned) {
+                this.isHovered = false;
+                this.syncDropdownState();
+            }
             this.mobileHomeDropdownOpen = false;
         },
         scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            this.homeDropdownOpen = false;
+            if (!this.isPinned) {
+                this.isHovered = false;
+                this.syncDropdownState();
+            }
             this.mobileHomeDropdownOpen = false;
         },
         initScrollspy() {
@@ -133,21 +155,22 @@
             </a>
 
             <!-- Desktop Menu -->
-            <div class="hidden lg:flex lg:items-center lg:space-x-6 flex-grow justify-end">
+            <div class="hidden lg:flex lg:items-center lg:space-x-6 flex-grow justify-end h-full">
                 @foreach($menuItems as $item)
                     @if($item['label'] === 'Beranda' && $isHome)
-                        <!-- Tombol Beranda Khusus Halaman Beranda (Dengan Fitur Hover/Click Dropdown Horizontal) -->
-                        <div class="relative flex items-center"
-                             @mouseenter="openHomeDropdown()"
-                             @mouseleave="closeHomeDropdown(250)">
+                        <!-- Tombol Beranda Khusus Halaman Beranda (Dengan Fitur Hover & Pinned-Click Dropdown) -->
+                        <div class="relative flex items-center h-full"
+                             @mouseenter="onHoverEnter()"
+                             @mouseleave="onHoverLeave(180)">
                             <button type="button" 
-                                    @click="toggleHomeDropdown()"
+                                    @click="togglePin()"
                                     class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors duration-300 flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
                                     :class="(scrolledPastHero || !isHome) 
                                         ? '{{ $item['active'] ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark' }}' 
                                         : '{{ $item['active'] ? 'text-white font-bold drop-shadow-sm' : 'text-white/85 hover:text-white drop-shadow-sm' }}'"
                                     aria-haspopup="true"
-                                    :aria-expanded="homeDropdownOpen">
+                                    :aria-expanded="homeDropdownOpen"
+                                    :title="isPinned ? 'Sub-navigasi terkunci (Klik untuk menutup)' : 'Klik untuk mengunci sub-navigasi'">
                                 <span>{{ $item['label'] }}</span>
                                 <svg class="w-3.5 h-3.5 transition-transform duration-200 transform"
                                      :class="homeDropdownOpen ? 'rotate-180 text-figma-red' : ''"
@@ -201,7 +224,7 @@
         </div>
     </div>
 
-    <!-- Dropdown Horizontal Turunan Beranda (Desktop Viewport) -->
+    <!-- Dropdown Horizontal Turunan Beranda (Desktop Viewport - Centered Layout) -->
     @if($isHome)
     <div x-show="homeDropdownOpen"
          x-transition:enter="transition-all ease-out duration-250"
@@ -210,8 +233,8 @@
          x-transition:leave="transition-all ease-in duration-150"
          x-transition:leave-start="opacity-100 translate-y-0"
          x-transition:leave-end="opacity-0 -translate-y-2"
-         @mouseenter="openHomeDropdown()"
-         @mouseleave="closeHomeDropdown(200)"
+         @mouseenter="onHoverEnter()"
+         @mouseleave="onHoverLeave(180)"
          class="w-full border-t border-b transition-colors duration-300 hidden lg:block"
          :class="{
              'bg-[#FBF8FC]/98 backdrop-blur-md border-[#E4E1E5] shadow-lg': scrolledPastHero,
@@ -219,55 +242,28 @@
          }"
          style="display: none;">
         <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16">
-            <div class="flex items-center justify-between py-2 h-[48px]">
+            <div class="flex items-center justify-center py-2 h-[48px]">
                 
-                <!-- Badge Penanda Sub-Navigasi -->
-                <div class="flex items-center gap-2 pr-4 border-r shrink-0"
-                     :class="scrolledPastHero ? 'border-[#E4E1E5] text-charcoal-600' : 'border-white/15 text-white/70'">
-                    <span class="w-1.5 h-1.5 rounded-full bg-figma-red animate-pulse"></span>
-                    <span class="font-heading font-extrabold text-[11px] uppercase tracking-widest">Bagian Beranda</span>
-                </div>
-
-                <!-- Deretan Section Horizontal -->
-                <div class="flex items-center gap-1 xl:gap-2 flex-grow justify-start pl-3 xl:pl-4 overflow-x-auto scrollbar-none">
+                <!-- Deretan Section Horizontal Terpusat (Centered) -->
+                <div class="flex items-center justify-center gap-1.5 xl:gap-2.5 overflow-x-auto scrollbar-none py-0.5">
                     @foreach($homeSections as $sec)
                         <button type="button"
                                 @click="scrollToSection('{{ $sec['id'] }}')"
-                                class="group flex items-center gap-2 px-3 py-1.5 rounded-[2px] transition-all duration-200 text-left shrink-0 cursor-pointer"
+                                class="group flex items-center gap-2 px-3.5 py-1.5 rounded-[2px] transition-all duration-200 text-left shrink-0 cursor-pointer"
                                 :class="activeSection === '{{ $sec['id'] }}'
-                                    ? 'bg-figma-red text-white shadow-xs'
+                                    ? 'bg-figma-red text-white shadow-xs font-bold'
                                     : (scrolledPastHero
-                                        ? 'text-charcoal-700 hover:text-charcoal-950 hover:bg-charcoal-100'
-                                        : 'text-white/80 hover:text-white hover:bg-white/10')">
-                            <span class="font-mono text-[10px] font-bold opacity-75"
+                                        ? 'text-charcoal-700 hover:text-charcoal-950 hover:bg-charcoal-100 font-medium'
+                                        : 'text-white/80 hover:text-white hover:bg-white/10 font-medium')">
+                            <span class="font-mono text-[10.5px] font-bold transition-colors"
                                   :class="activeSection === '{{ $sec['id'] }}' ? 'text-white' : 'text-figma-red'">
                                 {{ $sec['num'] }}
                             </span>
-                            <span class="font-sans font-bold text-[12px] uppercase tracking-tight">
+                            <span class="font-sans text-[12px] uppercase tracking-tight">
                                 {{ $sec['label'] }}
                             </span>
                         </button>
                     @endforeach
-                </div>
-
-                <!-- Tombol Kembali ke Atas (Hero) & Tutup -->
-                <div class="flex items-center gap-1.5 pl-3 border-l shrink-0"
-                     :class="scrolledPastHero ? 'border-[#E4E1E5]' : 'border-white/15'">
-                    <button type="button"
-                            @click="scrollToTop()"
-                            class="flex items-center gap-1 px-2.5 py-1 text-[11px] font-heading font-bold uppercase tracking-wider rounded-[2px] transition-colors cursor-pointer"
-                            :class="scrolledPastHero ? 'text-charcoal-500 hover:text-figma-red hover:bg-charcoal-100' : 'text-white/70 hover:text-white hover:bg-white/10'"
-                            title="Kembali ke Bagian Paling Atas">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                        <span>Top</span>
-                    </button>
-                    <button type="button"
-                            @click="closeHomeDropdown(0)"
-                            class="flex items-center justify-center w-7 h-7 rounded-[2px] transition-colors cursor-pointer"
-                            :class="scrolledPastHero ? 'text-charcoal-400 hover:text-charcoal-800 hover:bg-charcoal-100' : 'text-white/60 hover:text-white hover:bg-white/10'"
-                            title="Tutup Sub-Navigasi">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                    </button>
                 </div>
 
             </div>
