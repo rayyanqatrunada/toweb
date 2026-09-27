@@ -58,7 +58,7 @@
             this.isHovered = true;
             this.syncDropdownState();
         },
-        onHoverLeave(delay = 180) {
+        onHoverLeave(delay = 250) {
             if (!this.isHome) return;
             clearTimeout(this.hoverTimeout);
             this.hoverTimeout = setTimeout(() => {
@@ -125,7 +125,7 @@
     x-init="checkScroll(); initScrollspy();"
     @scroll.window.passive="checkScroll()"
     @resize.window.passive="checkScroll()"
-    class="fixed top-0 w-full z-[100] transition-all duration-300 border-b"
+    class="fixed top-0 w-full z-[100] transition-colors duration-300 border-b"
     :class="{
         'bg-[#FBF8FC]/95 backdrop-blur-md border-[#E4E1E5] shadow-sm': scrolledPastHero || (!isHome && scrolled),
         'bg-[#FBF8FC]/90 backdrop-blur-md border-transparent': !isHome && !scrolled,
@@ -133,8 +133,8 @@
         'bg-gradient-to-b from-black/80 via-black/40 to-transparent border-transparent': isHome && !scrolledPastHero && !scrolled
     }">
     
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 relative">
-        <div class="flex justify-between items-center transition-all duration-300 h-[56px] lg:h-[64px]">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-16 relative z-20">
+        <div class="flex justify-between items-center h-[56px] lg:h-[64px]">
             
             <!-- Logo Section -->
             <a href="{{ route('home') }}" class="shrink-0 flex items-center gap-3 sm:gap-4 group focus-ring outline-hidden">
@@ -161,23 +161,25 @@
                         <!-- Tombol Beranda Khusus Halaman Beranda (Dengan Fitur Hover & Pinned-Click Dropdown) -->
                         <div class="relative flex items-center h-full"
                              @mouseenter="onHoverEnter()"
-                             @mouseleave="onHoverLeave(180)">
+                             @mouseleave="onHoverLeave(250)">
                             <button type="button" 
                                     @click="togglePin()"
-                                    class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors duration-300 flex items-center gap-1.5 focus:outline-none cursor-pointer py-1"
+                                    class="relative group font-sans text-[14px] tracking-[-0.5px] uppercase transition-colors duration-300 flex items-center gap-1.5 focus:outline-none cursor-pointer"
                                     :class="(scrolledPastHero || !isHome) 
                                         ? '{{ $item['active'] ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark' }}' 
                                         : '{{ $item['active'] ? 'text-white font-bold drop-shadow-sm' : 'text-white/85 hover:text-white drop-shadow-sm' }}'"
                                     aria-haspopup="true"
                                     :aria-expanded="homeDropdownOpen"
                                     :title="isPinned ? 'Sub-navigasi terkunci (Klik untuk menutup)' : 'Klik untuk mengunci sub-navigasi'">
-                                <span>{{ $item['label'] }}</span>
-                                <svg class="w-3.5 h-3.5 transition-transform duration-200 transform"
+                                <span class="relative inline-flex items-center">
+                                    {{ $item['label'] }}
+                                    <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red rounded-t-[1px] transition-all duration-300 {{ $item['active'] ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
+                                </span>
+                                <svg class="w-3.5 h-3.5 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] transform"
                                      :class="homeDropdownOpen ? 'rotate-180 text-figma-red' : ''"
                                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/>
                                 </svg>
-                                <span class="absolute -bottom-[21px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ $item['active'] ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
                             </button>
                         </div>
                     @else
@@ -187,7 +189,7 @@
                                ? '{{ $item['active'] ? 'text-figma-dark font-bold' : 'text-figma-gray hover:text-figma-dark' }}' 
                                : '{{ $item['active'] ? 'text-white font-bold drop-shadow-sm' : 'text-white/85 hover:text-white drop-shadow-sm' }}'">
                             {{ $item['label'] }}
-                            <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red transition-all duration-300 {{ $item['active'] ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
+                            <span class="absolute -bottom-[22px] left-0 h-[3px] bg-figma-red rounded-t-[1px] transition-all duration-300 {{ $item['active'] ? 'w-full' : 'w-0 group-hover:w-full' }}"></span>
                         </a>
                     @endif
                 @endforeach
@@ -224,20 +226,20 @@
         </div>
     </div>
 
-    <!-- Dropdown Horizontal Turunan Beranda (Desktop Viewport - Centered Layout) -->
+    <!-- Dropdown Horizontal Turunan Beranda (Desktop Viewport - Centered & Hardware-Accelerated) -->
     @if($isHome)
     <div x-show="homeDropdownOpen"
-         x-transition:enter="transition-all ease-out duration-250"
-         x-transition:enter-start="opacity-0 -translate-y-2"
+         x-transition:enter="transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+         x-transition:enter-start="opacity-0 -translate-y-3"
          x-transition:enter-end="opacity-100 translate-y-0"
-         x-transition:leave="transition-all ease-in duration-150"
+         x-transition:leave="transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]"
          x-transition:leave-start="opacity-100 translate-y-0"
          x-transition:leave-end="opacity-0 -translate-y-2"
          @mouseenter="onHoverEnter()"
-         @mouseleave="onHoverLeave(180)"
-         class="w-full border-t border-b transition-colors duration-300 hidden lg:block"
+         @mouseleave="onHoverLeave(250)"
+         class="absolute top-full left-0 w-full border-b transition-colors duration-300 hidden lg:block transform-gpu will-change-[transform,opacity] shadow-md z-10"
          :class="{
-             'bg-[#FBF8FC]/98 backdrop-blur-md border-[#E4E1E5] shadow-lg': scrolledPastHero,
+             'bg-[#FBF8FC] border-[#E4E1E5]': scrolledPastHero,
              'bg-charcoal-950/95 backdrop-blur-md border-white/10 shadow-2xl': !scrolledPastHero
          }"
          style="display: none;">
@@ -249,7 +251,7 @@
                     @foreach($homeSections as $sec)
                         <button type="button"
                                 @click="scrollToSection('{{ $sec['id'] }}')"
-                                class="group flex items-center gap-2 px-3.5 py-1.5 rounded-[2px] transition-all duration-200 text-left shrink-0 cursor-pointer"
+                                class="group flex items-center gap-2 px-3.5 py-1.5 rounded-[2px] transition-all duration-200 text-left shrink-0 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
                                 :class="activeSection === '{{ $sec['id'] }}'
                                     ? 'bg-figma-red text-white shadow-xs font-bold'
                                     : (scrolledPastHero
