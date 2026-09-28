@@ -42,6 +42,9 @@ Sistem ini memadukan:
 
 ## 2. Flowchart Sistem Lengkap
 
+> [!TIP]
+> Dokumen mandiri lengkap khusus Flowchart User, Flowchart Admin, ERD Komprehensif, dan Kamus Data 26 tabel juga telah diekspor ke file markdown tersendiri: [FLOWCHART_DAN_ERD.md](FLOWCHART_DAN_ERD.md) dan [docs/FLOWCHART_DAN_ERD.md](docs/FLOWCHART_DAN_ERD.md).
+
 ### A. Flowchart Pengunjung Publik (User)
 
 Diagram alur berikut menggambarkan seluruh perjalanan pengunjung (calon siswa, orang tua, siswa aktif, alumni, dan mitra industri) saat menelusuri website:
