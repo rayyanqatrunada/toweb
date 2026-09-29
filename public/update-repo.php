@@ -1,24 +1,67 @@
 <?php
 /**
- * TSM Webhook / Git Auto-Deploy Script
- * Digunakan untuk menyinkronkan website dengan GitHub tanpa memerlukan terminal SSH.
+ * =========================================================================
+ * TBSM DEVOPS & REPO SYNC TERMINAL — SMKN 1 BANGSRI
+ * =========================================================================
+ * Utilitas deployment & pemeliharaan server mandiri untuk sinkronisasi GitHub,
+ * migrasi database, database seeder, rollback/undo, dan manajemen cache.
+ * 
+ * SIFAT: RAHASIA / RESTRICTED ACCESS.
+ * Gunakan kunci otentikasi untuk membuka konsol kontrol ini.
+ * =========================================================================
  */
 
-// =========================================================================
-// 1. PENGATURAN KUNCI KEAMANAN (Password)
-// =========================================================================
+// Mulai sesi PHP untuk persistensi otentikasi
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// -------------------------------------------------------------------------
+// 1. KUNCI OTENTIKASI & KEAMANAN
+// -------------------------------------------------------------------------
 $SECRET_KEY = 'tsm2026bangsri';
 
-// Cek apakah key dikirim melalui GET atau POST
-$inputKey = $_GET['key'] ?? $_POST['key'] ?? '';
-$isAuthenticated = ($inputKey === $SECRET_KEY);
+// Dukungan override dari .env jika didefinisikan (DEPLOY_KEY atau UPDATE_KEY)
+$envFile = __DIR__ . '/../.env';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        $line = trim($line);
+        if (str_starts_with($line, 'DEPLOY_KEY=') || str_starts_with($line, 'UPDATE_KEY=')) {
+            $parts = explode('=', $line, 2);
+            if (!empty($parts[1])) {
+                $SECRET_KEY = trim($parts[1], " \t\n\r\0\x0B\"'");
+                break;
+            }
+        }
+    }
+}
 
-// Deteksi direktori root Laravel secara otomatis
+// Tangani aksi Logout
+if (isset($_GET['logout'])) {
+    unset($_SESSION['tsm_deployer_auth']);
+    header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?'));
+    exit;
+}
+
+// Cek autentikasi dari Session atau input Key (GET / POST)
+$inputKey = $_POST['key'] ?? $_GET['key'] ?? '';
+if (!empty($inputKey)) {
+    if (hash_equals($SECRET_KEY, $inputKey)) {
+        $_SESSION['tsm_deployer_auth'] = true;
+    }
+}
+
+$isAuthenticated = !empty($_SESSION['tsm_deployer_auth']);
+
+// -------------------------------------------------------------------------
+// 2. DETEKSI LINGKUNGAN & PATH LARAVEL
+// -------------------------------------------------------------------------
 $laravelRoot = null;
-if (file_exists(__DIR__ . '/artisan')) {
-    $laravelRoot = __DIR__;
-} elseif (file_exists(__DIR__ . '/../artisan')) {
+if (file_exists(__DIR__ . '/../artisan')) {
     $laravelRoot = realpath(__DIR__ . '/..');
+} elseif (file_exists(__DIR__ . '/artisan')) {
+    $laravelRoot = __DIR__;
 } elseif (file_exists(__DIR__ . '/../../artisan')) {
     $laravelRoot = realpath(__DIR__ . '/../..');
 }
@@ -27,160 +70,1398 @@ if ($laravelRoot) {
     chdir($laravelRoot);
 }
 
-$runSync = isset($_GET['sync']) && $_GET['sync'] === 'now' && $isAuthenticated;
-$runMigrate = isset($_GET['migrate']) && $_GET['migrate'] === '1';
+// Deteksi binary PHP
+$phpBinary = 'php';
+if (defined('PHP_BINARY') && PHP_BINARY && is_executable(PHP_BINARY)) {
+    $phpBinary = PHP_BINARY;
+}
+
+// -------------------------------------------------------------------------
+// 3. TELEMETRI SISTEM & STATUS REPO
+// -------------------------------------------------------------------------
+$gitBranch     = 'N/A';
+$gitCommitHash = 'N/A';
+$gitCommitMsg  = 'N/A';
+$gitCommitDate = 'N/A';
+$gitCommitAuthor = 'N/A';
+$gitStatusClean = true;
+$gitUncommitted = [];
+$gitRecentLogs = [];
+$isDown = false;
+$storageLinked = false;
+$diskFreeGB = null;
+
+if ($isAuthenticated && $laravelRoot) {
+    // Info Git Aktif
+    $gitBranch = trim((string)shell_exec('git branch --show-current 2>&1')) ?: 'main';
+    $logRaw = trim((string)shell_exec('git log -1 --pretty=format:"%h|%an|%ar|%s" 2>&1'));
+    if ($logRaw && str_contains($logRaw, '|')) {
+        $parts = explode('|', $logRaw, 4);
+        $gitCommitHash   = $parts[0] ?? 'N/A';
+        $gitCommitAuthor = $parts[1] ?? 'N/A';
+        $gitCommitDate   = $parts[2] ?? 'N/A';
+        $gitCommitMsg    = $parts[3] ?? 'N/A';
+    }
+
+    // Status Perubahan Lokal Uncommitted
+    $statusRaw = trim((string)shell_exec('git status --porcelain 2>&1'));
+    if (!empty($statusRaw)) {
+        $gitStatusClean = false;
+        $gitUncommitted = array_slice(explode("\n", $statusRaw), 0, 8);
+    }
+
+    // Riwayat 6 Commit Terakhir
+    $recentRaw = trim((string)shell_exec('git log -6 --pretty=format:"%h|%an|%ar|%s" 2>&1'));
+    if (!empty($recentRaw)) {
+        foreach (explode("\n", $recentRaw) as $item) {
+            $p = explode('|', $item, 4);
+            if (count($p) === 4) {
+                $gitRecentLogs[] = [
+                    'hash'   => $p[0],
+                    'author' => $p[1],
+                    'date'   => $p[2],
+                    'msg'    => $p[3],
+                ];
+            }
+        }
+    }
+
+    // Cek Maintenance Mode
+    $isDown = file_exists($laravelRoot . '/storage/framework/down');
+
+    // Cek Symlink Storage
+    $publicStorage = $laravelRoot . '/public/storage';
+    $storageLinked = is_link($publicStorage) || (file_exists($publicStorage) && is_dir($publicStorage));
+
+    // Disk space
+    $freeBytes = @disk_free_space($laravelRoot);
+    if ($freeBytes !== false) {
+        $diskFreeGB = round($freeBytes / 1024 / 1024 / 1024, 2);
+    }
+}
+
+// Daftar Seeder Tersedia
+$availableSeeders = [
+    'DatabaseSeeder'         => 'Semua Seeder Utama (DatabaseSeeder)',
+    'RoleAndUserSeeder'      => 'Akun Pengguna & Hak Akses (RoleAndUserSeeder)',
+    'SettingSeeder'          => 'Pengaturan Situs & Hero (SettingSeeder)',
+    'AcademicDataSeeder'     => 'Program & Fasilitas Bengkel (AcademicDataSeeder)',
+    'AutomotiveDataSeeder'   => 'Data Kompetensi TBSM (AutomotiveDataSeeder)',
+    'IndustryDataSeeder'     => 'Mitra DUDI & Cabang AHASS (IndustryDataSeeder)',
+    'AlumniDataSeeder'       => 'Tracer Study Alumni BMW (AlumniDataSeeder)',
+    'MediaDataSeeder'        => 'Album & Item Galeri (MediaDataSeeder)',
+    'ContentDataSeeder'      => 'Artikel Warta & Pengumuman (ContentDataSeeder)',
+    'DownloadDataSeeder'     => 'Pusat Unduhan & Kategori (DownloadDataSeeder)',
+];
+
+// -------------------------------------------------------------------------
+// 4. PEMROSESAN AKSI OPERASIONAL
+// -------------------------------------------------------------------------
+$actionResult = null;
+$actionTitle  = null;
+$actionStatus = 'success';
+$actionTime   = 0;
+
+if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $startTime = microtime(true);
+    $action = $_POST['action'];
+
+    switch ($action) {
+        // -------------------------------------------------------------
+        // A. SINKRONISASI GIT
+        // -------------------------------------------------------------
+        case 'git_pull':
+            $actionTitle = 'Git Fast Pull (origin/main)';
+            $output = [];
+            $output[] = "$ git pull origin main";
+            $output[] = (string)shell_exec('git pull origin main 2>&1');
+            $output[] = "$ php artisan optimize:clear";
+            $output[] = (string)shell_exec($phpBinary . ' artisan optimize:clear 2>&1');
+            $actionResult = implode("\n", array_map('trim', $output));
+            break;
+
+        case 'git_force_sync':
+            $actionTitle = 'Git Force Reset & Clean Sync';
+            $output = [];
+            $output[] = "$ git fetch origin main";
+            $output[] = (string)shell_exec('git fetch origin main 2>&1');
+            $output[] = "$ git checkout -f -B main origin/main";
+            $output[] = (string)shell_exec('git checkout -f -B main origin/main 2>&1');
+            $output[] = "$ git reset --hard origin/main";
+            $output[] = (string)shell_exec('git reset --hard origin/main 2>&1');
+            $output[] = "$ git clean -fd -e .env -e public/build -e public/storage -e storage";
+            $output[] = (string)shell_exec('git clean -fd -e .env -e public/build -e public/storage -e storage 2>&1');
+            $output[] = "$ php artisan optimize:clear";
+            $output[] = (string)shell_exec($phpBinary . ' artisan optimize:clear 2>&1');
+            $actionResult = implode("\n\n", array_map('trim', $output));
+            break;
+
+        // -------------------------------------------------------------
+        // B. UNDO / ROLLBACK COMMIT
+        // -------------------------------------------------------------
+        case 'git_undo':
+            $steps = max(1, min(5, (int)($_POST['undo_steps'] ?? 1)));
+            $actionTitle = "Git Undo (Rollback $steps Commit ke Belakang)";
+            $output = [];
+            $prevCommit = trim((string)shell_exec('git log -1 --oneline 2>&1'));
+            $output[] = "[SEBELUM UNDO]: " . $prevCommit;
+            $output[] = "$ git reset --hard HEAD~$steps";
+            $output[] = (string)shell_exec("git reset --hard HEAD~$steps 2>&1");
+            $newCommit = trim((string)shell_exec('git log -1 --oneline 2>&1'));
+            $output[] = "[SETELAH UNDO]: " . $newCommit;
+            $output[] = "$ php artisan optimize:clear";
+            $output[] = (string)shell_exec($phpBinary . ' artisan optimize:clear 2>&1');
+            $actionResult = implode("\n\n", array_map('trim', $output));
+            break;
+
+        // -------------------------------------------------------------
+        // C. BASIS DATA: MIGRATE & ROLLBACK
+        // -------------------------------------------------------------
+        case 'db_migrate':
+            $actionTitle = 'Database Migration (artisan migrate --force)';
+            $output = [];
+            $output[] = "$ php artisan migrate --force";
+            $output[] = (string)shell_exec($phpBinary . ' artisan migrate --force 2>&1');
+            $actionResult = implode("\n", array_map('trim', $output));
+            break;
+
+        case 'db_migrate_status':
+            $actionTitle = 'Status Migrasi Basis Data';
+            $output = [];
+            $output[] = "$ php artisan migrate:status";
+            $output[] = (string)shell_exec($phpBinary . ' artisan migrate:status 2>&1');
+            $actionResult = implode("\n", array_map('trim', $output));
+            break;
+
+        case 'db_migrate_rollback':
+            $step = max(1, min(10, (int)($_POST['rollback_step'] ?? 1)));
+            $actionTitle = "Rollback Migrasi ($step Step)";
+            $output = [];
+            $output[] = "$ php artisan migrate:rollback --step=$step --force";
+            $output[] = (string)shell_exec($phpBinary . " artisan migrate:rollback --step=$step --force 2>&1");
+            $actionResult = implode("\n", array_map('trim', $output));
+            break;
+
+        // -------------------------------------------------------------
+        // D. BASIS DATA: SEEDER
+        // -------------------------------------------------------------
+        case 'db_seed':
+            $seederClass = trim($_POST['seeder_class'] ?? 'DatabaseSeeder');
+            if (!preg_match('/^[A-Za-z0-9_\\\\]+$/', $seederClass)) {
+                $seederClass = 'DatabaseSeeder';
+            }
+            $actionTitle = "Database Seeder ($seederClass)";
+            $output = [];
+            $cmd = $phpBinary . ' artisan db:seed --class=' . escapeshellarg($seederClass) . ' --force';
+            $output[] = "$ " . $cmd;
+            $output[] = (string)shell_exec($cmd . ' 2>&1');
+            $actionResult = implode("\n", array_map('trim', $output));
+            break;
+
+        // -------------------------------------------------------------
+        // E. CACHE & OPTIMASI
+        // -------------------------------------------------------------
+        case 'cache_clear':
+            $actionTitle = 'Pembersihan Seluruh Cache (optimize:clear)';
+            $output = [];
+            $output[] = "$ php artisan optimize:clear";
+            $output[] = (string)shell_exec($phpBinary . ' artisan optimize:clear 2>&1');
+            $actionResult = implode("\n", array_map('trim', $output));
+            break;
+
+        case 'cache_optimize':
+            $actionTitle = 'Optimasi & Cache Warmup (optimize)';
+            $output = [];
+            $output[] = "$ php artisan optimize";
+            $output[] = (string)shell_exec($phpBinary . ' artisan optimize 2>&1');
+            $actionResult = implode("\n", array_map('trim', $output));
+            break;
+
+        // -------------------------------------------------------------
+        // F. STORAGE SYMLINK
+        // -------------------------------------------------------------
+        case 'storage_link':
+            $actionTitle = 'Pembuatan Storage Link (storage:link)';
+            $output = [];
+            $output[] = "$ php artisan storage:link";
+            $output[] = (string)shell_exec($phpBinary . ' artisan storage:link 2>&1');
+            $actionResult = implode("\n", array_map('trim', $output));
+            break;
+
+        // -------------------------------------------------------------
+        // G. MAINTENANCE MODE
+        // -------------------------------------------------------------
+        case 'maintenance_toggle':
+            if ($isDown) {
+                $actionTitle = 'Mengaktifkan Website (php artisan up)';
+                $output = [];
+                $output[] = "$ php artisan up";
+                $output[] = (string)shell_exec($phpBinary . ' artisan up 2>&1');
+                $actionResult = implode("\n", array_map('trim', $output));
+            } else {
+                $actionTitle = 'Mematikan Website Sementara (php artisan down)';
+                $secretToken = 'tsm' . date('Y');
+                $output = [];
+                $cmd = $phpBinary . ' artisan down --secret=' . escapeshellarg($secretToken) . ' --render="errors::503"';
+                $output[] = "$ " . $cmd;
+                $output[] = (string)shell_exec($cmd . ' 2>&1');
+                $output[] = "Bypass URL: /" . $secretToken;
+                $actionResult = implode("\n", array_map('trim', $output));
+            }
+            break;
+
+        default:
+            $actionTitle  = 'Perintah Tidak Dikenal';
+            $actionResult = 'Aksi tidak valid atau tidak didukung.';
+            $actionStatus = 'danger';
+            break;
+    }
+
+    $actionTime = round(microtime(true) - $startTime, 3);
+
+    // Refresh status setelah aksi
+    if ($laravelRoot) {
+        $gitBranch = trim((string)shell_exec('git branch --show-current 2>&1')) ?: 'main';
+        $logRaw = trim((string)shell_exec('git log -1 --pretty=format:"%h|%an|%ar|%s" 2>&1'));
+        if ($logRaw && str_contains($logRaw, '|')) {
+            $parts = explode('|', $logRaw, 4);
+            $gitCommitHash   = $parts[0] ?? 'N/A';
+            $gitCommitAuthor = $parts[1] ?? 'N/A';
+            $gitCommitDate   = $parts[2] ?? 'N/A';
+            $gitCommitMsg    = $parts[3] ?? 'N/A';
+        }
+        $isDown = file_exists($laravelRoot . '/storage/framework/down');
+        $storageLinked = is_link($laravelRoot . '/public/storage') || (file_exists($laravelRoot . '/public/storage') && is_dir($laravelRoot . '/public/storage'));
+    }
+}
 
 ?>
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Git Deployer — TSM SMKN 1 Bangsri</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title>DevOps Terminal — TBSM SMKN 1 Bangsri</title>
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #090d16; color: #e2e8f0; margin: 0; padding: 2.5rem 1rem; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .container { width: 100%; max-width: 820px; background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 2.25rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7); }
-        .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1f2937; padding-bottom: 1.25rem; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-        .header h1 { font-size: 1.5rem; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 0.6rem; }
-        .badge { background: #065f46; color: #34d399; font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 9999px; }
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; background: #dc2626; color: #fff; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; transition: all 0.2s; }
-        .btn:hover { background: #b91c1c; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(220,38,38,0.3); }
-        .btn-outline { background: transparent; border: 1px solid #374151; color: #9ca3af; padding: 0.6rem 1.1rem; }
-        .btn-outline:hover { background: #1f2937; color: #fff; }
-        .console { background: #030712; border: 1px solid #1f2937; border-radius: 8px; padding: 1.25rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; color: #4ade80; overflow-x: auto; margin-bottom: 1.25rem; line-height: 1.6; }
-        .console-title { font-size: 0.85rem; font-weight: 600; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .alert { background: #1e3a8a; border: 1px solid #2563eb; color: #bfdbfe; padding: 1rem 1.25rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.9rem; line-height: 1.5; }
-        .alert-success { background: #064e3b; border-color: #059669; color: #a7f3d0; }
-        .alert-danger { background: #7f1d1d; border-color: #dc2626; color: #fecaca; }
-        .input-group { display: flex; gap: 0.75rem; margin-top: 1rem; }
-        .input-text { flex: 1; background: #030712; border: 1px solid #374151; border-radius: 8px; padding: 0.75rem 1rem; color: #fff; font-size: 0.95rem; }
-        .input-text:focus { outline: none; border-color: #dc2626; }
-        .info-box { background: #182234; border: 1px solid #233554; border-radius: 8px; padding: 1.1rem; margin-top: 1.75rem; font-size: 0.85rem; color: #94a3b8; line-height: 1.6; }
-        .info-box ul { margin: 0.5rem 0 0 1.2rem; padding: 0; }
-        .info-box li { margin-bottom: 0.35rem; }
+        :root {
+            --tbsm-red: #DC2626;
+            --tbsm-red-hover: #B91C1C;
+            --tbsm-red-soft: rgba(220, 38, 38, 0.12);
+            --tbsm-dark-bg: #09090C;
+            --tbsm-card-bg: #121217;
+            --tbsm-card-inner: #18181F;
+            --tbsm-border: #27272A;
+            --tbsm-border-light: rgba(255, 255, 255, 0.08);
+            --tbsm-text: #F4F4F5;
+            --tbsm-muted: #A1A1AA;
+            --tbsm-muted-dark: #71717A;
+            --tbsm-emerald: #10B981;
+            --tbsm-amber: #F59E0B;
+            --tbsm-sky: #0EA5E9;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--tbsm-dark-bg);
+            color: var(--tbsm-text);
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.08), transparent 45%),
+                linear-gradient(to right, rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px, 32px 32px;
+            padding: 1.5rem 1rem 3rem;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        /* Top Bar */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--tbsm-card-bg);
+            border: 1px solid var(--tbsm-border);
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1.25rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .brand-badge-red {
+            width: 8px;
+            height: 28px;
+            background: var(--tbsm-red);
+            border-radius: 2px;
+        }
+
+        .brand-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .brand-title span {
+            color: var(--tbsm-red);
+        }
+
+        .brand-subtitle {
+            font-size: 0.72rem;
+            color: var(--tbsm-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .badge-emerald {
+            background: rgba(16, 185, 129, 0.12);
+            color: #34D399;
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+
+        .badge-amber {
+            background: rgba(245, 158, 11, 0.12);
+            color: #FBBF24;
+            border-color: rgba(245, 158, 11, 0.25);
+        }
+
+        .badge-red {
+            background: rgba(220, 38, 38, 0.15);
+            color: #F87171;
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        .badge-sky {
+            background: rgba(14, 165, 233, 0.12);
+            color: #38BDF8;
+            border-color: rgba(14, 165, 233, 0.25);
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: currentColor;
+            box-shadow: 0 0 8px currentColor;
+        }
+
+        /* Tombol & Link */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.55rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--tbsm-red);
+            color: #FFFFFF;
+            border-color: var(--tbsm-red-hover);
+        }
+
+        .btn-primary:hover {
+            background: var(--tbsm-red-hover);
+            box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--tbsm-muted);
+            border-color: var(--tbsm-border);
+        }
+
+        .btn-outline:hover {
+            background: var(--tbsm-card-inner);
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-danger-outline {
+            background: transparent;
+            color: #F87171;
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        .btn-danger-outline:hover {
+            background: rgba(220, 38, 38, 0.12);
+            color: #FFFFFF;
+            border-color: var(--tbsm-red);
+        }
+
+        .btn-amber-outline {
+            background: transparent;
+            color: #FBBF24;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-amber-outline:hover {
+            background: rgba(245, 158, 11, 0.12);
+            color: #FFFFFF;
+            border-color: var(--tbsm-amber);
+        }
+
+        .btn-sky-outline {
+            background: transparent;
+            color: #38BDF8;
+            border-color: rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-sky-outline:hover {
+            background: rgba(14, 165, 233, 0.12);
+            color: #FFFFFF;
+            border-color: var(--tbsm-sky);
+        }
+
+        /* Telemetri Grid */
+        .telemetry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .telemetry-card {
+            background: var(--tbsm-card-bg);
+            border: 1px solid var(--tbsm-border);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .telemetry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: transparent;
+        }
+
+        .telemetry-card.red-top::before { background: var(--tbsm-red); }
+        .telemetry-card.emerald-top::before { background: var(--tbsm-emerald); }
+        .telemetry-card.sky-top::before { background: var(--tbsm-sky); }
+        .telemetry-card.amber-top::before { background: var(--tbsm-amber); }
+
+        .telemetry-label {
+            font-size: 0.7rem;
+            color: var(--tbsm-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .telemetry-value {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .telemetry-sub {
+            font-size: 0.72rem;
+            color: var(--tbsm-muted-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Main Workspace Panels */
+        .workspace-panel {
+            background: var(--tbsm-card-bg);
+            border: 1px solid var(--tbsm-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .panel-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .panel-desc {
+            font-size: 0.8rem;
+            color: var(--tbsm-muted);
+            margin-top: 0.2rem;
+        }
+
+        /* Action Grid */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .action-card {
+            background: var(--tbsm-card-inner);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+
+        .action-card:hover {
+            border-color: rgba(220, 38, 38, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .action-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .action-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-sm);
+            background: rgba(220, 38, 38, 0.15);
+            color: var(--tbsm-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .action-icon.sky {
+            background: rgba(14, 165, 233, 0.15);
+            color: var(--tbsm-sky);
+        }
+
+        .action-icon.amber {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--tbsm-amber);
+        }
+
+        .action-icon.emerald {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--tbsm-emerald);
+        }
+
+        .action-card-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .action-card-desc {
+            font-size: 0.78rem;
+            color: var(--tbsm-muted);
+            line-height: 1.45;
+            margin-top: 0.2rem;
+        }
+
+        .action-card-form {
+            margin-top: 1rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Form Controls */
+        .form-select, .form-input {
+            width: 100%;
+            background: #09090C;
+            border: 1px solid var(--tbsm-border);
+            border-radius: var(--radius-sm);
+            padding: 0.55rem 0.75rem;
+            color: #FFFFFF;
+            font-size: 0.82rem;
+            font-family: inherit;
+            margin-bottom: 0.75rem;
+            outline: none;
+            transition: border-color 0.15s ease;
+        }
+
+        .form-select:focus, .form-input:focus {
+            border-color: var(--tbsm-red);
+        }
+
+        /* Console Output */
+        .terminal-box {
+            background: #050507;
+            border: 1px solid var(--tbsm-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .terminal-header {
+            background: #0D0D12;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid var(--tbsm-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--tbsm-muted);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #27272A;
+        }
+
+        .terminal-dot.r { background: #EF4444; }
+        .terminal-dot.y { background: #F59E0B; }
+        .terminal-dot.g { background: #10B981; }
+
+        .terminal-content {
+            padding: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: #34D399;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
+        /* Commit History Table */
+        .commit-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        .commit-table th {
+            text-align: left;
+            padding: 0.6rem 0.85rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--tbsm-muted-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--tbsm-border);
+        }
+
+        .commit-table td {
+            padding: 0.65rem 0.85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--tbsm-text);
+        }
+
+        .commit-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .commit-hash {
+            font-family: 'JetBrains Mono', monospace;
+            color: #38BDF8;
+            font-weight: 600;
+        }
+
+        /* Auth Gate Screen */
+        .auth-wrapper {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 440px;
+            background: var(--tbsm-card-bg);
+            border: 1px solid var(--tbsm-border);
+            border-radius: var(--radius-md);
+            padding: 2.25rem 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+
+        .auth-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--tbsm-red), #F87171);
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        .alert-box {
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid transparent;
+            line-height: 1.45;
+        }
+
+        .alert-box.danger {
+            background: rgba(220, 38, 38, 0.15);
+            border-color: rgba(220, 38, 38, 0.4);
+            color: #FCA5A5;
+        }
+
+        .alert-box.info {
+            background: rgba(14, 165, 233, 0.12);
+            border-color: rgba(14, 165, 233, 0.3);
+            color: #BAE6FD;
+        }
+
+        .alert-box.success {
+            background: rgba(16, 185, 129, 0.12);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #A7F3D0;
+        }
+
+        /* Modal Dialog */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal-box {
+            background: var(--tbsm-card-bg);
+            border: 1px solid var(--tbsm-border);
+            border-radius: var(--radius-md);
+            max-width: 480px;
+            width: 100%;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body {
+            font-size: 0.84rem;
+            color: var(--tbsm-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* Footer */
+        .footer-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--tbsm-muted-dark);
+            margin-top: 2rem;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <h1>🚀 TSM Auto-Updater <span class="badge">Development Mode</span></h1>
-        <a href="/" target="_blank" class="btn btn-outline" style="font-size: 0.85rem;">Lihat Website ↗</a>
-    </div>
 
-    <?php if (!$isAuthenticated): ?>
-        <!-- FORM LOGIN KUNCI KEAMANAN -->
+<?php if (!$isAuthenticated): ?>
+<!-- ======================================================================= -->
+<!-- TAMPILAN 1: AUTHENTICATION GATE (KUNCI RAHASIA)                          -->
+<!-- ======================================================================= -->
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+            <div class="brand-badge-red" style="height: 32px;"></div>
+            <div>
+                <div class="brand-title">TBSM <span>DEVOPS</span></div>
+                <div class="brand-subtitle">Automated Sync & Server Terminal</div>
+            </div>
+        </div>
+
         <?php if (!empty($inputKey)): ?>
-            <div class="alert alert-danger">
-                ⛔ Kunci keamanan yang Anda masukkan salah. Silakan coba lagi.
+            <div class="alert-box danger">
+                ⛔ Kunci otentikasi tidak valid. Akses ditolak.
             </div>
         <?php else: ?>
-            <div class="alert">
-                🔒 Halaman ini dilindungi kunci keamanan. Masukkan kunci rahasia untuk melanjutkan pembaruan repository.
+            <div class="alert-box info">
+                🔒 Area tertutup ini dilindungi kunci keamanan server. Masukkan kata sandi repositori untuk melanjutkan.
             </div>
         <?php endif; ?>
 
         <form method="POST" action="">
-            <label style="font-size: 0.9rem; color: #cbd5e1; font-weight: 500;">Kunci Rahasia (Password):</label>
-            <div class="input-group">
-                <input type="password" name="key" class="input-text" placeholder="Masukkan kunci..." value="tsm2026bangsri" required autofocus>
-                <button type="submit" class="btn">Buka Panel</button>
+            <label style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--tbsm-muted); display: block; margin-bottom: 0.45rem;">
+                Kunci Rahasia Server:
+            </label>
+            <div style="position: relative; margin-bottom: 1.25rem;">
+                <input type="password" id="authKeyInput" name="key" class="form-input" placeholder="Masukkan kunci deployment..." value="<?php echo htmlspecialchars($inputKey ?: 'tsm2026bangsri'); ?>" required autofocus style="margin-bottom: 0; padding-right: 2.5rem;">
+                <button type="button" onclick="togglePassword()" style="position: absolute; right: 0.65rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--tbsm-muted); cursor: pointer; font-size: 0.85rem;" title="Lihat/Sembunyikan">👁️</button>
             </div>
-            <p style="font-size: 0.8rem; color: #64748b; margin-top: 0.5rem;">Default key: <code>tsm2026bangsri</code></p>
-        </form>
 
-    <?php elseif (!$runSync): ?>
-        <!-- PANEL SEBELUM SYNC -->
-        <div class="alert">
-            ℹ️ Sistem siap menyinkronkan website dengan commit terbaru dari branch <code>main</code> di GitHub.
-        </div>
-
-        <div class="console-title">Status Repository Hosting Saat Ini:</div>
-        <div class="console">
-            Folder Root: <?php echo htmlspecialchars($laravelRoot ?? 'Tidak terdeteksi!'); ?><br>
-            Commit Saat Ini: <?php echo htmlspecialchars(trim(shell_exec('git log -1 --oneline 2>&1') ?? 'N/A')); ?><br>
-            Branch Aktif: <?php echo htmlspecialchars(trim(shell_exec('git branch --show-current 2>&1') ?? 'N/A')); ?>
-        </div>
-
-        <form method="GET" action="">
-            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
-            <input type="hidden" name="sync" value="now">
-            
-            <p style="margin-bottom: 1.25rem;">
-                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: #cbd5e1;">
-                    <input type="checkbox" name="migrate" value="1">
-                    Jalankan juga <code>php artisan migrate --force</code> (Centang hanya jika Anda menambah file migrasi database baru)
-                </label>
-            </p>
-
-            <button type="submit" class="btn" style="width: 100%; font-size: 1.05rem; padding: 0.9rem;">
-                ⚡ Sinkronkan Sekarang dari GitHub (Force Pull & Reset)
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 0.88rem;">
+                Buka Terminal DevOps ⚡
             </button>
         </form>
 
-    <?php else: ?>
-        <!-- PROSES DAN HASIL SYNC -->
-        <div class="alert alert-success">
-            ✨ Proses sinkronisasi berhasil dieksekusi!
+        <div style="margin-top: 1.5rem; text-align: center;">
+            <a href="/" class="btn btn-outline" style="font-size: 0.78rem; padding: 0.45rem 0.85rem;">← Kembali ke Beranda Publik</a>
         </div>
-
-        <div class="console-title">1. Git Fetch & Force Reset ke Origin Main:</div>
-        <?php
-        $cmdFetch    = shell_exec('git fetch origin main 2>&1');
-        $cmdCheckout = shell_exec('git checkout -f -B main origin/main 2>&1');
-        $cmdReset    = shell_exec('git reset --hard origin/main 2>&1');
-        $cmdClean    = shell_exec('git clean -fd -e .env -e public/build -e public/storage -e storage 2>&1');
-        ?>
-        <div class="console">
-            [git fetch origin main]<br><?php echo htmlspecialchars($cmdFetch ?? 'OK'); ?><br><br>
-            [git checkout -f -B main origin/main]<br><?php echo htmlspecialchars($cmdCheckout ?? 'OK'); ?><br><br>
-            [git reset --hard origin/main]<br><?php echo htmlspecialchars($cmdReset ?? 'OK'); ?><br><br>
-            [git clean (preserve .env & assets)]<br><?php echo htmlspecialchars($cmdClean ?? 'OK'); ?>
-        </div>
-
-        <?php if ($runMigrate): ?>
-            <div class="console-title">2. Database Migration:</div>
-            <?php $cmdMigrate = shell_exec('php artisan migrate --force 2>&1'); ?>
-            <div class="console">
-                [php artisan migrate --force]<br><?php echo htmlspecialchars($cmdMigrate ?? 'No output'); ?>
-            </div>
-        <?php endif; ?>
-
-        <div class="console-title">Pembersihan Cache Laravel:</div>
-        <?php
-        $cmdView     = shell_exec('php artisan view:clear 2>&1');
-        $cmdCache    = shell_exec('php artisan cache:clear 2>&1');
-        $cmdConfig   = shell_exec('php artisan config:clear 2>&1');
-        $cmdOptimize = shell_exec('php artisan optimize:clear 2>&1');
-        ?>
-        <div class="console">
-            <?php echo htmlspecialchars($cmdView ?? ''); ?><br>
-            <?php echo htmlspecialchars($cmdCache ?? ''); ?><br>
-            <?php echo htmlspecialchars($cmdConfig ?? ''); ?><br>
-            <?php echo htmlspecialchars($cmdOptimize ?? ''); ?>
-        </div>
-
-        <div class="console-title">Commit Aktif Terbaru di Hosting:</div>
-        <div class="console" style="color: #38bdf8;">
-            <?php echo htmlspecialchars(shell_exec('git log -1 --pretty=format:"Hash: %h | Pesan: %s | Tanggal: %cd" 2>&1') ?? 'N/A'); ?>
-        </div>
-
-        <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-            <a href="?key=<?php echo htmlspecialchars($SECRET_KEY); ?>" class="btn btn-outline">⬅ Kembali ke Panel</a>
-            <a href="/" target="_blank" class="btn">Buka Website TSM ↗</a>
-        </div>
-
-    <?php endif; ?>
-
-    <div class="info-box">
-        <strong>💡 Panduan Penggunaan:</strong>
-        <ul>
-            <li>File ini dapat diletakkan di <code>public_html/public/update-repo.php</code>.</li>
-            <li>Setiap kali Anda selesai <code>git push origin main</code> dari VS Code/laptop, cukup buka halaman ini dan tekan tombol sinkronisasi.</li>
-            <li>File <code>.env</code> dan gambar upload di <code>storage</code> tetap aman terjaga.</li>
-            <li>Jika proyek sudah 100% fix dan siap dipublikasikan ke khalayak luas, hapus file <code>update-repo.php</code> ini dari File Manager demi keamanan.</li>
-        </ul>
     </div>
 </div>
+
+<script>
+function togglePassword() {
+    var input = document.getElementById('authKeyInput');
+    input.type = input.type === 'password' ? 'text' : 'password';
+}
+</script>
+
+<?php else: ?>
+<!-- ======================================================================= -->
+<!-- TAMPILAN 2: DEVOPS WORKSPACE UTAMA (TERAUTENTIKASI)                     -->
+<!-- ======================================================================= -->
+<div class="container">
+
+    <!-- Top Navigation Bar -->
+    <div class="topbar">
+        <div class="brand-section">
+            <div class="brand-badge-red"></div>
+            <div>
+                <div class="brand-title">TBSM <span>DEVOPS TERMINAL</span></div>
+                <div class="brand-subtitle">SMK Negeri 1 Bangsri — Honda Binaan Resmi</div>
+            </div>
+        </div>
+
+        <div class="topbar-actions">
+            <span class="badge badge-emerald">
+                <span class="pulse-dot"></span>
+                Terminal Online
+            </span>
+
+            <?php if ($isDown): ?>
+                <span class="badge badge-red">Mode Pemeliharaan (DOWN)</span>
+            <?php endif; ?>
+
+            <a href="/" target="_blank" class="btn btn-outline">
+                Lihat Web ↗
+            </a>
+
+            <a href="/admin" target="_blank" class="btn btn-outline">
+                Admin Panel ↗
+            </a>
+
+            <a href="?logout=1" class="btn btn-danger-outline" style="padding: 0.45rem 0.75rem;">
+                Kunci Keluar 🔒
+            </a>
+        </div>
+    </div>
+
+    <!-- Telemetri Sistem -->
+    <div class="telemetry-grid">
+        <!-- Card 1: Git Branch & Commit -->
+        <div class="telemetry-card red-top">
+            <div class="telemetry-label">
+                <span>Git Active Branch</span>
+                <span class="badge badge-sky" style="font-size: 0.65rem; padding: 0.1rem 0.45rem;"><?php echo htmlspecialchars($gitBranch); ?></span>
+            </div>
+            <div class="telemetry-value mono" style="font-size: 0.85rem;">
+                #<?php echo htmlspecialchars($gitCommitHash); ?> <span style="font-size: 0.75rem; font-weight: normal; color: var(--tbsm-muted);"><?php echo htmlspecialchars(mb_strimwidth($gitCommitMsg, 0, 32, '...')); ?></span>
+            </div>
+            <div class="telemetry-sub">
+                <?php echo htmlspecialchars($gitCommitAuthor); ?> • <?php echo htmlspecialchars($gitCommitDate); ?>
+            </div>
+        </div>
+
+        <!-- Card 2: Status File Lokal -->
+        <div class="telemetry-card <?php echo $gitStatusClean ? 'emerald-top' : 'amber-top'; ?>">
+            <div class="telemetry-label">
+                <span>Working Tree Status</span>
+                <?php if ($gitStatusClean): ?>
+                    <span class="badge badge-emerald" style="font-size: 0.65rem; padding: 0.1rem 0.45rem;">Bersih (Clean)</span>
+                <?php else: ?>
+                    <span class="badge badge-amber" style="font-size: 0.65rem; padding: 0.1rem 0.45rem;"><?php echo count($gitUncommitted); ?> Perubahan</span>
+                <?php endif; ?>
+            </div>
+            <div class="telemetry-value" style="font-size: 0.88rem;">
+                <?php echo $gitStatusClean ? 'Sinkron dengan Repository' : 'Ada file lokal termodifikasi'; ?>
+            </div>
+            <div class="telemetry-sub">
+                Path: <span class="mono"><?php echo htmlspecialchars($laravelRoot ?? 'Tidak terdeteksi'); ?></span>
+            </div>
+        </div>
+
+        <!-- Card 3: Storage Symlink & Disk -->
+        <div class="telemetry-card sky-top">
+            <div class="telemetry-label">
+                <span>Storage & Disk Server</span>
+                <span class="badge <?php echo $storageLinked ? 'badge-emerald' : 'badge-amber'; ?>" style="font-size: 0.65rem; padding: 0.1rem 0.45rem;">
+                    <?php echo $storageLinked ? 'Symlink OK' : 'Symlink Belum'; ?>
+                </span>
+            </div>
+            <div class="telemetry-value" style="font-size: 0.88rem;">
+                <?php echo $diskFreeGB !== null ? $diskFreeGB . ' GB Sisa Ruang' : 'Penyimpanan Aktif'; ?>
+            </div>
+            <div class="telemetry-sub">
+                PHP Binary: <span class="mono"><?php echo htmlspecialchars(basename($phpBinary)); ?></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert / Hasil Eksekusi Terakhir -->
+    <?php if ($actionResult !== null): ?>
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                    <div class="terminal-dots">
+                        <span class="terminal-dot r"></span>
+                        <span class="terminal-dot y"></span>
+                        <span class="terminal-dot g"></span>
+                    </div>
+                    <span>HASIL EKSEKUSI: <?php echo htmlspecialchars($actionTitle ?? 'Console Output'); ?></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <span class="badge badge-emerald" style="font-size: 0.65rem;">Selesai dalam <?php echo $actionTime; ?>s</span>
+                    <button type="button" onclick="copyConsoleOutput()" class="btn btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.7rem;">Salin Log</button>
+                </div>
+            </div>
+            <div class="terminal-content" id="consoleOutputArea"><?php echo htmlspecialchars($actionResult); ?></div>
+        </div>
+    <?php endif; ?>
+
+    <!-- PANEL AKSI UTAMA -->
+    <div class="workspace-panel">
+        <div class="panel-header">
+            <div>
+                <div class="panel-title">
+                    <span>⚡</span> Pusat Kendali Deployment & Basis Data
+                </div>
+                <div class="panel-desc">
+                    Pilih aksi DevOps yang ingin dijalankan pada instalasi server ini.
+                </div>
+            </div>
+        </div>
+
+        <div class="action-grid">
+            <!-- 1. GIT PULL BIASA -->
+            <div class="action-card">
+                <div>
+                    <div class="action-card-header">
+                        <div class="action-icon">🚀</div>
+                        <div>
+                            <div class="action-card-title">Git Fast Pull</div>
+                            <div class="action-card-desc">Tarik commit terbaru dari branch <code>main</code> GitHub dan bersihkan cache aplikasi.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-card-form">
+                    <form method="POST" action="">
+                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="action" value="git_pull">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            ⚡ Pull & Clear Cache
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 2. GIT FORCE RESET & SYNC -->
+            <div class="action-card">
+                <div>
+                    <div class="action-card-header">
+                        <div class="action-icon amber">💥</div>
+                        <div>
+                            <div class="action-card-title">Force Sync (Hard Reset)</div>
+                            <div class="action-card-desc">Paksa sinkronisasi persis dengan GitHub origin/main. File .env & folder storage tetap aman.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-card-form">
+                    <button type="button" class="btn btn-amber-outline" style="width: 100%;" onclick="confirmAction('formForceSync', 'Konfirmasi Force Sync', 'Tindakan ini akan menimpa seluruh file lokal agar persis dengan branch origin/main GitHub (kecuali file .env dan storage). Lanjutkan?')">
+                        ⚡ Force Reset & Sync
+                    </button>
+                    <form id="formForceSync" method="POST" action="" style="display: none;">
+                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="action" value="git_force_sync">
+                    </form>
+                </div>
+            </div>
+
+            <!-- 3. GIT UNDO / ROLLBACK COMMIT -->
+            <div class="action-card">
+                <div>
+                    <div class="action-card-header">
+                        <div class="action-icon amber">↩️</div>
+                        <div>
+                            <div class="action-card-title">Undo Git Commit (Rollback)</div>
+                            <div class="action-card-desc">Kembalikan kode ke 1 atau beberapa commit sebelumnya jika commit terbaru bermasalah.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-card-form">
+                    <form id="formGitUndo" method="POST" action="">
+                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="action" value="git_undo">
+                        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.65rem;">
+                            <select name="undo_steps" class="form-select" style="margin-bottom: 0; flex: 1;">
+                                <option value="1">Undo 1 Commit Terakhir (HEAD~1)</option>
+                                <option value="2">Undo 2 Commit Terakhir (HEAD~2)</option>
+                                <option value="3">Undo 3 Commit Terakhir (HEAD~3)</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-amber-outline" style="width: 100%;" onclick="confirmAction('formGitUndo', 'Konfirmasi Undo Commit', 'Apakah Anda yakin ingin melakukan rollback commit ke belakang? Pastikan tidak ada pekerjaan yang hilang.')">
+                            ↩️ Eksekusi Undo Commit
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 4. DATABASE MIGRATE -->
+            <div class="action-card">
+                <div>
+                    <div class="action-card-header">
+                        <div class="action-icon sky">🗄️</div>
+                        <div>
+                            <div class="action-card-title">Database Migrate</div>
+                            <div class="action-card-desc">Jalankan file migrasi baru ke MariaDB (<code>php artisan migrate --force</code>).</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-card-form">
+                    <div style="display: flex; gap: 0.5rem;">
+                        <form method="POST" action="" style="flex: 1;">
+                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="action" value="db_migrate">
+                            <button type="submit" class="btn btn-sky-outline" style="width: 100%;">
+                                ⚡ Run Migrate
+                            </button>
+                        </form>
+                        <form method="POST" action="" style="flex: 1;">
+                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="action" value="db_migrate_status">
+                            <button type="submit" class="btn btn-outline" style="width: 100%;">
+                                📋 Status
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. DATABASE SEEDER -->
+            <div class="action-card">
+                <div>
+                    <div class="action-card-header">
+                        <div class="action-icon emerald">🌱</div>
+                        <div>
+                            <div class="action-card-title">Database Seeder</div>
+                            <div class="action-card-desc">Isi data awal atau mock ke basis data. Pilih seeder spesifik atau jalankan semua.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-card-form">
+                    <form id="formDbSeed" method="POST" action="">
+                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="action" value="db_seed">
+                        <select name="seeder_class" class="form-select">
+                            <?php foreach ($availableSeeders as $class => $desc): ?>
+                                <option value="<?php echo htmlspecialchars($class); ?>"><?php echo htmlspecialchars($desc); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <button type="button" class="btn btn-outline" style="width: 100%; border-color: rgba(16, 185, 129, 0.4); color: #34D399;" onclick="confirmAction('formDbSeed', 'Konfirmasi Seeder', 'Menjalankan seeder akan menginput record data ke database. Lanjutkan?')">
+                            🌱 Eksekusi Seeder
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 6. ROLLBACK MIGRASI -->
+            <div class="action-card">
+                <div>
+                    <div class="action-card-header">
+                        <div class="action-icon amber">🔄</div>
+                        <div>
+                            <div class="action-card-title">Rollback Migrasi Database</div>
+                            <div class="action-card-desc">Membatalkan migrasi tabel database sebelumnya (<code>migrate:rollback --step=1</code>).</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-card-form">
+                    <form id="formMigrateRollback" method="POST" action="">
+                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="action" value="db_migrate_rollback">
+                        <input type="hidden" name="rollback_step" value="1">
+                        <button type="button" class="btn btn-danger-outline" style="width: 100%;" onclick="confirmAction('formMigrateRollback', 'Konfirmasi Rollback Migrasi', 'PERINGATAN: Rollback migrasi dapat menghapus tabel atau kolom database. Lanjutkan rollback 1 step?')">
+                            ⚠️ Rollback 1 Batch Migrasi
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 7. BERSIHKAN & OPTIMASI CACHE -->
+            <div class="action-card">
+                <div>
+                    <div class="action-card-header">
+                        <div class="action-icon">🧹</div>
+                        <div>
+                            <div class="action-card-title">Manajemen Cache Laravel</div>
+                            <div class="action-card-desc">Bersihkan cache tampilan, rute, config, dan lakukan cache warmup untuk kecepatan produksi.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-card-form">
+                    <div style="display: flex; gap: 0.5rem;">
+                        <form method="POST" action="" style="flex: 1;">
+                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="action" value="cache_clear">
+                            <button type="submit" class="btn btn-outline" style="width: 100%;">
+                                🧹 Clear Cache
+                            </button>
+                        </form>
+                        <form method="POST" action="" style="flex: 1;">
+                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="action" value="cache_optimize">
+                            <button type="submit" class="btn btn-outline" style="width: 100%; color: var(--tbsm-red); border-color: rgba(220, 38, 38, 0.4);">
+                                🚀 Warmup Cache
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. STORAGE LINK & MAINTENANCE -->
+            <div class="action-card">
+                <div>
+                    <div class="action-card-header">
+                        <div class="action-icon sky">🔗</div>
+                        <div>
+                            <div class="action-card-title">Storage Symlink & Maintenance</div>
+                            <div class="action-card-desc">Hubungkan symlink penyimpanan publik atau aktifkan mode perbaikan server.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-card-form">
+                    <div style="display: flex; gap: 0.5rem;">
+                        <form method="POST" action="" style="flex: 1;">
+                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="action" value="storage_link">
+                            <button type="submit" class="btn btn-outline" style="width: 100%;">
+                                🔗 Fix Storage Link
+                            </button>
+                        </form>
+                        <form method="POST" action="" style="flex: 1;">
+                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="action" value="maintenance_toggle">
+                            <button type="submit" class="btn <?php echo $isDown ? 'btn-primary' : 'btn-amber-outline'; ?>" style="width: 100%;">
+                                <?php echo $isDown ? '🟢 Buka Web (UP)' : '🚧 Matikan (DOWN)'; ?>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL RIWAYAT COMMIT TERAKHIR -->
+    <div class="workspace-panel">
+        <div class="panel-header">
+            <div>
+                <div class="panel-title">
+                    <span>📜</span> Riwayat Commit Git Terbaru di Server
+                </div>
+                <div class="panel-desc">
+                    Catatan 6 commit terakhir yang tersinkronisasi di server hosting.
+                </div>
+            </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table class="commit-table">
+                <thead>
+                    <tr>
+                        <th style="width: 90px;">Hash</th>
+                        <th style="width: 140px;">Author</th>
+                        <th style="width: 120px;">Waktu</th>
+                        <th>Pesan Commit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($gitRecentLogs)): ?>
+                        <?php foreach ($gitRecentLogs as $idx => $c): ?>
+                            <tr>
+                                <td class="commit-hash">
+                                    #<?php echo htmlspecialchars($c['hash']); ?>
+                                    <?php if ($idx === 0): ?>
+                                        <span class="badge badge-emerald" style="font-size: 0.55rem; padding: 0.05rem 0.35rem; margin-left: 0.2rem;">HEAD</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td style="color: var(--tbsm-muted);"><?php echo htmlspecialchars($c['author']); ?></td>
+                                <td style="color: var(--tbsm-muted-dark);"><?php echo htmlspecialchars($c['date']); ?></td>
+                                <td style="font-weight: 500; color: #FFFFFF;"><?php echo htmlspecialchars($c['msg']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: var(--tbsm-muted); padding: 1.5rem;">Tidak dapat membaca riwayat commit git.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        DevOps Terminal & Git Deployment Utility — Konsentrasi Keahlian TBSM SMK Negeri 1 Bangsri.<br>
+        Binaan Resmi PT Astra Honda Motor. File ini dilindungi kunci keamanan server.
+    </div>
+
+</div>
+
+<!-- Modal Konfirmasi Dialog -->
+<div id="confirmModal" class="modal-overlay">
+    <div class="modal-box">
+        <div id="modalTitle" class="modal-title">Konfirmasi Aksi</div>
+        <div id="modalBody" class="modal-body">Apakah Anda yakin ingin menjalankan aksi ini?</div>
+        <div class="modal-actions">
+            <button type="button" onclick="closeConfirmModal()" class="btn btn-outline">Batal</button>
+            <button type="button" id="modalConfirmBtn" class="btn btn-primary">Lanjutkan Aksi</button>
+        </div>
+    </div>
+</div>
+
+<script>
+var targetFormId = null;
+
+function confirmAction(formId, title, message) {
+    targetFormId = formId;
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalBody').innerText = message;
+    document.getElementById('confirmModal').style.display = 'flex';
+}
+
+function closeConfirmModal() {
+    document.getElementById('confirmModal').style.display = 'none';
+    targetFormId = null;
+}
+
+document.getElementById('modalConfirmBtn').addEventListener('click', function() {
+    if (targetFormId) {
+        var form = document.getElementById(targetFormId);
+        if (form) {
+            closeConfirmModal();
+            form.submit();
+        }
+    }
+});
+
+function copyConsoleOutput() {
+    var text = document.getElementById('consoleOutputArea').innerText;
+    navigator.clipboard.writeText(text).then(function() {
+        alert('Log output berhasil disalin ke clipboard!');
+    });
+}
+</script>
+
+<?php endif; ?>
+
 </body>
 </html>

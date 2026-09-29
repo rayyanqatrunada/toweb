@@ -255,9 +255,15 @@ sequenceDiagram
     Script-->>Dev: HTTP 200: JSON Sukses Update & Log Eksekusi
 ```
 
-### Mekanisme Kunci Pemeliharaan:
-1. **Pembaruan Sekali Klik (`update-repo.php`)**:
-   Dilengkapi mekanisme pengenalan direktori cerdas (*multi-level root directory detection*) dan pengamanan token rahasia (`?key=...`) sehingga pembaruan fitur di hosting dapat dijalankan instan tanpa harus membuka terminal SSH cPanel.
+### Mekanisme Kunci Pemeliharaan & DevOps Terminal:
+1. **DevOps & Sync Terminal Mandiri (`public/update-repo.php`)**:
+   Dilengkapi antarmuka bertema automotive dark Honda TBSM, mekanisme otentikasi token rahasia (`?key=...`), telemetri status git real-time, dan fitur pemeliharaan server komprehensif:
+   - **Git Sync & Force Reset**: Penarikan commit GitHub origin/main atau pemaksaan reset bersih.
+   - **Git Undo / Rollback**: Pengembalian kode 1 s/d 3 commit ke belakang dengan aman jika terjadi kegagalan commit terbaru.
+   - **Database Migrate & Rollback**: Eksekusi file migrasi baru dan pembatalan migrasi bertahap.
+   - **Database Seeder**: Pengisian data awal/mock dengan pilihan seeder spesifik maupun seluruhnya.
+   - **Cache & Warmup**: Eksekusi `optimize:clear` dan `optimize` untuk kecepatan responsif server.
+   - **Storage Symlink & Maintenance**: Perbaikan link penyimpanan publik serta toggle mode pemeliharaan (`down`/`up`).
 2. **Build Portabilitas (`build_folder_only.zip` & `public/build/`)**:
    Seluruh kompilasi aset CSS dan JavaScript dilakukan di sisi lokal/staging dan dipaketkan ke dalam git, mengeliminasi kebutuhan instalasi Node.js dan NPM pada server hosting.
 3. **Penyimpanan Berkas Terpusat (`public/storage`)**:
