@@ -86,7 +86,7 @@ Resource Library <?php echo $__env->renderComponent(); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
             
-            <div class="bg-white border border-charcoal-200 rounded-3xl shadow-xl overflow-hidden">
+            <div class="bg-white border border-charcoal-200 rounded-sm sm:rounded-none shadow-xl overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm text-charcoal-600">
                         <thead class="bg-charcoal-50 text-xs text-charcoal-500 uppercase tracking-widest font-black border-b border-charcoal-200">
@@ -102,7 +102,7 @@ Resource Library <?php echo $__env->renderComponent(); ?>
                                 <tr class="bg-white hover:bg-charcoal-50/50 transition-colors group">
                                     <td class="px-6 py-5 align-top lg:align-middle">
                                         <div class="flex items-start lg:items-center">
-                                            <div class="w-10 h-10 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center mr-4 shrink-0 group-hover:bg-primary-600 group-hover:text-white transition-colors border border-primary-100 group-hover:border-primary-600">
+                                            <div class="w-10 h-10 rounded-sm bg-primary-50 text-primary-600 flex items-center justify-center mr-4 shrink-0 group-hover:bg-primary-600 group-hover:text-white transition-colors border border-primary-100 group-hover:border-primary-600">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                                             </div>
                                             <div>
@@ -118,7 +118,7 @@ Resource Library <?php echo $__env->renderComponent(); ?>
                                     </td>
                                     <td class="px-6 py-5 align-top lg:align-middle">
                                         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($doc->category): ?>
-                                            <span class="inline-flex items-center bg-charcoal-100 text-charcoal-700 border border-charcoal-200 px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                                            <span class="inline-flex items-center bg-charcoal-100 text-charcoal-700 border border-charcoal-200 px-3 py-1 rounded-sm text-xs font-bold shadow-sm">
                                                 <?php echo e($doc->category->name); ?>
 
                                             </span>
@@ -131,7 +131,7 @@ Resource Library <?php echo $__env->renderComponent(); ?>
 
                                     </td>
                                     <td class="px-6 py-5 align-top lg:align-middle text-right">
-                                        <a href="<?php echo e(route('download.file', $doc->slug)); ?>" target="_blank" class="inline-flex items-center justify-center font-bold text-primary-600 hover:text-white bg-primary-50 hover:bg-primary-600 border border-primary-200 hover:border-primary-600 px-4 py-2 rounded-xl transition-all shadow-sm group-hover:shadow-md focus:ring-4 focus:ring-primary-100 whitespace-nowrap">
+                                        <a href="<?php echo e(route('download.file', $doc->slug)); ?>" target="_blank" class="inline-flex items-center justify-center font-bold text-primary-600 hover:text-white bg-primary-50 hover:bg-primary-600 border border-primary-200 hover:border-primary-600 px-4 py-2 rounded-sm sm:rounded-[2px] transition-all shadow-sm group-hover:shadow-md focus:ring-4 focus:ring-primary-100 whitespace-nowrap">
                                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                             Unduh
                                         </a>

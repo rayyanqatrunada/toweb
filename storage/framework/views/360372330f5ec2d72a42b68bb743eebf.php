@@ -1,470 +1,587 @@
 <?php if (isset($component)) { $__componentOriginal5863877a5171c196453bfa0bd807e410 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5863877a5171c196453bfa0bd807e410 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => $partner->name . ' - Mitra Industri']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => $partner->name . ' - Mitra Industri & AHASS','noPaddingTop' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('layouts.app'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($partner->name . ' - Mitra Industri')]); ?>
+<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($partner->name . ' - Mitra Industri & AHASS'),'no-padding-top' => true]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
-    
-    <!-- Hero Section (Parallax & Animated) -->
-    <div class="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-charcoal-950">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <?php
-                $partnerBg = $settings->get('header_partnership_image') ?: ($settings->get('homepage_about_image') ?: 'facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg');
-            ?>
-            <img src="<?php echo e(Storage::url($partnerBg)); ?>" 
-                 alt="<?php echo e($partner->name); ?>" 
-                 class="w-full h-full object-cover mix-blend-overlay opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/60 to-transparent"></div>
-        </div>
+    <?php $__env->startPush('json-ld'); ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "<?php echo e($partner->name); ?>",
+      "url": "<?php echo e($partner->website ?? url()->current()); ?>",
+      "description": "Kemitraan Kelas Industri Resmi Kurikulum Sepeda Motor SMK Negeri 1 Bangsri dengan PT Astra Honda Motor (AHM)."
+    }
+    </script>
+    <?php $__env->stopPush(); ?>
 
-        <!-- Decorative Elements -->
-        <div class="absolute inset-0 z-10 pointer-events-none opacity-20" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-figma-red/20 to-transparent z-10"></div>
+    <!-- Main Layout Wrapper -->
+    <main class="flex flex-col items-center w-full overflow-hidden relative bg-[#FAFAFA]">
 
-        <!-- Content -->
-        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'relative z-20 text-center reveal-on-scroll reveal-up']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('frontend.layout.container'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'relative z-20 text-center reveal-on-scroll reveal-up']); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
-
-            <div class="inline-flex items-center gap-3 mb-6">
-                <div class="w-12 h-[2px] bg-figma-red"></div>
-                <span class="font-sans font-bold text-[14px] md:text-[16px] leading-none tracking-[3px] text-white uppercase">
-                    Mitra Utama Industri
-                </span>
-                <div class="w-12 h-[2px] bg-figma-red"></div>
-            </div>
-
-            <!-- Logo (Large) -->
-            <div class="w-32 h-32 md:w-48 md:h-48 mx-auto bg-white rounded-full flex items-center justify-center p-6 shadow-2xl mb-8 transform hover:scale-105 transition-transform duration-500 border-4 border-white/10 relative">
-                <div class="absolute inset-0 rounded-full border border-figma-red animate-ping opacity-20"></div>
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->logo): ?>
-                    <img src="<?php echo e(Storage::url($partner->logo)); ?>" alt="<?php echo e($partner->name); ?>" class="w-full h-full object-contain">
+        <!-- ============================================================================ -->
+        <!-- 01. HERO BANNER: KEMITRAAN INDUSTRI HONDA (Cinematic & Confident) -->
+        <!-- ============================================================================ -->
+        <section class="w-full bg-figma-dark py-16 sm:py-20 lg:py-24 relative overflow-hidden text-white border-b border-charcoal-800">
+            <!-- Background Photography with Overlay -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($settings->get('industry_hero_bg_image')): ?>
+                    <img src="<?php echo e(Storage::url($settings->get('industry_hero_bg_image'))); ?>" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
+                <?php elseif($partner->logo): ?>
+                    <img src="<?php echo e(Storage::url($partner->logo)); ?>" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-15 grayscale blur-md" loading="eager">
                 <?php else: ?>
-                    <span class="font-heading font-black text-4xl text-charcoal-300"><?php echo e(substr($partner->name, 0, 1)); ?></span>
+                    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1600&auto=format&fit=crop" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-25 grayscale" loading="eager">
                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                <div class="absolute inset-0 bg-gradient-to-b from-charcoal-950/85 via-charcoal-900/90 to-charcoal-950"></div>
             </div>
 
-            <h1 class="font-heading font-black text-[40px] md:text-[56px] text-white leading-tight mb-4 drop-shadow-lg">
-                <?php echo e($partner->name); ?>
-
-            </h1>
+            <!-- Technical Radial Grid -->
+            <div class="absolute inset-0 z-10 pointer-events-none opacity-[0.06]" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
             
-            <p class="font-sans text-[18px] md:text-[20px] text-gray-300 max-w-[800px] mx-auto">
-                <?php echo e($partner->industry_type ?? 'Industri Manufaktur & Distribusi Otomotif'); ?>
+            <!-- Red Ambient Glow -->
+            <div class="absolute top-0 right-1/4 w-96 h-96 bg-figma-red/15 rounded-full blur-[140px] pointer-events-none -translate-y-1/2"></div>
 
-            </p>
-         <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-    </div>
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-20 text-center flex flex-col items-center">
+                <!-- Eyebrow Tag -->
+                <div class="flex items-center justify-center gap-3 mb-4 reveal-on-scroll reveal-up">
+                    <div class="w-8 sm:w-12 h-[2px] bg-figma-red"></div>
+                    <span class="font-sans font-bold text-xs sm:text-sm tracking-[2px] text-figma-red uppercase">
+                        <?php echo e($settings->get('industry_hero_badge', 'KEMITRAAN KELAS INDUSTRI RESMI')); ?>
 
-    <!-- Main Content Sections (Stacked vertically like a Landing Page) -->
-    
-    <!-- Section 1: Profil Perusahaan -->
-    <section class="py-20 md:py-28 bg-white relative z-30 -mt-8 rounded-t-[32px] md:rounded-t-[48px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] border-t border-gray-100">
-        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('frontend.layout.container'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
-
-            <div class="max-w-4xl mx-auto text-center reveal-on-scroll reveal-up">
-                <div class="inline-flex items-center gap-3 mb-6 justify-center">
-                    <h2 class="font-heading font-extrabold text-[32px] md:text-[40px] text-figma-dark">Profil & Sejarah</h2>
+                    </span>
+                    <div class="w-8 sm:w-12 h-[2px] bg-figma-red"></div>
                 </div>
-                <div class="w-24 h-[3px] bg-figma-red mx-auto mb-10"></div>
-                
-                <div class="prose prose-lg mx-auto font-sans text-gray-600 leading-[1.8] prose-headings:font-heading prose-headings:font-bold prose-headings:text-figma-dark prose-a:text-figma-red prose-img:rounded-xl text-left">
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->description): ?>
-                        <?php echo \App\Support\HtmlSanitizer::clean($partner->description); ?>
 
-                    <?php else: ?>
-                        <p class="italic text-gray-400 text-center">Deskripsi profil belum ditambahkan.</p>
-                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                <!-- Main Heading -->
+                <h1 class="font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-white uppercase mb-4 max-w-4xl drop-shadow-md reveal-on-scroll reveal-up delay-100">
+                    <?php echo e($partner->name); ?>
+
+                </h1>
+
+                <!-- Grade Status Pill -->
+                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-sm bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-bold mb-6 reveal-on-scroll reveal-up delay-200">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span><?php echo e($partner->partnership_level ?? 'Kelas Industri Binaan Grade A+'); ?></span>
                 </div>
-            </div>
-         <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-    </section>
 
-    <!-- Section 2: Program Kemitraan (Alternating Background) -->
-    <section class="py-20 md:py-28 bg-gray-50 border-y border-gray-200 relative overflow-hidden">
-        <!-- Decoration -->
-        <div class="absolute -left-32 -bottom-32 w-96 h-96 bg-figma-red/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -right-32 -top-32 w-96 h-96 bg-figma-red/5 rounded-full blur-3xl pointer-events-none"></div>
-        
-        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'relative z-10 reveal-on-scroll reveal-up']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('frontend.layout.container'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'relative z-10 reveal-on-scroll reveal-up']); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+                <!-- Subtitle Description -->
+                <p class="font-sans text-base sm:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto mb-10 reveal-on-scroll reveal-up delay-300">
+                    <?php echo e($settings->get('industry_hero_subtitle', 'Program kemitraan strategis kurikulum injeksi PGM-FI, fasilitas bengkel standar AHASS Grade A+, serta penyerapan magang dan kerja di jaringan bengkel resmi AHASS se-Kabupaten Jepara.')); ?>
 
-            <div class="text-center mb-16">
-                <h2 class="font-heading font-extrabold text-[32px] md:text-[40px] text-figma-dark mb-6">Program Kelas Industri</h2>
-                <div class="w-24 h-[3px] bg-figma-red mx-auto mb-6"></div>
-                <p class="font-sans text-gray-600 max-w-2xl mx-auto text-[16px] md:text-[18px]">
-                    Kolaborasi nyata untuk menciptakan lulusan yang siap kerja dengan standar operasional dan teknologi otomotif mutakhir.
                 </p>
+
+                <!-- 4 Metrics Strip (Confident, Normal Sizing) -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 divide-x-0 md:divide-x md:divide-charcoal-800 pt-8 border-t border-charcoal-800 w-full max-w-4xl reveal-on-scroll reveal-up delay-400">
+                    <div class="flex flex-col items-center md:items-start text-center md:text-left px-3">
+                        <div class="font-heading font-black text-3xl sm:text-4xl text-white mb-1.5">
+                            <?php echo e($settings->get('industry_stat_1_val', '2016')); ?>
+
+                        </div>
+                        <div class="w-6 h-[2px] bg-figma-red mb-2 mx-auto md:mx-0"></div>
+                        <div class="font-sans text-xs sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">Awal Kemitraan</div>
+                    </div>
+
+                    <div class="flex flex-col items-center md:items-start text-center md:text-left px-3">
+                        <div class="font-heading font-black text-3xl sm:text-4xl text-white mb-1.5">
+                            <?php echo e($branches->count()); ?> Cabang
+                        </div>
+                        <div class="w-6 h-[2px] bg-emerald-500 mb-2 mx-auto md:mx-0"></div>
+                        <div class="font-sans text-xs sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">AHASS di Jepara</div>
+                    </div>
+
+                    <div class="flex flex-col items-center md:items-start text-center md:text-left px-3">
+                        <div class="font-heading font-black text-3xl sm:text-4xl text-white mb-1.5">
+                            <?php echo e($settings->get('industry_stat_3_val', '100%')); ?>
+
+                        </div>
+                        <div class="w-6 h-[2px] bg-amber-500 mb-2 mx-auto md:mx-0"></div>
+                        <div class="font-sans text-xs sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">Sinkron Kurikulum</div>
+                    </div>
+
+                    <div class="flex flex-col items-center md:items-start text-center md:text-left px-3">
+                        <div class="font-heading font-black text-3xl sm:text-4xl text-white mb-1.5">
+                            <?php echo e($settings->get('industry_stat_4_val', 'Grade A+')); ?>
+
+                        </div>
+                        <div class="w-6 h-[2px] bg-figma-red mb-2 mx-auto md:mx-0"></div>
+                        <div class="font-sans text-xs sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">Akreditasi Bengkel</div>
+                    </div>
+                </div>
+
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-xl hover:border-figma-red/30 transition-all duration-300 group relative overflow-hidden">
-                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-figma-red/5 rounded-full group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
-                    <div class="w-14 h-14 bg-charcoal-900 text-white rounded-xl flex items-center justify-center mb-6 shadow-md">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                    </div>
-                    <h3 class="font-heading font-bold text-[22px] text-figma-dark mb-4">Sinkronisasi Kurikulum</h3>
-                    <p class="font-sans text-[15px] text-gray-600 leading-relaxed">
-                        Kurikulum <?php echo e($settings->get('site_short_name', 'TSM')); ?> diselaraskan secara penuh dengan standar kompetensi teknis Astra Honda Motor, memastikan materi yang dipelajari relevan dengan kebutuhan bengkel resmi AHASS.
-                    </p>
-                </div>
+        <!-- ============================================================================ -->
+        <!-- 02. OVERVIEW SINERGI & LEGALITAS MOU (Unified Split Screen) -->
+        <!-- ============================================================================ -->
+        <section class="w-full py-16 sm:py-20 lg:py-24 bg-white border-b border-gray-200/80 relative">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                    
+                    <!-- Left: Narrative & Key Highlights (7 Cols) -->
+                    <div class="lg:col-span-7 reveal-on-scroll reveal-up">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-8 sm:w-12 h-[2px] bg-figma-red"></div>
+                            <span class="font-sans font-bold text-xs sm:text-sm tracking-[2px] text-figma-gray uppercase">
+                                Mitra Utama Industri
+                            </span>
+                        </div>
 
-                <!-- Card 2 -->
-                <div class="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-xl hover:border-figma-red/30 transition-all duration-300 group relative overflow-hidden">
-                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-figma-red/5 rounded-full group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
-                    <div class="w-14 h-14 bg-charcoal-900 text-white rounded-xl flex items-center justify-center mb-6 shadow-md">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                    </div>
-                    <h3 class="font-heading font-bold text-[22px] text-figma-dark mb-4">Teaching Factory</h3>
-                    <p class="font-sans text-[15px] text-gray-600 leading-relaxed">
-                        Penerapan standar operasional prosedur (SOP) AHASS di bengkel praktik sekolah, didukung dengan donasi unit motor injeksi terbaru untuk praktik simulasi kerja nyata.
-                    </p>
-                </div>
+                        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-figma-dark mb-4 leading-tight">
+                            <?php echo e($partner->name); ?>
 
-                <!-- Card 3 -->
-                <div class="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-xl hover:border-figma-red/30 transition-all duration-300 group relative overflow-hidden md:col-span-2 lg:col-span-1">
-                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-figma-red/5 rounded-full group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
-                    <div class="w-14 h-14 bg-figma-red text-white rounded-xl flex items-center justify-center mb-6 shadow-md">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    </div>
-                    <h3 class="font-heading font-bold text-[22px] text-figma-dark mb-4">OJT & Perekrutan BKK</h3>
-                    <p class="font-sans text-[15px] text-gray-600 leading-relaxed">
-                        Program magang bersertifikat langsung di jaringan bengkel AHASS. Siswa unggulan memiliki peluang besar untuk direkrut segera setelah lulus melalui Bursa Kerja Khusus.
-                    </p>
-                </div>
-            </div>
-         <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-    </section>
+                        </h2>
 
-    <!-- Section 3: Program PKL / Magang -->
-    <section class="py-20 md:py-28 bg-white reveal-on-scroll reveal-up">
-        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'max-w-5xl']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('frontend.layout.container'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'max-w-5xl']); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+                        <div class="pl-4 border-l-2 border-figma-red mb-6">
+                            <p class="font-sans font-bold text-base text-figma-dark">
+                                <?php echo e($partner->industry_type ?? 'Manufaktur & Distribusi Sepeda Motor Resmi (AHASS)'); ?>
 
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                <div>
-                    <h2 class="font-heading font-extrabold text-[32px] md:text-[40px] text-figma-dark mb-4">Informasi PKL / Magang</h2>
-                    <div class="w-24 h-[3px] bg-figma-red"></div>
-                </div>
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($partner->internships) && $partner->internships->count() > 0): ?>
-                    <div class="font-sans font-bold text-gray-500 bg-gray-100 px-4 py-2 rounded-lg">
-                        <?php echo e($partner->internships->count()); ?> Program Tersedia
-                    </div>
-                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-            </div>
+                            </p>
+                            <p class="font-sans text-sm text-gray-600 mt-1">
+                                Sinergi kemitraan vokasi link & match terpadu sejak 2016 guna menjamin penguasaan teknologi injeksi PGM-FI dan kesiapan teknisi handal.
+                            </p>
+                        </div>
 
-            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($partner->internships) && $partner->internships->count() > 0): ?>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $partner->internships; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $internship): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-                        <a href="<?php echo e(route('internships.show', $internship->id)); ?>" class="flex flex-col justify-between p-6 md:p-8 bg-white border-2 border-gray-100 hover:border-figma-red hover:shadow-xl transition-all duration-300 gap-6 rounded-2xl group">
-                            
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-md
-                                        <?php if($internship->status === 'ongoing'): ?> bg-green-100 text-green-700
-                                        <?php elseif($internship->status === 'planned'): ?> bg-blue-100 text-blue-700
-                                        <?php elseif($internship->status === 'completed'): ?> bg-gray-100 text-gray-600
-                                        <?php else: ?> bg-gray-100 text-gray-700 <?php endif; ?>
-                                    ">
-                                        <?php echo e($internship->status === 'ongoing' ? 'Sedang Berjalan' : ($internship->status === 'planned' ? 'Akan Datang' : ($internship->status === 'completed' ? 'Selesai' : ucfirst($internship->status)))); ?>
+                        <!-- Narrative -->
+                        <div class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed mb-8">
+                            <?php echo \App\Support\HtmlSanitizer::clean($partner->description); ?>
 
-                                    </span>
+                        </div>
+
+                        <!-- 4 Highlights Cards -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-sm">
+                                <div class="w-8 h-8 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                    </svg>
                                 </div>
-                                
-                                <h3 class="font-heading font-bold text-[22px] text-figma-dark group-hover:text-figma-red transition-colors mb-3"><?php echo e($internship->title); ?></h3>
-                                
-                                <div class="flex items-center gap-2 font-sans text-[15px] text-gray-500 mb-4">
-                                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                    </div>
-                                    <span><?php echo e($internship->start_date ? $internship->start_date->format('d M Y') : '-'); ?> - <?php echo e($internship->end_date ? $internship->end_date->format('d M Y') : '-'); ?></span>
-                                </div>
-                                
-                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($internship->description): ?>
-                                    <p class="font-sans text-gray-600 line-clamp-2 text-[15px]"><?php echo e(strip_tags($internship->description)); ?></p>
-                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                <span class="text-sm font-semibold text-figma-dark">Kurikulum Injeksi PGM-FI AMTC</span>
                             </div>
-                            
-                            <div class="mt-4 pt-4 border-t border-gray-100 text-right">
-                                <span class="inline-flex items-center font-bold text-figma-red text-[14px] group-hover:underline">
-                                    Lihat Selengkapnya <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+
+                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-sm">
+                                <div class="w-8 h-8 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-semibold text-figma-dark">Lab Standar AHASS Grade A+</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-sm">
+                                <div class="w-8 h-8 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-semibold text-figma-dark">Magang PKL 6 Bulan di AHASS</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 p-4 bg-gray-50/80 border border-gray-200 rounded-sm">
+                                <div class="w-8 h-8 rounded-sm bg-figma-red/10 text-figma-red flex items-center justify-center shrink-0">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-semibold text-figma-dark">Jalur Cepat Rekrutmen BKK</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Official MoU Status Card (5 Cols) -->
+                    <div class="lg:col-span-5 reveal-on-scroll reveal-up delay-100">
+                        <div class="bg-gray-50/80 border border-gray-200 p-6 sm:p-8 rounded-sm sm:rounded-none shadow-xs">
+                            <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-6">
+                                <div class="flex items-center gap-3">
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->logo): ?>
+                                        <img src="<?php echo e(Storage::url($partner->logo)); ?>" alt="<?php echo e($partner->name); ?>" class="h-10 w-auto object-contain">
+                                    <?php else: ?>
+                                        <div class="w-10 h-10 bg-figma-red text-white font-heading font-black text-sm flex items-center justify-center rounded-sm">
+                                            AHM
+                                        </div>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                    <div>
+                                        <h3 class="font-heading font-bold text-base text-figma-dark">Legalitas Kerjasama</h3>
+                                        <span class="text-xs text-gray-500">Memorandum of Understanding</span>
+                                    </div>
+                                </div>
+                                <span class="px-3 py-1 rounded-sm bg-emerald-100 text-emerald-800 text-xs font-bold uppercase">
+                                    Aktif
                                 </span>
                             </div>
-                        </a>
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
-                </div>
-            <?php else: ?>
-                <div class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-16 text-center flex flex-col items-center justify-center">
-                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-6 text-gray-300">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                    </div>
-                    <h3 class="font-heading font-bold text-[24px] text-figma-dark mb-3">Belum Ada Info PKL</h3>
-                    <p class="font-sans text-[16px] text-gray-500 max-w-md">Saat ini belum ada informasi program Praktek Kerja Lapangan (PKL) yang diterbitkan oleh mitra ini.</p>
-                </div>
-            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-         <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-    </section>
 
-    <!-- Section 4: Bursa Karir -->
-    <section class="py-20 md:py-28 bg-gray-50 border-y border-gray-200 relative reveal-on-scroll reveal-up">
-        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'max-w-5xl']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('frontend.layout.container'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'max-w-5xl']); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+                            <div class="space-y-4 font-sans text-sm mb-6">
+                                <div class="flex justify-between pb-3 border-b border-gray-200/80">
+                                    <span class="text-gray-500">Status Kemitraan:</span>
+                                    <strong class="text-figma-dark"><?php echo e($partner->partnership_level ?? 'Kelas Industri Grade A+'); ?></strong>
+                                </div>
+                                <div class="flex justify-between pb-3 border-b border-gray-200/80">
+                                    <span class="text-gray-500">Nomor Registrasi MoU:</span>
+                                    <strong class="text-figma-dark font-mono text-xs"><?php echo e($partner->mou_number ?? 'MOU/AHM-SMKN1BGS/2016-REV'); ?></strong>
+                                </div>
+                                <div class="flex justify-between pb-3 border-b border-gray-200/80">
+                                    <span class="text-gray-500">Mulai Binaan:</span>
+                                    <strong class="text-figma-dark"><?php echo e($partner->partnership_start_year ?? 'Tahun 2016'); ?></strong>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">Jejaring Bengkel Resmi:</span>
+                                    <strong class="text-emerald-700 font-bold"><?php echo e($branches->count()); ?> Cabang AHASS Jepara</strong>
+                                </div>
+                            </div>
 
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                <div>
-                    <h2 class="font-heading font-extrabold text-[32px] md:text-[40px] text-figma-dark mb-4">Bursa Karir Tersedia</h2>
-                    <div class="w-24 h-[3px] bg-figma-red"></div>
-                </div>
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($partner->jobVacancies) && $partner->jobVacancies->count() > 0): ?>
-                    <div class="font-sans font-bold text-gray-500 bg-gray-100 px-4 py-2 rounded-lg">
-                        <?php echo e($partner->jobVacancies->count()); ?> Lowongan Aktif
+                            <div class="p-4 bg-white rounded-sm border border-gray-200 mb-6 text-xs text-gray-600 leading-relaxed">
+                                <strong class="text-figma-dark block mb-1">Cakupan Payung Hukum:</strong>
+                                Sinkronisasi kompetensi kurikulum nasional, pengadaan modul resmi AMTC, pelatihan guru berkala di Astra Motor Training Center, dan penempatan PKL wajib.
+                            </div>
+
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->website): ?>
+                                <a href="<?php echo e($partner->website); ?>" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-sm sm:rounded-[2px] bg-figma-dark text-white hover:bg-charcoal-800 text-sm font-semibold transition-colors">
+                                    <span>Kunjungi Portal Resmi Astra Honda</span>
+                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        </div>
                     </div>
-                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                </div>
+
             </div>
+        </section>
 
-            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($partner->jobVacancies) && $partner->jobVacancies->count() > 0): ?>
-                <div class="grid grid-cols-1 gap-6">
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $partner->jobVacancies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $job): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
-                        <a href="<?php echo e(route('jobs.show', $job->slug)); ?>" class="flex flex-col md:flex-row md:items-center justify-between p-6 md:p-8 bg-white border-2 border-gray-100 hover:border-figma-red hover:shadow-xl transition-all duration-300 gap-6 rounded-2xl group">
-                            
+        <!-- ============================================================================ -->
+        <!-- 03. 6 PILAR KERJASAMA HONDA (Clean 3-Column Grid) -->
+        <!-- ============================================================================ -->
+        <section class="w-full py-16 sm:py-20 lg:py-24 bg-gray-50 border-b border-gray-200/80 relative">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 reveal-on-scroll reveal-up">
+                    <div class="flex items-center justify-center gap-3 mb-3">
+                        <div class="w-8 sm:w-12 h-[2px] bg-figma-red"></div>
+                        <span class="font-sans font-bold text-xs sm:text-sm tracking-[2px] text-figma-gray uppercase">
+                            Sinergi Link & Match
+                        </span>
+                        <div class="w-8 sm:w-12 h-[2px] bg-figma-red"></div>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-figma-dark tracking-tight leading-tight mb-4">
+                        6 Pilar Kerjasama Strategis
+                    </h2>
+                    <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed">
+                        Implementasi nyata kemitraan SMK Negeri 1 Bangsri dengan PT Astra Honda Motor dalam mewujudkan pendidikan vokasi bermutu tinggi.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    
+                    <!-- Pilar 1 -->
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
+                        <div>
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                                01
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
+                                <?php echo e($settings->get('industry_pillar_1_title', 'Sinkronisasi Kurikulum Industri')); ?>
+
+                            </h3>
+                            <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed">
+                                <?php echo e($settings->get('industry_pillar_1_desc', 'Penyelarasan silabus Kurikulum Merdeka dengan standar kompetensi teknis Astra Honda Motor (AMTC Level 1 & 2), memastikan penguasaan teknologi injeksi PGM-FI dan eSP+ mutakhir.')); ?>
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 2 -->
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
+                        <div>
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                                02
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
+                                <?php echo e($settings->get('industry_pillar_2_title', 'Praktik Kerja Lapangan (PKL) AHASS')); ?>
+
+                            </h3>
+                            <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed">
+                                <?php echo e($settings->get('industry_pillar_2_desc', 'Siswa diterjunkan magang selama 6 bulan penuh di jaringan bengkel resmi AHASS se-Kabupaten Jepara dan Karesidenan Pati untuk merasakan ritme kerja industri sesungguhnya.')); ?>
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 3 -->
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
+                        <div>
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                                03
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
+                                <?php echo e($settings->get('industry_pillar_3_title', 'Laboratorium & Bengkel Standar AHASS')); ?>
+
+                            </h3>
+                            <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed">
+                                <?php echo e($settings->get('industry_pillar_3_desc', 'Implementasi bengkel praktik kejuruan berstandar bengkel resmi AHASS di sekolah, menggunakan bike lift hidrolik, SOP servis, dan peralatan standar Astra Honda.')); ?>
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 4 -->
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
+                        <div>
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                                04
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
+                                <?php echo e($settings->get('industry_pillar_4_title', 'Bantuan Sarana & Special Tools')); ?>
+
+                            </h3>
+                            <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed">
+                                <?php echo e($settings->get('industry_pillar_4_desc', 'Dukungan unit sepeda motor praktik Honda generasi terbaru, alat diagnostik HIDS (Honda Intelligent Diagnostic System), dan special service tools resmi pabrikan.')); ?>
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 5 -->
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-100">
+                        <div>
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                                05
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
+                                <?php echo e($settings->get('industry_pillar_5_title', 'Uji Sertifikasi Mekanik Berstandar Honda')); ?>
+
+                            </h3>
+                            <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed">
+                                <?php echo e($settings->get('industry_pillar_5_desc', 'Pelaksanaan Uji Kompetensi Keahlian (UKK) dinilai langsung oleh asesor eksternal dari industri Astra Motor serta sertifikasi LSP-P1 berlisensi BNSP.')); ?>
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pilar 6 -->
+                    <div class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
+                        <div>
+                            <div class="w-11 h-11 rounded-sm bg-figma-red/10 text-figma-red font-heading font-bold text-base flex items-center justify-center mb-5 group-hover:bg-figma-red group-hover:text-white transition-colors">
+                                06
+                            </div>
+                            <h3 class="font-heading font-bold text-xl text-figma-dark mb-3 group-hover:text-figma-red transition-colors">
+                                <?php echo e($settings->get('industry_pillar_6_title', 'Prioritas Rekrutmen BKK SMKN 1 Bangsri')); ?>
+
+                            </h3>
+                            <p class="font-sans text-sm sm:text-base text-gray-600 leading-relaxed">
+                                <?php echo e($settings->get('industry_pillar_6_desc', 'Jalur cepat (fast-track) rekrutmen mekanik baru bagi lulusan TBSM SMKN 1 Bangsri langsung ke dealer dan bengkel AHASS rekanan tanpa perantara.')); ?>
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================================ -->
+        <!-- 04. DIREKTORI 8 CABANG AHASS DI JEPARA (Interactive Search & Filters) -->
+        <!-- ============================================================================ -->
+        <section class="w-full py-16 sm:py-20 lg:py-24 bg-white border-b border-gray-200/80 relative" 
+                 x-data="{ 
+                     selectedDistrict: 'all', 
+                     searchQuery: '',
+                     selectedBranch: null
+                 }">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
+                
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12 reveal-on-scroll reveal-up">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-8 sm:w-12 h-[2px] bg-figma-red"></div>
+                            <span class="font-sans font-bold text-xs sm:text-sm tracking-[2px] text-figma-gray uppercase">
+                                Jaringan Mitra AHASS Jepara
+                            </span>
+                        </div>
+                        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-figma-dark tracking-tight leading-tight">
+                            Direktori Cabang Bengkel Resmi AHASS
+                        </h2>
+                    </div>
+                    <p class="font-sans text-sm sm:text-base text-gray-600 max-w-md leading-relaxed">
+                        Lokasi Praktik Kerja Lapangan (PKL) siswa dan penyerapan rekrutmen kerja lulusan yang tersebar di wilayah Kabupaten Jepara.
+                    </p>
+                </div>
+
+                <!-- Interactive Search & District Filter Controls -->
+                <div class="bg-gray-50/80 border border-gray-200 p-5 rounded-sm sm:rounded-none mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                    
+                    <!-- District Pills -->
+                    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                        <button 
+                            @click="selectedDistrict = 'all'"
+                            :class="selectedDistrict === 'all' ? 'bg-figma-dark text-white' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'"
+                            class="px-4 py-2 rounded-sm sm:rounded-[2px] text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                        >
+                            Semua (<?php echo e($branches->count()); ?>)
+                        </button>
+
+                        <?php
+                            $districts = $branches->pluck('city')->unique()->filter()->values();
+                        ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $district): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                            <button 
+                                @click="selectedDistrict = '<?php echo e($district); ?>'"
+                                :class="selectedDistrict === '<?php echo e($district); ?>' ? 'bg-figma-dark text-white' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'"
+                                class="px-4 py-2 rounded-sm sm:rounded-[2px] text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                            >
+                                <?php echo e($district); ?>
+
+                            </button>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="w-full md:w-72 relative">
+                        <input 
+                            type="text" 
+                            x-model="searchQuery" 
+                            placeholder="Cari cabang AHASS..." 
+                            class="w-full pl-10 pr-4 py-2 text-xs sm:text-sm bg-white border border-gray-200 rounded-sm sm:rounded-[2px] focus:outline-none focus:border-figma-red focus:ring-1 focus:ring-figma-red transition-all"
+                        >
+                        <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+
+                </div>
+
+                <!-- Branches 4-Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $branches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $branch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                        <div 
+                            x-show="(selectedDistrict === 'all' || selectedDistrict === '<?php echo e($branch->city); ?>') && 
+                                    ('<?php echo e(strtolower($branch->name . ' ' . $branch->address . ' ' . $branch->city)); ?>'.includes(searchQuery.toLowerCase()))"
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 scale-95"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            class="bg-white border border-gray-200 rounded-sm sm:rounded-none p-6 shadow-xs hover:border-figma-red hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                        >
                             <div>
-                                <h3 class="font-heading font-bold text-[22px] text-figma-dark group-hover:text-figma-red transition-colors mb-3"><?php echo e($job->title); ?></h3>
-                                <div class="flex flex-wrap items-center gap-x-8 gap-y-3 font-sans text-[15px] text-gray-500">
-                                    <span class="flex items-center gap-2">
-                                        <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                                        </div>
-                                        <?php echo e($job->location ?? 'Indonesia'); ?>
+                                <div class="flex items-center justify-between gap-2 mb-3">
+                                    <span class="text-xs font-bold text-figma-red bg-figma-red/10 px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                                        <?php echo e($branch->city ?? 'Jepara'); ?>
 
                                     </span>
-                                    <span class="flex items-center gap-2">
-                                        <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                        </div>
-                                        <?php echo e($job->work_type ?? 'Full-time'); ?>
-
+                                    <span class="text-xs font-mono font-bold text-gray-400">
+                                        AHASS
                                     </span>
                                 </div>
-                            </div>
-                            
-                            <div class="md:text-right shrink-0">
-                                <div class="inline-flex items-center justify-center px-6 py-3 bg-figma-dark text-white font-sans font-bold text-[14px] uppercase tracking-wide rounded-lg group-hover:bg-figma-red transition-colors shadow-md">
-                                    Lihat Detail
+
+                                <h3 class="font-heading font-bold text-lg text-figma-dark mb-2 group-hover:text-figma-red transition-colors line-clamp-1">
+                                    <?php echo e($branch->name); ?>
+
+                                </h3>
+
+                                <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
+                                    <?php echo e($branch->address ?? 'Kecamatan ' . $branch->city . ', Kabupaten Jepara'); ?>
+
+                                </p>
+
+                                <div class="space-y-1.5 font-sans text-xs text-gray-500 mb-6">
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->contact_person): ?>
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                            <span class="truncate">SA: <?php echo e($branch->contact_person); ?></span>
+                                        </div>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->phone): ?>
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                            </svg>
+                                            <span><?php echo e($branch->phone); ?></span>
+                                        </div>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
                             </div>
-                        </a>
-                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
-                </div>
-            <?php else: ?>
-                <div class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-16 text-center flex flex-col items-center justify-center">
-                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-sm mb-6 text-gray-300">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    </div>
-                    <h3 class="font-heading font-bold text-[24px] text-figma-dark mb-3">Belum Ada Lowongan</h3>
-                    <p class="font-sans text-[16px] text-gray-500 max-w-md">Saat ini belum ada informasi lowongan karir yang diterbitkan oleh mitra ini. Silakan pantau secara berkala.</p>
-                </div>
-            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-         <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-    </section>
 
-    <!-- Section 4: Kontak & Informasi -->
-    <section class="py-20 md:py-28 bg-charcoal-900 text-white relative reveal-on-scroll reveal-up">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 z-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
-        
-        <?php if (isset($component)) { $__componentOriginal264d3cdba9db237c49d9665edc40da42 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal264d3cdba9db237c49d9665edc40da42 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.layout.container','data' => ['class' => 'relative z-10 max-w-5xl']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('frontend.layout.container'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'relative z-10 max-w-5xl']); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
+                            <div class="pt-4 border-t border-gray-100 flex items-center justify-between gap-2">
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->phone): ?>
+                                    <?php
+                                        $cleanPhone = preg_replace('/[^0-9]/', '', $branch->phone);
+                                        if (str_starts_with($cleanPhone, '0')) {
+                                            $cleanPhone = '62' . substr($cleanPhone, 1);
+                                        }
+                                    ?>
+                                    <a href="https://wa.me/<?php echo e($cleanPhone); ?>?text=<?php echo e(urlencode('Halo AHASS ' . $branch->name . ', saya ingin bertanya mengenai layanan servis / informasi PKL siswa TBSM SMKN 1 Bangsri.')); ?>" 
+                                       target="_blank" 
+                                       class="inline-flex items-center gap-1.5 px-3 py-2 rounded-sm sm:rounded-[2px] bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-colors">
+                                        <span>WhatsApp</span>
+                                    </a>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-            <div class="text-center mb-16">
-                <h2 class="font-heading font-extrabold text-[32px] md:text-[40px] text-white mb-6">Informasi Kontak</h2>
-                <div class="w-24 h-[3px] bg-figma-red mx-auto"></div>
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->maps_url): ?>
+                                    <a href="<?php echo e($branch->maps_url); ?>" 
+                                       target="_blank" 
+                                       class="inline-flex items-center gap-1.5 px-3 py-2 rounded-sm sm:rounded-[2px] bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold transition-colors">
+                                        <svg class="w-3.5 h-3.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                        <span>Rute Maps</span>
+                                    </a>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                            </div>
+                        </div>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                        <div class="col-span-full text-center py-12 text-gray-400">
+                            Belum ada data cabang bengkel resmi AHASS yang ditambahkan.
+                        </div>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </div>
+
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->address): ?>
-                    <div class="bg-charcoal-800 p-8 rounded-2xl border border-charcoal-700 flex flex-col items-center text-center hover:border-figma-red/50 hover:bg-charcoal-800/80 transition-all duration-300">
-                        <div class="w-14 h-14 rounded-full bg-charcoal-950 flex items-center justify-center text-figma-red shadow-inner mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        </div>
-                        <span class="block font-heading font-bold text-[18px] text-white mb-3">Kantor Pusat</span>
-                        <span class="font-sans text-[15px] text-gray-400 leading-relaxed"><?php echo e($partner->address); ?></span>
-                    </div>
-                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+        <!-- ============================================================================ -->
+        <!-- 05. CALL TO ACTION: BKK & HUBIN (Confident Closing Banner) -->
+        <!-- ============================================================================ -->
+        <section class="w-full bg-figma-dark py-16 sm:py-20 relative overflow-hidden text-center text-white">
+            <div class="max-w-3xl mx-auto px-4 sm:px-8 relative z-10 reveal-on-scroll reveal-up">
+                <span class="font-sans font-bold text-xs sm:text-sm text-figma-red uppercase tracking-wider block mb-3">
+                    <?php echo e($settings->get('industry_cta_badge', 'HUBIN & BKK SMKN 1 BANGSRI')); ?>
 
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->website): ?>
-                    <a href="<?php echo e(Str::startsWith($partner->website, 'http') ? $partner->website : 'https://'.$partner->website); ?>" target="_blank" class="bg-charcoal-800 p-8 rounded-2xl border border-charcoal-700 flex flex-col items-center text-center hover:border-figma-red hover:bg-figma-red hover:text-white transition-all duration-300 group">
-                        <div class="w-14 h-14 rounded-full bg-charcoal-950 group-hover:bg-charcoal-900/20 flex items-center justify-center text-figma-red group-hover:text-white shadow-inner mb-6 transition-colors">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
-                        </div>
-                        <span class="block font-heading font-bold text-[18px] text-white mb-3">Situs Resmi</span>
-                        <span class="font-sans text-[15px] text-gray-400 group-hover:text-white/90 line-clamp-2 leading-relaxed transition-colors"><?php echo e($partner->website); ?></span>
+                </span>
+                <h2 class="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-white leading-tight mb-4">
+                    <?php echo e($settings->get('industry_cta_title', 'Tertarik Bekerjasama atau Merekrut Lulusan Kami?')); ?>
+
+                </h2>
+                <p class="font-sans text-sm sm:text-base text-gray-300 leading-relaxed mb-8 max-w-xl mx-auto">
+                    <?php echo e($settings->get('industry_cta_desc', 'Bursa Kerja Khusus (BKK) SMK Negeri 1 Bangsri siap memfasilitasi kebutuhan tenaga teknisi otomotif kompeten dan berintegritas untuk jaringan industri otomotif.')); ?>
+
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4">
+                    <a href="<?php echo e(url($settings->get('industry_cta_button_url', '/kontak'))); ?>" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm sm:rounded-[2px] bg-figma-red text-white hover:bg-red-700 font-sans font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all">
+                        <span><?php echo e($settings->get('industry_cta_button_text', 'Hubungi Hubin & BKK')); ?></span>
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
                     </a>
-                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->phone): ?>
-                    <div class="bg-charcoal-800 p-8 rounded-2xl border border-charcoal-700 flex flex-col items-center text-center hover:border-figma-red/50 hover:bg-charcoal-800/80 transition-all duration-300">
-                        <div class="w-14 h-14 rounded-full bg-charcoal-950 flex items-center justify-center text-figma-red shadow-inner mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                        </div>
-                        <span class="block font-heading font-bold text-[18px] text-white mb-3">Telepon</span>
-                        <span class="font-sans text-[15px] text-gray-400 leading-relaxed"><?php echo e($partner->phone); ?></span>
-                    </div>
-                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($partner->email): ?>
-                    <div class="bg-charcoal-800 p-8 rounded-2xl border border-charcoal-700 flex flex-col items-center text-center hover:border-figma-red/50 hover:bg-charcoal-800/80 transition-all duration-300">
-                        <div class="w-14 h-14 rounded-full bg-charcoal-950 flex items-center justify-center text-figma-red shadow-inner mb-6">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                        </div>
-                        <span class="block font-heading font-bold text-[18px] text-white mb-3">Alamat Email</span>
-                        <span class="font-sans text-[15px] text-gray-400 leading-relaxed break-all"><?php echo e($partner->email); ?></span>
-                    </div>
-                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                
+                    <a href="<?php echo e(route('academic.programs')); ?>" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-sm sm:rounded-[2px] bg-white/10 hover:bg-white/20 text-white font-sans font-bold text-sm sm:text-base border border-white/20 transition-all">
+                        <span>Kurikulum Akademik</span>
+                    </a>
+                </div>
             </div>
-         <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $attributes = $__attributesOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__attributesOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal264d3cdba9db237c49d9665edc40da42)): ?>
-<?php $component = $__componentOriginal264d3cdba9db237c49d9665edc40da42; ?>
-<?php unset($__componentOriginal264d3cdba9db237c49d9665edc40da42); ?>
-<?php endif; ?>
-    </section>
+        </section>
 
-    <!-- Final CTA Section -->
-    <?php if (isset($component)) { $__componentOriginal9613240e70ec6dca7be8f7dc05a458d3 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal9613240e70ec6dca7be8f7dc05a458d3 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.home.final-cta','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('frontend.home.final-cta'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
-
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal9613240e70ec6dca7be8f7dc05a458d3)): ?>
-<?php $attributes = $__attributesOriginal9613240e70ec6dca7be8f7dc05a458d3; ?>
-<?php unset($__attributesOriginal9613240e70ec6dca7be8f7dc05a458d3); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal9613240e70ec6dca7be8f7dc05a458d3)): ?>
-<?php $component = $__componentOriginal9613240e70ec6dca7be8f7dc05a458d3; ?>
-<?php unset($__componentOriginal9613240e70ec6dca7be8f7dc05a458d3); ?>
-<?php endif; ?>
+    </main>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal5863877a5171c196453bfa0bd807e410)): ?>

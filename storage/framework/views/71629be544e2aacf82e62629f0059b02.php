@@ -41,7 +41,7 @@ foreach ($attributes->all() as $__key => $__value) {
 unset($__defined_vars, $__key, $__value); ?>
 
 <?php
-    $baseClasses = 'inline-flex items-center justify-center font-bold rounded-xl transition-all focus-ring disabled:opacity-70 disabled:cursor-not-allowed';
+    $baseClasses = 'inline-flex items-center justify-center font-bold rounded-sm sm:rounded-[2px] transition-all focus-ring disabled:opacity-70 disabled:cursor-not-allowed';
 
     $variants = [
         'primary' => 'bg-primary-600 text-white hover:bg-primary-700 border border-transparent shadow-sm',

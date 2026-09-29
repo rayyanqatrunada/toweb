@@ -50,7 +50,8 @@
 <?php endif; ?>
 
         <!-- 02. Introduction -->
-        <?php if (isset($component)) { $__componentOriginal56698e88d6c7cfff743551f3d24675e9 = $component; } ?>
+        <div id="section-profil" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <?php if (isset($component)) { $__componentOriginal56698e88d6c7cfff743551f3d24675e9 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal56698e88d6c7cfff743551f3d24675e9 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.home.intro','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.home.intro'); ?>
@@ -72,6 +73,7 @@
 <?php $component = $__componentOriginal56698e88d6c7cfff743551f3d24675e9; ?>
 <?php unset($__componentOriginal56698e88d6c7cfff743551f3d24675e9); ?>
 <?php endif; ?>
+        </div>
         
         <!-- 03. Statistics -->
         <?php if (isset($component)) { $__componentOriginalfb39aa7ed1f0133a6c11f7e498f6663a = $component; } ?>
@@ -98,7 +100,8 @@
 <?php endif; ?>
 
         <!-- 04. Why TBSM -->
-        <?php if (isset($component)) { $__componentOriginala845f62f2f6c1bd1f38e93f156d34b41 = $component; } ?>
+        <div id="section-keunggulan" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <?php if (isset($component)) { $__componentOriginala845f62f2f6c1bd1f38e93f156d34b41 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala845f62f2f6c1bd1f38e93f156d34b41 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.home.why-tbsm','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.home.why-tbsm'); ?>
@@ -120,9 +123,11 @@
 <?php $component = $__componentOriginala845f62f2f6c1bd1f38e93f156d34b41; ?>
 <?php unset($__componentOriginala845f62f2f6c1bd1f38e93f156d34b41); ?>
 <?php endif; ?>
+        </div>
 
         <!-- 05. Academic / Programs -->
-        <?php if (isset($component)) { $__componentOriginala00babb7da8d7112f4bee0c7770df83a = $component; } ?>
+        <div id="section-program" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <?php if (isset($component)) { $__componentOriginala00babb7da8d7112f4bee0c7770df83a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala00babb7da8d7112f4bee0c7770df83a = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.home.academic','data' => ['programs' => $programs]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.home.academic'); ?>
@@ -144,9 +149,11 @@
 <?php $component = $__componentOriginala00babb7da8d7112f4bee0c7770df83a; ?>
 <?php unset($__componentOriginala00babb7da8d7112f4bee0c7770df83a); ?>
 <?php endif; ?>
+        </div>
 
         <!-- 06. Facilities -->
-        <?php if (isset($component)) { $__componentOriginal004431fd59e1124a6022093dc7dd4536 = $component; } ?>
+        <div id="section-fasilitas" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <?php if (isset($component)) { $__componentOriginal004431fd59e1124a6022093dc7dd4536 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal004431fd59e1124a6022093dc7dd4536 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.home.facilities','data' => ['facilities' => $facilities]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.home.facilities'); ?>
@@ -168,9 +175,11 @@
 <?php $component = $__componentOriginal004431fd59e1124a6022093dc7dd4536; ?>
 <?php unset($__componentOriginal004431fd59e1124a6022093dc7dd4536); ?>
 <?php endif; ?>
+        </div>
 
         <!-- 07. Industry Partnership -->
-        <?php if (isset($component)) { $__componentOriginal9f568400951972cf39156b5821071b31 = $component; } ?>
+        <div id="section-kemitraan" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <?php if (isset($component)) { $__componentOriginal9f568400951972cf39156b5821071b31 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9f568400951972cf39156b5821071b31 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.home.partnership','data' => ['partner' => $partner]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.home.partnership'); ?>
@@ -192,9 +201,11 @@
 <?php $component = $__componentOriginal9f568400951972cf39156b5821071b31; ?>
 <?php unset($__componentOriginal9f568400951972cf39156b5821071b31); ?>
 <?php endif; ?>
+        </div>
 
         <!-- 08. Achievements -->
-        <?php if (isset($component)) { $__componentOriginalc2241c57112ee1982dc41526b63fd686 = $component; } ?>
+        <div id="section-prestasi" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <?php if (isset($component)) { $__componentOriginalc2241c57112ee1982dc41526b63fd686 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc2241c57112ee1982dc41526b63fd686 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.home.achievements','data' => ['achievements' => $achievements]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.home.achievements'); ?>
@@ -216,9 +227,11 @@
 <?php $component = $__componentOriginalc2241c57112ee1982dc41526b63fd686; ?>
 <?php unset($__componentOriginalc2241c57112ee1982dc41526b63fd686); ?>
 <?php endif; ?>
+        </div>
 
         <!-- 09. Teachers / Instructors -->
-        <?php if (isset($component)) { $__componentOriginal8454ea0020a187c33f279cdb427b8546 = $component; } ?>
+        <div id="section-guru" class="w-full scroll-mt-20 lg:scroll-mt-28">
+            <?php if (isset($component)) { $__componentOriginal8454ea0020a187c33f279cdb427b8546 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8454ea0020a187c33f279cdb427b8546 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.frontend.home.teachers','data' => ['headOfDepartment' => $headOfDepartment,'teachers' => $teachers]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('frontend.home.teachers'); ?>
@@ -240,6 +253,7 @@
 <?php $component = $__componentOriginal8454ea0020a187c33f279cdb427b8546; ?>
 <?php unset($__componentOriginal8454ea0020a187c33f279cdb427b8546); ?>
 <?php endif; ?>
+        </div>
 
         <!-- 10. News / Information -->
         <?php if (isset($component)) { $__componentOriginale6585e16031ab65948b9f301f09cf7de = $component; } ?>

@@ -32,7 +32,6 @@
         isPinned: false,
         suppressHover: false,
         hoverTimeout: null,
-        mobileHomeDropdownOpen: false,
         activeSection: '',
         checkScroll() {
             this.scrolled = window.pageYOffset > 10;
@@ -91,7 +90,6 @@
                 this.isHovered = false;
                 this.syncDropdownState();
             }
-            this.mobileHomeDropdownOpen = false;
         },
         scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -99,7 +97,6 @@
                 this.isHovered = false;
                 this.syncDropdownState();
             }
-            this.mobileHomeDropdownOpen = false;
         },
         initScrollspy() {
             if (!this.isHome) return;
@@ -199,21 +196,8 @@
                 </a>
             </div>
 
-            <!-- Mobile Top Right Action: Tombol Bagian (Beranda) & Hubungi Kami -->
+            <!-- Mobile Top Right Action: Hubungi Kami -->
             <div class="flex lg:hidden items-center gap-2">
-                @if($isHome)
-                    <button type="button"
-                            @click="mobileHomeDropdownOpen = !mobileHomeDropdownOpen"
-                            class="inline-flex items-center gap-1.5 px-2.5 py-1.5 font-heading font-bold text-[11px] uppercase tracking-wider rounded-[2px] transition-all border focus:outline-none active:scale-95 cursor-pointer"
-                            :class="scrolledPastHero 
-                                ? 'bg-white text-figma-dark border-[#E4E1E5] hover:bg-charcoal-50' 
-                                : 'bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-sm'">
-                        <span class="w-1.5 h-1.5 rounded-full bg-figma-red animate-pulse"></span>
-                        <span>Bagian</span>
-                        <svg class="w-3 h-3 transition-transform duration-200" :class="mobileHomeDropdownOpen ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                @endif
-
                 <a href="{{ route('contact.index') }}" 
                    class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-figma-red text-white font-heading font-bold text-[11.5px] uppercase tracking-wider rounded-[2px] hover:bg-figma-dark-red transition-all shadow-xs active:scale-95 focus:outline-none">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -271,52 +255,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Mobile Vertical Dropdown Menu (Dari Navbar Atas) -->
-    <div x-show="mobileHomeDropdownOpen"
-         x-transition:enter="transition-all ease-out duration-200"
-         x-transition:enter-start="opacity-0 -translate-y-2"
-         x-transition:enter-end="opacity-100 translate-y-0"
-         x-transition:leave="transition-all ease-in duration-150"
-         x-transition:leave-start="opacity-100 translate-y-0"
-         x-transition:leave-end="opacity-0 -translate-y-2"
-         @click.outside="mobileHomeDropdownOpen = false"
-         class="lg:hidden border-t border-[#E4E1E5] bg-white shadow-2xl px-4 py-3 max-h-[75vh] overflow-y-auto"
-         style="display: none;">
-        <div class="flex items-center justify-between pb-2 mb-2 border-b border-charcoal-100">
-            <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-figma-red animate-pulse"></span>
-                <span class="font-heading font-extrabold text-[11px] uppercase tracking-wider text-charcoal-900">Pilih Bagian Beranda</span>
-            </div>
-            <button type="button" @click="mobileHomeDropdownOpen = false" class="text-charcoal-400 p-1">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-        </div>
-        <div class="flex flex-col gap-1">
-            @foreach($homeSections as $sec)
-                <button type="button"
-                        @click="scrollToSection('{{ $sec['id'] }}')"
-                        class="flex items-center justify-between p-2.5 rounded-[2px] transition-colors text-left"
-                        :class="activeSection === '{{ $sec['id'] }}' ? 'bg-figma-red/10 text-figma-red font-bold' : 'hover:bg-charcoal-50 text-charcoal-800'">
-                    <div class="flex items-center gap-2.5">
-                        <span class="font-mono text-xs font-bold text-figma-red">{{ $sec['num'] }}</span>
-                        <div>
-                            <div class="font-heading font-bold text-[13px] uppercase tracking-tight">{{ $sec['title'] }}</div>
-                            <div class="text-[11px] text-charcoal-500 font-normal leading-tight">{{ $sec['desc'] }}</div>
-                        </div>
-                    </div>
-                    <svg class="w-4 h-4 text-charcoal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </button>
-            @endforeach
-
-            <!-- Action Ke Paling Atas -->
-            <button type="button"
-                    @click="scrollToTop()"
-                    class="flex items-center justify-center gap-2 mt-2 p-2.5 rounded-[2px] bg-charcoal-100 hover:bg-charcoal-200 text-charcoal-800 text-xs font-heading font-bold uppercase tracking-wider transition-colors">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                <span>Kembali ke Atas (Hero)</span>
-            </button>
-        </div>
-    </div>
     @endif
+
 </nav>
