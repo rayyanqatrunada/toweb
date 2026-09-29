@@ -43,7 +43,9 @@ Sistem ini memadukan:
 ## 2. Flowchart Sistem Lengkap
 
 > [!TIP]
-> Dokumen mandiri lengkap khusus Flowchart User, Flowchart Admin, ERD Komprehensif, dan Kamus Data 26 tabel juga telah diekspor ke file markdown tersendiri: [FLOWCHART_DAN_ERD.md](FLOWCHART_DAN_ERD.md) dan [docs/FLOWCHART_DAN_ERD.md](docs/FLOWCHART_DAN_ERD.md).
+> Dokumen mandiri lengkap telah dipisahkan ke berkas laporan terdedikasi:
+> - **Laporan Flowchart Lengkap (User & Admin):** [FLOWCHART.md](FLOWCHART.md) | [docs/FLOWCHART.md](docs/FLOWCHART.md)
+> - **Laporan ERD & Kamus Data Basis Data (26 Tabel):** [ERD.md](ERD.md) | [docs/ERD.md](docs/ERD.md)
 
 ### A. Flowchart Pengunjung Publik (User)
 
@@ -186,6 +188,9 @@ flowchart TD
 ---
 
 ## 3. Entity Relationship Diagram (ERD) Lengkap
+
+> [!TIP]
+> Laporan ERD komprehensif beserta Kamus Data 26 tabel lengkap tersedia di berkas terpisah: [ERD.md](ERD.md) dan [docs/ERD.md](docs/ERD.md).
 
 Diagram relasi entitas berikut memetakan seluruh tabel basis data, tipe data, kunci primer, kunci asing, dan kardinalitas relasi antar-entitas:
 
