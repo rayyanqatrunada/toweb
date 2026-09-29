@@ -33,6 +33,10 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login(\App\Filament\Pages\Auth\Login::class)
+            ->profile(\App\Filament\Pages\Auth\EditProfile::class, isSimple: false)
+            ->userMenuItems([
+                'profile' => fn (\Filament\Actions\Action $action) => $action->label('Profil Saya')->icon('heroicon-o-user-circle'),
+            ])
             ->colors([
                 'primary' => '#DC2626', // TBSM Red
                 'gray'    => Color::Zinc,
@@ -67,6 +71,14 @@ class AdminPanelProvider extends PanelProvider
                 'Publikasi & Informasi',
                 'Pusat Layanan',
                 'Pengaturan Sistem',
+            ])
+            ->navigationItems([
+                \Filament\Navigation\NavigationItem::make('Profil Admin')
+                    ->url(fn (): string => route('filament.admin.auth.profile'))
+                    ->icon('heroicon-o-user-circle')
+                    ->group('Pengaturan Sistem')
+                    ->sort(99)
+                    ->isActiveWhen(fn (): bool => request()->routeIs('filament.admin.auth.profile')),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

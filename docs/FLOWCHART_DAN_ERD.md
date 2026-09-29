@@ -260,7 +260,7 @@ flowchart TD
     MenuPengaturan -->|Kotak Pesan Masuk| CrudPesan[Resource ContactMessages: Baca Pesan Pengunjung, Tandai 'Sudah Dibaca', Balas Email]
     MenuPengaturan -->|Hero Slider Beranda| PageHeroSlider[ManageHeroSlider: Atur Urutan Slide, Gambar High-Res, Tombol CTA]
     MenuPengaturan -->|Banner Header Halaman| PageHeaders[ManagePageHeaders: Kustomisasi Gambar Banner untuk Tiap Route]
-    MenuPengaturan -->|Pengaturan Identitas Web| PageSettings[ManageSettings: Nama Situs, Telepon WA, Alamat Bengkel, Medsos]
+    MenuPengaturan -->|Profil Akun Admin| PageProfile[EditProfile /admin/profile: Ubah Nama, Alamat Email, Verifikasi Password Saat Ini, Set Password Baru]
     MenuPengaturan -->|Audit Log Aktivitas| LogAktivitas[Resource ActivityLog: Pantau Siapa Mengubah Data Apa, Waktu & Event]
 
     %% Eksekusi Penyimpanan
@@ -268,13 +268,15 @@ flowchart TD
     CrudProgram & RelasiKompetensi & CrudGuru & CrudFasilitas & PageManageFac --> EksekusiSimpan
     CrudMitra & CrudCabang & CrudKerjasama & CrudLowongan & CrudMagang & CrudPesertaMagang & CrudAlumni & PageManageInd --> EksekusiSimpan
     CrudPost & CrudPengumuman & CrudPrestasi & CrudGaleri & CrudUnduhan --> EksekusiSimpan
-    CrudPesan & PageHeroSlider & PageHeaders & PageSettings --> EksekusiSimpan
+    CrudPesan & PageHeroSlider & PageHeaders & PageSettings & PageProfile --> EksekusiSimpan
 
     EksekusiSimpan --> CatatAudit[Spatie ActivityLog Merekam Transaksi: created/updated/deleted]
     CatatAudit --> NotifikasiSukses[Filament Menampilkan Toast Notifikasi 'Saved Successfully']
     NotifikasiSukses --> NavigasiMenu
 
-    DashboardAdmin -->|Klik Tombol Keluar| LogoutAdmin[Aksi Logout & Invalidate Session]
+    DashboardAdmin -->|Klik Menu Akun / Avatar| DropdownUser{Menu Profil User}
+    DropdownUser -->|Pilih 'Profil Saya'| PageProfile
+    DropdownUser -->|Pilih 'Keluar'| LogoutAdmin[Aksi Logout & Invalidate Session]
     LogoutAdmin --> SelesaiAdmin([Selesai: Kembali ke Halaman Login])
 ```
 
@@ -284,27 +286,36 @@ flowchart TD
    - Administrator mengakses `/admin/login`. Form memvalidasi email dan kata sandi menggunakan hashing Bcrypt/Argon2id.
    - Model `User` mengimplementasikan Spatie `HasRoles`. Sistem memverifikasi bahwa akun memiliki role `admin`. Jika berhasil, sesi disimpan di tabel `sessions` dan diarahkan ke Dashboard.
 
-2. **Pengelolaan Program Akademik 4-Tab (*ManageAcademicPrograms*):**
+2. **Pengelolaan Profil Akun Administrator (/admin/profile):**
+   - Administrator dapat membuka halaman profil melalui dua akses:
+     - Menu avatar pengguna di pojok kanan atas (*User Menu -> Profil Saya*).
+     - Menu bilah sisi navigasi (*Pengaturan Sistem -> Profil Admin*).
+   - Form profil terbagi menjadi dua bagian:
+     - **Informasi Akun Admin:** Mengubah nama lengkap dan alamat email resmi administrator.
+     - **Keamanan & Kata Sandi:** Mengubah kata sandi baru (minimal 8 karakter) dengan konfirmasi kata sandi dan verifikasi kata sandi saat ini (*current password*) untuk mencegah perubahan yang tidak terotorisasi.
+   - Kata sandi dienkripsi otomatis secara aman (*Hashed*), dan sesi login tetap aktif tanpa memaksa logout.
+
+3. **Pengelolaan Program Akademik 4-Tab (*ManageAcademicPrograms*):**
    - Halaman kustom Filament yang mengelola konfigurasi program secara sentral dengan fitur *Sticky Save Header*:
      - **Tab 1: Identitas & Rasio Praktik:** Konfigurasi headline hero, rasio 70% praktik : 30% teori, dan mitra pembina AHM.
      - **Tab 2: Pilar Kompetensi & Kurikulum:** Pengaturan 4 pilar teknis (Engine, Chasis, Electrical, Fuel Injection), dokumen silabus PDF, serta capaian pembelajaran Fase E dan Fase F.
      - **Tab 3: Program Unggulan & Sertifikasi:** Pengaturan 6 program unggulan dan 3 lisensi sertifikasi (BNSP LSP-P1, Honda Sertifikasi Level 1/2).
      - **Tab 4: Prospek Karir & Roadmap:** Pemetaan 3 jalur karir utama dan infografis roadmap pendidikan 3 tahun.
 
-3. **Pengelolaan Kemitraan Industri & Jaringan Bengkel AHASS:**
+4. **Pengelolaan Kemitraan Industri & Jaringan Bengkel AHASS:**
    - Administrator menginput data DUDI di `IndustryPartnerResource`.
    - Menggunakan relasi `HasMany` ke `IndustryPartnerBranch`, admin dapat menambahkan banyak cabang bengkel resmi lengkap dengan alamat kecamatan, link Google Maps, nama PIC, nomor WhatsApp, dan kapasitas kuota magang siswa.
    - Pengelolaan dokumen kerjasama di `PartnershipResource` mencatat tanggal masa berlaku MoU dan mengunggah berkas perjanjian resmi bertanda tangan digital.
 
-4. **Pengelolaan Bursa Kerja Khusus (BKK) & Pelacakan Alumni:**
+5. **Pengelolaan Bursa Kerja Khusus (BKK) & Pelacakan Alumni:**
    - Admin mempublikasikan lowongan kerja melalui `JobVacancyResource`, menentukan kualifikasi keahlian, tipe pekerjaan (*full-time, kontrak*), rentang gaji, dan tanggal kadaluarsa lowongan.
    - Admin mendata lulusan melalui `AlumniResource`, mencatat status pilar BMW (*Bekerja, Melanjutkan, Wirausaha*), nama industri tempat bekerja, jabatan, serta kisah inspiratif alumni untuk memotivasi adik kelas.
 
-5. **Pengelolaan Konten Publikasi & Pusat Unduhan:**
+6. **Pengelolaan Konten Publikasi & Pusat Unduhan:**
    - Penulisan berita dan artikel di `PostResource` dilengkapi Rich Text Editor, penentuan kategori, relasi many-to-many dengan tags, unggah berkas thumbnail, serta status publikasi (*draft, review, published*).
    - Pengelolaan unduhan di `DownloadResource` memvalidasi tipe file dokumen (*PDF, DOCX, XLSX, ZIP*) dan ukuran file. Tersedia tombol untuk mereset counter jumlah unduhan.
 
-6. **Audit Trail Otomatis (*Spatie ActivityLog*):**
+7. **Audit Trail Otomatis (*Spatie ActivityLog*):**
    - Setiap operasi penyimpanan (`create`), pembaruan (`update`), maupun penghapusan (`delete`) pada model-model utama dicatat secara otomatis ke tabel `activity_log`.
    - Data log menyimpan ID admin pelaku (`causer_id`), nama tabel/model objek (`subject_type`, `subject_id`), tipe event, serta rekaman nilai kolom sebelum dan sesudah perubahan (`properties`).
 
