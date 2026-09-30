@@ -261,7 +261,7 @@
             </div>
         </div>
     </div>
-
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
 </nav>
 <?php /**PATH /home/Rayy/Project/Github/TBSM WEB/toweb/resources/views/components/navbar.blade.php ENDPATH**/ ?>

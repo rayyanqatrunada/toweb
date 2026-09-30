@@ -61,6 +61,53 @@ class IndustryPartnerBranch extends Model
         return array_values(array_filter(array_map('trim', $lines)));
     }
 
+    public function getContactPersonAttribute(): ?string
+    {
+        return $this->pic_name;
+    }
+
+    public function getMapsUrlAttribute(): ?string
+    {
+        return $this->google_maps_url;
+    }
+
+    public function getOperatingHoursAttribute(): ?string
+    {
+        if (empty($this->facilities)) {
+            return null;
+        }
+        if (preg_match('/Jam Buka:\s*([^\r\n]+)/i', $this->facilities, $matches)) {
+            return trim($matches[1]);
+        }
+        return null;
+    }
+
+    public function getRatingAttribute(): ?string
+    {
+        if (empty($this->facilities)) {
+            return null;
+        }
+        if (preg_match('/Rating:\s*([0-9.]+)/i', $this->facilities, $matches)) {
+            return trim($matches[1]);
+        }
+        return null;
+    }
+
+    public function getDescriptionTextAttribute(): ?string
+    {
+        if (empty($this->facilities)) {
+            return null;
+        }
+        $lines = preg_split('/[\r\n]+/', $this->facilities);
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if (!empty($line) && !str_starts_with($line, 'Rating:') && !str_starts_with($line, 'Jam Buka:')) {
+                return $line;
+            }
+        }
+        return null;
+    }
+
     public function getFormattedWhatsappUrlAttribute(): ?string
     {
         $raw = $this->whatsapp ?: $this->phone;

@@ -1,4 +1,4 @@
-<x-layouts.app title="Kontak & Lokasi">
+<x-layouts.app title="Kontak & Lokasi Bengkel TBSM SMKN 1 Bangsri" description="Informasi kontak, nomor telepon, WhatsApp, email, dan peta lokasi bengkel Praktik Teknik Otomotif TBSM di SMK Negeri 1 Bangsri Jepara Jawa Tengah.">
     <div class="w-full min-h-screen flex flex-col items-center relative">
         <!-- Hero Section -->
         <section class="relative w-full bg-white border-b border-[#E4E1E5] flex flex-col px-6 md:px-16 pt-10 pb-12 md:pt-14 md:pb-16 isolation-auto">

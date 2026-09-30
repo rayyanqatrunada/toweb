@@ -1,29 +1,90 @@
 <?php if (isset($component)) { $__componentOriginal5863877a5171c196453bfa0bd807e410 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5863877a5171c196453bfa0bd807e410 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Beranda','noPaddingTop' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Teknik Otomotif & Sepeda Motor (TBSM) SMKN 1 Bangsri - Binaan Resmi AHM','noPaddingTop' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('layouts.app'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['title' => 'Beranda','no-padding-top' => true]); ?>
+<?php $component->withAttributes(['title' => 'Teknik Otomotif & Sepeda Motor (TBSM) SMKN 1 Bangsri - Binaan Resmi AHM','no-padding-top' => true]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
     <?php $__env->startPush('json-ld'); ?>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "<?php echo e($settings->get('site_name', 'Teknik Sepeda Motor')); ?>",
-      "url": "<?php echo e(url('/')); ?>",
-      "logo": "<?php echo e(url('/logo.png')); ?>"
+      "@graph": [
+        {
+          "@type": "EducationalOrganization",
+          "@id": "<?php echo e(url('/')); ?>#organization",
+          "name": "<?php echo e($settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor SMKN 1 Bangsri')); ?>",
+          "alternateName": [
+            "Teknik Otomotif SMKN 1 Bangsri",
+            "Teknik Sepeda Motor SMKN 1 Bangsri",
+            "TBSM SMKN 1 Bangsri",
+            "TSM SMKN 1 Bangsri",
+            "TBSM SMK Negeri 1 Bangsri"
+          ],
+          "url": "<?php echo e(url('/')); ?>",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "<?php echo e($settings->get('site_logo') ? Storage::url($settings->get('site_logo')) : url('/logo.png')); ?>"
+          },
+          "description": "<?php echo e($settings->get('site_description')); ?>",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "<?php echo e($settings->get('contact_address', 'JL. KH. Achmad Fauzan No. 17')); ?>",
+            "addressLocality": "Bangsri",
+            "addressRegion": "Jawa Tengah",
+            "postalCode": "59453",
+            "addressCountry": "ID"
+          },
+          "telephone": "<?php echo e($settings->get('contact_phone', '082323429052')); ?>",
+          "email": "<?php echo e($settings->get('contact_email', 'smkn1bangsri@yahoo.co.id')); ?>",
+          "sameAs": [
+            "<?php echo e($settings->get('social_instagram') ?: 'https://instagram.com/'); ?>",
+            "<?php echo e($settings->get('social_youtube') ?: 'https://youtube.com/'); ?>",
+            "<?php echo e($settings->get('social_facebook') ?: 'https://facebook.com/'); ?>"
+          ],
+          "parentOrganization": {
+            "@type": "School",
+            "name": "SMK Negeri 1 Bangsri",
+            "url": "https://smkn1bangsri.sch.id"
+          },
+          "sponsor": {
+            "@type": "Organization",
+            "name": "PT Astra Honda Motor",
+            "alternateName": "AHM"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "<?php echo e(url('/')); ?>#website",
+          "url": "<?php echo e(url('/')); ?>",
+          "name": "<?php echo e($settings->get('site_short_name', 'TBSM SMKN 1 Bangsri')); ?>",
+          "description": "<?php echo e($settings->get('site_description')); ?>",
+          "publisher": {
+            "@id": "<?php echo e(url('/')); ?>#organization"
+          },
+          "inLanguage": "id-ID",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "<?php echo e(url('/cari')); ?>?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
     }
     </script>
     <?php $__env->stopPush(); ?>
 
     <!-- Main Auto Layout Wrapper -->
     <main class="flex flex-col items-center w-full overflow-hidden relative">
+        <h1 class="sr-only">Teknik Otomotif &amp; Sepeda Motor (TBSM) SMK Negeri 1 Bangsri - Binaan Resmi PT Astra Honda Motor</h1>
         
         <!-- 01. Hero Section -->
         <?php if (isset($component)) { $__componentOriginale51f528b6a918368a1bc14f88f330599 = $component; } ?>

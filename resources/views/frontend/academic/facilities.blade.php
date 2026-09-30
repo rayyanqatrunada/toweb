@@ -1,10 +1,10 @@
-<x-layouts.app title="Fasilitas Bengkel & Sarana Praktik" :no-padding-top="true">
+<x-layouts.app title="Fasilitas Bengkel Standar AHASS TBSM" description="Fasilitas bengkel standar industri Astra Honda Motor (AHASS), bike lift hidrolik, simulator injeksi PGM-FI, dan sarana praktik Teknik Otomotif SMKN 1 Bangsri Jepara." :no-padding-top="true">
     @push('json-ld')
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
       "@@type": "WebPage",
-      "name": "Fasilitas Bengkel {{ $settings->get('site_short_name', 'TBSM') }}",
+      "name": "Fasilitas Bengkel TBSM SMKN 1 Bangsri",
       "description": "Fasilitas bengkel standar industri Astra Honda Motor (AHASS), bike lift hidrolik, simulator injeksi PGM-FI, dan bengkel praktik kejuruan di SMK Negeri 1 Bangsri."
     }
     </script>

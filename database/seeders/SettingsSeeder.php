@@ -13,9 +13,12 @@ class SettingsSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            ['key' => 'site_name', 'value' => 'Teknik dan Bisnis Sepeda Motor', 'type' => 'text'],
-            ['key' => 'site_tagline', 'value' => 'Website Resmi SMK Negeri 1', 'type' => 'text'],
-            ['key' => 'site_description', 'value' => 'Program Keahlian Teknik dan Bisnis Sepeda Motor (TBSM) berdedikasi untuk mencetak mekanik dan ahli otomotif masa depan yang kompeten, disiplin, dan siap kerja di dunia industri modern.', 'type' => 'text'],
+            ['key' => 'site_name', 'value' => 'Teknik dan Bisnis Sepeda Motor SMKN 1 Bangsri', 'type' => 'text'],
+            ['key' => 'site_short_name', 'value' => 'TBSM SMKN 1 Bangsri', 'type' => 'text'],
+            ['key' => 'site_tagline', 'value' => 'Pusat Keunggulan Vokasi Otomotif Binaan PT Astra Honda Motor', 'type' => 'text'],
+            ['key' => 'site_description', 'value' => 'Website resmi Konsentrasi Keahlian Teknik Otomotif & Sepeda Motor (TBSM) SMK Negeri 1 Bangsri Jepara. Kelas industri binaan PT Astra Honda Motor, lab bengkel standar AHASS, kurikulum PGM-FI, & BKK.', 'type' => 'text'],
+            ['key' => 'site_keywords', 'value' => 'teknik otomotif smkn 1 bangsri, teknik sepeda motor smkn 1 bangsri, tbsm smkn 1 bangsri, tsm smkn 1 bangsri, jurusan otomotif smk bangsri jepara, smk binaan astra honda motor bangsri, bengkel ahass smkn 1 bangsri', 'type' => 'text'],
+            ['key' => 'google_site_verification', 'value' => '', 'type' => 'text'],
             
             ['key' => 'hero_title', 'value' => 'Mencetak Teknisi Andal berkarakter Industri.', 'type' => 'text'],
             ['key' => 'hero_subtitle', 'value' => 'Jurusan Teknik dan Bisnis Sepeda Motor (TBSM) kami berdiri dengan satu tujuan: menjembatani kesenjangan antara pendidikan sekolah dengan kebutuhan riil dunia otomotif modern.', 'type' => 'text'],

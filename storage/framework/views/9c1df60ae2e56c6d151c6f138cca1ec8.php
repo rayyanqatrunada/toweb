@@ -1,13 +1,13 @@
 <?php if (isset($component)) { $__componentOriginal5863877a5171c196453bfa0bd807e410 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5863877a5171c196453bfa0bd807e410 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Bursa Kerja Khusus (BKK)']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Bursa Kerja Khusus (BKK) TBSM','description' => 'Informasi lowongan kerja otomotif dan rekrutmen mekanik sepeda motor resmi dari BKK Teknik Sepeda Motor SMK Negeri 1 Bangsri.']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('layouts.app'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['title' => 'Bursa Kerja Khusus (BKK)']); ?>
+<?php $component->withAttributes(['title' => 'Bursa Kerja Khusus (BKK) TBSM','description' => 'Informasi lowongan kerja otomotif dan rekrutmen mekanik sepeda motor resmi dari BKK Teknik Sepeda Motor SMK Negeri 1 Bangsri.']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
     <!-- Hero Section -->

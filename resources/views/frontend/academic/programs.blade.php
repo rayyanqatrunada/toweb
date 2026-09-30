@@ -1,10 +1,10 @@
-<x-layouts.app title="Program & Kurikulum Akademik" :no-padding-top="true">
+<x-layouts.app title="Kurikulum & Program Keahlian TBSM" description="Kurikulum Teknik Otomotif & Sepeda Motor SMK Negeri 1 Bangsri. 4 pilar kompetensi kejuruan: Mesin, Chasis, Kelistrikan, & PGM-FI binaan Astra Honda Motor." :no-padding-top="true">
     @push('json-ld')
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
       "@@type": "WebPage",
-      "name": "Program & Kurikulum Akademik {{ $settings->get('site_short_name', 'TBSM') }}",
+      "name": "Program & Kurikulum Akademik {{ $settings->get('site_short_name', 'TBSM') }} SMKN 1 Bangsri",
       "description": "Struktur kurikulum, 4 pilar kompetensi kejuruan, dan sertifikasi industri {{ $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor') }} SMK Negeri 1 Bangsri binaan PT Astra Honda Motor."
     }
     </script>

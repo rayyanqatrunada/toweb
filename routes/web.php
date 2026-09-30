@@ -20,6 +20,7 @@ Route::get('/robots.txt', function () {
 });
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang', [HomeController::class, 'about'])->name('about');
+Route::get('/cari', [\App\Http\Controllers\Frontend\SearchController::class, 'index'])->name('search');
 
 Route::get('/kontak', [App\Http\Controllers\Frontend\ContactController::class, 'index'])->name('contact.index');
 Route::post('/kontak', [App\Http\Controllers\Frontend\ContactController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');

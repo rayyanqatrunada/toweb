@@ -43,9 +43,12 @@ Sistem ini memadukan:
 ## 2. Flowchart Sistem Lengkap
 
 > [!TIP]
-> Dokumen mandiri lengkap telah dipisahkan ke berkas laporan terdedikasi:
+> Dokumen mandiri lengkap dan berkas visualisasi gambar grafis telah tersedia:
 > - **Laporan Flowchart Lengkap (User & Admin):** [FLOWCHART.md](FLOWCHART.md) | [../FLOWCHART.md](../FLOWCHART.md)
+>   - *Visual Flowchart User:* [FLOWCHART_USER.png](FLOWCHART_USER.png) | [FLOWCHART_USER.svg](FLOWCHART_USER.svg)
+>   - *Visual Flowchart Admin:* [FLOWCHART_ADMIN.png](FLOWCHART_ADMIN.png) | [FLOWCHART_ADMIN.svg](FLOWCHART_ADMIN.svg)
 > - **Laporan ERD & Kamus Data Basis Data (26 Tabel):** [ERD.md](ERD.md) | [../ERD.md](../ERD.md)
+>   - *Visual ERD Lengkap:* [ERD.png](ERD.png) | [ERD.svg](ERD.svg)
 
 ### A. Flowchart Pengunjung Publik (User)
 

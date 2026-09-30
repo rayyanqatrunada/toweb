@@ -1,4 +1,4 @@
-<x-layouts.app title="Profil Jurusan">
+<x-layouts.app title="Profil Jurusan Teknik Otomotif & Sepeda Motor" description="Profil lengkap Konsentrasi Keahlian Teknik Otomotif & Sepeda Motor (TBSM) SMK Negeri 1 Bangsri. Sejarah, visi, misi, sertifikasi kompetensi, dan kemitraan PT Astra Honda Motor.">
     @push('json-ld')
     <script type="application/ld+json">
     {
@@ -6,7 +6,7 @@
       "@@type": "AboutPage",
       "mainEntity": {
         "@@type": "EducationalOrganization",
-        "name": "{{ $settings->get('site_name', 'Teknik Sepeda Motor') }}",
+        "name": "{{ $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor SMKN 1 Bangsri') }}",
         "description": "{!! strip_tags($settings->get('site_description')) !!}"
       }
     }

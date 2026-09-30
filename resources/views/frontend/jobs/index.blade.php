@@ -1,4 +1,4 @@
-<x-layouts.app title="Bursa Kerja Khusus (BKK)">
+<x-layouts.app title="Bursa Kerja Khusus (BKK) TBSM" description="Informasi lowongan kerja otomotif dan rekrutmen mekanik sepeda motor resmi dari BKK Teknik Sepeda Motor SMK Negeri 1 Bangsri.">
     <!-- Hero Section -->
     <div class="bg-charcoal-50 pt-10 pb-14 lg:pt-14 lg:pb-20 relative overflow-hidden border-b border-charcoal-200">
         <!-- Background -->

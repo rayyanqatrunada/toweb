@@ -13,9 +13,12 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            ['key' => 'site_name', 'value' => 'Teknik dan Bisnis Sepeda Motor'],
-            ['key' => 'site_description', 'value' => 'Website Resmi Jurusan Teknik dan Bisnis Sepeda Motor (TBSM) SMK Negeri 1 Bangsri.'],
-            ['key' => 'site_tagline', 'value' => 'Terbentuknya SDM profesional dalam bidang TBSM dan berkarakter positif'],
+            ['key' => 'site_name', 'value' => 'Teknik dan Bisnis Sepeda Motor SMKN 1 Bangsri'],
+            ['key' => 'site_short_name', 'value' => 'TBSM SMKN 1 Bangsri'],
+            ['key' => 'site_description', 'value' => 'Website resmi Konsentrasi Keahlian Teknik Otomotif & Sepeda Motor (TBSM) SMK Negeri 1 Bangsri Jepara. Kelas industri binaan PT Astra Honda Motor, lab bengkel standar AHASS, kurikulum PGM-FI, & BKK.'],
+            ['key' => 'site_tagline', 'value' => 'Pusat Keunggulan Vokasi Otomotif Binaan PT Astra Honda Motor'],
+            ['key' => 'site_keywords', 'value' => 'teknik otomotif smkn 1 bangsri, teknik sepeda motor smkn 1 bangsri, tbsm smkn 1 bangsri, tsm smkn 1 bangsri, jurusan otomotif smk bangsri jepara, smk binaan astra honda motor bangsri, bengkel ahass smkn 1 bangsri'],
+            ['key' => 'google_site_verification', 'value' => ''],
             ['key' => 'contact_address', 'value' => 'JL. KH. Achmad Fauzan No. 17 Bangsri Jepara'],
             ['key' => 'contact_phone', 'value' => '082323429052'],
             ['key' => 'contact_email', 'value' => 'smkn1bangsri@yahoo.co.id'],

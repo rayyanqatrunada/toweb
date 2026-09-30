@@ -1,18 +1,79 @@
-<x-layouts.app title="Beranda" :no-padding-top="true">
+<x-layouts.app title="Teknik Otomotif & Sepeda Motor (TBSM) SMKN 1 Bangsri - Binaan Resmi AHM" :no-padding-top="true">
     @push('json-ld')
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "{{ $settings->get('site_name', 'Teknik Sepeda Motor') }}",
-      "url": "{{ url('/') }}",
-      "logo": "{{ url('/logo.png') }}"
+      "@@graph": [
+        {
+          "@@type": "EducationalOrganization",
+          "@@id": "{{ url('/') }}#organization",
+          "name": "{{ $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor SMKN 1 Bangsri') }}",
+          "alternateName": [
+            "Teknik Otomotif SMKN 1 Bangsri",
+            "Teknik Sepeda Motor SMKN 1 Bangsri",
+            "TBSM SMKN 1 Bangsri",
+            "TSM SMKN 1 Bangsri",
+            "TBSM SMK Negeri 1 Bangsri"
+          ],
+          "url": "{{ url('/') }}",
+          "logo": {
+            "@@type": "ImageObject",
+            "url": "{{ $settings->get('site_logo') ? Storage::url($settings->get('site_logo')) : url('/logo.png') }}"
+          },
+          "description": "{{ $settings->get('site_description') }}",
+          "address": {
+            "@@type": "PostalAddress",
+            "streetAddress": "{{ $settings->get('contact_address', 'JL. KH. Achmad Fauzan No. 17') }}",
+            "addressLocality": "Bangsri",
+            "addressRegion": "Jawa Tengah",
+            "postalCode": "59453",
+            "addressCountry": "ID"
+          },
+          "telephone": "{{ $settings->get('contact_phone', '082323429052') }}",
+          "email": "{{ $settings->get('contact_email', 'smkn1bangsri@yahoo.co.id') }}",
+          "sameAs": [
+            "{{ $settings->get('social_instagram') ?: 'https://instagram.com/' }}",
+            "{{ $settings->get('social_youtube') ?: 'https://youtube.com/' }}",
+            "{{ $settings->get('social_facebook') ?: 'https://facebook.com/' }}"
+          ],
+          "parentOrganization": {
+            "@@type": "School",
+            "name": "SMK Negeri 1 Bangsri",
+            "url": "https://smkn1bangsri.sch.id"
+          },
+          "sponsor": {
+            "@@type": "Organization",
+            "name": "PT Astra Honda Motor",
+            "alternateName": "AHM"
+          }
+        },
+        {
+          "@@type": "WebSite",
+          "@@id": "{{ url('/') }}#website",
+          "url": "{{ url('/') }}",
+          "name": "{{ $settings->get('site_short_name', 'TBSM SMKN 1 Bangsri') }}",
+          "description": "{{ $settings->get('site_description') }}",
+          "publisher": {
+            "@@id": "{{ url('/') }}#organization"
+          },
+          "inLanguage": "id-ID",
+          "potentialAction": {
+            "@@type": "SearchAction",
+            "target": {
+              "@@type": "EntryPoint",
+              "urlTemplate": "{{ url('/cari') }}?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
     }
     </script>
     @endpush
 
     <!-- Main Auto Layout Wrapper -->
     <main class="flex flex-col items-center w-full overflow-hidden relative">
+        <h1 class="sr-only">Teknik Otomotif &amp; Sepeda Motor (TBSM) SMK Negeri 1 Bangsri - Binaan Resmi PT Astra Honda Motor</h1>
         
         <!-- 01. Hero Section -->
         <x-frontend.home.hero-slider :slides-json="$settings->get('hero_slides')" />

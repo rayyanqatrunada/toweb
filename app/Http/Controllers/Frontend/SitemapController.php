@@ -40,6 +40,7 @@ class SitemapController extends Controller
             $urls[] = ['loc' => $appUrl . '/lowongan', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
             $urls[] = ['loc' => $appUrl . '/alumni', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
             $urls[] = ['loc' => $appUrl . '/unduhan', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
+            $urls[] = ['loc' => $appUrl . '/kontak', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
 
             // Dynamic routes — hanya ambil kolom yang diperlukan (slug + updated_at)
             try {

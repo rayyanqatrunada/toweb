@@ -7,36 +7,73 @@
     'ogType' => 'website',
     'noPaddingTop' => false
 ])
+@php
+    $siteName = $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor SMKN 1 Bangsri');
+    $siteShortName = $settings->get('site_short_name', 'TBSM SMKN 1 Bangsri');
+    $siteTagline = $settings->get('site_tagline', 'Pusat Keunggulan Vokasi Otomotif Binaan PT Astra Honda Motor');
+    $siteKeywords = $settings->get('site_keywords', 'teknik otomotif smkn 1 bangsri, teknik sepeda motor smkn 1 bangsri, tbsm smkn 1 bangsri, tsm smkn 1 bangsri, smk binaan astra honda motor');
+    $metaDescription = $description ?? $settings->get('site_description', 'Website resmi Konsentrasi Keahlian Teknik Otomotif & Sepeda Motor (TBSM) SMK Negeri 1 Bangsri Jepara. Kelas industri binaan PT Astra Honda Motor, lab bengkel standar AHASS, kurikulum PGM-FI, & BKK.');
+
+    if (empty($title) || $title === 'Beranda' || request()->is('/')) {
+        if (!empty($title) && $title !== 'Beranda') {
+            $pageTitle = $title;
+        } else {
+            $pageTitle = 'Teknik Otomotif & Sepeda Motor (TBSM) SMKN 1 Bangsri - Binaan Resmi AHM';
+        }
+    } elseif (str_contains($title, 'SMKN 1 Bangsri') || str_contains($title, $siteShortName)) {
+        $pageTitle = $title;
+    } else {
+        $pageTitle = $title . ' | ' . $siteShortName;
+    }
+
+    $canonicalUrl = $canonical ?? url()->current();
+    $ogImageUrl = $ogImage ?? ($settings->get('site_logo') ? Storage::url($settings->get('site_logo')) : url('/logo.png'));
+    $gsv = $settings->get('google_site_verification') ?: env('GOOGLE_SITE_VERIFICATION');
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ? $title . ' | ' . $settings->get('site_name', 'Teknik Sepeda Motor') : $settings->get('site_name', 'Teknik Sepeda Motor') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}</title>
-    @if($logo = app(\App\Services\SettingsService::class)->get('site_logo'))
+    <title>{{ $pageTitle }}</title>
+    @if($logo = $settings->get('site_logo'))
     <link rel="icon" href="{{ Storage::url($logo) }}">
     @endif
     
-    <!-- Meta SEO & Open Graph -->
-    <meta name="description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian ' . $settings->get('site_short_name', 'TSM')) }}">
+    <!-- Meta SEO & Search Indexing -->
+    <meta name="description" content="{{ $metaDescription }}">
+    <meta name="keywords" content="{{ $siteKeywords }}">
+    <meta name="author" content="{{ $siteShortName }}">
     <meta name="robots" content="{{ $robots }}">
-    <link rel="canonical" href="{{ $canonical ?? url()->current() }}">
-    
-    <meta property="og:title" content="{{ $title ? $title . ' | ' . $settings->get('site_name', 'Teknik Sepeda Motor') : $settings->get('site_name', 'Teknik Sepeda Motor') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}">
-    <meta property="og:description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian ' . $settings->get('site_short_name', 'TSM')) }}">
-    <meta property="og:type" content="{{ $ogType }}">
-    <meta property="og:url" content="{{ $canonical ?? url()->current() }}">
-    @if($ogImage)
-    <meta property="og:image" content="{{ $ogImage }}">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ $ogImage }}">
-    @else
-    <meta name="twitter:card" content="summary">
-    @endif
-    <meta name="twitter:title" content="{{ $title ? $title . ' | ' . $settings->get('site_name', 'Teknik Sepeda Motor') : $settings->get('site_name', 'Teknik Sepeda Motor') . ' | ' . $settings->get('site_tagline', 'Website Resmi') }}">
-    <meta name="twitter:description" content="{{ $description ?? $settings->get('site_description', 'Website Resmi Program Keahlian ' . $settings->get('site_short_name', 'TSM')) }}">
+    <link rel="canonical" href="{{ $canonicalUrl }}">
 
-    <!-- JSON-LD -->
+    @if(!empty($gsv))
+    <meta name="google-site-verification" content="{{ $gsv }}">
+    @endif
+
+    <!-- Local SEO Geo Meta Tags -->
+    <meta name="geo.region" content="ID-JT">
+    <meta name="geo.placename" content="Bangsri, Jepara">
+    <meta name="geo.position" content="-6.5333;110.7667">
+    <meta name="ICBM" content="-6.5333, 110.7667">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:site_name" content="{{ $siteShortName }}">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="{{ $ogType }}">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
+    <meta property="og:image" content="{{ $ogImageUrl }}">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="{{ $ogImage ? 'summary_large_image' : 'summary' }}">
+    <meta name="twitter:url" content="{{ $canonicalUrl }}">
+    <meta name="twitter:title" content="{{ $pageTitle }}">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
+    <meta name="twitter:image" content="{{ $ogImageUrl }}">
+
+    <!-- JSON-LD Structured Data -->
     @stack('json-ld')
 
     <!-- Google Fonts -->

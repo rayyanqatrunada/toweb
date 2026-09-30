@@ -32,6 +32,8 @@ class ManageSettings extends Page implements HasForms
             'site_name' => $settings->get('site_name'),
             'site_tagline' => $settings->get('site_tagline'),
             'site_description' => $settings->get('site_description'),
+            'site_keywords' => $settings->get('site_keywords', 'teknik otomotif smkn 1 bangsri, teknik sepeda motor smkn 1 bangsri, tbsm smkn 1 bangsri, tsm smkn 1 bangsri'),
+            'google_site_verification' => $settings->get('google_site_verification', ''),
             'site_logo' => $settings->get('site_logo'),
             'head_quote' => $settings->get('head_quote'),
             'youtube_video_id' => $settings->get('youtube_video_id'),
@@ -54,13 +56,15 @@ class ManageSettings extends Page implements HasForms
     {
         return $form
             ->schema([
-                Section::make('Identitas Website')
-                    ->description('Pengaturan dasar website dan SEO.')
+                Section::make('Identitas Website & SEO')
+                    ->description('Pengaturan identitas website, meta tags, dan Search Engine Optimization.')
                     ->schema([
                         TextInput::make('site_short_name')->label('Singkatan / Nama Singkat (Tampil di sebelah logo)')->required()->default('TBSM'),
                         TextInput::make('site_name')->label('Nama Website Lengkap')->required(),
                         TextInput::make('site_tagline')->label('Tagline Singkat')->required(),
-                        Textarea::make('site_description')->label('Deskripsi Website (SEO & Footer)')->required()->rows(3),
+                        Textarea::make('site_description')->label('Deskripsi Website (Meta SEO & Footer)')->required()->rows(3),
+                        Textarea::make('site_keywords')->label('Kata Kunci Pencarian (SEO Keywords)')->helperText('Pisahkan dengan koma. Contoh: teknik otomotif smkn 1 bangsri, teknik sepeda motor smkn 1 bangsri, tbsm smkn 1 bangsri')->rows(2),
+                        TextInput::make('google_site_verification')->label('Google Search Console Verification Token')->helperText('Kode verifikasi Google Search Console (token atau tag HTML meta).')->nullable(),
                         \Filament\Forms\Components\FileUpload::make('site_logo')
                             ->label('Logo Website')
                             ->disk('public')
@@ -123,6 +127,10 @@ class ManageSettings extends Page implements HasForms
     public function save(SettingsService $settings): void
     {
         $data = $this->form->getState();
+
+        if (!empty($data['google_site_verification']) && preg_match('/content=["\']([^"\']+)["\']/', $data['google_site_verification'], $matches)) {
+            $data['google_site_verification'] = $matches[1];
+        }
 
         foreach ($data as $key => $value) {
             $settings->set($key, $value);

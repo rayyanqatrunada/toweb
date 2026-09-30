@@ -36,6 +36,11 @@ Laporan ini memfokuskan dokumentasi arsitektur logika alur pengguna (*User Flowc
 
 ### 2.1 Diagram Alir Mermaid Pengunjung Publik
 
+> [!TIP]
+> Berkas visualisasi gambar mandiri: **[FLOWCHART_USER.png](docs/FLOWCHART_USER.png)** *(High-Res PNG)* dan **[FLOWCHART_USER.svg](docs/FLOWCHART_USER.svg)** *(Vektor Scalable)*.
+
+![Flowchart Pengunjung Publik](docs/FLOWCHART_USER.png)
+
 ```mermaid
 flowchart TD
     Start([Mulai: Pengunjung Mengakses Website]) --> AksesBeranda[Akses Halaman Beranda /]
@@ -171,6 +176,11 @@ flowchart TD
 ## 3. FLOWCHART ADMINISTRATOR (ADMIN PANEL FLOWCHART)
 
 ### 3.1 Diagram Alir Mermaid Administrator
+
+> [!TIP]
+> Berkas visualisasi gambar mandiri: **[FLOWCHART_ADMIN.png](docs/FLOWCHART_ADMIN.png)** *(High-Res PNG)* dan **[FLOWCHART_ADMIN.svg](docs/FLOWCHART_ADMIN.svg)** *(Vektor Scalable)*.
+
+![Flowchart Administrator Panel](docs/FLOWCHART_ADMIN.png)
 
 ```mermaid
 flowchart TD

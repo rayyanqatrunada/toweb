@@ -242,8 +242,7 @@ sequenceDiagram
     
     Dev->>Git: git push origin main
     Note over Dev,Git: Berisi kode terbaru & build assets
-    
-    Dev->>Script: HTTP GET /update-repo.php?key=tsm2026bangsri
+
     Host->>Script: Validasi Secret Key & Sesi Admin
     
     Script->>Script: Deteksi Otomatis Root Directory Proyek

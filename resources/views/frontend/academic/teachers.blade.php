@@ -1,10 +1,10 @@
-<x-layouts.app title="Struktur Organisasi & Dewan Guru {{ $settings->get('site_short_name', 'TSM') }}">
+<x-layouts.app title="Dewan Guru & Instruktur Kejuruan TBSM" description="Bagan struktur organisasi kejuruan dan direktori dewan guru instruktur Teknik Otomotif Sepeda Motor tersertifikasi Astra Honda Motor di SMKN 1 Bangsri Jepara.">
     @push('json-ld')
     <script type="application/ld+json">
     {
       "@@context": "https://schema.org",
       "@@type": "WebPage",
-      "name": "Struktur Organisasi & Dewan Guru {{ $settings->get('site_short_name', 'TSM') }} SMK Negeri 1 Bangsri",
+      "name": "Struktur Organisasi & Dewan Guru TBSM SMKN 1 Bangsri",
       "description": "Bagan struktur organisasi resmi kejuruan dan direktori profil dewan guru instruktur otomotif tersertifikasi Astra Honda Motor di SMK Negeri 1 Bangsri."
     }
     </script>

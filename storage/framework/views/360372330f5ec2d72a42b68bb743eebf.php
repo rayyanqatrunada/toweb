@@ -1,13 +1,13 @@
 <?php if (isset($component)) { $__componentOriginal5863877a5171c196453bfa0bd807e410 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5863877a5171c196453bfa0bd807e410 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => $partner->name . ' - Mitra Industri & AHASS','noPaddingTop' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => $partner->name . ' - Mitra Industri & Bengkel AHASS','description' => 'Kemitraan strategis kelas industri binaan PT Astra Honda Motor (AHM) dengan Konsentrasi Keahlian Teknik Otomotif Sepeda Motor SMK Negeri 1 Bangsri Jepara.','noPaddingTop' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('layouts.app'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($partner->name . ' - Mitra Industri & AHASS'),'no-padding-top' => true]); ?>
+<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($partner->name . ' - Mitra Industri & Bengkel AHASS'),'description' => 'Kemitraan strategis kelas industri binaan PT Astra Honda Motor (AHM) dengan Konsentrasi Keahlian Teknik Otomotif Sepeda Motor SMK Negeri 1 Bangsri Jepara.','no-padding-top' => true]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
     <?php $__env->startPush('json-ld'); ?>
@@ -431,7 +431,7 @@
                         </button>
 
                         <?php
-                            $districts = $branches->pluck('city')->unique()->filter()->values();
+                            $districts = $branches->pluck('district')->unique()->filter()->values();
                         ?>
                         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $districts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $district): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                             <button 
@@ -464,8 +464,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $branches; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $branch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                         <div 
-                            x-show="(selectedDistrict === 'all' || selectedDistrict === '<?php echo e($branch->city); ?>') && 
-                                    ('<?php echo e(strtolower($branch->name . ' ' . $branch->address . ' ' . $branch->city)); ?>'.includes(searchQuery.toLowerCase()))"
+                            x-show="(selectedDistrict === 'all' || selectedDistrict === '<?php echo e($branch->district); ?>' || selectedDistrict === '<?php echo e($branch->city); ?>') && 
+                                    ('<?php echo e(strtolower($branch->name . ' ' . $branch->address . ' ' . $branch->district . ' ' . $branch->city)); ?>'.includes(searchQuery.toLowerCase()))"
                             x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 scale-95"
                             x-transition:enter-end="opacity-100 scale-100"
@@ -474,57 +474,84 @@
                             <div>
                                 <div class="flex items-center justify-between gap-2 mb-3">
                                     <span class="text-xs font-bold text-figma-red bg-figma-red/10 px-2.5 py-1 rounded-sm uppercase tracking-wider">
-                                        <?php echo e($branch->city ?? 'Jepara'); ?>
+                                        <?php echo e($branch->district ?? $branch->city ?? 'Jepara'); ?>
 
                                     </span>
-                                    <span class="text-xs font-mono font-bold text-gray-400">
-                                        AHASS
-                                    </span>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->rating): ?>
+                                        <span class="inline-flex items-center gap-1 text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200/60 px-2 py-0.5 rounded-sm">
+                                            <svg class="w-3.5 h-3.5 text-amber-500 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                            <?php echo e($branch->rating); ?>
+
+                                        </span>
+                                    <?php else: ?>
+                                        <span class="text-xs font-mono font-bold text-gray-400">
+                                            AHASS
+                                        </span>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
 
-                                <h3 class="font-heading font-bold text-lg text-figma-dark mb-2 group-hover:text-figma-red transition-colors line-clamp-1">
+                                <h3 class="font-heading font-bold text-lg text-figma-dark mb-1.5 group-hover:text-figma-red transition-colors line-clamp-1">
                                     <?php echo e($branch->name); ?>
 
                                 </h3>
 
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->description_text): ?>
+                                    <p class="font-sans text-xs text-gray-500 italic mb-2.5 line-clamp-2">
+                                        "<?php echo e($branch->description_text); ?>"
+                                    </p>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
                                 <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
-                                    <?php echo e($branch->address ?? 'Kecamatan ' . $branch->city . ', Kabupaten Jepara'); ?>
+                                    <?php echo e($branch->address ?? 'Kecamatan ' . ($branch->district ?? $branch->city) . ', Kabupaten Jepara'); ?>
 
                                 </p>
 
-                                <div class="space-y-1.5 font-sans text-xs text-gray-500 mb-6">
+                                <div class="space-y-2 font-sans text-xs text-gray-500 mb-6">
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->operating_hours): ?>
+                                        <div class="flex items-start gap-2">
+                                            <svg class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            <span class="text-gray-700 font-medium"><?php echo e($branch->operating_hours); ?></span>
+                                        </div>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
                                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->contact_person): ?>
                                         <div class="flex items-center gap-2">
                                             <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
-                                            <span class="truncate">SA: <?php echo e($branch->contact_person); ?></span>
+                                            <span class="truncate">PIC: <?php echo e($branch->contact_person); ?></span>
                                         </div>
                                     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
                                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->phone): ?>
                                         <div class="flex items-center gap-2">
                                             <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                             </svg>
-                                            <span><?php echo e($branch->phone); ?></span>
+                                            <span class="font-medium text-gray-700"><?php echo e($branch->phone); ?></span>
                                         </div>
                                     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </div>
                             </div>
 
                             <div class="pt-4 border-t border-gray-100 flex items-center justify-between gap-2">
-                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->phone): ?>
-                                    <?php
-                                        $cleanPhone = preg_replace('/[^0-9]/', '', $branch->phone);
-                                        if (str_starts_with($cleanPhone, '0')) {
-                                            $cleanPhone = '62' . substr($cleanPhone, 1);
-                                        }
-                                    ?>
+                                <?php
+                                    $cleanPhone = preg_replace('/[^0-9]/', '', $branch->phone ?? '');
+                                    if (str_starts_with($cleanPhone, '0')) {
+                                        $cleanPhone = '62' . substr($cleanPhone, 1);
+                                    }
+                                ?>
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($cleanPhone)): ?>
                                     <a href="https://wa.me/<?php echo e($cleanPhone); ?>?text=<?php echo e(urlencode('Halo AHASS ' . $branch->name . ', saya ingin bertanya mengenai layanan servis / informasi PKL siswa TBSM SMKN 1 Bangsri.')); ?>" 
                                        target="_blank" 
                                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-sm sm:rounded-[2px] bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-colors">
+                                        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                                         <span>WhatsApp</span>
                                     </a>
+                                <?php else: ?>
+                                    <span class="text-xs text-gray-400 italic">Kontak di Lokasi</span>
                                 <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($branch->maps_url): ?>

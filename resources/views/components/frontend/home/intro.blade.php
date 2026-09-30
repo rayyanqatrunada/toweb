@@ -21,10 +21,10 @@
                 <!-- Red Vertical Accent & Paragraph -->
                 <div class="pl-3.5 sm:pl-6 border-l-2 border-figma-red mb-4 sm:mb-8">
                     <p class="font-sans font-normal text-[13px] sm:text-[17px] leading-[1.6] text-figma-gray mb-2 sm:mb-4">
-                        Komitmen penuh membangun ekosistem pendidikan vokasi otomotif berstandar industri dengan kurikulum adaptif teknologi modern.
+                        Komitmen Konsentrasi Keahlian <strong>Teknik Otomotif &amp; Sepeda Motor (TBSM) SMKN 1 Bangsri</strong> dalam membangun ekosistem pendidikan vokasi unggulan berstandar industri bersama PT Astra Honda Motor.
                     </p>
                     <p class="font-sans font-normal text-[12px] sm:text-[15px] leading-[1.6] text-gray-500 hidden sm:block">
-                        Melalui pendekatan praktik yang intensif dan kurikulum yang diselaraskan dengan kebutuhan nyata, kami memastikan setiap lulusan siap melangkah pasti ke dunia kerja.
+                        Didukung laboratorium bengkel standar AHASS, kurikulum injeksi PGM-FI, serta budaya kerja industri, kami mencetak mekanik andal dan wirausahawan otomotif profesional yang siap kerja.
                     </p>
                 </div>
                 

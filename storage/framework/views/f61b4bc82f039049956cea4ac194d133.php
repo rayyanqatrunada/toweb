@@ -31,7 +31,7 @@
         </p>
         
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
-            <a href="<?php echo e(route('about')); ?>#contact" class="group flex items-center justify-center px-6 sm:px-10 py-3.5 sm:py-5 bg-figma-red text-white font-sans font-bold text-[14px] sm:text-[16px] md:text-[18px] uppercase tracking-wide rounded-sm sm:rounded-[2px] w-full sm:w-auto hover:bg-figma-dark-red transition-all duration-300 shadow-xl shadow-figma-red/20 focus-ring active:scale-95">
+            <a href="<?php echo e(route('contact.index')); ?>" class="group flex items-center justify-center px-6 sm:px-10 py-3.5 sm:py-5 bg-figma-red text-white font-sans font-bold text-[14px] sm:text-[16px] md:text-[18px] uppercase tracking-wide rounded-sm sm:rounded-[2px] w-full sm:w-auto hover:bg-figma-dark-red transition-all duration-300 shadow-xl shadow-figma-red/20 focus-ring active:scale-95">
                 <span>Hubungi Kami</span>
                 <svg class="w-4 sm:w-5 h-4 sm:h-5 ml-2.5 sm:ml-3 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>

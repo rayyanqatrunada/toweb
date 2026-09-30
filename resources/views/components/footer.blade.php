@@ -44,6 +44,7 @@
                     <li><a href="{{ route('about') }}#visi-misi" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Visi & Misi</a></li>
                     <li><a href="{{ route('academic.programs') }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Program Keahlian</a></li>
                     <li><a href="{{ route('academic.facilities') }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Fasilitas</a></li>
+                    <li><a href="{{ route('contact.index') }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Hubungi Kami</a></li>
                 </ul>
 
                 <!-- Column 2 -->

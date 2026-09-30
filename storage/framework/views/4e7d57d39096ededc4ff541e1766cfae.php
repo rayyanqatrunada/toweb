@@ -43,36 +43,73 @@ foreach ($attributes->all() as $__key => $__value) {
 }
 
 unset($__defined_vars, $__key, $__value); ?>
+<?php
+    $siteName = $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor SMKN 1 Bangsri');
+    $siteShortName = $settings->get('site_short_name', 'TBSM SMKN 1 Bangsri');
+    $siteTagline = $settings->get('site_tagline', 'Pusat Keunggulan Vokasi Otomotif Binaan PT Astra Honda Motor');
+    $siteKeywords = $settings->get('site_keywords', 'teknik otomotif smkn 1 bangsri, teknik sepeda motor smkn 1 bangsri, tbsm smkn 1 bangsri, tsm smkn 1 bangsri, smk binaan astra honda motor');
+    $metaDescription = $description ?? $settings->get('site_description', 'Website resmi Konsentrasi Keahlian Teknik Otomotif & Sepeda Motor (TBSM) SMK Negeri 1 Bangsri Jepara. Kelas industri binaan PT Astra Honda Motor, lab bengkel standar AHASS, kurikulum PGM-FI, & BKK.');
+
+    if (empty($title) || $title === 'Beranda' || request()->is('/')) {
+        if (!empty($title) && $title !== 'Beranda') {
+            $pageTitle = $title;
+        } else {
+            $pageTitle = 'Teknik Otomotif & Sepeda Motor (TBSM) SMKN 1 Bangsri - Binaan Resmi AHM';
+        }
+    } elseif (str_contains($title, 'SMKN 1 Bangsri') || str_contains($title, $siteShortName)) {
+        $pageTitle = $title;
+    } else {
+        $pageTitle = $title . ' | ' . $siteShortName;
+    }
+
+    $canonicalUrl = $canonical ?? url()->current();
+    $ogImageUrl = $ogImage ?? ($settings->get('site_logo') ? Storage::url($settings->get('site_logo')) : url('/logo.png'));
+    $gsv = $settings->get('google_site_verification') ?: env('GOOGLE_SITE_VERIFICATION');
+?>
 <!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo e($title ? $title . ' | ' . $settings->get('site_name', 'Teknik Sepeda Motor') : $settings->get('site_name', 'Teknik Sepeda Motor') . ' | ' . $settings->get('site_tagline', 'Website Resmi')); ?></title>
-    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($logo = app(\App\Services\SettingsService::class)->get('site_logo')): ?>
+    <title><?php echo e($pageTitle); ?></title>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($logo = $settings->get('site_logo')): ?>
     <link rel="icon" href="<?php echo e(Storage::url($logo)); ?>">
     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
     
-    <!-- Meta SEO & Open Graph -->
-    <meta name="description" content="<?php echo e($description ?? $settings->get('site_description', 'Website Resmi Program Keahlian ' . $settings->get('site_short_name', 'TSM'))); ?>">
+    <!-- Meta SEO & Search Indexing -->
+    <meta name="description" content="<?php echo e($metaDescription); ?>">
+    <meta name="keywords" content="<?php echo e($siteKeywords); ?>">
+    <meta name="author" content="<?php echo e($siteShortName); ?>">
     <meta name="robots" content="<?php echo e($robots); ?>">
-    <link rel="canonical" href="<?php echo e($canonical ?? url()->current()); ?>">
-    
-    <meta property="og:title" content="<?php echo e($title ? $title . ' | ' . $settings->get('site_name', 'Teknik Sepeda Motor') : $settings->get('site_name', 'Teknik Sepeda Motor') . ' | ' . $settings->get('site_tagline', 'Website Resmi')); ?>">
-    <meta property="og:description" content="<?php echo e($description ?? $settings->get('site_description', 'Website Resmi Program Keahlian ' . $settings->get('site_short_name', 'TSM'))); ?>">
-    <meta property="og:type" content="<?php echo e($ogType); ?>">
-    <meta property="og:url" content="<?php echo e($canonical ?? url()->current()); ?>">
-    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($ogImage): ?>
-    <meta property="og:image" content="<?php echo e($ogImage); ?>">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="<?php echo e($ogImage); ?>">
-    <?php else: ?>
-    <meta name="twitter:card" content="summary">
-    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-    <meta name="twitter:title" content="<?php echo e($title ? $title . ' | ' . $settings->get('site_name', 'Teknik Sepeda Motor') : $settings->get('site_name', 'Teknik Sepeda Motor') . ' | ' . $settings->get('site_tagline', 'Website Resmi')); ?>">
-    <meta name="twitter:description" content="<?php echo e($description ?? $settings->get('site_description', 'Website Resmi Program Keahlian ' . $settings->get('site_short_name', 'TSM'))); ?>">
+    <link rel="canonical" href="<?php echo e($canonicalUrl); ?>">
 
-    <!-- JSON-LD -->
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($gsv)): ?>
+    <meta name="google-site-verification" content="<?php echo e($gsv); ?>">
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+    <!-- Local SEO Geo Meta Tags -->
+    <meta name="geo.region" content="ID-JT">
+    <meta name="geo.placename" content="Bangsri, Jepara">
+    <meta name="geo.position" content="-6.5333;110.7667">
+    <meta name="ICBM" content="-6.5333, 110.7667">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:site_name" content="<?php echo e($siteShortName); ?>">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="<?php echo e($ogType); ?>">
+    <meta property="og:url" content="<?php echo e($canonicalUrl); ?>">
+    <meta property="og:title" content="<?php echo e($pageTitle); ?>">
+    <meta property="og:description" content="<?php echo e($metaDescription); ?>">
+    <meta property="og:image" content="<?php echo e($ogImageUrl); ?>">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="<?php echo e($ogImage ? 'summary_large_image' : 'summary'); ?>">
+    <meta name="twitter:url" content="<?php echo e($canonicalUrl); ?>">
+    <meta name="twitter:title" content="<?php echo e($pageTitle); ?>">
+    <meta name="twitter:description" content="<?php echo e($metaDescription); ?>">
+    <meta name="twitter:image" content="<?php echo e($ogImageUrl); ?>">
+
+    <!-- JSON-LD Structured Data -->
     <?php echo $__env->yieldPushContent('json-ld'); ?>
 
     <!-- Google Fonts -->

@@ -1,13 +1,13 @@
 <?php if (isset($component)) { $__componentOriginal5863877a5171c196453bfa0bd807e410 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5863877a5171c196453bfa0bd807e410 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Profil Jurusan']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layouts.app','data' => ['title' => 'Profil Jurusan Teknik Otomotif & Sepeda Motor','description' => 'Profil lengkap Konsentrasi Keahlian Teknik Otomotif & Sepeda Motor (TBSM) SMK Negeri 1 Bangsri. Sejarah, visi, misi, sertifikasi kompetensi, dan kemitraan PT Astra Honda Motor.']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('layouts.app'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['title' => 'Profil Jurusan']); ?>
+<?php $component->withAttributes(['title' => 'Profil Jurusan Teknik Otomotif & Sepeda Motor','description' => 'Profil lengkap Konsentrasi Keahlian Teknik Otomotif & Sepeda Motor (TBSM) SMK Negeri 1 Bangsri. Sejarah, visi, misi, sertifikasi kompetensi, dan kemitraan PT Astra Honda Motor.']); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
     <?php $__env->startPush('json-ld'); ?>
@@ -17,7 +17,7 @@
       "@type": "AboutPage",
       "mainEntity": {
         "@type": "EducationalOrganization",
-        "name": "<?php echo e($settings->get('site_name', 'Teknik Sepeda Motor')); ?>",
+        "name": "<?php echo e($settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor SMKN 1 Bangsri')); ?>",
         "description": "<?php echo strip_tags($settings->get('site_description')); ?>"
       }
     }

@@ -59,6 +59,11 @@ Dokumen ini memuat Entity Relationship Diagram (ERD) lengkap, matriks integritas
 
 ### 2.1 Diagram Konseptual & Fisik Mermaid ERD
 
+> [!TIP]
+> Berkas visualisasi gambar mandiri: **[ERD.png](docs/ERD.png)** *(High-Res PNG 8100x3500)* dan **[ERD.svg](docs/ERD.svg)** *(Vektor Scalable)*.
+
+![Entity Relationship Diagram](docs/ERD.png)
+
 Diagram berikut memetakan seluruh 26 tabel entitas utama di basis data MariaDB `tbsm_db` beserta kunci primer (PK), kunci asing (FK), indeks unik (UK), tipe data, dan kardinalitas relasi:
 
 ```mermaid

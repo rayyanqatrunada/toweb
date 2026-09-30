@@ -19,7 +19,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // -------------------------------------------------------------------------
 // 1. KUNCI OTENTIKASI & KEAMANAN
 // -------------------------------------------------------------------------
-$SECRET_KEY = 'tsm2026bangsri';
+$SECRET_KEY = 'tsmtsmtsm';
 
 // Dukungan override dari .env jika didefinisikan (DEPLOY_KEY atau UPDATE_KEY)
 $envFile = __DIR__ . '/../.env';
@@ -39,20 +39,60 @@ if (file_exists($envFile)) {
 
 // Tangani aksi Logout
 if (isset($_GET['logout'])) {
-    unset($_SESSION['tsm_deployer_auth']);
+    unset($_SESSION['tsm_deployer_auth_v2'], $_SESSION['tsm_deployer_csrf'], $_SESSION['tsm_deployer_login_time'], $_SESSION['tsm_deployer_auth']);
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        session_destroy();
+    }
     header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?'));
     exit;
 }
 
-// Cek autentikasi dari Session atau input Key (GET / POST)
-$inputKey = $_POST['key'] ?? $_GET['key'] ?? '';
-if (!empty($inputKey)) {
-    if (hash_equals($SECRET_KEY, $inputKey)) {
-        $_SESSION['tsm_deployer_auth'] = true;
+// Deteksi jika pengguna mencoba memasukkan sandi lewat URL query string (GET)
+// Sesuai aturan: DILARANG otentikasi via URL, harus diketik dari form!
+$urlParamAttempt = false;
+if (isset($_GET['key']) || isset($_GET['password']) || isset($_GET['sandi']) || isset($_GET['token']) || isset($_GET['auth'])) {
+    $urlParamAttempt = true;
+}
+
+// Proses login HANYA via HTTP POST dari form
+$loginError = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_submit'])) {
+    $submittedKey = (string)($_POST['key'] ?? '');
+    if (!empty($submittedKey) && hash_equals($SECRET_KEY, $submittedKey)) {
+        session_regenerate_id(true);
+        $_SESSION['tsm_deployer_auth_v2'] = true;
+        $_SESSION['tsm_deployer_csrf'] = bin2hex(random_bytes(32));
+        $_SESSION['tsm_deployer_login_time'] = time();
+        header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?'));
+        exit;
+    } else {
+        $loginError = '⛔ Kata sandi tidak valid. Akses ditolak.';
     }
 }
 
-$isAuthenticated = !empty($_SESSION['tsm_deployer_auth']);
+// Hapus variabel sesi lama (v1) agar tidak ada celah akses tanpa sandi
+if (isset($_SESSION['tsm_deployer_auth'])) {
+    unset($_SESSION['tsm_deployer_auth']);
+}
+
+// Validasi status sesi v2 saat ini
+$isAuthenticated = false;
+if (!empty($_SESSION['tsm_deployer_auth_v2'])) {
+    // Timeout sesi setelah 2 jam tidak aktif
+    if (isset($_SESSION['tsm_deployer_login_time']) && (time() - $_SESSION['tsm_deployer_login_time'] > 7200)) {
+        unset($_SESSION['tsm_deployer_auth_v2'], $_SESSION['tsm_deployer_csrf'], $_SESSION['tsm_deployer_login_time']);
+        $isAuthenticated = false;
+    } else {
+        $_SESSION['tsm_deployer_login_time'] = time();
+        $isAuthenticated = true;
+    }
+}
+
+// Sediakan token CSRF untuk aksi-aksi berikutnya
+if ($isAuthenticated && empty($_SESSION['tsm_deployer_csrf'])) {
+    $_SESSION['tsm_deployer_csrf'] = bin2hex(random_bytes(32));
+}
+$csrfToken = $_SESSION['tsm_deployer_csrf'] ?? '';
 
 // -------------------------------------------------------------------------
 // 2. DETEKSI LINGKUNGAN & PATH LARAVEL
@@ -163,10 +203,16 @@ $actionStatus = 'success';
 $actionTime   = 0;
 
 if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    $startTime = microtime(true);
-    $action = $_POST['action'];
+    $submittedCsrf = (string)($_POST['csrf_token'] ?? '');
+    if (empty($csrfToken) || !hash_equals($csrfToken, $submittedCsrf)) {
+        $actionTitle  = 'Keamanan Ditolak (Sesi Kedaluwarsa)';
+        $actionResult = 'Aksi dibatalkan demi keamanan karena token CSRF sesi tidak valid atau kedaluwarsa. Silakan refresh halaman dan coba kembali.';
+        $actionStatus = 'danger';
+    } else {
+        $startTime = microtime(true);
+        $action = $_POST['action'];
 
-    switch ($action) {
+        switch ($action) {
         // -------------------------------------------------------------
         // A. SINKRONISASI GIT
         // -------------------------------------------------------------
@@ -317,21 +363,22 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['a
             break;
     }
 
-    $actionTime = round(microtime(true) - $startTime, 3);
+        $actionTime = round(microtime(true) - $startTime, 3);
 
-    // Refresh status setelah aksi
-    if ($laravelRoot) {
-        $gitBranch = trim((string)shell_exec('git branch --show-current 2>&1')) ?: 'main';
-        $logRaw = trim((string)shell_exec('git log -1 --pretty=format:"%h|%an|%ar|%s" 2>&1'));
-        if ($logRaw && str_contains($logRaw, '|')) {
-            $parts = explode('|', $logRaw, 4);
-            $gitCommitHash   = $parts[0] ?? 'N/A';
-            $gitCommitAuthor = $parts[1] ?? 'N/A';
-            $gitCommitDate   = $parts[2] ?? 'N/A';
-            $gitCommitMsg    = $parts[3] ?? 'N/A';
+        // Refresh status setelah aksi
+        if ($laravelRoot) {
+            $gitBranch = trim((string)shell_exec('git branch --show-current 2>&1')) ?: 'main';
+            $logRaw = trim((string)shell_exec('git log -1 --pretty=format:"%h|%an|%ar|%s" 2>&1'));
+            if ($logRaw && str_contains($logRaw, '|')) {
+                $parts = explode('|', $logRaw, 4);
+                $gitCommitHash   = $parts[0] ?? 'N/A';
+                $gitCommitAuthor = $parts[1] ?? 'N/A';
+                $gitCommitDate   = $parts[2] ?? 'N/A';
+                $gitCommitMsg    = $parts[3] ?? 'N/A';
+            }
+            $isDown = file_exists($laravelRoot . '/storage/framework/down');
+            $storageLinked = is_link($laravelRoot . '/public/storage') || (file_exists($laravelRoot . '/public/storage') && is_dir($laravelRoot . '/public/storage'));
         }
-        $isDown = file_exists($laravelRoot . '/storage/framework/down');
-        $storageLinked = is_link($laravelRoot . '/public/storage') || (file_exists($laravelRoot . '/public/storage') && is_dir($laravelRoot . '/public/storage'));
     }
 }
 
@@ -980,22 +1027,27 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['a
             </div>
         </div>
 
-        <?php if (!empty($inputKey)): ?>
+        <?php if (!empty($loginError)): ?>
             <div class="alert-box danger">
-                ⛔ Kunci otentikasi tidak valid. Akses ditolak.
+                <?php echo htmlspecialchars($loginError); ?>
+            </div>
+        <?php elseif ($urlParamAttempt): ?>
+            <div class="alert-box danger" style="background: rgba(220, 38, 38, 0.15); border-color: rgba(220, 38, 38, 0.4); color: #fca5a5;">
+                ⚠️ <strong>Akses URL Ditolak:</strong> Kata sandi tidak dapat dimasukkan melalui parameter URL (GET). Silakan masukkan kata sandi secara manual melalui formulir di bawah ini.
             </div>
         <?php else: ?>
             <div class="alert-box info">
-                🔒 Area tertutup ini dilindungi kunci keamanan server. Masukkan kata sandi repositori untuk melanjutkan.
+                🔒 Area tertutup ini dilindungi kata sandi server. Masukkan kata sandi repositori untuk melanjutkan.
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="">
+        <form method="POST" action="<?php echo htmlspecialchars(strtok($_SERVER['REQUEST_URI'], '?')); ?>" autocomplete="off">
+            <input type="hidden" name="login_submit" value="1">
             <label style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--tbsm-muted); display: block; margin-bottom: 0.45rem;">
-                Kunci Rahasia Server:
+                Kata Sandi Server:
             </label>
             <div style="position: relative; margin-bottom: 1.25rem;">
-                <input type="password" id="authKeyInput" name="key" class="form-input" placeholder="Masukkan kunci deployment..." value="<?php echo htmlspecialchars($inputKey ?: 'tsm2026bangsri'); ?>" required autofocus style="margin-bottom: 0; padding-right: 2.5rem;">
+                <input type="password" id="authKeyInput" name="key" class="form-input" placeholder="Masukkan kata sandi..." value="" required autofocus autocomplete="current-password" style="margin-bottom: 0; padding-right: 2.5rem;">
                 <button type="button" onclick="togglePassword()" style="position: absolute; right: 0.65rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--tbsm-muted); cursor: pointer; font-size: 0.85rem;" title="Lihat/Sembunyikan">👁️</button>
             </div>
 
@@ -1156,7 +1208,7 @@ function togglePassword() {
                 </div>
                 <div class="action-card-form">
                     <form method="POST" action="">
-                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                         <input type="hidden" name="action" value="git_pull">
                         <button type="submit" class="btn btn-primary" style="width: 100%;">
                             ⚡ Pull & Clear Cache
@@ -1181,7 +1233,7 @@ function togglePassword() {
                         ⚡ Force Reset & Sync
                     </button>
                     <form id="formForceSync" method="POST" action="" style="display: none;">
-                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                         <input type="hidden" name="action" value="git_force_sync">
                     </form>
                 </div>
@@ -1200,7 +1252,7 @@ function togglePassword() {
                 </div>
                 <div class="action-card-form">
                     <form id="formGitUndo" method="POST" action="">
-                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                         <input type="hidden" name="action" value="git_undo">
                         <div style="display: flex; gap: 0.5rem; margin-bottom: 0.65rem;">
                             <select name="undo_steps" class="form-select" style="margin-bottom: 0; flex: 1;">
@@ -1230,14 +1282,14 @@ function togglePassword() {
                 <div class="action-card-form">
                     <div style="display: flex; gap: 0.5rem;">
                         <form method="POST" action="" style="flex: 1;">
-                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                             <input type="hidden" name="action" value="db_migrate">
                             <button type="submit" class="btn btn-sky-outline" style="width: 100%;">
                                 ⚡ Run Migrate
                             </button>
                         </form>
                         <form method="POST" action="" style="flex: 1;">
-                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                             <input type="hidden" name="action" value="db_migrate_status">
                             <button type="submit" class="btn btn-outline" style="width: 100%;">
                                 📋 Status
@@ -1260,7 +1312,7 @@ function togglePassword() {
                 </div>
                 <div class="action-card-form">
                     <form id="formDbSeed" method="POST" action="">
-                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                         <input type="hidden" name="action" value="db_seed">
                         <select name="seeder_class" class="form-select">
                             <?php foreach ($availableSeeders as $class => $desc): ?>
@@ -1287,7 +1339,7 @@ function togglePassword() {
                 </div>
                 <div class="action-card-form">
                     <form id="formMigrateRollback" method="POST" action="">
-                        <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                         <input type="hidden" name="action" value="db_migrate_rollback">
                         <input type="hidden" name="rollback_step" value="1">
                         <button type="button" class="btn btn-danger-outline" style="width: 100%;" onclick="confirmAction('formMigrateRollback', 'Konfirmasi Rollback Migrasi', 'PERINGATAN: Rollback migrasi dapat menghapus tabel atau kolom database. Lanjutkan rollback 1 step?')">
@@ -1311,14 +1363,14 @@ function togglePassword() {
                 <div class="action-card-form">
                     <div style="display: flex; gap: 0.5rem;">
                         <form method="POST" action="" style="flex: 1;">
-                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                             <input type="hidden" name="action" value="cache_clear">
                             <button type="submit" class="btn btn-outline" style="width: 100%;">
                                 🧹 Clear Cache
                             </button>
                         </form>
                         <form method="POST" action="" style="flex: 1;">
-                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                             <input type="hidden" name="action" value="cache_optimize">
                             <button type="submit" class="btn btn-outline" style="width: 100%; color: var(--tbsm-red); border-color: rgba(220, 38, 38, 0.4);">
                                 🚀 Warmup Cache
@@ -1342,14 +1394,14 @@ function togglePassword() {
                 <div class="action-card-form">
                     <div style="display: flex; gap: 0.5rem;">
                         <form method="POST" action="" style="flex: 1;">
-                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                             <input type="hidden" name="action" value="storage_link">
                             <button type="submit" class="btn btn-outline" style="width: 100%;">
                                 🔗 Fix Storage Link
                             </button>
                         </form>
                         <form method="POST" action="" style="flex: 1;">
-                            <input type="hidden" name="key" value="<?php echo htmlspecialchars($SECRET_KEY); ?>">
+                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                             <input type="hidden" name="action" value="maintenance_toggle">
                             <button type="submit" class="btn <?php echo $isDown ? 'btn-primary' : 'btn-amber-outline'; ?>" style="width: 100%;">
                                 <?php echo $isDown ? '🟢 Buka Web (UP)' : '🚧 Matikan (DOWN)'; ?>
