@@ -152,6 +152,8 @@ class ManageHeroSlider extends Page implements HasForms
             $settings->set($key, $value);
         }
 
+        $this->form->fill($data);
+
         \Illuminate\Support\Facades\Cache::forget('site_settings');
         \Illuminate\Support\Facades\Cache::forget('homepage:hero_slides');
 

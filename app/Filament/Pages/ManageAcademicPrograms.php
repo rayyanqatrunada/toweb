@@ -292,6 +292,8 @@ class ManageAcademicPrograms extends Page implements HasForms
             $settings->set($key, $value);
         }
 
+        $this->form->fill($data);
+
         Notification::make()
             ->title('Pengaturan Halaman Akademik berhasil disimpan')
             ->success()

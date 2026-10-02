@@ -136,6 +136,8 @@ class ManageSettings extends Page implements HasForms
             $settings->set($key, $value);
         }
 
+        $this->form->fill($data);
+
         Notification::make()
             ->title('Pengaturan berhasil disimpan')
             ->success()

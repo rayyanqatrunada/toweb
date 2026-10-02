@@ -37,6 +37,55 @@ class FileUploadPersistenceTest extends TestCase
         Filament::setCurrentPanel(Filament::getPanel('admin'));
     }
 
+    public function test_create_teacher_with_photo_persists_to_database(): void
+    {
+        $newFile = UploadedFile::fake()->image('guru_baru.jpg', 400, 400);
+
+        Livewire::test(\App\Filament\Resources\Teachers\Pages\CreateTeacher::class)
+            ->fillForm([
+                'name' => 'Guru Baru Test Persist',
+                'is_active' => true,
+            ])
+            ->set('data.photo', $newFile)
+            ->call('create')
+            ->assertHasNoFormErrors()
+            ->assertRedirect();
+
+        $teacher = Teacher::where('name', 'Guru Baru Test Persist')->first();
+        $this->assertNotNull($teacher);
+        $this->assertNotNull($teacher->photo);
+        $this->assertStringStartsWith('teachers/', $teacher->photo);
+        Storage::disk('public')->assertExists($teacher->photo);
+    }
+
+    public function test_create_post_with_featured_image_persists_to_database(): void
+    {
+        $category = \App\Models\Category::create([
+            'name' => 'Berita Otomotif',
+            'slug' => 'berita-otomotif',
+        ]);
+
+        $newFile = UploadedFile::fake()->image('featured_news.jpg', 800, 600);
+
+        Livewire::test(\App\Filament\Resources\Posts\Pages\CreatePost::class)
+            ->fillForm([
+                'title' => 'Judul Berita Test Foto',
+                'category_id' => $category->id,
+                'content' => 'Konten berita test...',
+                'status' => 'published',
+            ])
+            ->set('data.thumbnail', $newFile)
+            ->call('create')
+            ->assertHasNoFormErrors()
+            ->assertRedirect();
+
+        $post = \App\Models\Post::where('title', 'Judul Berita Test Foto')->first();
+        $this->assertNotNull($post);
+        $this->assertNotNull($post->thumbnail);
+        $this->assertStringStartsWith('posts/', $post->thumbnail);
+        Storage::disk('public')->assertExists($post->thumbnail);
+    }
+
     public function test_teacher_photo_replacement_persists_to_database(): void
     {
         $oldFile = UploadedFile::fake()->image('old_guru.jpg', 300, 300);
@@ -129,7 +178,7 @@ class FileUploadPersistenceTest extends TestCase
 
         $newLogo = UploadedFile::fake()->image('brand_new_logo.png', 200, 200);
 
-        Livewire::test(ManageSettings::class)
+        $test = Livewire::test(ManageSettings::class)
             ->set('data.site_logo', $newLogo)
             ->call('save')
             ->assertHasNoErrors();
@@ -139,5 +188,15 @@ class FileUploadPersistenceTest extends TestCase
         $this->assertNotEquals('settings/old-logo.png', $val);
         $this->assertStringStartsWith('settings/', $val);
         Storage::disk('public')->assertExists($val);
+
+        // Second save without re-uploading logo (e.g. changing text or just clicking save again)
+        $test->set('data.site_name', 'Nama Baru Setelah Simpan')
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $valAfterSecondSave = Setting::where('key', 'site_logo')->value('value');
+        $this->assertNotNull($valAfterSecondSave, 'Logo must not disappear on second save!');
+        $this->assertEquals($val, $valAfterSecondSave, 'Logo must remain the same on second save!');
+        Storage::disk('public')->assertExists($valAfterSecondSave);
     }
 }

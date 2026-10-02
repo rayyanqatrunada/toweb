@@ -289,6 +289,8 @@ class ManageAcademicFacilities extends Page implements HasForms
             $settings->set($key, $value);
         }
 
+        $this->form->fill($data);
+
         Notification::make()
             ->title('Pengaturan Halaman Fasilitas berhasil disimpan')
             ->success()

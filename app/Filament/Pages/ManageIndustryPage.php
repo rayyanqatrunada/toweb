@@ -226,6 +226,8 @@ class ManageIndustryPage extends Page implements HasForms
             $settings->set($key, $value);
         }
 
+        $this->form->fill($data);
+
         Notification::make()
             ->title('Pengaturan Halaman Industri berhasil disimpan')
             ->success()
