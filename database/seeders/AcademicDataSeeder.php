@@ -61,10 +61,10 @@ class AcademicDataSeeder extends Seeder
             foreach ($progData['competencies'] as $comp) {
                 Competency::updateOrCreate(
                     [
-                        'program_id' => $program->id,
                         'slug' => Str::slug($comp['name'])
                     ],
                     [
+                        'program_id' => $program->id,
                         'name' => $comp['name'],
                         'description' => $comp['description']
                     ]
