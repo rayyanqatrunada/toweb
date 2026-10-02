@@ -47,25 +47,25 @@ class ManagePageHeaders extends Page implements HasForms
                 Section::make('Profil & Akademik')
                     ->description('Gambar latar untuk halaman Tentang Kami dan Akademik.')
                     ->schema([
-                        FileUpload::make('header_about_image')->label('Tentang Kami (About)')->image()->directory('headers')->maxSize(2048)->imageEditor(),
-                        FileUpload::make('header_academic_programs_image')->label('Program Keahlian')->image()->directory('headers')->maxSize(2048)->imageEditor(),
-                        FileUpload::make('header_academic_facilities_image')->label('Fasilitas')->image()->directory('headers')->maxSize(2048)->imageEditor(),
+                        FileUpload::make('header_about_image')->label('Tentang Kami (About)')->image()->disk('public')->visibility('public')->directory('headers')->maxSize(2048)->imageEditor(),
+                        FileUpload::make('header_academic_programs_image')->label('Program Keahlian')->image()->disk('public')->visibility('public')->directory('headers')->maxSize(2048)->imageEditor(),
+                        FileUpload::make('header_academic_facilities_image')->label('Fasilitas')->image()->disk('public')->visibility('public')->directory('headers')->maxSize(2048)->imageEditor(),
                     ])->columns(3),
 
                 Section::make('Publikasi & Jejaring')
                     ->description('Gambar latar untuk Galeri, Alumni, dan Kemitraan.')
                     ->schema([
-                        FileUpload::make('header_gallery_image')->label('Galeri Dokumentasi')->image()->directory('headers')->maxSize(2048)->imageEditor(),
-                        FileUpload::make('header_alumni_image')->label('Jejaring Alumni')->image()->directory('headers')->maxSize(2048)->imageEditor(),
-                        FileUpload::make('header_partnership_image')->label('Kemitraan (PKL & BKK)')->image()->directory('headers')->maxSize(2048)->imageEditor(),
+                        FileUpload::make('header_gallery_image')->label('Galeri Dokumentasi')->image()->disk('public')->visibility('public')->directory('headers')->maxSize(2048)->imageEditor(),
+                        FileUpload::make('header_alumni_image')->label('Jejaring Alumni')->image()->disk('public')->visibility('public')->directory('headers')->maxSize(2048)->imageEditor(),
+                        FileUpload::make('header_partnership_image')->label('Kemitraan (PKL & BKK)')->image()->disk('public')->visibility('public')->directory('headers')->maxSize(2048)->imageEditor(),
                     ])->columns(3),
 
                 Section::make('Informasi Umum')
                     ->description('Gambar latar untuk halaman Berita, Unduhan, dan Kontak.')
                     ->schema([
-                        FileUpload::make('header_news_image')->label('Berita & Informasi')->image()->directory('headers')->maxSize(2048)->imageEditor(),
-                        FileUpload::make('header_download_image')->label('Pusat Unduhan')->image()->directory('headers')->maxSize(2048)->imageEditor(),
-                        FileUpload::make('header_contact_image')->label('Kontak & Lokasi')->image()->directory('headers')->maxSize(2048)->imageEditor(),
+                        FileUpload::make('header_news_image')->label('Berita & Informasi')->image()->disk('public')->visibility('public')->directory('headers')->maxSize(2048)->imageEditor(),
+                        FileUpload::make('header_download_image')->label('Pusat Unduhan')->image()->disk('public')->visibility('public')->directory('headers')->maxSize(2048)->imageEditor(),
+                        FileUpload::make('header_contact_image')->label('Kontak & Lokasi')->image()->disk('public')->visibility('public')->directory('headers')->maxSize(2048)->imageEditor(),
                     ])->columns(3),
             ])
             ->statePath('data');

@@ -29,6 +29,22 @@ class AppServiceProvider extends ServiceProvider
         
         \App\Models\Setting::observe(\App\Observers\SettingObserver::class);
 
+        \Filament\Forms\Components\FileUpload::configureUsing(function (\Filament\Forms\Components\FileUpload $component): void {
+            $component->beforeStateDehydrated(function (\Filament\Forms\Components\FileUpload $component): void {
+                $component->saveUploadedFiles();
+
+                if (! $component->isMultiple()) {
+                    $rawState = $component->getRawState();
+                    if (is_array($rawState)) {
+                        $filtered = array_values(array_filter($rawState, fn ($item) => filled($item)));
+                        if (count($filtered) > 1) {
+                            $component->rawState([\Illuminate\Support\Arr::last($filtered)]);
+                        }
+                    }
+                }
+            }, shouldUpdateValidatedStateAfter: true);
+        });
+
         \Illuminate\Support\Facades\View::composer(
             ['frontend.*', 'components.*'], 
             function ($view) {

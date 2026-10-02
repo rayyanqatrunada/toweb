@@ -56,7 +56,6 @@ class TeacherForm
                             ->disk('public')
                             ->directory('teachers')
                             ->image()
-                            ->maxFiles(1)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->maxSize(3072)
                             ->imageEditor()

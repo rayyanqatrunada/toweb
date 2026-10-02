@@ -67,6 +67,21 @@ class Post extends Model
         });
     }
 
+    public function getThumbnailUrlAttribute(): ?string
+    {
+        if (empty($this->thumbnail)) {
+            return null;
+        }
+
+        if (str_starts_with($this->thumbnail, 'http://') || str_starts_with($this->thumbnail, 'https://')) {
+            return $this->thumbnail;
+        }
+
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->thumbnail), '/');
+
+        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

@@ -47,9 +47,10 @@ class PostForm
                         'draft' => 'Draft',
                         'published' => 'Published',
                     ])
-                    ->default('draft')
+                    ->default('published')
                     ->required(),
-                DateTimePicker::make('published_at'),
+                DateTimePicker::make('published_at')
+                    ->default(now()),
                 \Filament\Forms\Components\Hidden::make('user_id')
                     ->default(fn () => auth()->id()),
                                 ])->columns(2)->columnSpanFull(),

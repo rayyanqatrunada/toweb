@@ -17,4 +17,14 @@ class Setting extends Model
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
     }
+
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('site_settings');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('site_settings');
+        });
+    }
 }

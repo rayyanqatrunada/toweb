@@ -99,7 +99,7 @@ class AlumniForm
                         Toggle::make('is_public')
                             ->label('Public Profile')
                             ->helperText('Jika dinonaktifkan, profil alumni tidak akan ditampilkan pada direktori publik.')
-                            ->default(false),
+                            ->default(true),
                         Select::make('status')
                             ->options([
                                 'draft' => 'Draft',
@@ -107,10 +107,11 @@ class AlumniForm
                                 'archived' => 'Archived',
                             ])
                             ->required()
-                            ->default('draft')
+                            ->default('published')
                             ->helperText('Status rilis. Hanya "Published" & "Public Profile" aktif yang akan tampil di publik.'),
                         DateTimePicker::make('published_at')
-                            ->label('Published At'),
+                            ->label('Published At')
+                            ->default(now()),
                     ])->columns(3),
 
                                     ])->columnSpan(['lg' => 2]),

@@ -61,6 +61,34 @@ class Facility extends Model
         return array_values(array_filter(array_map('trim', $lines)));
     }
 
+    public function getTitleAttribute(): ?string
+    {
+        return $this->attributes['name'] ?? null;
+    }
+
+    public function getImageAttribute(): ?string
+    {
+        return $this->attributes['photo'] ?? null;
+    }
+
+    public function getSpecificationAttribute(): ?string
+    {
+        return $this->attributes['specifications'] ?? null;
+    }
+
+    public function getPhotoUrlAttribute(): ?string
+    {
+        $val = $this->photo ?? $this->attributes['photo'] ?? null;
+        if (empty($val)) {
+            return null;
+        }
+        if (str_starts_with($val, 'http://') || str_starts_with($val, 'https://')) {
+            return $val;
+        }
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $val), '/');
+        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+    }
+
     protected static function booted()
     {
         static::saved(function ($model) {

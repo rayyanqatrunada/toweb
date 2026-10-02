@@ -67,7 +67,7 @@ unset($__defined_vars, $__key, $__value); ?>
             <div class="md:hidden flex gap-3.5 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 scrollbar-none">
                 <!-- Featured Card -->
                 <div class="w-[82vw] max-w-[310px] shrink-0 snap-center relative bg-charcoal-950 aspect-[16/12] rounded-sm overflow-hidden group shadow-md">
-                    <img src="<?php echo e($featuredFacility->photo ? Storage::url($featuredFacility->photo) : asset('storage/facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg')); ?>" 
+                    <img src="<?php echo e($featuredFacility->photo_url ?: (Storage::disk('public')->exists('facilities/bengkel-praktik-otomotif.png') ? Storage::url('facilities/bengkel-praktik-otomotif.png') : 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop')); ?>" 
                          alt="<?php echo e($featuredFacility->name); ?>" 
                          class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/50 to-transparent"></div>
@@ -95,7 +95,7 @@ unset($__defined_vars, $__key, $__value); ?>
                 <!-- Secondary Facility Cards -->
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $otherFacilities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $facility): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                     <div class="w-[82vw] max-w-[310px] shrink-0 snap-center relative bg-charcoal-900 aspect-[16/12] rounded-sm overflow-hidden group shadow-md">
-                        <img src="<?php echo e($facility->photo ? Storage::url($facility->photo) : 'https://images.unsplash.com/photo-1625806693899-73e46c7de29b?q=80&w=600&auto=format&fit=crop'); ?>" 
+                        <img src="<?php echo e($facility->photo_url ?: 'https://images.unsplash.com/photo-1625806693899-73e46c7de29b?q=80&w=600&auto=format&fit=crop'); ?>" 
                              alt="<?php echo e($facility->name); ?>" 
                              class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/60 to-transparent"></div>
@@ -135,7 +135,7 @@ unset($__defined_vars, $__key, $__value); ?>
                 
                 <!-- Featured Facility -->
                 <div class="md:col-span-8 relative bg-charcoal-950 min-h-[400px] overflow-hidden group rounded-sm sm:rounded-none">
-                    <img src="<?php echo e($featuredFacility->photo ? Storage::url($featuredFacility->photo) : asset('storage/facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg')); ?>" 
+                    <img src="<?php echo e($featuredFacility->photo_url ?: (Storage::disk('public')->exists('facilities/bengkel-praktik-otomotif.png') ? Storage::url('facilities/bengkel-praktik-otomotif.png') : 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop')); ?>" 
                          alt="<?php echo e($featuredFacility->name); ?>" 
                          class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" loading="lazy">
                     
@@ -158,7 +158,7 @@ unset($__defined_vars, $__key, $__value); ?>
                 <div class="md:col-span-4 flex flex-col gap-6 lg:gap-8">
                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $otherFacilities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $facility): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                         <div class="relative bg-charcoal-900 flex-1 min-h-[200px] overflow-hidden group rounded-sm sm:rounded-none">
-                            <img src="<?php echo e($facility->photo ? Storage::url($facility->photo) : 'https://images.unsplash.com/photo-1625806693899-73e46c7de29b?q=80&w=600&auto=format&fit=crop'); ?>" 
+                            <img src="<?php echo e($facility->photo_url ?: 'https://images.unsplash.com/photo-1625806693899-73e46c7de29b?q=80&w=600&auto=format&fit=crop'); ?>" 
                                  alt="<?php echo e($facility->name); ?>" 
                                  class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/60 to-transparent"></div>

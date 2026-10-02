@@ -85,7 +85,7 @@
                             
                             <!-- Deskripsi Singkat -->
                             <p class="text-charcoal-600 text-sm leading-relaxed line-clamp-2 mt-auto">
-                                {{ Str::limit(strip_tags($job->description), 200) }}
+                                {{ Str::limit(strip_tags($job->description ?? ''), 200) }}
                             </p>
                         </div>
                     </div>

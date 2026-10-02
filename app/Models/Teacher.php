@@ -53,17 +53,34 @@ class Teacher extends Model
 
     public function hasValidPhoto(): bool
     {
-        return !empty($this->photo) 
-            && !str_contains($this->photo, 'guru-') 
-            && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->photo);
+        if (empty($this->photo)) {
+            return false;
+        }
+
+        if (str_starts_with($this->photo, 'http://') || str_starts_with($this->photo, 'https://')) {
+            return true;
+        }
+
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->photo), '/');
+
+        return \Illuminate\Support\Facades\Storage::disk('public')->exists($cleanPath)
+            || file_exists(public_path('storage/' . $cleanPath))
+            || file_exists(public_path($cleanPath));
     }
 
     public function getPhotoUrlAttribute(): ?string
     {
-        if ($this->hasValidPhoto()) {
-            return \Illuminate\Support\Facades\Storage::url($this->photo);
+        if (empty($this->photo)) {
+            return null;
         }
-        return null;
+
+        if (str_starts_with($this->photo, 'http://') || str_starts_with($this->photo, 'https://')) {
+            return $this->photo;
+        }
+
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->photo), '/');
+
+        return \Illuminate\Support\Facades\Storage::url($cleanPath);
     }
 
     public function getActivitylogOptions(): LogOptions

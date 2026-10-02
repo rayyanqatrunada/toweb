@@ -20,14 +20,14 @@
         <section class="w-full bg-figma-dark py-16 sm:py-20 lg:py-24 relative overflow-hidden text-white border-b border-charcoal-800">
             <!-- Background Photography with Overlay -->
             <div class="absolute inset-0 z-0 pointer-events-none">
-                @if($partner->banner_image)
-                    <img src="{{ Storage::url($partner->banner_image) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
+                @if($partner->banner_url)
+                    <img src="{{ $partner->banner_url }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
                 @elseif($settings->get('industry_hero_bg_image'))
-                    <img src="{{ Storage::url($settings->get('industry_hero_bg_image')) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
+                    <img src="{{ (str_starts_with($settings->get('industry_hero_bg_image'), 'http://') || str_starts_with($settings->get('industry_hero_bg_image'), 'https://')) ? $settings->get('industry_hero_bg_image') : Storage::url($settings->get('industry_hero_bg_image')) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
                 @elseif($settings->get('header_partnership_image'))
-                    <img src="{{ Storage::url($settings->get('header_partnership_image')) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
-                @elseif($partner->logo)
-                    <img src="{{ Storage::url($partner->logo) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-15 grayscale blur-md" loading="eager">
+                    <img src="{{ (str_starts_with($settings->get('header_partnership_image'), 'http://') || str_starts_with($settings->get('header_partnership_image'), 'https://')) ? $settings->get('header_partnership_image') : Storage::url($settings->get('header_partnership_image')) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
+                @elseif($partner->logo_url)
+                    <img src="{{ $partner->logo_url }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-15 grayscale blur-md" loading="eager">
                 @else
                     <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1600&auto=format&fit=crop" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-25 grayscale" loading="eager">
                 @endif
@@ -50,11 +50,11 @@
                     <div class="w-8 sm:w-12 h-[2px] bg-figma-red"></div>
                 </div>
 
-                @if($partner->logo)
+                @if($partner->logo_url)
                     <!-- Foto Profil / Logo Mitra Resmi -->
                     <div class="mb-5 reveal-on-scroll reveal-up">
                         <div class="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-2xl shadow-xl p-3 sm:p-4 mx-auto flex items-center justify-center border border-white/20">
-                            <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="w-full h-full object-contain">
+                            <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}" class="w-full h-full object-contain">
                         </div>
                     </div>
                 @endif
@@ -468,9 +468,9 @@
                                     @endif
                                 </div>
 
-                                @if($branch->photo)
+                                @if($branch->photo_url)
                                     <div class="w-full h-36 mb-3 overflow-hidden rounded-sm bg-gray-100">
-                                        <img src="{{ Storage::url($branch->photo) }}" alt="{{ $branch->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                        <img src="{{ $branch->photo_url }}" alt="{{ $branch->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                                     </div>
                                 @endif
 

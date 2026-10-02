@@ -48,6 +48,21 @@ class GalleryItem extends Model
         });
     }
 
+    public function getFileUrlAttribute(): ?string
+    {
+        if (empty($this->file_path)) {
+            return null;
+        }
+
+        if (str_starts_with($this->file_path, 'http://') || str_starts_with($this->file_path, 'https://')) {
+            return $this->file_path;
+        }
+
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->file_path), '/');
+
+        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

@@ -174,7 +174,10 @@
                     @forelse($facilities as $facility)
                         @php
                             $catKey = 'tools';
-                            $titleLower = strtolower($facility->title . ' ' . $facility->category);
+                            $facilityName = $facility->name ?? $facility->title ?? 'Fasilitas Praktik';
+                            $facilityPhoto = $facility->photo_url ?: ($facility->photo ? Storage::url($facility->photo) : ($facility->image ? Storage::url($facility->image) : null));
+                            $facilitySpecs = $facility->specifications ?? $facility->specification ?? '';
+                            $titleLower = strtolower($facilityName . ' ' . $facility->category);
                             if (str_contains($titleLower, 'lift') || str_contains($titleLower, 'pit') || str_contains($titleLower, 'stall')) {
                                 $catKey = 'pit';
                             } elseif (str_contains($titleLower, 'mesin') || str_contains($titleLower, 'injeksi') || str_contains($titleLower, 'engine') || str_contains($titleLower, 'motor')) {
@@ -193,8 +196,8 @@
                             <div>
                                 <!-- Image Thumbnail -->
                                 <div class="relative h-56 w-full overflow-hidden bg-gray-100">
-                                    @if($facility->image)
-                                        <img src="{{ Storage::url($facility->image) }}" alt="{{ $facility->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    @if($facilityPhoto)
+                                        <img src="{{ $facilityPhoto }}" alt="{{ $facilityName }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     @else
                                         <div class="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
                                             <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -221,16 +224,16 @@
                                 <!-- Card Content -->
                                 <div class="p-6">
                                     <h3 class="font-heading font-bold text-xl text-figma-dark mb-2 group-hover:text-figma-red transition-colors">
-                                        {{ $facility->title }}
+                                        {{ $facilityName }}
                                     </h3>
                                     <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
-                                        {{ $facility->description }}
+                                        {{ strip_tags($facility->description) }}
                                     </p>
 
-                                    @if($facility->specification)
+                                    @if(!empty($facilitySpecs))
                                         <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
                                             <span class="font-semibold text-gray-400 uppercase tracking-wider">Spesifikasi:</span>
-                                            <span class="font-mono text-gray-700 truncate max-w-[200px]">{{ $facility->specification }}</span>
+                                            <span class="font-mono text-gray-700 truncate max-w-[200px]">{{ is_array($facilitySpecs) ? implode(', ', $facilitySpecs) : strtok($facilitySpecs, "\n") }}</span>
                                         </div>
                                     @endif
                                 </div>
@@ -240,12 +243,12 @@
                                 <button 
                                     type="button" 
                                     @click="selectedFacility = {
-                                        title: {{ json_encode($facility->title) }},
+                                        title: {{ json_encode($facilityName) }},
                                         category: {{ json_encode($facility->category_label ?? $facility->category ?? 'Peralatan') }},
-                                        description: {{ json_encode($facility->description ?? '') }},
-                                        specification: {{ json_encode($facility->specification ?? '') }},
+                                        description: {{ json_encode(strip_tags($facility->description ?? '')) }},
+                                        specification: {{ json_encode($facilitySpecs) }},
                                         condition: {{ json_encode($facility->condition ?? 'Sangat Baik') }},
-                                        image: {{ json_encode($facility->image ? Storage::url($facility->image) : '') }}
+                                        image: {{ json_encode($facilityPhoto ?? '') }}
                                     }; $dispatch('open-modal', 'facility-detail-modal')"
                                     class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm sm:rounded-[2px] bg-gray-50 hover:bg-figma-dark hover:text-white text-xs sm:text-sm font-semibold text-figma-dark transition-all border border-gray-200 cursor-pointer"
                                 >

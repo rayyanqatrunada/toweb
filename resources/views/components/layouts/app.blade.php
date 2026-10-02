@@ -27,7 +27,21 @@
     }
 
     $canonicalUrl = $canonical ?? url()->current();
-    $ogImageUrl = $ogImage ?? ($settings->get('site_logo') ? Storage::url($settings->get('site_logo')) : url('/logo.png'));
+    $rawLogo = $settings->get('site_logo');
+    $siteLogoUrl = null;
+    if (!empty($rawLogo)) {
+        if (str_starts_with($rawLogo, 'http://') || str_starts_with($rawLogo, 'https://')) {
+            $siteLogoUrl = $rawLogo;
+        } elseif (file_exists(public_path($rawLogo))) {
+            $siteLogoUrl = asset($rawLogo);
+        } else {
+            $siteLogoUrl = Storage::url(ltrim(preg_replace('#^storage/#', '', $rawLogo), '/'));
+        }
+    } elseif (file_exists(public_path('logo.png'))) {
+        $siteLogoUrl = asset('logo.png');
+    }
+
+    $ogImageUrl = $ogImage ?? ($siteLogoUrl ?: url('/logo.png'));
     $gsv = $settings->get('google_site_verification') ?: env('GOOGLE_SITE_VERIFICATION');
 @endphp
 <!DOCTYPE html>
@@ -36,8 +50,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $pageTitle }}</title>
-    @if($logo = $settings->get('site_logo'))
-    <link rel="icon" href="{{ Storage::url($logo) }}">
+    @if($siteLogoUrl)
+    <link rel="icon" href="{{ $siteLogoUrl }}">
     @endif
     
     <!-- Meta SEO & Search Indexing -->

@@ -135,9 +135,24 @@
             
             <!-- Logo Section -->
             <a href="<?php echo e(route('home')); ?>" class="shrink-0 flex items-center gap-3 sm:gap-4 group focus-ring outline-hidden">
-                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($logo = app(\App\Services\SettingsService::class)->get('site_logo')): ?>
+                <?php
+                    $rawLogo = app(\App\Services\SettingsService::class)->get('site_logo');
+                    $logoUrl = null;
+                    if (!empty($rawLogo)) {
+                        if (str_starts_with($rawLogo, 'http://') || str_starts_with($rawLogo, 'https://')) {
+                            $logoUrl = $rawLogo;
+                        } elseif (file_exists(public_path($rawLogo))) {
+                            $logoUrl = asset($rawLogo);
+                        } else {
+                            $logoUrl = Storage::url(ltrim(preg_replace('#^storage/#', '', $rawLogo), '/'));
+                        }
+                    } elseif (file_exists(public_path('logo.png'))) {
+                        $logoUrl = asset('logo.png');
+                    }
+                ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($logoUrl): ?>
                     <div class="flex items-center gap-2.5 sm:gap-3">
-                        <img src="<?php echo e(Storage::url($logo)); ?>" alt="<?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor')); ?>" class="h-8 sm:h-10 w-auto">
+                        <img src="<?php echo e($logoUrl); ?>" alt="<?php echo e(app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor')); ?>" class="h-8 sm:h-10 w-auto object-contain">
                         <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
                              :class="(scrolledPastHero || !isHome) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
                             <?php echo e(app(\App\Services\SettingsService::class)->get('site_short_name', 'TSM')); ?>

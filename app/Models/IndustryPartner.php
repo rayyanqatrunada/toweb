@@ -82,6 +82,36 @@ class IndustryPartner extends Model
         });
     }
 
+    public function getLogoUrlAttribute(): ?string
+    {
+        if (empty($this->logo)) {
+            return null;
+        }
+
+        if (str_starts_with($this->logo, 'http://') || str_starts_with($this->logo, 'https://')) {
+            return $this->logo;
+        }
+
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->logo), '/');
+
+        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+    }
+
+    public function getBannerUrlAttribute(): ?string
+    {
+        if (empty($this->banner_image)) {
+            return null;
+        }
+
+        if (str_starts_with($this->banner_image, 'http://') || str_starts_with($this->banner_image, 'https://')) {
+            return $this->banner_image;
+        }
+
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->banner_image), '/');
+
+        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

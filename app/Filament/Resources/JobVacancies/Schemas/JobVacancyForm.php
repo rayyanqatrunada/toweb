@@ -118,9 +118,10 @@ class JobVacancyForm
                                 'expired' => 'Expired',
                             ])
                             ->required()
-                            ->default('draft'),
+                            ->default('published'),
                         DateTimePicker::make('published_at')
-                            ->label('Published At'),
+                            ->label('Published At')
+                            ->default(now()),
                     ])->columns(2)->columnSpanFull(),
 
                 Section::make('SEO')

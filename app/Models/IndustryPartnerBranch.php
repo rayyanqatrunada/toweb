@@ -124,6 +124,21 @@ class IndustryPartnerBranch extends Model
         return "https://wa.me/{$cleaned}?text={$msg}";
     }
 
+    public function getPhotoUrlAttribute(): ?string
+    {
+        if (empty($this->photo)) {
+            return null;
+        }
+
+        if (str_starts_with($this->photo, 'http://') || str_starts_with($this->photo, 'https://')) {
+            return $this->photo;
+        }
+
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->photo), '/');
+
+        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+    }
+
     protected static function booted()
     {
         static::saved(function ($model) {

@@ -151,7 +151,7 @@ Bursa Kerja Khusus (BKK) <?php echo $__env->renderComponent(); ?>
                             
                             <!-- Deskripsi Singkat -->
                             <p class="text-charcoal-600 text-sm leading-relaxed line-clamp-2 mt-auto">
-                                <?php echo e(Str::limit(strip_tags($job->description), 200)); ?>
+                                <?php echo e(Str::limit(strip_tags($job->description ?? ''), 200)); ?>
 
                             </p>
                         </div>

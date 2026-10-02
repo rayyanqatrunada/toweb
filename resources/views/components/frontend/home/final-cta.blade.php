@@ -3,9 +3,18 @@
     <!-- Background Elements -->
     <div class="absolute inset-0 z-0">
         @php
-            $ctaBg = $settings->get('homepage_about_image') ?: 'facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg';
+            $rawCtaBg = $settings->get('homepage_about_image');
+            if (!empty($rawCtaBg)) {
+                $ctaBgUrl = (str_starts_with($rawCtaBg, 'http://') || str_starts_with($rawCtaBg, 'https://'))
+                    ? $rawCtaBg
+                    : Storage::url(ltrim(preg_replace('#^storage/#', '', $rawCtaBg), '/'));
+            } else {
+                $ctaBgUrl = Storage::disk('public')->exists('facilities/bengkel-praktik-otomotif.png')
+                    ? Storage::url('facilities/bengkel-praktik-otomotif.png')
+                    : 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1600&auto=format&fit=crop';
+            }
         @endphp
-        <img src="{{ Storage::url($ctaBg) }}" alt="Background CTA" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="lazy">
+        <img src="{{ $ctaBgUrl }}" alt="Background CTA" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="lazy">
         <div class="absolute inset-0 bg-gradient-to-r from-charcoal-950 via-charcoal-900/90 to-charcoal-900/80"></div>
     </div>
     

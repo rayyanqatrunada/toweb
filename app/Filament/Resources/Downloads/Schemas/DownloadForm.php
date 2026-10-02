@@ -101,8 +101,9 @@ class DownloadForm
                                 'archived' => 'Archived',
                             ])
                             ->required()
-                            ->default('draft'),
-                        DateTimePicker::make('published_at'),
+                            ->default('published'),
+                        DateTimePicker::make('published_at')
+                            ->default(now()),
                         TextInput::make('sort_order')
                             ->numeric()
                             ->default(0),

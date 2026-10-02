@@ -75,6 +75,21 @@ class Alumni extends Model
         });
     }
 
+    public function getPhotoUrlAttribute(): ?string
+    {
+        if (empty($this->photo)) {
+            return null;
+        }
+
+        if (str_starts_with($this->photo, 'http://') || str_starts_with($this->photo, 'https://')) {
+            return $this->photo;
+        }
+
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->photo), '/');
+
+        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();

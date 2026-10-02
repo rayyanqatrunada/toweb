@@ -42,4 +42,14 @@ class Partnership extends Model
     {
         return ['document_file'];
     }
+
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('industry:partner:main');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('industry:partner:main');
+        });
+    }
 }

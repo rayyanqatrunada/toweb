@@ -22,9 +22,11 @@ class Competency extends Model
     {
         static::saved(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('academic:programs');
+            \Illuminate\Support\Facades\Cache::forget('homepage:programs');
         });
         static::deleted(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('academic:programs');
+            \Illuminate\Support\Facades\Cache::forget('homepage:programs');
         });
     }
 

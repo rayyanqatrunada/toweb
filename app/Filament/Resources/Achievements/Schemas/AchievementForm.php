@@ -89,9 +89,10 @@ class AchievementForm
                                 'published' => 'Published',
                                 'archived' => 'Archived',
                             ])
-                            ->default('draft')
+                            ->default('published')
                             ->required(),
-                        DateTimePicker::make('published_at'),
+                        DateTimePicker::make('published_at')
+                            ->default(now()),
                     ])->columns(2)->columnSpanFull(),
 
                 Section::make('SEO')

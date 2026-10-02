@@ -51,4 +51,16 @@ class Internship extends Model
     {
         return LogOptions::defaults()->logFillable()->logOnlyDirty()->dontSubmitEmptyLogs();
     }
+
+    protected static function booted()
+    {
+        static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('industry:partner:main');
+            \Illuminate\Support\Facades\Cache::forget('homepage:partner_main');
+        });
+        static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('industry:partner:main');
+            \Illuminate\Support\Facades\Cache::forget('homepage:partner_main');
+        });
+    }
 }

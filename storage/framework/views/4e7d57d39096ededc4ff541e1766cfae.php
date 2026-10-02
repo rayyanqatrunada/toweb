@@ -63,7 +63,21 @@ unset($__defined_vars, $__key, $__value); ?>
     }
 
     $canonicalUrl = $canonical ?? url()->current();
-    $ogImageUrl = $ogImage ?? ($settings->get('site_logo') ? Storage::url($settings->get('site_logo')) : url('/logo.png'));
+    $rawLogo = $settings->get('site_logo');
+    $siteLogoUrl = null;
+    if (!empty($rawLogo)) {
+        if (str_starts_with($rawLogo, 'http://') || str_starts_with($rawLogo, 'https://')) {
+            $siteLogoUrl = $rawLogo;
+        } elseif (file_exists(public_path($rawLogo))) {
+            $siteLogoUrl = asset($rawLogo);
+        } else {
+            $siteLogoUrl = Storage::url(ltrim(preg_replace('#^storage/#', '', $rawLogo), '/'));
+        }
+    } elseif (file_exists(public_path('logo.png'))) {
+        $siteLogoUrl = asset('logo.png');
+    }
+
+    $ogImageUrl = $ogImage ?? ($siteLogoUrl ?: url('/logo.png'));
     $gsv = $settings->get('google_site_verification') ?: env('GOOGLE_SITE_VERIFICATION');
 ?>
 <!DOCTYPE html>
@@ -72,8 +86,8 @@ unset($__defined_vars, $__key, $__value); ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo e($pageTitle); ?></title>
-    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($logo = $settings->get('site_logo')): ?>
-    <link rel="icon" href="<?php echo e(Storage::url($logo)); ?>">
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($siteLogoUrl): ?>
+    <link rel="icon" href="<?php echo e($siteLogoUrl); ?>">
     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
     
     <!-- Meta SEO & Search Indexing -->

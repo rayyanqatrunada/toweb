@@ -83,7 +83,6 @@ class FacilityForm
                             ->directory('facilities')
                             ->image()
                             ->imageEditor()
-                            ->maxFiles(1)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->columnSpanFull(),
                     ])

@@ -49,10 +49,12 @@ class JobVacancy extends Model
     {
         static::saved(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:jobs');
+            \Illuminate\Support\Facades\Cache::forget('industry:partner:main');
             \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
         static::deleted(function ($model) {
             \Illuminate\Support\Facades\Cache::forget('homepage:jobs');
+            \Illuminate\Support\Facades\Cache::forget('industry:partner:main');
             \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
     }
