@@ -24,6 +24,8 @@ class GalleryItemsRelationManager extends RelationManager
                     ->image()
                     ->required()
                     ->maxSize(5120) // 5MB
+                    ->disk('public')
+                    ->visibility('public')
                     ->directory('galleries/items')
                     ->imageEditor()
                     ->imageEditorAspectRatioOptions([
@@ -64,6 +66,7 @@ class GalleryItemsRelationManager extends RelationManager
             ->recordTitleAttribute('title')
             ->columns([
                 Tables\Columns\ImageColumn::make('file_path')
+                    ->disk('public')
                     ->label('Image'),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),

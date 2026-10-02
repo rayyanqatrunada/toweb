@@ -45,6 +45,8 @@ class GalleryAlbumForm
                         FileUpload::make('thumbnail')->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
                             ->image()
                             ->maxSize(5120) // 5MB
+                            ->disk('public')
+                            ->visibility('public')
                             ->directory('galleries/covers')
                             ->imageEditor()
                             ->columnSpanFull(),

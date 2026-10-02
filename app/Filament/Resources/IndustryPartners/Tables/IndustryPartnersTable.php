@@ -17,6 +17,7 @@ class IndustryPartnersTable
         return $table
             ->columns([
                 ImageColumn::make('logo')
+                    ->disk('public')
                     ->square(),
                 TextColumn::make('name')
                     ->searchable()

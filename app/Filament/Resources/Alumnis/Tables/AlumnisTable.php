@@ -19,6 +19,7 @@ class AlumnisTable
         return $table
             ->columns([
                 ImageColumn::make('photo')
+                    ->disk('public')
                     ->circular(),
                 TextColumn::make('name')
                     ->searchable()

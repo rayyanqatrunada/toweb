@@ -17,6 +17,7 @@ class GalleryAlbumsTable
         return $table
             ->columns([
                 ImageColumn::make('thumbnail')
+                    ->disk('public')
                     ->circular(),
                 TextColumn::make('title')
                     ->searchable()

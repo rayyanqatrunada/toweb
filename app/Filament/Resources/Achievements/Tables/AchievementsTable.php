@@ -14,6 +14,7 @@ class AchievementsTable
         return $table
             ->columns([
                 ImageColumn::make('photo')
+                    ->disk('public')
                     ->square(),
                 TextColumn::make('title')
                     ->searchable()

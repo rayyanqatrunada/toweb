@@ -94,7 +94,7 @@ class IndustryPartner extends Model
 
         $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->logo), '/');
 
-        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+        return \Illuminate\Support\Facades\Storage::disk('public')->url($cleanPath);
     }
 
     public function getBannerUrlAttribute(): ?string
@@ -109,7 +109,7 @@ class IndustryPartner extends Model
 
         $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->banner_image), '/');
 
-        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+        return \Illuminate\Support\Facades\Storage::disk('public')->url($cleanPath);
     }
 
     public function getActivitylogOptions(): LogOptions

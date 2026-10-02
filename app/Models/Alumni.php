@@ -87,7 +87,7 @@ class Alumni extends Model
 
         $cleanPath = ltrim(preg_replace('#^storage/#', '', $this->photo), '/');
 
-        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+        return \Illuminate\Support\Facades\Storage::disk('public')->url($cleanPath);
     }
 
     public function getActivitylogOptions(): LogOptions

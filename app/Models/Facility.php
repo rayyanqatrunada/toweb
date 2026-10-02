@@ -86,7 +86,7 @@ class Facility extends Model
             return $val;
         }
         $cleanPath = ltrim(preg_replace('#^storage/#', '', $val), '/');
-        return \Illuminate\Support\Facades\Storage::url($cleanPath);
+        return \Illuminate\Support\Facades\Storage::disk('public')->url($cleanPath);
     }
 
     protected static function booted()

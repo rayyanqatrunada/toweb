@@ -51,6 +51,8 @@ class AlumniForm
                         FileUpload::make('photo')->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
                             ->image()
                             ->maxSize(2048)
+                            ->disk('public')
+                            ->visibility('public')
                             ->directory('alumni-photos')
                             ->imageEditor()
                             ->columnSpanFull(),

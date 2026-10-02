@@ -21,7 +21,8 @@
 /public/build
 /public/fonts-manifest.dev.json
 /public/hot
-/public/storage
+/public/storage/*
+!/public/storage/.gitkeep
 /storage/*.key
 /storage/pail
 /storage/framework/views/*

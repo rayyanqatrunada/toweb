@@ -30,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Setting::observe(\App\Observers\SettingObserver::class);
 
         \Filament\Forms\Components\FileUpload::configureUsing(function (\Filament\Forms\Components\FileUpload $component): void {
+            // Default: simpan ke disk 'public' (public/storage/) agar bisa diakses via URL
+            // Ini penting untuk shared hosting yang tidak support symlink
+            $component->disk('public')->visibility('public');
+
             $component->beforeStateDehydrated(function (\Filament\Forms\Components\FileUpload $component): void {
                 $component->saveUploadedFiles();
 
