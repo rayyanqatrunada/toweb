@@ -288,6 +288,20 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['a
             $actionResult = implode("\n", array_map('trim', $output));
             break;
 
+        case 'db_fresh':
+            $withSeed = isset($_POST['with_seed']) && $_POST['with_seed'] === '1';
+            $actionTitle = $withSeed 
+                ? 'Refresh & Buat Ulang Database + Seeder Lengkap (migrate:fresh --seed)' 
+                : 'Refresh Database Total (migrate:fresh)';
+            $output = [];
+            $cmd = $phpBinary . ' artisan migrate:fresh' . ($withSeed ? ' --seed' : '') . ' --force';
+            $output[] = "$ " . $cmd;
+            $output[] = (string)shell_exec($cmd . ' 2>&1');
+            $output[] = "$ php artisan optimize:clear";
+            $output[] = (string)shell_exec($phpBinary . ' artisan optimize:clear 2>&1');
+            $actionResult = implode("\n\n", array_map('trim', $output));
+            break;
+
         // -------------------------------------------------------------
         // D. BASIS DATA: SEEDER
         // -------------------------------------------------------------
@@ -1326,7 +1340,33 @@ function togglePassword() {
                 </div>
             </div>
 
-            <!-- 6. ROLLBACK MIGRASI -->
+            <!-- 6. REFRESH / BUAT ULANG DATABASE (migrate:fresh) -->
+            <div class="action-card" style="border-color: rgba(225, 29, 72, 0.25);">
+                <div>
+                    <div class="action-card-header">
+                        <div class="action-icon" style="background: rgba(225, 29, 72, 0.15); color: #FB7185;">♻️</div>
+                        <div>
+                            <div class="action-card-title" style="color: #FDA4AF;">Refresh / Buat Ulang Database</div>
+                            <div class="action-card-desc">Hapus seluruh tabel dan susun ulang struktur basis data dari awal (<code>php artisan migrate:fresh --force</code>). Dilengkapi opsi pengisian seeder data baru otomatis.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-card-form">
+                    <form id="formDbFresh" method="POST" action="">
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
+                        <input type="hidden" name="action" value="db_fresh">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: #E2E8F0; cursor: pointer; margin-bottom: 0.65rem; user-select: none;">
+                            <input type="checkbox" name="with_seed" value="1" checked style="accent-color: var(--tbsm-red); width: 16px; height: 16px;">
+                            <span>Isi ulang seluruh data seeder baru (<code>--seed</code>)</span>
+                        </label>
+                        <button type="button" class="btn btn-danger-outline" style="width: 100%; border-color: rgba(225, 29, 72, 0.4); color: #FB7185;" onclick="confirmAction('formDbFresh', 'Konfirmasi Reset Total Database', 'PERINGATAN KERAS: Aksi ini akan MENGHAPUS SEMUA TABEL di database dan menyusunnya kembali dari awal (artisan migrate:fresh). Jika opsi seeder dicentang, seluruh data awal baru akan diisi ulang. Apakah Anda yakin?')">
+                            🔥 Reset &amp; Buat Ulang Database
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 7. ROLLBACK MIGRASI -->
             <div class="action-card">
                 <div>
                     <div class="action-card-header">
