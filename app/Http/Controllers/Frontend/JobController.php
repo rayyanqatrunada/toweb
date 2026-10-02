@@ -10,7 +10,7 @@ class JobController extends Controller
 {
     public function index()
     {
-        $jobs = JobVacancy::select('id', 'industry_partner_id', 'title', 'slug', 'work_type', 'location', 'published_at', 'deadline', 'created_at')
+        $jobs = JobVacancy::select('id', 'industry_partner_id', 'title', 'slug', 'work_type', 'employment_type', 'salary_text', 'location', 'published_at', 'application_deadline', 'created_at')
                           ->with('industryPartner:id,name,slug,logo')
                           ->published()->latest()->paginate(10);
         return view('frontend.jobs.index', compact('jobs'));

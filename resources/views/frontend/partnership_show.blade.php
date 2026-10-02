@@ -20,8 +20,12 @@
         <section class="w-full bg-figma-dark py-16 sm:py-20 lg:py-24 relative overflow-hidden text-white border-b border-charcoal-800">
             <!-- Background Photography with Overlay -->
             <div class="absolute inset-0 z-0 pointer-events-none">
-                @if($settings->get('industry_hero_bg_image'))
+                @if($partner->banner_image)
+                    <img src="{{ Storage::url($partner->banner_image) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
+                @elseif($settings->get('industry_hero_bg_image'))
                     <img src="{{ Storage::url($settings->get('industry_hero_bg_image')) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
+                @elseif($settings->get('header_partnership_image'))
+                    <img src="{{ Storage::url($settings->get('header_partnership_image')) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
                 @elseif($partner->logo)
                     <img src="{{ Storage::url($partner->logo) }}" alt="Hero Background" class="w-full h-full object-cover mix-blend-overlay opacity-15 grayscale blur-md" loading="eager">
                 @else
@@ -46,9 +50,18 @@
                     <div class="w-8 sm:w-12 h-[2px] bg-figma-red"></div>
                 </div>
 
+                @if($partner->logo)
+                    <!-- Foto Profil / Logo Mitra Resmi -->
+                    <div class="mb-5 reveal-on-scroll reveal-up">
+                        <div class="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-2xl shadow-xl p-3 sm:p-4 mx-auto flex items-center justify-center border border-white/20">
+                            <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                @endif
+
                 <!-- Main Heading -->
                 <h1 class="font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-white uppercase mb-4 max-w-4xl drop-shadow-md reveal-on-scroll reveal-up delay-100">
-                    {{ $partner->name }}
+                    {{ $settings->get('industry_hero_title', $partner->name) }}
                 </h1>
 
                 <!-- Grade Status Pill -->
@@ -455,15 +468,15 @@
                                     @endif
                                 </div>
 
-                                <h3 class="font-heading font-bold text-lg text-figma-dark mb-1.5 group-hover:text-figma-red transition-colors line-clamp-1">
+                                @if($branch->photo)
+                                    <div class="w-full h-36 mb-3 overflow-hidden rounded-sm bg-gray-100">
+                                        <img src="{{ Storage::url($branch->photo) }}" alt="{{ $branch->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                    </div>
+                                @endif
+
+                                <h3 class="font-heading font-bold text-lg text-figma-dark mb-2 group-hover:text-figma-red transition-colors line-clamp-1">
                                     {{ $branch->name }}
                                 </h3>
-
-                                @if($branch->description_text)
-                                    <p class="font-sans text-xs text-gray-500 italic mb-2.5 line-clamp-2">
-                                        "{{ $branch->description_text }}"
-                                    </p>
-                                @endif
 
                                 <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
                                     {{ $branch->address ?? 'Kecamatan ' . ($branch->district ?? $branch->city) . ', Kabupaten Jepara' }}

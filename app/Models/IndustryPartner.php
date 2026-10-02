@@ -64,6 +64,7 @@ class IndustryPartner extends Model
     protected static function booted()
     {
         static::saved(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('industry:partner:main');
             // Key harus plural — sesuai HomeController::index() 'homepage:stats:partners'
             \Illuminate\Support\Facades\Cache::forget('homepage:stats:partners');
             \Illuminate\Support\Facades\Cache::forget('homepage:partners');
@@ -72,6 +73,7 @@ class IndustryPartner extends Model
             \Illuminate\Support\Facades\Cache::forget('sitemap:urls');
         });
         static::deleted(function ($model) {
+            \Illuminate\Support\Facades\Cache::forget('industry:partner:main');
             \Illuminate\Support\Facades\Cache::forget('homepage:stats:partners');
             \Illuminate\Support\Facades\Cache::forget('homepage:partners');
             \Illuminate\Support\Facades\Cache::forget('homepage:partner_main');

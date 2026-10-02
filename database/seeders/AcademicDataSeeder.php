@@ -19,36 +19,42 @@ class AcademicDataSeeder extends Seeder
         $programs = [
             [
                 'name' => 'Teknik dan Bisnis Sepeda Motor',
-                'description' => '<p>Konsentrasi keahlian Teknik dan Bisnis Sepeda Motor (TBSM) membekali peserta didik dengan keterampilan perawatan dan perbaikan sepeda motor secara profesional.</p>
-                <h4>Pilihan Karir:</h4>
+                'description' => '<p>Konsentrasi keahlian Teknik dan Bisnis Sepeda Motor (TBSM) SMK Negeri 1 Bangsri merupakan program kejuruan unggulan binaan resmi PT Astra Honda Motor (Grade A+). Kurikulum dirancang menyelaraskan kompetensi teknis sepeda motor terkini (PGM-FI, eSP+, Smart Key) dengan kebutuhan riil bengkel resmi AHASS.</p>
+                <h4>Pilihan Prospek Karir & Masa Depan:</h4>
                 <ul>
-                    <li>Menjadi Teknisi yang handal dalam servis sepeda motor.</li>
-                    <li>Bekerja di bidang perakitan sepeda motor atau produk sejenisnya.</li>
-                    <li>Menjadi Wirausaha bengkel perbaikan sepeda motor atau bidang sejenisnya.</li>
+                    <li>Teknisi Sepeda Motor Andal di jaringan Bengkel Resmi AHASS.</li>
+                    <li>Front Desk & Service Advisor profesional bengkel modern.</li>
+                    <li>Operator dan Quality Control di industri manufaktur otomotif perakitan motor.</li>
+                    <li>Wirausahawan mandiri pemilik bengkel servis injeksi dan suku cadang.</li>
+                    <li>Melanjutkan studi ke jenjang pendidikan tinggi vokasi teknik mesin / otomotif.</li>
                 </ul>',
                 'competencies' => [
                     [
-                        'name' => 'Mesin',
-                        'description' => 'Mendiagnosis gangguan atau kerusakan pada Engine Sepeda Motor meliputi Komponen Utama Engine, Sistem Pelumasan, Sistem Pendinginan, Sistem Bahan Bakar, dll.'
+                        'name' => 'Mesin (Engine Sepeda Motor)',
+                        'slug' => 'mesin',
+                        'description' => 'Mendiagnosis gangguan atau kerusakan pada Engine Sepeda Motor meliputi Komponen Utama Engine 4-Tak, Sistem Pelumasan, Sistem Pendinginan, dan Sistem Suplai Bahan Bakar Injeksi PGM-FI.'
                     ],
                     [
-                        'name' => 'Sasis',
-                        'description' => 'Mendiagnosis gangguan atau kerusakan pada Sasis Sepeda Motor beserta komponen-komponennya diantaranya Sistem Rem, Sistem Kemudi, Suspensi, Rangka, Pelek, Ban, dll.'
+                        'name' => 'Sasis & Pemindah Tenaga',
+                        'slug' => 'sasis',
+                        'description' => 'Mendiagnosis gangguan atau kerusakan pada Sasis Sepeda Motor beserta komponen-komponennya diantaranya Sistem Rem Hidrolik (CBS/ABS), Sistem Kemudi, Suspensi, Rangka, Pelek, Ban, dan Transmisi Otomatis CVT.'
                     ],
                     [
-                        'name' => 'Kelistrikan',
-                        'description' => 'Mendiagnosis gangguan atau kerusakan pada Sistem Kelistrikan Sepeda Motor diantaranya Sistem Pengapian, Sistem Pengisian, Motor Starter, Sistem Penerangan, Sistem Pengaman (Alarm), Sistem Instrumen dan Sinyal, dll.'
+                        'name' => 'Kelistrikan & Sistem Sensor Otomotif',
+                        'slug' => 'kelistrikan',
+                        'description' => 'Mendiagnosis gangguan atau kerusakan pada Sistem Kelistrikan Sepeda Motor diantaranya Sistem Pengapian Full Transistor, Sistem Pengisian Baterai, Starter ACG, Sistem Penerangan LED, Sistem Smart Key (Keyless), dan Reset Sensor ECM dengan Diagnostic Scanner HIDS.'
                     ],
                     [
-                        'name' => 'Pengelolaan Bengkel',
-                        'description' => 'Mampu menerapkan pengelolaan, pengembangan teknik dan manajemen perawatan Sepeda Motor.'
+                        'name' => 'Pengelolaan & Manajemen Bengkel',
+                        'slug' => 'pengelolaan-bengkel',
+                        'description' => 'Mampu menerapkan tata kelola administrasi bengkel resmi AHASS, customer service Service Advisor, alur penerimaan servis (work order), manajemen suku cadang Honda Genuine Parts (HGP), serta budaya kerja 5R dan K3LH.'
                     ]
                 ]
             ]
         ];
 
         foreach ($programs as $progData) {
-            $thumbnail = SeedAssetGenerator::generateImage('Prog ' . $progData['name'], 'programs', 800, 600, '#3b82f6', '#ffffff');
+            $thumbnail = SeedAssetGenerator::generateImage('Program ' . $progData['name'], 'programs', 800, 600, '#dc2626', '#ffffff');
             $program = Program::updateOrCreate(
                 ['slug' => Str::slug($progData['name'])],
                 [
@@ -61,7 +67,7 @@ class AcademicDataSeeder extends Seeder
             foreach ($progData['competencies'] as $comp) {
                 Competency::updateOrCreate(
                     [
-                        'slug' => Str::slug($comp['name'])
+                        'slug' => $comp['slug'] ?? Str::slug($comp['name'])
                     ],
                     [
                         'program_id' => $program->id,
@@ -72,26 +78,26 @@ class AcademicDataSeeder extends Seeder
             }
         }
 
-        // 2. Teachers
+        // 2. Teachers (Tenaga Pengajar TBSM SMKN 1 Bangsri)
         $teachers = [
             ['name' => 'Laily Rizqissalim, S.Pd.', 'nip' => '198001012005011001', 'position' => 'Ketua Kompetensi Keahlian', 'is_hod' => true],
-            ['name' => 'Akhmad Lutfianto, S.Pd.', 'nip' => '198202022006021002', 'position' => 'Bendahara', 'is_hod' => false],
-            ['name' => 'Ahmad Wildan, S.Pd.', 'nip' => '198503032008032003', 'position' => 'Sekretaris', 'is_hod' => false],
-            ['name' => 'Galih Zainawan, S.Pd.', 'nip' => '199004042010041004', 'position' => 'Kepala Laboratorium', 'is_hod' => false],
+            ['name' => 'Akhmad Lutfianto, S.Pd.', 'nip' => '198202022006021002', 'position' => 'Bendahara Jurusan', 'is_hod' => false],
+            ['name' => 'Ahmad Wildan, S.Pd.', 'nip' => '198503032008032003', 'position' => 'Sekretaris Jurusan', 'is_hod' => false],
+            ['name' => 'Galih Zainawan, S.Pd.', 'nip' => '199004042010041004', 'position' => 'Kepala Laboratorium Bengkel', 'is_hod' => false],
             ['name' => 'Ahmad Arif Johan, S.Pd.', 'nip' => '199205052015052005', 'position' => 'Bidang Event dan Prestasi', 'is_hod' => false],
-            ['name' => 'Hisyam Kholil, S.Pd.', 'nip' => '199506062020061006', 'position' => 'Bidang IDUKA', 'is_hod' => false],
-            ['name' => 'Muslikan, S.Pd.', 'nip' => '199607072021071007', 'position' => 'Bidang PKL', 'is_hod' => false],
-            ['name' => 'Khasan Taufik', 'nip' => '199808082022081008', 'position' => 'Toolman', 'is_hod' => false],
+            ['name' => 'Hisyam Kholil, S.Pd.', 'nip' => '199506062020061006', 'position' => 'Bidang Kerjasama IDUKA', 'is_hod' => false],
+            ['name' => 'Muslikan, S.Pd.', 'nip' => '199607072021071007', 'position' => 'Koordinator Praktik Kerja Lapangan (PKL)', 'is_hod' => false],
+            ['name' => 'Khasan Taufik', 'nip' => '199808082022081008', 'position' => 'Toolman Bengkel Otomotif', 'is_hod' => false],
         ];
 
         foreach ($teachers as $idx => $tData) {
-            $photo = SeedAssetGenerator::generateImage('Guru ' . ($idx+1), 'teachers', 400, 400, '#10b981', '#ffffff');
+            $photo = SeedAssetGenerator::generateImage('Guru ' . ($idx+1), 'teachers', 400, 400, '#059669', '#ffffff');
             Teacher::updateOrCreate(
                 ['nip' => $tData['nip']],
                 [
                     'name' => $tData['name'],
                     'position' => $tData['position'],
-                    'phone' => '0812' . rand(10000000, 99999999),
+                    'phone' => '08232342905' . ($idx+1),
                     'photo' => $photo,
                     'is_head_of_department' => $tData['is_hod'],
                     'is_active' => true,
@@ -101,6 +107,8 @@ class AcademicDataSeeder extends Seeder
         }
 
         // 3. Facilities
+        $sstPhoto = SeedAssetGenerator::generateImage('Gudang SST dan Suku Cadang Asli HGP', 'facilities', 800, 600, '#1e293b', '#ffffff');
+
         $facilities = [
             [
                 'name' => 'Bengkel Praktik & Pit Servis Honda AHASS',
@@ -178,7 +186,7 @@ class AcademicDataSeeder extends Seeder
                 'category' => 'tool_storage',
                 'description' => '<p>Ruang penyimpanan terpusat untuk perkakas khusus (SST), alat ukur kalibrasi, dan suku cadang orisinal Honda Genuine Parts (HGP) & AHM Oil. Menggunakan sistem kartu kontrol pinjam alat terkomputerisasi untuk melatih tanggung jawab dan kedisiplinan inventaris bengkel.</p>',
                 'specifications' => "Shadow Board Dinding Alat Khusus (Flywheel Puller, Bearing Driver, dll)\nLemari Khusus Alat Ukur Presisi Berpengatur Kelembaban (Dry Box)\nRak Penyimpanan Bertingkat Suku Cadang Orisinal HGP & Oli AHM\nSistem Kartu Inventaris & Barcode Scanner Peminjaman Alat\nMeja Penerimaan & Pengecekan Kondisi Alat Sebelum/Sesudah Praktik",
-                'photo' => 'facilities/01M1JB8QW6J6VCY86FHFH53NPV.jpeg',
+                'photo' => $sstPhoto,
                 'quantity' => 1,
                 'capacity' => 'Pengelola Gudang & 1 Kelompok Siswa Per Sesi',
                 'safety_standards' => 'Kunci Pengaman Terpusat, Ventilasi Khusus Zat Kimia, APAR CO2',

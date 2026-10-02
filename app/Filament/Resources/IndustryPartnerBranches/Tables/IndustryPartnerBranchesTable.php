@@ -26,8 +26,7 @@ class IndustryPartnerBranchesTable
                     ->label('Foto')
                     ->disk('public')
                     ->size(46)
-                    ->square()
-                    ->defaultImageUrl(fn () => asset('storage/industry_partners/01M1DB84NZV7C26TS184CWVE8F.png')),
+                    ->square(),
 
                 TextColumn::make('name')
                     ->label('Nama Cabang AHASS')

@@ -23,8 +23,11 @@
         <section class="w-full bg-figma-dark py-16 sm:py-20 lg:py-24 relative overflow-hidden text-white border-b border-charcoal-800">
             <!-- Background Photography with Overlay -->
             <div class="absolute inset-0 z-0 pointer-events-none">
-                @if($settings->get('facility_hero_bg_image'))
-                    <img src="{{ Storage::url($settings->get('facility_hero_bg_image')) }}" alt="Facility Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
+                @php
+                    $facilityBg = $settings->get('facility_hero_bg_image') ?? $settings->get('header_academic_facilities_image');
+                @endphp
+                @if($facilityBg)
+                    <img src="{{ Storage::url($facilityBg) }}" alt="Facility Background" class="w-full h-full object-cover mix-blend-overlay opacity-30 grayscale" loading="eager">
                 @else
                     <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=1600&auto=format&fit=crop" alt="Facility Background" class="w-full h-full object-cover mix-blend-overlay opacity-25 grayscale" loading="eager">
                 @endif

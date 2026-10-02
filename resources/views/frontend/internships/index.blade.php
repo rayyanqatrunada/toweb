@@ -53,7 +53,7 @@
                                 </div>
                                 <div>
                                     <h3 class="text-sm font-black text-charcoal-900 leading-tight">{{ $internship->industryPartner->name ?? 'Mitra Industri' }}</h3>
-                                    <p class="text-xs font-medium text-charcoal-500">{{ $internship->industryPartner->field ?? 'Otomotif' }}</p>
+                                    <p class="text-xs font-medium text-charcoal-500">{{ $internship->industryPartner->industry_type ?? $internship->industryPartner->field ?? 'Otomotif' }}</p>
                                 </div>
                             </div>
                             

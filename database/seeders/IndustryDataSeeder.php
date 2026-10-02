@@ -188,12 +188,13 @@ class IndustryDataSeeder extends Seeder
             ]));
         }
 
-        // 2. Partnerships
+        // 2. Partnerships (Sinergi Resmi Binaan AHM)
         $partnerships = [
-            ['partner' => $partnerModels[0], 'type' => 'internship', 'title' => 'Magang (PKL)', 'desc' => 'Praktik Kerja Industri di bengkel resmi honda (Ahass)'],
-            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Pelatihan & Sertifikasi Guru', 'desc' => 'Setiap tahun agenda Sertifikasi Guru bertahap yang di support langsung Astra Motor Training Center'],
-            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Lomba Honda', 'desc' => 'Lomba Guru dan Siswa tingkat SMK Binaan'],
-            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Safety Riding', 'desc' => 'Program meningkatkan kemampuan berkendara siswa'],
+            ['partner' => $partnerModels[0], 'type' => 'internship', 'title' => 'Praktik Kerja Lapangan (PKL) AHASS', 'desc' => 'Program magang 6 bulan di seluruh jaringan bengkel resmi AHASS se-Kabupaten Jepara untuk memperkuat jam terbang mekanikal siswa.'],
+            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Pelatihan & Sertifikasi Guru (AMTC)', 'desc' => 'Program peningkatan kompetensi instruktur berkala yang didukung langsung oleh Astra Motor Training Center Jawa Tengah.'],
+            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Kontes Keterampilan Guru & Siswa Honda', 'desc' => 'Partisipasi rutin dalam ajang kompetisi kompetensi kejuruan tingkat SMK Binaan Honda se-Jawa Tengah dan Nasional.'],
+            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Edukasi Safety Riding & Budaya 5R', 'desc' => 'Kampanye keselamatan berkendara #Cari_Aman serta pembiasaan etos kerja kedisiplinan industri Jepang di lingkungan sekolah.'],
+            ['partner' => $partnerModels[0], 'type' => 'mou', 'title' => 'Perekrutan Tenaga Kerja BKK Mandiri', 'desc' => 'Penyaluran langsung lulusan kompeten TBSM SMKN 1 Bangsri ke jaringan dealer dan bengkel AHASS rekanan.'],
         ];
 
         foreach ($partnerships as $pt) {
@@ -212,40 +213,64 @@ class IndustryDataSeeder extends Seeder
             );
         }
 
-        // 3. Internships
+        // 3. Internships (Program PKL Terpadu)
         Internship::updateOrCreate(
             [
                 'industry_partner_id' => $partnerModels[0]->id,
-                'title' => 'Praktik Kerja Industri di bengkel resmi honda (Ahass)'
+                'title' => 'Praktik Kerja Industri di Jaringan Bengkel Resmi AHASS Jepara'
             ],
             [
-                'start_date' => now()->subDays(10),
+                'start_date' => now()->subDays(15),
                 'end_date' => now()->addMonths(6),
                 'status' => 'ongoing',
-                'description' => 'Program Magang / PKL'
+                'description' => '<p>Program Praktik Kerja Lapangan (PKL) terstruktur bagi siswa kelas XI di 8 bengkel resmi AHASS rekanan Kabupaten Jepara. Siswa melatih keterampilan tune-up PGM-FI, transmisi CVT, dan servis berkala dengan supervisi langsung Service Advisor.</p>'
             ]
         );
 
-        // 4. Job Vacancies (Placeholder)
-        JobVacancy::updateOrCreate(
+        // 4. Job Vacancies (Hapus data placeholder lama dan buat lowongan riil)
+        JobVacancy::where('slug', 'like', '%placeholder%')->delete();
+
+        $vacancies = [
             [
-                'industry_partner_id' => $partnerModels[0]->id,
-                'slug' => Str::slug('Mekanik AHASS (Placeholder)')
+                'title' => 'Teknisi Sepeda Motor Junior (Mekanik AHASS)',
+                'slug' => 'teknisi-sepeda-motor-junior-mekanik-ahass',
+                'position' => 'Mekanik / Teknisi Sepeda Motor',
+                'description' => '<p>Jaringan Bengkel Resmi AHASS di Kabupaten Jepara membuka kesempatan bagi alumni SMK Jurusan TBSM (Teknik dan Bisnis Sepeda Motor) SMKN 1 Bangsri untuk bergabung sebagai Teknisi Sepeda Motor Junior. Teknisi akan mendapatkan pelatihan komprehensif berstandar PT Astra Honda Motor serta peluang jenjang sertifikasi teknisi tingkat AHASS.</p>',
+                'requirements' => '<ul><li>Lulusan SMK Konsentrasi Keahlian TBSM / Otomotif Sepeda Motor.</li><li>Memahami prinsip kerja mesin 4-tak, sistem kelistrikan, sasis, dan teknologi injeksi PGM-FI.</li><li>Memiliki sertifikat kompetensi praktik / UKK menjadi nilai tambah.</li><li>Mampu bekerja sama dalam tim, disiplin tinggi (budaya 5R), dan jujur.</li><li>Bersedia ditempatkan di cabang bengkel resmi AHASS wilayah Kabupaten Jepara.</li></ul>',
+                'responsibilities' => '<ul><li>Melakukan servis berkala (tune-up, ganti oli mesin & transmisi, pembersihan injektor & saringan udara).</li><li>Melakukan pemeriksaan dan perbaikan komponen transmisi otomatis CVT serta sistem pengereman hidrolik.</li><li>Menggunakan peralatan Special Service Tools (SST) dan Diagnostic Scanner HIDS sesuai SOP Honda.</li><li>Menjaga kebersihan area pit lift servis dan mematuhi standar K3LH.</li></ul>',
+                'location' => 'Kabupaten Jepara (Jaringan Bengkel AHASS)',
+                'work_type' => 'Full-time',
+                'employment_type' => 'Kontrak Menuju Tetap',
+                'salary_text' => 'Sesuai Standar UMK Jepara + Insentif Servis',
+                'application_deadline' => now()->addMonths(2),
+                'status' => 'published',
+                'published_at' => now()->subDays(2),
             ],
             [
-                'title' => 'Mekanik AHASS (Placeholder)',
-                'position' => 'Teknisi/Mekanik',
-                'description' => 'Dibutuhkan segera Teknisi (NOT VERIFIED FROM OFFICIAL PDF - Data Placeholder).',
-                'requirements' => '<ul><li>Lulusan SMK Otomotif</li></ul>',
-                'responsibilities' => 'Melakukan perawatan kendaraan.',
-                'location' => 'Jepara',
+                'title' => 'Front Desk & Service Advisor (SA) AHASS',
+                'slug' => 'front-desk-service-advisor-sa-ahass',
+                'position' => 'Service Advisor (SA)',
+                'description' => '<p>Membuka kesempatan karir profesional bagi alumni TBSM SMKN 1 Bangsri yang komunikatif untuk bertugas sebagai garda terdepan pelayanan servis pelanggan sepeda motor Honda di bengkel AHASS.</p>',
+                'requirements' => '<ul><li>Pria/Wanita lulusan SMK TBSM / Otomotif yang memiliki keterampilan komunikasi dan interpersonal yang baik.</li><li>Mampu mengoperasikan komputer dan memahami istilah teknis keluhan sepeda motor.</li><li>Berpenampilan rapi, ramah, dan berorientasi pada kepuasan pelanggan (Customer Satisfaction).</li><li>Penempatan di wilayah Bangsri dan Jepara Kota.</li></ul>',
+                'responsibilities' => '<ul><li>Menyambut pelanggan dan mendengarkan keluhan performa sepeda motor Honda.</li><li>Melakukan pemeriksaan awal kondisi kendaraan (tampilan fisik, jarak tempuh, fungsi lampu/rem) bersama pelanggan.</li><li>Menerbitkan Work Order (Surat Perintah Kerja) dan mengestimasi biaya serta durasi perbaikan.</li><li>Menjelaskan riwayat perbaikan dan rekomendasi perawatan saat penyerahan kembali motor kepada konsumen.</li></ul>',
+                'location' => 'Bangsri & Jepara Kota',
                 'work_type' => 'Full-time',
                 'employment_type' => 'Kontrak',
-                'salary_text' => 'UMK Setempat',
-                'application_deadline' => now()->addMonths(1),
+                'salary_text' => 'Kompetitif + Tunjangan Kinerja',
+                'application_deadline' => now()->addMonths(2),
                 'status' => 'published',
-                'published_at' => now()->subDays(2)
-            ]
-        );
+                'published_at' => now()->subDays(4),
+            ],
+        ];
+
+        foreach ($vacancies as $vacData) {
+            JobVacancy::updateOrCreate(
+                [
+                    'industry_partner_id' => $partnerModels[0]->id,
+                    'slug' => $vacData['slug']
+                ],
+                $vacData
+            );
+        }
     }
 }
