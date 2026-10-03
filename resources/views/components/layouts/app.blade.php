@@ -97,7 +97,6 @@
 
     <!-- Vite Styles & Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
     @stack('styles')
     
     <!-- Motion System -->
@@ -256,7 +255,6 @@
             }, 1200);
         });
     </script>
-    @livewireScripts
     @stack('scripts')
 </body>
 </html>

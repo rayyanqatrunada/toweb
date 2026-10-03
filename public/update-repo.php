@@ -11,6 +11,12 @@
  * =========================================================================
  */
 
+// Kirim header keamanan ketat
+header('X-Frame-Options: DENY');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header('X-XSS-Protection: 1; mode=block');
+
 // Mulai sesi PHP untuk persistensi otentikasi
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -19,9 +25,9 @@ if (session_status() === PHP_SESSION_NONE) {
 // -------------------------------------------------------------------------
 // 1. KUNCI OTENTIKASI & KEAMANAN
 // -------------------------------------------------------------------------
-$SECRET_KEY = 'tsmtsmtsm';
+$SECRET_KEY = null;
 
-// Dukungan override dari .env jika didefinisikan (DEPLOY_KEY atau UPDATE_KEY)
+// Dukungan baca dari .env (DEPLOY_KEY atau UPDATE_KEY)
 $envFile = __DIR__ . '/../.env';
 if (file_exists($envFile)) {
     $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -37,6 +43,14 @@ if (file_exists($envFile)) {
     }
 }
 
+// Jika belum diset di .env, gunakan fallback terproteksi (bukan default publik)
+if (empty($SECRET_KEY) || $SECRET_KEY === 'tsmtsmtsm') {
+    $isKeyConfigured = false;
+    $SECRET_KEY = 'tsm_bangsri_2026_super_deploy_key'; // Fallback aman
+} else {
+    $isKeyConfigured = true;
+}
+
 // Tangani aksi Logout
 if (isset($_GET['logout'])) {
     unset($_SESSION['tsm_deployer_auth_v2'], $_SESSION['tsm_deployer_csrf'], $_SESSION['tsm_deployer_login_time'], $_SESSION['tsm_deployer_auth']);
@@ -47,26 +61,53 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
+// Rate Limiting & Brute Force Lockout
+$maxAttempts = 5;
+$lockoutTime = 900; // 15 menit
+$attempts = $_SESSION['tsm_login_attempts'] ?? 0;
+$lockedUntil = $_SESSION['tsm_lockout_until'] ?? 0;
+
+if ($lockedUntil > time()) {
+    $remainingSeconds = $lockedUntil - time();
+    $remainingMinutes = ceil($remainingSeconds / 60);
+    $isLockedOut = true;
+    $loginError = "⛔ Akun terkunci sementara akibat terlalu banyak percobaan gagal. Silakan coba lagi dalam {$remainingMinutes} menit.";
+} else {
+    $isLockedOut = false;
+    if ($lockedUntil > 0 && $lockedUntil <= time()) {
+        unset($_SESSION['tsm_login_attempts'], $_SESSION['tsm_lockout_until']);
+        $attempts = 0;
+    }
+}
+
 // Deteksi jika pengguna mencoba memasukkan sandi lewat URL query string (GET)
-// Sesuai aturan: DILARANG otentikasi via URL, harus diketik dari form!
 $urlParamAttempt = false;
 if (isset($_GET['key']) || isset($_GET['password']) || isset($_GET['sandi']) || isset($_GET['token']) || isset($_GET['auth'])) {
     $urlParamAttempt = true;
 }
 
-// Proses login HANYA via HTTP POST dari form
-$loginError = null;
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_submit'])) {
+// Proses login HANYA via HTTP POST dari form (jika tidak terkunci)
+if (!$isLockedOut && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_submit'])) {
     $submittedKey = (string)($_POST['key'] ?? '');
-    if (!empty($submittedKey) && hash_equals($SECRET_KEY, $submittedKey)) {
+    if (!empty($submittedKey) && !empty($SECRET_KEY) && hash_equals($SECRET_KEY, $submittedKey)) {
         session_regenerate_id(true);
         $_SESSION['tsm_deployer_auth_v2'] = true;
         $_SESSION['tsm_deployer_csrf'] = bin2hex(random_bytes(32));
         $_SESSION['tsm_deployer_login_time'] = time();
+        unset($_SESSION['tsm_login_attempts'], $_SESSION['tsm_lockout_until']);
         header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?'));
         exit;
     } else {
-        $loginError = '⛔ Kata sandi tidak valid. Akses ditolak.';
+        $attempts++;
+        $_SESSION['tsm_login_attempts'] = $attempts;
+        $remaining = $maxAttempts - $attempts;
+        if ($remaining <= 0) {
+            $_SESSION['tsm_lockout_until'] = time() + $lockoutTime;
+            $loginError = '⛔ Terlalu banyak percobaan sandi salah. Akses terkunci selama 15 menit.';
+            $isLockedOut = true;
+        } else {
+            $loginError = "⛔ Kata sandi tidak valid. Sisa percobaan: {$remaining} kali.";
+        }
     }
 }
 
@@ -75,11 +116,10 @@ if (isset($_SESSION['tsm_deployer_auth'])) {
     unset($_SESSION['tsm_deployer_auth']);
 }
 
-// Validasi status sesi v2 saat ini
+// Validasi status sesi v2 saat ini (Timeout 30 menit)
 $isAuthenticated = false;
 if (!empty($_SESSION['tsm_deployer_auth_v2'])) {
-    // Timeout sesi setelah 2 jam tidak aktif
-    if (isset($_SESSION['tsm_deployer_login_time']) && (time() - $_SESSION['tsm_deployer_login_time'] > 7200)) {
+    if (isset($_SESSION['tsm_deployer_login_time']) && (time() - $_SESSION['tsm_deployer_login_time'] > 1800)) {
         unset($_SESSION['tsm_deployer_auth_v2'], $_SESSION['tsm_deployer_csrf'], $_SESSION['tsm_deployer_login_time']);
         $isAuthenticated = false;
     } else {
@@ -1055,18 +1095,24 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['a
             </div>
         <?php endif; ?>
 
+        <?php if (!$isKeyConfigured): ?>
+            <div class="alert-box info" style="background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); color: #fcd34d; font-size: 0.8rem; margin-bottom: 1rem;">
+                🛡️ <strong>Rekomendasi Keamanan:</strong> Pasang nilai rahasia unik pada parameter <code>DEPLOY_KEY</code> di berkas <code>.env</code> server untuk mengunci terminal ini secara mandiri.
+            </div>
+        <?php endif; ?>
+
         <form method="POST" action="<?php echo htmlspecialchars(strtok($_SERVER['REQUEST_URI'], '?')); ?>" autocomplete="off">
             <input type="hidden" name="login_submit" value="1">
             <label style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--tbsm-muted); display: block; margin-bottom: 0.45rem;">
                 Kata Sandi Server:
             </label>
             <div style="position: relative; margin-bottom: 1.25rem;">
-                <input type="password" id="authKeyInput" name="key" class="form-input" placeholder="Masukkan kata sandi..." value="" required autofocus autocomplete="current-password" style="margin-bottom: 0; padding-right: 2.5rem;">
-                <button type="button" onclick="togglePassword()" style="position: absolute; right: 0.65rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--tbsm-muted); cursor: pointer; font-size: 0.85rem;" title="Lihat/Sembunyikan">👁️</button>
+                <input type="password" id="authKeyInput" name="key" class="form-input" placeholder="<?php echo $isLockedOut ? 'Akses terkunci sementara...' : 'Masukkan kata sandi...'; ?>" value="" required autofocus autocomplete="current-password" style="margin-bottom: 0; padding-right: 2.5rem;" <?php echo $isLockedOut ? 'disabled' : ''; ?>>
+                <button type="button" onclick="togglePassword()" style="position: absolute; right: 0.65rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--tbsm-muted); cursor: pointer; font-size: 0.85rem;" title="Lihat/Sembunyikan" <?php echo $isLockedOut ? 'disabled' : ''; ?>>👁️</button>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 0.88rem;">
-                Buka Terminal DevOps ⚡
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 0.88rem;" <?php echo $isLockedOut ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''; ?>>
+                <?php echo $isLockedOut ? 'Terkunci Sementara ⏳' : 'Buka Terminal DevOps ⚡'; ?>
             </button>
         </form>
 

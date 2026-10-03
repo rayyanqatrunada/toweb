@@ -31,11 +31,11 @@
                 </span>
                 
                 @if($internship->status === 'open')
-                    <span class="flex items-center text-emerald-700 bg-emerald-50 px-5 py-2.5 rounded-sm border border-emerald-200 shadow-sm">
-                        <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2.5 animate-pulse"></span> Pendaftaran Buka
+                    <span class="flex items-center text-slate-700 bg-slate-50 px-5 py-2.5 rounded-sm border border-slate-200 shadow-sm">
+                        <span class="w-2 h-2 bg-figma-red rounded-full mr-2.5 animate-pulse"></span> Pendaftaran Buka
                     </span>
                 @elseif($internship->status === 'ongoing')
-                    <span class="flex items-center text-blue-700 bg-blue-50 px-5 py-2.5 rounded-sm border border-blue-200 shadow-sm">
+                    <span class="flex items-center text-slate-600 bg-slate-100 px-5 py-2.5 rounded-sm border border-slate-200 shadow-sm">
                         Sedang Berjalan
                     </span>
                 @else

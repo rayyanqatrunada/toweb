@@ -60,7 +60,7 @@
 
             {{-- Background Layer 4: Ambient Glow Orbs --}}
             <div class="absolute -top-24 -right-24 w-96 h-96 bg-[#DC2626]/5 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-slate-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
             {{-- Background Layer 5: Technical Corner Framing & Watermarks --}}
             <div class="absolute right-6 top-6 w-16 h-16 border-r border-t border-[#E4E1E5] pointer-events-none hidden md:block"></div>
@@ -84,8 +84,8 @@
                         $rankLabel = str_starts_with(strtolower($achievement->rank), 'juara') ? strtoupper($achievement->rank) : 'JUARA ' . strtoupper($achievement->rank);
                     @endphp
                     <div class="flex justify-center mb-5">
-                        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-[2px] text-xs font-sans font-bold tracking-[1.2px] uppercase bg-amber-100/80 text-amber-800 border border-amber-300/80 shadow-sm">
-                            <span class="w-1.5 h-1.5 bg-amber-600 rounded-full"></span>
+                        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-[2px] text-xs font-sans font-bold tracking-[1.2px] uppercase bg-slate-100 text-slate-700 border border-slate-200 shadow-sm">
+                            <span class="w-1.5 h-1.5 bg-figma-red rounded-full"></span>
                             PRESTASI TINGKAT {{ $levelLabel }}
                         </span>
                     </div>
@@ -98,8 +98,8 @@
                     {{-- Meta Badges Strip --}}
                     <div class="flex flex-wrap items-center justify-center text-[#5F5E5E] text-sm gap-3 sm:gap-4 mt-6">
                         <!-- Rank -->
-                        <div class="flex items-center font-sans font-bold text-amber-700 bg-white px-4 py-2.5 rounded-[2px] border border-amber-300/70 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-                            <svg class="w-4 h-4 mr-2 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <div class="flex items-center font-sans font-bold text-slate-700 bg-white px-4 py-2.5 rounded-[2px] border border-slate-200 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+                            <svg class="w-4 h-4 mr-2 text-slate-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                             {{ $rankLabel }}
                         </div>
                         
@@ -153,7 +153,7 @@
             <div class="absolute inset-0 pointer-events-none opacity-15" style="background-image: radial-gradient(#9CA3AF 1px, transparent 1px); background-size: 28px 28px;"></div>
 
             {{-- Background Canvas 3: Ambient Color Glows --}}
-            <div class="absolute top-1/4 -left-40 w-[550px] h-[550px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none"></div>
+            <div class="absolute top-1/4 -left-40 w-[550px] h-[550px] bg-slate-500/5 rounded-full blur-[140px] pointer-events-none"></div>
             <div class="absolute top-2/3 -right-40 w-[550px] h-[550px] bg-[#DC2626]/5 rounded-full blur-[140px] pointer-events-none"></div>
             <div class="absolute bottom-10 left-1/3 w-[450px] h-[450px] bg-[#1B1B1E]/3 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -185,7 +185,7 @@
                                      @click="openLightbox('{{ Storage::url($achievement->photo) }}', '{{ addslashes($achievement->title) }} (Foto Utama)')"
                                      title="Klik untuk memperbesar foto">
                                     <!-- Gold Ribbon Overlay on image -->
-                                    <div class="absolute -right-12 top-8 rotate-45 bg-amber-500 text-amber-950 font-sans font-black text-xs tracking-widest uppercase py-1.5 px-16 shadow-lg z-20 pointer-events-none group-hover:scale-105 transition-transform duration-500">
+                                    <div class="absolute -right-12 top-8 rotate-45 bg-slate-900 text-white font-sans font-black text-xs tracking-widest uppercase py-1.5 px-16 shadow-lg z-20 pointer-events-none group-hover:scale-105 transition-transform duration-500">
                                         {{ $rankLabel }}
                                     </div>
                                     
@@ -211,7 +211,7 @@
                                 </div>
                                 <div class="p-2 border-r border-[#E4E1E5]/60 last:border-r-0">
                                     <span class="block font-sans font-bold text-[10px] uppercase tracking-wider text-[#5F5E5E]">Peringkat</span>
-                                    <span class="font-heading font-bold text-sm text-amber-700 mt-0.5 block">
+                                    <span class="font-heading font-bold text-sm text-slate-800 mt-0.5 block">
                                         {{ $rankLabel }}
                                     </span>
                                 </div>
@@ -312,14 +312,14 @@
                             {{-- Participants / Team Section --}}
                             @if($achievement->participants->count() > 0)
                                 <div class="mt-12 pt-10 border-t border-[#E4E1E5]">
-                                    <div class="bg-[#FBF8FC] border border-amber-200/80 rounded-[2px] p-6 sm:p-8">
-                                        <h3 class="text-xs font-sans font-bold uppercase tracking-widest text-amber-800 mb-4 flex items-center gap-2">
-                                            <svg class="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3.005 3.005 0 013.75-2.906z"/></svg>
+                                    <div class="bg-slate-50 border border-slate-200 rounded-[2px] p-6 sm:p-8">
+                                        <h3 class="text-xs font-sans font-bold uppercase tracking-widest text-slate-700 mb-4 flex items-center gap-2">
+                                            <svg class="w-4 h-4 text-slate-600" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3.005 3.005 0 013.75-2.906z"/></svg>
                                             Siswa &amp; Tim Berprestasi
                                         </h3>
                                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                             @foreach($achievement->participants as $p)
-                                                <div class="bg-white px-4 py-3 rounded-[2px] border border-amber-200/60 shadow-sm flex items-center justify-between">
+                                                <div class="bg-white px-4 py-3 rounded-[2px] border border-slate-200 shadow-sm flex items-center justify-between">
                                                     <div>
                                                         <span class="font-sans font-bold text-[#1B1B1E] text-sm sm:text-base block">{{ $p->student_name }}</span>
                                                         <span class="text-[11px] text-[#5F5E5E] font-sans">Peserta / Delegasi Vokasi</span>
@@ -386,7 +386,7 @@
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
                                         Peringkat / Predikat
                                     </span>
-                                    <span class="font-sans font-bold text-base text-amber-700">
+                                    <span class="font-sans font-bold text-base text-slate-800">
                                         {{ $rankLabel }}
                                     </span>
                                 </div>
@@ -426,8 +426,8 @@
                                     <span class="block font-sans font-bold text-[11px] uppercase tracking-wider text-[#5F5E5E] mb-1">
                                         Status Validasi Arsip
                                     </span>
-                                    <div class="flex items-center gap-2 text-xs font-sans font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-[2px] border border-emerald-200">
-                                        <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                    <div class="flex items-center gap-2 text-xs font-sans font-semibold text-slate-700 bg-slate-50 px-3 py-1.5 rounded-[2px] border border-slate-200">
+                                        <svg class="w-4 h-4 text-slate-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                                         Terverifikasi SMKN 1 Bangsri
                                     </div>
                                 </div>
@@ -454,7 +454,7 @@
                                         type="button" 
                                         class="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-[#F5F3F6] hover:bg-[#E4E1E5] text-[#1B1B1E] text-xs font-bold rounded-[2px] transition-colors border border-[#E4E1E5]">
                                     <svg x-show="!copied" class="w-4 h-4 text-[#5F5E5E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                                    <svg x-show="copied" class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                    <svg x-show="copied" class="w-4 h-4 text-slate-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                                     <span x-text="copied ? 'Tersalin!' : 'Salin Tautan'"></span>
                                 </button>
                             </div>
@@ -485,7 +485,7 @@
                                                     {{ $rel->title }}
                                                 </span>
                                                 <div class="flex items-center gap-2 text-[11px] text-[#5F5E5E] mt-0.5">
-                                                    <span class="font-semibold text-amber-700">{{ $rel->rank }}</span>
+                                                    <span class="font-semibold text-slate-600">{{ $rel->rank }}</span>
                                                     <span>&bull;</span>
                                                     <span>{{ $rel->date ? $rel->date->format('Y') : '-' }}</span>
                                                 </div>

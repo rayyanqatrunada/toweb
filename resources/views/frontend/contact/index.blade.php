@@ -147,7 +147,7 @@
 
                             <!-- Alerts -->
                             @if (session('success'))
-                                <div class="mb-6 bg-green-50 border border-green-200 text-green-700 px-4 py-3 relative font-['Hanken_Grotesk']" role="alert">
+                                <div class="mb-6 bg-slate-50 border border-slate-200 text-slate-700 px-4 py-3 relative font-['Hanken_Grotesk']" role="alert">
                                     <span class="block sm:inline">{{ session('success') }}</span>
                                 </div>
                             @endif

@@ -61,12 +61,12 @@
                     </div>
 
                     <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-sm bg-white/10 border border-white/15 backdrop-blur-md text-sm font-medium text-white shadow-xs">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-white/60"></span>
                         <span>Mitra Binaan: <strong class="text-white font-bold">{{ $settings->get('academic_partner_name', 'Astra Honda Motor (AHASS)') }}</strong></span>
                     </div>
 
                     <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-sm bg-white/10 border border-white/15 backdrop-blur-md text-sm font-medium text-white shadow-xs">
-                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-white/60"></span>
                         <span>Sertifikasi: <strong class="text-white font-bold">BNSP & Honda Level 1</strong></span>
                     </div>
                 </div>
@@ -313,7 +313,7 @@
                                  class="w-full text-left px-5 py-4 rounded-sm sm:rounded-[2px] font-sans transition-all flex items-center justify-between group cursor-pointer"
                             >
                                 <div>
-                                    <span class="text-xs font-bold uppercase tracking-wider block" :class="activeTab === 'kelas12' ? 'text-emerald-400' : 'text-gray-400'">Tingkat 3 • Pemantapan</span>
+                                    <span class="text-xs font-bold uppercase tracking-wider block" :class="activeTab === 'kelas12' ? 'text-figma-red' : 'text-gray-400'">Tingkat 3 • Pemantapan</span>
                                     <span class="font-heading font-bold text-base block mt-0.5">Kelas XII (PKL AHASS & UKK)</span>
                                 </div>
                                 <svg class="w-5 h-5 transition-transform" :class="activeTab === 'kelas12' ? 'translate-x-1 text-white' : 'text-gray-400 group-hover:translate-x-1'" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -471,7 +471,7 @@
                             <div class="bg-white border border-gray-200 p-6 sm:p-8 rounded-sm sm:rounded-none shadow-xs">
                                 <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-gray-100 mb-6">
                                     <div>
-                                        <span class="px-3 py-1 bg-emerald-700 text-white text-xs font-bold uppercase rounded-sm inline-block mb-2">
+                                        <span class="px-3 py-1 bg-slate-900 text-white text-xs font-bold uppercase rounded-sm inline-block mb-2">
                                             Tingkat 3 • Pemantapan
                                         </span>
                                         <h3 class="font-heading font-bold text-2xl text-figma-dark">
@@ -481,7 +481,7 @@
                                     <div class="flex items-center gap-3">
                                         <div class="text-right">
                                             <span class="text-xs text-gray-500 block">Durasi PKL:</span>
-                                            <strong class="text-sm font-bold text-emerald-700">{{ $settings->get('academic_curriculum_xii_hours', '6 Bulan di AHASS') }}</strong>
+                                            <strong class="text-sm font-bold text-slate-900">{{ $settings->get('academic_curriculum_xii_hours', '6 Bulan di AHASS') }}</strong>
                                         </div>
                                         <div class="w-[1px] h-8 bg-gray-200"></div>
                                         <div>
@@ -498,22 +498,22 @@
                                 <!-- 4 Subject Modules -->
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
-                                        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">MAGANG</span>
+                                        <span class="text-xs font-bold text-slate-900 uppercase tracking-wider">MAGANG</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">PKL Industri AHASS 6 Bulan</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Imersi kerja penuh di bengkel resmi Honda, mengasah kecepatan, ketepatan, dan mentalitas profesional.</p>
                                     </div>
                                     <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
-                                        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">ADVANCED</span>
+                                        <span class="text-xs font-bold text-slate-900 uppercase tracking-wider">ADVANCED</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Troubleshooting Kompleks</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Analisis kasus kerusakan mesin injeksi yang tidak teratur, diagnosis kelistrikan rumit, dan uji performa dyno.</p>
                                     </div>
                                     <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
-                                        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">BENGKEL</span>
+                                        <span class="text-xs font-bold text-slate-900 uppercase tracking-wider">BENGKEL</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">Manajemen Bengkel & SA</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Sistem informasi manajemen bengkel AHASS, administrasi garansi suku cadang, dan kepuasan pelanggan.</p>
                                     </div>
                                     <div class="p-5 bg-gray-50/80 border border-gray-200/80 rounded-sm hover:bg-white hover:border-gray-300 transition-colors">
-                                        <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">SERTIFIKASI</span>
+                                        <span class="text-xs font-bold text-slate-900 uppercase tracking-wider">SERTIFIKASI</span>
                                         <h4 class="font-heading font-bold text-base text-figma-dark mt-1 mb-2">UKK & Uji Lisensi BNSP</h4>
                                         <p class="text-sm text-gray-600 leading-relaxed">Uji Kompetensi Keahlian dinilai asesor DUDI Astra Motor dan sertifikasi lisensi BNSP sebelum wisuda.</p>
                                     </div>
@@ -553,14 +553,14 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     
                     <!-- 1. BNSP LSP-P1 -->
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-amber-500 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up">
                         <div>
-                            <div class="w-12 h-12 rounded-sm bg-amber-500/10 text-amber-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <div class="w-12 h-12 rounded-sm bg-slate-100 text-slate-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
                             </div>
-                            <span class="text-xs font-bold text-amber-700 uppercase tracking-wider block mb-2">
+                            <span class="text-xs font-bold text-figma-red uppercase tracking-wider block mb-2">
                                 {{ $settings->get('academic_cert_bnsp_license', 'LSP-P1 SMKN 1 Bangsri') }}
                             </span>
                             <h3 class="font-heading font-bold text-xl text-figma-dark mb-3">
@@ -572,7 +572,7 @@
                         </div>
                         <div class="pt-4 border-t border-gray-200 flex items-center justify-between text-xs font-semibold text-gray-500">
                             <span>Status Lisensi:</span>
-                            <strong class="text-amber-700">Garuda Emas Nasional</strong>
+                            <strong class="text-figma-dark">Garuda Emas Nasional</strong>
                         </div>
                     </div>
 
@@ -601,14 +601,14 @@
                     </div>
 
                     <!-- 3. UKK Kemendikbud -->
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-emerald-600 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-sm sm:rounded-none p-7 hover:border-figma-red hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group reveal-on-scroll reveal-up delay-200">
                         <div>
-                            <div class="w-12 h-12 rounded-sm bg-emerald-600/10 text-emerald-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                            <div class="w-12 h-12 rounded-sm bg-slate-100 text-slate-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                                 <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                                 </svg>
                             </div>
-                            <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-2">
+                            <span class="text-xs font-bold text-slate-900 uppercase tracking-wider block mb-2">
                                 {{ $settings->get('academic_cert_ukk_issuer', 'Kemendikbud & DUDI Astra Motor') }}
                             </span>
                             <h3 class="font-heading font-bold text-xl text-figma-dark mb-3">
@@ -620,7 +620,7 @@
                         </div>
                         <div class="pt-4 border-t border-gray-200 flex items-center justify-between text-xs font-semibold text-gray-500">
                             <span>Sifat Kelulusan:</span>
-                            <strong class="text-emerald-700">Wajib Kompeten SMK</strong>
+                            <strong class="text-slate-900">Wajib Kompeten SMK</strong>
                         </div>
                     </div>
 

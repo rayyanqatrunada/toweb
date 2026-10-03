@@ -11,8 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists('internship_participants');
-        Schema::dropIfExists('achievement_participants');
         Schema::dropIfExists('events');
         Schema::dropIfExists('pages');
     }

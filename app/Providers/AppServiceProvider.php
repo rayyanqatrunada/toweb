@@ -26,8 +26,6 @@ class AppServiceProvider extends ServiceProvider
         }
 
         \Illuminate\Database\Eloquent\Model::preventLazyLoading(!app()->isProduction());
-        
-        \App\Models\Setting::observe(\App\Observers\SettingObserver::class);
 
         \Filament\Forms\Components\FileUpload::configureUsing(function (\Filament\Forms\Components\FileUpload $component): void {
             // Default: simpan ke disk 'public' (public/storage/) agar bisa diakses via URL

@@ -14,7 +14,7 @@
         @endif
         <x-frontend.layout.container class="relative z-10 reveal-on-scroll reveal-up">
             <div class="max-w-3xl mx-auto text-center">
-                <x-frontend.ui.eyebrow class="text-amber-500 mb-4 justify-center">Bursa Kerja Khusus (BKK)</x-frontend.ui.eyebrow>
+                <x-frontend.ui.eyebrow class="text-figma-red mb-4 justify-center">Bursa Kerja Khusus (BKK)</x-frontend.ui.eyebrow>
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-charcoal-900 mb-6 leading-tight tracking-tight">Peluang Karir</h1>
                 <p class="text-charcoal-600 text-lg lg:text-xl leading-relaxed">
                     Informasi lowongan pekerjaan terbaru dari mitra industri terpercaya untuk alumni dan siswa tingkat akhir.
@@ -29,7 +29,7 @@
                 @forelse($jobs as $job)
                     <div class="bg-white rounded-sm sm:rounded-none shadow-sm hover:shadow-xl hover:border-charcoal-300 border border-charcoal-200 p-6 md:p-8 flex flex-col md:flex-row gap-6 transition-all duration-300 relative group overflow-hidden focus-within:ring-4 focus-within:ring-primary-500 hover:-translate-y-1 reveal-on-scroll reveal-up delay-{{ $loop->iteration * 100 % 300 }}">
                         <!-- Decorative Indicator Line -->
-                        <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-amber-500 transition-all duration-300 group-hover:w-2 group-hover:bg-primary-500"></div>
+                        <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-figma-red transition-all duration-300 group-hover:w-2 group-hover:bg-figma-red"></div>
                         
                         <!-- Logo Partner -->
                         <div class="flex-shrink-0 flex items-start justify-center md:justify-start">
@@ -71,13 +71,13 @@
                                     </span>
                                 @endif
                                 @if($job->employment_type)
-                                    <span class="inline-flex items-center px-3 py-1 bg-amber-50 text-amber-700 border border-amber-100 text-xs font-bold rounded-sm uppercase tracking-wide">
+                                    <span class="inline-flex items-center px-3 py-1 bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold rounded-sm uppercase tracking-wide">
                                         {{ $job->employment_type }}
                                     </span>
                                 @endif
                                 @if($job->salary_text)
-                                    <span class="inline-flex items-center px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs font-semibold rounded-sm">
-                                        <svg class="w-3.5 h-3.5 mr-1.5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <span class="inline-flex items-center px-3 py-1 bg-white text-slate-600 border border-slate-200 text-xs font-semibold rounded-sm">
+                                        <svg class="w-3.5 h-3.5 mr-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         {{ $job->salary_text }}
                                     </span>
                                 @endif

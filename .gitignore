@@ -33,3 +33,8 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+/scratch/
+/screenshots_*/
+server.pid
+routes.txt
+*.pid

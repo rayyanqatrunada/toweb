@@ -19,10 +19,12 @@ class GalleryController extends Controller
 
         $achievements = collect();
         if (!$request->has('album') || $request->album === 'all') {
-            if ($request->get('page', 1) == 1) {
-                $achievements = \App\Models\Achievement::whereNotNull('photo')
+            if ((int)$request->get('page', 1) === 1) {
+                $achievements = \App\Models\Achievement::select('id', 'title', 'slug', 'rank', 'level', 'photo', 'date')
+                                    ->whereNotNull('photo')
                                     ->published()
-                                    ->orderBy('date', 'desc')
+                                    ->latest('date')
+                                    ->take(12)
                                     ->get();
             }
         } else {

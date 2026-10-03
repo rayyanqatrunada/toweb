@@ -32,11 +32,11 @@
                         <!-- Status Badge -->
                         <div class="absolute top-5 right-5 z-10">
                             @if($internship->status === 'open')
-                                <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-sm text-xs font-bold shadow-sm flex items-center">
-                                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span> Pendaftaran Buka
+                                <span class="bg-slate-100 text-slate-700 border border-slate-200 px-3 py-1 rounded-sm text-xs font-bold shadow-sm flex items-center">
+                                    <span class="w-1.5 h-1.5 bg-figma-red rounded-full mr-1.5 animate-pulse"></span> Pendaftaran Buka
                                 </span>
                             @elseif($internship->status === 'ongoing')
-                                <span class="bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 rounded-sm text-xs font-bold shadow-sm">Sedang Berjalan</span>
+                                <span class="bg-slate-100 text-slate-600 border border-slate-200 px-3 py-1 rounded-sm text-xs font-bold shadow-sm">Sedang Berjalan</span>
                             @else
                                 <span class="bg-charcoal-50 text-charcoal-600 border border-charcoal-200 px-3 py-1 rounded-sm text-xs font-bold shadow-sm">Selesai</span>
                             @endif

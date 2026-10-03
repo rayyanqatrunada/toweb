@@ -76,7 +76,7 @@
                         <div class="font-heading font-black text-3xl sm:text-4xl text-white mb-1.5">
                             {{ $settings->get('facility_stat_2_val', '6 Pit') }}
                         </div>
-                        <div class="w-6 h-[2px] bg-emerald-500 mb-2 mx-auto md:mx-0"></div>
+                        <div class="w-6 h-[2px] bg-figma-red mb-2 mx-auto md:mx-0"></div>
                         <div class="font-sans text-xs sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">
                             {{ $settings->get('facility_stat_2_label', 'Stall Servis Hidrolik AHASS') }}
                         </div>
@@ -86,7 +86,7 @@
                         <div class="font-heading font-black text-3xl sm:text-4xl text-white mb-1.5">
                             {{ $settings->get('facility_stat_3_val', '100%') }}
                         </div>
-                        <div class="w-6 h-[2px] bg-amber-500 mb-2 mx-auto md:mx-0"></div>
+                        <div class="w-6 h-[2px] bg-figma-red mb-2 mx-auto md:mx-0"></div>
                         <div class="font-sans text-xs sm:text-sm uppercase tracking-wider text-gray-400 font-semibold">
                             {{ $settings->get('facility_stat_3_label', 'Peralatan Standar Pabrikan') }}
                         </div>
@@ -214,7 +214,7 @@
 
                                     @if($facility->condition)
                                         <div class="absolute top-3 right-3">
-                                            <span class="px-2.5 py-1 rounded-sm text-xs font-bold bg-emerald-500 text-white shadow-xs">
+                                            <span class="px-2.5 py-1 rounded-sm text-xs font-bold bg-slate-700 text-white shadow-xs">
                                                 {{ $facility->condition }}
                                             </span>
                                         </div>
@@ -369,14 +369,14 @@
                 <!-- PART B: Standar Keselamatan Kerja & Lingkungan (K3LH) (3 Feature Cards) -->
                 <div>
                     <h3 class="font-heading font-bold text-lg sm:text-xl text-figma-dark mb-6 flex items-center gap-2.5">
-                        <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
+                        <span class="w-2.5 h-2.5 bg-figma-red rounded-full"></span>
                         Standar Keselamatan Kerja & Lingkungan Hidup (K3LH)
                     </h3>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <!-- APD Card -->
                         <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs">
-                            <div class="w-10 h-10 rounded-sm bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+                            <div class="w-10 h-10 rounded-sm bg-slate-100 text-slate-600 flex items-center justify-center mb-4">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
@@ -402,7 +402,7 @@
 
                         <!-- Limbah B3 Card -->
                         <div class="p-6 bg-white border border-gray-200 rounded-sm sm:rounded-none shadow-xs">
-                            <div class="w-10 h-10 rounded-sm bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+                            <div class="w-10 h-10 rounded-sm bg-slate-100 text-slate-600 flex items-center justify-center mb-4">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                 </svg>
@@ -565,7 +565,7 @@
 
                     <div class="flex items-center justify-between pt-2">
                         <span class="text-xs text-gray-500">Kondisi Alat / Pit:</span>
-                        <span class="px-3 py-1 rounded-sm text-xs font-bold bg-emerald-100 text-emerald-800" x-text="selectedFacility.condition"></span>
+                        <span class="px-3 py-1 rounded-sm text-xs font-bold bg-slate-100 text-slate-800" x-text="selectedFacility.condition"></span>
                     </div>
                 </div>
 
