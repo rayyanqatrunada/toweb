@@ -6,17 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Achievement;
 use App\Models\Category;
+use Illuminate\Support\Facades\Schema;
 
 class AchievementController extends Controller
 {
     public function index(Request $request)
     {
+        $hasParticipants = Schema::hasTable('achievement_participants');
+        $withRelations = $hasParticipants ? ['category', 'participants'] : ['category'];
+
         // Stats
         $totalAchievements = Achievement::published()->count();
         $nationalCount = Achievement::published()->where('level', 'national')->count();
 
         // 6 recent for roadmap (ordered chronologically: oldest first -> newest last)
-        $recentAchievements = Achievement::with(['category', 'participants'])
+        $recentAchievements = Achievement::with($withRelations)
                                 ->published()
                                 ->latest('date')
                                 ->take(6)
@@ -31,7 +35,7 @@ class AchievementController extends Controller
             ? "CAST(REGEXP_REPLACE(rank, '[^0-9]', '') AS UNSIGNED) ASC"
             : "rank ASC";
 
-        $featuredAchievements = Achievement::with(['category', 'participants'])
+        $featuredAchievements = Achievement::with($withRelations)
                                 ->published()
                                 ->whereNotNull('photo')
                                 ->orderByRaw($levelOrder)
@@ -41,7 +45,7 @@ class AchievementController extends Controller
                                 ->get();
 
         // All achievements with filter
-        $query = Achievement::with(['category', 'participants'])->published();
+        $query = Achievement::with($withRelations)->published();
 
         if ($request->filled('category')) {
             $query->whereHas('category', function($q) use ($request) {
@@ -59,16 +63,27 @@ class AchievementController extends Controller
 
         if ($request->filled('search')) {
             $search = $request->search;
-            $query->where(function($q) use ($search) {
+            $query->where(function($q) use ($search, $hasParticipants) {
                 $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('organizer', 'like', "%{$search}%")
-                  ->orWhereHas('participants', function($pq) use ($search) {
-                      $pq->where('student_name', 'like', "%{$search}%");
-                  });
+                  ->orWhere('organizer', 'like', "%{$search}%");
+
+                if ($hasParticipants) {
+                    $q->orWhereHas('participants', function($pq) use ($search) {
+                        $pq->where('student_name', 'like', "%{$search}%");
+                    });
+                }
             });
         }
 
         $allAchievements = $query->latest('date')->paginate(12);
+
+        // Safeguard participants relation in collections if table does not exist
+        if (!$hasParticipants) {
+            $emptyParticipants = collect();
+            $recentAchievements->each(fn($a) => $a->setRelation('participants', $emptyParticipants));
+            $featuredAchievements->each(fn($a) => $a->setRelation('participants', $emptyParticipants));
+            $allAchievements->getCollection()->each(fn($a) => $a->setRelation('participants', $emptyParticipants));
+        }
 
         // Categories used by achievements
         $categories = Category::whereHas('achievements')->get();
@@ -98,14 +113,26 @@ class AchievementController extends Controller
 
     public function show($slug)
     {
-        $achievement = Achievement::with(['category', 'participants'])->published()->where('slug', $slug)->firstOrFail();
-        
+        $hasParticipants = Schema::hasTable('achievement_participants');
+        $withRelations = $hasParticipants ? ['category', 'participants'] : ['category'];
+
+        $achievement = Achievement::with($withRelations)->published()->where('slug', $slug)->firstOrFail();
+
+        if (!$hasParticipants) {
+            $achievement->setRelation('participants', collect());
+        }
+
         $relatedAchievements = Achievement::published()
             ->where('id', '!=', $achievement->id)
             ->when($achievement->category_id, fn($q) => $q->orderByRaw('category_id = ? desc', [$achievement->category_id]))
             ->latest('date')
             ->take(3)
             ->get();
+
+        if (!$hasParticipants) {
+            $emptyParticipants = collect();
+            $relatedAchievements->each(fn($a) => $a->setRelation('participants', $emptyParticipants));
+        }
 
         return view('frontend.achievements.show', compact('achievement', 'relatedAchievements'));
     }
