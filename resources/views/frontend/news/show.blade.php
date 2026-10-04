@@ -1,6 +1,6 @@
 <x-layouts.app 
     :title="$post->title"
-    :description="Str::limit(strip_tags($post->content), 150)"
+    :description="Str::limit(strip_tags($post->content ?? ''), 150)"
     :canonical="route('news.show', $post->slug)"
     :ogImage="$post->thumbnail ? Storage::url($post->thumbnail) : null"
     ogType="article"

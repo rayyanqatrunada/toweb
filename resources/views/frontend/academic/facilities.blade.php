@@ -227,7 +227,7 @@
                                         {{ $facilityName }}
                                     </h3>
                                     <p class="font-sans text-sm text-gray-600 leading-relaxed mb-4 line-clamp-2">
-                                        {{ strip_tags($facility->description) }}
+                                        {{ strip_tags($facility->description ?? '') }}
                                     </p>
 
                                     @if(!empty($facilitySpecs))
@@ -522,60 +522,58 @@
                     </a>
                 </div>
             </div>
-        </section>
-
-    </main>
-
-    <!-- ============================================================================ -->
-    <!-- MODAL DETAIL FASILITAS (Alpine Modal Dialog) -->
-    <!-- ============================================================================ -->
-    <x-modal name="facility-detail-modal" maxWidth="2xl">
-        <template x-if="selectedFacility">
-            <div class="p-6 sm:p-8 bg-white text-left font-sans">
-                <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
-                    <div>
-                        <span class="text-xs font-bold text-figma-red uppercase tracking-wider block" x-text="selectedFacility.category"></span>
-                        <h3 class="font-heading font-bold text-2xl text-figma-dark" x-text="selectedFacility.title"></h3>
-                    </div>
-                    <button type="button" @click="$dispatch('close-modal', 'facility-detail-modal')" class="text-gray-400 hover:text-gray-700 p-2 rounded-sm hover:bg-gray-100 transition-colors">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-                <template x-if="selectedFacility.image">
-                    <div class="h-64 w-full rounded-sm overflow-hidden mb-6 bg-gray-100">
-                        <img :src="selectedFacility.image" :alt="selectedFacility.title" class="w-full h-full object-cover">
-                    </div>
-                </template>
-
-                <div class="space-y-4 mb-6">
-                    <div>
-                        <h4 class="font-heading font-bold text-sm text-figma-dark mb-1">Deskripsi Peralatan:</h4>
-                        <p class="text-sm text-gray-600 leading-relaxed" x-text="selectedFacility.description"></p>
+        <!-- ============================================================================ -->
+        <!-- MODAL DETAIL FASILITAS (Alpine Modal Dialog) -->
+        <!-- ============================================================================ -->
+        <x-modal name="facility-detail-modal" maxWidth="2xl">
+            <template x-if="selectedFacility">
+                <div class="p-6 sm:p-8 bg-white text-left font-sans">
+                    <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+                        <div>
+                            <span class="text-xs font-bold text-figma-red uppercase tracking-wider block" x-text="selectedFacility.category"></span>
+                            <h3 class="font-heading font-bold text-2xl text-figma-dark" x-text="selectedFacility.title"></h3>
+                        </div>
+                        <button type="button" @click="$dispatch('close-modal', 'facility-detail-modal')" class="text-gray-400 hover:text-gray-700 p-2 rounded-sm hover:bg-gray-100 transition-colors">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
                     </div>
 
-                    <template x-if="selectedFacility.specification">
-                        <div class="p-4 bg-gray-50 rounded-sm border border-gray-200">
-                            <h4 class="font-heading font-bold text-sm text-figma-dark mb-1">Spesifikasi Teknis:</h4>
-                            <p class="text-xs sm:text-sm font-mono text-gray-800" x-text="selectedFacility.specification"></p>
+                    <template x-if="selectedFacility.image">
+                        <div class="h-64 w-full rounded-sm overflow-hidden mb-6 bg-gray-100">
+                            <img :src="selectedFacility.image" :alt="selectedFacility.title" class="w-full h-full object-cover">
                         </div>
                     </template>
 
-                    <div class="flex items-center justify-between pt-2">
-                        <span class="text-xs text-gray-500">Kondisi Alat / Pit:</span>
-                        <span class="px-3 py-1 rounded-sm text-xs font-bold bg-slate-100 text-slate-800" x-text="selectedFacility.condition"></span>
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <h4 class="font-heading font-bold text-sm text-figma-dark mb-1">Deskripsi Peralatan:</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed" x-text="selectedFacility.description"></p>
+                        </div>
+
+                        <template x-if="selectedFacility.specification">
+                            <div class="p-4 bg-gray-50 rounded-sm border border-gray-200">
+                                <h4 class="font-heading font-bold text-sm text-figma-dark mb-1">Spesifikasi Teknis:</h4>
+                                <p class="text-xs sm:text-sm font-mono text-gray-800" x-text="selectedFacility.specification"></p>
+                            </div>
+                        </template>
+
+                        <div class="flex items-center justify-between pt-2">
+                            <span class="text-xs text-gray-500">Kondisi Alat / Pit:</span>
+                            <span class="px-3 py-1 rounded-sm text-xs font-bold bg-slate-100 text-slate-800" x-text="selectedFacility.condition"></span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-100 flex justify-end">
+                        <button type="button" @click="$dispatch('close-modal', 'facility-detail-modal')" class="px-5 py-2.5 rounded-sm sm:rounded-[2px] bg-figma-dark text-white text-xs sm:text-sm font-semibold hover:bg-charcoal-800 transition-colors">
+                            Tutup Jendela
+                        </button>
                     </div>
                 </div>
+            </template>
+        </x-modal>
 
-                <div class="pt-4 border-t border-gray-100 flex justify-end">
-                    <button type="button" @click="$dispatch('close-modal', 'facility-detail-modal')" class="px-5 py-2.5 rounded-sm sm:rounded-[2px] bg-figma-dark text-white text-xs sm:text-sm font-semibold hover:bg-charcoal-800 transition-colors">
-                        Tutup Jendela
-                    </button>
-                </div>
-            </div>
-        </template>
-    </x-modal>
+    </main>
 
 </x-layouts.app>

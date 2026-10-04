@@ -1,6 +1,6 @@
 <x-layouts.app 
     :title="$internship->title . ' - PKL'"
-    :description="Str::limit(strip_tags($internship->description), 150)"
+    :description="Str::limit(strip_tags($internship->description ?? ''), 150)"
 >
     <!-- Header Page -->
     <div class="bg-charcoal-50 pt-10 pb-14 lg:pt-14 lg:pb-20 relative overflow-hidden border-b border-charcoal-200">

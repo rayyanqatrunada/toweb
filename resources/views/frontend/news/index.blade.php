@@ -74,7 +74,7 @@
                                 </h2>
                                 
                                 <p class="text-base text-charcoal-600 leading-relaxed mb-8 line-clamp-3 md:line-clamp-4">
-                                    {{ $featured->excerpt ?? Str::limit(strip_tags($featured->content), 180) }}
+                                    {{ $featured->excerpt ?? Str::limit(strip_tags($featured->content ?? ''), 180) }}
                                 </p>
                                 
                                 <div class="mt-auto">
@@ -119,7 +119,7 @@
                                     </h3>
                                     
                                     <p class="text-sm text-charcoal-600 leading-relaxed mb-6 line-clamp-3">
-                                        {{ $post->excerpt ?? Str::limit(strip_tags($post->content), 120) }}
+                                        {{ $post->excerpt ?? Str::limit(strip_tags($post->content ?? ''), 120) }}
                                     </p>
                                     
                                     <div class="mt-auto pt-4 border-t border-charcoal-100">

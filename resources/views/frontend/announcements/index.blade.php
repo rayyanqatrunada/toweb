@@ -44,7 +44,7 @@
                                 {{ $announcement->title }}
                             </h2>
                             <p class="text-charcoal-600 text-sm lg:text-base mb-6 line-clamp-2 leading-relaxed">
-                                {{ Str::limit(strip_tags($announcement->content), 180) }}
+                                {{ Str::limit(strip_tags($announcement->content ?? ''), 180) }}
                             </p>
                             <div class="flex flex-wrap items-center text-xs font-medium mt-auto gap-3">
                                 <span class="flex items-center text-charcoal-500 bg-charcoal-50 border border-charcoal-100 px-3 py-1.5 rounded-sm">

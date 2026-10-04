@@ -1,6 +1,6 @@
 <x-layouts.app 
     :title="$announcement->title"
-    :description="Str::limit(strip_tags($announcement->content), 150)"
+    :description="Str::limit(strip_tags($announcement->content ?? ''), 150)"
     :canonical="route('announcements.show', $announcement->slug)"
 >
     <!-- Header Page -->

@@ -7,7 +7,7 @@
       "mainEntity": {
         "@@type": "EducationalOrganization",
         "name": "{{ $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor SMKN 1 Bangsri') }}",
-        "description": "{!! strip_tags($settings->get('site_description')) !!}"
+        "description": "{!! strip_tags($settings->get('site_description', '')) !!}"
       }
     }
     </script>
@@ -232,7 +232,7 @@
                                 <span class="text-xl font-bold text-charcoal-300 mr-6 mt-1">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                                 <div>
                                     <h3 class="text-xl font-bold text-charcoal-900 group-hover:text-primary-600 transition-colors mb-2">{{ $program->name }}</h3>
-                                    <p class="text-sm text-charcoal-600 line-clamp-2 mb-3">{{ Str::limit(strip_tags($program->description), 100) }}</p>
+                                    <p class="text-sm text-charcoal-600 line-clamp-2 mb-3">{{ Str::limit(strip_tags($program->description ?? ''), 100) }}</p>
                                     <span class="text-xs font-bold text-primary-600 uppercase tracking-wider flex items-center group-hover:translate-x-1 transition-transform">Eksplorasi Program <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
                                 </div>
                             </a>

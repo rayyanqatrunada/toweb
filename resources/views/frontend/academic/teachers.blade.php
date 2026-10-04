@@ -11,16 +11,16 @@
     @endpush
 
     @php
-        $hod = $teachers->first(fn($t) => $t->is_head_of_department || stripos($t->position, 'Ketua Kompetensi') !== false || stripos($t->position, 'Kepala Jurusan') !== false)
+        $hod = $teachers->first(fn($t) => $t->is_head_of_department || stripos((string)($t->position ?? ''), 'Ketua Kompetensi') !== false || stripos((string)($t->position ?? ''), 'Kepala Jurusan') !== false)
             ?: $teachers->first();
 
-        $bendahara      = $teachers->first(fn($t) => stripos($t->position, 'Bendahara') !== false);
-        $sekretaris     = $teachers->first(fn($t) => stripos($t->position, 'Sekretaris') !== false);
-        $kepalaLab      = $teachers->first(fn($t) => stripos($t->position, 'Laboratorium') !== false || stripos($t->position, 'Lab') !== false);
-        $bidangPrestasi = $teachers->first(fn($t) => stripos($t->position, 'Event') !== false || stripos($t->position, 'Prestasi') !== false);
-        $bidangIduka    = $teachers->first(fn($t) => stripos($t->position, 'IDUKA') !== false || stripos($t->position, 'Industri') !== false);
-        $bidangPkl      = $teachers->first(fn($t) => stripos($t->position, 'PKL') !== false);
-        $toolman        = $teachers->first(fn($t) => stripos($t->position, 'Toolman') !== false || stripos($t->position, 'Teknisi') !== false);
+        $bendahara      = $teachers->first(fn($t) => stripos((string)($t->position ?? ''), 'Bendahara') !== false);
+        $sekretaris     = $teachers->first(fn($t) => stripos((string)($t->position ?? ''), 'Sekretaris') !== false);
+        $kepalaLab      = $teachers->first(fn($t) => stripos((string)($t->position ?? ''), 'Laboratorium') !== false || stripos((string)($t->position ?? ''), 'Lab') !== false);
+        $bidangPrestasi = $teachers->first(fn($t) => stripos((string)($t->position ?? ''), 'Event') !== false || stripos((string)($t->position ?? ''), 'Prestasi') !== false);
+        $bidangIduka    = $teachers->first(fn($t) => stripos((string)($t->position ?? ''), 'IDUKA') !== false || stripos((string)($t->position ?? ''), 'Industri') !== false);
+        $bidangPkl      = $teachers->first(fn($t) => stripos((string)($t->position ?? ''), 'PKL') !== false);
+        $toolman        = $teachers->first(fn($t) => stripos((string)($t->position ?? ''), 'Toolman') !== false || stripos((string)($t->position ?? ''), 'Teknisi') !== false);
 
         $clusterLeadership = collect([$hod, $sekretaris, $bendahara])->filter()->unique('id');
         $clusterLab        = collect([$kepalaLab, $toolman])->filter()->unique('id');

@@ -1,6 +1,6 @@
 <x-layouts.app 
     :title="$achievement->title"
-    :description="Str::limit(strip_tags($achievement->description), 150)"
+    :description="Str::limit(strip_tags($achievement->description ?? ''), 150)"
     :canonical="route('achievements.show', $achievement->slug)"
     :ogImage="$achievement->photo ? Storage::url($achievement->photo) : null"
     ogType="article"
