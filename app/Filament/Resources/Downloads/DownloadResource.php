@@ -19,7 +19,9 @@ class DownloadResource extends Resource
     protected static ?string $model = Download::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowDownTray;
-    protected static string | \UnitEnum | null $navigationGroup = 'Pusat Layanan';
+    protected static ?string $navigationLabel = 'Dokumen & Silabus';
+    protected static string | \UnitEnum | null $navigationGroup = 'Publikasi & Informasi';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema
     {

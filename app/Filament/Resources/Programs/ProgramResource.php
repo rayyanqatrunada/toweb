@@ -18,8 +18,10 @@ class ProgramResource extends Resource
 {
     protected static ?string $model = Program::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBookOpen;
-    protected static string | \UnitEnum | null $navigationGroup = 'Profil & Akademik';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
+    protected static ?string $navigationLabel = 'Program Keahlian';
+    protected static string | \UnitEnum | null $navigationGroup = 'Akademik & Profil';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

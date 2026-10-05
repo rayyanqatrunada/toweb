@@ -22,8 +22,8 @@ class ManageAcademicFacilities extends Page implements HasForms
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-wrench-screwdriver';
     protected static ?string $navigationLabel = 'Halaman Fasilitas';
     protected static ?string $title = 'Kelola Halaman Fasilitas';
-    protected static string | \UnitEnum | null $navigationGroup = 'Profil & Akademik';
-    protected static ?int $navigationSort = 3;
+    protected static string | \UnitEnum | null $navigationGroup = 'Pengaturan Halaman';
+    protected static ?int $navigationSort = 4;
 
     protected string $view = 'filament.pages.manage-academic-facilities';
 

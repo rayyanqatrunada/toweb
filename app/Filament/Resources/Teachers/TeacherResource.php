@@ -22,9 +22,9 @@ class TeacherResource extends Resource
     protected static ?string $pluralModelLabel = 'Guru & Tenaga Pengajar';
     protected static ?string $navigationLabel = 'Guru & Tenaga Pengajar';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
-    protected static string | \UnitEnum | null $navigationGroup = 'Profil & Akademik';
-    protected static ?int $navigationSort = 4;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
+    protected static string | \UnitEnum | null $navigationGroup = 'Akademik & Profil';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Schema $schema): Schema
     {

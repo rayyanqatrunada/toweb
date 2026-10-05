@@ -21,9 +21,9 @@ class ManageAcademicPrograms extends Page implements HasForms
 
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-academic-cap';
     protected static ?string $navigationLabel = 'Halaman Akademik';
-    protected static ?string $title = 'Kelola Halaman Akademik';
-    protected static string | \UnitEnum | null $navigationGroup = 'Profil & Akademik';
-    protected static ?int $navigationSort = 2;
+    protected static ?string $title = 'Kelola Kurikulum & Akademik';
+    protected static string | \UnitEnum | null $navigationGroup = 'Pengaturan Halaman';
+    protected static ?int $navigationSort = 3;
 
     protected string $view = 'filament.pages.manage-academic-programs';
 

@@ -1,12 +1,12 @@
-<section class="w-full py-8 sm:py-16 md:py-24 lg:py-32 overflow-hidden relative">
+<section class="w-full py-8 sm:py-14 md:py-16 lg:py-20 overflow-hidden relative">
     <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
-        <div class="flex flex-col lg:flex-row items-center gap-6 sm:gap-16 lg:gap-24">
+        <div class="flex flex-col lg:flex-row items-center gap-6 sm:gap-12 lg:gap-16">
             
             <!-- Left Content: Text -->
             <div class="w-full lg:w-5/12 flex flex-col items-start z-10 reveal-on-scroll reveal-up">
                 
                 <!-- Eyebrow -->
-                <div class="flex items-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-6">
+                <div class="flex items-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-5">
                     <div class="w-6 sm:w-12 h-[2px] bg-figma-red"></div>
                     <span class="font-sans font-bold text-[11px] sm:text-[14px] leading-none tracking-[1.5px] sm:tracking-[2px] text-figma-gray uppercase">
                         Tentang {{ $settings->get('site_short_name', 'TSM') }}
@@ -14,7 +14,7 @@
                 </div>
                 
                 <!-- Heading -->
-                <h2 class="font-heading font-extrabold text-[20px] sm:text-[34px] md:text-[48px] leading-[1.2] sm:leading-[1.1] tracking-tight sm:tracking-[-1px] text-figma-dark mb-3 sm:mb-6">
+                <h2 class="font-heading font-extrabold text-[20px] sm:text-[30px] md:text-[36px] lg:text-[40px] leading-[1.2] sm:leading-[1.15] tracking-tight sm:tracking-[-1px] text-figma-dark mb-3 sm:mb-5">
                     Tempat Kompetensi Otomotif Dibentuk.
                 </h2>
                 
@@ -47,7 +47,7 @@
                 <div class="hidden sm:block absolute -bottom-8 -left-8 w-48 h-48 bg-figma-red/5 -z-10"></div>
                 
                 <!-- Main Image Card -->
-                <div class="relative w-full aspect-[16/10] sm:aspect-[4/3] bg-gray-200 overflow-hidden shadow-md sm:shadow-2xl shadow-charcoal-900/5 rounded-sm sm:rounded-none">
+                <div class="relative w-full aspect-[16/10] md:aspect-[16/11] bg-gray-200 overflow-hidden shadow-md sm:shadow-2xl shadow-charcoal-900/5 rounded-sm sm:rounded-none">
                     @php
                         $aboutImage = app(\App\Services\SettingsService::class)->get('homepage_about_image');
                     @endphp
@@ -61,9 +61,9 @@
                 </div>
 
                 <!-- Floating Stats/Label (Placed outside overflow-hidden so it's never clipped) -->
-                <div class="absolute bottom-3 left-3 sm:-bottom-6 sm:-left-6 md:-left-8 bg-figma-dark text-white p-2.5 sm:p-5 lg:p-6 shadow-2xl flex items-center gap-2.5 sm:gap-4 rounded-sm sm:rounded-none z-20">
-                    <div class="text-[24px] sm:text-[36px] lg:text-[40px] font-heading font-black leading-none text-figma-red shrink-0">70%</div>
-                    <div class="font-sans text-[10px] sm:text-[13px] lg:text-[14px] uppercase tracking-wider text-gray-300 max-w-[85px] sm:max-w-[120px] leading-tight font-medium">
+                <div class="absolute bottom-3 left-3 sm:-bottom-5 sm:-left-5 md:-left-6 bg-figma-dark text-white p-2.5 sm:p-4 lg:p-5 shadow-2xl flex items-center gap-2.5 sm:gap-3.5 rounded-sm sm:rounded-none z-20">
+                    <div class="text-[24px] sm:text-[32px] lg:text-[36px] font-heading font-black leading-none text-figma-red shrink-0">70%</div>
+                    <div class="font-sans text-[10px] sm:text-[12px] lg:text-[13px] uppercase tracking-wider text-gray-300 max-w-[85px] sm:max-w-[110px] leading-tight font-medium">
                         Pembelajaran Praktik
                     </div>
                 </div>

@@ -18,10 +18,10 @@ class IndustryPartnerResource extends Resource
 {
     protected static ?string $model = IndustryPartner::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
     protected static string | \UnitEnum | null $navigationGroup = 'Kemitraan & Karir';
     
-    protected static ?string $navigationLabel = 'Profil & Kemitraan Honda';
+    protected static ?string $navigationLabel = 'Mitra Industri (DUDI)';
     protected static ?int $navigationSort = 1;
     protected static ?string $modelLabel = 'Mitra Industri';
     protected static ?string $pluralModelLabel = 'Kemitraan Industri';

@@ -72,7 +72,7 @@
     @endpush
 
     <!-- Main Auto Layout Wrapper -->
-    <main class="flex flex-col items-center w-full overflow-hidden relative">
+    <div class="flex flex-col items-center w-full overflow-hidden relative">
         <h1 class="sr-only">Teknik Otomotif &amp; Sepeda Motor (TBSM) SMK Negeri 1 Bangsri - Binaan Resmi PT Astra Honda Motor</h1>
         
         <!-- 01. Hero Section -->
@@ -130,10 +130,13 @@
         <!-- 12. Career / Future -->
         <x-frontend.home.career :job-vacancies="$jobVacancies" />
 
-        <!-- 13. Final CTA -->
+        <!-- 13. Frequently Asked Questions (FAQ) -->
+        <x-frontend.home.faq />
+
+        <!-- 14. Final CTA -->
         <x-frontend.home.final-cta />
 
-    </main>
+    </div>
 
     <!-- Floating Scroll To Top Button (Homepage Only) -->
     <x-frontend.home.scroll-to-top />

@@ -18,9 +18,11 @@ class JobVacancyResource extends Resource
 {
     protected static ?string $model = JobVacancy::class;
 
-    protected static bool $shouldRegisterNavigation = false;
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
+    protected static bool $shouldRegisterNavigation = true;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedMegaphone;
+    protected static ?string $navigationLabel = 'Lowongan Kerja (BKK)';
     protected static string | \UnitEnum | null $navigationGroup = 'Kemitraan & Karir';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema
     {

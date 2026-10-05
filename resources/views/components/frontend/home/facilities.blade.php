@@ -1,21 +1,21 @@
 @props(['facilities'])
 
-<section class="w-full bg-figma-bg-section py-8 sm:py-16 md:py-24 lg:py-32 overflow-hidden">
+<section class="w-full bg-figma-bg-section py-8 sm:py-12 md:py-16 lg:py-20 overflow-hidden">
     <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
         
         <!-- Header -->
-        <div class="flex flex-col items-center text-center mb-6 sm:mb-12 md:mb-20 reveal-on-scroll reveal-up">
-            <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-4">
+        <div class="flex flex-col items-center text-center mb-6 sm:mb-10 md:mb-12 lg:mb-14 reveal-on-scroll reveal-up">
+            <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3.5">
                 <div class="w-5 sm:w-8 h-[2px] bg-figma-red"></div>
                 <span class="font-sans font-bold text-[11px] sm:text-[14px] leading-none tracking-[1.5px] sm:tracking-[2px] text-figma-gray uppercase">
                     Fasilitas Pembelajaran
                 </span>
                 <div class="w-5 sm:w-8 h-[2px] bg-figma-red"></div>
             </div>
-            <h2 class="font-heading font-extrabold text-[20px] sm:text-[34px] md:text-[48px] leading-[1.15] sm:leading-[1.1] tracking-tight sm:tracking-[-1px] text-figma-dark max-w-[720px] mb-2 sm:mb-6">
+            <h2 class="font-heading font-extrabold text-[20px] sm:text-[28px] md:text-[36px] lg:text-[40px] leading-[1.15] tracking-tight sm:tracking-[-1px] text-figma-dark max-w-[720px] mb-2 sm:mb-4">
                 Peralatan Berstandar Industri Terkini
             </h2>
-            <p class="font-sans text-[13px] sm:text-[16px] text-gray-600 max-w-[640px] leading-relaxed">
+            <p class="font-sans text-[13px] sm:text-[15px] text-gray-600 max-w-[640px] leading-relaxed">
                 Seluruh ruang praktik dirancang untuk mensimulasikan lingkungan bengkel resmi, lengkap dengan peralatan spesial dan kendaraan praktik terbaru.
             </p>
         </div>
@@ -101,22 +101,22 @@
             </div>
 
             <!-- Desktop: Bento Grid (md+) -->
-            <div class="hidden md:grid md:grid-cols-12 gap-6 lg:gap-8 reveal-on-scroll reveal-up">
+            <div class="hidden md:grid md:grid-cols-12 gap-5 lg:gap-6 reveal-on-scroll reveal-up">
                 
                 <!-- Featured Facility -->
-                <div class="md:col-span-8 relative bg-charcoal-950 min-h-[400px] overflow-hidden group rounded-sm sm:rounded-none">
+                <div class="md:col-span-8 relative bg-charcoal-950 min-h-[340px] overflow-hidden group rounded-sm sm:rounded-none">
                     <img src="{{ $featuredFacility->photo_url ?: (Storage::disk('public')->exists('facilities/bengkel-praktik-otomotif.png') ? Storage::url('facilities/bengkel-praktik-otomotif.png') : 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop') }}" 
                          alt="{{ $featuredFacility->name }}" 
                          class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" loading="lazy">
                     
                     <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/40 to-transparent"></div>
                     
-                    <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full z-10">
-                        <h3 class="font-heading font-bold text-[28px] md:text-[32px] text-white mb-3 leading-tight">{{ $featuredFacility->name }}</h3>
-                        <p class="font-sans text-[15px] md:text-[16px] text-gray-300 max-w-[500px] line-clamp-3 mb-6">
+                    <div class="absolute bottom-0 left-0 p-6 md:p-8 lg:p-9 w-full z-10">
+                        <h3 class="font-heading font-bold text-[24px] md:text-[28px] lg:text-[30px] text-white mb-2 sm:mb-2.5 leading-tight">{{ $featuredFacility->name }}</h3>
+                        <p class="font-sans text-[14px] md:text-[15px] text-gray-300 max-w-[500px] line-clamp-3 mb-4 sm:mb-5">
                             {{ strip_tags($featuredFacility->description ?? 'Fasilitas bengkel utama untuk praktik kelistrikan dan perakitan mesin.') }}
                         </p>
-                        <a href="{{ route('academic.facilities') }}" class="inline-flex items-center gap-2 text-white hover:text-figma-red transition-colors font-sans font-bold text-[14px] uppercase tracking-wide">
+                        <a href="{{ route('academic.facilities') }}" class="inline-flex items-center gap-2 text-white hover:text-figma-red transition-colors font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wide">
                             <span>Lihat Detail</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                         </a>
@@ -124,17 +124,17 @@
                 </div>
 
                 <!-- Secondary Facilities -->
-                <div class="md:col-span-4 flex flex-col gap-6 lg:gap-8">
+                <div class="md:col-span-4 flex flex-col gap-4 sm:gap-5 lg:gap-6">
                     @foreach($otherFacilities as $index => $facility)
-                        <div class="relative bg-charcoal-900 flex-1 min-h-[200px] overflow-hidden group rounded-sm sm:rounded-none">
+                        <div class="relative bg-charcoal-900 flex-1 min-h-[160px] overflow-hidden group rounded-sm sm:rounded-none">
                             <img src="{{ $facility->photo_url ?: 'https://images.unsplash.com/photo-1625806693899-73e46c7de29b?q=80&w=600&auto=format&fit=crop' }}" 
                                  alt="{{ $facility->name }}" 
                                  class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-50 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-900/60 to-transparent"></div>
                             
-                            <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full z-10">
-                                <h3 class="font-heading font-bold text-[20px] md:text-[24px] text-white mb-2 leading-tight">{{ $facility->name }}</h3>
-                                <p class="font-sans text-[14px] text-gray-400 line-clamp-2">
+                            <div class="absolute bottom-0 left-0 p-5 md:p-6 w-full z-10">
+                                <h3 class="font-heading font-bold text-[18px] md:text-[20px] text-white mb-1.5 leading-tight">{{ $facility->name }}</h3>
+                                <p class="font-sans text-[13px] text-gray-400 line-clamp-2">
                                     {{ strip_tags($facility->description ?? 'Laboratorium pendukung untuk diagnostic tool dan sistem injeksi.') }}
                                 </p>
                             </div>
@@ -142,10 +142,10 @@
                     @endforeach
                     
                     @if($otherFacilities->count() < 2)
-                        <a href="{{ route('academic.facilities') }}" class="flex-1 min-h-[200px] bg-figma-red text-white flex flex-col items-center justify-center p-8 text-center hover:bg-figma-dark-red transition-colors group rounded-sm sm:rounded-none">
-                            <svg class="w-10 h-10 mb-4 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-                            <span class="font-heading font-bold text-[20px] mb-2">Semua Fasilitas</span>
-                            <span class="font-sans text-[14px] text-white/80">Jelajahi ekosistem praktik {{ $settings->get('site_short_name', 'TSM') }}</span>
+                        <a href="{{ route('academic.facilities') }}" class="flex-1 min-h-[160px] bg-figma-red text-white flex flex-col items-center justify-center p-6 text-center hover:bg-figma-dark-red transition-colors group rounded-sm sm:rounded-none">
+                            <svg class="w-8 h-8 mb-3 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                            <span class="font-heading font-bold text-[18px] mb-1.5">Semua Fasilitas</span>
+                            <span class="font-sans text-[13px] text-white/80">Jelajahi ekosistem praktik {{ $settings->get('site_short_name', 'TSM') }}</span>
                         </a>
                     @endif
                 </div>

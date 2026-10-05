@@ -20,10 +20,10 @@ class ManageIndustryPage extends Page implements HasForms
     use InteractsWithForms;
 
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-presentation-chart-line';
-    protected static ?string $navigationLabel = 'Pengaturan Halaman Industri';
-    protected static ?string $title = 'Kelola Halaman Industri & Mitra';
-    protected static string | \UnitEnum | null $navigationGroup = 'Kemitraan & Karir';
-    protected static ?int $navigationSort = 2;
+    protected static ?string $navigationLabel = 'Halaman Industri & Karir';
+    protected static ?string $title = 'Kelola Kemitraan Industri';
+    protected static string | \UnitEnum | null $navigationGroup = 'Pengaturan Halaman';
+    protected static ?int $navigationSort = 5;
 
     protected string $view = 'filament.pages.manage-industry-page';
 

@@ -18,8 +18,10 @@ class DownloadCategoryResource extends Resource
 {
     protected static ?string $model = DownloadCategory::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedFolderOpen;
-    protected static string | \UnitEnum | null $navigationGroup = 'Pusat Layanan';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedFolderArrowDown;
+    protected static ?string $navigationLabel = 'Kategori Dokumen';
+    protected static string | \UnitEnum | null $navigationGroup = 'Publikasi & Informasi';
+    protected static ?int $navigationSort = 7;
 
     public static function form(Schema $schema): Schema
     {

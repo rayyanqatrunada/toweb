@@ -65,18 +65,19 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarWidth('15rem')
             ->collapsedSidebarWidth('4rem')
             ->sidebarCollapsibleOnDesktop()
+            ->collapsibleNavigationGroups(true)
             ->navigationGroups([
-                'Profil & Akademik',
+                'Pengaturan Halaman',
+                'Akademik & Profil',
                 'Kemitraan & Karir',
                 'Publikasi & Informasi',
-                'Pusat Layanan',
-                'Pengaturan Sistem',
+                'Pusat Layanan & Sistem',
             ])
             ->navigationItems([
-                \Filament\Navigation\NavigationItem::make('Profil Admin')
+                \Filament\Navigation\NavigationItem::make('Profil Akun Admin')
                     ->url(fn (): string => route('filament.admin.auth.profile'))
                     ->icon('heroicon-o-user-circle')
-                    ->group('Pengaturan Sistem')
+                    ->group('Pusat Layanan & Sistem')
                     ->sort(99)
                     ->isActiveWhen(fn (): bool => request()->routeIs('filament.admin.auth.profile')),
             ])

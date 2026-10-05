@@ -33,7 +33,7 @@
                         {{ $settings->get('site_name', 'Teknik dan Bisnis Sepeda Motor') }}
                     </h1>
                     <p class="text-sm sm:text-lg text-charcoal-600 font-medium leading-relaxed mb-6 sm:mb-8 border-l-2 border-primary-600 pl-4">
-                        Membangun kompetensi teknis, karakter disiplin, dan kesiapan untuk memimpin di era industri otomotif modern.
+                        {{ $settings->get('about_hero_subtitle', 'Membangun kompetensi teknis, karakter disiplin, dan kesiapan untuk memimpin di era industri otomotif modern.') }}
                     </p>
                     <div class="flex items-center gap-4 text-xs font-bold text-charcoal-500 uppercase tracking-wider">
                         <span class="flex items-center gap-2"><svg class="w-4 h-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg> Pendidikan Vokasi</span>
@@ -45,7 +45,11 @@
                 <!-- Visual Content (lg:col-span-7) -->
                 <div class="lg:col-span-7 relative reveal-on-scroll reveal-right delay-100">
                     <div class="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[16/10] rounded-sm sm:rounded-[2px] overflow-hidden bg-charcoal-100 shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop" alt="Kegiatan Praktik Otomotif" class="absolute inset-0 w-full h-full object-cover grayscale-[30%]" loading="eager">
+                        @if($settings->get('homepage_about_image'))
+                            <img src="{{ Storage::url($settings->get('homepage_about_image')) }}" alt="Kegiatan Praktik Otomotif" class="absolute inset-0 w-full h-full object-cover grayscale-[30%]" loading="eager">
+                        @else
+                            <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop" alt="Kegiatan Praktik Otomotif" class="absolute inset-0 w-full h-full object-cover grayscale-[30%]" loading="eager">
+                        @endif
                         <div class="absolute inset-0 bg-charcoal-900/10"></div>
                         
                         <!-- Technical Accent Line -->
@@ -71,11 +75,11 @@
                             </li>
                             <li class="pb-6 border-b border-charcoal-200">
                                 <span class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-1">02 / FOKUS PENDIDIKAN</span>
-                                <span class="block font-bold text-charcoal-900">Teknologi Mekanik & Kendaraan Modern</span>
+                                <span class="block font-bold text-charcoal-900">{{ $settings->get('about_focus', 'Teknologi Mekanik & Kendaraan Modern') }}</span>
                             </li>
                             <li>
                                 <span class="block text-xs font-bold text-charcoal-500 uppercase tracking-wider mb-1">03 / ORIENTASI INDUSTRI</span>
-                                <span class="block font-bold text-charcoal-900">Penyaluran Tenaga Kerja & Wirausaha</span>
+                                <span class="block font-bold text-charcoal-900">{{ $settings->get('about_orientation', 'Penyaluran Tenaga Kerja & Wirausaha') }}</span>
                             </li>
                         </ul>
                     </div>

@@ -21,8 +21,8 @@ class IndustryPartnerBranchResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedMapPin;
     protected static string | \UnitEnum | null $navigationGroup = 'Kemitraan & Karir';
     
-    protected static ?string $navigationLabel = 'Cabang & Lokasi AHASS';
-    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationLabel = 'Jaringan Cabang AHASS';
+    protected static ?int $navigationSort = 2;
     protected static ?string $modelLabel = 'Cabang AHASS';
     protected static ?string $pluralModelLabel = 'Cabang & Lokasi AHASS';
 

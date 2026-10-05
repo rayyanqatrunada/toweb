@@ -18,8 +18,10 @@ class InternshipResource extends Resource
 {
     protected static ?string $model = Internship::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentCheck;
+    protected static ?string $navigationLabel = 'Program PKL / Magang';
     protected static string | \UnitEnum | null $navigationGroup = 'Kemitraan & Karir';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {

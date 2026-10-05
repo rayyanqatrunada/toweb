@@ -20,10 +20,11 @@ class GalleryAlbumResource extends Resource
 
     protected static ?string $modelLabel = 'Album Galeri';
     protected static ?string $pluralModelLabel = 'Album Galeri';
-    protected static ?string $navigationLabel = 'Galeri';
+    protected static ?string $navigationLabel = 'Album & Galeri Foto';
     
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
     protected static string | \UnitEnum | null $navigationGroup = 'Publikasi & Informasi';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
     {

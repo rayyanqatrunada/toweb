@@ -18,8 +18,10 @@ class AlumniResource extends Resource
 {
     protected static ?string $model = Alumni::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
-    protected static string | \UnitEnum | null $navigationGroup = 'Kemitraan & Karir';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedIdentification;
+    protected static ?string $navigationLabel = 'Tracer Study Alumni';
+    protected static string | \UnitEnum | null $navigationGroup = 'Akademik & Profil';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Schema $schema): Schema
     {

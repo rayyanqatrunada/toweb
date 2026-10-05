@@ -124,4 +124,13 @@ class FrontendPublicTest extends TestCase
         $this->get('/lowongan')->assertDontSee('Secret Job');
         $this->get('/lowongan/secret-job')->assertStatus(404);
     }
+
+    public function test_homepage_faq_section_renders_correctly()
+    {
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('section-faq', false);
+        $response->assertSee('Pertanyaan yang Sering Diajukan');
+        $response->assertSee('keunggulan utama jurusan TBSM');
+    }
 }

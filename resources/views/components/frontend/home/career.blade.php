@@ -1,47 +1,47 @@
 @props(['jobVacancies'])
 
-<section class="w-full py-24 lg:py-32 overflow-hidden border-t border-gray-100 relative">
-    <div class="max-w-[1440px] mx-auto px-6 md:px-16">
+<section class="w-full py-10 sm:py-14 md:py-16 lg:py-20 overflow-hidden border-t border-gray-100 relative">
+    <div class="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16">
         
-        <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+        <div class="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16">
             
             <!-- Left: Career Info -->
             <div class="w-full lg:w-5/12 reveal-on-scroll reveal-up">
-                <div class="flex items-center gap-3 mb-4">
+                <div class="flex items-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-4">
                     <div class="w-8 h-[2px] bg-figma-red"></div>
-                    <span class="font-sans font-bold text-[14px] leading-none tracking-[2px] text-figma-gray uppercase">
+                    <span class="font-sans font-bold text-[12px] sm:text-[14px] leading-none tracking-[2px] text-figma-gray uppercase">
                         Karier & Masa Depan
                     </span>
                 </div>
                 
-                <h2 class="font-heading font-extrabold text-[36px] md:text-[48px] leading-[1.1] tracking-[-1px] text-figma-dark mb-6">
+                <h2 class="font-heading font-extrabold text-[24px] sm:text-[30px] md:text-[36px] lg:text-[40px] leading-[1.15] tracking-tight sm:tracking-[-1px] text-figma-dark mb-3 sm:mb-5">
                     Peluang Karier Lulusan {{ $settings->get('site_short_name', 'TSM') }}
                 </h2>
                 
-                <p class="font-sans text-[16px] text-gray-600 leading-[1.6] mb-8">
+                <p class="font-sans text-[14px] sm:text-[16px] text-gray-600 leading-[1.6] mb-5 sm:mb-6">
                     Dengan ekosistem kelas industri yang terintegrasi, lulusan jurusan {{ $settings->get('site_short_name', 'TSM') }} dipersiapkan tidak hanya sebagai mekanik andal, tetapi juga untuk mengisi posisi strategis di berbagai sektor otomotif.
                 </p>
 
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-center gap-4">
+                <ul class="space-y-2.5 sm:space-y-3 mb-6 sm:mb-7">
+                    <li class="flex items-center gap-3">
                         <div class="w-2 h-2 bg-figma-red rounded-full"></div>
-                        <span class="font-heading font-bold text-[16px] text-charcoal-800">Mekanik Bengkel Resmi (AHASS)</span>
+                        <span class="font-heading font-bold text-[14px] sm:text-[15px] text-charcoal-800">Mekanik Bengkel Resmi (AHASS)</span>
                     </li>
-                    <li class="flex items-center gap-4">
+                    <li class="flex items-center gap-3">
                         <div class="w-2 h-2 bg-figma-red rounded-full"></div>
-                        <span class="font-heading font-bold text-[16px] text-charcoal-800">Teknisi Perakitan Industri Otomotif</span>
+                        <span class="font-heading font-bold text-[14px] sm:text-[15px] text-charcoal-800">Teknisi Perakitan Industri Otomotif</span>
                     </li>
-                    <li class="flex items-center gap-4">
+                    <li class="flex items-center gap-3">
                         <div class="w-2 h-2 bg-figma-red rounded-full"></div>
-                        <span class="font-heading font-bold text-[16px] text-charcoal-800">Wirausahawan Bengkel & Modifikasi</span>
+                        <span class="font-heading font-bold text-[14px] sm:text-[15px] text-charcoal-800">Wirausahawan Bengkel & Modifikasi</span>
                     </li>
-                    <li class="flex items-center gap-4">
+                    <li class="flex items-center gap-3">
                         <div class="w-2 h-2 bg-figma-red rounded-full"></div>
-                        <span class="font-heading font-bold text-[16px] text-charcoal-800">Sparepart & Service Advisor</span>
+                        <span class="font-heading font-bold text-[14px] sm:text-[15px] text-charcoal-800">Sparepart & Service Advisor</span>
                     </li>
                 </ul>
                 
-                <a href="{{ route('jobs.index') }}" class="inline-flex items-center justify-center px-8 py-4 bg-white border border-figma-dark text-figma-dark font-sans font-bold text-[14px] uppercase tracking-wide hover:bg-figma-dark hover:text-white transition-colors focus-ring">
+                <a href="{{ route('jobs.index') }}" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 bg-white border border-figma-dark text-figma-dark font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wide hover:bg-figma-dark hover:text-white transition-colors focus-ring rounded-sm">
                     Lihat Info Lowongan Kerja
                 </a>
             </div>
@@ -50,14 +50,14 @@
             <div class="w-full lg:w-7/12 relative reveal-on-scroll reveal-up delay-200">
                 
                 @if($jobVacancies && $jobVacancies->count() > 0)
-                    <div class="bg-gray-50 border border-gray-200 p-8 md:p-10 relative">
+                    <div class="bg-gray-50 border border-gray-200 p-5 sm:p-7 md:p-8 relative rounded-sm">
                         <div class="absolute top-0 right-0 w-24 h-24 bg-figma-red/5 rounded-bl-full pointer-events-none"></div>
                         
-                        <h3 class="font-heading font-bold text-[20px] text-figma-dark mb-6">Lowongan Tersedia Saat Ini</h3>
+                        <h3 class="font-heading font-bold text-[18px] sm:text-[20px] text-figma-dark mb-4">Lowongan Tersedia Saat Ini</h3>
                         
-                        <div class="space-y-4">
+                        <div class="space-y-3 sm:space-y-3.5">
                             @foreach($jobVacancies as $job)
-                                <a href="{{ route('jobs.show', $job->slug) }}" class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 bg-white border border-gray-100 hover:border-figma-red/30 hover:shadow-md transition-all duration-300 gap-4 group">
+                                <a href="{{ route('jobs.show', $job->slug) }}" class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 sm:p-5 bg-white border border-gray-100 hover:border-figma-red/30 hover:shadow-md transition-all duration-300 gap-3 sm:gap-4 group rounded-sm">
                                     <div class="flex items-center gap-4">
                                         @if($job->industryPartner && $job->industryPartner->logo)
                                             <div class="w-12 h-12 rounded-full border border-gray-100 overflow-hidden shrink-0">

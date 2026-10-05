@@ -1,40 +1,40 @@
 @props(['partner'])
 
-<section class="w-full py-12 sm:py-16 md:py-24 lg:py-32 overflow-hidden border-t border-gray-100 relative">
+<section class="w-full py-10 sm:py-14 md:py-16 lg:py-20 overflow-hidden border-t border-gray-100 relative">
     <div class="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16">
         
-        <div class="flex flex-col lg:flex-row gap-10 sm:gap-16 lg:gap-24 items-center">
+        <div class="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 items-center">
             
             <!-- Left: Partnership Info -->
             <div class="w-full lg:w-1/2 reveal-on-scroll reveal-up">
-                <div class="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-6">
+                <div class="flex items-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-4">
                     <div class="w-8 sm:w-12 h-[2px] bg-figma-red"></div>
                     <span class="font-sans font-bold text-[12px] sm:text-[14px] leading-none tracking-[1.5px] sm:tracking-[2px] text-figma-gray uppercase">
                         Kemitraan Industri
                     </span>
                 </div>
                 
-                <h2 class="font-heading font-extrabold text-[26px] sm:text-[34px] md:text-[48px] leading-[1.15] sm:leading-[1.1] tracking-tight sm:tracking-[-1px] text-figma-dark mb-4 sm:mb-6">
+                <h2 class="font-heading font-extrabold text-[24px] sm:text-[30px] md:text-[36px] lg:text-[40px] leading-[1.15] sm:leading-[1.1] tracking-tight sm:tracking-[-1px] text-figma-dark mb-3 sm:mb-5">
                     Terhubung Langsung dengan Dunia Industri
                 </h2>
                 
-                <p class="font-sans text-[15px] sm:text-[18px] text-gray-600 leading-[1.6] mb-6 sm:mb-8">
+                <p class="font-sans text-[14px] sm:text-[16px] text-gray-600 leading-[1.6] mb-5 sm:mb-6">
                     Kurikulum dan standar operasional pembelajaran kami disinkronisasi penuh dengan kebutuhan industri, memastikan lulusan siap kerja dengan kompetensi yang diakui secara nasional.
                 </p>
 
                 @if($partner)
                     <!-- Partner Profile Mini -->
-                    <div class="p-5 sm:p-8 border border-gray-200 bg-gray-50 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mb-6 sm:mb-8 group rounded-lg sm:rounded-none">
-                        <div class="w-20 h-20 sm:w-28 sm:h-28 bg-white rounded-full flex items-center justify-center shadow-md p-3 sm:p-4 shrink-0 overflow-hidden group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
+                    <div class="p-5 sm:p-6 md:p-7 border border-gray-200 bg-gray-50 flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 mb-5 sm:mb-6 group rounded-lg sm:rounded-none">
+                        <div class="w-16 h-16 sm:w-22 sm:h-22 bg-white rounded-full flex items-center justify-center shadow-md p-3 shrink-0 overflow-hidden group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">
                             @if($partner->logo)
                                 <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" class="w-full h-full object-contain">
                             @else
-                                <div class="font-heading font-black text-3xl sm:text-4xl text-gray-300">{{ substr($partner->name, 0, 1) }}</div>
+                                <div class="font-heading font-black text-2xl sm:text-3xl text-gray-300">{{ substr($partner->name, 0, 1) }}</div>
                             @endif
                         </div>
                         <div class="text-center sm:text-left">
-                            <h3 class="font-heading font-bold text-[20px] sm:text-[24px] text-figma-dark mb-1.5 sm:mb-2">{{ $partner->name }}</h3>
-                            <div class="inline-block px-2.5 py-0.5 sm:px-3 sm:py-1 bg-figma-red/10 text-figma-red font-sans text-[11px] sm:text-[12px] font-bold uppercase tracking-wider rounded-sm mb-2 sm:mb-3">
+                            <h3 class="font-heading font-bold text-[18px] sm:text-[22px] text-figma-dark mb-1 sm:mb-1.5">{{ $partner->name }}</h3>
+                            <div class="inline-block px-2.5 py-0.5 sm:px-3 sm:py-0.5 bg-figma-red/10 text-figma-red font-sans text-[11px] sm:text-[12px] font-bold uppercase tracking-wider rounded-sm mb-2">
                                 Mitra Utama Industri
                             </div>
                             <p class="font-sans text-[13px] sm:text-[14px] text-gray-500 line-clamp-2">
@@ -43,12 +43,12 @@
                         </div>
                     </div>
                 @else
-                    <div class="p-6 border border-gray-200 bg-gray-50 mb-6 sm:mb-8 rounded-lg sm:rounded-none">
+                    <div class="p-5 border border-gray-200 bg-gray-50 mb-5 sm:mb-6 rounded-lg sm:rounded-none">
                         <p class="font-sans text-gray-500 italic text-sm">Data mitra industri belum tersedia.</p>
                     </div>
                 @endif
                 
-                <a href="{{ route('partnership.index') }}" class="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 bg-figma-dark text-white font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wide hover:bg-figma-red transition-colors focus-ring w-full sm:w-auto rounded-sm">
+                <a href="{{ route('partnership.index') }}" class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-3.5 bg-figma-dark text-white font-sans font-bold text-[13px] sm:text-[14px] uppercase tracking-wide hover:bg-figma-red transition-colors focus-ring w-full sm:w-auto rounded-sm">
                     Lihat Profil Kemitraan
                 </a>
             </div>

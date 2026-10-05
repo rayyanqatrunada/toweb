@@ -3,28 +3,28 @@
     'teachers' => null
 ])
 
-<section class="w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden border-t border-slate-100 bg-slate-50/50 relative">
+<section class="w-full py-10 sm:py-14 md:py-16 lg:py-18 overflow-hidden border-t border-slate-100 bg-slate-50/50 relative">
     <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
         
         {{-- Section Header --}}
-        <div class="flex flex-col items-center text-center mb-8 sm:mb-12 lg:mb-14 reveal-on-scroll reveal-up">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-100 mb-3 sm:mb-4">
+        <div class="flex flex-col items-center text-center mb-6 sm:mb-10 lg:mb-11 reveal-on-scroll reveal-up">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-100 mb-2.5 sm:mb-3.5">
                 <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
                 <span class="text-xs font-heading font-black tracking-widest uppercase text-red-700">Tim Akademik & Instruktur</span>
             </div>
-            <h2 class="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight text-slate-900 tracking-tight max-w-2xl mb-3">
+            <h2 class="font-heading font-extrabold text-2xl sm:text-3xl md:text-3xl lg:text-4xl leading-tight text-slate-900 tracking-tight max-w-2xl mb-2 sm:mb-2.5">
                 Instruktur Berpengalaman Standar Industri
             </h2>
-            <p class="text-sm sm:text-base text-slate-600 max-w-xl font-sans leading-relaxed">
+            <p class="text-sm sm:text-[15px] text-slate-600 max-w-xl font-sans leading-relaxed">
                 Didukung tenaga pendidik profesional dan instruktur bersertifikasi Astra Honda Motor dalam membimbing kompetensi teknis peserta didik.
             </p>
         </div>
 
         {{-- Content Grid: Kajur Card + Other Teachers --}}
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch reveal-on-scroll reveal-up">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch reveal-on-scroll reveal-up">
             
             {{-- 1. Featured Leadership Card: Kepala Kompetensi Keahlian --}}
-            <div class="lg:col-span-5 rounded-sm sm:rounded-none bg-gradient-to-br from-slate-900 via-slate-900 to-zinc-950 p-6 sm:p-8 lg:p-9 text-white relative overflow-hidden border border-slate-800 shadow-xl shadow-slate-900/10 flex flex-col justify-between group">
+            <div class="lg:col-span-5 rounded-sm sm:rounded-none bg-gradient-to-br from-slate-900 via-slate-900 to-zinc-950 p-5 sm:p-7 lg:p-7 text-white relative overflow-hidden border border-slate-800 shadow-xl shadow-slate-900/10 flex flex-col justify-between group">
                 {{-- Decorative background glow --}}
                 <div class="absolute -top-16 -right-16 w-56 h-56 bg-red-600/15 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-700"></div>
                 <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-rose-600 to-amber-500"></div>
@@ -111,7 +111,7 @@
                                 $photoUrl = $teacher->photo_url;
                                 $initials = strtoupper(substr(trim(preg_replace('/^(Drs\.|Dr\.|Ir\.|H\.|Hj\.)\s+/i', '', $teacher->name)), 0, 2));
                             @endphp
-                            <div class="rounded-sm sm:rounded-none border border-slate-200/90 bg-white p-4 sm:p-5 shadow-2xs hover:shadow-md hover:border-red-500/40 transition-all duration-300 flex flex-col sm:flex-row sm:items-center gap-3.5 sm:gap-4 group">
+                            <div class="rounded-sm sm:rounded-none border border-slate-200/90 bg-white p-3.5 sm:p-4 shadow-2xs hover:shadow-md hover:border-red-500/40 transition-all duration-300 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-3.5 group">
                                 {{-- Teacher Avatar --}}
                                 <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-sm overflow-hidden shrink-0 bg-slate-100 border-2 border-slate-200 group-hover:border-red-500 transition-colors shadow-2xs flex items-center justify-center">
                                     @if($hasPhoto && $photoUrl)
