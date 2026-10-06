@@ -16,9 +16,16 @@ class CreateGalleryAlbum extends CreateRecord
 
     protected function afterCreate(): void
     {
-        $photos = $this->data['gallery_photos'] ?? [];
-        if (!empty($photos) && is_array($photos)) {
+        $photos = $this->form->getState()['gallery_photos'] ?? $this->data['gallery_photos'] ?? [];
+        if (!is_array($photos)) {
+            $photos = !empty($photos) ? [$photos] : [];
+        }
+
+        if (!empty($photos)) {
             foreach ($photos as $index => $photoPath) {
+                if ($photoPath instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) {
+                    $photoPath = $photoPath->store('galleries/items', 'public');
+                }
                 if ($photoPath && is_string($photoPath)) {
                     $this->record->items()->create([
                         'file_path' => $photoPath,

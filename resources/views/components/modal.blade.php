@@ -44,12 +44,13 @@ $maxWidthClass = [
     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
     x-show="show"
-    class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-[100]"
-    style="display: {{ $show ? 'block' : 'none' }};"
+    class="fixed inset-0 z-[100] overflow-y-auto p-4 sm:p-6 md:p-8 flex items-center justify-center min-h-screen"
+    style="display: {{ $show ? 'flex' : 'none' }};"
 >
+    <!-- Backdrop Background -->
     <div
         x-show="show"
-        class="fixed inset-0 transform transition-all"
+        class="fixed inset-0 bg-charcoal-950/80 backdrop-blur-sm z-0"
         x-on:click="show = false"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0"
@@ -57,13 +58,13 @@ $maxWidthClass = [
         x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-    >
-        <div class="absolute inset-0 bg-charcoal-950/80 backdrop-blur-sm"></div>
-    </div>
+    ></div>
 
+    <!-- Modal Dialog Card (stops click propagation so clicking inside never closes modal) -->
     <div
         x-show="show"
-        class="mb-6 bg-white rounded-sm sm:rounded-none overflow-hidden shadow-2xl transform transition-all sm:w-full {{ $maxWidthClass }} sm:mx-auto border border-gray-200"
+        x-on:click.stop
+        class="relative z-10 w-full {{ $maxWidthClass }} my-auto bg-white rounded-sm sm:rounded-none overflow-hidden shadow-2xl border border-gray-200 transform transition-all"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"

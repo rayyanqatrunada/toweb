@@ -378,13 +378,53 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['a
             break;
 
         // -------------------------------------------------------------
-        // F. STORAGE SYMLINK
+        // F. STORAGE SYMLINK & IZIN UPLOAD FOTO
         // -------------------------------------------------------------
+        case 'storage_fix_permissions':
         case 'storage_link':
-            $actionTitle = 'Pembuatan Storage Link (storage:link)';
+            $actionTitle = 'Perbaikan Folder & Izin Upload Foto Hosting';
             $output = [];
+            
+            $dirsToEnsure = [
+                'storage/app/public',
+                'storage/app/private/livewire-tmp',
+                'storage/framework/cache/data',
+                'storage/framework/sessions',
+                'storage/framework/views',
+                'storage/logs',
+                'public/storage',
+                'public/storage/galleries',
+                'public/storage/galleries/covers',
+                'public/storage/galleries/items',
+                'public/storage/facilities',
+                'public/storage/teachers',
+                'public/storage/documents',
+                'public/storage/headers',
+                'public/storage/settings',
+                'public/storage/posts',
+                'public/storage/alumni',
+                'public/storage/achievements',
+            ];
+            
+            foreach ($dirsToEnsure as $dir) {
+                $fullPath = $laravelRoot . '/' . $dir;
+                if (!file_exists($fullPath)) {
+                    @mkdir($fullPath, 0775, true);
+                    $output[] = "[DIR CREATED]: $dir";
+                }
+                @chmod($fullPath, 0775);
+            }
+            
             $output[] = "$ php artisan storage:link";
             $output[] = (string)shell_exec($phpBinary . ' artisan storage:link 2>&1');
+            
+            $output[] = "$ php artisan optimize:clear";
+            $output[] = (string)shell_exec($phpBinary . ' artisan optimize:clear 2>&1');
+            
+            $pubStorage = $laravelRoot . '/public/storage';
+            $isWritable = is_writable($pubStorage);
+            $output[] = "[HASIL]: public/storage writable = " . ($isWritable ? '✅ BISA DITULIS (Izin OK)' : '⚠️ TIDAK BISA DITULIS (Cek file manager / permission 775)');
+            
             $actionResult = implode("\n", array_map('trim', $output));
             break;
 
@@ -1472,8 +1512,8 @@ function togglePassword() {
                     <div class="action-card-header">
                         <div class="action-icon sky">🔗</div>
                         <div>
-                            <div class="action-card-title">Storage Symlink & Maintenance</div>
-                            <div class="action-card-desc">Hubungkan symlink penyimpanan publik atau aktifkan mode perbaikan server.</div>
+                            <div class="action-card-title">Storage Izin Upload & Maintenance</div>
+                            <div class="action-card-desc">Buat folder foto, perbaiki izin tulis (chmod) storage upload, atau mode perbaikan.</div>
                         </div>
                     </div>
                 </div>
@@ -1481,9 +1521,9 @@ function togglePassword() {
                     <div style="display: flex; gap: 0.5rem;">
                         <form method="POST" action="" style="flex: 1;">
                             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
-                            <input type="hidden" name="action" value="storage_link">
+                            <input type="hidden" name="action" value="storage_fix_permissions">
                             <button type="submit" class="btn btn-outline" style="width: 100%;">
-                                🔗 Fix Storage Link
+                                📁 Fix Izin & Folder Storage
                             </button>
                         </form>
                         <form method="POST" action="" style="flex: 1;">

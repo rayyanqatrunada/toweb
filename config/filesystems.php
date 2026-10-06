@@ -43,7 +43,7 @@ return [
             // Simpan langsung ke public/storage/ — tidak perlu symlink (storage:link)
             // Ini fix untuk shared hosting yang tidak support symlink
             'root' => public_path('storage'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            'url' => env('ASSET_URL') ?: (env('APP_URL') && !in_array(env('APP_URL'), ['http://localhost', 'http://127.0.0.1:8000', 'http://localhost:8000']) ? rtrim(env('APP_URL'), '/').'/storage' : '/storage'),
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
