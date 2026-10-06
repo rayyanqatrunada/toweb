@@ -56,7 +56,7 @@
 
                 <a href="{{ route('gallery.index') }}" 
                    class="flex flex-col justify-center items-center px-4 py-2 min-w-max border transition-colors duration-300 {{ $currentFilter === 'all' ? 'bg-[#1B1B1E] border-[#1B1B1E] text-white' : 'bg-white border-[#E4E1E5] text-[#5F5E5E] hover:bg-gray-50' }}">
-                    <span class="font-sans font-bold text-xs uppercase tracking-[1.2px]">Semua</span>
+                    <span class="font-sans font-bold text-xs uppercase tracking-[1.2px]">Semua Foto</span>
                 </a>
 
                 @foreach($albums as $album)
@@ -65,34 +65,27 @@
                         <span class="font-sans font-bold text-xs uppercase tracking-[1.2px]">{{ $album->title }}</span>
                     </a>
                 @endforeach
+
+                <a href="{{ route('gallery.index', ['album' => 'prestasi']) }}" 
+                   class="flex flex-col justify-center items-center px-4 py-2 min-w-max border transition-colors duration-300 {{ $currentFilter === 'prestasi' ? 'bg-[#1B1B1E] border-[#1B1B1E] text-white' : 'bg-white border-[#E4E1E5] text-[#5F5E5E] hover:bg-gray-50' }}">
+                    <span class="font-sans font-bold text-xs uppercase tracking-[1.2px]">Prestasi Siswa</span>
+                </a>
+
+                <a href="{{ route('gallery.index', ['album' => 'fasilitas']) }}" 
+                   class="flex flex-col justify-center items-center px-4 py-2 min-w-max border transition-colors duration-300 {{ $currentFilter === 'fasilitas' ? 'bg-[#1B1B1E] border-[#1B1B1E] text-white' : 'bg-white border-[#E4E1E5] text-[#5F5E5E] hover:bg-gray-50' }}">
+                    <span class="font-sans font-bold text-xs uppercase tracking-[1.2px]">Fasilitas Bengkel</span>
+                </a>
+
+                <a href="{{ route('gallery.index', ['album' => 'berita']) }}" 
+                   class="flex flex-col justify-center items-center px-4 py-2 min-w-max border transition-colors duration-300 {{ $currentFilter === 'berita' ? 'bg-[#1B1B1E] border-[#1B1B1E] text-white' : 'bg-white border-[#E4E1E5] text-[#5F5E5E] hover:bg-gray-50' }}">
+                    <span class="font-sans font-bold text-xs uppercase tracking-[1.2px]">Warta & Berita</span>
+                </a>
             </div>
 
             <!-- Bento Grid -->
-            @if($items->count() > 0 || (isset($achievements) && $achievements->count() > 0))
+            @if($items->count() > 0)
                 <div class="w-full bento-gallery-grid">
-                    @php
-                        $allGalleryItems = collect();
-                        if (isset($achievements)) {
-                            foreach($achievements as $ach) {
-                                $allGalleryItems->push((object)[
-                                    'file_path' => $ach->photo,
-                                    'title' => $ach->title,
-                                    'album_title' => 'Prestasi',
-                                    'description' => $ach->description,
-                                ]);
-                            }
-                        }
-                        foreach($items as $item) {
-                            $allGalleryItems->push((object)[
-                                'file_path' => $item->file_path,
-                                'title' => $item->title,
-                                'album_title' => $item->album ? $item->album->title : null,
-                                'description' => $item->description,
-                            ]);
-                        }
-                    @endphp
-                    
-                    @foreach($allGalleryItems as $index => $item)
+                    @foreach($items as $index => $item)
                         @php
                             // Repeating pattern every 6 items:
                             // 0: Large (2col × 2row)
@@ -108,12 +101,19 @@
                                 5 => 'bento-wide',
                                 default => 'bento-normal',
                             };
+
+                            $photoUrl = (str_starts_with($item->file_path, 'http://') || str_starts_with($item->file_path, 'https://')) 
+                                ? $item->file_path 
+                                : Storage::url(ltrim(preg_replace('#^storage/#', '', $item->file_path), '/'));
+                            
+                            $fallbackSvg = "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22600%22%20viewBox%3D%220%200%20800%20600%22%3E%3Crect%20fill%3D%22%231F2937%22%20width%3D%22800%22%20height%3D%22600%22%2F%3E%3Cpath%20d%3D%22M350%20250a50%2050%200%201%200%20100%200%2050%2050%200%201%200-100%200zm-50%20150h200l-60-80-40%2050-30-40-70%2070z%22%20fill%3D%22%23DC2626%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22450%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22bold%22%20fill%3D%22%23FFFFFF%22%20text-anchor%3D%22middle%22%3EDOKUMENTASI%20TBSM%3C%2Ftext%3E%3C%2Fsvg%3E";
                         @endphp
 
                         <div class="bento-item {{ $sizeClass }} group relative bg-white border border-[#E4E1E5] overflow-hidden {{ $animationClasses }}">
                             
-                            <img src="{{ Storage::url($item->file_path) }}" 
+                            <img src="{{ $photoUrl }}" 
                                  alt="{{ $item->title ?? $item->album_title ?? 'Gallery image' }}" 
+                                 onerror="this.onerror=null; this.src='{{ $fallbackSvg }}';"
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                             
                             <!-- Overlay -->
@@ -121,7 +121,7 @@
                                 
                                 @if($item->album_title)
                                 <div class="flex items-center uppercase font-sans font-bold text-[12px] tracking-[1.2px] text-[#FFDAD6] mb-1 pb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                    {{ Str::limit($item->album_title, 25) }}
+                                    {{ Str::limit($item->album_title, 35) }}
                                 </div>
                                 @endif
                                 

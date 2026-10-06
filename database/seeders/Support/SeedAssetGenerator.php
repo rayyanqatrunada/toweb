@@ -73,6 +73,70 @@ class SeedAssetGenerator
     }
 
     /**
+     * Ensure a specific target image path exists on public disk, generating a clean branded image if missing.
+     */
+    public static function generateImageForPath(
+        string $targetPath,
+        string $text,
+        int $width = 800,
+        int $height = 600,
+        string $bgColor = '#1e293b',
+        string $textColor = '#ffffff'
+    ): string {
+        $cleanPath = ltrim(preg_replace('#^storage/#', '', $targetPath), '/');
+
+        if (Storage::disk('public')->exists($cleanPath) && Storage::disk('public')->size($cleanPath) > 500) {
+            return $cleanPath;
+        }
+
+        if (!extension_loaded('gd')) {
+            Storage::disk('public')->put($cleanPath, 'dummy content');
+            return $cleanPath;
+        }
+
+        $image = imagecreatetruecolor($width, $height);
+
+        list($bgR, $bgG, $bgB) = sscanf($bgColor, "#%02x%02x%02x");
+        list($textR, $textG, $textB) = sscanf($textColor, "#%02x%02x%02x");
+
+        $bg = imagecolorallocate($image, $bgR ?? 30, $bgG ?? 41, $bgB ?? 59);
+        $fg = imagecolorallocate($image, $textR ?? 255, $textG ?? 255, $textB ?? 255);
+
+        imagefill($image, 0, 0, $bg);
+
+        // Add subtle border
+        $borderCol = imagecolorallocate($image, min(255, ($bgR ?? 30) + 40), min(255, ($bgG ?? 41) + 40), min(255, ($bgB ?? 59) + 40));
+        imagerectangle($image, 0, 0, $width - 1, $height - 1, $borderCol);
+
+        $font = 5;
+        $fontWidth = imagefontwidth($font);
+        $fontHeight = imagefontheight($font);
+
+        $maxLen = intval(($width - 40) / $fontWidth);
+        $displayText = Str::limit($text, $maxLen, '...');
+        $textWidth = $fontWidth * strlen($displayText);
+        $x = intval(($width - $textWidth) / 2);
+        $y = intval(($height - $fontHeight) / 2);
+
+        imagestring($image, $font, $x, $y, $displayText, $fg);
+
+        // Add subtext watermark
+        $sub = 'TBSM SMKN 1 BANGSRI';
+        $subWidth = $fontWidth * strlen($sub);
+        $subX = intval(($width - $subWidth) / 2);
+        imagestring($image, 3, $subX, $y + 30, $sub, $fg);
+
+        ob_start();
+        imagejpeg($image, null, 75);
+        $imageData = ob_get_clean();
+        imagedestroy($image);
+
+        Storage::disk('public')->put($cleanPath, $imageData);
+
+        return $cleanPath;
+    }
+
+    /**
      * Generate a dummy PDF file and save it to the public storage disk.
      *
      * @param string $name

@@ -417,6 +417,9 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['a
             
             $output[] = "$ php artisan storage:link";
             $output[] = (string)shell_exec($phpBinary . ' artisan storage:link 2>&1');
+
+            $output[] = "$ php artisan gallery:sync-assets";
+            $output[] = (string)shell_exec($phpBinary . ' artisan gallery:sync-assets 2>&1');
             
             $output[] = "$ php artisan optimize:clear";
             $output[] = (string)shell_exec($phpBinary . ' artisan optimize:clear 2>&1');

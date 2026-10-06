@@ -141,5 +141,87 @@ class GalleryCmsTest extends TestCase
         $this->assertCount(1, $album->items);
         $this->assertEquals($album->thumbnail, $album->items->first()->file_path);
     }
+
+    public function test_editing_album_preserves_existing_photos()
+    {
+        $album = GalleryAlbum::create([
+            'title' => 'Album Lama',
+            'slug' => 'album-lama',
+            'status' => 'published',
+        ]);
+
+        $item1 = $album->items()->create([
+            'file_path' => 'galleries/items/old-photo-1.jpg',
+            'sort_order' => 1,
+        ]);
+        $item2 = $album->items()->create([
+            'file_path' => 'galleries/items/old-photo-2.jpg',
+            'sort_order' => 2,
+        ]);
+
+        $newPhoto = \Illuminate\Http\UploadedFile::fake()->image('new-photo.jpg', 800, 600);
+
+        \Livewire\Livewire::test(\App\Filament\Resources\GalleryAlbums\Pages\EditGalleryAlbum::class, [
+            'record' => $album->getKey(),
+        ])
+            ->set('data.gallery_photos', [$newPhoto])
+            ->call('save')
+            ->assertHasNoFormErrors();
+
+        $album->refresh();
+        // The original 2 items must STILL exist, plus the 1 new item = 3 total!
+        $this->assertCount(3, $album->items);
+        $this->assertDatabaseHas('gallery_items', ['id' => $item1->id]);
+        $this->assertDatabaseHas('gallery_items', ['id' => $item2->id]);
+    }
+
+    public function test_gallery_frontend_aggregates_assets_from_achievements_facilities_and_posts()
+    {
+        $album = GalleryAlbum::create([
+            'title' => 'Kegiatan Otomotif',
+            'slug' => 'kegiatan-otomotif',
+            'status' => 'published',
+            'published_at' => now(),
+        ]);
+        $album->items()->create([
+            'file_path' => 'galleries/items/kegiatan.jpg',
+            'title' => 'Foto Kegiatan',
+            'sort_order' => 1,
+        ]);
+
+        \App\Models\Achievement::create([
+            'title' => 'Juara 1 LKS Otomotif',
+            'slug' => 'juara-1-lks-otomotif',
+            'rank' => 'Juara 1',
+            'level' => 'Provinsi',
+            'photo' => 'achievements/lks.jpg',
+            'status' => 'published',
+            'date' => now(),
+        ]);
+
+        \App\Models\Facility::create([
+            'name' => 'Bengkel Service AHASS',
+            'slug' => 'bengkel-service-ahass',
+            'photo' => 'facilities/bengkel.jpg',
+            'status' => 'available',
+        ]);
+
+        \App\Models\Post::create([
+            'title' => 'Kunjungan Industri Honda',
+            'slug' => 'kunjungan-industri-honda',
+            'content' => 'Liputan dokumentasi kunjungan industri.',
+            'thumbnail' => 'posts/kunjungan.jpg',
+            'status' => 'published',
+            'published_at' => now(),
+            'user_id' => $this->user->id,
+        ]);
+
+        $response = $this->get(route('gallery.index'));
+        $response->assertStatus(200);
+        $response->assertSee('Foto Kegiatan');
+        $response->assertSee('Juara 1 LKS Otomotif');
+        $response->assertSee('Bengkel Service AHASS');
+        $response->assertSee('Kunjungan Industri Honda');
+    }
 }
 

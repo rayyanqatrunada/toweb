@@ -24,46 +24,35 @@ class EditGalleryAlbum extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $data['gallery_photos'] = $this->record->items()->pluck('file_path')->toArray();
+        // Jangan timpa dengan item lama agar file upload hanya menerima foto baru yang ingin ditambahkan
+        $data['gallery_photos'] = [];
         return $data;
     }
 
     protected function afterSave(): void
     {
-        $photos = $this->form->getState()['gallery_photos'] ?? $this->data['gallery_photos'] ?? null;
-        if (!is_array($photos) && !is_null($photos)) {
+        $photos = $this->form->getState()['gallery_photos'] ?? $this->data['gallery_photos'] ?? [];
+        if (!is_array($photos)) {
             $photos = !empty($photos) ? [$photos] : [];
         }
 
-        if (is_array($photos)) {
-            $existingItems = $this->record->items()->get();
-            $existingPaths = $existingItems->pluck('file_path')->toArray();
-            
-            // Tambahkan foto baru yang belum tersimpan di database
+        if (!empty($photos)) {
+            $existingPaths = $this->record->items()->pluck('file_path')->toArray();
             $maxSort = $this->record->items()->max('sort_order') ?? 0;
-            $savedStringPaths = [];
+
             foreach ($photos as $photoPath) {
                 if ($photoPath instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) {
                     $photoPath = $photoPath->store('galleries/items', 'public');
                 }
-                if ($photoPath && is_string($photoPath)) {
-                    $savedStringPaths[] = $photoPath;
-                    if (!in_array($photoPath, $existingPaths)) {
-                        $maxSort++;
-                        $this->record->items()->create([
-                            'file_path' => $photoPath,
-                            'aspect_ratio' => '1:1',
-                            'sort_order' => $maxSort,
-                            'is_featured' => false,
-                        ]);
-                    }
-                }
-            }
-
-            // Hapus item foto yang di-remove dari form file upload
-            foreach ($existingItems as $item) {
-                if (!in_array($item->file_path, $savedStringPaths) && $item->file_path !== $this->record->thumbnail) {
-                    $item->delete();
+                if ($photoPath && is_string($photoPath) && !in_array($photoPath, $existingPaths)) {
+                    $maxSort++;
+                    $this->record->items()->create([
+                        'file_path' => $photoPath,
+                        'aspect_ratio' => '1:1',
+                        'sort_order' => $maxSort,
+                        'is_featured' => false,
+                    ]);
+                    $existingPaths[] = $photoPath;
                 }
             }
         }

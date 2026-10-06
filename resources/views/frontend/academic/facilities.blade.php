@@ -239,7 +239,7 @@
                                 </div>
                             </div>
 
-                            <div class="p-6 pt-0">
+                            <div class="p-4 sm:p-6 pt-0">
                                 <button 
                                     type="button" 
                                     @click="selectedFacility = {
@@ -250,10 +250,11 @@
                                         condition: {{ json_encode($facility->condition ?? 'Sangat Baik') }},
                                         image: {{ json_encode($facilityPhoto ?? '') }}
                                     }; $dispatch('open-modal', 'facility-detail-modal')"
-                                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm sm:rounded-[2px] bg-gray-50 hover:bg-figma-dark hover:text-white text-xs sm:text-sm font-semibold text-figma-dark transition-all border border-gray-200 cursor-pointer"
+                                    class="w-full inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2.5 rounded-sm sm:rounded-[2px] bg-gray-50 hover:bg-figma-dark hover:text-white text-[11px] sm:text-sm font-semibold text-figma-dark transition-all border border-gray-200 cursor-pointer"
                                 >
-                                    <span>Lihat Spesifikasi Lengkap</span>
-                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <span class="sm:hidden">Lihat Selengkapnya</span>
+                                    <span class="hidden sm:inline">Lihat Spesifikasi Lengkap</span>
+                                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                     </svg>
                                 </button>
