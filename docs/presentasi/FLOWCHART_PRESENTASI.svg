@@ -1,0 +1,270 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="background:#ffffff; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+    <defs>
+        <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#DC2626"/>
+            <stop offset="100%" stop-color="#991B1B"/>
+        </linearGradient>
+        <filter id="boxShadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.05"/>
+        </filter>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#3F3F46"/>
+        </marker>
+        <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#DC2626"/>
+        </marker>
+    </defs>
+
+    <!-- Slide Background Graphic Curves -->
+    <path d="M 1200 -50 C 1450 150, 1650 100, 1950 -20 L 1950 450 C 1600 300, 1400 450, 1200 150 Z" fill="#F4F4F5" opacity="0.45"/>
+    <path d="M 1350 -50 C 1550 180, 1750 120, 1950 200 L 1950 600 C 1650 420, 1450 550, 1350 200 Z" fill="#E4E4E7" opacity="0.3"/>
+    <path d="M 900 1120 C 1200 900, 1500 1000, 1950 850 L 1950 1120 Z" fill="#F4F4F5" opacity="0.4"/>
+    <path d="M 1100 1120 C 1350 940, 1600 1020, 1950 920 L 1950 1120 Z" fill="#E4E4E7" opacity="0.25"/>
+
+    <!-- Header Section -->
+    <g transform="translate(80, 50)">
+        <text x="0" y="45" font-size="44" font-weight="900" fill="#18181B" letter-spacing="-1">Flowchart</text>
+        <text x="0" y="72" font-size="13" font-weight="700" fill="#DC2626" letter-spacing="2">DIAGRAM ALIR SISTEM &amp; PENGALAMAN PENGGUNA (USER JOURNEY)</text>
+        <text x="0" y="90" font-size="12" font-weight="500" fill="#71717A">Sistem Informasi Vokasi TBSM SMKN 1 Bangsri • Binaan Resmi PT Astra Honda Motor (AHM)</text>
+    </g>
+
+    <!-- Header Right Badges -->
+    <g transform="translate(1560, 55)">
+        <rect x="0" y="0" width="130" height="34" rx="4" fill="#DC2626"/>
+        <text x="65" y="21" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">AHM BINAAN</text>
+        
+        <rect x="140" y="0" width="140" height="34" rx="4" fill="#18181B"/>
+        <text x="210" y="21" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">TBSM SMKN 1</text>
+    </g>
+
+    <!-- ==================== FLOWCHART TRUNK (CENTRAL TOP) ==================== -->
+    <!-- 1. Start Pill -->
+    <g transform="translate(895, 125)">
+        <rect width="130" height="38" rx="19" fill="#F4F4F5" stroke="#18181B" stroke-width="1.8"/>
+        <text x="65" y="24" font-size="13" font-weight="700" fill="#18181B" text-anchor="middle">Mulai</text>
+    </g>
+    <line x1="960" y1="163" x2="960" y2="195" stroke="#3F3F46" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- 2. Process: Mengakses Web -->
+    <g transform="translate(800, 195)">
+        <rect width="320" height="42" rx="3" fill="#FFFFFF" stroke="#18181B" stroke-width="1.6"/>
+        <text x="160" y="26" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle">Pengguna membuka website TBSM SMKN 1 Bangsri</text>
+    </g>
+    <line x1="960" y1="237" x2="960" y2="265" stroke="#3F3F46" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- 3. Parallelogram: Tampilkan Beranda -->
+    <g transform="translate(800, 265)">
+        <polygon points="20,0 340,0 320,42 0,42" fill="#FFFFFF" stroke="#18181B" stroke-width="1.6"/>
+        <text x="170" y="26" font-size="12" font-weight="600" fill="#18181B" text-anchor="middle">Tampilkan Halaman Utama (Beranda /)</text>
+    </g>
+    <line x1="960" y1="307" x2="960" y2="335" stroke="#3F3F46" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- 4. Diamond: Pilih Menu Navigasi -->
+    <g transform="translate(845, 335)">
+        <polygon points="115,0 230,30 115,60 0,30" fill="#FAFAFA" stroke="#18181B" stroke-width="1.6"/>
+        <text x="115" y="34" font-size="11" font-weight="700" fill="#18181B" text-anchor="middle">Pilih Menu Navigasi</text>
+    </g>
+
+    <!-- Branch Distribution Lines -->
+    <path d="M 960 395 L 960 415 M 240 415 L 1680 415" stroke="#3F3F46" stroke-width="1.5" fill="none"/>
+    <line x1="240" y1="415" x2="240" y2="445" stroke="#3F3F46" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="600" y1="415" x2="600" y2="445" stroke="#3F3F46" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="960" y1="415" x2="960" y2="445" stroke="#3F3F46" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="1320" y1="415" x2="1320" y2="445" stroke="#3F3F46" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="1680" y1="415" x2="1680" y2="445" stroke="#3F3F46" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- ==================== COLUMN 1: PROFIL & AKADEMIK ==================== -->
+    <g transform="translate(100, 445)">
+        <polygon points="15,0 280,0 265,40 0,40" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="25" font-size="11" font-weight="700" fill="#18181B" text-anchor="middle">Menu Profil &amp; Kurikulum</text>
+        
+        <line x1="140" y1="40" x2="140" y2="65" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <polygon points="140,65 240,90 140,115 40,90" fill="#FAFAFA" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="94" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Pilih Kategori</text>
+
+        <path d="M 40 90 L 20 90 L 20 140 L 70 140" stroke="#3F3F46" stroke-width="1.2" fill="none" marker-end="url(#arrow)"/>
+        <path d="M 240 90 L 260 90 L 260 140 L 210 140" stroke="#3F3F46" stroke-width="1.2" fill="none" marker-end="url(#arrow)"/>
+
+        <rect x="0" y="140" width="135" height="42" rx="2" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <text x="67" y="157" font-size="9.5" font-weight="600" fill="#18181B" text-anchor="middle">Visi, Misi &amp; Sejarah</text>
+        <text x="67" y="171" font-size="9" fill="#71717A" text-anchor="middle">Fokus Kompetensi</text>
+
+        <rect x="145" y="140" width="135" height="42" rx="2" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <text x="212" y="157" font-size="9.5" font-weight="600" fill="#18181B" text-anchor="middle">Silabus AMTC Honda</text>
+        <text x="212" y="171" font-size="9" fill="#71717A" text-anchor="middle">Daftar Guru / BNSP</text>
+
+        <path d="M 67 182 L 67 210 L 140 210 M 212 182 L 212 210 L 140 210" stroke="#3F3F46" stroke-width="1.2" fill="none"/>
+        <line x1="140" y1="210" x2="140" y2="230" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="10" y="230" width="260" height="44" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="248" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Tampilkan Informasi Akademik</text>
+        <text x="140" y="262" font-size="9" fill="#71717A" text-anchor="middle">&amp; Profil Dewan Pendidik TBSM</text>
+
+        <line x1="140" y1="274" x2="140" y2="300" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <rect x="20" y="300" width="240" height="38" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="323" font-size="10" font-weight="600" fill="#18181B" text-anchor="middle">Informasi Kurikulum Tersaji</text>
+    </g>
+
+    <!-- ==================== COLUMN 2: FASILITAS BENGKEL ==================== -->
+    <g transform="translate(460, 445)">
+        <polygon points="15,0 280,0 265,40 0,40" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="25" font-size="11" font-weight="700" fill="#18181B" text-anchor="middle">Menu Fasilitas Bengkel</text>
+
+        <line x1="140" y1="40" x2="140" y2="70" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="10" y="70" width="260" height="42" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="88" font-size="10" font-weight="600" fill="#18181B" text-anchor="middle">Akses Katalog Infrastruktur</text>
+        <text x="140" y="102" font-size="9" fill="#71717A" text-anchor="middle">Bengkel Standar Resmi AHASS</text>
+
+        <line x1="140" y1="112" x2="140" y2="140" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="10" y="140" width="260" height="50" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="158" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Inspeksi Sarana &amp; Pos Tefa</text>
+        <text x="140" y="172" font-size="9" fill="#52525B" text-anchor="middle">Bike Lift, SST, Engine Overhaul Stand,</text>
+        <text x="140" y="183" font-size="8.5" fill="#71717A" text-anchor="middle">Injector Cleaner &amp; Scanner PGM-FI</text>
+
+        <line x1="140" y1="190" x2="140" y2="230" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="10" y="230" width="260" height="44" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="248" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Tampilkan Foto &amp; Spesifikasi</text>
+        <text x="140" y="262" font-size="9" fill="#71717A" text-anchor="middle">Kapasitas Tempat &amp; Budaya 5R/K3LH</text>
+
+        <line x1="140" y1="274" x2="140" y2="300" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <rect x="20" y="300" width="240" height="38" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="323" font-size="10" font-weight="600" fill="#18181B" text-anchor="middle">Sarana Bengkel Terverifikasi</text>
+    </g>
+
+    <!-- ==================== COLUMN 3: KEMITRAAN & KARIR ==================== -->
+    <g transform="translate(820, 445)">
+        <polygon points="15,0 280,0 265,40 0,40" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="25" font-size="11" font-weight="700" fill="#18181B" text-anchor="middle">Menu Industri &amp; Karir (BKK)</text>
+
+        <line x1="140" y1="40" x2="140" y2="65" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <polygon points="140,65 240,90 140,115 40,90" fill="#FAFAFA" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="94" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Layanan Karir</text>
+
+        <path d="M 40 90 L 20 90 L 20 140 L 70 140" stroke="#3F3F46" stroke-width="1.2" fill="none" marker-end="url(#arrow)"/>
+        <path d="M 240 90 L 260 90 L 260 140 L 210 140" stroke="#3F3F46" stroke-width="1.2" fill="none" marker-end="url(#arrow)"/>
+
+        <rect x="0" y="140" width="135" height="42" rx="2" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <text x="67" y="157" font-size="9.5" font-weight="600" fill="#18181B" text-anchor="middle">Mitra AHASS &amp; DUDI</text>
+        <text x="67" y="171" font-size="9" fill="#71717A" text-anchor="middle">Penempatan PKL 6 Bln</text>
+
+        <rect x="145" y="140" width="135" height="42" rx="2" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <text x="212" y="157" font-size="9.5" font-weight="600" fill="#18181B" text-anchor="middle">Lowongan Kerja (BKK)</text>
+        <text x="212" y="171" font-size="9" fill="#71717A" text-anchor="middle">Tracer Study Alumni</text>
+
+        <path d="M 67 182 L 67 210 L 140 210 M 212 182 L 212 210 L 140 210" stroke="#3F3F46" stroke-width="1.2" fill="none"/>
+        <line x1="140" y1="210" x2="140" y2="230" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="10" y="230" width="260" height="44" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="248" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Eksplorasi Jaringan Kerja</text>
+        <text x="140" y="262" font-size="9" fill="#71717A" text-anchor="middle">&amp; Persyaratan Rekrutmen Lulusan</text>
+
+        <line x1="140" y1="274" x2="140" y2="300" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <rect x="20" y="300" width="240" height="38" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="323" font-size="10" font-weight="600" fill="#18181B" text-anchor="middle">Akses Karir Terbuka</text>
+    </g>
+
+    <!-- ==================== COLUMN 4: PUBLIKASI & UNDUHAN ==================== -->
+    <g transform="translate(1180, 445)">
+        <polygon points="15,0 280,0 265,40 0,40" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="25" font-size="11" font-weight="700" fill="#18181B" text-anchor="middle">Menu Publikasi &amp; Unduhan</text>
+
+        <line x1="140" y1="40" x2="140" y2="65" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <polygon points="140,65 240,90 140,115 40,90" fill="#FAFAFA" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="94" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Tipe Konten</text>
+
+        <path d="M 40 90 L 20 90 L 20 140 L 70 140" stroke="#3F3F46" stroke-width="1.2" fill="none" marker-end="url(#arrow)"/>
+        <path d="M 240 90 L 260 90 L 260 140 L 210 140" stroke="#3F3F46" stroke-width="1.2" fill="none" marker-end="url(#arrow)"/>
+
+        <rect x="0" y="140" width="135" height="42" rx="2" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <text x="67" y="157" font-size="9.5" font-weight="600" fill="#18181B" text-anchor="middle">Berita &amp; Prestasi LKS</text>
+        <text x="67" y="171" font-size="9" fill="#71717A" text-anchor="middle">Album Galeri Kegiatan</text>
+
+        <rect x="145" y="140" width="135" height="42" rx="2" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <text x="212" y="157" font-size="9.5" font-weight="600" fill="#18181B" text-anchor="middle">Silabus &amp; Modul PDF</text>
+        <text x="212" y="171" font-size="9" fill="#71717A" text-anchor="middle">Dokumen Vokasi</text>
+
+        <path d="M 67 182 L 67 210 L 140 210 M 212 182 L 212 210 L 140 210" stroke="#3F3F46" stroke-width="1.2" fill="none"/>
+        <line x1="140" y1="210" x2="140" y2="230" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="10" y="230" width="260" height="44" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="248" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Baca Artikel / Unduh Berkas</text>
+        <text x="140" y="262" font-size="9" fill="#71717A" text-anchor="middle">Pencatatan Counter Download Otomatis</text>
+
+        <line x1="140" y1="274" x2="140" y2="300" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <rect x="20" y="300" width="240" height="38" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="323" font-size="10" font-weight="600" fill="#18181B" text-anchor="middle">Warta / Berkas Berhasil Diakses</text>
+    </g>
+
+    <!-- ==================== COLUMN 5: LAYANAN KONTAK ==================== -->
+    <g transform="translate(1540, 445)">
+        <polygon points="15,0 280,0 265,40 0,40" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="25" font-size="11" font-weight="700" fill="#18181B" text-anchor="middle">Menu Hubungi Kami (/kontak)</text>
+
+        <line x1="140" y1="40" x2="140" y2="65" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <rect x="10" y="65" width="260" height="42" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="83" font-size="10" font-weight="600" fill="#18181B" text-anchor="middle">Isi Formulir Pertanyaan / Aspirasi</text>
+        <text x="140" y="97" font-size="9" fill="#71717A" text-anchor="middle">Nama, Email, Subjek, Pesan</text>
+
+        <line x1="140" y1="107" x2="140" y2="135" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+        <polygon points="140,135 240,165 140,195 40,165" fill="#FAFAFA" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="169" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Validasi Input?</text>
+
+        <path d="M 240 165 L 275 165 L 275 86 L 270 86" stroke="#DC2626" stroke-width="1.4" fill="none" marker-end="url(#arrowRed)"/>
+        <text x="260" y="155" font-size="8.5" font-weight="700" fill="#DC2626">Gagal</text>
+
+        <line x1="140" y1="195" x2="140" y2="230" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <text x="150" y="215" font-size="8.5" font-weight="700" fill="#059669">Valid</text>
+
+        <rect x="10" y="230" width="260" height="44" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="248" font-size="10" font-weight="700" fill="#18181B" text-anchor="middle">Simpan ke DB &amp; Notif Admin</text>
+        <text x="140" y="262" font-size="9" fill="#059669" text-anchor="middle">Status: unread badge di CMS</text>
+
+        <line x1="140" y1="274" x2="140" y2="300" stroke="#3F3F46" stroke-width="1.4" marker-end="url(#arrow)"/>
+        <rect x="20" y="300" width="240" height="38" rx="2" fill="#FFFFFF" stroke="#18181B" stroke-width="1.4"/>
+        <text x="140" y="323" font-size="10" font-weight="600" fill="#18181B" text-anchor="middle">Pesan Berhasil Terkirim</text>
+    </g>
+
+    <!-- ==================== FLOWCHART COLLECTOR & END ==================== -->
+    <path d="M 240 783 L 240 840 L 1680 840 L 1680 783 M 600 783 L 600 840 M 960 783 L 960 840 M 1320 783 L 1320 840" stroke="#3F3F46" stroke-width="1.5" fill="none"/>
+    <line x1="960" y1="840" x2="960" y2="875" stroke="#3F3F46" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Selesai Pill -->
+    <g transform="translate(895, 875)">
+        <rect width="130" height="38" rx="19" fill="#F4F4F5" stroke="#18181B" stroke-width="1.8"/>
+        <text x="65" y="24" font-size="13" font-weight="700" fill="#18181B" text-anchor="middle">Selesai</text>
+    </g>
+
+    <!-- Slide Footer -->
+    <g transform="translate(80, 990)">
+        <line x1="0" y1="0" x2="1760" y2="0" stroke="#E4E4E7" stroke-width="1.5"/>
+        
+        <text x="0" y="25" font-size="11" font-weight="600" fill="#71717A">KONSENTRASI KEAHLIAN TEKNIK DAN BISNIS SEPEDA MOTOR • SMK NEGERI 1 BANGSRI</text>
+        <text x="0" y="42" font-size="10" fill="#A1A1AA">Alur Logika Pengunjung Publik • Simbol Standar ANSI Flowchart • Terintegrasi Responsif</text>
+
+        <!-- Legend Symbols -->
+        <g transform="translate(1000, 20)">
+            <rect x="0" y="-10" width="30" height="15" rx="7" fill="#F4F4F5" stroke="#18181B" stroke-width="1.2"/>
+            <text x="36" y="2" font-size="10" fill="#71717A">Mulai / Selesai</text>
+
+            <polygon points="120,-10 150,-10 142,5 112,5" fill="#FFFFFF" stroke="#18181B" stroke-width="1.2"/>
+            <text x="156" y="2" font-size="10" fill="#71717A">Input / Output</text>
+
+            <rect x="235" y="-10" width="28" height="15" rx="1" fill="#FFFFFF" stroke="#18181B" stroke-width="1.2"/>
+            <text x="270" y="2" font-size="10" fill="#71717A">Proses Sistem</text>
+
+            <polygon points="355,-10 367,-2.5 355,5 343,-2.5" fill="#FAFAFA" stroke="#18181B" stroke-width="1.2"/>
+            <text x="375" y="2" font-size="10" fill="#71717A">Keputusan</text>
+        </g>
+
+        <!-- Slide Number Indicator -->
+        <text x="1760" y="32" font-size="20" font-weight="800" fill="#D4D4D8" text-anchor="end">5</text>
+    </g>
+</svg>

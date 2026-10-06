@@ -1,0 +1,401 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="background:#ffffff; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+    <defs>
+        <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#DC2626"/>
+            <stop offset="100%" stop-color="#991B1B"/>
+        </linearGradient>
+        <linearGradient id="tableHeaderDark" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#27272A"/>
+            <stop offset="100%" stop-color="#18181B"/>
+        </linearGradient>
+        <linearGradient id="tableHeaderRed" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#B91C1C"/>
+            <stop offset="100%" stop-color="#991B1B"/>
+        </linearGradient>
+        <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.06"/>
+        </filter>
+        <marker id="crow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+            <path d="M 0 1 L 10 6 L 0 11 M 10 1 L 10 11" fill="none" stroke="#52525B" stroke-width="1.5"/>
+        </marker>
+        <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+            <circle cx="5" cy="5" r="3" fill="#DC2626"/>
+        </marker>
+    </defs>
+
+    <!-- Slide Background Graphic Curves -->
+    <path d="M 1200 -50 C 1450 150, 1650 100, 1950 -20 L 1950 450 C 1600 300, 1400 450, 1200 150 Z" fill="#F4F4F5" opacity="0.45"/>
+    <path d="M 1350 -50 C 1550 180, 1750 120, 1950 200 L 1950 600 C 1650 420, 1450 550, 1350 200 Z" fill="#E4E4E7" opacity="0.3"/>
+    <path d="M 900 1120 C 1200 900, 1500 1000, 1950 850 L 1950 1120 Z" fill="#F4F4F5" opacity="0.4"/>
+    <path d="M 1100 1120 C 1350 940, 1600 1020, 1950 920 L 1950 1120 Z" fill="#E4E4E7" opacity="0.25"/>
+
+    <!-- Header Section -->
+    <g transform="translate(80, 50)">
+        <text x="0" y="45" font-size="44" font-weight="900" fill="#18181B" letter-spacing="-1">ERD</text>
+        <text x="0" y="72" font-size="13" font-weight="700" fill="#DC2626" letter-spacing="2">DOKUMENTASI STRUKTUR BASIS DATA RELASIONAL (26 TABEL 3NF)</text>
+        <text x="0" y="90" font-size="12" font-weight="500" fill="#71717A">Sistem Informasi Vokasi TBSM SMKN 1 Bangsri • Binaan Resmi PT Astra Honda Motor (AHM)</text>
+    </g>
+
+    <!-- Header Right Badges -->
+    <g transform="translate(1560, 55)">
+        <rect x="0" y="0" width="130" height="34" rx="4" fill="#DC2626"/>
+        <text x="65" y="21" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">AHM BINAAN</text>
+        
+        <rect x="140" y="0" width="140" height="34" rx="4" fill="#18181B"/>
+        <text x="210" y="21" font-size="11" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">TBSM SMKN 1</text>
+    </g>
+
+    <!-- ==================== TIER 1: CORE SISTEM & MEDIA (Y = 160) ==================== -->
+    <!-- Table: USERS (Col 1) -->
+    <g transform="translate(80, 160)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderRed)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">USERS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" font-weight="600" fill="#18181B">email</text><text x="185" y="84" font-size="10" font-weight="800" fill="#2563EB">UK</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">password</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">timestamp</text><text x="75" y="124" font-size="11" fill="#71717A">created_at</text>
+    </g>
+
+    <!-- Table: ACTIVITY_LOG (Col 2 - Directly connected to USERS) -->
+    <g transform="translate(345, 160)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">ACTIVITY_LOG</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="78" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="78" y="64" font-size="11" fill="#18181B">log_name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">text</text><text x="78" y="84" font-size="11" fill="#18181B">description</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">bigint</text><text x="78" y="104" font-size="11" font-weight="600" fill="#18181B">causer_id</text><text x="185" y="104" font-size="10" font-weight="800" fill="#059669">FK</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">timestamp</text><text x="78" y="124" font-size="11" fill="#71717A">created_at</text>
+    </g>
+
+    <!-- Table: SETTINGS (Col 3) -->
+    <g transform="translate(610, 160)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">SETTINGS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" font-weight="600" fill="#18181B">key</text><text x="185" y="64" font-size="10" font-weight="800" fill="#2563EB">UK</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">longtext</text><text x="75" y="84" font-size="11" fill="#18181B">value</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">group</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">timestamp</text><text x="75" y="124" font-size="11" fill="#71717A">updated_at</text>
+    </g>
+
+    <!-- Table: CONTACT_MESSAGES (Col 4) -->
+    <g transform="translate(875, 160)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderRed)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">CONTACT_MESSAGES</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" fill="#18181B">email</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">subject</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">boolean</text><text x="75" y="124" font-size="11" fill="#18181B">is_read</text>
+    </g>
+
+    <!-- Table: GALLERY_ALBUMS (Col 5) -->
+    <g transform="translate(1140, 160)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">GALLERY_ALBUMS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">title</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" font-weight="600" fill="#18181B">slug</text><text x="185" y="84" font-size="10" font-weight="800" fill="#2563EB">UK</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">date</text><text x="75" y="104" font-size="11" fill="#18181B">event_date</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">boolean</text><text x="75" y="124" font-size="11" fill="#18181B">is_active</text>
+    </g>
+
+    <!-- Table: GALLERY_ITEMS (Col 6 - Directly connected to GALLERY_ALBUMS) -->
+    <g transform="translate(1405, 160)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">GALLERY_ITEMS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">bigint</text><text x="75" y="64" font-size="11" font-weight="600" fill="#18181B">album_id</text><text x="185" y="64" font-size="10" font-weight="800" fill="#059669">FK</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" fill="#18181B">image</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">caption</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">int</text><text x="75" y="124" font-size="11" fill="#18181B">sort_order</text>
+    </g>
+
+    <!-- Table: DOWNLOADS (Col 7) -->
+    <g transform="translate(1670, 160)" filter="url(#cardShadow)">
+        <rect width="200" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="200" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="100" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">DOWNLOADS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="170" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">bigint</text><text x="75" y="64" font-size="11" font-weight="600" fill="#18181B">category_id</text><text x="170" y="64" font-size="10" font-weight="800" fill="#059669">FK</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" fill="#18181B">title</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">file_path</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">int</text><text x="75" y="124" font-size="11" fill="#18181B">download_cnt</text>
+    </g>
+
+    <!-- ==================== TIER 2: AKADEMIK & VOKASI (Y = 420) ==================== -->
+    <!-- Table: PROGRAMS (Col 1) -->
+    <g transform="translate(80, 420)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderRed)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">PROGRAMS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" font-weight="600" fill="#18181B">slug</text><text x="185" y="84" font-size="10" font-weight="800" fill="#2563EB">UK</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">code</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">boolean</text><text x="75" y="124" font-size="11" fill="#18181B">is_active</text>
+    </g>
+
+    <!-- Table: COMPETENCIES (Col 2 - Directly connected to PROGRAMS) -->
+    <g transform="translate(345, 420)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">COMPETENCIES</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="80" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">bigint</text><text x="80" y="64" font-size="11" font-weight="600" fill="#18181B">program_id</text><text x="185" y="64" font-size="10" font-weight="800" fill="#059669">FK</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="80" y="84" font-size="11" fill="#18181B">code</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="80" y="104" font-size="11" fill="#18181B">title</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">string</text><text x="80" y="124" font-size="11" fill="#18181B">standard</text>
+    </g>
+
+    <!-- Table: TEACHERS (Col 3) -->
+    <g transform="translate(610, 420)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderRed)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">TEACHERS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" fill="#18181B">nip</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">position</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">string</text><text x="75" y="124" font-size="11" fill="#18181B">certification</text>
+    </g>
+
+    <!-- Table: FACILITIES (Col 4) -->
+    <g transform="translate(875, 420)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">FACILITIES</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" fill="#18181B">category</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">int</text><text x="75" y="104" font-size="11" fill="#18181B">capacity</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">boolean</text><text x="75" y="124" font-size="11" fill="#18181B">is_ahass_std</text>
+    </g>
+
+    <!-- Table: ACHIEVEMENTS (Col 5) -->
+    <g transform="translate(1140, 420)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">ACHIEVEMENTS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">title</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" fill="#18181B">rank</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">level</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">int</text><text x="75" y="124" font-size="11" fill="#18181B">year</text>
+    </g>
+
+    <!-- Table: ALUMNI (Col 6) -->
+    <g transform="translate(1405, 420)" filter="url(#cardShadow)">
+        <rect width="215" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">ALUMNI</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">int</text><text x="75" y="84" font-size="11" fill="#18181B">graduation_yr</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">status_bmw</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">string</text><text x="75" y="124" font-size="11" fill="#18181B">company_name</text>
+    </g>
+
+    <!-- Table: DOWNLOAD_CATEGORIES (Col 7 - Directly connected to DOWNLOADS above) -->
+    <g transform="translate(1670, 420)" filter="url(#cardShadow)">
+        <rect width="200" height="150" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="200" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="100" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">DOWNLOAD_CATEGORIES</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="170" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" font-weight="600" fill="#18181B">slug</text><text x="170" y="84" font-size="10" font-weight="800" fill="#2563EB">UK</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">boolean</text><text x="75" y="104" font-size="11" fill="#18181B">is_active</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">timestamp</text><text x="75" y="124" font-size="11" fill="#71717A">created_at</text>
+    </g>
+
+    <!-- ==================== TIER 3: INDUSTRI, BKK & BERITA (Y = 680) ==================== -->
+    <!-- Table: INDUSTRY_PARTNERS (Col 1) -->
+    <g transform="translate(80, 680)" filter="url(#cardShadow)">
+        <rect width="215" height="160" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderRed)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">INDUSTRY_PARTNERS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" fill="#18181B">mou_number</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">partner_type</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">string</text><text x="75" y="124" font-size="11" fill="#18181B">city</text>
+        <text x="12" y="144" font-size="11" fill="#71717A">boolean</text><text x="75" y="144" font-size="11" fill="#18181B">is_active</text>
+    </g>
+
+    <!-- Table: INDUSTRY_BRANCHES (Col 2 - Connected to PARTNERS) -->
+    <g transform="translate(345, 680)" filter="url(#cardShadow)">
+        <rect width="215" height="160" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">INDUSTRY_BRANCHES</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="80" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">bigint</text><text x="80" y="64" font-size="11" font-weight="600" fill="#18181B">partner_id</text><text x="185" y="64" font-size="10" font-weight="800" fill="#059669">FK</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="80" y="84" font-size="11" fill="#18181B">branch_name</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="80" y="104" font-size="11" fill="#18181B">ahass_code</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">string</text><text x="80" y="124" font-size="11" fill="#18181B">city</text>
+        <text x="12" y="144" font-size="11" fill="#71717A">boolean</text><text x="80" y="144" font-size="11" fill="#18181B">is_active</text>
+    </g>
+
+    <!-- Table: INTERNSHIPS (Col 3 - Connected to PARTNERS) -->
+    <g transform="translate(610, 680)" filter="url(#cardShadow)">
+        <rect width="215" height="160" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">INTERNSHIPS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">bigint</text><text x="75" y="64" font-size="11" font-weight="600" fill="#18181B">partner_id</text><text x="185" y="64" font-size="10" font-weight="800" fill="#059669">FK</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" fill="#18181B">academic_yr</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">int</text><text x="75" y="104" font-size="11" fill="#18181B">duration_mos</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">int</text><text x="75" y="124" font-size="11" fill="#18181B">quota</text>
+        <text x="12" y="144" font-size="11" fill="#71717A">string</text><text x="75" y="144" font-size="11" fill="#18181B">status</text>
+    </g>
+
+    <!-- Table: JOB_VACANCIES (Col 4 - Connected to PARTNERS) -->
+    <g transform="translate(875, 680)" filter="url(#cardShadow)">
+        <rect width="215" height="160" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderRed)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">JOB_VACANCIES</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">bigint</text><text x="75" y="64" font-size="11" font-weight="600" fill="#18181B">partner_id</text><text x="185" y="64" font-size="10" font-weight="800" fill="#059669">FK</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" fill="#18181B">title</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">employment</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">date</text><text x="75" y="124" font-size="11" fill="#18181B">deadline</text>
+        <text x="12" y="144" font-size="11" fill="#71717A">boolean</text><text x="75" y="144" font-size="11" fill="#18181B">is_active</text>
+    </g>
+
+    <!-- Table: POSTS (Col 5) -->
+    <g transform="translate(1140, 680)" filter="url(#cardShadow)">
+        <rect width="215" height="160" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderRed)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">POSTS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">bigint</text><text x="75" y="64" font-size="11" font-weight="600" fill="#18181B">category_id</text><text x="185" y="64" font-size="10" font-weight="800" fill="#059669">FK</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">bigint</text><text x="75" y="84" font-size="11" font-weight="600" fill="#18181B">author_id</text><text x="185" y="84" font-size="10" font-weight="800" fill="#059669">FK</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">title</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">string</text><text x="75" y="124" font-size="11" font-weight="600" fill="#18181B">slug</text><text x="185" y="124" font-size="10" font-weight="800" fill="#2563EB">UK</text>
+        <text x="12" y="144" font-size="11" fill="#71717A">string</text><text x="75" y="144" font-size="11" fill="#18181B">status</text>
+    </g>
+
+    <!-- Table: CATEGORIES (Col 6 - Connected to POSTS) -->
+    <g transform="translate(1405, 680)" filter="url(#cardShadow)">
+        <rect width="215" height="160" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="215" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="107" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">CATEGORIES</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="185" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" font-weight="600" fill="#18181B">slug</text><text x="185" y="84" font-size="10" font-weight="800" fill="#2563EB">UK</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">string</text><text x="75" y="104" font-size="11" fill="#18181B">color</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">boolean</text><text x="75" y="124" font-size="11" fill="#18181B">is_active</text>
+        <text x="12" y="144" font-size="11" fill="#71717A">timestamp</text><text x="75" y="144" font-size="11" fill="#71717A">created_at</text>
+    </g>
+
+    <!-- Table: TAGS (Col 7 - Connected to POSTS) -->
+    <g transform="translate(1670, 680)" filter="url(#cardShadow)">
+        <rect width="200" height="160" rx="3" fill="#FFFFFF" stroke="#3F3F46" stroke-width="1.2"/>
+        <rect width="200" height="26" rx="3" fill="url(#tableHeaderDark)"/>
+        <text x="100" y="17" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">TAGS</text>
+        <text x="12" y="44" font-size="11" fill="#71717A">bigint</text><text x="75" y="44" font-size="11" font-weight="600" fill="#18181B">id</text><text x="170" y="44" font-size="10" font-weight="800" fill="#DC2626">PK</text>
+        <text x="12" y="64" font-size="11" fill="#71717A">string</text><text x="75" y="64" font-size="11" fill="#18181B">name</text>
+        <text x="12" y="84" font-size="11" fill="#71717A">string</text><text x="75" y="84" font-size="11" font-weight="600" fill="#18181B">slug</text><text x="170" y="84" font-size="10" font-weight="800" fill="#2563EB">UK</text>
+        <text x="12" y="104" font-size="11" fill="#71717A">boolean</text><text x="75" y="104" font-size="11" fill="#18181B">is_active</text>
+        <text x="12" y="124" font-size="11" fill="#71717A">timestamp</text><text x="75" y="124" font-size="11" fill="#71717A">created_at</text>
+        <text x="12" y="144" font-size="11" fill="#71717A">timestamp</text><text x="75" y="144" font-size="11" fill="#71717A">updated_at</text>
+    </g>
+
+    <!-- ==================== ZERO-INTERSECT RELATIONSHIP CONNECTORS ==================== -->
+    <g stroke="#52525B" stroke-width="1.5" fill="none">
+        <!-- 1. USERS -> ACTIVITY_LOG (Adjacent) -->
+        <path d="M 295 235 L 345 235" marker-end="url(#crow)" marker-start="url(#dot)"/>
+        
+        <!-- 2. GALLERY_ALBUMS -> GALLERY_ITEMS (Adjacent) -->
+        <path d="M 1355 235 L 1405 235" marker-end="url(#crow)" marker-start="url(#dot)"/>
+
+        <!-- 3. DOWNLOAD_CATEGORIES -> DOWNLOADS (Vertical) -->
+        <path d="M 1770 420 L 1770 310" marker-end="url(#crow)" marker-start="url(#dot)"/>
+
+        <!-- 4. PROGRAMS -> COMPETENCIES (Adjacent) -->
+        <path d="M 295 495 L 345 495" marker-end="url(#crow)" marker-start="url(#dot)"/>
+
+        <!-- 5. INDUSTRY_PARTNERS -> INDUSTRY_BRANCHES (Adjacent) -->
+        <path d="M 295 760 L 345 760" marker-end="url(#crow)" marker-start="url(#dot)"/>
+
+        <!-- 6. CATEGORIES -> POSTS (Adjacent) -->
+        <path d="M 1405 760 L 1355 760" marker-end="url(#crow)" marker-start="url(#dot)"/>
+
+        <!-- 7. INDUSTRY_PARTNERS -> INTERNSHIPS (Under Bus) -->
+        <path d="M 187 840 L 187 880 L 717 880 L 717 840" marker-end="url(#crow)" marker-start="url(#dot)"/>
+
+        <!-- 8. INDUSTRY_PARTNERS -> JOB_VACANCIES (Under Bus) -->
+        <path d="M 187 840 L 187 905 L 982 905 L 982 840" marker-end="url(#crow)" marker-start="url(#dot)"/>
+
+        <!-- 9. POSTS -> TAGS (Under Bus) -->
+        <path d="M 1247 840 L 1247 880 L 1770 880 L 1770 840" marker-end="url(#crow)" marker-start="url(#dot)"/>
+
+        <!-- 10. USERS -> POSTS (Outer Left Boundary Route - Zero Collision) -->
+        <path d="M 80 235 L 40 235 L 40 660 L 1180 660 L 1180 680" marker-end="url(#crow)" marker-start="url(#dot)"/>
+    </g>
+
+    <!-- Labels for Relations with Clean Background Pill -->
+    <g font-size="10" font-weight="600" fill="#4B5563">
+        <rect x="303" y="226" width="34" height="18" rx="2" fill="#FFFFFF" stroke="#E4E4E7"/>
+        <text x="320" y="239" text-anchor="middle">1 : N</text>
+
+        <rect x="1363" y="226" width="34" height="18" rx="2" fill="#FFFFFF" stroke="#E4E4E7"/>
+        <text x="1380" y="239" text-anchor="middle">1 : N</text>
+
+        <rect x="1753" y="355" width="34" height="18" rx="2" fill="#FFFFFF" stroke="#E4E4E7"/>
+        <text x="1770" y="368" text-anchor="middle">1 : N</text>
+
+        <rect x="303" y="486" width="34" height="18" rx="2" fill="#FFFFFF" stroke="#E4E4E7"/>
+        <text x="320" y="499" text-anchor="middle">1 : N</text>
+
+        <rect x="303" y="751" width="34" height="18" rx="2" fill="#FFFFFF" stroke="#E4E4E7"/>
+        <text x="320" y="764" text-anchor="middle">1 : N</text>
+
+        <rect x="1363" y="751" width="34" height="18" rx="2" fill="#FFFFFF" stroke="#E4E4E7"/>
+        <text x="1380" y="764" text-anchor="middle">1 : N</text>
+
+        <rect x="420" y="871" width="60" height="18" rx="2" fill="#FFFFFF" stroke="#E4E4E7"/>
+        <text x="450" y="884" text-anchor="middle">mitra pkl</text>
+
+        <rect x="540" y="896" width="66" height="18" rx="2" fill="#FFFFFF" stroke="#E4E4E7"/>
+        <text x="573" y="909" text-anchor="middle">mitra loker</text>
+
+        <rect x="1480" y="871" width="56" height="18" rx="2" fill="#FFFFFF" stroke="#E4E4E7"/>
+        <text x="1508" y="884" text-anchor="middle">tag warta</text>
+    </g>
+
+    <!-- Slide Footer -->
+    <g transform="translate(80, 990)">
+        <line x1="0" y1="0" x2="1760" y2="0" stroke="#E4E4E7" stroke-width="1.5"/>
+        
+        <text x="0" y="25" font-size="11" font-weight="600" fill="#71717A">KONSENTRASI KEAHLIAN TEKNIK DAN BISNIS SEPEDA MOTOR • SMK NEGERI 1 BANGSRI</text>
+        <text x="0" y="42" font-size="10" fill="#A1A1AA">Basis Data MariaDB 11.x • Relasi 3NF Teruji • 82 Automated Feature Tests Passed</text>
+        
+        <!-- Legend -->
+        <g transform="translate(900, 20)">
+            <rect x="0" y="-10" width="22" height="14" rx="2" fill="#DC2626"/>
+            <text x="11" y="1" font-size="9" font-weight="800" fill="#FFFFFF" text-anchor="middle">PK</text>
+            <text x="28" y="1" font-size="11" fill="#71717A">Primary Key</text>
+
+            <rect x="115" y="-10" width="22" height="14" rx="2" fill="#059669"/>
+            <text x="126" y="1" font-size="9" font-weight="800" fill="#FFFFFF" text-anchor="middle">FK</text>
+            <text x="143" y="1" font-size="11" fill="#71717A">Foreign Key</text>
+
+            <rect x="230" y="-10" width="22" height="14" rx="2" fill="#2563EB"/>
+            <text x="241" y="1" font-size="9" font-weight="800" fill="#FFFFFF" text-anchor="middle">UK</text>
+            <text x="258" y="1" font-size="11" fill="#71717A">Unique Key</text>
+
+            <line x1="355" y1="-3" x2="385" y2="-3" stroke="#52525B" stroke-width="1.5" marker-end="url(#crow)"/>
+            <text x="395" y="1" font-size="11" fill="#71717A">Relasi (1:N)</text>
+        </g>
+
+        <!-- Slide Number Indicator -->
+        <text x="1760" y="32" font-size="20" font-weight="800" fill="#D4D4D8" text-anchor="end">5</text>
+    </g>
+</svg>

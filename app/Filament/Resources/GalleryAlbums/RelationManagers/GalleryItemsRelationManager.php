@@ -20,22 +20,19 @@ class GalleryItemsRelationManager extends RelationManager
     {
         return $schema
             ->schema([
-                Forms\Components\FileUpload::make('file_path')->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                Forms\Components\FileUpload::make('file_path')
+                    ->label('File Foto')
                     ->image()
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
                     ->required()
                     ->maxSize(5120) // 5MB
                     ->disk('public')
                     ->visibility('public')
                     ->directory('galleries/items')
-                    ->imageEditor()
-                    ->imageEditorAspectRatioOptions([
-                        null => 'Bebas',
-                        '1:1' => 'Persegi (1:1)',
-                        '4:3' => 'Lanskap (4:3)',
-                        '3:4' => 'Potret (3:4)',
-                        '16:9' => 'Lebar (16:9)',
-                    ])
-                    ->columnSpanFull(),
+                    ->multiple(fn (string $operation) => $operation === 'create')
+                    ->reorderable()
+                    ->columnSpanFull()
+                    ->helperText('Anda dapat memilih satu atau beberapa foto sekaligus saat menambahkan.'),
                 Forms\Components\Select::make('aspect_ratio')
                     ->label('Ukuran Layout Grid')
                     ->options([
@@ -80,7 +77,39 @@ class GalleryItemsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                \Filament\Actions\CreateAction::make(),
+                \Filament\Actions\CreateAction::make()
+                    ->label('Tambah Foto')
+                    ->using(function (array $data, RelationManager $livewire) {
+                        $files = $data['file_path'] ?? [];
+                        if (!is_array($files)) {
+                            $files = [$files];
+                        }
+                        
+                        $firstItem = null;
+                        $maxSort = $livewire->getRelationship()->max('sort_order') ?? 0;
+                        
+                        foreach ($files as $idx => $filePath) {
+                            if ($filePath && is_string($filePath)) {
+                                $maxSort++;
+                                $item = $livewire->getRelationship()->create([
+                                    'file_path' => $filePath,
+                                    'aspect_ratio' => $data['aspect_ratio'] ?? '1:1',
+                                    'title' => count($files) > 1 && !empty($data['title']) ? "{$data['title']} (" . ($idx + 1) . ")" : ($data['title'] ?? null),
+                                    'alt_text' => $data['alt_text'] ?? null,
+                                    'description' => $data['description'] ?? null,
+                                    'is_featured' => $idx === 0 ? ($data['is_featured'] ?? false) : false,
+                                    'sort_order' => $maxSort,
+                                    'type' => 'image',
+                                ]);
+                                
+                                if (!$firstItem) {
+                                    $firstItem = $item;
+                                }
+                            }
+                        }
+                        
+                        return $firstItem ?? $livewire->getRelationship()->create($data);
+                    }),
             ])
             ->actions([
                 \Filament\Actions\EditAction::make(),

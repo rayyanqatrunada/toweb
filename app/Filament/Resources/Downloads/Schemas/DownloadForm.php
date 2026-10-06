@@ -27,7 +27,7 @@ class DownloadForm
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn (string $operation, $state, \Filament\Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                            ->afterStateUpdated(fn (string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                         TextInput::make('slug')
                             ->required()
                             ->maxLength(255)
@@ -58,7 +58,7 @@ class DownloadForm
                                 'application/zip',
                             ])
                             ->maxSize(25600) // 25MB
-                            ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
+                            ->afterStateUpdated(function (callable $set, $state) {
                                 if ($state) {
                                     if (is_array($state)) {
                                         $file = array_values($state)[0] ?? null;

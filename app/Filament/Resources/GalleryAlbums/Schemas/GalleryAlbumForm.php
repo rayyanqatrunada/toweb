@@ -27,7 +27,7 @@ class GalleryAlbumForm
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn (string $operation, $state, \Filament\Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                            ->afterStateUpdated(fn (string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                         TextInput::make('slug')
                             ->required()
                             ->maxLength(255)
@@ -49,7 +49,25 @@ class GalleryAlbumForm
                             ->visibility('public')
                             ->directory('galleries/covers')
                             ->imageEditor()
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->helperText('Foto sampul utama untuk album galeri ini.'),
+                    ]),
+
+                Section::make('Foto Dokumentasi Album')
+                    ->description('Unggah langsung foto-foto kegiatan ke dalam album ini. Anda dapat memilih beberapa foto sekaligus.')
+                    ->schema([
+                        FileUpload::make('gallery_photos')
+                            ->label('Koleksi Foto Galeri (Bisa Pilih Banyak Foto Sekaligus)')
+                            ->multiple()
+                            ->image()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                            ->maxSize(5120) // 5MB per foto
+                            ->disk('public')
+                            ->visibility('public')
+                            ->directory('galleries/items')
+                            ->reorderable()
+                            ->columnSpanFull()
+                            ->helperText('Foto yang diunggah di sini akan otomatis tersimpan sebagai koleksi foto di dalam album ini.'),
                     ]),
 
                                     ])->columnSpan(['lg' => 2]),
