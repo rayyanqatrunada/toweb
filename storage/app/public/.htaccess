@@ -1,0 +1,23 @@
+# =========================================================================
+# TBSM SECURITY: PREVENT SCRIPT EXECUTION IN PUBLIC STORAGE
+# =========================================================================
+# Menonaktifkan eksekusi script PHP / Perl / Python / CGI dalam direktori upload
+
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>
+
+# Blokir seluruh ekstensi file yang dapat dieksekusi di server
+<FilesMatch "(?i)\.(php|phtml|php3|php4|php5|php7|php8|phar|inc|cgi|pl|py|sh|bash|exe|jsp|asp|aspx)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Nonaktifkan eksekusi CGI dan directory browsing
+Options -ExecCGI -Indexes

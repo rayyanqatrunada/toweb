@@ -11,6 +11,9 @@
 
 ---
 
+> 📖 **LAPORAN KOMPREHENSIF PROYEK (EDISI OKTOBER 2026):**  
+> Seluruh laporan mendalam hasil refactoring, penghapusan & penyesuaian fitur, stack teknologi, struktur halaman, audit log IP, dan panduan deployment telah dikelompokkan secara terpisah di dalam folder [**docs/laporan/**](laporan/README.md).
+
 ## Daftar Isi
 1. [Gambaran Umum Proyek](#1-gambaran-umum-proyek)
 2. [Flowchart Sistem Lengkap](#2-flowchart-sistem-lengkap)

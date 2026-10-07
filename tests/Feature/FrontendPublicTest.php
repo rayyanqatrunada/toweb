@@ -33,8 +33,8 @@ class FrontendPublicTest extends TestCase
         $this->get('/mitra-industri')->assertStatus(200);
         $this->get('/pkl')->assertStatus(200);
         $this->get('/lowongan')->assertStatus(200);
-        $this->get('/alumni')->assertStatus(200);
-        $this->get('/unduhan')->assertStatus(200);
+        $this->get('/alumni')->assertRedirect('/');
+        $this->get('/unduhan')->assertRedirect('/');
         $this->get('/kontak')->assertStatus(200);
     }
 
@@ -106,8 +106,8 @@ class FrontendPublicTest extends TestCase
             'graduation_year' => 2020
         ]);
 
-        $this->get('/alumni')->assertDontSee('John Doe Private');
-        $this->get('/alumni/john-doe-private')->assertStatus(404);
+        $this->get('/alumni')->assertRedirect('/');
+        $this->get('/alumni/john-doe-private')->assertRedirect('/');
     }
 
     public function test_unpublished_job_is_not_visible()

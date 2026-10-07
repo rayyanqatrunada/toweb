@@ -119,6 +119,20 @@ class ManageHeroSlider extends Page implements HasForms
             'faq_title' => $settings->get('faq_title', 'Pertanyaan yang Sering Diajukan'),
             'faq_subtitle' => $settings->get('faq_subtitle', 'Temukan jawaban lengkap seputar kurikulum, fasilitas praktik, kemitraan Astra Honda Motor, dan prospek karir di TBSM SMKN 1 Bangsri.'),
             'homepage_faqs' => $faqs,
+
+            // 04. Showcase Kemitraan Beranda (Industri, Tools & PKL)
+            'home_partner_industrial_image' => $settings->get('home_partner_industrial_image'),
+            'home_partner_industrial_title' => $settings->get('home_partner_industrial_title', 'Kelas Industri'),
+            'home_partner_industrial_subtitle' => $settings->get('home_partner_industrial_subtitle', 'SOP Standar Bengkel Resmi'),
+            'home_partner_tools_image' => $settings->get('home_partner_tools_image'),
+            'home_partner_tools_title' => $settings->get('home_partner_tools_title', 'Special Tools (SST)'),
+            'home_partner_tools_subtitle' => $settings->get('home_partner_tools_subtitle', 'Peralatan Praktik Standar AHASS'),
+            'home_partner_internship_title' => $settings->get('home_partner_internship_title', 'PKL / OJT'),
+            'home_partner_internship_subtitle' => $settings->get('home_partner_internship_subtitle', 'On the Job Training'),
+
+            // 05. Keunggulan Program Beranda (Why TBSM)
+            'why_tbsm_image_1' => $settings->get('why_tbsm_image_1'),
+            'why_tbsm_image_2' => $settings->get('why_tbsm_image_2'),
         ]);
     }
 
@@ -291,6 +305,106 @@ class ManageHeroSlider extends Page implements HasForms
                                             ->reorderableWithButtons(),
                                     ]),
                             ]),
+
+                        // =========================================================================
+                        // TAB 4: SHOWCASE KEMITRAAN BERANDA (INDUSTRI & TOOLS)
+                        // =========================================================================
+                        Tab::make('Showcase Mitra Beranda')
+                            ->icon('heroicon-o-wrench-screwdriver')
+                            ->badge('04')
+                            ->schema([
+                                Section::make('Kartu 1: Kelas Industri (Atas)')
+                                    ->description('Foto dan teks kartu utama kemitraan di beranda (rasio ideal 16:9).')
+                                    ->icon('heroicon-o-building-office-2')
+                                    ->schema([
+                                        FileUpload::make('home_partner_industrial_image')
+                                            ->label('Foto Kelas Industri')
+                                            ->helperText('Format JPG/PNG/WebP, disarankan 16:9 (Maks. 4MB).')
+                                            ->image()
+                                            ->disk('public')
+                                            ->visibility('public')
+                                            ->directory('settings')
+                                            ->maxSize(4096)
+                                            ->imageEditor(),
+                                        TextInput::make('home_partner_industrial_title')
+                                            ->label('Judul Kartu')
+                                            ->default('Kelas Industri')
+                                            ->required(),
+                                        TextInput::make('home_partner_industrial_subtitle')
+                                            ->label('Keterangan Singkat')
+                                            ->default('SOP Standar Bengkel Resmi')
+                                            ->required(),
+                                    ])->columns(3),
+
+                                Section::make('Kartu 2: Special Tools & Perlengkapan (Bawah Kiri)')
+                                    ->description('Foto dan teks kartu tools/peralatan praktik standar industri di beranda (rasio 1:1).')
+                                    ->icon('heroicon-o-wrench')
+                                    ->schema([
+                                        FileUpload::make('home_partner_tools_image')
+                                            ->label('Foto Special Tools (SST)')
+                                            ->helperText('Format JPG/PNG/WebP, disarankan 1:1 kotak (Maks. 4MB).')
+                                            ->image()
+                                            ->disk('public')
+                                            ->visibility('public')
+                                            ->directory('settings')
+                                            ->maxSize(4096)
+                                            ->imageEditor(),
+                                        TextInput::make('home_partner_tools_title')
+                                            ->label('Judul Kartu Tools')
+                                            ->default('Special Tools (SST)')
+                                            ->required(),
+                                        TextInput::make('home_partner_tools_subtitle')
+                                            ->label('Keterangan Tools')
+                                            ->default('Standar Astra Honda')
+                                            ->required(),
+                                    ])->columns(3),
+
+                                Section::make('Kartu 3: Magang PKL / OJT (Bawah Kanan)')
+                                    ->description('Teks kartu info magang industri di beranda.')
+                                    ->icon('heroicon-o-briefcase')
+                                    ->schema([
+                                        TextInput::make('home_partner_internship_title')
+                                            ->label('Judul Kartu Magang')
+                                            ->default('PKL / OJT')
+                                            ->required(),
+                                        TextInput::make('home_partner_internship_subtitle')
+                                            ->label('Keterangan Magang')
+                                            ->default('On the Job Training')
+                                            ->required(),
+                                    ])->columns(2),
+                            ]),
+
+                        // =========================================================================
+                        // TAB 5: FOTO KEUNGGULAN BERANDA (WHY TBSM)
+                        // =========================================================================
+                        Tab::make('Foto Keunggulan (Why TBSM)')
+                            ->icon('heroicon-o-academic-cap')
+                            ->badge('05')
+                            ->schema([
+                                Section::make('Foto Dokumentasi Pilar Keunggulan')
+                                    ->description('Foto pendukung pada section "Mengapa Memilih TBSM" di beranda.')
+                                    ->icon('heroicon-o-camera')
+                                    ->schema([
+                                        FileUpload::make('why_tbsm_image_1')
+                                            ->label('Foto Pilar 1: Pembelajaran Praktik 70%')
+                                            ->helperText('Foto kegiatan praktik motor (Maks. 4MB).')
+                                            ->image()
+                                            ->disk('public')
+                                            ->visibility('public')
+                                            ->directory('settings')
+                                            ->maxSize(4096)
+                                            ->imageEditor(),
+                                        FileUpload::make('why_tbsm_image_2')
+                                            ->label('Foto Pilar 4: Kesiapan Kerja & Wirausaha')
+                                            ->helperText('Foto siswa siap kerja/wirausaha (Maks. 4MB).')
+                                            ->image()
+                                            ->disk('public')
+                                            ->visibility('public')
+                                            ->directory('settings')
+                                            ->maxSize(4096)
+                                            ->imageEditor(),
+                                    ])->columns(2),
+                            ]),
                     ])
                     ->columnSpanFull(),
             ])
@@ -316,6 +430,7 @@ class ManageHeroSlider extends Page implements HasForms
         \Illuminate\Support\Facades\Cache::forget('site_settings');
         \Illuminate\Support\Facades\Cache::forget('homepage:hero_slides');
         \Illuminate\Support\Facades\Cache::forget('homepage:faqs');
+        \Illuminate\Support\Facades\Cache::forget('homepage:partner_main');
 
         Notification::make()
             ->title('Pengaturan Halaman Beranda & FAQ berhasil disimpan')

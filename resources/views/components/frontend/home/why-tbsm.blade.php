@@ -1,3 +1,23 @@
+@php
+    $whyImg1Setting = $settings->get('why_tbsm_image_1');
+    if (!empty($whyImg1Setting)) {
+        $whyImg1Url = Storage::url($whyImg1Setting);
+    } elseif (Storage::disk('public')->exists('facilities/bengkel-praktik-otomotif.png')) {
+        $whyImg1Url = Storage::url('facilities/bengkel-praktik-otomotif.png');
+    } else {
+        $whyImg1Url = 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop';
+    }
+
+    $whyImg2Setting = $settings->get('why_tbsm_image_2');
+    if (!empty($whyImg2Setting)) {
+        $whyImg2Url = Storage::url($whyImg2Setting);
+    } elseif (Storage::disk('public')->exists('programs/prog-teknik-dan-bisnis-sepeda-motor-800x600.jpg')) {
+        $whyImg2Url = Storage::url('programs/prog-teknik-dan-bisnis-sepeda-motor-800x600.jpg');
+    } else {
+        $whyImg2Url = 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=400&auto=format&fit=crop';
+    }
+@endphp
+
 <section class="w-full py-8 sm:py-12 md:py-16 lg:py-20 overflow-hidden relative">
     <div class="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
         
@@ -26,7 +46,7 @@
             <!-- Item 1: Large Image Block -->
             <div class="w-[84vw] max-w-[320px] md:w-auto md:max-w-none shrink-0 snap-center md:col-span-8 group relative bg-white border border-gray-200 rounded-sm md:rounded-none overflow-hidden reveal-on-scroll reveal-up flex flex-col md:flex-row shadow-sm md:shadow-none">
                 <div class="w-full md:w-1/2 aspect-[16/10] md:aspect-auto md:min-h-[250px] relative overflow-hidden bg-gray-100 shrink-0">
-                    <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800&auto=format&fit=crop" alt="Praktik Langsung" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-85 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" loading="lazy">
+                    <img src="{{ $whyImg1Url }}" alt="Praktik Langsung" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-85 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" loading="lazy" onerror="this.style.display='none'">
                 </div>
                 <div class="p-5 sm:p-7 md:p-8 lg:p-9 flex flex-col justify-center flex-1">
                     <div class="text-figma-red font-heading font-black text-[28px] sm:text-[36px] leading-none mb-1.5 sm:mb-3 opacity-60">01</div>
@@ -73,7 +93,7 @@
                     </p>
                 </div>
                 <div class="w-full md:w-1/3 aspect-[16/9] md:aspect-auto md:h-full bg-gray-100 overflow-hidden relative shrink-0">
-                    <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover mix-blend-multiply grayscale opacity-75 group-hover:grayscale-0 transition-all duration-500" alt="Kesiapan Kerja" loading="lazy">
+                    <img src="{{ $whyImg2Url }}" class="w-full h-full object-cover mix-blend-multiply grayscale opacity-75 group-hover:grayscale-0 transition-all duration-500" alt="Kesiapan Kerja" loading="lazy" onerror="this.style.display='none'">
                 </div>
             </div>
 

@@ -17,6 +17,7 @@ use Filament\Tables\Table;
 class DownloadResource extends Resource
 {
     protected static ?string $model = Download::class;
+    protected static bool $shouldRegisterNavigation = false;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowDownTray;
     protected static ?string $navigationLabel = 'Dokumen & Silabus';

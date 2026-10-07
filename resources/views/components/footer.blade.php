@@ -51,9 +51,8 @@
                 <ul class="flex flex-col gap-2">
                     <li><a href="{{ route('news.index') }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Berita</a></li>
                     <li><a href="{{ route('announcements.index') }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Pengumuman</a></li>
-                    <li><a href="{{ route('news.index', ['category' => 'prestasi']) }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Prestasi</a></li>
+                    <li><a href="{{ route('achievements.index') }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Prestasi Siswa</a></li>
                     <li><a href="{{ route('partnership.index') }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Mitra Industri</a></li>
-                    <li><a href="{{ route('alumni.index') }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Jejaring Alumni</a></li>
                     <li><a href="{{ route('gallery.index') }}" class="font-sans text-[13px] sm:text-[14px] text-figma-gray-light hover:text-white transition-colors focus-ring">Galeri</a></li>
                 </ul>
 

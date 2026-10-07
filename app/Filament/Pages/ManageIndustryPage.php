@@ -71,6 +71,16 @@ class ManageIndustryPage extends Page implements HasForms
             'industry_cta_desc' => $settings->get('industry_cta_desc', 'Bursa Kerja Khusus (BKK) SMK Negeri 1 Bangsri siap memfasilitasi kebutuhan tenaga teknisi otomotif kompeten dan berintegritas untuk jaringan industri otomotif.'),
             'industry_cta_button_text' => $settings->get('industry_cta_button_text', 'Hubungi Hubin & BKK'),
             'industry_cta_button_url' => $settings->get('industry_cta_button_url', '/kontak'),
+
+            // 04. Showcase Kemitraan Beranda (Industri, Tools & PKL)
+            'home_partner_industrial_image' => $settings->get('home_partner_industrial_image'),
+            'home_partner_industrial_title' => $settings->get('home_partner_industrial_title', 'Kelas Industri'),
+            'home_partner_industrial_subtitle' => $settings->get('home_partner_industrial_subtitle', 'SOP Standar Bengkel Resmi'),
+            'home_partner_tools_image' => $settings->get('home_partner_tools_image'),
+            'home_partner_tools_title' => $settings->get('home_partner_tools_title', 'Special Tools (SST)'),
+            'home_partner_tools_subtitle' => $settings->get('home_partner_tools_subtitle', 'Peralatan Praktik Standar AHASS'),
+            'home_partner_internship_title' => $settings->get('home_partner_internship_title', 'PKL / OJT'),
+            'home_partner_internship_subtitle' => $settings->get('home_partner_internship_subtitle', 'On the Job Training'),
         ]);
     }
 
@@ -212,6 +222,74 @@ class ManageIndustryPage extends Page implements HasForms
                                         TextInput::make('industry_cta_button_url')->label('Tautan / URL Tombol')->required(),
                                     ]),
                             ]),
+
+                        // =========================================================================
+                        // TAB 4: SHOWCASE KEMITRAAN BERANDA (INDUSTRI & TOOLS)
+                        // =========================================================================
+                        Tab::make('Showcase Mitra Beranda')
+                            ->icon('heroicon-o-home')
+                            ->badge('04')
+                            ->schema([
+                                Section::make('Kartu 1: Kelas Industri (Atas)')
+                                    ->description('Foto dan teks kartu utama kemitraan di beranda (rasio ideal 16:9).')
+                                    ->icon('heroicon-o-building-office-2')
+                                    ->schema([
+                                        FileUpload::make('home_partner_industrial_image')
+                                            ->label('Foto Kelas Industri Beranda')
+                                            ->helperText('Format JPG/PNG/WebP, disarankan 16:9 (Maks. 4MB).')
+                                            ->image()
+                                            ->disk('public')
+                                            ->visibility('public')
+                                            ->directory('settings')
+                                            ->maxSize(4096)
+                                            ->imageEditor(),
+                                        TextInput::make('home_partner_industrial_title')
+                                            ->label('Judul Kartu')
+                                            ->default('Kelas Industri')
+                                            ->required(),
+                                        TextInput::make('home_partner_industrial_subtitle')
+                                            ->label('Keterangan Singkat')
+                                            ->default('SOP Standar Bengkel Resmi')
+                                            ->required(),
+                                    ])->columns(3),
+
+                                Section::make('Kartu 2: Special Tools & Perlengkapan (Bawah Kiri)')
+                                    ->description('Foto dan teks kartu tools/peralatan praktik standar industri di beranda (rasio 1:1).')
+                                    ->icon('heroicon-o-wrench-screwdriver')
+                                    ->schema([
+                                        FileUpload::make('home_partner_tools_image')
+                                            ->label('Foto Special Tools (SST)')
+                                            ->helperText('Format JPG/PNG/WebP, disarankan 1:1 kotak (Maks. 4MB).')
+                                            ->image()
+                                            ->disk('public')
+                                            ->visibility('public')
+                                            ->directory('settings')
+                                            ->maxSize(4096)
+                                            ->imageEditor(),
+                                        TextInput::make('home_partner_tools_title')
+                                            ->label('Judul Kartu Tools')
+                                            ->default('Special Tools (SST)')
+                                            ->required(),
+                                        TextInput::make('home_partner_tools_subtitle')
+                                            ->label('Keterangan Tools')
+                                            ->default('Standar Astra Honda')
+                                            ->required(),
+                                    ])->columns(3),
+
+                                Section::make('Kartu 3: Magang PKL / OJT (Bawah Kanan)')
+                                    ->description('Teks kartu info magang industri di beranda.')
+                                    ->icon('heroicon-o-briefcase')
+                                    ->schema([
+                                        TextInput::make('home_partner_internship_title')
+                                            ->label('Judul Kartu Magang')
+                                            ->default('PKL / OJT')
+                                            ->required(),
+                                        TextInput::make('home_partner_internship_subtitle')
+                                            ->label('Keterangan Magang')
+                                            ->default('On the Job Training')
+                                            ->required(),
+                                    ])->columns(2),
+                            ]),
                     ])
                     ->columnSpanFull(),
             ])
@@ -227,6 +305,9 @@ class ManageIndustryPage extends Page implements HasForms
         }
 
         $this->form->fill($data);
+
+        \Illuminate\Support\Facades\Cache::forget('site_settings');
+        \Illuminate\Support\Facades\Cache::forget('homepage:partner_main');
 
         Notification::make()
             ->title('Pengaturan Halaman Industri berhasil disimpan')

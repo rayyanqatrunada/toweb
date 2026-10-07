@@ -7,9 +7,8 @@
         ['label' => 'Akademik', 'route' => route('academic.programs'), 'active' => request()->routeIs('academic.programs')],
         ['label' => 'Fasilitas', 'route' => route('academic.facilities'), 'active' => request()->routeIs('academic.facilities')],
         ['label' => 'Industri', 'route' => route('partnership.index'), 'active' => request()->is('pkl*') || request()->is('mitra-industri*') || request()->is('lowongan*')],
-        ['label' => 'Alumni', 'route' => route('alumni.index'), 'active' => request()->is('alumni*')],
+        // ['label' => 'Alumni', 'route' => route('alumni.index'), 'active' => request()->is('alumni*')], // Dinonaktifkan sementara
         ['label' => 'Galeri', 'route' => route('gallery.index'), 'active' => request()->is('galeri*')],
-        // ['label' => 'Publikasi', 'route' => route('news.index'), 'active' => request()->is('berita*') || request()->is('pengumuman*') || request()->is('unduhan*')],
     ];
 
     $homeSections = [
@@ -151,15 +150,15 @@
                     }
                 @endphp
                 @if($logoUrl)
-                    <div class="flex items-center gap-2.5 sm:gap-3">
-                        <img src="{{ $logoUrl }}" alt="{{ app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor') }}" class="h-8 sm:h-10 w-auto object-contain">
-                        <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
+                    <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+                        <img src="{{ $logoUrl }}" alt="{{ app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor') }}" class="h-8 sm:h-10 w-auto object-contain shrink-0">
+                        <div class="font-heading font-extrabold text-[14px] xs:text-[16px] sm:text-[20px] leading-tight uppercase transition-colors duration-300 truncate max-w-[160px] xs:max-w-[210px] sm:max-w-none"
                              :class="(scrolledPastHero || !isHome) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
                             {{ app(\App\Services\SettingsService::class)->get('site_short_name', 'TSM') }}
                         </div>
                     </div>
                 @else
-                    <div class="font-heading font-extrabold text-[17px] sm:text-[20px] leading-none uppercase transition-colors duration-300"
+                    <div class="font-heading font-extrabold text-[14px] xs:text-[16px] sm:text-[20px] leading-tight uppercase transition-colors duration-300 truncate max-w-[160px] xs:max-w-[210px] sm:max-w-none"
                          :class="(scrolledPastHero || !isHome) ? 'text-figma-dark' : 'text-white drop-shadow-sm'">
                         {{ app(\App\Services\SettingsService::class)->get('site_name', 'Teknik Sepeda Motor') }}
                     </div>
@@ -211,14 +210,15 @@
                 </a>
             </div>
 
-            <!-- Mobile Top Right Action: Hubungi Kami -->
-            <div class="flex lg:hidden items-center gap-2">
+            <!-- Mobile Top Right Action: Kontak (Single Line, Rapi & Tidak Memotong Brand) -->
+            <div class="flex lg:hidden items-center shrink-0">
                 <a href="{{ route('contact.index') }}" 
-                   class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-figma-red text-white font-heading font-bold text-[11.5px] uppercase tracking-wider rounded-[2px] hover:bg-figma-dark-red transition-all shadow-xs active:scale-95 focus:outline-none">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   title="Hubungi Kami"
+                   class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-figma-red text-white font-heading font-bold text-[11px] uppercase tracking-wider rounded-[2px] hover:bg-figma-dark-red transition-all shadow-xs active:scale-95 focus:outline-none whitespace-nowrap shrink-0">
+                    <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
-                    <span>Hubungi Kami</span>
+                    <span>Kontak</span>
                 </a>
             </div>
 

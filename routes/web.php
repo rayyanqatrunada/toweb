@@ -15,12 +15,14 @@ use App\Http\Controllers\Frontend\SitemapController;
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 Route::get('/robots.txt', function () {
-    return response("User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: " . url('/sitemap.xml'), 200)
+    $adminPath = env('ADMIN_PANEL_PATH', 'admin');
+    return response("User-agent: *\nAllow: /\nDisallow: /{$adminPath}\nDisallow: /update-repo.php\n\nSitemap: " . url('/sitemap.xml'), 200)
         ->header('Content-Type', 'text/plain');
 });
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang', [HomeController::class, 'about'])->name('about');
-Route::get('/cari', [\App\Http\Controllers\Frontend\SearchController::class, 'index'])->name('search');
+// Fitur Pencarian dinonaktifkan
+Route::redirect('/cari', '/')->name('search');
 
 Route::get('/kontak', [App\Http\Controllers\Frontend\ContactController::class, 'index'])->name('contact.index');
 Route::post('/kontak', [App\Http\Controllers\Frontend\ContactController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');
@@ -49,8 +51,10 @@ Route::get('/pkl/{id}', [InternshipController::class, 'show'])->name('internship
 Route::get('/lowongan', [JobController::class, 'index'])->name('jobs.index');
 Route::get('/lowongan/{slug}', [JobController::class, 'show'])->name('jobs.show');
 
+// Halaman Alumni dinonaktifkan sementara (data & model tetap utuh)
 Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni.index');
 Route::get('/alumni/{slug}', [AlumniController::class, 'show'])->name('alumni.show');
 
-Route::get('/unduhan', [DownloadController::class, 'index'])->name('download.index');
+// Fitur Unduhan dinonaktifkan dari frontend publik
+Route::redirect('/unduhan', '/')->name('download.index');
 Route::get('/download/{slug}/file', [DownloadController::class, 'download'])->name('download.file');

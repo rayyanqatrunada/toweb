@@ -56,15 +56,7 @@
           "publisher": {
             "@@id": "{{ url('/') }}#organization"
           },
-          "inLanguage": "id-ID",
-          "potentialAction": {
-            "@@type": "SearchAction",
-            "target": {
-              "@@type": "EntryPoint",
-              "urlTemplate": "{{ url('/cari') }}?q={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
-          }
+          "inLanguage": "id-ID"
         }
       ]
     }

@@ -38,8 +38,6 @@ class SitemapController extends Controller
             $urls[] = ['loc' => $appUrl . '/mitra-industri', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
             $urls[] = ['loc' => $appUrl . '/pkl', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
             $urls[] = ['loc' => $appUrl . '/lowongan', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
-            $urls[] = ['loc' => $appUrl . '/alumni', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
-            $urls[] = ['loc' => $appUrl . '/unduhan', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
             $urls[] = ['loc' => $appUrl . '/kontak', 'lastmod' => now()->toAtomString(), 'priority' => '0.8'];
 
             // Dynamic routes — hanya ambil kolom yang diperlukan (slug + updated_at)
@@ -87,6 +85,7 @@ class SitemapController extends Controller
                 \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load jobs', ['error' => $e->getMessage()]);
             }
 
+            /* Halaman Alumni dinonaktifkan sementara:
             try {
                 Alumni::public()->select(['slug', 'updated_at'])->latest()->get()
                     ->each(fn($item) => $urls[] = [
@@ -97,6 +96,7 @@ class SitemapController extends Controller
             } catch (\Throwable $e) {
                 \Illuminate\Support\Facades\Log::warning('Sitemap: failed to load alumni', ['error' => $e->getMessage()]);
             }
+            */
 
             try {
                 Announcement::active()->select(['slug', 'updated_at'])->latest()->get()

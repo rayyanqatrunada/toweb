@@ -48,7 +48,7 @@ class AlumniForm
 
                 Section::make('Profile')
                     ->schema([
-                        FileUpload::make('photo')->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                        FileUpload::make('photo')->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->image()
                             ->maxSize(2048)
                             ->disk('public')

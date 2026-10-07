@@ -85,13 +85,13 @@ class AdminProfileTest extends TestCase
             ->test(EditProfile::class)
             ->fillForm([
                 'currentPassword' => 'secret12345',
-                'password' => 'newpassword123',
-                'passwordConfirmation' => 'newpassword123',
+                'password' => 'K9#vL2$pQ8!wZ5@x',
+                'passwordConfirmation' => 'K9#vL2$pQ8!wZ5@x',
             ])
             ->call('save')
             ->assertHasNoFormErrors();
 
-        $this->assertTrue(Hash::check('newpassword123', $admin->fresh()->password));
+        $this->assertTrue(Hash::check('K9#vL2$pQ8!wZ5@x', $admin->fresh()->password));
     }
 
     public function test_admin_cannot_update_password_with_wrong_current_password(): void

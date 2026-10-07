@@ -22,6 +22,7 @@
 /public/hot
 /public/storage/*
 !/public/storage/.gitkeep
+!/public/storage/.htaccess
 /storage/*.key
 /storage/pail
 /storage/framework/views/*

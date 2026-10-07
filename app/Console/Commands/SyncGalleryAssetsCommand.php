@@ -100,6 +100,22 @@ class SyncGalleryAssetsCommand extends Command
             }
         }
 
+        // 7. Homepage Showcase & Essential System Assets
+        $systemAssets = [
+            'facilities/stall-servis-motor-praktik.png' => ['Kelas Industri AHASS', 800, 600, '#dc2626', '#ffffff'],
+            'facilities/gudang-sst-dan-suku-cadang-asli-hgp-800x600.jpg' => ['Special Service Tools (SST)', 800, 600, '#1e293b', '#ffffff'],
+            'facilities/bengkel-praktik-otomotif.png' => ['Bengkel Praktik TBSM', 800, 600, '#0f172a', '#ffffff'],
+            'programs/prog-teknik-dan-bisnis-sepeda-motor-800x600.jpg' => ['Kesiapan Kerja & Wirausaha', 800, 600, '#b91c1c', '#ffffff'],
+        ];
+        foreach ($systemAssets as $path => $meta) {
+            if (!Storage::disk('public')->exists($path) || Storage::disk('public')->size($path) < 100) {
+                SeedAssetGenerator::generateImageForPath($path, $meta[0], $meta[1], $meta[2], $meta[3], $meta[4]);
+                $generated++;
+            } else {
+                $existing++;
+            }
+        }
+
         $this->info("Sinkronisasi selesai! $existing file sudah ada, $generated file berhasil dibuat (ukuran rata-rata 6KB-12KB).");
         return self::SUCCESS;
     }

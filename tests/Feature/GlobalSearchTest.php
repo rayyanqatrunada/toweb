@@ -22,6 +22,9 @@ class GlobalSearchTest extends TestCase
     {
         $response = $this->get('/search');
         $response->assertStatus(404);
+
+        $responseCari = $this->get('/cari');
+        $responseCari->assertRedirect('/');
     }
 
     public function test_navbar_does_not_render_search_triggers()
@@ -31,6 +34,7 @@ class GlobalSearchTest extends TestCase
         $response->assertDontSee('Cari Informasi');
         $response->assertDontSee('open-search');
         $response->assertDontSee('x-global-search-modal');
+        $response->assertDontSee("'Cari'");
     }
 
     public function test_404_page_does_not_render_search_form()

@@ -61,22 +61,46 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
+// Deteksi IP Klien (Mendukung Cloudflare, Proxy, & Direct IP)
+$clientIp = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+if (strpos($clientIp, ',') !== false) {
+    $clientIp = trim(explode(',', $clientIp)[0]);
+}
+
+// File-based IP Lockout (Mencegah bot bypass sesi PHP)
+$lockDir = __DIR__ . '/../storage/framework/cache/tbsm_locks';
+if (!is_dir($lockDir)) {
+    @mkdir($lockDir, 0755, true);
+}
+$ipHash = md5($clientIp);
+$ipLockFile = $lockDir . '/lock_' . $ipHash . '.json';
+$ipData = ['attempts' => 0, 'locked_until' => 0];
+if (file_exists($ipLockFile)) {
+    $raw = @file_get_contents($ipLockFile);
+    if ($raw) {
+        $ipData = json_decode($raw, true) ?: $ipData;
+    }
+}
+
 // Rate Limiting & Brute Force Lockout
 $maxAttempts = 5;
 $lockoutTime = 900; // 15 menit
-$attempts = $_SESSION['tsm_login_attempts'] ?? 0;
-$lockedUntil = $_SESSION['tsm_lockout_until'] ?? 0;
+$attempts = max((int)($_SESSION['tsm_login_attempts'] ?? 0), (int)($ipData['attempts'] ?? 0));
+$lockedUntil = max((int)($_SESSION['tsm_lockout_until'] ?? 0), (int)($ipData['locked_until'] ?? 0));
 
 if ($lockedUntil > time()) {
     $remainingSeconds = $lockedUntil - time();
     $remainingMinutes = ceil($remainingSeconds / 60);
     $isLockedOut = true;
-    $loginError = "⛔ Akun terkunci sementara akibat terlalu banyak percobaan gagal. Silakan coba lagi dalam {$remainingMinutes} menit.";
+    $loginError = "⛔ Akses IP ({$clientIp}) terkunci sementara akibat terlalu banyak percobaan gagal. Silakan coba lagi dalam {$remainingMinutes} menit.";
 } else {
     $isLockedOut = false;
     if ($lockedUntil > 0 && $lockedUntil <= time()) {
         unset($_SESSION['tsm_login_attempts'], $_SESSION['tsm_lockout_until']);
         $attempts = 0;
+        if (file_exists($ipLockFile)) {
+            @unlink($ipLockFile);
+        }
     }
 }
 
@@ -95,19 +119,26 @@ if (!$isLockedOut && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logi
         $_SESSION['tsm_deployer_csrf'] = bin2hex(random_bytes(32));
         $_SESSION['tsm_deployer_login_time'] = time();
         unset($_SESSION['tsm_login_attempts'], $_SESSION['tsm_lockout_until']);
+        if (file_exists($ipLockFile)) {
+            @unlink($ipLockFile);
+        }
         header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?'));
         exit;
     } else {
         $attempts++;
         $_SESSION['tsm_login_attempts'] = $attempts;
+        $ipData['attempts'] = $attempts;
         $remaining = $maxAttempts - $attempts;
         if ($remaining <= 0) {
-            $_SESSION['tsm_lockout_until'] = time() + $lockoutTime;
-            $loginError = '⛔ Terlalu banyak percobaan sandi salah. Akses terkunci selama 15 menit.';
+            $lockExpiry = time() + $lockoutTime;
+            $_SESSION['tsm_lockout_until'] = $lockExpiry;
+            $ipData['locked_until'] = $lockExpiry;
+            $loginError = '⛔ Terlalu banyak percobaan sandi salah. Akses IP terkunci selama 15 menit.';
             $isLockedOut = true;
         } else {
-            $loginError = "⛔ Kata sandi tidak valid. Sisa percobaan: {$remaining} kali.";
+            $loginError = "⛔ Kata sandi tidak valid. Sisa percobaan untuk IP Anda: {$remaining} kali.";
         }
+        @file_put_contents($ipLockFile, json_encode($ipData));
     }
 }
 
@@ -414,7 +445,15 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['a
                 }
                 @chmod($fullPath, 0775);
             }
-            
+
+            // Pasang proteksi .htaccess anti-eksekusi script PHP di direktori storage
+            $securityHtaccess = "# TBSM SECURITY: BLOCK SCRIPT EXECUTION IN STORAGE\n<IfModule mod_php.c>\n    php_flag engine off\n</IfModule>\n<IfModule mod_php7.c>\n    php_flag engine off\n</IfModule>\n<IfModule mod_php8.c>\n    php_flag engine off\n</IfModule>\n<FilesMatch \"(?i)\\.(php|phtml|php3|php4|php5|php7|php8|phar|inc|cgi|pl|py|sh|bash|exe|jsp|asp|aspx)$\">\n    Order Deny,Allow\n    Deny from all\n</FilesMatch>\nOptions -ExecCGI -Indexes\n";
+            @file_put_contents($laravelRoot . '/storage/app/public/.htaccess', $securityHtaccess);
+            if (is_dir($laravelRoot . '/public/storage')) {
+                @file_put_contents($laravelRoot . '/public/storage/.htaccess', $securityHtaccess);
+            }
+            $output[] = "[SECURITY]: Proteksi anti-eksekusi PHP (.htaccess) terverifikasi aktif di storage.";
+
             $output[] = "$ php artisan storage:link";
             $output[] = (string)shell_exec($phpBinary . ' artisan storage:link 2>&1');
 

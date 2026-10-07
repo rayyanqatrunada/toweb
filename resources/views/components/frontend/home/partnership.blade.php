@@ -1,5 +1,41 @@
 @props(['partner'])
 
+@php
+    $settings = app(\App\Services\SettingsService::class);
+
+    // 1. Foto & Teks Showcase Kelas Industri
+    $indImgSetting = $settings->get('home_partner_industrial_image');
+    if (!empty($indImgSetting)) {
+        $indImgUrl = Storage::url($indImgSetting);
+    } elseif (Storage::disk('public')->exists('facilities/stall-servis-motor-praktik.png')) {
+        $indImgUrl = Storage::url('facilities/stall-servis-motor-praktik.png');
+    } elseif (Storage::disk('public')->exists('facilities/bengkel-praktik-otomotif.png')) {
+        $indImgUrl = Storage::url('facilities/bengkel-praktik-otomotif.png');
+    } else {
+        $indImgUrl = null;
+    }
+    $indTitle = $settings->get('home_partner_industrial_title', 'Kelas Industri');
+    $indSub = $settings->get('home_partner_industrial_subtitle', 'SOP Standar Bengkel Resmi');
+
+    // 2. Foto & Teks Showcase Special Tools (SST)
+    $toolsImgSetting = $settings->get('home_partner_tools_image');
+    if (!empty($toolsImgSetting)) {
+        $toolsImgUrl = Storage::url($toolsImgSetting);
+    } elseif (Storage::disk('public')->exists('facilities/gudang-sst-dan-suku-cadang-asli-hgp-800x600.jpg')) {
+        $toolsImgUrl = Storage::url('facilities/gudang-sst-dan-suku-cadang-asli-hgp-800x600.jpg');
+    } elseif (Storage::disk('public')->exists('facilities/trainer-injeksi-kelistrikan.png')) {
+        $toolsImgUrl = Storage::url('facilities/trainer-injeksi-kelistrikan.png');
+    } else {
+        $toolsImgUrl = null;
+    }
+    $toolsTitle = $settings->get('home_partner_tools_title', 'Special Tools (SST)');
+    $toolsSub = $settings->get('home_partner_tools_subtitle', 'Standar Astra Honda');
+
+    // 3. Teks Magang PKL / OJT
+    $internTitle = $settings->get('home_partner_internship_title', 'PKL / OJT');
+    $internSub = $settings->get('home_partner_internship_subtitle', 'On the Job Training');
+@endphp
+
 <section class="w-full py-10 sm:py-14 md:py-16 lg:py-20 overflow-hidden border-t border-gray-100 relative">
     <div class="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16">
         
@@ -38,7 +74,7 @@
                                 Mitra Utama Industri
                             </div>
                             <p class="font-sans text-[13px] sm:text-[14px] text-gray-500 line-clamp-2">
-                                {{ $partner->description ?? 'Mitra strategis dalam pengembangan kelas industri, penyelarasan kurikulum, dan rekrutmen mekanik profesional.' }}
+                                {{ strip_tags($partner->description ?? 'Mitra strategis dalam pengembangan kelas industri, penyelarasan kurikulum, dan rekrutmen mekanik profesional.') }}
                             </p>
                         </div>
                     </div>
@@ -59,23 +95,45 @@
                 <div class="hidden sm:block absolute -right-6 md:-right-12 -bottom-6 md:-bottom-12 w-3/4 h-3/4 bg-figma-red -z-10"></div>
                 
                 <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                    <!-- 1. Kelas Industri -->
                     <div class="col-span-2 relative aspect-[16/9] bg-charcoal-900 shadow-xl overflow-hidden group rounded-lg sm:rounded-none">
-                        <img src="https://images.unsplash.com/photo-1622322394747-062e787498c8?q=80&w=800&auto=format&fit=crop" alt="Industri" class="w-full h-full object-cover mix-blend-overlay opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" loading="lazy">
+                        @if($indImgUrl)
+                            <img src="{{ $indImgUrl }}" 
+                                 alt="{{ $indTitle }}" 
+                                 class="w-full h-full object-cover mix-blend-overlay opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" 
+                                 loading="lazy"
+                                 onerror="this.style.display='none'">
+                        @endif
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent pointer-events-none"></div>
                         <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 p-3 sm:p-4 bg-white/95 backdrop-blur-sm border-l-4 border-figma-red rounded-sm">
-                            <span class="block font-heading font-bold text-[14px] sm:text-[16px] text-figma-dark">Kelas Industri</span>
-                            <span class="block font-sans text-[12px] sm:text-[14px] text-gray-600">SOP Standar Bengkel Resmi</span>
+                            <span class="block font-heading font-bold text-[14px] sm:text-[16px] text-figma-dark">{{ $indTitle }}</span>
+                            <span class="block font-sans text-[12px] sm:text-[14px] text-gray-600">{{ $indSub }}</span>
                         </div>
                     </div>
                     
-                    <div class="relative aspect-square bg-gray-200 shadow-lg overflow-hidden group rounded-lg sm:rounded-none">
-                        <img src="https://images.unsplash.com/photo-1589710323380-60b6d27af0b5?q=80&w=400&auto=format&fit=crop" alt="Tools" class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" loading="lazy">
+                    <!-- 2. Special Tools (SST) -->
+                    <div class="relative aspect-square bg-charcoal-900 shadow-lg overflow-hidden group rounded-lg sm:rounded-none">
+                        @if($toolsImgUrl)
+                            <img src="{{ $toolsImgUrl }}" 
+                                 alt="{{ $toolsTitle }}" 
+                                 class="w-full h-full object-cover mix-blend-multiply opacity-85 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" 
+                                 loading="lazy"
+                                 onerror="this.style.display='none'">
+                        @endif
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3.5 sm:left-3.5 sm:right-3.5 p-2 sm:p-2.5 bg-white/95 backdrop-blur-sm border-l-3 border-figma-red rounded-xs">
+                            <span class="block font-heading font-bold text-[12px] sm:text-[13px] text-figma-dark leading-tight">{{ $toolsTitle }}</span>
+                            <span class="block font-sans text-[10px] sm:text-[11px] text-gray-500 leading-tight truncate mt-0.5">{{ $toolsSub }}</span>
+                        </div>
                     </div>
+
+                    <!-- 3. PKL / OJT -->
                     <div class="relative aspect-square bg-charcoal-950 shadow-lg flex flex-col items-center justify-center p-4 sm:p-6 text-center group rounded-lg sm:rounded-none">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-figma-red flex items-center justify-center mb-2 sm:mb-4 group-hover:bg-figma-red transition-colors">
                             <svg class="w-4 h-4 sm:w-5 sm:h-5 text-figma-red group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                         </div>
-                        <span class="block font-heading font-bold text-[18px] sm:text-[24px] text-white">PKL / OJT</span>
-                        <span class="block font-sans text-[11px] sm:text-[13px] text-gray-400 mt-1 sm:mt-2">On the Job Training</span>
+                        <span class="block font-heading font-bold text-[18px] sm:text-[24px] text-white">{{ $internTitle }}</span>
+                        <span class="block font-sans text-[11px] sm:text-[13px] text-gray-400 mt-1 sm:mt-2">{{ $internSub }}</span>
                     </div>
                 </div>
             </div>

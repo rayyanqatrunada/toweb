@@ -17,6 +17,7 @@ use Filament\Tables\Table;
 class DownloadCategoryResource extends Resource
 {
     protected static ?string $model = DownloadCategory::class;
+    protected static bool $shouldRegisterNavigation = false;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedFolderArrowDown;
     protected static ?string $navigationLabel = 'Kategori Dokumen';

@@ -42,7 +42,7 @@ class GalleryAlbumForm
 
                 Section::make('Cover Image')
                     ->schema([
-                        FileUpload::make('thumbnail')->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                        FileUpload::make('thumbnail')->image()->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->image()
                             ->maxSize(5120) // 5MB
                             ->disk('public')
@@ -60,7 +60,7 @@ class GalleryAlbumForm
                             ->label('Koleksi Foto Galeri (Bisa Pilih Banyak Foto Sekaligus)')
                             ->multiple()
                             ->image()
-                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->maxSize(5120) // 5MB per foto
                             ->disk('public')
                             ->visibility('public')
